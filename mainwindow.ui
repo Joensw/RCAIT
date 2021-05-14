@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>780</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>780</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Testfenster</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="UI_Icons.qrc">
+    <normaloff>:/Resources/UISymbols/processor_icon.svg</normaloff>:/Resources/UISymbols/processor_icon.svg</iconset>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>64</width>
+    <height>64</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="CustomTabWidget" name="tabWidget">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="font">
+       <font>
+        <family>SF Pro Text</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>32</width>
+        <height>55</height>
+       </size>
+      </property>
+      <property name="elideMode">
+       <enum>Qt::ElideMiddle</enum>
+      </property>
+      <property name="usesScrollButtons">
+       <bool>false</bool>
+      </property>
+      <property name="documentMode">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="tab_start">
+       <attribute name="icon">
+        <iconset resource="../TabIcons.qrc">
+         <normaloff>:/Filled/ui-test/Resources/TabIcons/Filled/Tab_Start_Icon.svg</normaloff>:/Filled/ui-test/Resources/TabIcons/Filled/Tab_Start_Icon.svg</iconset>
+       </attribute>
+       <attribute name="title">
+        <string comment="tab_start_text">Home</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="0" colspan="6">
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="0" colspan="7">
+           <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <family>SF Pro Text</family>
+              <pointsize>21</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string comment="welcome_label">Welcome to 
+Rapid Classification AI!</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="6">
+           <widget class="QComboBox" name="comboBox">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string>English</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Deutsch</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="font">
+             <font>
+              <family>SF Pro Text</family>
+              <pointsize>8</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>Continue</string>
+            </property>
+            <property name="icon">
+             <iconset resource="UI_Icons.qrc">
+              <normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="4" colspan="3">
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_crawler">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <attribute name="icon">
+        <iconset resource="../TabIcons.qrc">
+         <normaloff>:/Filled/ui-test/Resources/TabIcons/Filled/Tab_Crawler_Icon.svg</normaloff>:/Filled/ui-test/Resources/TabIcons/Filled/Tab_Crawler_Icon.svg</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Import Images</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_9">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="title">
+           <string>Import Images</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <layout class="QGridLayout" name="gridLayout_12">
+             <item row="0" column="1">
+              <widget class="Tags" name="lineEdit"/>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Search Keyword / Label</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="spinBox"/>
+             </item>
+             <item row="0" column="2">
+              <widget class="QPushButton" name="clearTagsButton">
+               <property name="minimumSize">
+                <size>
+                 <width>30</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>8</width>
+                 <height>29</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="UI_Icons.qrc">
+                 <normaloff>:/Resources/UISymbols/UI_Delete_All_Items.svg</normaloff>:/Resources/UISymbols/UI_Delete_All_Items.svg</iconset>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>Local Directory</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="lineEdit_2"/>
+             </item>
+             <item row="2" column="1">
+              <widget class="QComboBox" name="comboBox_3">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Flickr API</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bing Image Search API</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_7">
+               <property name="text">
+                <string>Collector Plugin</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>Image Count</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QProgressBar" name="progressBar_2">
+             <property name="value">
+              <number>24</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_5">
+             <property name="font">
+              <font>
+               <family>SF Pro Text</family>
+               <pointsize>8</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Load Images</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="gridGroupBox">
+          <property name="title">
+           <string>Load Model</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_14">
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="gridLayout_13">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_loaded_model_text">
+               <property name="text">
+                <string>Loaded Model</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QPushButton" name="pushButton_6">
+               <property name="text">
+                <string>Load Model...</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QListWidget" name="listWidget"/>
+             </item>
+             <item row="0" column="1" colspan="2">
+              <widget class="QLabel" name="label_loaded_model">
+               <property name="text">
+                <string>HAAALLOOOOOO</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_training_images">
+       <attribute name="icon">
+        <iconset resource="../TabIcons.qrc">
+         <normaloff>:/Filled/ui-test/Resources/TabIcons/Filled/auto_awesome_motion_black_24dp.svg</normaloff>:/Filled/ui-test/Resources/TabIcons/Filled/auto_awesome_motion_black_24dp.svg</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>AI Training</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <widget class="ImageSection" name="gridWidget_3" native="true">
+          <layout class="QGridLayout" name="gridLayout_4"/>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_ai_settings">
+       <attribute name="icon">
+        <iconset resource="../TabIcons.qrc">
+         <normaloff>:/Filled/ui-test/Resources/TabIcons/Filled/Tab_Settings_Icon.svg</normaloff>:/Filled/ui-test/Resources/TabIcons/Filled/Tab_Settings_Icon.svg</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>AI Settings</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_11">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>AI Classification Options</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0">
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <layout class="QFormLayout" name="formLayout">
+               <item row="0" column="0">
+                <widget class="QLabel" name="classificationPluginLabel">
+                 <property name="text">
+                  <string>Classificator</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="classificationPluginComboBox">
+                 <item>
+                  <property name="text">
+                   <string>MMClassification Plugin</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Tensorflow Plugin</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="pluginProfileLabel">
+                 <property name="text">
+                  <string>Plugin Profile</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="pluginProfileComboBox">
+                 <item>
+                  <property name="text">
+                   <string>VGG-11</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="actionLabel">
+                 <property name="text">
+                  <string>Task</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QComboBox" name="actionComboBox">
+                 <item>
+                  <property name="text">
+                   <string>Classification</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Training</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QProgressBar" name="progressBar">
+               <property name="value">
+                <number>24</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <item>
+                <spacer name="horizontalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton">
+                 <property name="text">
+                  <string>Start</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_3">
+                 <property name="text">
+                  <string>Cancel</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_4">
+                 <property name="text">
+                  <string>Results</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_inputimages">
+       <attribute name="icon">
+        <iconset resource="../TabIcons.qrc">
+         <normaloff>:/Filled/ui-test/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</normaloff>:/Filled/ui-test/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Input Images</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_6"/>
+      </widget>
+      <widget class="QWidget" name="tab_result">
+       <attribute name="icon">
+        <iconset resource="../TabIcons.qrc">
+         <normaloff>:/Filled/ui-test/Resources/TabIcons/Filled/Tab_Results_Icon.svg</normaloff>:/Filled/ui-test/Resources/TabIcons/Filled/Tab_Results_Icon.svg</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Results</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QChartView" name="graph1">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>300</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>317</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QChartView" name="graph2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>300</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>780</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CustomTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>customtabwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header>QtCharts</header>
+  </customwidget>
+  <customwidget>
+   <class>ImageSection</class>
+   <extends>QWidget</extends>
+   <header>imagesection.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Tags</class>
+   <extends>QLineEdit</extends>
+   <header>tags.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="UI_Icons.qrc"/>
+  <include location="../TabIcons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

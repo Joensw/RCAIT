@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/UISymbols/UI_Arrow_Forward.svg</file>
+        <file>Resources/UISymbols/processor_icon.svg</file>
+        <file>Resources/UISymbols/UI_Delete_Item.svg</file>
+        <file>Resources/UISymbols/UI_Delete_All_Items.svg</file>
+    </qresource>
+</RCC>
