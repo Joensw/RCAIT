@@ -44,6 +44,4 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES += \
-    ../TabIcons.qrc \
-    UI_Icons.qrc
+RESOURCES += UI_Icons.qrc

@@ -4,5 +4,20 @@
         <file>Resources/UISymbols/processor_icon.svg</file>
         <file>Resources/UISymbols/UI_Delete_Item.svg</file>
         <file>Resources/UISymbols/UI_Delete_All_Items.svg</file>
+        <file>Resources/TabIcons/Filled/Tab_Training_Images_Icon.svg</file>
+        <file>Resources/TabIcons/Filled/auto_awesome_motion_black_24dp.svg</file>
+        <file>Resources/TabIcons/Filled/filter_black_24dp.svg</file>
+        <file>Resources/TabIcons/Filled/Tab_Crawler_Icon.svg</file>
+        <file>Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</file>
+        <file>Resources/TabIcons/Filled/Tab_Results_Icon.svg</file>
+        <file>Resources/TabIcons/Filled/Tab_Settings_Icon.svg</file>
+        <file>Resources/TabIcons/Filled/Tab_Start_Icon.svg</file>
+        <file>Resources/TabIcons/Outline/Tab_AI_Settings_Icon.svg</file>
+        <file>Resources/TabIcons/Outline/Tab_Crawler_Icon.svg</file>
+        <file>Resources/TabIcons/Outline/Tab_Input_Images_Icon.svg</file>
+        <file>Resources/TabIcons/Outline/Tab_Result_Icon.svg</file>
+        <file>Resources/TabIcons/Outline/Tab_Result_Icon_2.svg</file>
+        <file>Resources/TabIcons/Outline/Tab_Settings_Icon.svg</file>
+        <file>Resources/TabIcons/Outline/Tab_Start_Icon.svg</file>
     </qresource>
 </RCC>
