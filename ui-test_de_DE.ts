@@ -146,6 +146,82 @@ Rapid Classification AI!</translation>
         <source>Cancel</source>
         <translation>Abbruch</translation>
     </message>
+    <message>
+        <source>Automation</source>
+        <translation>Automatisierung</translation>
+    </message>
+    <message>
+        <source>Batch Processing Tasks</source>
+        <translation>Stapelverarbeitungsaufgaben</translation>
+    </message>
+    <message>
+        <source>Import New Tasks</source>
+        <translation>Importiere neue Aufgaben</translation>
+    </message>
+    <message>
+        <source>Task 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Task 7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Task 8</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Task 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Task 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Task 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Task 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Task 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Model</source>
+        <translation>Lade Modell</translation>
+    </message>
+    <message>
+        <source>Loaded Model</source>
+        <translation>Geladenes Modell</translation>
+    </message>
+    <message>
+        <source>Load Model...</source>
+        <translation>Lade Modell...</translation>
+    </message>
+    <message>
+        <source>File 1</source>
+        <translation>Datei 1</translation>
+    </message>
+    <message>
+        <source>File 2</source>
+        <translation>Datei 2</translation>
+    </message>
+    <message>
+        <source>File 3</source>
+        <translation>Datei 3</translation>
+    </message>
+    <message>
+        <source>File 4</source>
+        <translation>Datei 4</translation>
+    </message>
+    <message>
+        <source>File 5</source>
+        <translation>Datei 5</translation>
+    </message>
 </context>
 <context>
     <name>imagesection</name>
