@@ -14,9 +14,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
-     QIcon icon = QIcon(":/Resources/UISymbols/UI_Delete_Item.svg");
-    ui->label_loaded_model->setPixmap(icon.pixmap(QSize(32,32)));
-
 
     populateResultCharts(ui);
 }
@@ -102,7 +99,7 @@ void MainWindow::on_pushButton_2_clicked()
     ui->tabWidget->setCurrentIndex(++curr);
 }
 
-void MainWindow::on_clearTagsButton_clicked()
+void MainWindow::on_pushButton_clearTags_clicked()
 {
     std::vector<QString> tags ;
     ui->lineEdit->tags(tags);

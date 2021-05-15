@@ -31,5 +31,8 @@
         <file>Resources/TaskIcons/Task_Running.svg</file>
         <file>Resources/UISymbols/UI_Stop_Icon.svg</file>
         <file>Resources/UISymbols/UI_Add_Task.svg</file>
+        <file>Resources/UISymbols/UI_Folder_Icon.svg</file>
+        <file>Resources/UISymbols/UI_Model_File.svg</file>
+        <file>Resources/UISymbols/UI_Add_Icon.svg</file>
     </qresource>
 </RCC>

@@ -18,7 +18,7 @@ public:
 private slots:
     void on_pushButton_2_clicked();
 
-    void on_clearTagsButton_clicked();
+    void on_pushButton_clearTags_clicked();
 
 private:
     Ui::MainWindow *ui;
