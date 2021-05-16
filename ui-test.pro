@@ -13,6 +13,7 @@ SOURCES += \
     customtabbar.cpp \
     customtabwidget.cpp \
     imagegallery.cpp \
+    imagegallerytree.cpp \
     imagesection.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -23,6 +24,7 @@ HEADERS += \
     customtabbar.h \
     customtabwidget.h \
     imagegallery.h \
+    imagegallerytree.h \
     imagesection.h \
     mainwindow.h \
     qinputcontrol_p.h \

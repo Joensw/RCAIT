@@ -1,11 +1,12 @@
 #include "imagesection.h"
 #include "ui_imagesection.h"
+#include "imagegallerytree.h"
 
 
-const QString inputImagePath = "D:\\Benutzer\\Paul\\Bilder\\GoogleImagesDownloader-urllib-downloader\\GoogleImagesDownloader-urllib-downloader\\urllib_downloader\\Example\\data\\Car";
-const QString trainingImagePath = "D:\\Benutzer\\Paul\\Bilder\\GoogleImagesDownloader-urllib-downloader\\GoogleImagesDownloader-urllib-downloader\\urllib_downloader\\Example\\data\\Truck";
+const QString inputImagePath = "D:/Bilder/Platzhaltzer/";
+const QString trainingImagePath = "D:/Bilder/Auto/";
 
-
+//Test Konstruktor, der immer die obigen Strings als Pfad wählt
 ImageSection::ImageSection(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::imagesection)
@@ -14,18 +15,19 @@ ImageSection::ImageSection(QWidget *parent) :
 
 
 
-    ui->inputImages = startGallery(inputImagePath);
+    ui->inputImages = new ImageGalleryTree(QStringList() << inputImagePath << "D:/Bilder/test_1" << "D:/Bilder/Körperwelten");
     ui->gridLayout->addWidget(ui->inputImages, 1, 0, 1, 1);
     ui->gridLayout->update();
 
-     ui->trainingImages = startGallery(trainingImagePath);
+     ui->trainingImages = new ImageGalleryTree(QStringList() << trainingImagePath );
      ui->gridLayout->addWidget(ui->trainingImages, 1, 1, 1, 1);
      ui->gridLayout->update();
 
 }
 
 
-ImageSection::ImageSection(QWidget *parent, QString inputPath, QString trainingPath) :
+//tatsächlicher Konstruktor
+ImageSection::ImageSection(QWidget *parent, QStringList inputPath, QStringList trainingPath) :
     QWidget(parent),
     ui(new Ui::imagesection)
 {
@@ -33,32 +35,17 @@ ImageSection::ImageSection(QWidget *parent, QString inputPath, QString trainingP
 
 
 
-    ui->inputImages = startGallery(inputPath);
+    ui->inputImages = new ImageGalleryTree(inputPath);
     ui->gridLayout->addWidget(ui->inputImages, 1, 0, 1, 1);
     ui->gridLayout->update();
 
-     ui->trainingImages = startGallery(trainingPath);
+     ui->trainingImages = new ImageGalleryTree(trainingPath);
      ui->gridLayout->addWidget(ui->trainingImages, 1, 1, 1, 1);
      ui->gridLayout->update();
-
 }
 
 
 
-ImageGallery* ImageSection::startGallery( QString path)
-{
-    QFileInfo info(path);
-
-    if(!info.exists()){
-        return NULL;
-    }
-
-    if (info.isDir()){
-        return new ImageGallery(this, QDir(path));
-    } else {
-        return new ImageGallery(this, path);
-    }
-}
 
 ImageSection::~ImageSection()
 {
@@ -67,6 +54,6 @@ ImageSection::~ImageSection()
 
 void ImageSection::on_pushButton_clicked()
 {
-    ui->trainingImages->removeselected();
+   ui->trainingImages->removeSelected();
 }
 

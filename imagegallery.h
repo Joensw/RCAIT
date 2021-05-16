@@ -14,14 +14,16 @@ class ImageGallery : public QListWidget
 public:
     explicit ImageGallery(QWidget *parent = nullptr);
     ImageGallery(QWidget *parent, QDir imageDirectory);
-    ImageGallery(QWidget *parent, QString imagePath);
     ~ImageGallery();
 
     void removeselected();
-    void addDir(QDir imageDirectory);
+    void addDir(QDir imageDir);
+    QSize minimumSizeHint() const override;
+    QSize sizeHint() const override;
 
 
 private:
+
 };
 
 #endif // IMAGEGALLERY_H

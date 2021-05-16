@@ -29,37 +29,61 @@
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Validation Images</string>
+      <string>Validation images</string>
      </property>
     </widget>
    </item>
    <item row="0" column="1">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Training Images</string>
+      <string>Training images</string>
      </property>
     </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="ImageGallery" name="inputImages"/>
-   </item>
-   <item row="1" column="1">
-    <widget class="ImageGallery" name="trainingImages"/>
    </item>
    <item row="2" column="1">
     <widget class="QPushButton" name="pushButton">
      <property name="text">
-      <string>Remove Selected Images</string>
+      <string>Remove selected images</string>
      </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="ImageGalleryTree" name="trainingImages">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="rootIsDecorated">
+      <bool>true</bool>
+     </property>
+     <attribute name="headerVisible">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string notr="true">1</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="ImageGalleryTree" name="inputImages">
+     <attribute name="headerVisible">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string notr="true">1</string>
+      </property>
+     </column>
     </widget>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ImageGallery</class>
-   <extends>QListWidget</extends>
-   <header>imagegallery.h</header>
+   <class>ImageGalleryTree</class>
+   <extends>QTreeWidget</extends>
+   <header>imagegallerytree.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

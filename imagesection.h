@@ -16,7 +16,9 @@ class ImageSection : public QWidget
 public:
     explicit ImageSection(QWidget *parent = nullptr);
     ~ImageSection();
-    ImageSection(QWidget *parent, QString inputPath, QString trainingPath);
+    ImageSection(QWidget *parent, QStringList inputPath, QStringList trainingPath);
+
+
 
 private slots:
     void on_pushButton_clicked();
@@ -24,7 +26,7 @@ private slots:
 
 private:
     Ui::imagesection *ui;
-    ImageGallery* startGallery(QString path);
+
 
 
 };
