@@ -31,8 +31,6 @@ HEADERS += \
     tags.hpp
 
 FORMS += \
-    imagegallery.ui \
-    images.ui \
     imagesection.ui \
     mainwindow.ui
 

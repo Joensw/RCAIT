@@ -7,9 +7,9 @@
 
 
 
+QString testDir = "D:/Bilder/Auto/";
 
-
-
+//Nur für "Input Image" Tab test
 ImageGallery::ImageGallery(QWidget *parent) :
     QListWidget(parent)
 {
@@ -20,6 +20,27 @@ ImageGallery::ImageGallery(QWidget *parent) :
     setIconSize(QSize(100,100));
     setFlow(QListWidget::LeftToRight);
     setResizeMode(QListWidget::Adjust);
+    setUniformItemSizes(true);
+
+
+
+
+    class addDirTask : public QRunnable
+    {
+    public:
+        addDirTask(ImageGallery* gallery, QDir path){
+            this->gallery = gallery;
+            this->path = path;
+        }
+        void run() override
+        {
+            gallery->addDir(path);
+        }
+        private: ImageGallery* gallery;
+                 QDir path;
+    };
+    addDirTask *addDirParallel = new addDirTask(this, testDir);
+    QThreadPool::globalInstance()->start(addDirParallel);
 
 }
 
@@ -34,7 +55,7 @@ ImageGallery::ImageGallery(QWidget *parent, QDir imageDirectory)
     setResizeMode(QListWidget::Adjust);
     setUniformItemSizes(true);
 
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    //setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 
 
