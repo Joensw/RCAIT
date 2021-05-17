@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>950</width>
-    <height>502</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -52,7 +52,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <property name="iconSize">
        <size>
@@ -185,269 +185,7 @@ Rapid Classification AI!</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_automation">
-       <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/auto_awesome_motion_black_24dp.svg</normaloff>:/Resources/TabIcons/Filled/auto_awesome_motion_black_24dp.svg</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Automation</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_15">
-        <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBox_3">
-          <property name="title">
-           <string>Batch Processing Tasks</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_16">
-           <item row="2" column="1">
-            <widget class="QPushButton" name="pushButton_12">
-             <property name="text">
-              <string>Import New Tasks</string>
-             </property>
-             <property name="icon">
-              <iconset resource="UI_Icons.qrc">
-               <normaloff>:/Resources/UISymbols/UI_Add_Task.svg</normaloff>:/Resources/UISymbols/UI_Add_Task.svg</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>20</width>
-               <height>20</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QListWidget" name="listWidget_2">
-             <item>
-              <property name="text">
-               <string>Task 6</string>
-              </property>
-              <property name="icon">
-               <iconset resource="UI_Icons.qrc">
-                <normaloff>:/Resources/TaskIcons/Task_Empty.svg</normaloff>:/Resources/TaskIcons/Task_Empty.svg</iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Task 7</string>
-              </property>
-              <property name="icon">
-               <iconset resource="UI_Icons.qrc">
-                <normaloff>:/Resources/TaskIcons/Task_Empty.svg</normaloff>:/Resources/TaskIcons/Task_Empty.svg</iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Task 8</string>
-              </property>
-              <property name="icon">
-               <iconset resource="UI_Icons.qrc">
-                <normaloff>:/Resources/TaskIcons/Task_Empty.svg</normaloff>:/Resources/TaskIcons/Task_Empty.svg</iconset>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="1" column="4">
-            <widget class="QListWidget" name="listWidget_3">
-             <item>
-              <property name="text">
-               <string>Task 1</string>
-              </property>
-              <property name="icon">
-               <iconset resource="UI_Icons.qrc">
-                <normaloff>:/Resources/TaskIcons/Task_Success.svg</normaloff>:/Resources/TaskIcons/Task_Success.svg</iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Task 2</string>
-              </property>
-              <property name="icon">
-               <iconset resource="UI_Icons.qrc">
-                <normaloff>:/Resources/TaskIcons/Task_Success.svg</normaloff>:/Resources/TaskIcons/Task_Success.svg</iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Task 3</string>
-              </property>
-              <property name="icon">
-               <iconset resource="UI_Icons.qrc">
-                <normaloff>:/Resources/TaskIcons/Task_Error.svg</normaloff>:/Resources/TaskIcons/Task_Error.svg</iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Task 4</string>
-              </property>
-              <property name="icon">
-               <iconset resource="UI_Icons.qrc">
-                <normaloff>:/Resources/TaskIcons/Task_Running.svg</normaloff>:/Resources/TaskIcons/Task_Running.svg</iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Task 5</string>
-              </property>
-              <property name="icon">
-               <iconset resource="UI_Icons.qrc">
-                <normaloff>:/Resources/TaskIcons/Task_Empty.svg</normaloff>:/Resources/TaskIcons/Task_Empty.svg</iconset>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <layout class="QVBoxLayout" name="verticalLayout_3">
-             <item>
-              <spacer name="verticalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_9">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="UI_Icons.qrc">
-                 <normaloff>:/Resources/UISymbols/UI_Move_Right.svg</normaloff>:/Resources/UISymbols/UI_Move_Right.svg</iconset>
-               </property>
-               <property name="flat">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_8">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="UI_Icons.qrc">
-                 <normaloff>:/Resources/UISymbols/UI_Move_All_Right.svg</normaloff>:/Resources/UISymbols/UI_Move_All_Right.svg</iconset>
-               </property>
-               <property name="flat">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_10">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="UI_Icons.qrc">
-                 <normaloff>:/Resources/UISymbols/UI_Move_Left.svg</normaloff>:/Resources/UISymbols/UI_Move_Left.svg</iconset>
-               </property>
-               <property name="flat">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_7">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="UI_Icons.qrc">
-                 <normaloff>:/Resources/UISymbols/UI_Move_All_Left.svg</normaloff>:/Resources/UISymbols/UI_Move_All_Left.svg</iconset>
-               </property>
-               <property name="autoDefault">
-                <bool>false</bool>
-               </property>
-               <property name="default">
-                <bool>false</bool>
-               </property>
-               <property name="flat">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="verticalSpacer">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_11">
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="UI_Icons.qrc">
-                 <normaloff>:/Resources/UISymbols/UI_Play_Icon.svg</normaloff>:/Resources/UISymbols/UI_Play_Icon.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>25</width>
-                 <height>25</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_13">
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="UI_Icons.qrc">
-                 <normaloff>:/Resources/UISymbols/UI_Stop_Icon.svg</normaloff>:/Resources/UISymbols/UI_Stop_Icon.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>25</width>
-                 <height>25</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="2" column="4">
-            <widget class="QProgressBar" name="progressBar_3">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="value">
-              <number>24</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_crawler">
+      <widget class="QWidget" name="tab_import">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -1041,6 +779,268 @@ Rapid Classification AI!</string>
            </widget>
           </item>
          </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_automation">
+       <attribute name="icon">
+        <iconset resource="UI_Icons.qrc">
+         <normaloff>:/Resources/TabIcons/Filled/auto_awesome_motion_black_24dp.svg</normaloff>:/Resources/TabIcons/Filled/auto_awesome_motion_black_24dp.svg</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Automation</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_15">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="title">
+           <string>Batch Processing Tasks</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_16">
+           <item row="2" column="1">
+            <widget class="QPushButton" name="pushButton_12">
+             <property name="text">
+              <string>Import New Tasks</string>
+             </property>
+             <property name="icon">
+              <iconset resource="UI_Icons.qrc">
+               <normaloff>:/Resources/UISymbols/UI_Add_Task.svg</normaloff>:/Resources/UISymbols/UI_Add_Task.svg</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QListWidget" name="listWidget_2">
+             <item>
+              <property name="text">
+               <string>Task 6</string>
+              </property>
+              <property name="icon">
+               <iconset resource="UI_Icons.qrc">
+                <normaloff>:/Resources/TaskIcons/Task_Empty.svg</normaloff>:/Resources/TaskIcons/Task_Empty.svg</iconset>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Task 7</string>
+              </property>
+              <property name="icon">
+               <iconset resource="UI_Icons.qrc">
+                <normaloff>:/Resources/TaskIcons/Task_Empty.svg</normaloff>:/Resources/TaskIcons/Task_Empty.svg</iconset>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Task 8</string>
+              </property>
+              <property name="icon">
+               <iconset resource="UI_Icons.qrc">
+                <normaloff>:/Resources/TaskIcons/Task_Empty.svg</normaloff>:/Resources/TaskIcons/Task_Empty.svg</iconset>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QListWidget" name="listWidget_3">
+             <item>
+              <property name="text">
+               <string>Task 1</string>
+              </property>
+              <property name="icon">
+               <iconset resource="UI_Icons.qrc">
+                <normaloff>:/Resources/TaskIcons/Task_Success.svg</normaloff>:/Resources/TaskIcons/Task_Success.svg</iconset>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Task 2</string>
+              </property>
+              <property name="icon">
+               <iconset resource="UI_Icons.qrc">
+                <normaloff>:/Resources/TaskIcons/Task_Success.svg</normaloff>:/Resources/TaskIcons/Task_Success.svg</iconset>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Task 3</string>
+              </property>
+              <property name="icon">
+               <iconset resource="UI_Icons.qrc">
+                <normaloff>:/Resources/TaskIcons/Task_Error.svg</normaloff>:/Resources/TaskIcons/Task_Error.svg</iconset>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Task 4</string>
+              </property>
+              <property name="icon">
+               <iconset resource="UI_Icons.qrc">
+                <normaloff>:/Resources/TaskIcons/Task_Running.svg</normaloff>:/Resources/TaskIcons/Task_Running.svg</iconset>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Task 5</string>
+              </property>
+              <property name="icon">
+               <iconset resource="UI_Icons.qrc">
+                <normaloff>:/Resources/TaskIcons/Task_Empty.svg</normaloff>:/Resources/TaskIcons/Task_Empty.svg</iconset>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <spacer name="verticalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_9">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="UI_Icons.qrc">
+                 <normaloff>:/Resources/UISymbols/UI_Move_Right.svg</normaloff>:/Resources/UISymbols/UI_Move_Right.svg</iconset>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_8">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="UI_Icons.qrc">
+                 <normaloff>:/Resources/UISymbols/UI_Move_All_Right.svg</normaloff>:/Resources/UISymbols/UI_Move_All_Right.svg</iconset>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_10">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="UI_Icons.qrc">
+                 <normaloff>:/Resources/UISymbols/UI_Move_Left.svg</normaloff>:/Resources/UISymbols/UI_Move_Left.svg</iconset>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_7">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="UI_Icons.qrc">
+                 <normaloff>:/Resources/UISymbols/UI_Move_All_Left.svg</normaloff>:/Resources/UISymbols/UI_Move_All_Left.svg</iconset>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_11">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="UI_Icons.qrc">
+                 <normaloff>:/Resources/UISymbols/UI_Play_Icon.svg</normaloff>:/Resources/UISymbols/UI_Play_Icon.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>25</width>
+                 <height>25</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_13">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="UI_Icons.qrc">
+                 <normaloff>:/Resources/UISymbols/UI_Stop_Icon.svg</normaloff>:/Resources/UISymbols/UI_Stop_Icon.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>25</width>
+                 <height>25</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="4">
+            <widget class="QProgressBar" name="progressBar_3">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="value">
+              <number>24</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>
