@@ -52,7 +52,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <property name="iconSize">
        <size>
@@ -194,7 +194,7 @@ Rapid Classification AI!</string>
          <normaloff>:/Resources/TabIcons/Filled/Tab_Crawler_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Crawler_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
-        <string>Import Images</string>
+        <string>Import Files</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_9">
         <item row="0" column="0">
@@ -573,10 +573,10 @@ Rapid Classification AI!</string>
       <widget class="QWidget" name="tab_training_images">
        <attribute name="icon">
         <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/Tab_Training_Images_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Training_Images_Icon.svg</iconset>
+         <normaloff>:/Resources/TabIcons/Filled/filter_black_24dp.svg</normaloff>:/Resources/TabIcons/Filled/filter_black_24dp.svg</iconset>
        </attribute>
        <attribute name="title">
-        <string>AI Training</string>
+        <string>Image Inspection</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="0" column="0">
@@ -584,13 +584,13 @@ Rapid Classification AI!</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_ai_settings">
+      <widget class="QWidget" name="tab_ai_training">
        <attribute name="icon">
         <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/Tab_Settings_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Settings_Icon.svg</iconset>
+         <normaloff>:/Resources/TabIcons/Filled/Tab_Training_Images_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Training_Images_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
-        <string>AI Settings</string>
+        <string>AI Training</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_11">
         <item row="0" column="0">
@@ -785,7 +785,7 @@ Rapid Classification AI!</string>
       <widget class="QWidget" name="tab_automation">
        <attribute name="icon">
         <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/auto_awesome_motion_black_24dp.svg</normaloff>:/Resources/TabIcons/Filled/auto_awesome_motion_black_24dp.svg</iconset>
+         <normaloff>:/Resources/TabIcons/Filled/batch_prediction_black_24dp.svg</normaloff>:/Resources/TabIcons/Filled/batch_prediction_black_24dp.svg</iconset>
        </attribute>
        <attribute name="title">
         <string>Automation</string>

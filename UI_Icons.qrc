@@ -40,5 +40,7 @@
         <file>Resources/Fonts/SF-Pro-Text-MediumItalic.otf</file>
         <file>Resources/Fonts/SF-Pro-Text-Regular.otf</file>
         <file>Resources/Fonts/SF-Pro-Text-RegularItalic.otf</file>
+        <file>Resources/TabIcons/Filled/collections_black_24dp.svg</file>
+        <file>Resources/TabIcons/Filled/batch_prediction_black_24dp.svg</file>
     </qresource>
 </RCC>
