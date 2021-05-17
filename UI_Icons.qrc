@@ -34,5 +34,11 @@
         <file>Resources/UISymbols/UI_Folder_Icon.svg</file>
         <file>Resources/UISymbols/UI_Model_File.svg</file>
         <file>Resources/UISymbols/UI_Add_Icon.svg</file>
+        <file>Resources/Fonts/SF-Pro-Text-Light.otf</file>
+        <file>Resources/Fonts/SF-Pro-Text-LightItalic.otf</file>
+        <file>Resources/Fonts/SF-Pro-Text-Medium.otf</file>
+        <file>Resources/Fonts/SF-Pro-Text-MediumItalic.otf</file>
+        <file>Resources/Fonts/SF-Pro-Text-Regular.otf</file>
+        <file>Resources/Fonts/SF-Pro-Text-RegularItalic.otf</file>
     </qresource>
 </RCC>

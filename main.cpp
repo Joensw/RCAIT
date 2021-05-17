@@ -4,12 +4,14 @@
 #include <QLocale>
 #include <QTranslator>
 #include <QStyleFactory>
+#include <QFontDatabase>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
     QApplication::setStyle(QStyleFactory::create("fusion"));
+    QFontDatabase::addApplicationFont(":/Resources/Fonts/SF-Pro-Text-Regular.otf");
     QFont sf_pro_text("SF Pro Text");
     sf_pro_text.setPixelSize(12);
     sf_pro_text.setHintingPreference(QFont::HintingPreference::PreferNoHinting); //This line did the trick

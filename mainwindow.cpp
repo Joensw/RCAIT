@@ -3,8 +3,6 @@
 #include "themewidget.h"
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
-#include <QtCharts/QLogValueAxis>
-#include <QtCharts/QValueAxis>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 
@@ -82,7 +80,7 @@ void MainWindow::populateResultCharts(Ui::MainWindow *ui){
 
         //![4]
             ui->graph1->setRenderHint(QPainter::Antialiasing);
-             ui->graph2->setRenderHint(QPainter::Antialiasing);
+            ui->graph2->setRenderHint(QPainter::Antialiasing);
             chart1->setAnimationOptions(QChart::AllAnimations);
             chart2->setAnimationOptions(QChart::AllAnimations);
         //![4]
