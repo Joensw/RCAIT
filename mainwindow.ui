@@ -52,7 +52,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>6</number>
       </property>
       <property name="iconSize">
        <size>
@@ -127,23 +127,13 @@ Rapid Classification AI!</string>
            </widget>
           </item>
           <item row="0" column="6">
-           <widget class="QComboBox" name="comboBox">
+           <widget class="QComboBox" name="comboBox_languageSelection">
             <property name="minimumSize">
              <size>
               <width>100</width>
               <height>0</height>
              </size>
             </property>
-            <item>
-             <property name="text">
-              <string>English</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Deutsch</string>
-             </property>
-            </item>
            </widget>
           </item>
           <item row="2" column="3">
@@ -573,7 +563,7 @@ Rapid Classification AI!</string>
       <widget class="QWidget" name="tab_training_images">
        <attribute name="icon">
         <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/filter_black_24dp.svg</normaloff>:/Resources/TabIcons/Filled/filter_black_24dp.svg</iconset>
+         <normaloff>:/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
         <string>Image Inspection</string>
@@ -718,7 +708,7 @@ Rapid Classification AI!</string>
       <widget class="QWidget" name="tab_inputimages">
        <attribute name="icon">
         <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</iconset>
+         <normaloff>:/Resources/TabIcons/Filled/filter_black_24dp.svg</normaloff>:/Resources/TabIcons/Filled/filter_black_24dp.svg</iconset>
        </attribute>
        <attribute name="title">
         <string>Input Images</string>

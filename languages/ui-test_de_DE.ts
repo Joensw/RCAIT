@@ -2,30 +2,7 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
-    <name>ImageGallery</name>
-    <message>
-        <source>Form</source>
-        <translation>Form</translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
-    <message>
-        <source>MainWindow</source>
-        <translation>Hauptfenster</translation>
-    </message>
-    <message>
-        <source>Remove selected images</source>
-        <translation>Entferne ausgewählte Bilder</translation>
-    </message>
-    <message>
-        <source>Input images</source>
-        <translation>Eingabebilder</translation>
-    </message>
-    <message>
-        <source>Training images</source>
-        <translation>Trainingsbilder</translation>
-    </message>
     <message>
         <source>Testfenster</source>
         <translation>Testfenster</translation>
@@ -41,14 +18,6 @@ Rapid Classification AI!</source>
         <comment>welcome_label</comment>
         <translation>Willkommen bei 
 Rapid Classification AI!</translation>
-    </message>
-    <message>
-        <source>English</source>
-        <translation>Englisch</translation>
-    </message>
-    <message>
-        <source>Deutsch</source>
-        <translation>Deutsch</translation>
     </message>
     <message>
         <source>Continue</source>
@@ -79,20 +48,12 @@ Rapid Classification AI!</translation>
         <translation>Bing Bildsuche API</translation>
     </message>
     <message>
-        <source>Local Directory</source>
-        <translation>Lokales Verzeichnis</translation>
-    </message>
-    <message>
         <source>Load Images</source>
         <translation>Lade Bilder</translation>
     </message>
     <message>
         <source>AI Training</source>
         <translation>AI Training</translation>
-    </message>
-    <message>
-        <source>AI Settings</source>
-        <translation>AI Einstellungen</translation>
     </message>
     <message>
         <source>AI Classification Options</source>
@@ -222,6 +183,22 @@ Rapid Classification AI!</translation>
         <source>File 5</source>
         <translation>Datei 5</translation>
     </message>
+    <message>
+        <source>Import Files</source>
+        <translation>Importiere Dateien</translation>
+    </message>
+    <message>
+        <source>Folder API</source>
+        <translation>Ordner API</translation>
+    </message>
+    <message>
+        <source>Recent model files</source>
+        <translation>Letzte Modelldateien</translation>
+    </message>
+    <message>
+        <source>Image Inspection</source>
+        <translation>Bildinspektion</translation>
+    </message>
 </context>
 <context>
     <name>imagesection</name>
@@ -230,16 +207,16 @@ Rapid Classification AI!</translation>
         <translation>Form</translation>
     </message>
     <message>
-        <source>Validation Images</source>
+        <source>Validation images</source>
         <translation>Validierungsbilder</translation>
     </message>
     <message>
-        <source>Training Images</source>
+        <source>Training images</source>
         <translation>Trainingsbilder</translation>
     </message>
     <message>
-        <source>Remove Selected Images</source>
-        <translation>Entferne gewählte Bilder</translation>
+        <source>Remove selected images</source>
+        <translation>Entferne ausgewählte Bilder</translation>
     </message>
 </context>
 </TS>

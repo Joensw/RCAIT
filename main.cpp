@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    //Set UI style and font
     QApplication::setStyle(QStyleFactory::create("fusion"));
     QFontDatabase::addApplicationFont(":/Resources/Fonts/SF-Pro-Text-Regular.otf");
     QFont sf_pro_text("SF Pro Text");
@@ -17,16 +18,6 @@ int main(int argc, char *argv[])
     sf_pro_text.setHintingPreference(QFont::HintingPreference::PreferNoHinting); //This line did the trick
     QApplication::setFont(sf_pro_text);
 
-
-    QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages) {
-        const QString baseName = "ui-test_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName)) {
-            a.installTranslator(&translator);
-            break;
-        }
-    }
     MainWindow w;
     w.show();
     return a.exec();

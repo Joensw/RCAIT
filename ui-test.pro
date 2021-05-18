@@ -35,7 +35,8 @@ FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
-    ui-test_de_DE.ts
+    languages/ui-test_de_DE.ts \
+    languages/ui-test_en_GB.ts
 CONFIG += lrelease
 CONFIG += embed_translations
 
@@ -45,3 +46,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += UI_Icons.qrc
+
+DISTFILES += \
+    languages/ui-test_de_DE.qm \
+    languages/ui-test_en_GB.qm
+
+DEFINES += PROJECT_PATH=\"\\\"$${_PRO_FILE_PWD_}/\\\"\"

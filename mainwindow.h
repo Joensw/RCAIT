@@ -2,6 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QComboBox>
+#include <QTranslator>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,8 +26,17 @@ private slots:
 
     void on_pushButton_clearTags_clicked();
 
+    void on_comboBox_languageSelection_currentTextChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
+    QTranslator m_translator; /*< contains the translations for this application*/
+    QString m_currLang; /*< contains the currently loaded language*/
+    const QString m_langPath = ":/i18n/"; /*< Path of language files. This is always fixed.*/
+
     void populateResultCharts(Ui::MainWindow *ui);
+    void populateLanguageMenu(QComboBox *box);
+    void loadLanguage(const QString& rLanguage);
+    void switchTranslator(QTranslator& translator, const QString& filename);
 };
 #endif // MAINWINDOW_H
