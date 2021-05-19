@@ -17,6 +17,8 @@ SOURCES += \
     imagesection.cpp \
     main.cpp \
     mainwindow.cpp \
+    newmodeldialog.cpp \
+    removeprojectdialog.cpp \
     tags.cpp
 
 HEADERS += \
@@ -27,12 +29,16 @@ HEADERS += \
     imagegallerytree.h \
     imagesection.h \
     mainwindow.h \
+    newmodeldialog.h \
     qinputcontrol_p.h \
+    removeprojectdialog.h \
     tags.hpp
 
 FORMS += \
     imagesection.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    newmodeldialog.ui \
+    removeprojectdialog.ui
 
 TRANSLATIONS += \
     languages/ui-test_de_DE.ts \
