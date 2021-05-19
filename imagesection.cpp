@@ -3,8 +3,8 @@
 #include "imagegallerytree.h"
 
 
-const QString inputImagePath = "D:/Bilder/Platzhaltzer/";
-const QString trainingImagePath = "D:/Bilder/Auto/";
+const QStringList inputImagePath = {":/Resources/images/Flugzeug/", ":/Resources/images/Truck/" , ":/Resources/images/Auto"};
+const QStringList trainingImagePath = {":/Resources/images/Flugzeug/", ":/Resources/images/Truck/", ":/Resources/images/Auto"};
 
 //Test Konstruktor, der immer die obigen Strings als Pfad wählt
 ImageSection::ImageSection(QWidget *parent) :
@@ -15,11 +15,11 @@ ImageSection::ImageSection(QWidget *parent) :
 
 
 
-    ui->inputImages = new ImageGalleryTree(QStringList() << inputImagePath << "D:/Bilder/test_1" << "D:/Bilder/Körperwelten");
+    ui->inputImages = new ImageGalleryTree(inputImagePath);
     ui->gridLayout->addWidget(ui->inputImages, 1, 0, 1, 1);
     ui->gridLayout->update();
 
-     ui->trainingImages = new ImageGalleryTree(QStringList() << trainingImagePath );
+     ui->trainingImages = new ImageGalleryTree(trainingImagePath );
      ui->gridLayout->addWidget(ui->trainingImages, 1, 1, 1, 1);
      ui->gridLayout->update();
 

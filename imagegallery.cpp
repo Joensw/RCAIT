@@ -7,7 +7,7 @@
 
 
 
-QString testDir = "D:/Bilder/Auto/";
+QString testDir = ":/Resources/images/Test_1/";
 
 //Nur für "Input Image" Tab test
 ImageGallery::ImageGallery(QWidget *parent) :
@@ -106,7 +106,7 @@ void ImageGallery::addDir(QDir imageDirectory)
     foreach(QString imageName, images){
 
         QString path = imageDirectory.path() + "/" + imageName;
-        qDebug() << path;
+        //qDebug() << path;
 
 
         QImage image(path);
