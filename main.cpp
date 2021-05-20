@@ -23,11 +23,12 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    RemoveProjectDialog r;
-    r.show();
+    //auskommentiert, nur zum erstellen der Dialog GUI Screenshots
+//RemoveProjectDialog r;
+ //r.show();
 
-    NewModelDialog m;
-    m.show();
+  //NewModelDialog m;
+  //m.show();
 
     return a.exec();
 }

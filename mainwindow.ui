@@ -20,7 +20,7 @@
    <string>Rapid Classification AI Trainer</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="UI_Icons.qrc">
+   <iconset>
     <normaloff>:/Resources/UISymbols/processor_icon.svg</normaloff>:/Resources/UISymbols/processor_icon.svg</iconset>
   </property>
   <property name="iconSize">
@@ -52,7 +52,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>6</number>
       </property>
       <property name="iconSize">
        <size>
@@ -71,7 +71,7 @@
       </property>
       <widget class="QWidget" name="tab_start">
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
+        <iconset>
          <normaloff>:/Resources/TabIcons/Filled/Tab_Start_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Start_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
@@ -162,7 +162,7 @@
                    <string>New Project</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="UI_Icons.qrc">
+                   <iconset>
                     <normaloff>:/Resources/UISymbols/UI_Add_Icon.svg</normaloff>:/Resources/UISymbols/UI_Add_Icon.svg</iconset>
                   </property>
                  </widget>
@@ -173,7 +173,7 @@
                    <string>Remove</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="UI_Icons.qrc">
+                   <iconset>
                     <normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</iconset>
                   </property>
                  </widget>
@@ -195,7 +195,7 @@
                    <string>Open</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="UI_Icons.qrc">
+                   <iconset>
                     <normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</iconset>
                   </property>
                  </widget>
@@ -281,7 +281,7 @@
         <bool>true</bool>
        </property>
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
+        <iconset>
          <normaloff>:/Resources/TabIcons/Filled/Tab_Crawler_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Crawler_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
@@ -395,7 +395,7 @@
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset resource="UI_Icons.qrc">
+                  <iconset>
                    <normaloff>:/Resources/UISymbols/UI_Delete_All_Items.svg</normaloff>:/Resources/UISymbols/UI_Delete_All_Items.svg</iconset>
                  </property>
                 </widget>
@@ -406,7 +406,7 @@
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset resource="UI_Icons.qrc">
+                  <iconset>
                    <normaloff>:/Resources/UISymbols/UI_Model_File.svg</normaloff>:/Resources/UISymbols/UI_Model_File.svg</iconset>
                  </property>
                 </widget>
@@ -508,7 +508,7 @@
                   <string>Add</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="UI_Icons.qrc">
+                  <iconset>
                    <normaloff>:/Resources/UISymbols/UI_Add_Icon.svg</normaloff>:/Resources/UISymbols/UI_Add_Icon.svg</iconset>
                  </property>
                 </widget>
@@ -519,7 +519,7 @@
                   <string>Remove</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="UI_Icons.qrc">
+                  <iconset>
                    <normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</iconset>
                  </property>
                 </widget>
@@ -530,7 +530,7 @@
                   <string>load</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="UI_Icons.qrc">
+                  <iconset>
                    <normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</iconset>
                  </property>
                 </widget>
@@ -572,7 +572,7 @@
       </widget>
       <widget class="QWidget" name="tab_training_images">
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
+        <iconset>
          <normaloff>:/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
@@ -586,7 +586,7 @@
       </widget>
       <widget class="QWidget" name="tab_ai_training">
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
+        <iconset>
          <normaloff>:/Resources/TabIcons/Filled/Tab_Training_Images_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Training_Images_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
@@ -857,7 +857,7 @@
       </widget>
       <widget class="QWidget" name="tab_inputimages">
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
+        <iconset>
          <normaloff>:/Resources/TabIcons/Filled/filter_black_24dp.svg</normaloff>:/Resources/TabIcons/Filled/filter_black_24dp.svg</iconset>
        </attribute>
        <attribute name="title">
@@ -907,7 +907,7 @@
                     <string/>
                    </property>
                    <property name="icon">
-                    <iconset resource="UI_Icons.qrc">
+                    <iconset>
                      <normaloff>:/Resources/UISymbols/UI_Folder_Icon.svg</normaloff>:/Resources/UISymbols/UI_Folder_Icon.svg</iconset>
                    </property>
                   </widget>
@@ -968,7 +968,7 @@
       </widget>
       <widget class="QWidget" name="tab_result">
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
+        <iconset>
          <normaloff>:/Resources/TabIcons/Filled/Tab_Results_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Results_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
@@ -1509,7 +1509,7 @@
       </widget>
       <widget class="QWidget" name="tab_automation">
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
+        <iconset>
          <normaloff>:/Resources/TabIcons/Filled/batch_prediction_black_24dp.svg</normaloff>:/Resources/TabIcons/Filled/batch_prediction_black_24dp.svg</iconset>
        </attribute>
        <attribute name="title">
@@ -1528,7 +1528,7 @@
               <string>Import New Tasks</string>
              </property>
              <property name="icon">
-              <iconset resource="UI_Icons.qrc">
+              <iconset>
                <normaloff>:/Resources/UISymbols/UI_Add_Task.svg</normaloff>:/Resources/UISymbols/UI_Add_Task.svg</iconset>
              </property>
              <property name="iconSize">
@@ -1546,7 +1546,7 @@
                <string>Task 6</string>
               </property>
               <property name="icon">
-               <iconset resource="UI_Icons.qrc">
+               <iconset>
                 <normaloff>:/Resources/TaskIcons/Task_Empty.svg</normaloff>:/Resources/TaskIcons/Task_Empty.svg</iconset>
               </property>
              </item>
@@ -1555,7 +1555,7 @@
                <string>Task 7</string>
               </property>
               <property name="icon">
-               <iconset resource="UI_Icons.qrc">
+               <iconset>
                 <normaloff>:/Resources/TaskIcons/Task_Empty.svg</normaloff>:/Resources/TaskIcons/Task_Empty.svg</iconset>
               </property>
              </item>
@@ -1564,7 +1564,7 @@
                <string>Task 8</string>
               </property>
               <property name="icon">
-               <iconset resource="UI_Icons.qrc">
+               <iconset>
                 <normaloff>:/Resources/TaskIcons/Task_Empty.svg</normaloff>:/Resources/TaskIcons/Task_Empty.svg</iconset>
               </property>
              </item>
@@ -1577,7 +1577,7 @@
                <string>Task 1</string>
               </property>
               <property name="icon">
-               <iconset resource="UI_Icons.qrc">
+               <iconset>
                 <normaloff>:/Resources/TaskIcons/Task_Success.svg</normaloff>:/Resources/TaskIcons/Task_Success.svg</iconset>
               </property>
              </item>
@@ -1586,7 +1586,7 @@
                <string>Task 2</string>
               </property>
               <property name="icon">
-               <iconset resource="UI_Icons.qrc">
+               <iconset>
                 <normaloff>:/Resources/TaskIcons/Task_Success.svg</normaloff>:/Resources/TaskIcons/Task_Success.svg</iconset>
               </property>
              </item>
@@ -1595,7 +1595,7 @@
                <string>Task 3</string>
               </property>
               <property name="icon">
-               <iconset resource="UI_Icons.qrc">
+               <iconset>
                 <normaloff>:/Resources/TaskIcons/Task_Error.svg</normaloff>:/Resources/TaskIcons/Task_Error.svg</iconset>
               </property>
              </item>
@@ -1604,7 +1604,7 @@
                <string>Task 4</string>
               </property>
               <property name="icon">
-               <iconset resource="UI_Icons.qrc">
+               <iconset>
                 <normaloff>:/Resources/TaskIcons/Task_Running.svg</normaloff>:/Resources/TaskIcons/Task_Running.svg</iconset>
               </property>
              </item>
@@ -1613,7 +1613,7 @@
                <string>Task 5</string>
               </property>
               <property name="icon">
-               <iconset resource="UI_Icons.qrc">
+               <iconset>
                 <normaloff>:/Resources/TaskIcons/Task_Empty.svg</normaloff>:/Resources/TaskIcons/Task_Empty.svg</iconset>
               </property>
              </item>
@@ -1640,7 +1640,7 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="UI_Icons.qrc">
+                <iconset>
                  <normaloff>:/Resources/UISymbols/UI_Move_Right.svg</normaloff>:/Resources/UISymbols/UI_Move_Right.svg</iconset>
                </property>
                <property name="flat">
@@ -1654,7 +1654,7 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="UI_Icons.qrc">
+                <iconset>
                  <normaloff>:/Resources/UISymbols/UI_Move_All_Right.svg</normaloff>:/Resources/UISymbols/UI_Move_All_Right.svg</iconset>
                </property>
                <property name="flat">
@@ -1668,7 +1668,7 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="UI_Icons.qrc">
+                <iconset>
                  <normaloff>:/Resources/UISymbols/UI_Move_Left.svg</normaloff>:/Resources/UISymbols/UI_Move_Left.svg</iconset>
                </property>
                <property name="flat">
@@ -1682,7 +1682,7 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="UI_Icons.qrc">
+                <iconset>
                  <normaloff>:/Resources/UISymbols/UI_Move_All_Left.svg</normaloff>:/Resources/UISymbols/UI_Move_All_Left.svg</iconset>
                </property>
                <property name="autoDefault">
@@ -1718,7 +1718,7 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="UI_Icons.qrc">
+                <iconset>
                  <normaloff>:/Resources/UISymbols/UI_Play_Icon.svg</normaloff>:/Resources/UISymbols/UI_Play_Icon.svg</iconset>
                </property>
                <property name="iconSize">
@@ -1738,7 +1738,7 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="UI_Icons.qrc">
+                <iconset>
                  <normaloff>:/Resources/UISymbols/UI_Stop_Icon.svg</normaloff>:/Resources/UISymbols/UI_Stop_Icon.svg</iconset>
                </property>
                <property name="iconSize">
@@ -1792,7 +1792,7 @@
          <string>Settings</string>
         </property>
         <property name="icon">
-         <iconset resource="UI_Icons.qrc">
+         <iconset>
           <normaloff>:/Resources/TabIcons/Filled/Tab_Settings_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Settings_Icon.svg</iconset>
         </property>
        </widget>
@@ -1842,8 +1842,6 @@
    <header>imagegallery.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="UI_Icons.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
