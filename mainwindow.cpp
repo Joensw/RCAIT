@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::populateResultCharts(Ui::MainWindow *ui){
-    QChart *chart1 = ui->graph1->chart();
+    //QChart *chart1 = ui->graph1->chart();
 
     //![1]
     QPieSeries *series = new QPieSeries();
@@ -34,9 +34,9 @@ void MainWindow::populateResultCharts(Ui::MainWindow *ui){
     //![2]
 
     //![3]
-    chart1->addSeries(series);
-    chart1->setTitle("Classification");
-    chart1->legend()->hide();
+//    chart1->addSeries(series);
+//    chart1->setTitle("Classification");
+//    chart1->legend()->hide();
     //![3]
 
 
@@ -76,9 +76,9 @@ void MainWindow::populateResultCharts(Ui::MainWindow *ui){
     //![3]
 
     //![4]
-    ui->graph1->setRenderHint(QPainter::Antialiasing);
+    //ui->graph1->setRenderHint(QPainter::Antialiasing);
     ui->graph2->setRenderHint(QPainter::Antialiasing);
-    chart1->setAnimationOptions(QChart::AllAnimations);
+//    chart1->setAnimationOptions(QChart::AllAnimations);
     chart2->setAnimationOptions(QChart::AllAnimations);
     //![4]
 }
