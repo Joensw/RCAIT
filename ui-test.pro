@@ -52,7 +52,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += UI_Icons.qrc \
-    Images.qrc
+    Images.qrc \
+    ressources.qrc
 
 DISTFILES += \
     languages/ui-test_de_DE.qm \

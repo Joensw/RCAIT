@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>950</width>
-    <height>607</height>
+    <width>989</width>
+    <height>718</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -52,7 +52,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>1</number>
       </property>
       <property name="iconSize">
        <size>
@@ -309,6 +309,13 @@
                </property>
               </widget>
              </item>
+             <item row="3" column="3">
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>40%</string>
+               </property>
+              </widget>
+             </item>
              <item row="1" column="0">
               <widget class="QLabel" name="label_2">
                <property name="text">
@@ -318,6 +325,19 @@
              </item>
              <item row="0" column="2">
               <widget class="Tags" name="lineEdit"/>
+             </item>
+             <item row="3" column="2">
+              <widget class="QSlider" name="horizontalSlider">
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="value">
+                <number>40</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
              </item>
              <item row="0" column="0">
               <widget class="QLabel" name="label_3">
@@ -393,47 +413,27 @@
                </item>
               </layout>
              </item>
-             <item row="3" column="2">
-              <widget class="QSlider" name="horizontalSlider">
-               <property name="maximum">
-                <number>100</number>
+             <item row="4" column="0">
+              <widget class="QPushButton" name="pushButton_5">
+               <property name="font">
+                <font>
+                 <family>SF Pro Text</family>
+                 <pointsize>8</pointsize>
+                </font>
                </property>
-               <property name="value">
-                <number>40</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+               <property name="text">
+                <string>Load Images</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="3">
-              <widget class="QLabel" name="label_5">
-               <property name="text">
-                <string>40%</string>
+             <item row="4" column="2">
+              <widget class="QProgressBar" name="progressBar_2">
+               <property name="value">
+                <number>24</number>
                </property>
               </widget>
              </item>
             </layout>
-           </item>
-           <item row="1" column="1">
-            <widget class="QProgressBar" name="progressBar_2">
-             <property name="value">
-              <number>24</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_5">
-             <property name="font">
-              <font>
-               <family>SF Pro Text</family>
-               <pointsize>8</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>Load Images</string>
-             </property>
-            </widget>
            </item>
           </layout>
          </widget>
@@ -505,7 +505,7 @@
                <item>
                 <widget class="QPushButton" name="pushButton_22">
                  <property name="text">
-                  <string>Add pre-trained</string>
+                  <string>Add</string>
                  </property>
                  <property name="icon">
                   <iconset resource="UI_Icons.qrc">
@@ -521,17 +521,6 @@
                  <property name="icon">
                   <iconset resource="UI_Icons.qrc">
                    <normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_14">
-                 <property name="text">
-                  <string>Profile</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="UI_Icons.qrc">
-                   <normaloff>:/Resources/TabIcons/Filled/Tab_Settings_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Settings_Icon.svg</iconset>
                  </property>
                 </widget>
                </item>
@@ -607,7 +596,7 @@
         <item row="1" column="0">
          <widget class="QGroupBox" name="groupBox">
           <property name="title">
-           <string>Run Model</string>
+           <string>Run Model Training</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="1" column="0">
@@ -667,9 +656,9 @@
           <property name="title">
            <string>Data Augmentation</string>
           </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_18">
+          <layout class="QVBoxLayout" name="verticalLayout_7">
            <item>
-            <layout class="QGridLayout" name="gridLayout_13" rowstretch="1,1,1,1,0,1,1">
+            <layout class="QGridLayout" name="gridLayout_13" rowstretch="1,0,0,0,0,0,0">
              <item row="4" column="0">
               <widget class="QLabel" name="label_10">
                <property name="text">
@@ -677,21 +666,38 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_11">
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_9">
                <property name="text">
-                <string>Random Flip Probability</string>
+                <string>Random Flip Direction</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="0">
+             <item row="6" column="2">
+              <layout class="QHBoxLayout" name="horizontalLayout_21">
+               <item>
+                <spacer name="horizontalSpacer_11">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item row="0" column="0">
               <widget class="QLabel" name="label_6">
                <property name="text">
                 <string>Random Resized Crop Size</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="1">
+             <item row="4" column="2">
               <layout class="QHBoxLayout" name="horizontalLayout_20">
                <item>
                 <spacer name="horizontalSpacer_3">
@@ -789,45 +795,58 @@
                </item>
               </layout>
              </item>
-             <item row="2" column="1">
-              <widget class="QLineEdit" name="lineEdit_3"/>
-             </item>
-             <item row="3" column="1">
-              <widget class="QLineEdit" name="lineEdit_10"/>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLineEdit" name="lineEdit_2"/>
-             </item>
              <item row="2" column="0">
-              <widget class="QLabel" name="label_9">
+              <widget class="QLabel" name="label_11">
                <property name="text">
-                <string>Random Flip Direction</string>
+                <string>Random Flip Probability</string>
                </property>
               </widget>
              </item>
-             <item row="6" column="1">
-              <layout class="QHBoxLayout" name="horizontalLayout_21">
-               <item>
-                <spacer name="horizontalSpacer_11">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_15">
-                 <property name="text">
-                  <string>Show Preview</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
+             <item row="0" column="2">
+              <widget class="QLineEdit" name="lineEdit_2"/>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLineEdit" name="lineEdit_3"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QLineEdit" name="lineEdit_10"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_18">
+             <item>
+              <spacer name="horizontalSpacer_13">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_15">
+               <property name="text">
+                <string>Show Preview</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -955,48 +974,536 @@
        <attribute name="title">
         <string>Results</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_5">
-        <item row="0" column="0">
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0">
-           <widget class="QChartView" name="graph1">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>300</width>
-              <height>300</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>317</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QChartView" name="graph2">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>300</width>
-              <height>300</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
+       <layout class="QHBoxLayout" name="horizontalLayout_25">
+        <item>
+         <widget class="QTabWidget" name="tabWidget_2">
+          <property name="tabPosition">
+           <enum>QTabWidget::North</enum>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="tabBarAutoHide">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="tab">
+           <attribute name="title">
+            <string>Training Results</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_14">
+            <item>
+             <widget class="QGroupBox" name="groupBox_7">
+              <property name="title">
+               <string>Model selection</string>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_28">
+               <item>
+                <layout class="QGridLayout" name="gridLayout_3">
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_8">
+                   <property name="text">
+                    <string>Current Model</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLineEdit" name="lineEdit_12">
+                   <property name="text">
+                    <string>Model1</string>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_17">
+                   <property name="text">
+                    <string>Compare to:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QComboBox" name="comboBox">
+                   <item>
+                    <property name="text">
+                     <string>None</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Model2</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Model3</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_8">
+              <property name="title">
+               <string>Results and Comparison</string>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_30">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_9">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_29">
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_11">
+                     <item>
+                      <widget class="QChartView" name="graph1">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>300</width>
+                         <height>300</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>317</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="verticalSpacer_6">
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>20</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_12">
+                     <item>
+                      <widget class="QChartView" name="graph2">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>300</width>
+                         <height>300</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="verticalSpacer_5">
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>20</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_13">
+                 <item>
+                  <layout class="QGridLayout" name="gridLayout_18">
+                   <item row="3" column="2">
+                    <widget class="QLineEdit" name="lineEdit_17">
+                     <property name="text">
+                      <string>88.87</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QLineEdit" name="lineEdit_15">
+                     <property name="text">
+                      <string>68.75</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="0">
+                    <widget class="QLabel" name="label_22">
+                     <property name="text">
+                      <string>Compared Model</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLabel" name="label_20">
+                     <property name="text">
+                      <string>Top1 (%)</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QLabel" name="label_23">
+                     <property name="text">
+                      <string>Top5 (%)</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="0">
+                    <widget class="QLabel" name="label_21">
+                     <property name="text">
+                      <string>Current Model</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="2">
+                    <widget class="QLineEdit" name="lineEdit_13">
+                     <property name="text">
+                      <string>90.49</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="1">
+                    <widget class="QLineEdit" name="lineEdit_18">
+                     <property name="text">
+                      <string>71.62</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QTableWidget" name="tableWidget_2">
+                   <row>
+                    <property name="text">
+                     <string>Auto</string>
+                    </property>
+                   </row>
+                   <row>
+                    <property name="text">
+                     <string>Truck</string>
+                    </property>
+                   </row>
+                   <row>
+                    <property name="text">
+                     <string>Flugzeug</string>
+                    </property>
+                   </row>
+                   <column>
+                    <property name="text">
+                     <string>Auto</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Truck</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Flugzeug</string>
+                    </property>
+                   </column>
+                   <item row="0" column="0">
+                    <property name="text">
+                     <string>200</string>
+                    </property>
+                   </item>
+                   <item row="0" column="1">
+                    <property name="text">
+                     <string>20</string>
+                    </property>
+                   </item>
+                   <item row="0" column="2">
+                    <property name="text">
+                     <string>0</string>
+                    </property>
+                   </item>
+                   <item row="1" column="0">
+                    <property name="text">
+                     <string>5</string>
+                    </property>
+                   </item>
+                   <item row="1" column="1">
+                    <property name="text">
+                     <string>160</string>
+                    </property>
+                   </item>
+                   <item row="1" column="2">
+                    <property name="text">
+                     <string>0</string>
+                    </property>
+                   </item>
+                   <item row="2" column="0">
+                    <property name="text">
+                     <string>0</string>
+                    </property>
+                   </item>
+                   <item row="2" column="1">
+                    <property name="text">
+                     <string>4</string>
+                    </property>
+                   </item>
+                   <item row="2" column="2">
+                    <property name="text">
+                     <string>50</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_31">
+              <item>
+               <spacer name="horizontalSpacer_15">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_24">
+                <property name="text">
+                 <string>Save</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_2">
+           <attribute name="title">
+            <string>Classification Results</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_26">
+                <item>
+                 <widget class="QTableWidget" name="tableWidget">
+                  <row>
+                   <property name="text">
+                    <string>Bild1</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>Bild2</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>Bild3</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>Bild4</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>Bild5</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>Bild6</string>
+                   </property>
+                  </row>
+                  <row>
+                   <property name="text">
+                    <string>Bild7</string>
+                   </property>
+                  </row>
+                  <column>
+                   <property name="text">
+                    <string>Flugzeug</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Auto</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Truck</string>
+                   </property>
+                  </column>
+                  <item row="0" column="0">
+                   <property name="text">
+                    <string>1</string>
+                   </property>
+                  </item>
+                  <item row="0" column="1">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="0" column="2">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="1" column="0">
+                   <property name="text">
+                    <string>0.4</string>
+                   </property>
+                  </item>
+                  <item row="1" column="1">
+                   <property name="text">
+                    <string>0.6</string>
+                   </property>
+                  </item>
+                  <item row="1" column="2">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="2" column="0">
+                   <property name="text">
+                    <string>1</string>
+                   </property>
+                  </item>
+                  <item row="2" column="1">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="2" column="2">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="3" column="0">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="3" column="1">
+                   <property name="text">
+                    <string>1</string>
+                   </property>
+                  </item>
+                  <item row="3" column="2">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="4" column="0">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="4" column="1">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="4" column="2">
+                   <property name="text">
+                    <string>1</string>
+                   </property>
+                  </item>
+                  <item row="5" column="0">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="5" column="1">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="5" column="2">
+                   <property name="text">
+                    <string>1</string>
+                   </property>
+                  </item>
+                  <item row="6" column="0">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="6" column="1">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </item>
+                  <item row="6" column="2">
+                   <property name="text">
+                    <string>1</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_27">
+                <item>
+                 <spacer name="horizontalSpacer_14">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_18">
+                  <property name="text">
+                   <string>Save</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -1264,6 +1771,34 @@
       </widget>
      </widget>
     </item>
+    <item row="2" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_32">
+      <item>
+       <spacer name="horizontalSpacer_16">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_14">
+        <property name="text">
+         <string>Settings</string>
+        </property>
+        <property name="icon">
+         <iconset resource="UI_Icons.qrc">
+          <normaloff>:/Resources/TabIcons/Filled/Tab_Settings_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Settings_Icon.svg</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -1272,7 +1807,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>950</width>
+     <width>989</width>
      <height>21</height>
     </rect>
    </property>

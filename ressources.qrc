@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Flickr-Logo.png</file>
+        <file>CC.png</file>
+        <file>Microsoft.png</file>
+        <file>tool.png</file>
+        <file>mmcls-logo.png</file>
+        <file>Tensorflow.png</file>
+    </qresource>
+    <qresource prefix="/rec"/>
+</RCC>

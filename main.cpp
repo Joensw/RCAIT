@@ -1,4 +1,6 @@
 #include "mainwindow.h"
+#include "removeprojectdialog.h"
+#include "newmodeldialog.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -20,5 +22,12 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
+
+    RemoveProjectDialog r;
+    r.show();
+
+    NewModelDialog m;
+    m.show();
+
     return a.exec();
 }
