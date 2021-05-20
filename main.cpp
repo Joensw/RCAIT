@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "removeprojectdialog.h"
 #include "newmodeldialog.h"
+#include "removemodeldialog.h"
+#include "newprojectdialog.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -24,11 +26,17 @@ int main(int argc, char *argv[])
     w.show();
 
     //auskommentiert, nur zum erstellen der Dialog GUI Screenshots
-//RemoveProjectDialog r;
- //r.show();
+    //RemoveProjectDialog r;
+    //r.show();
 
-  //NewModelDialog m;
-  //m.show();
+    //NewModelDialog m;
+   // m.show();
+
+    //NewProjectDialog p;
+    //p.show();
+
+    //RemoveModelDialog t;
+    //t.show();
 
     return a.exec();
 }

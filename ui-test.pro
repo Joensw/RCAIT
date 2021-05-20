@@ -18,6 +18,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     newmodeldialog.cpp \
+    newprojectdialog.cpp \
+    removemodeldialog.cpp \
     removeprojectdialog.cpp \
     staticlist.cpp \
     tags.cpp
@@ -31,7 +33,9 @@ HEADERS += \
     imagesection.h \
     mainwindow.h \
     newmodeldialog.h \
+    newprojectdialog.h \
     qinputcontrol_p.h \
+    removemodeldialog.h \
     removeprojectdialog.h \
     staticlist.h \
     tags.hpp
@@ -40,6 +44,8 @@ FORMS += \
     imagesection.ui \
     mainwindow.ui \
     newmodeldialog.ui \
+    newprojectdialog.ui \
+    removemodeldialog.ui \
     removeprojectdialog.ui \
     staticlist.ui
 
