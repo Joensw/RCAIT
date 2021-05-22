@@ -8,6 +8,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QComboBox>
 #include <QTranslator>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,7 +19,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -33,9 +34,11 @@ private:
     QTranslator m_translator; /*< contains the translations for this application*/
     QString m_currLang; /*< contains the currently loaded language*/
     const QString m_langPath = ":/i18n/"; /*< Path of language files. This is always fixed.*/
+    QPushButton * pushButton_settings = new QPushButton();
 
-    void populateResultCharts(Ui::MainWindow *ui);
+    static void populateResultCharts(Ui::MainWindow *ui);
     void populateLanguageMenu(QComboBox *box);
+    void placeSettingsButton();
     void loadLanguage(const QString& rLanguage);
     void switchTranslator(QTranslator& translator, const QString& filename);
 };

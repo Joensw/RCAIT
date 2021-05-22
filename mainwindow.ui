@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1302</width>
-    <height>773</height>
+    <width>964</width>
+    <height>637</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>950</width>
-    <height>500</height>
+    <width>964</width>
+    <height>637</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -32,30 +32,6 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <spacer name="horizontalSpacer_16">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>1195</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="0" column="1">
-     <widget class="QPushButton" name="pushButton_14">
-      <property name="text">
-       <string>Settings</string>
-      </property>
-      <property name="icon">
-       <iconset resource="UI_Icons.qrc">
-        <normaloff>:/Resources/TabIcons/Filled/Tab_Settings_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Settings_Icon.svg</iconset>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" colspan="2">
      <widget class="CustomTabWidget" name="tabWidget">
       <property name="enabled">
        <bool>true</bool>
@@ -76,7 +52,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>5</number>
       </property>
       <property name="iconSize">
        <size>
@@ -111,7 +87,7 @@
            <widget class="QLabel" name="label">
             <property name="font">
              <font>
-              <family>MS Shell Dlg 2</family>
+              <family>SF Pro Text</family>
               <pointsize>16</pointsize>
              </font>
             </property>
@@ -144,13 +120,13 @@
                <widget class="QListWidget" name="listWidget_4">
                 <property name="font">
                  <font>
-                  <family>MS Shell Dlg 2</family>
+                  <family>SF Pro Text</family>
                   <pointsize>8</pointsize>
                  </font>
                 </property>
                 <item>
                  <property name="text">
-                  <string>Projekt1</string>
+                  <string>Project 1</string>
                  </property>
                  <property name="icon">
                   <iconset>
@@ -160,7 +136,7 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string>Projekt2</string>
+                  <string>Project 2</string>
                  </property>
                  <property name="icon">
                   <iconset>
@@ -170,7 +146,7 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string>Projekt3</string>
+                  <string>Project 3</string>
                  </property>
                  <property name="icon">
                   <iconset>
@@ -179,6 +155,22 @@
                  </property>
                 </item>
                </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Ignored</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -338,59 +330,21 @@
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0" colspan="2">
             <layout class="QGridLayout" name="gridLayout_12">
-             <item row="1" column="2">
-              <widget class="QSpinBox" name="spinBox">
-               <property name="maximum">
-                <number>1000</number>
+             <item row="4" column="0">
+              <widget class="QPushButton" name="pushButton_5">
+               <property name="font">
+                <font>
+                 <family>SF Pro Text</family>
+                 <pointsize>8</pointsize>
+                </font>
                </property>
-               <property name="value">
-                <number>100</number>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_4">
                <property name="text">
-                <string>Split Validation (%)</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="3">
-              <widget class="QLabel" name="label_5">
-               <property name="text">
-                <string>40%</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>Image Count</string>
+                <string>Load Images</string>
                </property>
               </widget>
              </item>
              <item row="0" column="2">
               <widget class="Tags" name="lineEdit"/>
-             </item>
-             <item row="3" column="2">
-              <widget class="QSlider" name="horizontalSlider">
-               <property name="maximum">
-                <number>100</number>
-               </property>
-               <property name="value">
-                <number>40</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>Search Keyword / Label</string>
-               </property>
-              </widget>
              </item>
              <item row="2" column="0">
               <widget class="QLabel" name="label_7">
@@ -421,6 +375,63 @@
                </item>
               </widget>
              </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>Image Count</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QSlider" name="horizontalSlider">
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="value">
+                <number>40</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="2">
+              <widget class="QProgressBar" name="progressBar_2">
+               <property name="value">
+                <number>24</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QSpinBox" name="spinBox">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximum">
+                <number>1000</number>
+               </property>
+               <property name="value">
+                <number>100</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Search Keyword / Label</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_4">
+               <property name="text">
+                <string>Split Validation (%)</string>
+               </property>
+              </widget>
+             </item>
              <item row="0" column="3">
               <layout class="QHBoxLayout" name="horizontalLayout_14">
                <item>
@@ -446,36 +457,12 @@
                  </property>
                 </widget>
                </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_21">
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="UI_Icons.qrc">
-                   <normaloff>:/Resources/UISymbols/UI_Model_File.svg</normaloff>:/Resources/UISymbols/UI_Model_File.svg</iconset>
-                 </property>
-                </widget>
-               </item>
               </layout>
              </item>
-             <item row="4" column="0">
-              <widget class="QPushButton" name="pushButton_5">
-               <property name="font">
-                <font>
-                 <family>SF Pro Text</family>
-                 <pointsize>8</pointsize>
-                </font>
-               </property>
+             <item row="3" column="3">
+              <widget class="QLabel" name="label_5">
                <property name="text">
-                <string>Load Images</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="2">
-              <widget class="QProgressBar" name="progressBar_2">
-               <property name="value">
-                <number>24</number>
+                <string>40%</string>
                </property>
               </widget>
              </item>
@@ -512,13 +499,15 @@
               <widget class="QListWidget" name="listWidget_5">
                <property name="font">
                 <font>
-                 <family>MS Shell Dlg 2</family>
+                 <family>SF Pro Text</family>
                  <pointsize>8</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
                 </font>
                </property>
                <item>
                 <property name="text">
-                 <string>Model1</string>
+                 <string>Model 1</string>
                 </property>
                 <property name="icon">
                  <iconset>
@@ -528,7 +517,7 @@
                </item>
                <item>
                 <property name="text">
-                 <string>Model2</string>
+                 <string>Model 2</string>
                 </property>
                 <property name="icon">
                  <iconset>
@@ -538,7 +527,7 @@
                </item>
                <item>
                 <property name="text">
-                 <string>Model3</string>
+                 <string>Model 3</string>
                 </property>
                 <property name="icon">
                  <iconset>
@@ -588,7 +577,7 @@
                <item>
                 <widget class="QPushButton" name="pushButton_6">
                  <property name="text">
-                  <string>load</string>
+                  <string>Load</string>
                  </property>
                  <property name="icon">
                   <iconset resource="UI_Icons.qrc">
@@ -702,6 +691,9 @@
              </item>
              <item row="4" column="2">
               <layout class="QHBoxLayout" name="horizontalLayout_20">
+               <property name="sizeConstraint">
+                <enum>QLayout::SetFixedSize</enum>
+               </property>
                <item>
                 <spacer name="horizontalSpacer_3">
                  <property name="orientation">
@@ -717,66 +709,36 @@
                </item>
                <item>
                 <layout class="QGridLayout" name="gridLayout_14">
-                 <item row="5" column="2">
-                  <widget class="QLineEdit" name="lineEdit_8">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetFixedSize</enum>
+                 </property>
+                 <property name="verticalSpacing">
+                  <number>6</number>
+                 </property>
+                 <item row="0" column="2">
+                  <widget class="QLabel" name="label_15">
                    <property name="text">
-                    <string>57.12</string>
+                    <string>std</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="0">
-                  <widget class="QLabel" name="label_14">
+                 <item row="5" column="1">
+                  <widget class="QLineEdit" name="lineEdit_4">
                    <property name="text">
-                    <string>blue</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="6" column="1">
-                  <widget class="QLineEdit" name="lineEdit_6">
-                   <property name="text">
-                    <string>103.53</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QLabel" name="label_16">
-                   <property name="text">
-                    <string>mean</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QLineEdit" name="lineEdit_5">
-                   <property name="text">
-                    <string>123.675</string>
+                    <string>116.28</string>
                    </property>
                   </widget>
                  </item>
                  <item row="3" column="0">
                   <widget class="QLabel" name="label_12">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="text">
                     <string>red</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="6" column="2">
-                  <widget class="QLineEdit" name="lineEdit_9">
-                   <property name="text">
-                    <string>57.375</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="0">
-                  <widget class="QLabel" name="label_13">
-                   <property name="text">
-                    <string>green</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="2">
-                  <widget class="QLabel" name="label_15">
-                   <property name="text">
-                    <string>std</string>
                    </property>
                   </widget>
                  </item>
@@ -787,10 +749,52 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="1">
-                  <widget class="QLineEdit" name="lineEdit_4">
+                 <item row="6" column="2">
+                  <widget class="QLineEdit" name="lineEdit_9">
                    <property name="text">
-                    <string>116.28</string>
+                    <string>57.375</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="2">
+                  <widget class="QLineEdit" name="lineEdit_8">
+                   <property name="text">
+                    <string>57.12</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLineEdit" name="lineEdit_5">
+                   <property name="text">
+                    <string>123.675</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="0">
+                  <widget class="QLabel" name="label_14">
+                   <property name="text">
+                    <string>blue</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QLabel" name="label_13">
+                   <property name="text">
+                    <string>green</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_16">
+                   <property name="text">
+                    <string>mean</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="1">
+                  <widget class="QLineEdit" name="lineEdit_6">
+                   <property name="text">
+                    <string>103.53</string>
                    </property>
                   </widget>
                  </item>
@@ -1161,26 +1165,19 @@
                     <layout class="QVBoxLayout" name="verticalLayout_11">
                      <item>
                       <widget class="StaticList" name="widget" native="true">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
                        <property name="minimumSize">
                         <size>
                          <width>300</width>
-                         <height>300</height>
+                         <height>0</height>
                         </size>
                        </property>
                       </widget>
-                     </item>
-                     <item>
-                      <spacer name="verticalSpacer_6">
-                       <property name="orientation">
-                        <enum>Qt::Vertical</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>20</width>
-                         <height>40</height>
-                        </size>
-                       </property>
-                      </spacer>
                      </item>
                     </layout>
                    </item>
@@ -1189,7 +1186,7 @@
                      <item>
                       <widget class="QChartView" name="graph2">
                        <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                          <horstretch>0</horstretch>
                          <verstretch>0</verstretch>
                         </sizepolicy>
@@ -1197,23 +1194,10 @@
                        <property name="minimumSize">
                         <size>
                          <width>300</width>
-                         <height>300</height>
+                         <height>0</height>
                         </size>
                        </property>
                       </widget>
-                     </item>
-                     <item>
-                      <spacer name="verticalSpacer_5">
-                       <property name="orientation">
-                        <enum>Qt::Vertical</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>20</width>
-                         <height>40</height>
-                        </size>
-                       </property>
-                      </spacer>
                      </item>
                     </layout>
                    </item>
@@ -1285,6 +1269,36 @@
                  </item>
                  <item>
                   <widget class="QTableWidget" name="tableWidget_2">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="verticalScrollBarPolicy">
+                    <enum>Qt::ScrollBarAlwaysOff</enum>
+                   </property>
+                   <property name="horizontalScrollBarPolicy">
+                    <enum>Qt::ScrollBarAlwaysOff</enum>
+                   </property>
+                   <attribute name="horizontalHeaderVisible">
+                    <bool>true</bool>
+                   </attribute>
+                   <attribute name="horizontalHeaderDefaultSectionSize">
+                    <number>60</number>
+                   </attribute>
+                   <attribute name="horizontalHeaderHighlightSections">
+                    <bool>false</bool>
+                   </attribute>
+                   <attribute name="horizontalHeaderStretchLastSection">
+                    <bool>true</bool>
+                   </attribute>
+                   <attribute name="verticalHeaderDefaultSectionSize">
+                    <number>34</number>
+                   </attribute>
+                   <attribute name="verticalHeaderStretchLastSection">
+                    <bool>true</bool>
+                   </attribute>
                    <row>
                     <property name="text">
                      <string>Auto</string>
@@ -1337,7 +1351,7 @@
                    </item>
                    <item row="1" column="1">
                     <property name="text">
-                     <string>160</string>
+                     <string>180</string>
                     </property>
                    </item>
                    <item row="1" column="2">
@@ -1847,7 +1861,7 @@
                </property>
                <property name="icon">
                 <iconset resource="UI_Icons.qrc">
-                 <normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</iconset>
+                 <normaloff>:/Resources/UISymbols/UI_Delete_All_Items.svg</normaloff>:/Resources/UISymbols/UI_Delete_All_Items.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -1887,7 +1901,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1302</width>
+     <width>964</width>
      <height>21</height>
     </rect>
    </property>
