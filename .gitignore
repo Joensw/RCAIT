@@ -50,3 +50,10 @@ compile_commands.json
 
 # QtCreator local machine specific files for imported projects
 *creator.user*
+
+#CLion IDE configs
+CMakeLists.txt
+.idea
+
+# Weird useless files
+ejTiVe.json
