@@ -26,7 +26,6 @@
 
 #include <QApplication>
 #include <QCompleter>
-#include <QDebug>
 #include <QPainter>
 #include <QPainterPath>
 #include <QStyle>
@@ -140,13 +139,13 @@ struct Tags::Impl {
         option->features = QStyleOptionFrame::None;
     }
 
-    inline QRectF crossRect(QRectF const& r) const {
+    static inline QRectF crossRect(QRectF const& r) {
         QRectF cross(QPointF{0, 0}, QSizeF{tag_cross_width, tag_cross_width});
         cross.moveCenter(QPointF(r.right() - tag_cross_width, r.center().y()));
         return cross;
     }
 
-    bool inCrossArea(size_t tag_index, QPoint const& point) const {
+    [[nodiscard]] bool inCrossArea(size_t tag_index, QPoint const& point) const {
         return crossRect(tags[tag_index].rect).adjusted(-2, 0, 0, 0).translated(-hscroll, 0).contains(point) &&
                (!cursorVisible() || tag_index != editing_index);
     }
@@ -179,7 +178,7 @@ struct Tags::Impl {
         }
     }
 
-    QRect cRect() const {
+    [[nodiscard]] QRect cRect() const {
         QStyleOptionFrame panel;
         initStyleOption(&panel);
         QRect r = ifce->style()->subElementRect(QStyle::SE_LineEditContents, &panel, ifce);
@@ -238,7 +237,7 @@ struct Tags::Impl {
         }
     }
 
-    bool cursorVisible() const {
+    [[nodiscard]] bool cursorVisible() const {
         return blink_timer;
     }
 
@@ -273,7 +272,7 @@ struct Tags::Impl {
         ifce->update();
     }
 
-    QString const& currentText() const {
+    [[nodiscard]] QString const& currentText() const {
         return tags[editing_index].text;
     }
 
@@ -281,7 +280,7 @@ struct Tags::Impl {
         return tags[editing_index].text;
     }
 
-    QRect const& currentRect() const {
+    [[nodiscard]] QRect const& currentRect() const {
         return tags[editing_index].rect;
     }
 
@@ -290,7 +289,7 @@ struct Tags::Impl {
     }
 
     void editNewTag() {
-        tags.push_back(Tag());
+        tags.emplace_back();
         setEditingIndex(tags.size() - 1);
         moveCursor(0, false);
     }
@@ -303,7 +302,7 @@ struct Tags::Impl {
                 });
     }
 
-    QVector<QTextLayout::FormatRange> formatting() const {
+    [[nodiscard]] QVector<QTextLayout::FormatRange> formatting() const {
         if (select_size == 0) {
             return {};
         }
@@ -316,7 +315,7 @@ struct Tags::Impl {
         return {selection};
     }
 
-    bool hasSelection() const noexcept {
+    [[nodiscard]] bool hasSelection() const noexcept {
         return select_size > 0;
     }
 
@@ -361,11 +360,11 @@ struct Tags::Impl {
         cursor = pos;
     }
 
-    qreal natrualWidth() const {
+    [[nodiscard]] qreal natrualWidth() const {
         return tags.back().rect.right() - tags.front().rect.left();
     }
 
-    qreal cursorToX() {
+    qreal cursorToX() const {
         return text_layout.lineAt(0).cursorToX(cursor);
     }
 
@@ -713,3 +712,4 @@ void Tags::mouseMoveEvent(QMouseEvent* event) {
     }
     setCursor(Qt::IBeamCursor);
 }
+

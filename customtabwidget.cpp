@@ -3,6 +3,6 @@
 
 CustomTabWidget::CustomTabWidget(QWidget *parent)
 {
-    CustomTabBar * tabbar = new CustomTabBar();
+    auto * tabbar = new CustomTabBar();
     this->setTabBar(tabbar);
 }
