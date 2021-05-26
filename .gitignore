@@ -56,4 +56,4 @@ CMakeLists.txt
 .idea
 
 # Weird useless files
-ejTiVe.json
+*.json
