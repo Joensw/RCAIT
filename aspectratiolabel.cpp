@@ -1,15 +1,11 @@
 #include "aspectratiolabel.h"
 
-AspectRatioLabel::AspectRatioLabel(QWidget* parent, Qt::WindowFlags f) : QLabel(parent, f)
-{
+AspectRatioLabel::AspectRatioLabel(QWidget *parent, Qt::WindowFlags f) : QLabel(parent, f) {
 }
 
-AspectRatioLabel::~AspectRatioLabel()
-{
-}
+AspectRatioLabel::~AspectRatioLabel()= default;
 
-void AspectRatioLabel::setPixmap(const QPixmap& pm)
-{
+void AspectRatioLabel::setPixmap(const QPixmap &pm) {
     pixmapWidth = pm.width();
     pixmapHeight = pm.height();
 
@@ -17,14 +13,12 @@ void AspectRatioLabel::setPixmap(const QPixmap& pm)
     QLabel::setPixmap(pm);
 }
 
-void AspectRatioLabel::resizeEvent(QResizeEvent* event)
-{
+void AspectRatioLabel::resizeEvent(QResizeEvent *event) {
     updateMargins();
     QLabel::resizeEvent(event);
 }
 
-void AspectRatioLabel::updateMargins()
-{
+void AspectRatioLabel::updateMargins() {
     if (pixmapWidth <= 0 || pixmapHeight <= 0)
         return;
 
@@ -34,13 +28,10 @@ void AspectRatioLabel::updateMargins()
     if (w <= 0 || h <= 0)
         return;
 
-    if (w * pixmapHeight > h * pixmapWidth)
-    {
+    if (w * pixmapHeight > h * pixmapWidth) {
         int m = (w - (pixmapWidth * h / pixmapHeight)) / 2;
         setContentsMargins(m, 0, m, 0);
-    }
-    else
-    {
+    } else {
         int m = (h - (pixmapHeight * w / pixmapWidth)) / 2;
         setContentsMargins(0, m, 0, m);
     }

@@ -1,6 +1,7 @@
 #include "imagegallery.h"
 #include <QGridLayout>
 #include <QtCore>
+#include <utility>
 
 
 QString testDir = ":/Resources/images/Test_1/";
@@ -22,7 +23,7 @@ ImageGallery::ImageGallery(QWidget *parent) :
     public:
         addDirTask(ImageGallery *gallery, QDir path) {
             this->gallery = gallery;
-            this->path = path;
+            this->path = std::move(path);
         }
 
         void run() override {
@@ -33,12 +34,12 @@ ImageGallery::ImageGallery(QWidget *parent) :
         ImageGallery *gallery;
         QDir path;
     };
-    addDirTask *addDirParallel = new addDirTask(this, testDir);
+    auto *addDirParallel = new addDirTask(this, testDir);
     QThreadPool::globalInstance()->start(addDirParallel);
 
 }
 
-ImageGallery::ImageGallery(QWidget *parent, QDir imageDirectory) {
+ImageGallery::ImageGallery(QWidget *parent, const QDir& imageDirectory) {
     setMovement(QListView::Static);
     setParent(parent);
     setViewMode(ViewMode::IconMode);
@@ -61,7 +62,7 @@ ImageGallery::ImageGallery(QWidget *parent, QDir imageDirectory) {
     public:
         addDirTask(ImageGallery *gallery, QDir path) {
             this->gallery = gallery;
-            this->path = path;
+            this->path = std::move(path);
         }
 
         void run() override {
@@ -72,7 +73,7 @@ ImageGallery::ImageGallery(QWidget *parent, QDir imageDirectory) {
         ImageGallery *gallery;
         QDir path;
     };
-    addDirTask *addDirParallel = new addDirTask(this, imageDirectory);
+    auto *addDirParallel = new addDirTask(this, imageDirectory);
     QThreadPool::globalInstance()->start(addDirParallel);
 
 
@@ -86,7 +87,7 @@ void ImageGallery::removeselected() {
     qDeleteAll(selectedItems());
 }
 
-void ImageGallery::addDir(QDir imageDirectory) {
+void ImageGallery::addDir(const QDir& imageDirectory) {
     QStringList images = imageDirectory.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
 
 

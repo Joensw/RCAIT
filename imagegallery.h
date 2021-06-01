@@ -13,11 +13,11 @@ class ImageGallery : public QListWidget
 
 public:
     explicit ImageGallery(QWidget *parent = nullptr);
-    ImageGallery(QWidget *parent, QDir imageDirectory);
+    ImageGallery(QWidget *parent, const QDir& imageDirectory);
     ~ImageGallery();
 
     void removeselected();
-    void addDir(QDir imageDir);
+    void addDir(const QDir& imageDir);
     QSize minimumSizeHint() const override;
     QSize sizeHint() const override;
 
