@@ -92,7 +92,8 @@
              </font>
             </property>
             <property name="text">
-             <string comment="welcome_label">Welcome, please choose your project.</string>
+             <string comment="welcome_label">Welcome to RCAIT!
+Select a project to get started</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -1281,9 +1282,6 @@
                    <property name="horizontalScrollBarPolicy">
                     <enum>Qt::ScrollBarAlwaysOff</enum>
                    </property>
-                   <attribute name="horizontalHeaderVisible">
-                    <bool>true</bool>
-                   </attribute>
                    <attribute name="horizontalHeaderDefaultSectionSize">
                     <number>60</number>
                    </attribute>
