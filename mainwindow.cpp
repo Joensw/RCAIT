@@ -20,7 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tabWidget->setCurrentIndex(0);
 
     populateLanguageMenu(ui->comboBox_languageSelection);
-    populateResultCharts(ui);
+    populateResultCharts();
+    populateConfusionMatrix();
     placeSettingsButton();
 }
 

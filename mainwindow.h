@@ -37,10 +37,12 @@ private:
     const QString m_langPath = QDir(":/i18n/").exists()? ":/i18n/" : QDir::currentPath() + "/"; /*< Path of language files. This is always fixed.*/
     QPushButton * pushButton_settings = new QPushButton();
 
-    static void populateResultCharts(Ui::MainWindow *ui);
+    void populateResultCharts();
     void populateLanguageMenu(QComboBox *box);
     void placeSettingsButton();
     void loadLanguage(const QString& rLanguage);
     void switchTranslator(QTranslator& translator, const QString& filename);
+
+    void populateConfusionMatrix();
 };
 #endif // MAINWINDOW_H
