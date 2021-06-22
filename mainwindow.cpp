@@ -1,3 +1,7 @@
+#include <QGraphicsSvgItem>
+#include <QRandomGenerator>
+#include <QSplineSeries>
+#include <QValueAxis>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "themewidget.h"
@@ -11,8 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Always start at first tab
     ui->tabWidget->setCurrentIndex(0);
-    ui->tableWidget_2->horizontalHeader()->setSectionResizeMode( 0, QHeaderView::Stretch );
-    ui->tableWidget_2->verticalHeader()->setSectionResizeMode( 0, QHeaderView::Stretch );
 
     populateLanguageMenu(ui->comboBox_languageSelection);
     populateResultCharts(ui);
@@ -27,36 +29,57 @@ void MainWindow::placeSettingsButton() {
     ui->tabWidget->setCornerWidget(pushButton_settings, Qt::TopRightCorner);
 }
 
-void MainWindow::populateResultCharts(Ui::MainWindow *ui) {
-    auto *series2 = new QLineSeries();
-    auto *series3 = new QLineSeries();
-    series3->setColor("orange");
+void MainWindow::populateResultCharts() {
+    QChartView *views[2] = {ui->graphicsView_losscurve, ui->graphicsView_losscurve_2};
+    QString colors[2] = {"orange", "green"};
 
-    series3->append(0, 1);
-    series3->append(2, 1.5);
-    series3->append(3, 2);
-    series3->append(7, 1.5);
-    series3->append(10, 2);
-    *series3 << QPointF(11, 2) << QPointF(13, 1.5) << QPointF(17, 2) << QPointF(18, 2.5) << QPointF(20, 2);
+    for (int i = 0; i < 2; ++i) {
+//        views[i]->layout()->setContentsMargins(0, 0, 0, 0);
 
-    series2->append(0, 11);
-    series2->append(1, 9);
-    series2->append(2, 8);
-    series2->append(3, 5);
-    series2->append(5, 4.5);
-    series2->append(7, 4);
-    series2->append(10, 4);
-    *series2 << QPointF(11, 3.5) << QPointF(13, 3) << QPointF(17, 4.2) << QPointF(18, 4) << QPointF(20, 3.9);
+        auto *trainSeries = new QSplineSeries();
+        auto *validationSeries = new QSplineSeries();
+        QPen pen = validationSeries->pen();
+        pen.setWidth(3);
+        validationSeries->setPen(pen);
+        validationSeries->setColor(colors[i]);
+        int precision = 1;
+        for (int j = 0; j < 20*precision; j++) {
+            double random = QRandomGenerator::global()->bounded(3*100)/100.0;
+            *validationSeries << QPointF((double) j / precision, random);
+        }
 
-    QChart *chart2 = ui->graph2->chart();
-    chart2->legend()->hide();
-    chart2->addSeries(series2);
-    chart2->addSeries(series3);
-    chart2->createDefaultAxes();
-    chart2->setTitle("Loss Curve Chart");
+        int sum = 0;
+        for (int j = 0; j < 20*precision; j++) {
+            int random = QRandomGenerator::global()->bounded(-2,15);
+            sum += random;
+            *trainSeries << QPointF((double) j / precision, 3+ 100 / (double) abs(sum));
+        }
 
-    ui->graph2->setRenderHint(QPainter::Antialiasing);
-    chart2->setAnimationOptions(QChart::AllAnimations);
+        QChart *chart = views[i]->chart();
+        chart->setBackgroundRoundness(0);
+
+        chart->legend()->hide();
+        chart->addSeries(trainSeries);
+        chart->addSeries(validationSeries);
+
+        auto *axisY = new QValueAxis();
+        axisY->setLabelFormat("%.0f");
+        chart->addAxis(axisY, Qt::AlignLeft);
+        trainSeries->attachAxis(axisY);
+        validationSeries->attachAxis(axisY);
+        axisY->applyNiceNumbers();
+        axisY->setMin(0);
+
+        auto *axisX = new QValueAxis();
+        axisX->setLabelFormat("%.0f");
+        chart->addAxis(axisX, Qt::AlignBottom);
+        trainSeries->attachAxis(axisX);
+        validationSeries->attachAxis(axisX);
+        axisX->applyNiceNumbers();
+
+        views[i]->setRenderHint(QPainter::Antialiasing);
+        chart->setAnimationOptions(QChart::AllAnimations);
+    }
 }
 
 void MainWindow::populateLanguageMenu(QComboBox *box) {
@@ -116,5 +139,23 @@ void MainWindow::on_comboBox_languageSelection_currentTextChanged(const QString 
     loadLanguage(locale);
     //Update UI after loading language is necessary
     ui->retranslateUi(this);
+}
+
+void MainWindow::populateConfusionMatrix() {
+    QGraphicsView *views[2] = {ui->graphicsView_confusionmatrix, ui->graphicsView_confusionmatrix_2};
+    QString paths[2] = {":/Resources/UISymbols/confusionmatrix.svg",":/Resources/UISymbols/confusionmatrix2.svg"};
+    for (int i = 0; i < 2; ++i) {
+        QString path = paths[i];
+        auto *item = new QGraphicsSvgItem(path);
+        auto *scene = new QGraphicsScene;
+        QGraphicsView *view = views[i];
+        view->scale(0.8, 0.8);
+
+        scene->addItem(item);
+        view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+        view->setScene(scene);
+    }
 }
 

@@ -2,7 +2,7 @@
 #include "ui_staticlist.h"
 
 #include <QDir>
-#include <QListWidgetItem>
+#include <random>
 
 
 //Lässt sich in der Praxis mit extra Konstruktor von ImageGallery umsetzen
@@ -16,6 +16,7 @@ StaticList::StaticList(QWidget *parent) :
     ui->listWidget->setSelectionMode(QListWidget::NoSelection);
     ui->listWidget->setResizeMode(QListWidget::Adjust);
     QStringList images = QDir(":/Resources/images/Flugzeug/").entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
+    std::shuffle(images.begin(),images.end()-1, std::mt19937(std::random_device()()));
     int i = 0;
     foreach(QString imageName, images){
         if(i >= 10) break;
@@ -31,9 +32,9 @@ StaticList::StaticList(QWidget *parent) :
 
 
         QImage copy = image.copy( leftX, leftY, squareSize, squareSize);
-        QListWidgetItem* item = new QListWidgetItem();
+        auto* item = new QListWidgetItem();
         QPixmap tempImage = QPixmap::fromImage(copy);
-        item->setData(Qt::DecorationRole, tempImage.scaled(120,120,Qt::KeepAspectRatio));
+        item->setData(Qt::DecorationRole, tempImage.scaled(100,100,Qt::KeepAspectRatio));
 
         ui->listWidget->addItem(item);
         i++;
