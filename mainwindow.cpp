@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
+    centralWidget()->layout()->setContentsMargins(2, 2, 2, 2);
+    statusBar()->hide();
+
     //Spawn in screen center
     move(screen()->geometry().center() - frameGeometry().center());
 
