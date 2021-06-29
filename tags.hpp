@@ -22,6 +22,15 @@
   SOFTWARE.
 */
 
+/*
+Mehrere Veränderungen für dieses PSE, wie
+- Adaption an Qt6
+- Anpassung an C++ 17
+- Bugfix wegen geringer Auflösung
+- Änderung der Texturen
+Quelle des Originals: https://github.com/nicktrandafil/tags
+*/
+
 #pragma once
 
 #include <QWidget>
