@@ -1,0 +1,13 @@
+image: docker:latest
+
+services:
+   - docker:dind
+before_script:
+   - docker info
+
+
+Build image:
+   script:
+      - docker build . -t rcait
+      - docker images
+      - docker run rcait
