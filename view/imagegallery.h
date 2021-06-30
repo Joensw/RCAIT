@@ -4,7 +4,7 @@
 
 #include <QListWidget>
 #include <QDir>
-#include <aspectratiolabel.h>
+#include <view/aspectratiolabel.h>
 
 
 class ImageGallery : public QListWidget

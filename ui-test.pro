@@ -9,14 +9,6 @@ CONFIG += c++17 static
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    AspectRatioLabel.cpp \
-    customtabbar.cpp \
-    customtabwidget.cpp \
-    imagegallery.cpp \
-    imagegallerytree.cpp \
-    imagesection.cpp \
-    main.cpp \
-    mainwindow.cpp \
     model/pluginusage/aithread.cpp \
     model/pluginusage/classifiertrainer.cpp \
     model/pluginusage/imageloader.cpp \
@@ -24,24 +16,25 @@ SOURCES += \
     model/pluginusage/progressable.cpp \
     model/pluginusage/progressableplugin.cpp \
     model/pluginusage/trainingsthread.cpp \
-    newmodeldialog.cpp \
-    newprojectdialog.cpp \
     plugins/classificationresult.cpp \
     plugins/result.cpp \
     plugins/trainingresult.cpp \
-    removemodeldialog.cpp \
-    removeprojectdialog.cpp \
-    staticlist.cpp \
-    tags.cpp
+    view/AspectRatioLabel.cpp \
+    view/customtabbar.cpp \
+    view/customtabwidget.cpp \
+    view/imagegallery.cpp \
+    view/imagegallerytree.cpp \
+    view/imagesection.cpp \
+    view/main.cpp \
+    view/mainwindow.cpp \
+    view/newmodeldialog.cpp \
+    view/newprojectdialog.cpp \
+    view/removemodeldialog.cpp \
+    view/removeprojectdialog.cpp \
+    view/staticlist.cpp \
+    view/tags.cpp
 
 HEADERS += \
-    aspectratiolabel.h \
-    customtabbar.h \
-    customtabwidget.h \
-    imagegallery.h \
-    imagegallerytree.h \
-    imagesection.h \
-    mainwindow.h \
     model/pluginusage/aithread.h \
     model/pluginusage/classifiertrainer.h \
     model/pluginusage/imageloader.h \
@@ -49,16 +42,23 @@ HEADERS += \
     model/pluginusage/progressable.h \
     model/pluginusage/progressableplugin.h \
     model/pluginusage/trainingsthread.h \
-    newmodeldialog.h \
-    newprojectdialog.h \
     plugins/classificationresult.h \
     plugins/result.h \
     plugins/trainingresult.h \
-    qinputcontrol_p.h \
-    removemodeldialog.h \
-    removeprojectdialog.h \
-    staticlist.h \
-    tags.hpp
+    view/aspectratiolabel.h \
+    view/customtabbar.h \
+    view/customtabwidget.h \
+    view/imagegallery.h \
+    view/imagegallerytree.h \
+    view/imagesection.h \
+    view/mainwindow.h \
+    view/newmodeldialog.h \
+    view/newprojectdialog.h \
+    view/qinputcontrol_p.h \
+    view/removemodeldialog.h \
+    view/removeprojectdialog.h \
+    view/staticlist.h \
+    view/tags.hpp
 
 FORMS += \
     imagesection.ui \
