@@ -17,8 +17,18 @@ SOURCES += \
     imagesection.cpp \
     main.cpp \
     mainwindow.cpp \
+    model/pluginusage/aithread.cpp \
+    model/pluginusage/classifiertrainer.cpp \
+    model/pluginusage/imageloader.cpp \
+    model/pluginusage/imagesearchthread.cpp \
+    model/pluginusage/progressable.cpp \
+    model/pluginusage/progressableplugin.cpp \
+    model/pluginusage/trainingsthread.cpp \
     newmodeldialog.cpp \
     newprojectdialog.cpp \
+    plugins/classificationresult.cpp \
+    plugins/result.cpp \
+    plugins/trainingresult.cpp \
     removemodeldialog.cpp \
     removeprojectdialog.cpp \
     staticlist.cpp \
@@ -32,8 +42,18 @@ HEADERS += \
     imagegallerytree.h \
     imagesection.h \
     mainwindow.h \
+    model/pluginusage/aithread.h \
+    model/pluginusage/classifiertrainer.h \
+    model/pluginusage/imageloader.h \
+    model/pluginusage/imagesearchthread.h \
+    model/pluginusage/progressable.h \
+    model/pluginusage/progressableplugin.h \
+    model/pluginusage/trainingsthread.h \
     newmodeldialog.h \
     newprojectdialog.h \
+    plugins/classificationresult.h \
+    plugins/result.h \
+    plugins/trainingresult.h \
     qinputcontrol_p.h \
     removemodeldialog.h \
     removeprojectdialog.h \
