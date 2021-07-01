@@ -11,6 +11,7 @@ CONFIG += c++17 static
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    controller/settingscontroller.cpp \
     model/pluginusage/aithread.cpp \
     model/pluginusage/classifiertrainer.cpp \
     model/pluginusage/imageloader.cpp \
@@ -33,10 +34,12 @@ SOURCES += \
     view/newprojectdialog.cpp \
     view/removemodeldialog.cpp \
     view/removeprojectdialog.cpp \
+    view/settingsview.cpp \
     view/staticlist.cpp \
     view/tags.cpp
 
 HEADERS += \
+    controller/settingscontroller.h \
     model/pluginusage/aithread.h \
     model/pluginusage/classifiertrainer.h \
     model/pluginusage/imageloader.h \
@@ -59,6 +62,7 @@ HEADERS += \
     view/qinputcontrol_p.h \
     view/removemodeldialog.h \
     view/removeprojectdialog.h \
+    view/settingsview.h \
     view/staticlist.h \
     view/tags.hpp
 
