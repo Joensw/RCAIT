@@ -1,5 +1,7 @@
 QT       += core gui charts svg svgwidgets
 
+INCLUDEPATH += view
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17 static
@@ -70,8 +72,8 @@ FORMS += \
     staticlist.ui
 
 TRANSLATIONS += \
-    languages/ui-test_de_DE.ts \
-    languages/ui-test_en_GB.ts
+    languages/RCAIT_de_DE.ts \
+    languages/RCAIT_en_GB.ts
 CONFIG += lrelease
 CONFIG += embed_translations
 
@@ -80,12 +82,13 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES += UI_Icons.qrc \
+RESOURCES += \
+	UI_Icons.qrc \
     Images.qrc \
     ressources.qrc
 
 DISTFILES += \
-    languages/ui-test_de_DE.qm \
-    languages/ui-test_en_GB.qm
+    languages/RCAIT_de_DE.qm \
+    languages/RCAIT_en_GB.qm
 
 DEFINES += PROJECT_PATH=\"\\\"$${_PRO_FILE_PWD_}/\\\"\"
