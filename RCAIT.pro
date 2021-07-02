@@ -17,6 +17,10 @@ CONFIG += c++17 static
 SOURCES += \
     controller/aicontroller.cpp \
     controller/settingscontroller.cpp \
+    model/DataManager.cpp \
+    model/ProjectManager.cpp \
+    model/pluginusage/ImageLoader.cpp \
+    model/pluginusage/ImageSearchThread.cpp \
     model/pluginusage/aithread.cpp \
     model/pluginusage/classifiertrainer.cpp \
     model/pluginusage/imageloader.cpp \
@@ -24,8 +28,16 @@ SOURCES += \
     model/pluginusage/progressable.cpp \
     model/pluginusage/progressableplugin.cpp \
     model/pluginusage/trainingsthread.cpp \
+    model/results/ResultImagesGenerator.cpp \
+    plugins/Plugin.cpp \
+    plugins/PluginManager.cpp \
     plugins/classificationresult.cpp \
+    plugins/imageplugins/ImageLoaderPlugin.cpp \
+    plugins/imageplugins/ImageLoaderPluginManager.cpp \
     plugins/result.cpp \
+    plugins/results/ClassificationResult.cpp \
+    plugins/results/Result.cpp \
+    plugins/results/TrainingResult.cpp \
     plugins/trainingresult.cpp \
     view/AspectRatioLabel.cpp \
     view/customtabbar.cpp \
@@ -47,6 +59,10 @@ SOURCES += \
 HEADERS += \
     controller/aicontroller.h \
     controller/settingscontroller.h \
+    model/DataManager.h \
+    model/ProjectManager.h \
+    model/pluginusage/ImageLoader.h \
+    model/pluginusage/ImageSearchThread.h \
     model/pluginusage/aithread.h \
     model/pluginusage/classifiertrainer.h \
     model/pluginusage/imageloader.h \
@@ -54,8 +70,16 @@ HEADERS += \
     model/pluginusage/progressable.h \
     model/pluginusage/progressableplugin.h \
     model/pluginusage/trainingsthread.h \
+    model/results/ResultImagesGenerator.h \
+    plugins/Plugin.h \
+    plugins/PluginManager.h \
     plugins/classificationresult.h \
+    plugins/imageplugins/ImageLoaderPlugin.h \
+    plugins/imageplugins/ImageLoaderPluginManager.h \
     plugins/result.h \
+    plugins/results/ClassificationResult.h \
+    plugins/results/Result.h \
+    plugins/results/TrainingResult.h \
     plugins/trainingresult.h \
     view/aspectratiolabel.h \
     view/customtabbar.h \
