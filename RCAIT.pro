@@ -1,6 +1,10 @@
 QT       += core gui charts svg svgwidgets
 
-INCLUDEPATH += view
+INCLUDEPATH += \
+    model \
+    view \
+    controller \
+    plugins
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
