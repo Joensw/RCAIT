@@ -39,6 +39,8 @@ SOURCES += \
     plugins/results/Result.cpp \
     plugins/results/TrainingResult.cpp \
     plugins/trainingresult.cpp \
+    view/results/ResultsWidget.cpp \
+    view/results/TrainingResultView.cpp \
     view/AspectRatioLabel.cpp \
     view/customtabbar.cpp \
     view/customtabwidget.cpp \
@@ -81,6 +83,8 @@ HEADERS += \
     plugins/results/Result.h \
     plugins/results/TrainingResult.h \
     plugins/trainingresult.h \
+    view/results/ResultsWidget.h \
+    view/results/TrainingResultView.h \
     view/aspectratiolabel.h \
     view/customtabbar.h \
     view/customtabwidget.h \
@@ -105,7 +109,9 @@ FORMS += \
     newprojectdialog.ui \
     removemodeldialog.ui \
     removeprojectdialog.ui \
+    resultswidget.ui \
     staticlist.ui \
+    trainingresultview.ui \
     view/inputimageswidget.ui
 
 TRANSLATIONS += \
