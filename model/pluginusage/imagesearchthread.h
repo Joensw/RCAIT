@@ -1,19 +1,17 @@
-#ifndef IMAGESEARCHTHREAD_H
-#define IMAGESEARCHTHREAD_H
-
-#include "model/pluginusage/progressable.h"
+#ifndef RCAIT_IMAGESEARCHTHREAD_H
+#define RCAIT_IMAGESEARCHTHREAD_H
 
 #include <QThread>
+#include <pluginusage/progressableplugin.h>
 
-
-
-class ImageSearchThread : public QThread
-{
+class ImageSearchThread : public QThread {
 public:
-    ImageSearchThread(Progressable* receiver, QString imagePath, QString pluginName, int count, QStringList labels);
+    ImageSearchThread(ProgressablePlugin* receiver, QString imagePath, QString pluginName, int count, QStringList labels);
 private:
     Progressable* receiver;
     volatile bool* stopped;
+
 };
 
-#endif // IMAGESEARCHTHREAD_H
+
+#endif //RCAIT_IMAGESEARCHTHREAD_H
