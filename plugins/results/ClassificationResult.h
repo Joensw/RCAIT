@@ -16,7 +16,8 @@ private:
     //Todo: Probably useless
     QVector<QString> labels;
 public:
-    ClassificationResult(QMap<QString, QVector<double>> table, QVector<QString> labels, QList<QImage> additionalResults);
+    ClassificationResult(QList<QImage> additionalResult, QMap<QString, QVector<double>> table,
+                         QVector<QString> labels, QList<QImage> additionalResults);
     QAbstractTableModel* getTable();
     QVector<QString> getLabel();
 };

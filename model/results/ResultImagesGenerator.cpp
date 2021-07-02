@@ -12,7 +12,7 @@ QList<QImage> ResultImagesGenerator::generateClassificationResultImages(Classifi
     return QList<QImage>();
 }
 
-QImage ResultImagesGenerator::generateConfusionMatrixImage(QAbstractTableModel matrix, QStringList labels) {
+QImage ResultImagesGenerator::generateConfusionMatrixImage(QAbstractTableModel *matrix, QStringList labels) {
     return QImage();
 }
 

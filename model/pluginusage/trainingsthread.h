@@ -1,13 +1,13 @@
 #ifndef TRAININGSTHREAD_H
 #define TRAININGSTHREAD_H
 
+#include <results/TrainingResult.h>
 #include "model/pluginusage/aithread.h"
-#include "plugins/trainingresult.h"
 
 class TrainingsThread : public AIThread
 {
 public:
-    TrainingsThread(Progressable* reciever, QString imagePath, QString modelName, QString pluginName);
+    TrainingsThread(Progressable* receiver, QString imagePath, QString modelName, QString pluginName);
     TrainingResult* getResult();
 
 public slots:

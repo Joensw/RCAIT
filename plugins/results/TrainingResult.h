@@ -15,7 +15,9 @@ private:
     double top5Accuracy;
 
 public:
-    TrainingResult(QAbstractTableModel* confusionMatrix, QMap<int, QVector<double>> lossCurve, double top1Accuracy, double top5Accuracy, QList<QImage> additionalResults);
+    TrainingResult(QList<QImage> additionalResult, QAbstractTableModel *confusionMatrix,
+                   QMap<int, QVector<double>> lossCurve, double top1Accuracy, double top5Accuracy,
+                   QList<QImage> additionalResults);
     QAbstractTableModel* getConfusionMatrix();
     QMap<int, QVector<double>> getLossCurve();
     double getTop1Accuracy();

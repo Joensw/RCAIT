@@ -13,7 +13,7 @@ public:
     QList<QImage> generateClassificationResultImages(ClassificationResult* result);
 
 private:
-    QImage generateConfusionMatrixImage(QAbstractTableModel matrix, QStringList labels);
+    QImage generateConfusionMatrixImage(QAbstractTableModel *matrix, QStringList labels);
     QImage generateLossCurveImage(QMap<int, QVector<double>>);
     //Todo: Weird stuff below
     QImage generateAccuracyImage(double top1 , double top5);

@@ -1,7 +1,9 @@
 #include "ClassificationResult.h"
+#include <utility>
 
-ClassificationResult::ClassificationResult(QMap<QString, QVector<double>> table, QVector<QString> labels,
-                                           QList<QImage> additionalResults) {
+ClassificationResult::ClassificationResult(QList<QImage> additionalResult, QMap<QString, QVector<double>> table,
+                                           QVector<QString> labels, QList<QImage> additionalResults)
+        : Result(std::move(additionalResult)) {
 
 }
 

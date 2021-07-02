@@ -2,7 +2,7 @@
 
 
 
-TrainingsThread::TrainingsThread(Progressable *reciever, QString imagePath, QString modelName, QString pluginName)
+TrainingsThread::TrainingsThread(Progressable *receiver, QString imagePath, QString modelName, QString pluginName)
 {
 
 }
@@ -10,4 +10,8 @@ TrainingsThread::TrainingsThread(Progressable *reciever, QString imagePath, QStr
 void TrainingsThread::slot_makeProgress(int progress)
 {
 
+}
+
+TrainingResult *TrainingsThread::getResult() {
+    return nullptr;
 }
