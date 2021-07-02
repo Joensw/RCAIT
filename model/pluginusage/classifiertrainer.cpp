@@ -17,15 +17,23 @@ void ClassifierTrainer::classify(QString pluginName, QString modelName, QString 
 
 TrainingResult *ClassifierTrainer::getLastTrainingResult()
 {
-    return NULL;
+    return nullptr;
 }
 
 ClassificationResult *ClassifierTrainer::getLastClassificationResult()
 {
-    return NULL;
+    return nullptr;
 }
 
 bool ClassifierTrainer::getAugmentationPreview(QString pluginName, QString inputPath)
 {
     return false;
+}
+
+void ClassifierTrainer::sig_trainingResultUpdated() {
+
+}
+
+void ClassifierTrainer::sig_classificationResultUpdated() {
+
 }
