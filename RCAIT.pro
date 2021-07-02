@@ -15,6 +15,8 @@ CONFIG += c++17 static
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    controller/aicontroller.cpp \
+    controller/settingscontroller.cpp \
     model/pluginusage/aithread.cpp \
     model/pluginusage/classifiertrainer.cpp \
     model/pluginusage/imageloader.cpp \
@@ -31,16 +33,20 @@ SOURCES += \
     view/imagegallery.cpp \
     view/imagegallerytree.cpp \
     view/imagesection.cpp \
+    view/inputimageswidget.cpp \
     view/main.cpp \
     view/mainwindow.cpp \
     view/newmodeldialog.cpp \
     view/newprojectdialog.cpp \
     view/removemodeldialog.cpp \
     view/removeprojectdialog.cpp \
+    view/settingsview.cpp \
     view/staticlist.cpp \
     view/tags.cpp
 
 HEADERS += \
+    controller/aicontroller.h \
+    controller/settingscontroller.h \
     model/pluginusage/aithread.h \
     model/pluginusage/classifiertrainer.h \
     model/pluginusage/imageloader.h \
@@ -57,12 +63,14 @@ HEADERS += \
     view/imagegallery.h \
     view/imagegallerytree.h \
     view/imagesection.h \
+    view/inputimageswidget.h \
     view/mainwindow.h \
     view/newmodeldialog.h \
     view/newprojectdialog.h \
     view/qinputcontrol_p.h \
     view/removemodeldialog.h \
     view/removeprojectdialog.h \
+    view/settingsview.h \
     view/staticlist.h \
     view/tags.hpp
 
@@ -73,7 +81,8 @@ FORMS += \
     newprojectdialog.ui \
     removemodeldialog.ui \
     removeprojectdialog.ui \
-    staticlist.ui
+    staticlist.ui \
+    view/inputimageswidget.ui
 
 TRANSLATIONS += \
     languages/RCAIT_de_DE.ts \

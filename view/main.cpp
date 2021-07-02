@@ -1,8 +1,8 @@
-#include "mainwindow.h"
-#include "removeprojectdialog.h"
-#include "newmodeldialog.h"
-#include "removemodeldialog.h"
-#include "newprojectdialog.h"
+#include "view/mainwindow.h"
+#include "view/removeprojectdialog.h"
+#include "view/newmodeldialog.h"
+#include "view/removemodeldialog.h"
+#include "view/newprojectdialog.h"
 
 #include <QApplication>
 #include <QLocale>
