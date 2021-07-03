@@ -30,6 +30,7 @@ SOURCES += \
     model/pluginusage/progressableplugin.cpp \
     model/pluginusage/trainingsthread.cpp \
     model/results/ResultImagesGenerator.cpp \
+    model/settingsmanager.cpp \
     plugins/Plugin.cpp \
     plugins/PluginManager.cpp \
     plugins/imageplugins/ImageLoaderPlugin.cpp \
@@ -72,6 +73,7 @@ HEADERS += \
     model/pluginusage/progressableplugin.h \
     model/pluginusage/trainingsthread.h \
     model/results/ResultImagesGenerator.h \
+    model/settingsmanager.h \
     plugins/Plugin.h \
     plugins/PluginManager.h \
     plugins/classificationresult.h \
