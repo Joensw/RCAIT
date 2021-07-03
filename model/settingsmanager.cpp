@@ -1,6 +1,6 @@
-#include "settingsmanger.h"
+#include "settingsmanager.h"
 
-SettingsManger::SettingsManger()
+SettingsManager::SettingsManager()
 {
 
 }

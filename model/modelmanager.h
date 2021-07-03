@@ -8,6 +8,7 @@
 class ModelManager
 {
 public:
+    ModelManager();
 
     //TODO update this when it exists
     //ModelManager(ClassificationPluginManager* classificationPluginManager);
