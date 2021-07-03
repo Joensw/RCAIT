@@ -8,15 +8,15 @@
 
 class ResultImagesGenerator {
 public:
-    ResultImagesGenerator();
-    //Todo: QImages Lists are weird
-    QList<QImage> generateTrainingResultImages(TrainingResult* result);
-    QList<QImage> generateClassificationResultImages(ClassificationResult* result);
+    static QList<QImage> generateTrainingResultImages(TrainingResult* result);
+    static QList<QImage> generateClassificationResultImages(ClassificationResult* result);
 
 private:
-    QImage generateLossCurveImage(QChartView* chart);
+    ResultImagesGenerator();
+
+    static QImage generateLossCurveImage(QChartView* chart);
     //Todo: Find better way than transferring view pointer
-    QImage generateAccuracyImage(QChartView* chart);
+    static QImage generateAccuracyImage(QChartView* chart);
 };
 
 

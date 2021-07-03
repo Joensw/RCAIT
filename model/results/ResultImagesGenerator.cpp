@@ -1,8 +1,6 @@
 #include "ResultImagesGenerator.h"
 
-ResultImagesGenerator::ResultImagesGenerator() {
-//TODO: UtilityClass?
-}
+ResultImagesGenerator::ResultImagesGenerator() = default;
 
 QList<QImage> ResultImagesGenerator::generateTrainingResultImages(TrainingResult *result) {
     return QList<QImage>();
