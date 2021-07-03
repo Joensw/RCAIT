@@ -21,6 +21,7 @@ signals:
     void sig_startClassify(QString path);
     void sig_abortClassify();
 
+public slots:
     void slot_loaded(QString path);
     void slot_progress(int progress);
 

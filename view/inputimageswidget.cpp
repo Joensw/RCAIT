@@ -21,6 +21,11 @@ void InputImagesWidget::slot_progress(int progress)
     ui->progressBar->setValue(progress);
 }
 
+void InputImagesWidget::slot_loaded(QString path)
+{
+
+}
+
 /*!
  * \brief InputImagesWidget::on_selectFolderButton_clicked
  *
