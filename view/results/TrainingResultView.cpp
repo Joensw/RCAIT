@@ -20,28 +20,51 @@ TrainingResultView::TrainingResultView(QWidget *parent, QLineSeries *trainSeries
 void TrainingResultView::setLossCurve(QLineSeries *trainSeries, QLineSeries *validationSeries) {
     auto view = ui->graphicsView_losscurve;
     QChart *chart = view->chart();
-    chart->setBackgroundRoundness(0);
 
-    chart->legend()->hide();
+    //Less wasted space on the sides
+    chart->setBackgroundRoundness(0);
+    chart->setContentsMargins(-20, -15, -10, -40);
+
+    //Visual configuration of QLineSeries
+    auto pen = trainSeries->pen();
+    pen.setWidth(3);
+    pen.setColor("royal blue");
+    trainSeries->setName("Training");
+    trainSeries->setPen(pen);
+
+    pen = validationSeries->pen();
+    pen.setWidth(3);
+    pen.setColor("orange");
+    validationSeries->setName("Validation");
+    validationSeries->setPen(pen);
+
+    //Legend placement
+    chart->legend()->setAlignment(Qt::AlignBottom);
+    chart->legend()->setMarkerShape(QLegend::MarkerShapeCircle);
+    chart->legend()->show();
+
     chart->addSeries(trainSeries);
     chart->addSeries(validationSeries);
 
+    //Axis corrections
     auto *axisY = new QValueAxis();
-    axisY->setLabelFormat("%.0f");
+    axisY->setLabelFormat("%.2f");
     chart->addAxis(axisY, Qt::AlignLeft);
-    axisY->applyNiceNumbers();
-    axisY->setMin(0);
+
+    trainSeries->attachAxis(axisY);
+    validationSeries->attachAxis(axisY);
 
     auto *axisX = new QValueAxis();
     axisX->setLabelFormat("%.0f");
     chart->addAxis(axisX, Qt::AlignBottom);
-    axisX->applyNiceNumbers();
 
-    trainSeries->attachAxis(axisY);
-    validationSeries->attachAxis(axisY);
     trainSeries->attachAxis(axisX);
     validationSeries->attachAxis(axisX);
 
+    axisX->applyNiceNumbers();
+    axisY->setMin(0);
+
+    //Rendering options
     view->setRenderHint(QPainter::Antialiasing);
     chart->setAnimationOptions(QChart::AllAnimations);
 }
@@ -55,7 +78,7 @@ void TrainingResultView::setConfusionMatrix(QGraphicsItem *matrixImage) {
     auto vHeight = view->height();
     auto sWidth = scene->width();
     auto sHeight = scene->height();
-    view->scale(vWidth / sWidth, vHeight / sHeight);
+    view->scale(0.8,0.8);
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
