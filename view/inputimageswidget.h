@@ -29,9 +29,7 @@ private slots:
     void on_selectFolderButton_clicked();
 
     void on_classifyButton_clicked();
-
-    void on_pushButton_clicked();
-
+    
     void on_cancelButton_clicked();
 
 private:

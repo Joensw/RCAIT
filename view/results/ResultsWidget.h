@@ -6,6 +6,7 @@
 #include <QMenu>
 #include <results/TrainingResult.h>
 #include <ui_resultswidget.h>
+#include "TrainingResultView.h"
 
 
 class ResultsWidget : public QWidget {
@@ -35,6 +36,8 @@ private:
     QPushButton *pushButton_addResult = new QPushButton(this);
 
     void createAddRunButton(QTabWidget *tabWidget);
+
+    TrainingResultView * createTrainingResultTab(const QString& tabName);
 };
 
 

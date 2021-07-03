@@ -4,20 +4,19 @@
 
 #include <plugins/results/TrainingResult.h>
 #include <plugins/results/ClassificationResult.h>
+#include <QChartView>
 
 class ResultImagesGenerator {
 public:
-    ResultImagesGenerator();
-    //Todo: QImages Lists are weird
-    QList<QImage> generateTrainingResultImages(TrainingResult* result);
-    QList<QImage> generateClassificationResultImages(ClassificationResult* result);
+    static QList<QImage> generateTrainingResultImages(TrainingResult* result);
+    static QList<QImage> generateClassificationResultImages(ClassificationResult* result);
 
 private:
-    QImage generateConfusionMatrixImage(QAbstractTableModel *matrix, QStringList labels);
-    QImage generateLossCurveImage(QMap<int, QVector<double>>);
-    //Todo: Weird stuff below
-    QImage generateAccuracyImage(double top1 , double top5);
-    QImage generateClassificationTableImage(QMap<QString, QVector<double>> table, QVector<QString> labels);
+    ResultImagesGenerator();
+
+    static QImage generateLossCurveImage(QChartView* chart);
+    //Todo: Find better way than transferring view pointer
+    static QImage generateAccuracyImage(QChartView* chart);
 };
 
 
