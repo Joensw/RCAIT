@@ -35,9 +35,11 @@ private:
     QMenu *menu_addRun = new QMenu(this);
     QPushButton *pushButton_addResult = new QPushButton(this);
 
-    void createAddRunButton(QTabWidget *tabWidget);
+    void configureAddComparisonButton(QTabWidget *tabWidget);
 
     TrainingResultView * createTrainingResultTab(const QString& tabName);
+
+    void dummyFunctionTest();
 };
 
 

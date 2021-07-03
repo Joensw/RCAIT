@@ -1,6 +1,8 @@
 #include <QPushButton>
 #include <QMenu>
 #include <QSplineSeries>
+#include <QGraphicsSvgItem>
+#include <QRandomGenerator>
 #include "ResultsWidget.h"
 #include "TrainingResultView.h"
 #include "ui_resultswidget.h"
@@ -8,21 +10,15 @@
 ResultsWidget::ResultsWidget(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::ResultsWidget) {
+
     ui->setupUi(this);
-    createAddRunButton(ui->tabWidget_comparison);
+    configureAddComparisonButton(ui->tabWidget_comparison);
+    //TODO: Remove dummy code
+    dummyFunctionTest();
 
-
-    for (int i = 0; i < 3; ++i) {
-        QString run = QString("Run %1").arg(i + 1);
-        createTrainingResultTab(run);
-        auto *action = new QAction(run, this);
-        action->setCheckable(true);
-        action->setChecked(true);
-        menu_addRun->addAction(action);
-    }
 }
 
-void ResultsWidget::createAddRunButton(QTabWidget *tabWidget) {
+void ResultsWidget::configureAddComparisonButton(QTabWidget *tabWidget) {
     pushButton_addResult->setText("Compare ...");
     const auto icon = QIcon(":/Resources/UISymbols/UI_Add_Result_Comparison_Icon.svg");
     pushButton_addResult->setIcon(icon);
@@ -52,17 +48,13 @@ void ResultsWidget::addTrainingResult(TrainingResult *result) {
     //TODO: Extract method
     auto *trainSeries = new QSplineSeries();
     auto *validationSeries = new QSplineSeries();
-    trainSeries->setName("train");
-    validationSeries->setName("validation");
-    trainSeries->setColor("blue");
-    validationSeries->setColor("orange");
 
-    for (const auto &xValue : data_lossCurve.keys()){
-        QPair<double,double> pair = data_lossCurve.value(xValue);
+    for (const auto &xValue : data_lossCurve.keys()) {
+        QPair<double, double> pair = data_lossCurve.value(xValue);
         auto yTrain = pair.first;
         auto yValidation = pair.second;
-        auto trainPoint = QPointF(xValue,yTrain);
-        auto validationPoint = QPointF(xValue,yValidation);
+        auto trainPoint = QPointF(xValue, yTrain);
+        auto validationPoint = QPointF(xValue, yValidation);
 
         *trainSeries << trainPoint;
         *validationSeries << validationPoint;
@@ -74,7 +66,7 @@ void ResultsWidget::addTrainingResult(TrainingResult *result) {
 //TODO: (Adrians Help) Pass QList<QImages>
 
 
-    tab->setLossCurve(trainSeries,validationSeries);
+    tab->setLossCurve(trainSeries, validationSeries);
     tab->setConfusionMatrix(nullptr);
     tab->setMostMisclassifiedImages(QList<QImage>());
 }
@@ -95,8 +87,43 @@ ResultsWidget::~ResultsWidget() {
     delete ui;
 }
 
-TrainingResultView * ResultsWidget::createTrainingResultTab(const QString& tabName) {
+TrainingResultView *ResultsWidget::createTrainingResultTab(const QString &tabName) {
     auto tab = new TrainingResultView(this);
     ui->tabWidget_comparison->addTab(tab, tabName);
     return tab;
+}
+
+void ResultsWidget::dummyFunctionTest() {
+    for (int i = 0; i < 3; ++i) {
+        QString run = QString("Run %1").arg(i + 1);
+        auto tab = createTrainingResultTab(run);
+
+        //Loss Curve
+        auto *trainSeries = new QSplineSeries();
+        auto *validationSeries = new QSplineSeries();
+        int precision = 1;
+        for (int j = 0; j < 20 * precision; j++) {
+            double random = QRandomGenerator::global()->bounded(3 * 100) / 100.0;
+            *validationSeries << QPointF((double) j / precision, random);
+        }
+
+        int sum = 0;
+        for (int j = 0; j < 20 * precision; j++) {
+            int random = QRandomGenerator::global()->bounded(-2, 15);
+            sum += random;
+            *trainSeries << QPointF((double) j / precision, 3 + 100 / (double) abs(sum));
+        }
+        tab->setLossCurve(trainSeries,validationSeries);
+
+        //Confusion Matrix
+        auto path = ":/Resources/UISymbols/confusionmatrix.svg";
+        auto *item = new QGraphicsSvgItem(path);
+        tab->setConfusionMatrix(item);
+
+        //Compare Button Menu
+        auto *action = new QAction(run, this);
+        action->setCheckable(true);
+        action->setChecked(true);
+        menu_addRun->addAction(action);
+    }
 }
