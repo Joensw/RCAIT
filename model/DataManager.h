@@ -43,7 +43,10 @@ public:
     //TrainingResult getTrainingsResult(Qstring modelResultName);
     QStringList getNamesOfSavedTrainingReults();
 
-
+private:
+    //ProjectManager* projectManager;
+    //ModelManager* modelManager;
+    //SettingsManager* settingsManager;
 };
 
 
