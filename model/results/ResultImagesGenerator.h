@@ -4,6 +4,7 @@
 
 #include <plugins/results/TrainingResult.h>
 #include <plugins/results/ClassificationResult.h>
+#include <QChartView>
 
 class ResultImagesGenerator {
 public:
@@ -13,11 +14,9 @@ public:
     QList<QImage> generateClassificationResultImages(ClassificationResult* result);
 
 private:
-    QImage generateConfusionMatrixImage(QAbstractTableModel *matrix, QStringList labels);
-    QImage generateLossCurveImage(QMap<int, QVector<double>>);
-    //Todo: Weird stuff below
-    QImage generateAccuracyImage(double top1 , double top5);
-    QImage generateClassificationTableImage(QMap<QString, QVector<double>> table, QVector<QString> labels);
+    QImage generateLossCurveImage(QChartView* chart);
+    //Todo: Find better way than transferring view pointer
+    QImage generateAccuracyImage(QChartView* chart);
 };
 
 
