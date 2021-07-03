@@ -8,6 +8,10 @@
 #include <QStringList>
 #include <QWidget>
 
+#include "model/modelmanager.h"
+#include "model/ProjectManager.h"
+#include "model/settingsmanager.h"
+
 class DataManager {
 public:
     DataManager();
@@ -44,9 +48,10 @@ public:
     QStringList getNamesOfSavedTrainingReults();
 
 private:
-    //ProjectManager* projectManager;
-    //ModelManager* modelManager;
-    //SettingsManager* settingsManager;
+    ProjectManager* mProjectManager;
+    ModelManager* mModelManager;
+    SettingsManager* mSettingsManager;
+    int mTest;
 };
 
 
