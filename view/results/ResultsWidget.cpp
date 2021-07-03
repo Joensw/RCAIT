@@ -23,7 +23,9 @@ ResultsWidget::ResultsWidget(QWidget *parent) :
 }
 
 void ResultsWidget::createAddRunButton(QTabWidget *tabWidget) {
-    auto pushButton_addResult = new QPushButton("Compare Run ...", this);
+    pushButton_addResult->setText("Compare ...");
+    const auto icon = QIcon(":/Resources/UISymbols/UI_Add_Result_Comparison_Icon.svg");
+    pushButton_addResult->setIcon(icon);
     pushButton_addResult->setFlat(true);
     pushButton_addResult->setMenu(menu_addRun);
     tabWidget->setCornerWidget(pushButton_addResult, Qt::TopRightCorner);
@@ -41,8 +43,8 @@ QString ResultsWidget::getSelectedClassifyRunIdentifier() {
     return QString();
 }
 
-void ResultsWidget::addTrainingResult(QList<QImage> result) {
-//TODO: TrainingResult class instead of Images??
+void ResultsWidget::addTrainingResult(TrainingResult* result) {
+
 }
 
 void ResultsWidget::addClassificationResult(QList<QImage> result) {

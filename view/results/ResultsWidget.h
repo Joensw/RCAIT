@@ -17,7 +17,7 @@ public:
     QString getSelectedTrainRunIdentifier();
     QString getSelectedClassifyRunIdentifier();
     //Todo: These will probably not just be QImages!
-    void addTrainingResult(QList<QImage> result);
+    void addTrainingResult(TrainingResult* result);
     void addClassificationResult(QList<QImage> result);
     void updateComparisonResultOverview(TrainingResult* trainingResult);
     //Todo: Weird
@@ -31,7 +31,8 @@ signals:
 
 private:
     Ui::ResultsWidget *ui;
-    QMenu *menu_addRun = new QMenu();
+    QMenu *menu_addRun = new QMenu(this);
+    QPushButton *pushButton_addResult = new QPushButton(this);
 
     void createAddRunButton(QTabWidget *tabWidget);
 };

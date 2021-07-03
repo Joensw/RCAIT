@@ -45,5 +45,6 @@
         <file>Resources/TabIcons/Filled/collections_black_24dp.svg</file>
         <file>Resources/TabIcons/Filled/batch_prediction_black_24dp.svg</file>
         <file>Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg</file>
+        <file>Resources/UISymbols/UI_Add_Result_Comparison_Icon.svg</file>
     </qresource>
 </RCC>

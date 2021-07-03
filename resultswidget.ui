@@ -68,14 +68,46 @@
                <normaloff>:/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg</iconset>
              </attribute>
              <attribute name="title">
-              <string/>
+              <string>Top Accuracies</string>
              </attribute>
              <layout class="QGridLayout" name="gridLayout_3">
-              <item row="0" column="0">
-               <widget class="QTableView" name="tableView_topAccuracy"/>
-              </item>
               <item row="0" column="1">
                <widget class="QChartView" name="chartView_topAccuracy"/>
+              </item>
+              <item row="0" column="0">
+               <widget class="QTableWidget" name="tableWidget_topAccuracy">
+                <property name="verticalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOn</enum>
+                </property>
+                <property name="horizontalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOff</enum>
+                </property>
+                <row>
+                 <property name="text">
+                  <string>Run 1</string>
+                 </property>
+                </row>
+                <row>
+                 <property name="text">
+                  <string>Run 2</string>
+                 </property>
+                </row>
+                <row>
+                 <property name="text">
+                  <string>Run 3</string>
+                 </property>
+                </row>
+                <column>
+                 <property name="text">
+                  <string>Top1%</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Top5%</string>
+                 </property>
+                </column>
+               </widget>
               </item>
              </layout>
             </widget>
