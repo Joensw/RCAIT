@@ -19,6 +19,7 @@ SOURCES += \
     controller/settingscontroller.cpp \
     model/DataManager.cpp \
     model/ProjectManager.cpp \
+    model/modelmanager.cpp \
     model/pluginusage/ImageLoader.cpp \
     model/pluginusage/ImageSearchThread.cpp \
     model/pluginusage/aithread.cpp \
@@ -60,6 +61,7 @@ HEADERS += \
     controller/settingscontroller.h \
     model/DataManager.h \
     model/ProjectManager.h \
+    model/modelmanager.h \
     model/pluginusage/ImageLoader.h \
     model/pluginusage/ImageSearchThread.h \
     model/pluginusage/aithread.h \
