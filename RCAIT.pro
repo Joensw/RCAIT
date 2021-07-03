@@ -31,14 +31,11 @@ SOURCES += \
     model/results/ResultImagesGenerator.cpp \
     plugins/Plugin.cpp \
     plugins/PluginManager.cpp \
-    plugins/classificationresult.cpp \
     plugins/imageplugins/ImageLoaderPlugin.cpp \
     plugins/imageplugins/ImageLoaderPluginManager.cpp \
-    plugins/result.cpp \
     plugins/results/ClassificationResult.cpp \
     plugins/results/Result.cpp \
     plugins/results/TrainingResult.cpp \
-    plugins/trainingresult.cpp \
     view/results/ResultsWidget.cpp \
     view/results/TrainingResultView.cpp \
     view/AspectRatioLabel.cpp \
