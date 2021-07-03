@@ -12,3 +12,11 @@ InputImagesWidget::~InputImagesWidget()
 {
     delete ui;
 }
+
+void InputImagesWidget::slot_loaded(QString path) {
+
+}
+
+void InputImagesWidget::slot_progress(int progress) {
+
+}
