@@ -46,6 +46,7 @@ void ProjectManager::createNewProject(QString projectName){
     QDir projectDir(QFileInfo(path).absoluteDir());
     QString absolute = projectDir.absolutePath();
 
+    //todo replace stings with cosntants
     newProjectfile.setValue("projectName", projectName);
     newProjectfile.setValue("projectDir", absolute);
     newProjectfile.setValue("datasetDirName", datasetDirName);

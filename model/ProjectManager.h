@@ -30,10 +30,10 @@ public:
 
 
 private:
-    QString projectPath;
-    QString projectPathTempDir;
-    QString projectPathDataSetDir;
-    QString projectName;
+    QString mProjectPath;
+    QString mProjectPathTempDir;
+    QString mProjectPathDataSetDir;
+    QString mProjectName;
 
 
 };
