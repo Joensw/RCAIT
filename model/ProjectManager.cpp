@@ -9,8 +9,6 @@
 ProjectManager::ProjectManager(){
 
 }
-
-
 void ProjectManager::createNewProject(QString projectName){
     //NOTE: the projects directory will also have to come from somewhere,
     //currently it is created one directory up from the build directory.
@@ -36,11 +34,12 @@ void ProjectManager::createNewProject(QString projectName){
 
 
 
-    /* goes into the projects folder, then into the specific project folder
+     /*goes into the projects folder, then into the specific project folder
      * there it creates a new ini file, which can be seen as the "project file"
      */
 
 
+    //non existing folders / directories will be automatically created
     QSettings newProjectfile(path, QSettings::IniFormat);
 
     //this is only to get an absolute path, without .. and .
@@ -52,11 +51,12 @@ void ProjectManager::createNewProject(QString projectName){
     newProjectfile.setValue("datasetDirName", datasetDirName);
     newProjectfile.setValue("tempDirName", tempDirName);
 
-    //non existing folders / directories will be automatically created
-}
-//Lösche Projektdatei ordner
-void ProjectManager::removeProject(QString projectName){
 
+}
+//Go into project directory find the entry with the corresponding name, delete the folder
+void ProjectManager::removeProject(QString projectName){
+    QDir targetDir("../projects/" + projectName);
+    targetDir.removeRecursively();
 }
 //informationen aus der projectDatei wird in die klassen attribute übernommen, mittels qsettings geht das ganz gut
 void ProjectManager::loadProject(QString projectName){
