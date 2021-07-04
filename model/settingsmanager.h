@@ -5,6 +5,8 @@
 #include <QWidget>
 #include <QSettings>
 
+extern const QString SETTINGS_LOCATION;
+
 class SettingsManager
 {
 public:
