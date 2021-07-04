@@ -4,7 +4,6 @@
 #include <utility>
 
 
-QString testDir = ":/Resources/images/Test_1/";
 
 
 
@@ -33,8 +32,6 @@ ImageGallery::ImageGallery(QWidget *parent, const QDir& imageDirectory) {
     setFlow(QListWidget::LeftToRight);
     setResizeMode(QListWidget::Adjust);
     setUniformItemSizes(true);
-
-    //setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 
 
