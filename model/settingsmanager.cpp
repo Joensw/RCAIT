@@ -4,11 +4,12 @@ SettingsManager::SettingsManager()
 {
 
 }
-
-
+//gets names from ClassificationPluginManager and ImageLoaderPluginManager, combines them into one list
 QStringList SettingsManager::getPluginNames(){
-    QStringList q;
-    return q;
+    QStringList loaderPlugins;
+    QStringList classifierPlugins;
+    loaderPlugins.append(classifierPlugins);
+    return loaderPlugins;
 }
 
 
