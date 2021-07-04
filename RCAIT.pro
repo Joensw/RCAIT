@@ -113,7 +113,8 @@ FORMS += \
     resultswidget.ui \
     staticlist.ui \
     trainingresultview.ui \
-    view/inputimageswidget.ui
+    view/inputimageswidget.ui \
+    view/settingsview.ui
 
 TRANSLATIONS += \
     languages/RCAIT_de_DE.ts \
