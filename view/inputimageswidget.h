@@ -35,8 +35,6 @@ private slots:
 private:
     Ui::InputImagesWidget *ui;
     QString path;
-
-    void loadDir(const QDir &imageDirectory);
 };
 
 #endif // INPUTIMAGESWIDGET_H

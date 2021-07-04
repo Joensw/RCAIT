@@ -6,7 +6,8 @@
 
 QString testDir = ":/Resources/images/Test_1/";
 
-//Nur für "Input Image" Tab test
+
+
 ImageGallery::ImageGallery(QWidget *parent) :
         QListWidget(parent) {
 
@@ -18,26 +19,10 @@ ImageGallery::ImageGallery(QWidget *parent) :
     setResizeMode(QListWidget::Adjust);
     setUniformItemSizes(true);
 
-
-    class addDirTask : public QRunnable {
-    public:
-        addDirTask(ImageGallery *gallery, QDir path) {
-            this->gallery = gallery;
-            this->path = std::move(path);
-        }
-
-        void run() override {
-            gallery->addDir(path);
-        }
-
-    private:
-        ImageGallery *gallery;
-        QDir path;
-    };
-    auto *addDirParallel = new addDirTask(this, testDir);
-    QThreadPool::globalInstance()->start(addDirParallel);
-
+    setDefaultDropAction(Qt::MoveAction);
+    setDragDropEnabled(false);
 }
+
 
 ImageGallery::ImageGallery(QWidget *parent, const QDir& imageDirectory) {
     setMovement(QListView::Static);
@@ -61,17 +46,17 @@ ImageGallery::ImageGallery(QWidget *parent, const QDir& imageDirectory) {
     class addDirTask : public QRunnable {
     public:
         addDirTask(ImageGallery *gallery, QDir path) {
-            this->gallery = gallery;
-            this->path = std::move(path);
+            this->mGallery = gallery;
+            this->mPathDir = std::move(path);
         }
 
         void run() override {
-            gallery->addDir(path);
+            mGallery->addDir(mPathDir);
         }
 
     private:
-        ImageGallery *gallery;
-        QDir path;
+        ImageGallery *mGallery;
+        QDir mPathDir;
     };
     auto *addDirParallel = new addDirTask(this, imageDirectory);
     QThreadPool::globalInstance()->start(addDirParallel);
@@ -94,7 +79,6 @@ void ImageGallery::addDir(const QDir& imageDirectory) {
             foreach(QString imageName, images) {
 
             QString path = imageDirectory.path() + "/" + imageName;
-            //qDebug() << path;
 
 
             QImage image(path);
@@ -111,7 +95,34 @@ void ImageGallery::addDir(const QDir& imageDirectory) {
 
 
             addItem(item);
+            }
+}
+
+void ImageGallery::concurrentAddDir(const QString path)
+{
+    class addDirTask : public QRunnable {
+    public:
+        addDirTask(ImageGallery *gallery, QDir pathDir) {
+            this->mGallery = gallery;
+            this->mPathDir = std::move(pathDir);
         }
+
+        void run() override {
+            mGallery->addDir(mPathDir);
+        }
+
+    private:
+        ImageGallery *mGallery;
+        QDir mPathDir;
+    };
+    auto *addDirParallel = new addDirTask(this, QDir(path));
+    QThreadPool::globalInstance()->start(addDirParallel);
+}
+
+void ImageGallery::setDragDropEnabled(bool var)
+{
+    setDragEnabled(var);
+    setAcceptDrops(var);
 }
 
 QSize ImageGallery::minimumSizeHint() const {

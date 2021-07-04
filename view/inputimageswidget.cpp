@@ -9,6 +9,7 @@ InputImagesWidget::InputImagesWidget(QWidget *parent) :
     ui(new Ui::InputImagesWidget)
 {
     ui->setupUi(this);
+    ui->preview->setDragDropEnabled(false);
 }
 
 InputImagesWidget::~InputImagesWidget()
@@ -37,36 +38,10 @@ void InputImagesWidget::on_selectFolderButton_clicked()
      path = QFileDialog::getExistingDirectory(this, "Select image directory");
      if (path == nullptr) return;
      ui->preview->setEnabled(true);
-     loadDir(QDir(path));
+     ui->preview->concurrentAddDir(path);
      ui->classifyButton->setEnabled(true);
 }
 
-
-
-void InputImagesWidget::loadDir(const QDir& imageDirectory) {
-    QStringList images = imageDirectory.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
-
-
-            foreach(QString imageName, images) {
-
-            QString path = imageDirectory.path() + "/" + imageName;
-
-            QImage image(path);
-
-            int squareSize = image.height() < image.width() ? image.height() : image.width();
-            int leftX = image.width() / 2 - squareSize / 2;
-            int leftY = image.height() / 2 - squareSize / 2;
-
-
-            QImage copy = image.copy(leftX, leftY, squareSize, squareSize);
-            QListWidgetItem *item = new QListWidgetItem();
-            QPixmap tempImage = QPixmap::fromImage(copy);
-            item->setData(Qt::DecorationRole, tempImage.scaled(200, 200, Qt::KeepAspectRatio));
-
-
-            ui->preview->addItem(item);
-        }
-}
 
 
 void InputImagesWidget::on_classifyButton_clicked()
