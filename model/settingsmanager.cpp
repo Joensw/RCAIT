@@ -16,12 +16,14 @@ QStringList SettingsManager::getPluginNames(){
     loaderPlugins.append(classifierPlugins);
     return loaderPlugins;
 }
-
+//sends a request to both pluginManagers, combines them into a single list and returns them
 QList<QWidget *> SettingsManager::getPluginSettings(){
-    QList<QWidget *> q;
-    return q;
+    QList<QWidget *> loaderPluginsWidgets;
+    QList<QWidget *> classifierPluginsWidgets;
+    loaderPluginsWidgets.append(classifierPluginsWidgets);
+    return loaderPluginsWidgets;
 }
-
+//Nur mit einem int hier etwas abzuspeichern wird eventuell schwierig
 void SettingsManager::savePluginSettings(int index){
 
 }
