@@ -53,24 +53,30 @@ void ProjectManager::createNewProject(QString projectName){
 
 
 }
-//Go into project directory find the entry with the corresponding name, delete the folder
 void ProjectManager::removeProject(QString projectName){
     QDir targetDir("../projects/" + projectName);
+    //removeRecursively deletes everything below also
     targetDir.removeRecursively();
 }
-//informationen aus der projectDatei wird in die klassen attribute übernommen, mittels qsettings geht das ganz gut
 void ProjectManager::loadProject(QString projectName){
+    QString path = "../projects/" + projectName + "/" + projectName + ".ini";
+    QSettings projectfile(path, QSettings::IniFormat);
 
+    //todo replace strings with constants
+    mProjectName = projectfile.value("projectName").toString();
+    mProjectPath = projectfile.value("projectDir").toString();;
+    mProjectPathDataSetDir = projectfile.value("datasetDirName").toString();;
+    mProjectPathTempDir = projectfile.value("tempDirName").toString();;
 }
 
 QString ProjectManager::getProjectPath(){
-    return projectPath;
+    return mProjectPath;
 }
 QString ProjectManager::getProjectTempDir(){
-    return projectPathTempDir;
+    return mProjectPathTempDir;
 }
 QString ProjectManager::getProjectDataSetDir(){
-    return projectPathDataSetDir;
+    return mProjectPathDataSetDir;
 }
 
 /* TODO GIBTS NOCH NICHT
