@@ -2,14 +2,14 @@
 #define SETTINGSCONTROLLER_H
 
 #include <settingsview.h>
+#include <DataManager.h>
 
 
 
 class SettingsController
 {
 public:
-    // TODO: Change type of "dataManager" to DataManager once DataManager is defined.
-    SettingsController(SettingsView *settingsView, QString *dataManager);
+    SettingsController(SettingsView *settingsView, DataManager *dataManager);
 
 public slots:
     void slot_openSettings();
@@ -21,8 +21,7 @@ public slots:
 private:
     SettingsView *settingsView;
 
-    // TODO: Change type of "dataManager" to DataManager once DataManager is defined.
-    QString *dataManager;
+    DataManager *dataManager;
 
 };
 
