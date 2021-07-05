@@ -2,7 +2,7 @@
 // Created by Paul on 02.07.2021.
 //
 
-#include "DataManager.h"
+#include "datamanager.h"
 
 DataManager::DataManager(){
     mProjectManager = nullptr;

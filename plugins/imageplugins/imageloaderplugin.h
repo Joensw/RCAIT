@@ -3,7 +3,7 @@
 
 #include <QString>
 #include <pluginusage/progressableplugin.h>
-#include "Plugin.h"
+#include "plugin.h"
 
 //Todo: Extend Plugin class
 class ImageLoaderPlugin : public Plugin{

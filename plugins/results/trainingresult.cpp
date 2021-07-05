@@ -1,4 +1,4 @@
-#include "TrainingResult.h"
+#include "trainingresult.h"
 
 #include <utility>
 
