@@ -57,6 +57,7 @@ SOURCES += \
     view/removeprojectdialog.cpp \
     view/results/canvas.cpp \
     view/settingsview.cpp \
+    view/startwidget.cpp \
     view/staticlist.cpp \
     view/tags.cpp
 
@@ -105,6 +106,7 @@ HEADERS += \
     view/removeprojectdialog.h \
     view/results/canvas.h \
     view/settingsview.h \
+    view/startwidget.h \
     view/staticlist.h \
     view/tags.hpp
 
@@ -116,6 +118,7 @@ FORMS += \
     removemodeldialog.ui \
     removeprojectdialog.ui \
     resultswidget.ui \
+    startwidget.ui \
     staticlist.ui \
     trainingresultview.ui \
     view/inputimageswidget.ui \
