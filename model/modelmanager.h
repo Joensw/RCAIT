@@ -28,7 +28,7 @@ public:
 
 
 private:
-    //ClassificationPluginManager * m_classificationPluginManager;
+    //ClassificationPluginManager * mClassificationPluginManager;
 
     QString mCurrentModel;
     QString mCurrentPlugin;

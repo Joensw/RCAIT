@@ -28,6 +28,6 @@ QString ModelManager::getCurrentModel(){
     return mCurrentModel;
 }
 QWidget * ModelManager::getInputWidget(){
-    //return mlassificationPluginManager->getInputWidget(currentModel);
+    //return mClassificationPluginManager->getInputWidget(currentModel);
     return nullptr;
 }
