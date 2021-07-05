@@ -55,7 +55,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>4</number>
       </property>
       <property name="iconSize">
        <size>
@@ -963,7 +963,7 @@ Select a project to get started</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_inputimages">
+      <widget class="InputImagesWidget" name="tab_inputimages">
        <attribute name="icon">
         <iconset resource="UI_Icons.qrc">
          <normaloff>:/Resources/TabIcons/Filled/filter_black_24dp.svg</normaloff>:/Resources/TabIcons/Filled/filter_black_24dp.svg</iconset>
@@ -971,108 +971,7 @@ Select a project to get started</string>
        <attribute name="title">
         <string>Input Images</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_24">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
-          <item>
-           <widget class="QGroupBox" name="groupBox_5">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="title">
-             <string>Import Images</string>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_6">
-             <item row="0" column="0" colspan="2">
-              <layout class="QGridLayout" name="gridLayout_17">
-               <item row="0" column="2">
-                <widget class="Tags" name="lineEdit_11"/>
-               </item>
-               <item row="0" column="0">
-                <widget class="QLabel" name="label_18">
-                 <property name="text">
-                  <string>Input Image Directory</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="3">
-                <layout class="QHBoxLayout" name="horizontalLayout_22">
-                 <item>
-                  <widget class="QPushButton" name="pushButton_clearTags_2">
-                   <property name="minimumSize">
-                    <size>
-                     <width>30</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>8</width>
-                     <height>29</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="UI_Icons.qrc">
-                     <normaloff>:/Resources/UISymbols/UI_Folder_Icon.svg</normaloff>:/Resources/UISymbols/UI_Folder_Icon.svg</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item row="1" column="3">
-                <widget class="QPushButton" name="pushButton_17">
-                 <property name="text">
-                  <string>Load</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QGroupBox" name="groupBox_6">
-            <property name="title">
-             <string>Preview</string>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_5">
-             <item>
-              <widget class="ImageGallery" name="listWidget"/>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_23">
-            <item>
-             <widget class="QProgressBar" name="progressBar_4">
-              <property name="value">
-               <number>24</number>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_16">
-              <property name="font">
-               <font>
-                <family>SF Pro Text</family>
-                <pointsize>8</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Classify</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-       </layout>
+       <layout class="QHBoxLayout" name="horizontalLayout_24"/>
       </widget>
       <widget class="ResultsWidget" name="tab_results">
        <attribute name="icon">
@@ -1400,9 +1299,10 @@ Select a project to get started</string>
    <header>tags.hpp</header>
   </customwidget>
   <customwidget>
-   <class>ImageGallery</class>
-   <extends>QListWidget</extends>
-   <header>imagegallery.h</header>
+   <class>InputImagesWidget</class>
+   <extends>QWidget</extends>
+   <header>inputimageswidget.h</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>ResultsWidget</class>

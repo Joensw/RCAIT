@@ -24,6 +24,12 @@ SOURCES += \
     controller/aicontroller.cpp \
     controller/settingscontroller.cpp \
     model/datamanager.cpp \
+    model/automation/addprojecttask.cpp \
+    model/automation/automator.cpp \
+    model/automation/classificationtask.cpp \
+    model/automation/imageloadtask.cpp \
+    model/automation/task.cpp \
+    model/automation/trainingtask.cpp \
     model/modelmanager.cpp \
     model/pluginusage/aithread.cpp \
     model/pluginusage/classifiertrainer.cpp \
@@ -69,6 +75,12 @@ HEADERS += \
     controller/aicontroller.h \
     controller/settingscontroller.h \
     model/datamanager.h \
+    model/automation/addprojecttask.h \
+    model/automation/automator.h \
+    model/automation/classificationtask.h \
+    model/automation/imageloadtask.h \
+    model/automation/task.h \
+    model/automation/trainingtask.h \
     model/modelmanager.h \
     model/pluginusage/aithread.h \
     model/pluginusage/classifiertrainer.h \
