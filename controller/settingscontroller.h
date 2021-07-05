@@ -1,9 +1,9 @@
 #ifndef SETTINGSCONTROLLER_H
 #define SETTINGSCONTROLLER_H
 
-#include <DataManager.h>
+#include <datamanager.h>
 #include <settingsview.h>
-#include <DataManager.h>
+#include <datamanager.h>
 
 
 

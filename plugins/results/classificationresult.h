@@ -6,7 +6,7 @@
 #include <QMap>
 #include <QImage>
 #include <QAbstractTableModel>
-#include "Result.h"
+#include "result.h"
 
 class ClassificationResult : public Result{
 private:

@@ -1,4 +1,4 @@
-#include "Result.h"
+#include "result.h"
 
 Result::Result(QList<QImage> additionalResult) {
 

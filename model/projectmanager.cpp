@@ -2,7 +2,7 @@
 // Created by Paul on 02.07.2021.
 //
 
-#include "ProjectManager.h"
+#include "projectmanager.h"
 #include <QDir>
 #include <QSettings>
 

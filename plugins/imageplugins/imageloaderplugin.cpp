@@ -1,4 +1,4 @@
-#include "ImageLoaderPlugin.h"
+#include "imageloaderplugin.h"
 
 bool ImageLoaderPlugin::loadImages(QString path, ProgressablePlugin *receiver, QString pluginName, int count,
                                    QStringList labels) {
