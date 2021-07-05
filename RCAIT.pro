@@ -141,4 +141,10 @@ DISTFILES += \
     languages/RCAIT_en_GB.qm \
     model/results/confusionmatrix.py
 
+install_it.path = $$OUT_PWD
+install_it.files = model/results/confusionmatrix.py
+
+INSTALLS += \
+    install_it
+
 DEFINES += PROJECT_PATH=\"\\\"$${_PRO_FILE_PWD_}/\\\"\"
