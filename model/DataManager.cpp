@@ -10,8 +10,7 @@ DataManager::DataManager(){
 
 }
 QStringList DataManager::getProjects(){
-    QStringList q;
-    return q;
+    return mProjectManager->getProjects();
 }
 void DataManager::createNewProject(QString projectName){
     mProjectManager->createNewProject(projectName);
