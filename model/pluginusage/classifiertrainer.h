@@ -1,9 +1,9 @@
 #ifndef CLASSIFIERTRAINER_H
 #define CLASSIFIERTRAINER_H
 
-#include <plugins/results/TrainingResult.h>
+#include <plugins/results/trainingresult.h>
 #include "model/pluginusage/progressableplugin.h"
-#include "plugins/results/ClassificationResult.h"
+#include "plugins/results/classificationresult.h"
 
 class ClassifierTrainer : public ProgressablePlugin
 {

@@ -1,4 +1,4 @@
-#include "TrainingResultView.h"
+#include "trainingresultview.h"
 
 #include <utility>
 #include <QValueAxis>

@@ -1,4 +1,4 @@
-#include "ClassificationResult.h"
+#include "classificationresult.h"
 #include <utility>
 
 ClassificationResult::ClassificationResult(QList<QImage> additionalResult, QMap<QString, QVector<double>> table,

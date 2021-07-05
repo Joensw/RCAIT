@@ -1,7 +1,7 @@
 #ifndef TRAININGSTHREAD_H
 #define TRAININGSTHREAD_H
 
-#include <results/TrainingResult.h>
+#include <results/trainingresult.h>
 #include "model/pluginusage/aithread.h"
 
 class TrainingsThread : public AIThread

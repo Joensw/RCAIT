@@ -53,7 +53,7 @@
 
 #include <QWidget>
 
-#include "echointerface.h"
+#include "imageloaderplugin.h"
 
 QT_BEGIN_NAMESPACE
 class QString;
@@ -71,7 +71,7 @@ class EchoWindow : public QWidget
 public:
     EchoWindow();
     QWidget* getConfigurationWidget();
-    EchoInterface* getPlugin();
+    ImageLoaderPlugin* getPlugin();
 private slots:
     void sendEcho();
 
@@ -81,7 +81,7 @@ private:
     void saveSettings();
 
 
-    EchoInterface *echoInterface;
+    ImageLoaderPlugin *imageLoaderPlugin;
     QLineEdit *lineEdit;
     QLabel *label;
     QPushButton *button;

@@ -2,7 +2,7 @@
 #include "ui_settings.h"
 
 
-Settings::Settings(QWidget *parent, EchoInterface *plugin) :
+Settings::Settings(QWidget *parent, ImageLoaderPlugin *plugin) :
     QWidget(parent),
     ui(new Ui::Settings)
 {
@@ -33,6 +33,6 @@ void Settings::on_pushButton_clicked()
 }
 
 void Settings::saveSettings(){
-    plugin->saveSettings();
+    plugin->saveConfiguration();
 
 }

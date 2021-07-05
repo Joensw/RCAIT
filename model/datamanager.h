@@ -9,7 +9,7 @@
 #include <QWidget>
 
 #include "model/modelmanager.h"
-#include "model/ProjectManager.h"
+#include "model/projectmanager.h"
 #include "model/settingsmanager.h"
 
 class DataManager {

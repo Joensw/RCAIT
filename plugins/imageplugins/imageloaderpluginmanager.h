@@ -5,7 +5,7 @@
 #include <QString>
 #include <QWidget>
 #include <pluginusage/progressableplugin.h>
-#include "PluginManager.h"
+#include "pluginmanager.h"
 
 //Todo: Check singleton correctness
 //Todo: Implement PluginManager interface

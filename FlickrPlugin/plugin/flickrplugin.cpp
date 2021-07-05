@@ -47,31 +47,56 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
+#include "flickrplugin.h"
 
-#ifndef ECHOINTERFACE_H
-#define ECHOINTERFACE_H
 
-#include <QObject>
-#include <QString>
+
 
 //! [0]
-class EchoInterface
+
+bool loadImages(const QString path, const int imageCount, const QStringList* label)
 {
-public:
-    virtual ~EchoInterface() = default;
-    virtual QString echo(const QString &message) = 0;
-    virtual QWidget* getConfigurationWidget() = 0;
-    virtual void saveSettings() = 0;
-    virtual void init() = 0;
-};
+
+    QString pythonScriptPath = "python C:\\S4\\PSE\\FlickrPlugin\\plugin\\test.py";
+    QString imageCountStr = QString::number(imageCount);
+    QString labelConcat = "";
+
+    for ( const auto& i : *label  )
+    {
+        qDebug() << i;
+        labelConcat.append(i);
+        labelConcat.append(" ");
+    }
 
 
-QT_BEGIN_NAMESPACE
 
-#define EchoInterface_iid "org.qt-project.Qt.Examples.EchoInterface"
+    QProcess cmd;
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    //QProcessEnvironment envUpdate;
 
-Q_DECLARE_INTERFACE(EchoInterface, EchoInterface_iid)
-QT_END_NAMESPACE
+
+    //envUpdate.insert("PATH", env.value("PATH"));
+    cmd.setProcessEnvironment(env);
+    cmd.start("python C:\\S4\\PSE\\FlickrPlugin\\plugin\\test.py");
+    cmd.waitForFinished();
+
+    return new QStringList;
+
+
+}
+
+QWidget* FlickrPlugin::getConfigurationWidget()
+{
+  return pluginSettings;
+}
+
+void FlickrPlugin::saveConfiguration(){
+    qobject_cast<FlickrSettings *>(pluginSettings)->saveSettings();
+}
+
+void FlickrPlugin::init()
+{
+    pluginSettings = new FlickrSettings();
+}
 
 //! [0]
-#endif

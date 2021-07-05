@@ -19,7 +19,7 @@ void FlickrSettings::saveSettings()
 {
 
     QSettings settings("Flickr Plugin",QSettings::IniFormat);
-    settings.setValue("API Key",ui->lineEdit->text());
+    settings.setValue("API Key",ui->lineEdit_ApiKey->text());
     qDebug() << settings.fileName();
 }
 
@@ -28,5 +28,5 @@ void FlickrSettings::saveSettings()
 void FlickrSettings::loadSettings()
 {
     QSettings settings("Flickr Plugin",QSettings::IniFormat);
-    ui->lineEdit->setText(settings.value("API Key","Bitte API Key eintragen").toString());
+    ui->lineEdit_ApiKey->setText(settings.value("API Key","Bitte API Key eintragen").toString());
 }

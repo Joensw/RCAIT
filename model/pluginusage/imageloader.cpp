@@ -1,4 +1,4 @@
-#include "model/pluginusage/ImageLoader.h"
+#include "model/pluginusage/imageloader.h"
 
 /*ImageLoader::ImageLoader()
 {

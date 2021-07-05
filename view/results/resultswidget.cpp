@@ -2,7 +2,7 @@
 #include <QMenu>
 #include <QSplineSeries>
 #include <QRandomGenerator>
-#include "ResultsWidget.h"
+#include "resultswidget.h"
 #include "ui_resultswidget.h"
 #include "results\confusionmatrix.h"
 

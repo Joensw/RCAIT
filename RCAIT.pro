@@ -2,10 +2,15 @@ QT       += core gui charts svg svgwidgets
 
 INCLUDEPATH += \
     model \
+        model\pluginusage \
+        model\results \
     view \
+        view\imageinspection \
         view\results \
     controller \
-    plugins
+    plugins \
+        plugins\imageplugins \
+        plugins\results
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,31 +23,35 @@ CONFIG += c++17 static
 SOURCES += \
     controller/aicontroller.cpp \
     controller/settingscontroller.cpp \
-    model/DataManager.cpp \
-    model/ProjectManager.cpp \
+    model/datamanager.cpp \
+    model/automation/addprojecttask.cpp \
+    model/automation/automator.cpp \
+    model/automation/classificationtask.cpp \
+    model/automation/imageloadtask.cpp \
+    model/automation/task.cpp \
+    model/automation/trainingtask.cpp \
     model/modelmanager.cpp \
-    model/pluginusage/ImageLoader.cpp \
-    model/pluginusage/ImageSearchThread.cpp \
     model/pluginusage/aithread.cpp \
     model/pluginusage/classifiertrainer.cpp \
     model/pluginusage/imageloader.cpp \
+    model/pluginusage/imageloader.cpp \
+    model/pluginusage/imagesearchthread.cpp \
     model/pluginusage/imagesearchthread.cpp \
     model/pluginusage/progressable.cpp \
     model/pluginusage/progressableplugin.cpp \
     model/pluginusage/trainingsthread.cpp \
-    model/results/ResultImagesGenerator.cpp \
+    model/projectmanager.cpp \
     model/results/confusionmatrix.cpp \
+    model/results/resultimagesgenerator.cpp \
     model/settingsmanager.cpp \
-    plugins/Plugin.cpp \
-    plugins/PluginManager.cpp \
-    plugins/imageplugins/ImageLoaderPlugin.cpp \
-    plugins/imageplugins/ImageLoaderPluginManager.cpp \
-    plugins/results/ClassificationResult.cpp \
-    plugins/results/Result.cpp \
-    plugins/results/TrainingResult.cpp \
-    view/results/ResultsWidget.cpp \
-    view/results/TrainingResultView.cpp \
-    view/AspectRatioLabel.cpp \
+    plugins/imageplugins/imageloaderplugin.cpp \
+    plugins/imageplugins/imageloaderpluginmanager.cpp \
+    plugins/plugin.cpp \
+    plugins/pluginmanager.cpp \
+    plugins/results/classificationresult.cpp \
+    plugins/results/result.cpp \
+    plugins/results/trainingresult.cpp \
+    view/aspectratiolabel.cpp \
     view/customtabbar.cpp \
     view/customtabwidget.cpp \
     view/imagegallery.cpp \
@@ -56,6 +65,8 @@ SOURCES += \
     view/removemodeldialog.cpp \
     view/removeprojectdialog.cpp \
     view/results/canvas.cpp \
+    view/results/resultswidget.cpp \
+    view/results/trainingresultview.cpp \
     view/settingsview.cpp \
     view/startwidget.cpp \
     view/staticlist.cpp \
@@ -64,33 +75,37 @@ SOURCES += \
 HEADERS += \
     controller/aicontroller.h \
     controller/settingscontroller.h \
-    model/DataManager.h \
-    model/ProjectManager.h \
+    model/datamanager.h \
+    model/automation/addprojecttask.h \
+    model/automation/automator.h \
+    model/automation/classificationtask.h \
+    model/automation/imageloadtask.h \
+    model/automation/task.h \
+    model/automation/trainingtask.h \
     model/modelmanager.h \
-    model/pluginusage/ImageLoader.h \
-    model/pluginusage/ImageSearchThread.h \
     model/pluginusage/aithread.h \
     model/pluginusage/classifiertrainer.h \
     model/pluginusage/imageloader.h \
+    model/pluginusage/imageloader.h \
+    model/pluginusage/imagesearchthread.h \
     model/pluginusage/imagesearchthread.h \
     model/pluginusage/progressable.h \
     model/pluginusage/progressableplugin.h \
     model/pluginusage/trainingsthread.h \
-    model/results/ResultImagesGenerator.h \
+    model/projectmanager.h \
     model/results/confusionmatrix.h \
+    model/results/resultimagesgenerator.h \
     model/settingsmanager.h \
-    plugins/Plugin.h \
-    plugins/PluginManager.h \
     plugins/classificationresult.h \
-    plugins/imageplugins/ImageLoaderPlugin.h \
-    plugins/imageplugins/ImageLoaderPluginManager.h \
+    plugins/imageplugins/imageloaderplugin.h \
+    plugins/imageplugins/imageloaderpluginmanager.h \
+    plugins/plugin.h \
+    plugins/pluginmanager.h \
     plugins/result.h \
-    plugins/results/ClassificationResult.h \
-    plugins/results/Result.h \
-    plugins/results/TrainingResult.h \
+    plugins/results/classificationresult.h \
+    plugins/results/result.h \
+    plugins/results/trainingresult.h \
     plugins/trainingresult.h \
-    view/results/ResultsWidget.h \
-    view/results/TrainingResultView.h \
     view/aspectratiolabel.h \
     view/customtabbar.h \
     view/customtabwidget.h \
@@ -105,6 +120,8 @@ HEADERS += \
     view/removemodeldialog.h \
     view/removeprojectdialog.h \
     view/results/canvas.h \
+    view/results/resultswidget.h \
+    view/results/trainingresultview.h \
     view/settingsview.h \
     view/startwidget.h \
     view/staticlist.h \

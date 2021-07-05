@@ -4,9 +4,9 @@
 
 #include <QWidget>
 #include <QMenu>
-#include <results/TrainingResult.h>
+#include <results/trainingresult.h>
 #include <ui_resultswidget.h>
-#include "TrainingResultView.h"
+#include "trainingresultview.h"
 
 
 class ResultsWidget : public QWidget {

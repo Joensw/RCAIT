@@ -1,7 +1,7 @@
 QT += widgets
 
 HEADERS    = echowindow.h \
-             echointerface.h \
+             imageloaderplugin.h \
              mainwindow.h \
              settings.h
 SOURCES    = echowindow.cpp \
