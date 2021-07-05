@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     //Always start at first tab
     ui->tabWidget->setCurrentIndex(0);
 
-    populateLanguageMenu(ui->comboBox_languageSelection);
+    //populateLanguageMenu(ui->comboBox_languageSelection);
     populateResultCharts();
     populateConfusionMatrix();
     placeSettingsButton();
@@ -126,6 +126,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_pushButton_2_clicked() {
+    qDebug() << "open pressed mainwindow";
     int curr = ui->tabWidget->currentIndex();
     ui->tabWidget->setCurrentIndex(++curr);
 }
@@ -137,9 +138,7 @@ void MainWindow::on_pushButton_clearTags_clicked() {
 
 void MainWindow::on_comboBox_languageSelection_currentTextChanged(const QString &arg1) {
     Q_UNUSED(arg1)
-    QComboBox *box = ui->comboBox_languageSelection;
-    QString locale = box->currentData().toString();
-    loadLanguage(locale);
+    loadLanguage(ui->start_widget->getLanguageEntry());
     //Update UI after loading language is necessary
     ui->retranslateUi(this);
 }

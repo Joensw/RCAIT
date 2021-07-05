@@ -3,6 +3,7 @@
 #include "view/newmodeldialog.h"
 #include "view/removemodeldialog.h"
 #include "view/newprojectdialog.h"
+#include "view/startwidget.h"
 
 #include <QApplication>
 #include <QLocale>
