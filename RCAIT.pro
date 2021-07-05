@@ -20,6 +20,12 @@ SOURCES += \
     controller/settingscontroller.cpp \
     model/DataManager.cpp \
     model/ProjectManager.cpp \
+    model/automation/addprojecttask.cpp \
+    model/automation/automator.cpp \
+    model/automation/classificationtask.cpp \
+    model/automation/imageloadtask.cpp \
+    model/automation/task.cpp \
+    model/automation/trainingtask.cpp \
     model/modelmanager.cpp \
     model/pluginusage/ImageLoader.cpp \
     model/pluginusage/ImageSearchThread.cpp \
@@ -65,6 +71,12 @@ HEADERS += \
     controller/settingscontroller.h \
     model/DataManager.h \
     model/ProjectManager.h \
+    model/automation/addprojecttask.h \
+    model/automation/automator.h \
+    model/automation/classificationtask.h \
+    model/automation/imageloadtask.h \
+    model/automation/task.h \
+    model/automation/trainingtask.h \
     model/modelmanager.h \
     model/pluginusage/ImageLoader.h \
     model/pluginusage/ImageSearchThread.h \
