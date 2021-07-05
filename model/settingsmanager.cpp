@@ -23,9 +23,14 @@ QList<QWidget *> SettingsManager::getPluginSettings(){
     loaderPluginsWidgets.append(classifierPluginsWidgets);
     return loaderPluginsWidgets;
 }
-//Nur mit einem int hier etwas abzuspeichern wird eventuell schwierig
+//Idee: baue namens liste nochmal auf, hol das element mit dem entsprechenden index
 void SettingsManager::savePluginSettings(int index){
-
+    //this maybe isnt the best solution here
+    QStringList loaderPlugins;
+    QStringList classifierPlugins;
+    loaderPlugins.append(classifierPlugins);
+    QString name = loaderPlugins.at(index);
+    //classificationPluginManager.saveConfiguration(name)
 }
 
 void SettingsManager::saveProjectsDir(QString value){
