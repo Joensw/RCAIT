@@ -1,6 +1,6 @@
 //TODO: This is a dummy, replace with actual class
 
-#include "ResultsController.h"
+#include "resultscontroller.h"
 
 void ResultsController::updateComparisonResultOverview(TrainingResult *result) {
 

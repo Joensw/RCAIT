@@ -2,7 +2,7 @@
 // TODO: Replace this dummy with code
 //
 
-#include "ImageController.h"
+#include "imagecontroller.h"
 
 ImageController::ImageController(ImageInspectionWidget *imageInspectionWidget, ImportFilesWidget *importFilesWidget,
                                  DataManager *dataManager, ImageLoader loader) {

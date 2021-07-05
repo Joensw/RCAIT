@@ -1,4 +1,4 @@
-#include "ResultImagesGenerator.h"
+#include "resultimagesgenerator.h"
 
 ResultImagesGenerator::ResultImagesGenerator() = default;
 

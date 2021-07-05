@@ -1,4 +1,4 @@
-#include "ImageLoaderPluginManager.h"
+#include "imageloaderpluginmanager.h"
 
 ImageLoaderPluginManager::ImageLoaderPluginManager() {
 

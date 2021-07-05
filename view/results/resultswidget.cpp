@@ -1,11 +1,10 @@
 #include <QPushButton>
 #include <QMenu>
 #include <QSplineSeries>
-#include <QGraphicsSvgItem>
 #include <QRandomGenerator>
-#include "ResultsWidget.h"
-#include "TrainingResultView.h"
+#include "resultswidget.h"
 #include "ui_resultswidget.h"
+#include "results\confusionmatrix.h"
 
 ResultsWidget::ResultsWidget(QWidget *parent) :
         QWidget(parent),
@@ -60,8 +59,7 @@ void ResultsWidget::addTrainingResult(TrainingResult *result) {
         *validationSeries << validationPoint;
     }
 
-//Parse Confusion Matrix
-//TODO: Call python script to generate CM from Table
+//Pass to Most Misclassified Images
 
 //TODO: (Adrians Help) Pass QList<QImages>
 
@@ -113,11 +111,20 @@ void ResultsWidget::dummyFunctionTest() {
             sum += random;
             *trainSeries << QPointF((double) j / precision, 3 + 100 / (double) abs(sum));
         }
-        tab->setLossCurve(trainSeries,validationSeries);
+        tab->setLossCurve(trainSeries, validationSeries);
 
         //Confusion Matrix
-        auto path = ":/Resources/UISymbols/confusionmatrix.svg";
-        auto *item = new QGraphicsSvgItem(path);
+        QList<double> values = QList<double>();
+        QStringList labels = {"A","B","C","D","E","F","G","H"};
+        const qsizetype N = labels.size();
+        for (int j = 0; j < N*N; ++j) {
+            int random = QRandomGenerator::global()->bounded(0, 100);
+            double percentage = random / 100.0;
+            values << percentage;
+        }
+
+        auto matrix = new ConfusionMatrix(labels,values);
+        auto item = matrix->generateConfusionMatrixGraphics("matrix_"+run+".svg");
         tab->setConfusionMatrix(item);
 
         //Compare Button Menu

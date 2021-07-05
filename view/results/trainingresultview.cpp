@@ -1,4 +1,4 @@
-#include "TrainingResultView.h"
+#include "trainingresultview.h"
 
 #include <utility>
 #include <QValueAxis>
@@ -74,11 +74,7 @@ void TrainingResultView::setConfusionMatrix(QGraphicsItem *matrixImage) {
     auto *scene = new QGraphicsScene();
     scene->addItem(matrixImage);
 
-    auto vWidth = view->width();
-    auto vHeight = view->height();
-    auto sWidth = scene->width();
-    auto sHeight = scene->height();
-    view->scale(0.8,0.8);
+    view->scale(0.9,0.9);
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
