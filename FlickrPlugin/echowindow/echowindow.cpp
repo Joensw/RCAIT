@@ -77,25 +77,24 @@ EchoWindow::EchoWindow()
 
 QWidget* EchoWindow::getConfigurationWidget()
 {
-    return echoInterface->getConfigurationWidget();
+    return imageLoaderPlugin->getConfigurationWidget();
 }
 
 void EchoWindow::saveSettings()
 {
-    echoInterface->saveSettings();
+    imageLoaderPlugin->saveConfiguration();
 }
 
-EchoInterface* EchoWindow::getPlugin()
+ImageLoaderPlugin* EchoWindow::getPlugin()
 {
-    return echoInterface;
+    return imageLoaderPlugin;
 }
 
 
 //! [1]
 void EchoWindow::sendEcho()
 {
-    QString text = echoInterface->echo(lineEdit->text());
-    label->setText(text);
+
 }
 //! [1]
 
@@ -142,9 +141,9 @@ bool EchoWindow::loadPlugin()
         QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
         QObject *plugin = pluginLoader.instance();
         if (plugin) {
-            echoInterface = qobject_cast<EchoInterface *>(plugin);
-            echoInterface->init();
-            if (echoInterface)
+            imageLoaderPlugin = qobject_cast<ImageLoaderPlugin *>(plugin);
+            imageLoaderPlugin->init();
+            if (imageLoaderPlugin)
                 return true;
             pluginLoader.unload();
         }

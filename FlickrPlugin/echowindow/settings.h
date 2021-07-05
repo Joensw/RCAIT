@@ -1,7 +1,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include "echointerface.h"
+#include "imageloaderplugin.h"
 #include <QWidget>
 
 namespace Ui {
@@ -14,7 +14,7 @@ class Settings : public QWidget
 
 
 public:
-    explicit Settings(QWidget *parent = nullptr, EchoInterface *plugin = nullptr);
+    explicit Settings(QWidget *parent = nullptr, ImageLoaderPlugin *plugin = nullptr);
     QString addSettings(QString name, QWidget *settingsWidget);
     ~Settings();
 
@@ -24,7 +24,7 @@ private slots:
 private:
     Ui::Settings *ui;
     QWidgetList pluginSettings;
-    EchoInterface *plugin;
+    ImageLoaderPlugin *plugin;
     void saveSettings();
 };
 

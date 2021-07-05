@@ -48,36 +48,29 @@
 **
 ****************************************************************************/
 
-#ifndef ECHOPLUGIN_H
-#define ECHOPLUGIN_H
+#ifndef ECHOINTERFACE_H
+#define ECHOINTERFACE_H
 
 #include <QObject>
-#include <QtPlugin>
-#include <QSettings>
-#include <QLineEdit>
-#include <QProcess>
-#include <QProcessEnvironment>
-#include "echointerface.h"
-#include "flickrsettings.h"
+#include <QString>
 
 //! [0]
-class EchoPlugin : public QObject, EchoInterface
+class ImageLoaderPlugin
 {
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.Examples.EchoInterface" FILE "echoplugin.json")
-    Q_INTERFACES(EchoInterface)
-
-
-
-
 public:
-    QString echo(const QString &message) override;
-    QStringList* loadImages(const int imageCount, const QStringList &label);
-    QWidget* getConfigurationWidget();
-    void saveSettings();
-    void init();
-    QWidget *pluginSettings;
+    virtual ~ImageLoaderPlugin() = default;
+    virtual QWidget* getConfigurationWidget() = 0;
+    virtual void saveConfiguration() = 0;
+    virtual void init() = 0;
 };
-//! [0]
 
+
+QT_BEGIN_NAMESPACE
+
+#define ImageLoaderPlugin_iid "de.Fraunhofer.IOSB.RCAIT.ImageLoaderPlugin"
+
+Q_DECLARE_INTERFACE(ImageLoaderPlugin, ImageLoaderPlugin_iid)
+QT_END_NAMESPACE
+
+//! [0]
 #endif

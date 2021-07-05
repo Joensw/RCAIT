@@ -51,7 +51,7 @@
 #include <QApplication>
 
 #include "echowindow.h"
-#include "echointerface.h"
+#include "imageloaderplugin.h"
 #include "settings.h"
 #include "mainwindow.h"
 

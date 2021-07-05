@@ -3,15 +3,17 @@ TEMPLATE        = lib
 CONFIG         += plugin
 QT             += widgets
 INCLUDEPATH    += ../echowindow
-HEADERS         = echoplugin.h \
+HEADERS         = \
+    flickrplugin.h \
     flickrsettings.h
-SOURCES         = echoplugin.cpp \
+SOURCES         = \
+    flickrplugin.cpp \
     flickrsettings.cpp
 TARGET          = $$qtLibraryTarget(echoplugin)
 DESTDIR         = ../plugins
 #! [0]
 
-EXAMPLE_FILES = echoplugin.json
+EXAMPLE_FILES = flickrplugin.json
 
 # install
 target.path = $$[QT_INSTALL_EXAMPLES]/widgets/tools/echoplugin/plugins

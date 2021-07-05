@@ -47,47 +47,38 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-#include "echoplugin.h"
 
+#ifndef FLICKRPLUGIN_H
+#define FLICKRPLUGIN_H
 
-
-
-//! [0]
-QString EchoPlugin::echo(const QString &message)
-{
-    return message;
-}
-
-QStringList* EchoPlugin::loadImages(const int imageCount, const QStringList &label)
-{
-
-
-    QProcess cmd;
-    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    //QProcessEnvironment envUpdate;
-
-    //envUpdate.insert("PATH", env.value("PATH"));
-    cmd.setProcessEnvironment(env);
-    cmd.start("python C:\\S4\\PSE\\FlickrPlugin\\plugin\\test.py");
-    cmd.waitForFinished();
-
-    return new QStringList;
-
-
-}
-
-QWidget* EchoPlugin::getConfigurationWidget()
-{
-  return pluginSettings;
-}
-
-void EchoPlugin::saveSettings(){
-    qobject_cast<FlickrSettings *>(pluginSettings)->saveSettings();
-}
-
-void EchoPlugin::init()
-{
-    pluginSettings = new FlickrSettings();
-}
+#include <QObject>
+#include <QtPlugin>
+#include <QSettings>
+#include <QLineEdit>
+#include <QProcess>
+#include <QProcessEnvironment>
+#include "imageloaderplugin.h"
+#include "flickrsettings.h"
 
 //! [0]
+class FlickrPlugin : public QObject, ImageLoaderPlugin
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.ImageLoaderPlugin" FILE "FlickrPlugin.json")
+    Q_INTERFACES(ImageLoaderPlugin)
+
+
+
+
+public:
+    //ToDo: add receiver ProgressablePlugin to loadImages parameters
+    bool loadImages(const QString path, const int imageCount, const QStringList* label);
+    QWidget* getConfigurationWidget();
+    void saveConfiguration();
+    //getInputWidget() wird nicht implementiert. Aus Ordner laden regelt View/Controller
+    void init();
+    QWidget *pluginSettings;
+};
+//! [0]
+
+#endif
