@@ -3,6 +3,7 @@ QT       += core gui charts svg svgwidgets
 INCLUDEPATH += \
     model \
     view \
+        view\results \
     controller \
     plugins
 
@@ -30,6 +31,7 @@ SOURCES += \
     model/pluginusage/progressableplugin.cpp \
     model/pluginusage/trainingsthread.cpp \
     model/results/ResultImagesGenerator.cpp \
+    model/results/confusionmatrix.cpp \
     model/settingsmanager.cpp \
     plugins/Plugin.cpp \
     plugins/PluginManager.cpp \
@@ -53,6 +55,7 @@ SOURCES += \
     view/newprojectdialog.cpp \
     view/removemodeldialog.cpp \
     view/removeprojectdialog.cpp \
+    view/results/canvas.cpp \
     view/settingsview.cpp \
     view/staticlist.cpp \
     view/tags.cpp
@@ -73,6 +76,7 @@ HEADERS += \
     model/pluginusage/progressableplugin.h \
     model/pluginusage/trainingsthread.h \
     model/results/ResultImagesGenerator.h \
+    model/results/confusionmatrix.h \
     model/settingsmanager.h \
     plugins/Plugin.h \
     plugins/PluginManager.h \
@@ -99,6 +103,7 @@ HEADERS += \
     view/qinputcontrol_p.h \
     view/removemodeldialog.h \
     view/removeprojectdialog.h \
+    view/results/canvas.h \
     view/settingsview.h \
     view/staticlist.h \
     view/tags.hpp
@@ -133,6 +138,7 @@ RESOURCES += \
 
 DISTFILES += \
     languages/RCAIT_de_DE.qm \
-    languages/RCAIT_en_GB.qm
+    languages/RCAIT_en_GB.qm \
+    model/results/confusionmatrix.py
 
 DEFINES += PROJECT_PATH=\"\\\"$${_PRO_FILE_PWD_}/\\\"\"
