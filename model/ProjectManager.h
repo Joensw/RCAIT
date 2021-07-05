@@ -15,9 +15,11 @@ public:
     void createNewProject(QString projectName);
     void removeProject(QString projectName);
     void loadProject(QString projectName);
+    QStringList getProjects();
     QString getProjectPath();
     QString getProjectTempDir();
     QString getProjectDataSetDir();
+    QString getResultsDir();
 
     //todo doesnt have header yet/doesnt exist yet
     //void saveClassificationResult(ClasificationResult result);
@@ -31,11 +33,10 @@ public:
 
 private:
     QString mProjectPath;
-    QString mProjectPathTempDir;
-    QString mProjectPathDataSetDir;
+    QString mProjectTempDir;
+    QString mProjectDataSetDir;
+    QString mProjectResultsDir;
     QString mProjectName;
-
-
 };
 
 
