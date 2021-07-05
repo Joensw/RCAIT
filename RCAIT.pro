@@ -2,10 +2,15 @@ QT       += core gui charts svg svgwidgets
 
 INCLUDEPATH += \
     model \
+        model\pluginusage \
+        model\results \
     view \
+        view\imageinspection \
         view\results \
     controller \
-    plugins
+    plugins \
+        plugins\imageplugins \
+        plugins\results
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
