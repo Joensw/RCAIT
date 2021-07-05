@@ -3,10 +3,10 @@
 
 
 #include <Qt>
-#include <pluginusage/imageloader.h>
-#include "ImageInspectionWidget.h"
-#include "view/ImportFilesWidget.h"
-#include "model/DataManager.h"
+#include "imageloader.h"
+#include "imageinspectionwidget.h"
+#include "importfileswidget.h"
+#include "datamanager.h"
 
 class ImageController {
 public:
