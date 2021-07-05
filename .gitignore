@@ -78,3 +78,6 @@ Backup of *.doc*
 
 # Visio autosave temporary files
 *.~vsd*
+
+#Python virtual environment
+venv/*
