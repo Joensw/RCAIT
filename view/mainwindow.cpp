@@ -138,7 +138,7 @@ void MainWindow::on_pushButton_clearTags_clicked() {
 
 void MainWindow::on_comboBox_languageSelection_currentTextChanged(const QString &arg1) {
     Q_UNUSED(arg1)
-    loadLanguage(ui->start_widget->getLanguageEntry());
+    loadLanguage(ui->tab_start->getLanguageEntry());
     //Update UI after loading language is necessary
     ui->retranslateUi(this);
 }

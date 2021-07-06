@@ -72,7 +72,7 @@
       <property name="documentMode">
        <bool>false</bool>
       </property>
-      <widget class="QWidget" name="tab_start">
+      <widget class="StartWidget" name="tab_start">
        <attribute name="icon">
         <iconset resource="UI_Icons.qrc">
          <normaloff>:/Resources/TabIcons/Filled/Tab_Start_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Start_Icon.svg</iconset>
@@ -80,11 +80,7 @@
        <attribute name="title">
         <string comment="tab_start_text">Home</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_10">
-        <item row="0" column="0">
-         <widget class="StartWidget" name="start_widget" native="true"/>
-        </item>
-       </layout>
+       <layout class="QGridLayout" name="gridLayout_10"/>
       </widget>
       <widget class="QWidget" name="tab_import">
        <property name="enabled">
@@ -1050,17 +1046,12 @@
      <x>0</x>
      <y>0</y>
      <width>1250</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>ImageGallery</class>
-   <extends>QListWidget</extends>
-   <header>imagegallery.h</header>
-  </customwidget>
   <customwidget>
    <class>CustomTabWidget</class>
    <extends>QTabWidget</extends>
