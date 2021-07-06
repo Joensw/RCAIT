@@ -14,9 +14,16 @@ class NewProjectDialog : public QDialog
 public:
     explicit NewProjectDialog(QWidget *parent = nullptr);
     ~NewProjectDialog();
-
+signals:
+    void newProjectConfirm(QString projectName);
 private:
     Ui::NewProjectDialog *ui;
+
+private slots:
+    void on_buttonBox_accepted();
+    void on_buttonBox_rejected();
+
+
 };
 
 #endif // NEWPROJECTDIALOG_H
