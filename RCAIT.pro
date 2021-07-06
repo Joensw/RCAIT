@@ -2,6 +2,7 @@ QT       += core gui charts svg svgwidgets
 
 INCLUDEPATH += \
     model \
+        model\automation \
         model\pluginusage \
         model\results \
     view \
