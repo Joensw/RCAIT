@@ -125,7 +125,7 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::on_pushButton_2_clicked() {
+void MainWindow::on_pushButton_openProject_clicked() {
     qDebug() << "open pressed mainwindow";
     int curr = ui->tabWidget->currentIndex();
     ui->tabWidget->setCurrentIndex(++curr);

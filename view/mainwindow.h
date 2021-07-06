@@ -24,7 +24,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_2_clicked();
+    void on_pushButton_openProject_clicked();
 
     void on_pushButton_clearTags_clicked();
 
