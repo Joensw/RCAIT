@@ -35,29 +35,8 @@ void ProjectManager::createNewProject(QString projectName){
     const QString datasetDirName = "data";
     const QString tempDirName = "temp";
 
-    //check if name is invalid
-    if (projectName == initializeString){
-        //do something, not allowed
-    }
-
-    //check if name comtains special characters
-    QRegularExpression rx1("^[A-Za-z0-9]+$");
-    QRegularExpressionMatch match = rx1.match(projectName);
-    if (!match.hasMatch()) {
-        //do something, not allowed
-    }
-
-    //check if name is already taken
-    QDir projectsDir("../projects");
-    projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
-    QStringList projects = projectsDir.entryList();
-    if (projects.contains(projectName)) {
-        //do something, not allowed
-    }
-
 
     QString path = "../projects/" + projectName + "/" + projectName + ".ini";
-
 
 
      /*goes into the projects folder, then into the specific project folder
