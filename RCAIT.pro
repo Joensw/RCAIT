@@ -24,6 +24,7 @@ CONFIG += c++17 static
 SOURCES += \
     controller/aicontroller.cpp \
     controller/projectcontroller.cpp \
+    controller/controller.cpp \
     controller/settingscontroller.cpp \
     model/datamanager.cpp \
     model/automation/addprojecttask.cpp \
@@ -78,6 +79,7 @@ SOURCES += \
 HEADERS += \
     controller/aicontroller.h \
     controller/projectcontroller.h \
+    controller/controller.h \
     controller/settingscontroller.h \
     model/datamanager.h \
     model/automation/addprojecttask.h \
