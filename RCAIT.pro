@@ -53,6 +53,7 @@ SOURCES += \
     plugins/results/result.cpp \
     plugins/results/trainingresult.cpp \
     view/aspectratiolabel.cpp \
+    view/customlistwidget.cpp \
     view/customtabbar.cpp \
     view/customtabwidget.cpp \
     view/imagegallery.cpp \
@@ -108,6 +109,7 @@ HEADERS += \
     plugins/results/trainingresult.h \
     plugins/trainingresult.h \
     view/aspectratiolabel.h \
+    view/customlistwidget.h \
     view/customtabbar.h \
     view/customtabwidget.h \
     view/imagegallery.h \

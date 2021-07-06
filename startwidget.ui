@@ -57,12 +57,16 @@ Select a project to get started</string>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QListWidget" name="listWidget_4">
+          <widget class="CustomListWidget" name="listWidget_4">
            <property name="font">
             <font>
              <family>SF Pro Text</family>
              <pointsize>8</pointsize>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">selection-color: rgb(0, 0, 0);
+selection-background-color: rgb(255, 255, 255);</string>
            </property>
            <item>
             <property name="text">
@@ -247,6 +251,13 @@ Select a project to get started</string>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CustomListWidget</class>
+   <extends>QListWidget</extends>
+   <header>customlistwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="UI_Icons.qrc"/>
  </resources>
