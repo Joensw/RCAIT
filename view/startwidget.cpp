@@ -39,3 +39,10 @@ QString StartWidget::getLanguageEntry() {
     QString locale = box->currentData().toString();
     return locale;
 }
+
+void StartWidget::on_pushButton_newProject_clicked(){
+    NewProjectDialog projectDialog;
+    //apparently exec is not that great, possibly find an alternative and hold the object longer
+    projectDialog.exec();
+
+}

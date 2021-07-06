@@ -5,6 +5,7 @@
 #include <QtWidgets/QComboBox>
 #include <QTranslator>
 #include <QDir>
+#include "newprojectdialog.h"
 
 namespace Ui {
 class StartWidget;
@@ -22,13 +23,14 @@ public:
 private:
     Ui::StartWidget *ui;
 
-    QTranslator m_translator; /*< contains the translations for this application*/
-    QString m_currLang; /*< contains the currently loaded language*/
     const QString m_langPath = QDir(":/i18n/").exists()? ":/i18n/" : QDir::currentPath() + "/"; /*< Path of language files. This is always fixed.*/
 
     void populateLanguageMenu(QComboBox *box);
     void loadLanguage(const QString& rLanguage);
     void switchTranslator(QTranslator& translator, const QString& filename);
+
+private slots:
+    void on_pushButton_newProject_clicked();
 };
 
 #endif // STARTWIDGET_H
