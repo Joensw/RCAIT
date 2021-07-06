@@ -2,8 +2,6 @@
     <qresource prefix="/">
         <file>Resources/UISymbols/UI_Arrow_Forward.svg</file>
         <file>Resources/UISymbols/processor_icon.svg</file>
-        <file>Resources/UISymbols/confusionmatrix.svg</file>
-        <file>Resources/UISymbols/confusionmatrix2.svg</file>
         <file>Resources/UISymbols/UI_Delete_Item.svg</file>
         <file>Resources/UISymbols/UI_Delete_All_Items.svg</file>
         <file>Resources/TabIcons/Filled/Tab_Training_Images_Icon.svg</file>
