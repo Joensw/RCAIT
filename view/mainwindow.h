@@ -23,12 +23,17 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+signals:
+    void sig_openSettings();
+
 private slots:
     void on_pushButton_2_clicked();
 
     void on_pushButton_clearTags_clicked();
 
     void on_comboBox_languageSelection_currentTextChanged(const QString &arg1);
+
+    void slot_settingsButton_clicked();
 
 private:
     Ui::MainWindow *ui;

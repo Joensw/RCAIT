@@ -7,25 +7,27 @@
 
 
 
-class SettingsController
+class SettingsController : public QObject
 {
+    Q_OBJECT
 public:
-    SettingsController(SettingsView *settingsView, DataManager *dataManager);
+    // SettingsController besorgt sich ja erst alle Informationen, die nötig sind um ein (sinvolles) SettingsView zu erstellen,
+    // daher wird kein SettingsView mitgegeben sondern erst hier erzeugt
+    explicit SettingsController(QObject *parent = nullptr, DataManager *dataManager = nullptr);
 
 public slots:
-    // probably useless
-        void slot_openSettings();
-        void slot_closeSettings();
-    // probably useless
+    void slot_openSettings();
+    void slot_closeSettings();
+
 
     void slot_applySettings(int index);
     void slot_applyGlobalSettings(QString projectDir, QString classificationPluginDir, QString imageLoaderPluginsDir);
 
 
 private:
-    SettingsView *settingsView;
+    SettingsView *mSettingsView;
 
-    DataManager *dataManager;
+    DataManager *mDataManager;
 
 };
 

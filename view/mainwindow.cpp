@@ -29,6 +29,7 @@ void MainWindow::placeSettingsButton() {
     pushButton_settings->setFlat(true);
     pushButton_settings->setIcon(QIcon(":/Resources/TabIcons/Filled/Tab_Settings_Icon.svg"));
     pushButton_settings->setIconSize(QSize(32, 57));
+    connect(pushButton_settings, &QPushButton::clicked, this, &MainWindow::slot_settingsButton_clicked);
     ui->tabWidget->setCornerWidget(pushButton_settings, Qt::TopRightCorner);
 }
 
@@ -141,6 +142,11 @@ void MainWindow::on_comboBox_languageSelection_currentTextChanged(const QString 
     loadLanguage(ui->tab_start->getLanguageEntry());
     //Update UI after loading language is necessary
     ui->retranslateUi(this);
+}
+
+void MainWindow::slot_settingsButton_clicked()
+{
+    emit sig_openSettings();
 }
 
 void MainWindow::populateConfusionMatrix() {

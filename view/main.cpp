@@ -10,6 +10,7 @@
 #include <QTranslator>
 #include <QStyleFactory>
 #include <QFontDatabase>
+#include <controller.h>
 
 int main(int argc, char *argv[])
 {
@@ -23,8 +24,8 @@ int main(int argc, char *argv[])
     sf_pro_text.setHintingPreference(QFont::HintingPreference::PreferNoHinting); //This line did the trick
     QApplication::setFont(sf_pro_text);
 
-    MainWindow w;
-    w.show();
+    Controller controller;
+
 
     //auskommentiert, nur zum erstellen der Dialog GUI Screenshots
     //RemoveProjectDialog r;

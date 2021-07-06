@@ -14,7 +14,10 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
     ui(new Ui::SettingsView)
 {
     ui->setupUi(this);
+
+
     ui->pluginList->addItem("Global settings");
+    mGlobalSettingsWidget = new QWidget();
     ui->pluginWidget->addWidget(mGlobalSettingsWidget);
 
     assert(pluginNames.size() == pluginConfigurationWidgets.size());
@@ -45,6 +48,5 @@ SettingsView::~SettingsView()
 {
     delete ui;
 }
-
 
 

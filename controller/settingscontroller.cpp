@@ -1,31 +1,31 @@
 #include "settingscontroller.h"
 
 
-SettingsController::SettingsController(SettingsView *settingsView, DataManager *dataManager)
+SettingsController::SettingsController(QObject *parent, DataManager *dataManager) : QObject(parent)
 {
-    this->settingsView = settingsView;
-    this->dataManager = dataManager;
+    this->mDataManager = dataManager;
 }
 
 void SettingsController::slot_openSettings()
 {
-
+    mSettingsView  = new SettingsView(nullptr, mDataManager->getPluginNames(), mDataManager->getPluginSettings());
+    mSettingsView->show();
 }
 
 void SettingsController::slot_closeSettings()
 {
-
+    mSettingsView->close();
 }
 
 void SettingsController:: slot_applySettings(int index)
 {
-    dataManager->savePluginSettings(index);
+    mDataManager->savePluginSettings(index);
 }
 
 void SettingsController::slot_applyGlobalSettings(QString projectsDir, QString classificationPluginsDir, QString imageLoaderPluginsDir)
 {
-    dataManager->saveProjectsDir(projectsDir);
-    dataManager->saveClassificationPluginDir(classificationPluginsDir);
-    dataManager->saveImageLoaderPluginDir(imageLoaderPluginsDir);
+    mDataManager->saveProjectsDir(projectsDir);
+    mDataManager->saveClassificationPluginDir(classificationPluginsDir);
+    mDataManager->saveImageLoaderPluginDir(imageLoaderPluginsDir);
 }
 
