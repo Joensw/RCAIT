@@ -10,12 +10,14 @@ import numpy as np
 plt.ioff()
 
 
-def plot_confusion_matrix(cm, lbl, file, normalize=False, cmap=plt.cm.get_cmap('CMRmap_r')):
+def plot_confusion_matrix(cm, lbl, file, normalize, cmap=plt.cm.get_cmap('CMRmap_r')):
     if normalize:
         cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
         print("Normalized confusion matrix")
+        decimal = '.1f'
     else:
         print('Confusion matrix, without normalization')
+        decimal = '.0f'
     print(cm)
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
     plt.colorbar()
@@ -24,7 +26,7 @@ def plot_confusion_matrix(cm, lbl, file, normalize=False, cmap=plt.cm.get_cmap('
 
     thresh = cm.max() / 2.
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, format(cm[i, j], '.1f'),
+        plt.text(j, i, format(cm[i, j], decimal),
                  horizontalalignment="center",
                  verticalalignment="center",
                  color="white" if cm[i, j] > thresh else "black")
@@ -38,14 +40,14 @@ def plot_confusion_matrix(cm, lbl, file, normalize=False, cmap=plt.cm.get_cmap('
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generates a confusion matrix and stores it as an image.')
-    parser.add_argument('matrixdata', metavar='data', required=True,
+    parser.add_argument('matrixdata', metavar='data',
                         help='Raw number content of the matrix, formatted as a python array')
-    parser.add_argument('matrixlabels', metavar='labels', required=True,
+    parser.add_argument('matrixlabels', metavar='labels',
                         help='List of class labels, formatted as python array')
-    parser.add_argument('outfilename', metavar='outfile', required=True,
+    parser.add_argument('outfilename', metavar='outfile',
                         help='Output file name including extension')
-    parser.add_argument('normalized', type=bool, metavar='bool', required=False,
-                        help='Whether to produce a normalized matrix or not')
+    parser.add_argument('--normalized', default=False, action="store_true",
+                        dest='normalized', help='Whether to produce a normalized matrix or not')
 
     args = parser.parse_args()
     matrix = np.array(ast.literal_eval(args.matrixdata))

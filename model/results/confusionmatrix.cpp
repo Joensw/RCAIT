@@ -1,5 +1,3 @@
-
-#include <QRunnable>
 #include "confusionmatrix.h"
 
 
@@ -15,37 +13,41 @@ ConfusionMatrix::ConfusionMatrix(const QStringList &classLabels, const QList<dou
 
 
 QGraphicsItem *ConfusionMatrix::generateConfusionMatrixGraphics(const QString &fileName) {
-    QString labels = labelsToPyText();
-
     //Call python script
     auto file = QFileInfo("confusionmatrix.py");
     QString path = file.absolutePath();
     QString command("python");
 
-    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    QProcessEnvironment envUpdate;
-    envUpdate.insert("PATH", env.value("PATH"));
-
-    // python script.py <matrix data> <matrix labels> <output file name>
-    QStringList params = QStringList() << file.fileName() << valuesToPyText() << labels << fileName;
+    // python script.py <matrix data> <matrix labels> <output file name> (<normalized>)
+    QStringList params = QStringList() << file.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fileName;
     auto *process = new QProcess();
 
-    //FIXME Waiting for thread does not work
-    process->setEnvironment(envUpdate.toStringList());
-    QProcess::startDetached(command, params, path);
+    process->start(command,params);
     process->waitForStarted();
     process->waitForFinished();
+
+    QString strTemp = QString::fromLocal8Bit(process->readAll());  // Get the output
+    qInfo() << qPrintable(strTemp.simplified());
+
     process->close();
 
     return new QGraphicsSvgItem(path + "/" + fileName);
 
 }
 
+/**
+ * Access matrix via matrix(row,column) operator
+ * @return value of matrix at(row,column)
+ */
 double ConfusionMatrix::operator()(int row, int column) const {
     Q_ASSERT(row >= 0 && row < m_size && column >= 0 && column < m_size);
     return m_values.at(row * m_size + column);
 }
 
+/**
+ * Convert matrix labels to text in a python-friendly way
+ * @return QString label representation e.g. ["Car","Truck"]
+ */
 QString ConfusionMatrix::labelsToPyText() {
     QStringList labels = QStringList();
     for (auto &item : m_classLabels) {
