@@ -17,7 +17,9 @@ public:
 
 public slots:
     void slot_openSettings();
-    void slot_closeSettings();
+
+// wozu?
+//    void slot_closeSettings();
 
 
     void slot_applySettings(int index);
