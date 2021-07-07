@@ -36,20 +36,32 @@ QString ResultsWidget::getSelectedClassifyRunIdentifier() {
 
 void ResultsWidget::addTrainingResult(TrainingResult *result) {
     QString name = "Run";
-    auto data_lossCurve = result->getLossCurve();
-    auto labels_confusionMatrix = result->getClassLabels();
-    auto data_confusionMatrix = result->getConfusionMatrix();
-    auto data_mostMisclassifiedImages = result->getMostMisclassifiedImages();
+    auto data_lossCurve = result->getLossCurveData();
+    auto confusionMatrix = result->getConfusionMatrix();
+    auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
 
     auto tab = createTrainingResultTab(name);
 
     //Parse Loss curve
-    //TODO: Extract method
+    auto lossSeries = parseLossCurveData(data_lossCurve);
+
+    //Pass to Most Misclassified Images
+
+//TODO: (Adrians Help) Pass QList<QImages>
+
+
+    tab->setLossCurve(lossSeries.first, lossSeries.second);
+    tab->setConfusionMatrix(nullptr);
+    tab->setMostMisclassifiedImages(QList<QImage>());
+}
+
+QPair<QLineSeries *, QLineSeries *>
+ResultsWidget::parseLossCurveData(const QMap<int, QPair<double, double>> &data_lossCurve) {
     auto *trainSeries = new QSplineSeries();
     auto *validationSeries = new QSplineSeries();
 
     for (const auto &xValue : data_lossCurve.keys()) {
-        QPair<double, double> pair = data_lossCurve.value(xValue);
+        QPair<double, double> pair = data_lossCurve[xValue];
         auto yTrain = pair.first;
         auto yValidation = pair.second;
         auto trainPoint = QPointF(xValue, yTrain);
@@ -58,26 +70,10 @@ void ResultsWidget::addTrainingResult(TrainingResult *result) {
         *trainSeries << trainPoint;
         *validationSeries << validationPoint;
     }
-
-//Pass to Most Misclassified Images
-
-//TODO: (Adrians Help) Pass QList<QImages>
-
-
-    tab->setLossCurve(trainSeries, validationSeries);
-    tab->setConfusionMatrix(nullptr);
-    tab->setMostMisclassifiedImages(QList<QImage>());
+    return qMakePair(trainSeries,validationSeries);
 }
 
-void ResultsWidget::addClassificationResult(QList<QImage> result) {
-//TODO Adapt type to something better
-}
-
-void ResultsWidget::updateComparisonResultOverview(TrainingResult *trainingResult) {
-//TODO: Clarify if useless
-}
-
-void ResultsWidget::setErrorMessage(QString message) {
+void ResultsWidget::addClassificationResult(ClassificationResult* result) {
 
 }
 
@@ -119,8 +115,8 @@ void ResultsWidget::dummyFunctionTest() {
         const qsizetype N = labels.size();
         for (int j = 0; j < N*N; ++j) {
             int random = QRandomGenerator::global()->bounded(0, 100);
-            double percentage = random / 100.0;
-            values << percentage;
+            //TODO: Normalized and non normalized
+            values << random;
         }
 
         auto matrix = new ConfusionMatrix(labels,values);

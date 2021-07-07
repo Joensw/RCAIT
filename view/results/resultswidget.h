@@ -6,6 +6,7 @@
 #include <QMenu>
 #include <results/trainingresult.h>
 #include <ui_resultswidget.h>
+#include "classificationresult.h"
 #include "trainingresultview.h"
 
 
@@ -13,22 +14,22 @@ class ResultsWidget : public QWidget {
 Q_OBJECT
 
 public:
-    explicit ResultsWidget(QWidget* parent = nullptr);
+    explicit ResultsWidget(QWidget *parent = nullptr);
+
     ~ResultsWidget();
+
     QString getSelectedTrainRunIdentifier();
+
     QString getSelectedClassifyRunIdentifier();
+
     //Todo: These will probably not just be QImages!
-    void addTrainingResult(TrainingResult* result);
-    void addClassificationResult(QList<QImage> result);
-    void updateComparisonResultOverview(TrainingResult* trainingResult);
-    //Todo: Weird
-    void setErrorMessage(QString message);
+    void addTrainingResult(TrainingResult *result);
+
+    void addClassificationResult(ClassificationResult *result);
 
 signals:
+
     void sig_saveResults();
-    //Todo: Check if these are needed
-    void sig_startTrainingComparison();
-    void sig_startClassificationComparison();
 
 private:
     Ui::ResultsWidget *ui;
@@ -37,9 +38,12 @@ private:
 
     void configureAddComparisonButton(QTabWidget *tabWidget);
 
-    TrainingResultView * createTrainingResultTab(const QString& tabName);
+    TrainingResultView *createTrainingResultTab(const QString &tabName);
 
     void dummyFunctionTest();
+
+    static QPair<QLineSeries *, QLineSeries *>
+    parseLossCurveData(const QMap<int, QPair<double, double>> &data_lossCurve);
 };
 
 
