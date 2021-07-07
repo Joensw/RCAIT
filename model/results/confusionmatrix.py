@@ -1,9 +1,11 @@
 # confusion_matrix
+import argparse
+import ast
 import itertools
 import sys
-import ast
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
 
 plt.ioff()
 
@@ -29,14 +31,18 @@ def plot_confusion_matrix(cm, lbl, file, cmap=plt.cm.get_cmap('CMRmap_r')):
 
 
 if __name__ == '__main__':
-    print('Number of arguments:', len(sys.argv), 'arguments.')
-    print('Argument List:', str(sys.argv))
-    if len(sys.argv) != 4:
-        raise TypeError('You need to supply <matrix data>, <matrix labels>, <output file name>')
+    parser = argparse.ArgumentParser(description='Generates a confusion matrix and stores it as an image.')
+    parser.add_argument('matrixdata', metavar='data',
+                        help='Raw number content of the matrix, formatted as a python array')
+    parser.add_argument('matrixlabels', metavar='labels',
+                        help='List of class labels, formatted as python array')
+    parser.add_argument('outfilename', metavar='outfile',
+                        help='Output file name including extension')
 
-    matrix = np.array(ast.literal_eval(sys.argv[1]))
-    labels = ast.literal_eval(sys.argv[2])
-    file_name = sys.argv[3]
+    args = parser.parse_args()
+    matrix = np.array(ast.literal_eval(args.matrixdata))
+    labels = ast.literal_eval(args.matrixlabels)
+    file_name = args.outfilename
 
     np.set_printoptions(precision=1)
 
