@@ -16,7 +16,6 @@ void CustomListWidget::addItem(const QString &label) {
     item->setText(label);
     item->setIcon(unselectedIcon);
     QListWidget::addItem(item);
-
 }
 
 void CustomListWidget::addItems(const QStringList &labels) {
@@ -28,6 +27,9 @@ void CustomListWidget::addItems(const QStringList &labels) {
 void CustomListWidget::updateSelectionIcon(QListWidgetItem *current, QListWidgetItem *previous) {
     if (previous!= nullptr){
         previous->setIcon(unselectedIcon);
+    }
+    if (current == nullptr) { //cheap fix, but otherwise the application crashes when the list become empty
+        return;
     }
     current->setIcon(selectedIcon);
 }

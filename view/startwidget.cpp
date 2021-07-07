@@ -40,7 +40,12 @@ QString StartWidget::getLanguageEntry() {
 }
 
 void StartWidget::on_pushButton_newProject_clicked() {
-    emit sig_openNewProjectDialog();
+    emit sig_newProject();
+}
+
+void StartWidget::on_pushButton_removeProject_clicked() {
+   QString toRemove = ui->listWidget_projectsList->currentItem()->text();
+   emit sig_removeProject(toRemove);
 }
 
 
@@ -52,5 +57,10 @@ void StartWidget::addProjects(QStringList projects)
 void StartWidget::addProject(QString project)
 {
     ui->listWidget_projectsList->addItem(project);
+}
+
+void StartWidget::clearProjectList()
+{
+    ui->listWidget_projectsList->clear();
 }
 

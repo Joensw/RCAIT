@@ -6,8 +6,8 @@ ProjectController::ProjectController(QObject *parent, DataManager * dataManager,
 {
     this->mDataManager = dataManager;
     this->mStartWidget = startWidget;
-    connect(mStartWidget, &StartWidget::sig_openNewProjectDialog, this, &ProjectController::slot_newProject);
-    qDebug() << mDataManager->getProjects();
+    connect(mStartWidget, &StartWidget::sig_newProject, this, &ProjectController::slot_newProject);
+    connect(mStartWidget, &StartWidget::sig_removeProject, this, &ProjectController::slot_removeProject);
     startWidget->addProjects(mDataManager->getProjects());
 }
 
@@ -43,6 +43,13 @@ void ProjectController::slot_newProject(){
     mNewProjectDialog->show();
 }
 
+void ProjectController::slot_removeProject(QString projectName){
+    mRemoveProjectDialog = new RemoveProjectDialog(nullptr, projectName);
+    mRemoveProjectDialog->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(mRemoveProjectDialog, &RemoveProjectDialog::sig_removeProjectConfirm, this, &ProjectController::slot_removeProjectConfirm);
+    mRemoveProjectDialog->show();
+}
+
 void ProjectController::slot_newProjectConfirm(QString projectName)
 {
     QString error = verifyName(projectName);
@@ -54,4 +61,12 @@ void ProjectController::slot_newProjectConfirm(QString projectName)
     mDataManager->createNewProject(projectName);
     mStartWidget->addProject(projectName);
     mNewProjectDialog->close();
+}
+
+void ProjectController::slot_removeProjectConfirm()
+{
+    mDataManager->removeProject(mRemoveProjectDialog->getProjectName());
+    mStartWidget->clearProjectList();
+    mStartWidget->addProjects(mDataManager->getProjects());
+    mRemoveProjectDialog->close();
 }

@@ -21,6 +21,7 @@ public:
     QString getLanguageEntry();
     void addProjects(QStringList projects);
     void addProject(QString project);
+    void clearProjectList();
 
 private:
     Ui::StartWidget *ui;
@@ -33,8 +34,10 @@ private:
     void switchTranslator(QTranslator& translator, const QString& filename);
 private slots:
     void on_pushButton_newProject_clicked();
+    void on_pushButton_removeProject_clicked();
 signals:
-    void sig_openNewProjectDialog();
+    void sig_newProject();
+    void sig_removeProject(QString projectName);
 };
 
 #endif // STARTWIDGET_H

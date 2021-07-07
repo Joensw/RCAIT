@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <newprojectdialog.h>
+#include <removeprojectdialog.h>
 #include <startwidget.h>
 #include <datamanager.h>
 
@@ -17,9 +18,13 @@ public slots:
     void slot_newProject();
     void slot_newProjectConfirm(QString projectName);
 
+    void slot_removeProject(QString projectName);
+    void slot_removeProjectConfirm();
+
 private:
     DataManager *mDataManager;
     NewProjectDialog *mNewProjectDialog;
+    RemoveProjectDialog *mRemoveProjectDialog;
     StartWidget * mStartWidget;
 
     QString verifyName(QString input);
