@@ -44,8 +44,13 @@ void StartWidget::on_pushButton_newProject_clicked() {
 }
 
 void StartWidget::on_pushButton_removeProject_clicked() {
-   QString toRemove = ui->listWidget_projectsList->currentItem()->text();
-   emit sig_removeProject(toRemove);
+    //if there are no projects dont do anything
+    QListWidgetItem * item = ui->listWidget_projectsList->currentItem();
+    if (!ui->listWidget_projectsList->count() || !item) {
+        return;
+    }
+    QString toRemove = item->text();
+    emit sig_removeProject(toRemove);
 }
 
 
