@@ -1,16 +1,18 @@
 #include "classificationresult.h"
 #include <utility>
 
-ClassificationResult::ClassificationResult(QList<QImage> additionalResult, QMap<QString, QVector<double>> table,
-                                           QVector<QString> labels, QList<QImage> additionalResults)
-        : Result(std::move(additionalResult)) {
+ClassificationResult::ClassificationResult(QMap<QString, QList<double>> classificationData,
+                                           QList<QString> labels, QList<QImage> additionalResults)
+        : Result(std::move(additionalResults)) {
 
+    m_classificationData = std::move(classificationData);
+    m_labels = std::move(labels);
 }
 
-QAbstractTableModel *ClassificationResult::getTable() {
-    return nullptr;
+QMap<QString, QList<double>> ClassificationResult::getClassificationData() {
+    return m_classificationData;
 }
 
-QVector<QString> ClassificationResult::getLabel() {
-    return QVector<QString>();
+QList<QString> ClassificationResult::getLabels() {
+    return m_labels;
 }

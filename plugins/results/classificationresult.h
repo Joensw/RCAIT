@@ -5,21 +5,19 @@
 #include <QString>
 #include <QMap>
 #include <QImage>
-#include <QAbstractTableModel>
 #include "result.h"
 
-class ClassificationResult : public Result{
+class ClassificationResult : public Result {
 private:
-    //Todo: Find Better (Qt?) Datatype
-    //QMap<QString, QVector<double>> table;
-    QAbstractTableModel *table;
-    //Todo: Probably useless
-    QVector<QString> labels;
+    QMap<QString, QList<double>> m_classificationData;
+    QList<QString> m_labels;
 public:
-    ClassificationResult(QList<QImage> additionalResult, QMap<QString, QVector<double>> table,
-                         QVector<QString> labels, QList<QImage> additionalResults);
-    QAbstractTableModel* getTable();
-    QVector<QString> getLabel();
+    ClassificationResult(QMap<QString, QList<double>> classificationData,
+                         QList<QString> labels, QList<QImage> additionalResults);
+
+    QMap<QString, QList<double>> getClassificationData();
+
+    QList<QString> getLabels();
 };
 
 
