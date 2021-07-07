@@ -2,9 +2,13 @@
 #include <QRegularExpression>
 #include <QDir>
 
-ProjectController::ProjectController(QObject *parent, DataManager * dataManager) : QObject(parent)
+ProjectController::ProjectController(QObject *parent, DataManager * dataManager, StartWidget *startWidget) : QObject(parent)
 {
     this->mDataManager = dataManager;
+    this->mStartWidget = startWidget;
+    connect(mStartWidget, &StartWidget::sig_openNewProjectDialog, this, &ProjectController::slot_newProject);
+    qDebug() << mDataManager->getProjects();
+    startWidget->addProjects(mDataManager->getProjects());
 }
 
 QString ProjectController::verifyName(QString input)
@@ -47,5 +51,7 @@ void ProjectController::slot_newProjectConfirm(QString projectName)
         mNewProjectDialog->showErrorMessage();
         return;
     }
+    mDataManager->createNewProject(projectName);
+    mStartWidget->addProject(projectName);
     mNewProjectDialog->close();
 }

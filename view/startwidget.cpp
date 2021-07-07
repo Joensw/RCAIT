@@ -39,3 +39,18 @@ QString StartWidget::getLanguageEntry() {
     return locale;
 }
 
+void StartWidget::on_pushButton_newProject_clicked() {
+    emit sig_openNewProjectDialog();
+}
+
+
+void StartWidget::addProjects(QStringList projects)
+{
+    ui->listWidget_projectsList->addItems(projects);
+}
+
+void StartWidget::addProject(QString project)
+{
+    ui->listWidget_projectsList->addItem(project);
+}
+

@@ -126,13 +126,19 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
+void MainWindow::addProjects(QStringList projects)
+{
+    ui->tab_start->addProjects(projects);
+}
+
+StartWidget * MainWindow::getStartWidget()
+{
+    return ui->tab_start;
+}
+
 void MainWindow::on_pushButton_openProject_clicked() {
     int curr = ui->tabWidget->currentIndex();
     ui->tabWidget->setCurrentIndex(++curr);
-}
-
-void MainWindow::on_pushButton_newProject_clicked() {
-    emit sig_openNewProjectDialog();
 }
 
 void MainWindow::on_pushButton_clearTags_clicked() {
