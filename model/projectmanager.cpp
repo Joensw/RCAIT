@@ -95,21 +95,25 @@ QString ProjectManager::getResultsDir(){
     return mProjectResultsDir;
 }
 
-/* TODO GIBTS NOCH NICHT
-//speichere in einem Unterordner ab
-void ProjectManager::saveClassificationResult(ClasificationResult result){
+void ProjectManager::saveClassificationResult(ClassificationResult result)
+{
 
 }
-//speichere auch in einem unter orderner ab
-void ProjectManager::saveTrainingsResult(ClasificationResult result){
+
+void ProjectManager::saveTrainingsResult(ClassificationResult result)
+{
 
 }
-//hole aus ordner heraus
-void ProjectManager::getTrainingsResult(QString modelResultName){
+
+TrainingResult ProjectManager::getTrainingsResult(QString modelResultName)
+{
 
 }
-//indiziere unterOrdner
-QStringList ProjectManager::getNamesOfSavedTrainingReults(){
 
+QStringList ProjectManager::getNamesOfSavedTrainingReults()
+{
+    QStringList l;
+    return l;
 }
-*/
+
+

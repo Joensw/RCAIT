@@ -36,7 +36,6 @@ QString DataManager::getProjectDataSetDir(){
     return mProjectManager->getProjectDataSetDir();
 }
 
-///
 
 void DataManager::createNewModel(QString modelName, QString pluginName, QString baseModel){
     mModelManager->createNewModel(modelName, pluginName, baseModel);
@@ -55,7 +54,6 @@ QString DataManager::getCurrentClassificationPlugin(){
     return mModelManager->getCurrentPlugin();
 }
 
-//
 
 QStringList DataManager::getPluginNames(){
     return mSettingsManager->getPluginNames();
@@ -85,19 +83,17 @@ QString DataManager::getImageLoaderPluginDir(){
     return mSettingsManager->getImageLoaderPluginDir();
 }
 
-
-//TODO dont exist yet
-/*void saveClassificationResult(ClasificationResult result){
-    project->saveClassificationResult(result);
-
+void DataManager::saveClassificationResult(ClassificationResult result){
+    mProjectManager->saveClassificationResult(result);
 }
-void DataManager::saveTrainingsResult(ClasificationResult result){
-    return projectManager->saveTrainingsResult(result);
+void DataManager::saveTrainingsResult(ClassificationResult result){
+    return mProjectManager->saveTrainingsResult(result);
 }
-TrainingResult DataManager::getTrainingsResult(Qstring modelResultName){
-    return projectManager->getTrainingsResult(modelResultName);
+TrainingResult DataManager::getTrainingsResult(QString modelResultName){
+    return mProjectManager->getTrainingsResult(modelResultName);
 }
 QStringList DataManager::getNamesOfSavedTrainingReults(){
-    return projectManager->getNamesOfSavedTrainingReults();
+    return mProjectManager->getNamesOfSavedTrainingReults();
 }
-*/
+
+
