@@ -127,9 +127,12 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_pushButton_openProject_clicked() {
-    qDebug() << "open pressed mainwindow";
     int curr = ui->tabWidget->currentIndex();
     ui->tabWidget->setCurrentIndex(++curr);
+}
+
+void MainWindow::on_pushButton_newProject_clicked() {
+    emit sig_openNewProjectDialog();
 }
 
 void MainWindow::on_pushButton_clearTags_clicked() {

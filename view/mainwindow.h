@@ -25,9 +25,12 @@ public:
 
 signals:
     void sig_openSettings();
+    void sig_openNewProjectDialog();
 
 private slots:
     void on_pushButton_openProject_clicked();
+
+    void on_pushButton_newProject_clicked();
 
     void on_pushButton_clearTags_clicked();
 

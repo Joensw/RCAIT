@@ -29,8 +29,6 @@ private:
     void loadLanguage(const QString& rLanguage);
     void switchTranslator(QTranslator& translator, const QString& filename);
 
-private slots:
-    void on_pushButton_newProject_clicked();
 };
 
 #endif // STARTWIDGET_H
