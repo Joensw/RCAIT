@@ -33,16 +33,39 @@ void StartWidget::populateLanguageMenu(QComboBox *box) {
 }
 
 
-
 QString StartWidget::getLanguageEntry() {
     QComboBox *box = ui->comboBox_languageSelection;
     QString locale = box->currentData().toString();
     return locale;
 }
 
-void StartWidget::on_pushButton_newProject_clicked(){
-    NewProjectDialog projectDialog;
-    //apparently exec is not that great, possibly find an alternative and hold the object longer
-    projectDialog.exec();
-
+void StartWidget::on_pushButton_newProject_clicked() {
+    emit sig_newProject();
 }
+
+void StartWidget::on_pushButton_removeProject_clicked() {
+    //if there are no projects dont do anything
+    QListWidgetItem * item = ui->listWidget_projectsList->currentItem();
+    if (!ui->listWidget_projectsList->count() || !item) {
+        return;
+    }
+    QString toRemove = item->text();
+    emit sig_removeProject(toRemove);
+}
+
+
+void StartWidget::addProjects(QStringList projects)
+{
+    ui->listWidget_projectsList->addItems(projects);
+}
+
+void StartWidget::addProject(QString project)
+{
+    ui->listWidget_projectsList->addItem(project);
+}
+
+void StartWidget::clearProjectList()
+{
+    ui->listWidget_projectsList->clear();
+}
+

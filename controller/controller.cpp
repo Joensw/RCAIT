@@ -3,8 +3,11 @@
 Controller::Controller(QObject *parent) : QObject(parent)
 {
     mDataManger = new DataManager;
-    mSettingsController = new SettingsController(this, mDataManger);
     mMainWindow = new MainWindow;
+    mSettingsController = new SettingsController(this, mDataManger);
+    mProjectController = new ProjectController(this, mDataManger, mMainWindow->getStartWidget());
+
     connect(mMainWindow, &MainWindow::sig_openSettings, mSettingsController, &SettingsController::slot_openSettings);
+
     mMainWindow->show();
 }

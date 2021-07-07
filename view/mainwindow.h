@@ -11,6 +11,8 @@
 #include <QPushButton>
 #include <QDir>
 
+#include "startwidget.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -22,6 +24,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void addProjects(QStringList projects);
+
+    StartWidget * getStartWidget();
 
 signals:
     void sig_openSettings();

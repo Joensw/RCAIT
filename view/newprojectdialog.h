@@ -14,8 +14,13 @@ class NewProjectDialog : public QDialog
 public:
     explicit NewProjectDialog(QWidget *parent = nullptr);
     ~NewProjectDialog();
+
+    void setErrorMessage(QString error);
+    void showErrorMessage();
+    void hideErrorMessage();
+
 signals:
-    void newProjectConfirm(QString projectName);
+    void sig_newProjectConfirm(QString projectName);
 private:
     Ui::NewProjectDialog *ui;
 

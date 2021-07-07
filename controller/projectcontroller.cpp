@@ -2,23 +2,28 @@
 #include <QRegularExpression>
 #include <QDir>
 
-ProjectController::ProjectController()
+ProjectController::ProjectController(QObject *parent, DataManager * dataManager, StartWidget *startWidget) : QObject(parent)
 {
-
+    this->mDataManager = dataManager;
+    this->mStartWidget = startWidget;
+    connect(mStartWidget, &StartWidget::sig_newProject, this, &ProjectController::slot_newProject);
+    connect(mStartWidget, &StartWidget::sig_removeProject, this, &ProjectController::slot_removeProject);
+    startWidget->addProjects(mDataManager->getProjects());
 }
 
-bool ProjectController::verifyName(QString input)
+QString ProjectController::verifyName(QString input)
 {
+    QString output = "";
     //check if name is invalid
     if (input.length() == 0){
-        return false;
+        output.append("Name must contain at least 1 character\n");
     }
 
     //check if name comtains special characters
-    QRegularExpression rx1("^[A-Za-z0-9]+$");
+    QRegularExpression rx1("^[\\w]*$");
     QRegularExpressionMatch match = rx1.match(input);
     if (!match.hasMatch()) {
-        return false;
+        output.append("Name may not contain special characters\n");
     }
 
     //check if name is already taken
@@ -26,12 +31,42 @@ bool ProjectController::verifyName(QString input)
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     QStringList projects = projectsDir.entryList();
     if (projects.contains(input)) {
-        return false;
+        output.append("A project with this name aleady exists in the project Directory");
     }
-    return true;
+    return output;
 }
 
-void ProjectController::newProjectConfirm(QString projectName)
-{
+void ProjectController::slot_newProject(){
+    mNewProjectDialog = new NewProjectDialog();
+    mNewProjectDialog->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(mNewProjectDialog, &NewProjectDialog::sig_newProjectConfirm, this, &ProjectController::slot_newProjectConfirm);
+    mNewProjectDialog->show();
+}
 
+void ProjectController::slot_removeProject(QString projectName){
+    mRemoveProjectDialog = new RemoveProjectDialog(nullptr, projectName);
+    mRemoveProjectDialog->setAttribute(Qt::WA_DeleteOnClose, true);
+    connect(mRemoveProjectDialog, &RemoveProjectDialog::sig_removeProjectConfirm, this, &ProjectController::slot_removeProjectConfirm);
+    mRemoveProjectDialog->show();
+}
+
+void ProjectController::slot_newProjectConfirm(QString projectName)
+{
+    QString error = verifyName(projectName);
+    if (!error.isEmpty()){
+        mNewProjectDialog->setErrorMessage(error);
+        mNewProjectDialog->showErrorMessage();
+        return;
+    }
+    mDataManager->createNewProject(projectName);
+    mStartWidget->addProject(projectName);
+    mNewProjectDialog->close();
+}
+
+void ProjectController::slot_removeProjectConfirm()
+{
+    mDataManager->removeProject(mRemoveProjectDialog->getProjectName());
+    mStartWidget->clearProjectList();
+    mStartWidget->addProjects(mDataManager->getProjects());
+    mRemoveProjectDialog->close();
 }

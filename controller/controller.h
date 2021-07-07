@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 
 #include "settingscontroller.h"
+#include "projectcontroller.h"
 #include "datamanager.h"
 #include <mainwindow.h>
 
@@ -19,9 +20,11 @@ signals:
 private:
     MainWindow *mMainWindow;
 
-    SettingsController *mSettingsController;
+    SettingsController * mSettingsController;
 
-    DataManager* mDataManger;
+    ProjectController * mProjectController;
+
+    DataManager * mDataManger;
 
 };
 

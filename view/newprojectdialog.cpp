@@ -15,17 +15,23 @@ NewProjectDialog::~NewProjectDialog()
     delete ui;
 }
 
+void NewProjectDialog::showErrorMessage(){
+    ui->label_invalidname->show();
+}
+
+void NewProjectDialog::hideErrorMessage(){
+    ui->label_invalidname->hide();
+}
+
+void NewProjectDialog::setErrorMessage(QString error){
+    ui->label_invalidname->setText(error);
+}
+
 void NewProjectDialog::on_buttonBox_rejected(){
     this->reject();
 }
-//this is simple for now, if there is time the actual error could be used as message.
+
 void NewProjectDialog::on_buttonBox_accepted(){
-    //using a static method here is not that nice
-    if (ProjectController::verifyName(ui->name_entry->text())) {
-        emit newProjectConfirm(ui->name_entry->text());
-        this->accept();
-        return;
-    }
-    ui->label_invalidname->show();
+    emit sig_newProjectConfirm(ui->name_entry->text());
 }
 

@@ -96,7 +96,7 @@ selection-background-color: rgb(255, 255, 255);</string>
           </property>
           <property name="icon">
            <iconset>
-            <selectedon>:/Resources/TaskIcons/Task_Success.svg</selectedon>
+            <selectedon>:/Resources/TaskIcons/Task_Empty.svg</selectedon>
            </iconset>
           </property>
          </item>

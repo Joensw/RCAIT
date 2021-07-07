@@ -11,6 +11,8 @@
 #include "model/modelmanager.h"
 #include "model/projectmanager.h"
 #include "model/settingsmanager.h"
+#include "trainingresult.h"
+#include "classificationresult.h"
 
 class DataManager {
 public:
@@ -41,10 +43,9 @@ public:
     void saveImageLoaderPluginDir(QString value);
     QString getImageLoaderPluginDir();
 
-    //todo doesnt have header yet/doesnt exist yet
-    //void saveClassificationResult(ClasificationResult result);
-    //void saveTrainingsResult(ClasificationResult result);
-    //TrainingResult getTrainingsResult(Qstring modelResultName);
+    void saveClassificationResult(ClassificationResult result);
+    void saveTrainingsResult(ClassificationResult result);
+    TrainingResult getTrainingsResult(QString modelResultName);
     QStringList getNamesOfSavedTrainingReults();
 
 private:

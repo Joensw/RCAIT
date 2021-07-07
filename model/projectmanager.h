@@ -6,6 +6,9 @@
 #define RCAIT_PROJECTMANAGER_H
 
 #include <QString>
+#include "classificationresult.h"
+#include "trainingresult.h"
+#include "classificationresult.h"
 
 
 class ProjectManager {
@@ -21,10 +24,10 @@ public:
     QString getProjectDataSetDir();
     QString getResultsDir();
 
-    //todo doesnt have header yet/doesnt exist yet
-    //void saveClassificationResult(ClasificationResult result);
-    //void saveTrainingsResult(ClasificationResult result);
-    //TrainingResult getTrainingsResult(Qstring modelResultName);
+
+    void saveClassificationResult(ClassificationResult result);
+    void saveTrainingsResult(ClassificationResult result);
+    TrainingResult getTrainingsResult(QString modelResultName);
     QStringList getNamesOfSavedTrainingReults();
 
 
