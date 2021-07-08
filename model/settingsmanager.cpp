@@ -8,6 +8,7 @@ QString imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
 SettingsManager::SettingsManager()
 {
     QSettings globalSettings = QSettings(GLOBAL_SETTINGS_LOCATION, QSettings::IniFormat);
+    globalSettings.value("test", "zwecke");
 }
 //gets names from ClassificationPluginManager and ImageLoaderPluginManager, combines them into one list
 QStringList SettingsManager::getPluginNames(){
@@ -34,22 +35,22 @@ void SettingsManager::savePluginSettings(int index){
 }
 
 void SettingsManager::saveProjectsDir(QString value){
-    globalSettings.setValue(projectDirectoryIdentifier, value);
+    mGlobalSettings.setValue(projectDirectoryIdentifier, value);
 }
 
 QString SettingsManager::getProjectsDir(){
-    return globalSettings.value(projectDirectoryIdentifier).toString();
+    return mGlobalSettings.value(projectDirectoryIdentifier).toString();
 }
 
 void SettingsManager::saveClassificationPluginDir(QString value){
-    globalSettings.setValue(classificationPluginDirectoryIdentifier, value);
+    mGlobalSettings.setValue(classificationPluginDirectoryIdentifier, value);
 }
 QString SettingsManager::getClassificationPluginDir(){
-    return globalSettings.value(classificationPluginDirectoryIdentifier).toString();
+    return mGlobalSettings.value(classificationPluginDirectoryIdentifier).toString();
 }
 void SettingsManager::saveImageLoaderPluginDir(QString value){
-    globalSettings.setValue(projectDirectoryIdentifier, value);
+    mGlobalSettings.setValue(projectDirectoryIdentifier, value);
 }
 QString SettingsManager::getImageLoaderPluginDir(){
-    return globalSettings.value(projectDirectoryIdentifier).toString();
+    return mGlobalSettings.value(projectDirectoryIdentifier).toString();
 }

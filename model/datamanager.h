@@ -52,7 +52,6 @@ private:
     ProjectManager* mProjectManager;
     ModelManager* mModelManager;
     SettingsManager* mSettingsManager;
-    int mTest;
 };
 
 
