@@ -18,7 +18,6 @@ ResultsWidget::ResultsWidget(QWidget *parent) :
 }
 
 void ResultsWidget::configureAddComparisonButton(QTabWidget *tabWidget) {
-    pushButton_addResult->setText("Compare ...");
     const auto icon = QIcon(":/Resources/UISymbols/UI_Add_Result_Comparison_Icon.svg");
     pushButton_addResult->setIcon(icon);
     pushButton_addResult->setFlat(true);
@@ -115,7 +114,6 @@ void ResultsWidget::dummyFunctionTest() {
         const qsizetype N = labels.size();
         for (int j = 0; j < N*N; ++j) {
             int random = QRandomGenerator::global()->bounded(0, 100);
-            //TODO: Normalized and non normalized
             values << random;
         }
 
@@ -129,4 +127,22 @@ void ResultsWidget::dummyFunctionTest() {
         action->setChecked(true);
         menu_addRun->addAction(action);
     }
+}
+
+void ResultsWidget::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        // this event is send if a translator is loaded
+        retranslateUi();
+        ui->retranslateUi(this);
+    }
+    //Call to parent class
+    QWidget::changeEvent(event);
+}
+
+/**
+ * Translate and set all the strings which
+ * were not created in the UI builder
+ */
+void ResultsWidget::retranslateUi() {
+    pushButton_addResult->setText(tr("Compare ..."));
 }

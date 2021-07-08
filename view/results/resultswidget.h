@@ -13,6 +13,12 @@
 class ResultsWidget : public QWidget {
 Q_OBJECT
 
+protected:
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent *) override;
+
+    void retranslateUi();
+
 public:
     explicit ResultsWidget(QWidget *parent = nullptr);
 
