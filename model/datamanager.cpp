@@ -5,7 +5,9 @@
 #include "datamanager.h"
 
 DataManager::DataManager(){
-    mProjectManager = nullptr;
+    mProjectManager = new ProjectManager;
+    mModelManager = new ModelManager;
+    mSettingsManager = new SettingsManager;
     mTest++;
 
 }

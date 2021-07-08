@@ -54,6 +54,7 @@ SOURCES += \
     plugins/results/classificationresult.cpp \
     plugins/results/result.cpp \
     plugins/results/trainingresult.cpp \
+    view/aitrainingwidget.cpp \
     view/aspectratiolabel.cpp \
     view/customlistwidget.cpp \
     view/customtabbar.cpp \
@@ -112,6 +113,7 @@ HEADERS += \
     plugins/results/result.h \
     plugins/results/trainingresult.h \
     plugins/trainingresult.h \
+    view/aitrainingwidget.h \
     view/aspectratiolabel.h \
     view/customlistwidget.h \
     view/customtabbar.h \
@@ -145,6 +147,7 @@ FORMS += \
     startwidget.ui \
     staticlist.ui \
     trainingresultview.ui \
+    view/aitrainingwidget.ui \
     view/inputimageswidget.ui \
     view/settingsview.ui
 

@@ -11,6 +11,8 @@
 #include <QPushButton>
 #include <QDir>
 
+#include "aitrainingwidget.h"
+#include "inputimageswidget.h"
 #include "startwidget.h"
 
 QT_BEGIN_NAMESPACE
@@ -27,6 +29,8 @@ public:
     void addProjects(QStringList projects);
 
     StartWidget * getStartWidget();
+    InputImagesWidget *getInputImagesWidget();
+    AITrainingWidget *getAITrainingWidget();
 
 signals:
     void sig_openSettings();

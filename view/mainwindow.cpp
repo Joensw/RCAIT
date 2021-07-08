@@ -136,6 +136,17 @@ StartWidget * MainWindow::getStartWidget()
     return ui->tab_start;
 }
 
+InputImagesWidget* MainWindow::getInputImagesWidget()
+{
+    return ui->tab_inputimages;
+}
+
+AITrainingWidget* MainWindow::getAITrainingWidget()
+{
+    return ui->tab_ai_training;
+}
+
+
 void MainWindow::on_pushButton_openProject_clicked() {
     int curr = ui->tabWidget->currentIndex();
     ui->tabWidget->setCurrentIndex(++curr);
