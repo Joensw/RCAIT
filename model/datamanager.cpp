@@ -5,9 +5,9 @@
 #include "datamanager.h"
 
 DataManager::DataManager(){
-    mProjectManager = nullptr;
-    mTest++;
-
+    mProjectManager = new ProjectManager;
+    mModelManager = new ModelManager;
+    mSettingsManager = new SettingsManager;
 }
 QStringList DataManager::getProjects(){
     return mProjectManager->getProjects();
@@ -35,7 +35,6 @@ QString DataManager::getProjectTempDir(){
 QString DataManager::getProjectDataSetDir(){
     return mProjectManager->getProjectDataSetDir();
 }
-
 
 void DataManager::createNewModel(QString modelName, QString pluginName, QString baseModel){
     mModelManager->createNewModel(modelName, pluginName, baseModel);

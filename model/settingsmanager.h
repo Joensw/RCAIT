@@ -30,7 +30,7 @@ public:
 
 
 private:
-    QSettings globalSettings;
+    QSettings mGlobalSettings;
 
 
 };
