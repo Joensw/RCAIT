@@ -37,13 +37,11 @@ StartWidget *MainWindow::getStartWidget() {
     return ui->tab_start;
 }
 
-InputImagesWidget* MainWindow::getInputImagesWidget()
-{
+InputImagesWidget *MainWindow::getInputImagesWidget() {
     return ui->tab_inputimages;
 }
 
-AITrainingWidget* MainWindow::getAITrainingWidget()
-{
+AITrainingWidget *MainWindow::getAITrainingWidget() {
     return ui->tab_ai_training;
 }
 
@@ -53,15 +51,7 @@ void MainWindow::on_pushButton_clearTags_clicked() {
     ui->lineEdit->tags(tags);
 }
 
-void MainWindow::on_comboBox_languageSelection_currentTextChanged(const QString &arg1) {
-    Q_UNUSED(arg1)
-    loadLanguage(ui->tab_start->getLanguageEntry());
-    //Update UI after loading language is necessary
-    ui->retranslateUi(this);
-}
-
-void MainWindow::slot_settingsButton_clicked()
-{
+void MainWindow::slot_settingsButton_clicked() {
     emit sig_openSettings();
 }
 

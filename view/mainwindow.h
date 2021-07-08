@@ -23,6 +23,10 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+protected:
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent*);
+
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -38,8 +42,6 @@ signals:
 private slots:
     void on_pushButton_clearTags_clicked();
 
-    void on_comboBox_languageSelection_currentTextChanged(const QString &arg1);
-
     void slot_settingsButton_clicked();
 
 private:
@@ -50,8 +52,6 @@ private:
     QPushButton * pushButton_settings = new QPushButton();
 
     void placeSettingsButton();
-    void loadLanguage(const QString& rLanguage);
-    void switchTranslator(QTranslator& translator, const QString& filename);
 
 };
 #endif // MAINWINDOW_H

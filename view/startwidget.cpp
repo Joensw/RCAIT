@@ -39,6 +39,13 @@ QString StartWidget::getLanguageEntry() {
     return locale;
 }
 
+void StartWidget::on_comboBox_languageSelection_currentTextChanged(const QString &arg1) {
+    Q_UNUSED(arg1)
+    loadLanguage(getLanguageEntry());
+    //Update UI after loading language is necessary
+    ui->retranslateUi(this);
+}
+
 void StartWidget::on_pushButton_newProject_clicked() {
     emit sig_newProject();
 }
@@ -67,5 +74,22 @@ void StartWidget::addProject(QString project)
 void StartWidget::clearProjectList()
 {
     ui->listWidget_projectsList->clear();
+}
+
+void StartWidget::loadLanguage(const QString &rLanguage) {
+    if (m_currLang != rLanguage) {
+        m_currLang = rLanguage;
+        QLocale locale = QLocale(m_currLang);
+        QLocale::setDefault(locale);
+        switchTranslator(m_translator, rLanguage);
+    }
+}
+
+void StartWidget::switchTranslator(QTranslator &translator, const QString &filename) {
+    const QString baseName = qApp->applicationName() + "_" + filename;
+    if (translator.load(m_langPath + baseName)) {
+        qApp->removeTranslator(&translator);
+        qApp->installTranslator(&translator);
+    }
 }
 
