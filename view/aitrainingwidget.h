@@ -38,6 +38,8 @@ private slots:
 
     void on_resultsButton_clicked();
 
+    void on_previewButton_clicked();
+
 private:
     Ui::AITrainingWidget *ui;
 };

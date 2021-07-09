@@ -37,6 +37,7 @@ void InputImagesWidget::on_selectFolderButton_clicked()
 {
      path = QFileDialog::getExistingDirectory(this, "Select image directory");
      if (path == nullptr) return;
+     ui->preview->clearAndStop();
      ui->preview->setEnabled(true);
      ui->preview->concurrentAddDir(path);
      ui->classifyButton->setEnabled(true);

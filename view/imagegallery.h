@@ -63,6 +63,10 @@ public:
     QSize minimumSizeHint() const override;
     QSize sizeHint() const override;
 
+    void clearAndStop();
+
+signals:
+    void sig_stopLoading();
 
 
 private:
