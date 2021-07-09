@@ -552,4 +552,19 @@ Wähle ein Projekt aus, um loszulegen</translation>
         <translation>Entferne ausgewählte Bilder</translation>
     </message>
 </context>
+<context>
+    <name>ProjectController</name>
+    <message>
+        <source>Name must contain at least 1 character</source>
+        <translation>Der Name muss mindestens aus einem Zeichen bestehen</translation>
+    </message>
+    <message>
+        <source>Name may not contain special characters</source>
+        <translation>Der Name darf keine Sonderzeichen enthalten</translation>
+    </message>
+    <message>
+        <source>A project with this name aleady exists in the project directory</source>
+        <translation>Dieser Projektname ist bereits vergeben</translation>
+    </message>
+</context>
 </TS>

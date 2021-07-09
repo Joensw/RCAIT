@@ -696,4 +696,19 @@ Select a project to get started</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>ProjectController</name>
+    <message>
+        <source>Name must contain at least 1 character</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Name may not contain special characters</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>A project with this name aleady exists in the project directory</source>
+        <translation></translation>
+    </message>
+</context>
 </TS>
