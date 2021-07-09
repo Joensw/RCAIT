@@ -80,7 +80,6 @@
        <attribute name="title">
         <string comment="tab_start_text">Home</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_10"/>
       </widget>
       <widget class="QWidget" name="tab_import">
        <property name="enabled">
@@ -399,7 +398,7 @@ selection-background-color: rgb(255, 255, 255);</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_image_inspection">
+      <widget class="ImageSection" name="tab_image_inspection">
        <attribute name="icon">
         <iconset resource="UI_Icons.qrc">
          <normaloff>:/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</iconset>
@@ -407,11 +406,6 @@ selection-background-color: rgb(255, 255, 255);</string>
        <attribute name="title">
         <string>Image Inspection</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_8">
-        <item row="0" column="0">
-         <widget class="ImageSection" name="gridWidget_3" native="true"/>
-        </item>
-       </layout>
       </widget>
       <widget class="AITrainingWidget" name="tab_ai_training">
        <attribute name="icon">
