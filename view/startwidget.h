@@ -37,11 +37,13 @@ private:
 private slots:
     void on_pushButton_newProject_clicked();
     void on_pushButton_removeProject_clicked();
+    void on_pushButton_openProject_clicked();
     void on_comboBox_languageSelection_currentTextChanged(const QString &arg1);
 
 signals:
     void sig_newProject();
     void sig_removeProject(QString projectName);
+    void sig_openProject(QString projectName);
 };
 
 #endif // STARTWIDGET_H

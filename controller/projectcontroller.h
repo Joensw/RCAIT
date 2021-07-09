@@ -21,6 +21,8 @@ public slots:
     void slot_removeProject(QString projectName);
     void slot_removeProjectConfirm();
 
+    void slot_openProject(QString projectName);
+
 private:
     DataManager *mDataManager;
     NewProjectDialog *mNewProjectDialog;

@@ -51,13 +51,20 @@ void StartWidget::on_pushButton_newProject_clicked() {
 }
 
 void StartWidget::on_pushButton_removeProject_clicked() {
-    //if there are no projects dont do anything
+    //if there are no projects, or no current item, dont do anything
     QListWidgetItem * item = ui->listWidget_projectsList->currentItem();
-    if (!ui->listWidget_projectsList->count() || !item) {
-        return;
+    if (item) {
+        QString toRemove = item->text();
+        emit sig_removeProject(toRemove);
     }
-    QString toRemove = item->text();
-    emit sig_removeProject(toRemove);
+}
+
+void StartWidget::on_pushButton_openProject_clicked(){
+    QListWidgetItem * item = ui->listWidget_projectsList->currentItem();
+    if (item) {
+        QString toOpen = item->text();
+        emit sig_openProject(toOpen);
+    }
 }
 
 
