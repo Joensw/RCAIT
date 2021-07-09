@@ -11,7 +11,6 @@ CustomListWidget::CustomListWidget(QWidget *parent) : QListWidget(parent) {
 }
 
 void CustomListWidget::addItem(const QString &label) {
-    qDebug() << "Attempt adding item";
     auto *item = new QListWidgetItem(this);
     item->setText(label);
     item->setIcon(unselectedIcon);
@@ -25,11 +24,10 @@ void CustomListWidget::addItems(const QStringList &labels) {
 }
 
 void CustomListWidget::updateSelectionIcon(QListWidgetItem *current, QListWidgetItem *previous) {
-    if (previous!= nullptr){
+    if (previous){
         previous->setIcon(unselectedIcon);
     }
-    if (current == nullptr) { //cheap fix, but otherwise the application crashes when the list become empty
-        return;
+    if (current) {
+        current->setIcon(selectedIcon);
     }
-    current->setIcon(selectedIcon);
 }
