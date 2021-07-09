@@ -45,12 +45,6 @@ AITrainingWidget *MainWindow::getAITrainingWidget() {
     return ui->tab_ai_training;
 }
 
-
-void MainWindow::on_pushButton_clearTags_clicked() {
-    std::vector<QString> tags;
-    ui->lineEdit->tags(tags);
-}
-
 void MainWindow::slot_settingsButton_clicked() {
     emit sig_openSettings();
 }

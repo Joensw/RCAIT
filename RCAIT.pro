@@ -62,6 +62,7 @@ SOURCES += \
     view/imagegallery.cpp \
     view/imagegallerytree.cpp \
     view/imagesection.cpp \
+    view/importfileswidget.cpp \
     view/inputimageswidget.cpp \
     view/main.cpp \
     view/mainwindow.cpp \
@@ -121,6 +122,7 @@ HEADERS += \
     view/imagegallery.h \
     view/imagegallerytree.h \
     view/imagesection.h \
+    view/importfileswidget.h \
     view/inputimageswidget.h \
     view/mainwindow.h \
     view/newmodeldialog.h \
@@ -138,6 +140,7 @@ HEADERS += \
 
 FORMS += \
     imagesection.ui \
+    importfileswidget.ui \
     mainwindow.ui \
     newmodeldialog.ui \
     newprojectdialog.ui \

@@ -40,8 +40,6 @@ signals:
     void sig_openSettings();
 
 private slots:
-    void on_pushButton_clearTags_clicked();
-
     void slot_settingsButton_clicked();
 
 private:

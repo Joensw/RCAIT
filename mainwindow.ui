@@ -55,7 +55,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <property name="iconSize">
        <size>
@@ -81,7 +81,7 @@
         <string comment="tab_start_text">Home</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="tab_import">
+      <widget class="ImportFilesWidget" name="tab_import">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -92,347 +92,7 @@
        <attribute name="title">
         <string>Import Files</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QGroupBox" name="groupBox_2">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="title">
-           <string>Import Images</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_4" rowstretch="0,0,0">
-           <item row="2" column="0">
-            <widget class="QPushButton" name="pushButton_5">
-             <property name="font">
-              <font>
-               <family>SF Pro Text</family>
-               <pointsize>8</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>Load Images</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QProgressBar" name="progressBar_2">
-             <property name="value">
-              <number>24</number>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0" colspan="2">
-            <layout class="QGridLayout" name="gridLayout_12">
-             <item row="5" column="0">
-              <widget class="QLabel" name="label_7">
-               <property name="text">
-                <string>Collector Plugin</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QSpinBox" name="spinBox">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximum">
-                <number>1000</number>
-               </property>
-               <property name="value">
-                <number>100</number>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="0">
-              <widget class="QLabel" name="label_4">
-               <property name="text">
-                <string>Split Validation (%)</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <spacer name="verticalSpacer_5">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>Search Keyword / Label</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QComboBox" name="comboBox_3">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <item>
-                <property name="text">
-                 <string>Flickr API</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Folder API</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Bing Image Search API</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="6" column="1">
-              <spacer name="verticalSpacer_6">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="0" column="1">
-              <widget class="Tags" name="lineEdit">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="contextMenuPolicy">
-                <enum>Qt::DefaultContextMenu</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
-              <layout class="QHBoxLayout" name="horizontalLayout_14">
-               <item>
-                <widget class="QPushButton" name="pushButton_clearTags">
-                 <property name="minimumSize">
-                  <size>
-                   <width>30</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>8</width>
-                   <height>29</height>
-                  </size>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="UI_Icons.qrc">
-                   <normaloff>:/Resources/UISymbols/UI_Delete_All_Items.svg</normaloff>:/Resources/UISymbols/UI_Delete_All_Items.svg</iconset>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item row="7" column="1">
-              <widget class="QSlider" name="horizontalSlider">
-               <property name="maximum">
-                <number>100</number>
-               </property>
-               <property name="value">
-                <number>40</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="tickPosition">
-                <enum>QSlider::TicksBothSides</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>Image Count</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <spacer name="verticalSpacer_4">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="7" column="2">
-              <widget class="QLabel" name="label_5">
-               <property name="text">
-                <string>40%</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="1" column="1">
-            <spacer name="verticalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="gridGroupBox">
-          <property name="title">
-           <string>Load Model</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_17">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_4">
-             <item>
-              <widget class="CustomListWidget" name="listWidget_5">
-               <property name="font">
-                <font>
-                 <family>SF Pro Text</family>
-                 <pointsize>8</pointsize>
-                 <weight>50</weight>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">selection-color: rgb(0, 0, 0);
-selection-background-color: rgb(255, 255, 255);</string>
-               </property>
-               <item>
-                <property name="text">
-                 <string>Model 1</string>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <activeon>:/Resources/TaskIcons/Task_Success.svg</activeon>
-                 </iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Model 2</string>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <selectedoff>:/Resources/TaskIcons/Task_Empty.svg</selectedoff>
-                 </iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Model 3</string>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <selectedoff>:/Resources/TaskIcons/Task_Empty.svg</selectedoff>
-                 </iconset>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_16">
-               <item>
-                <spacer name="horizontalSpacer_8">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_22">
-                 <property name="text">
-                  <string>Add</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="UI_Icons.qrc">
-                   <normaloff>:/Resources/UISymbols/UI_Add_Icon.svg</normaloff>:/Resources/UISymbols/UI_Add_Icon.svg</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_23">
-                 <property name="text">
-                  <string>Remove</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="UI_Icons.qrc">
-                   <normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_6">
-                 <property name="text">
-                  <string>Load</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="UI_Icons.qrc">
-                   <normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_9">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
+       <layout class="QHBoxLayout" name="horizontalLayout"/>
       </widget>
       <widget class="ImageSection" name="tab_image_inspection">
        <attribute name="icon">
@@ -765,17 +425,12 @@ selection-background-color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>1250</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>CustomListWidget</class>
-   <extends>QListWidget</extends>
-   <header>customlistwidget.h</header>
-  </customwidget>
   <customwidget>
    <class>CustomTabWidget</class>
    <extends>QTabWidget</extends>
@@ -787,11 +442,6 @@ selection-background-color: rgb(255, 255, 255);</string>
    <extends>QWidget</extends>
    <header>imagesection.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Tags</class>
-   <extends>QLineEdit</extends>
-   <header>tags.hpp</header>
   </customwidget>
   <customwidget>
    <class>InputImagesWidget</class>
@@ -815,6 +465,12 @@ selection-background-color: rgb(255, 255, 255);</string>
    <class>AITrainingWidget</class>
    <extends>QWidget</extends>
    <header>aitrainingwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ImportFilesWidget</class>
+   <extends>QWidget</extends>
+   <header>importfileswidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
