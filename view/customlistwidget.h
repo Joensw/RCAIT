@@ -14,7 +14,7 @@ public:
     void addItems(const QStringList &labels);
 
 private slots:
-    void updateSelectionIcon(QListWidgetItem *current, QListWidgetItem *previous);
+    static void updateSelectionIcon(QListWidgetItem *current, QListWidgetItem *previous);
 };
 
 #endif // CUSTOMLISTWIDGET_H
