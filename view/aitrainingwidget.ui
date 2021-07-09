@@ -15,7 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QGroupBox" name="groupBox_4">
+    <widget class="QGroupBox" name="groupDataAugmentation">
      <property name="title">
       <string>Data Augmentation</string>
      </property>
@@ -94,9 +94,12 @@
              </widget>
             </item>
             <item row="5" column="1">
-             <widget class="QLineEdit" name="lineEdit_4">
-              <property name="text">
-               <string>116.28</string>
+             <widget class="QDoubleSpinBox" name="green_mean">
+              <property name="text" stdset="0">
+               <string>0,00</string>
+              </property>
+              <property name="maximum">
+               <double>255.000000000000000</double>
               </property>
              </widget>
             </item>
@@ -114,30 +117,45 @@
              </widget>
             </item>
             <item row="3" column="2">
-             <widget class="QLineEdit" name="lineEdit_7">
-              <property name="text">
-               <string>58.395</string>
+             <widget class="QDoubleSpinBox" name="red_std">
+              <property name="text" stdset="0">
+               <string>0,00</string>
+              </property>
+              <property name="maximum">
+               <double>255.000000000000000</double>
               </property>
              </widget>
             </item>
             <item row="6" column="2">
-             <widget class="QLineEdit" name="lineEdit_9">
-              <property name="text">
-               <string>57.375</string>
+             <widget class="QDoubleSpinBox" name="blue_std">
+              <property name="text" stdset="0">
+               <string>0,00</string>
+              </property>
+              <property name="maximum">
+               <double>255.000000000000000</double>
               </property>
              </widget>
             </item>
             <item row="5" column="2">
-             <widget class="QLineEdit" name="lineEdit_8">
-              <property name="text">
-               <string>57.12</string>
+             <widget class="QDoubleSpinBox" name="green_std">
+              <property name="text" stdset="0">
+               <string>0,00</string>
+              </property>
+              <property name="maximum">
+               <double>255.000000000000000</double>
               </property>
              </widget>
             </item>
             <item row="3" column="1">
-             <widget class="QLineEdit" name="lineEdit_5">
-              <property name="text">
-               <string>123.675</string>
+             <widget class="QDoubleSpinBox" name="red_mean">
+              <property name="text" stdset="0">
+               <string>0,000</string>
+              </property>
+              <property name="decimals">
+               <number>3</number>
+              </property>
+              <property name="maximum">
+               <double>255.000000000000000</double>
               </property>
              </widget>
             </item>
@@ -163,9 +181,12 @@
              </widget>
             </item>
             <item row="6" column="1">
-             <widget class="QLineEdit" name="lineEdit_6">
-              <property name="text">
-               <string>103.53</string>
+             <widget class="QDoubleSpinBox" name="blue_mean">
+              <property name="text" stdset="0">
+               <string>0,00</string>
+              </property>
+              <property name="maximum">
+               <double>255.000000000000000</double>
               </property>
              </widget>
             </item>
@@ -181,23 +202,32 @@
          </widget>
         </item>
         <item row="0" column="2">
-         <widget class="QLineEdit" name="lineEdit_2">
-          <property name="text">
-           <string>224</string>
+         <widget class="QSpinBox" name="resizedCropSize">
+          <property name="text" stdset="0">
+           <string>0</string>
           </property>
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QLineEdit" name="lineEdit_3">
+         <widget class="QLineEdit" name="flipDirection">
           <property name="text">
            <string>horizontal</string>
           </property>
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QLineEdit" name="lineEdit_10">
-          <property name="text">
-           <string>0.5</string>
+         <widget class="QDoubleSpinBox" name="flipProbability">
+          <property name="text" stdset="0">
+           <string>0,0000</string>
+          </property>
+          <property name="decimals">
+           <number>4</number>
+          </property>
+          <property name="maximum">
+           <double>1.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.050000000000000</double>
           </property>
          </widget>
         </item>
@@ -232,7 +262,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_15">
+         <widget class="QPushButton" name="previewButton">
           <property name="text">
            <string>Show Preview</string>
           </property>
@@ -244,7 +274,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_9">
+    <widget class="QGroupBox" name="groupRunConfiguration">
      <property name="title">
       <string>Run Configuration</string>
      </property>
@@ -259,9 +289,12 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_14">
-          <property name="text">
-           <string>256</string>
+         <widget class="QSpinBox" name="resize">
+          <property name="text" stdset="0">
+           <string>0</string>
+          </property>
+          <property name="maximum">
+           <number>1000000000</number>
           </property>
          </widget>
         </item>
@@ -271,7 +304,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="groupRunTraining">
      <property name="title">
       <string>Run Model Training</string>
      </property>
@@ -280,8 +313,11 @@
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QProgressBar" name="progressBar">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="value">
-           <number>24</number>
+           <number>0</number>
           </property>
          </widget>
         </item>
@@ -301,21 +337,27 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="startButton">
             <property name="text">
              <string>Start</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="cancelButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Cancel</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="resultsButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Results</string>
             </property>
