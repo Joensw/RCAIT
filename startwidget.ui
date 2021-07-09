@@ -90,36 +90,6 @@ Select a project to get started</string>
           <string notr="true">selection-color: rgb(0, 0, 0);
 selection-background-color: rgb(255, 255, 255);</string>
          </property>
-         <item>
-          <property name="text">
-           <string>Project 1</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <selectedon>:/Resources/TaskIcons/Task_Empty.svg</selectedon>
-           </iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Project 2</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <selectedon>:/Resources/TaskIcons/Task_Empty.svg</selectedon>
-           </iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Project 3</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <selectedon>:/Resources/TaskIcons/Task_Empty.svg</selectedon>
-           </iconset>
-          </property>
-         </item>
         </widget>
        </item>
        <item>
