@@ -5,10 +5,12 @@ QT             += widgets
 INCLUDEPATH    += ../echowindow
 HEADERS         = \
     flickrplugin.h \
-    flickrsettings.h
+    flickrsettings.h \
+    test/tst_flickrplugin.h
 SOURCES         = \
     flickrplugin.cpp \
-    flickrsettings.cpp
+    flickrsettings.cpp \
+    test/tst_flickrplugin.cpp
 TARGET          = $$qtLibraryTarget(echoplugin)
 DESTDIR         = ../plugins
 #! [0]
