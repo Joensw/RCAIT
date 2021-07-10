@@ -11,6 +11,8 @@
 #include <QPushButton>
 #include <QDir>
 
+#include "aitrainingwidget.h"
+#include "inputimageswidget.h"
 #include "startwidget.h"
 
 QT_BEGIN_NAMESPACE
@@ -21,23 +23,23 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+protected:
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent*);
+
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void addProjects(QStringList projects);
 
     StartWidget * getStartWidget();
+    InputImagesWidget *getInputImagesWidget();
+    AITrainingWidget *getAITrainingWidget();
 
 signals:
     void sig_openSettings();
 
 private slots:
-    void on_pushButton_openProject_clicked();
-
-    void on_pushButton_clearTags_clicked();
-
-    void on_comboBox_languageSelection_currentTextChanged(const QString &arg1);
-
     void slot_settingsButton_clicked();
 
 private:
@@ -47,12 +49,7 @@ private:
     const QString m_langPath = QDir(":/i18n/").exists()? ":/i18n/" : QDir::currentPath() + "/"; /*< Path of language files. This is always fixed.*/
     QPushButton * pushButton_settings = new QPushButton();
 
-    void populateResultCharts();
-    void populateLanguageMenu(QComboBox *box);
     void placeSettingsButton();
-    void loadLanguage(const QString& rLanguage);
-    void switchTranslator(QTranslator& translator, const QString& filename);
 
-    void populateConfusionMatrix();
 };
 #endif // MAINWINDOW_H

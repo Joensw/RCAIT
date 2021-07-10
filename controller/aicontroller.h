@@ -2,17 +2,20 @@
 #define AICONTROLLER_H
 
 #include <QString>
+#include <aitrainingwidget.h>
+#include <datamanager.h>
 #include <inputimageswidget.h>
 
 #include <model/pluginusage/classifiertrainer.h>
 
 
 
-class AIController
+class AIController : public QObject
+
 {
+    Q_OBJECT
 public:
-    //TODO: change DataManger and AITrainingTab to their respective types
-    AIController(QString *dataManager, InputImagesWidget *inputImagesWidget, QString *AITrainingTab, ClassifierTrainer* classifierTrainer);
+    AIController(DataManager *dataManager, InputImagesWidget *inputImagesWidget, AITrainingWidget *AITrainingWidget);
 
 public slots:
     void slot_startTraining();
@@ -25,13 +28,12 @@ public slots:
     void slot_showAugmentationPreview();
 
 private:
-    //TODO: change DataManger and AITrainingTab to their respective types
-    QString *dataManager;
-    InputImagesWidget *inputImagesWidget;
-    QString *aiTrainingTab;
-    ClassifierTrainer* classifierTrainer;
+    DataManager *mDataManager;
+    InputImagesWidget *mInputImagesWidget;
+    AITrainingWidget *mAiTrainingWidget;
+    ClassifierTrainer* mClassifierTrainer;
 
-    QString trainingPath;
+    QString mTrainingPath;
 
 
     void train();

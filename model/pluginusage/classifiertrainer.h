@@ -7,6 +7,7 @@
 
 class ClassifierTrainer : public ProgressablePlugin
 {
+    Q_OBJECT
 public:
     ClassifierTrainer();
     void train(QString pluginName, QString modelName, QString imagePath);

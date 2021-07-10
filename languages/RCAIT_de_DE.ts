@@ -2,6 +2,140 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
+    <name>AITrainingWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Data Augmentation</source>
+        <translation type="unfinished">Datenerweiterung</translation>
+    </message>
+    <message>
+        <source>Normalize</source>
+        <translation type="unfinished">Normalisieren</translation>
+    </message>
+    <message>
+        <source>Random Flip Direction</source>
+        <translation type="unfinished">Zufällige Spiegelungs-Richtung</translation>
+    </message>
+    <message>
+        <source>Random Resized Crop Size</source>
+        <translation type="unfinished">Zufällige Ausschnittsgröße</translation>
+    </message>
+    <message>
+        <source>std</source>
+        <translation type="unfinished">std</translation>
+    </message>
+    <message>
+        <source>116.28</source>
+        <translation type="unfinished">116.28</translation>
+    </message>
+    <message>
+        <source>red</source>
+        <translation type="unfinished">rot</translation>
+    </message>
+    <message>
+        <source>58.395</source>
+        <translation type="unfinished">58.395</translation>
+    </message>
+    <message>
+        <source>57.375</source>
+        <translation type="unfinished">57.375</translation>
+    </message>
+    <message>
+        <source>57.12</source>
+        <translation type="unfinished">57.12</translation>
+    </message>
+    <message>
+        <source>123.675</source>
+        <translation type="unfinished">123.675</translation>
+    </message>
+    <message>
+        <source>blue</source>
+        <translation type="unfinished">blau</translation>
+    </message>
+    <message>
+        <source>green</source>
+        <translation type="unfinished">grün</translation>
+    </message>
+    <message>
+        <source>mean</source>
+        <translation type="unfinished">Mittelwert</translation>
+    </message>
+    <message>
+        <source>103.53</source>
+        <translation type="unfinished">103.53</translation>
+    </message>
+    <message>
+        <source>Random Flip Probability</source>
+        <translation type="unfinished">Zufällige Spiegelungs-Wahrscheinlichkeit</translation>
+    </message>
+    <message>
+        <source>224</source>
+        <translation type="unfinished">224</translation>
+    </message>
+    <message>
+        <source>horizontal</source>
+        <translation type="unfinished">horizontal</translation>
+    </message>
+    <message>
+        <source>0.5</source>
+        <translation type="unfinished">0.5</translation>
+    </message>
+    <message>
+        <source>Show Preview</source>
+        <translation type="unfinished">Vorschau anzeigen</translation>
+    </message>
+    <message>
+        <source>Run Configuration</source>
+        <translation type="unfinished">Konfiguration ausführen</translation>
+    </message>
+    <message>
+        <source>Resize</source>
+        <translation type="unfinished">Größe ändern</translation>
+    </message>
+    <message>
+        <source>256</source>
+        <translation type="unfinished">256</translation>
+    </message>
+    <message>
+        <source>Run Model Training</source>
+        <translation type="unfinished">Modell-Training ausführen</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished">Start</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Abbrechen</translation>
+    </message>
+    <message>
+        <source>Results</source>
+        <translation type="unfinished">Ergebnisse</translation>
+    </message>
+</context>
+<context>
+    <name>InputImagesWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Select input folder...</source>
+        <translation type="unfinished">Eingabeordner wählen...</translation>
+    </message>
+    <message>
+        <source>Classify images</source>
+        <translation type="unfinished">Bilder klassifizieren</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Abbrechen</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Home</source>
@@ -41,20 +175,12 @@
         <translation>AI Training</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation>Start</translation>
-    </message>
-    <message>
         <source>Input Images</source>
         <translation>Eingabebilder</translation>
     </message>
     <message>
         <source>Results</source>
         <translation>Ergebnisse</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Abbrechen</translation>
     </message>
     <message>
         <source>Automation</source>
@@ -121,28 +247,8 @@
         <translation>Rapid Classification AI Trainer</translation>
     </message>
     <message>
-        <source>Project 1</source>
-        <translation>Projekt 1</translation>
-    </message>
-    <message>
-        <source>Project 2</source>
-        <translation>Projekt 2</translation>
-    </message>
-    <message>
-        <source>Project 3</source>
-        <translation>Projekt 3</translation>
-    </message>
-    <message>
-        <source>New Project</source>
-        <translation>Neues Projekt</translation>
-    </message>
-    <message>
         <source>Remove</source>
         <translation>Entfernen</translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation>Öffnen</translation>
     </message>
     <message>
         <source>Split Validation (%)</source>
@@ -171,273 +277,6 @@
     <message>
         <source>Load</source>
         <translation>Laden</translation>
-    </message>
-    <message>
-        <source>Data Augmentation</source>
-        <translation>Datenerweiterung</translation>
-    </message>
-    <message>
-        <source>Normalize</source>
-        <translation>Normalisieren</translation>
-    </message>
-    <message>
-        <source>Random Flip Direction</source>
-        <translation>Zufällige Spiegelungs-Richtung</translation>
-    </message>
-    <message>
-        <source>Random Resized Crop Size</source>
-        <translation>Zufällige Ausschnittsgröße</translation>
-    </message>
-    <message>
-        <source>std</source>
-        <translation>std</translation>
-    </message>
-    <message>
-        <source>116.28</source>
-        <translation>116.28</translation>
-    </message>
-    <message>
-        <source>red</source>
-        <translation>rot</translation>
-    </message>
-    <message>
-        <source>58.395</source>
-        <translation>58.395</translation>
-    </message>
-    <message>
-        <source>57.375</source>
-        <translation>57.375</translation>
-    </message>
-    <message>
-        <source>57.12</source>
-        <translation>57.12</translation>
-    </message>
-    <message>
-        <source>123.675</source>
-        <translation>123.675</translation>
-    </message>
-    <message>
-        <source>blue</source>
-        <translation>blau</translation>
-    </message>
-    <message>
-        <source>green</source>
-        <translation>grün</translation>
-    </message>
-    <message>
-        <source>mean</source>
-        <translation>Mittelwert</translation>
-    </message>
-    <message>
-        <source>103.53</source>
-        <translation>103.53</translation>
-    </message>
-    <message>
-        <source>Random Flip Probability</source>
-        <translation>Zufällige Spiegelungs-Wahrscheinlichkeit</translation>
-    </message>
-    <message>
-        <source>224</source>
-        <translation>224</translation>
-    </message>
-    <message>
-        <source>horizontal</source>
-        <translation>horizontal</translation>
-    </message>
-    <message>
-        <source>0.5</source>
-        <translation>0.5</translation>
-    </message>
-    <message>
-        <source>Show Preview</source>
-        <translation>Vorschau anzeigen</translation>
-    </message>
-    <message>
-        <source>Run Model Training</source>
-        <translation>Modell-Training ausführen</translation>
-    </message>
-    <message>
-        <source>Run Configuration</source>
-        <translation>Konfiguration ausführen</translation>
-    </message>
-    <message>
-        <source>Resize</source>
-        <translation>Größe ändern</translation>
-    </message>
-    <message>
-        <source>256</source>
-        <translation>256</translation>
-    </message>
-    <message>
-        <source>Input Image Directory</source>
-        <translation>Eingabebild-Verzeichnis</translation>
-    </message>
-    <message>
-        <source>Preview</source>
-        <translation>Vorschau</translation>
-    </message>
-    <message>
-        <source>Classify</source>
-        <translation>Klassifiziere</translation>
-    </message>
-    <message>
-        <source>Training Results</source>
-        <translation>Trainingsergebnisse</translation>
-    </message>
-    <message>
-        <source>Model selection</source>
-        <translation>Modellauswahl</translation>
-    </message>
-    <message>
-        <source>Current Model</source>
-        <translation>Derzeitiges Modell</translation>
-    </message>
-    <message>
-        <source>Model1</source>
-        <translation>Modell1</translation>
-    </message>
-    <message>
-        <source>Compare to:</source>
-        <translation>Vergleiche mit:</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Keine</translation>
-    </message>
-    <message>
-        <source>Model2</source>
-        <translation>Modell2</translation>
-    </message>
-    <message>
-        <source>Model3</source>
-        <translation>Modell3</translation>
-    </message>
-    <message>
-        <source>Results and Comparison</source>
-        <translation>Ergebnisse und Vergleich</translation>
-    </message>
-    <message>
-        <source>88.87</source>
-        <translation>88.87</translation>
-    </message>
-    <message>
-        <source>68.75</source>
-        <translation>68.75</translation>
-    </message>
-    <message>
-        <source>Compared Model</source>
-        <translation>Verglichenes Modell</translation>
-    </message>
-    <message>
-        <source>Top1 (%)</source>
-        <translation>Top1 (%)</translation>
-    </message>
-    <message>
-        <source>Top5 (%)</source>
-        <translation>Top5 (%)</translation>
-    </message>
-    <message>
-        <source>90.49</source>
-        <translation>90.49</translation>
-    </message>
-    <message>
-        <source>71.62</source>
-        <translation>71.62</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
-    </message>
-    <message>
-        <source>Truck</source>
-        <translation>Lkw</translation>
-    </message>
-    <message>
-        <source>Flugzeug</source>
-        <translation>Flugzeug</translation>
-    </message>
-    <message>
-        <source>200</source>
-        <translation>200</translation>
-    </message>
-    <message>
-        <source>20</source>
-        <translation>20</translation>
-    </message>
-    <message>
-        <source>0</source>
-        <translation>0</translation>
-    </message>
-    <message>
-        <source>5</source>
-        <translation>5</translation>
-    </message>
-    <message>
-        <source>180</source>
-        <translation>180</translation>
-    </message>
-    <message>
-        <source>4</source>
-        <translation>4</translation>
-    </message>
-    <message>
-        <source>50</source>
-        <translation>50</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation>Speichern</translation>
-    </message>
-    <message>
-        <source>Classification Results</source>
-        <translation>Klassifikationsergebnisse</translation>
-    </message>
-    <message>
-        <source>Bild1</source>
-        <translation>Bild1</translation>
-    </message>
-    <message>
-        <source>Bild2</source>
-        <translation>Bild2</translation>
-    </message>
-    <message>
-        <source>Bild3</source>
-        <translation>Bild3</translation>
-    </message>
-    <message>
-        <source>Bild4</source>
-        <translation>Bild4</translation>
-    </message>
-    <message>
-        <source>Bild5</source>
-        <translation>Bild5</translation>
-    </message>
-    <message>
-        <source>Bild6</source>
-        <translation>Bild6</translation>
-    </message>
-    <message>
-        <source>Bild7</source>
-        <translation>Bild7</translation>
-    </message>
-    <message>
-        <source>1</source>
-        <translation>1</translation>
-    </message>
-    <message>
-        <source>0.4</source>
-        <translation>0.4</translation>
-    </message>
-    <message>
-        <source>0.6</source>
-        <translation>0.6</translation>
-    </message>
-    <message>
-        <source>Welcome to RCAIT!
-Select a project to get started</source>
-        <comment>welcome_label</comment>
-        <translation>Willkommen bei RCAIT!
-Wähle ein Projekt aus, um loszulegen</translation>
     </message>
 </context>
 <context>
@@ -482,12 +321,8 @@ Wähle ein Projekt aus, um loszulegen</translation>
         <translation>Projektname</translation>
     </message>
     <message>
-        <source>Project base folder</source>
-        <translation>Projektverzeichnis</translation>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation>Öffnen</translation>
+        <source>invalid name!</source>
+        <translation type="unfinished">Ungültiger Name!</translation>
     </message>
 </context>
 <context>
@@ -517,14 +352,185 @@ Wähle ein Projekt aus, um loszulegen</translation>
     </message>
 </context>
 <context>
+    <name>ResultsWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Training Results</source>
+        <translation type="unfinished">Trainingsergebnisse</translation>
+    </message>
+    <message>
+        <source>Compare Results</source>
+        <translation type="unfinished">Ergebnisse vergleichen</translation>
+    </message>
+    <message>
+        <source>Top Accuracies</source>
+        <translation type="unfinished">Top-Genauigkeiten</translation>
+    </message>
+    <message>
+        <source>Run 1</source>
+        <translation type="unfinished">Durchlauf 1</translation>
+    </message>
+    <message>
+        <source>Run 2</source>
+        <translation type="unfinished">Durchlauf 2</translation>
+    </message>
+    <message>
+        <source>Run 3</source>
+        <translation type="unfinished">Durchlauf 3</translation>
+    </message>
+    <message>
+        <source>Top1%</source>
+        <translation type="unfinished">Top1%</translation>
+    </message>
+    <message>
+        <source>Top5%</source>
+        <translation type="unfinished">Top5%</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Speichern</translation>
+    </message>
+    <message>
+        <source>Classification Results</source>
+        <translation type="unfinished">Klassifikationsergebnisse</translation>
+    </message>
+    <message>
+        <source>Bild1</source>
+        <translation type="unfinished">Bild1</translation>
+    </message>
+    <message>
+        <source>Bild2</source>
+        <translation type="unfinished">Bild2</translation>
+    </message>
+    <message>
+        <source>Bild3</source>
+        <translation type="unfinished">Bild3</translation>
+    </message>
+    <message>
+        <source>Bild4</source>
+        <translation type="unfinished">Bild4</translation>
+    </message>
+    <message>
+        <source>Bild5</source>
+        <translation type="unfinished">Bild5</translation>
+    </message>
+    <message>
+        <source>Bild6</source>
+        <translation type="unfinished">Bild6</translation>
+    </message>
+    <message>
+        <source>Bild7</source>
+        <translation type="unfinished">Bild7</translation>
+    </message>
+    <message>
+        <source>Flugzeug</source>
+        <translation type="unfinished">Flugzeug</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished">Auto</translation>
+    </message>
+    <message>
+        <source>Truck</source>
+        <translation type="unfinished">Lkw</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
+    </message>
+    <message>
+        <source>0</source>
+        <translation type="unfinished">0</translation>
+    </message>
+    <message>
+        <source>0.4</source>
+        <translation type="unfinished">0.4</translation>
+    </message>
+    <message>
+        <source>0.6</source>
+        <translation type="unfinished">0.6</translation>
+    </message>
+    <message>
+        <source>Compare ...</source>
+        <translation type="unfinished">Vergleiche ...</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsView</name>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished">Einstellungen</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Speichern</translation>
+    </message>
+</context>
+<context>
+    <name>StartWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Welcome to RCAIT!
+Select a project to get started</source>
+        <comment>welcome_label</comment>
+        <translation type="unfinished">Willkommen bei RCAIT!
+Wähle ein Projekt aus, um loszulegen</translation>
+    </message>
+    <message>
+        <source>Project 1</source>
+        <translation type="unfinished">Projekt 1</translation>
+    </message>
+    <message>
+        <source>Project 2</source>
+        <translation type="unfinished">Projekt 2</translation>
+    </message>
+    <message>
+        <source>Project 3</source>
+        <translation type="unfinished">Projekt 3</translation>
+    </message>
+    <message>
+        <source>New Project</source>
+        <translation type="unfinished">Neues Projekt</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Entfernen</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Öffnen</translation>
+    </message>
+</context>
+<context>
     <name>StaticList</name>
     <message>
         <source>Form</source>
         <translation>Form</translation>
     </message>
+</context>
+<context>
+    <name>TrainingResultView</name>
     <message>
-        <source>10 Most Misclassified Images</source>
-        <translation>10 am häufigsten falsch klassifizierte Bilder</translation>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Loss Curve</source>
+        <translation type="unfinished">Verlustkurve</translation>
+    </message>
+    <message>
+        <source>Most Misclassified Images</source>
+        <translation type="unfinished">Am häufigsten falsch klassifizierte Bilder</translation>
+    </message>
+    <message>
+        <source>Confusion Matrix</source>
+        <translation type="unfinished">Konfusionsmatrix</translation>
     </message>
 </context>
 <context>
@@ -544,6 +550,21 @@ Wähle ein Projekt aus, um loszulegen</translation>
     <message>
         <source>Remove selected images</source>
         <translation>Entferne ausgewählte Bilder</translation>
+    </message>
+</context>
+<context>
+    <name>ProjectController</name>
+    <message>
+        <source>Name must contain at least 1 character</source>
+        <translation>Der Name muss mindestens aus einem Zeichen bestehen</translation>
+    </message>
+    <message>
+        <source>Name may not contain special characters</source>
+        <translation>Der Name darf keine Sonderzeichen enthalten</translation>
+    </message>
+    <message>
+        <source>A project with this name aleady exists in the project directory</source>
+        <translation>Dieser Projektname ist bereits vergeben</translation>
     </message>
 </context>
 </TS>

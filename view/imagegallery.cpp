@@ -97,7 +97,7 @@ void ImageGallery::addDir(const QDir& imageDirectory) {
 
 void ImageGallery::concurrentAddDir(const QString path)
 {
-    class addDirTask : public QRunnable {
+    class addDirTask : public QThread {
     public:
         addDirTask(ImageGallery *gallery, QDir pathDir) {
             this->mGallery = gallery;
@@ -112,8 +112,12 @@ void ImageGallery::concurrentAddDir(const QString path)
         ImageGallery *mGallery;
         QDir mPathDir;
     };
+
     auto *addDirParallel = new addDirTask(this, QDir(path));
-    QThreadPool::globalInstance()->start(addDirParallel);
+
+    connect(this, &ImageGallery::sig_stopLoading, addDirParallel, &addDirTask::terminate);
+    addDirParallel->start();
+   // QThreadPool::globalInstance()->start(addDirParallel);
 }
 
 void ImageGallery::setDragDropEnabled(bool var)
@@ -122,14 +126,21 @@ void ImageGallery::setDragDropEnabled(bool var)
     setAcceptDrops(var);
 }
 
-QSize ImageGallery::minimumSizeHint() const {
+QSize ImageGallery::minimumSizeHint() const
+{
     QSize size(parentWidget()->size());
     size.setHeight(size.height() - 60);
     return size;
 }
 
-QSize ImageGallery::sizeHint() const {
+QSize ImageGallery::sizeHint() const
+{
     return minimumSizeHint();
+}
+
+void ImageGallery::clearAndStop(){
+    emit sig_stopLoading();
+    clear();
 }
 
 

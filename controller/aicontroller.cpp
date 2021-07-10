@@ -1,12 +1,24 @@
 #include "aicontroller.h"
 
 
-AIController::AIController(QString *dataManager, InputImagesWidget *inputImagesWidget, QString *aiTrainingTab, ClassifierTrainer *classifierTrainer)
+AIController::AIController(DataManager *dataManager, InputImagesWidget *inputImagesWidget, AITrainingWidget *aiTrainingTab)
 {
-    this->dataManager = dataManager;
-    this->inputImagesWidget = inputImagesWidget;
-    this->aiTrainingTab = aiTrainingTab;
-    this->classifierTrainer = classifierTrainer;
+    mDataManager = dataManager;
+    mInputImagesWidget = inputImagesWidget;
+    mAiTrainingWidget = aiTrainingTab;
+    mClassifierTrainer = new ClassifierTrainer;
+
+    //connect progress
+    connect(mClassifierTrainer, &ClassifierTrainer::sig_progress, mInputImagesWidget, &InputImagesWidget::slot_progress);
+
+    //connect classification parts
+    connect(mInputImagesWidget, &InputImagesWidget::sig_startClassify, this, &AIController::slot_startClassify);
+    connect(mInputImagesWidget, &InputImagesWidget::sig_abortClassify, this, &AIController::slot_abortClassify);
+    connect(mClassifierTrainer, &ClassifierTrainer::sig_classificationResultUpdated, this, &AIController::slot_classificationResultUpdated);
+
+    //connect training parts
+
+
 
 }
 
@@ -37,7 +49,7 @@ void AIController::slot_classificationResultUpdated()
 
 void AIController::slot_startClassify(QString path)
 {
-    this->trainingPath = path;
+    mTrainingPath = path;
     classify();
 }
 

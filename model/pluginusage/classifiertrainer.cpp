@@ -1,4 +1,4 @@
-#include "model/pluginusage/classifiertrainer.h"
+#include "classifiertrainer.h"
 
 ClassifierTrainer::ClassifierTrainer()
 {
@@ -28,12 +28,4 @@ ClassificationResult *ClassifierTrainer::getLastClassificationResult()
 bool ClassifierTrainer::getAugmentationPreview(QString pluginName, QString inputPath)
 {
     return false;
-}
-
-void ClassifierTrainer::sig_trainingResultUpdated() {
-
-}
-
-void ClassifierTrainer::sig_classificationResultUpdated() {
-
 }

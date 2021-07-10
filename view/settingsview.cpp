@@ -51,6 +51,10 @@ void SettingsView::on_saveButton_clicked()
     int index = ui->pluginList->currentIndex().row();
 
     if (index == 0){
+        if (mProjectDir.isNull() || mClassificationPluginsDir.isNull() || mImageLoaderPluginsDir.isNull()){
+            //TODO Error message
+            return;
+        }
         emit sig_applyGlobalSettings(mProjectDir, mClassificationPluginsDir, mImageLoaderPluginsDir);
     } else {
         // -1 weil 0. Eintrag GlobalSettings ist.

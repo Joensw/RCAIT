@@ -4,6 +4,7 @@
 #include "settingscontroller.h"
 #include "projectcontroller.h"
 #include "datamanager.h"
+#include "aicontroller.h"
 #include <mainwindow.h>
 
 #include <QObject>
@@ -23,6 +24,8 @@ private:
     SettingsController * mSettingsController;
 
     ProjectController * mProjectController;
+
+    AIController * mAiController;
 
     DataManager * mDataManger;
 

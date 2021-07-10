@@ -5,6 +5,7 @@
 
 class ProgressablePlugin : public Progressable
 {
+    Q_OBJECT
 public:
     ProgressablePlugin();
 

@@ -54,13 +54,16 @@ SOURCES += \
     plugins/results/classificationresult.cpp \
     plugins/results/result.cpp \
     plugins/results/trainingresult.cpp \
+    view/aitrainingwidget.cpp \
     view/aspectratiolabel.cpp \
+    view/automationwidget.cpp \
     view/customlistwidget.cpp \
     view/customtabbar.cpp \
     view/customtabwidget.cpp \
     view/imagegallery.cpp \
     view/imagegallerytree.cpp \
     view/imagesection.cpp \
+    view/importfileswidget.cpp \
     view/inputimageswidget.cpp \
     view/main.cpp \
     view/mainwindow.cpp \
@@ -112,13 +115,16 @@ HEADERS += \
     plugins/results/result.h \
     plugins/results/trainingresult.h \
     plugins/trainingresult.h \
+    view/aitrainingwidget.h \
     view/aspectratiolabel.h \
+    view/automationwidget.h \
     view/customlistwidget.h \
     view/customtabbar.h \
     view/customtabwidget.h \
     view/imagegallery.h \
     view/imagegallerytree.h \
     view/imagesection.h \
+    view/importfileswidget.h \
     view/inputimageswidget.h \
     view/mainwindow.h \
     view/newmodeldialog.h \
@@ -136,6 +142,7 @@ HEADERS += \
 
 FORMS += \
     imagesection.ui \
+    importfileswidget.ui \
     mainwindow.ui \
     newmodeldialog.ui \
     newprojectdialog.ui \
@@ -145,6 +152,8 @@ FORMS += \
     startwidget.ui \
     staticlist.ui \
     trainingresultview.ui \
+    view/aitrainingwidget.ui \
+    view/automationwidget.ui \
     view/inputimageswidget.ui \
     view/settingsview.ui
 

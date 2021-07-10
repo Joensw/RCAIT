@@ -2,41 +2,206 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_GB">
 <context>
+    <name>AITrainingWidget</name>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="20"/>
+        <source>Data Augmentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="28"/>
+        <source>Normalize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="35"/>
+        <source>Random Flip Direction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="59"/>
+        <source>Random Resized Crop Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="92"/>
+        <source>std</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="99"/>
+        <source>116.28</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="112"/>
+        <source>red</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="119"/>
+        <source>58.395</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="126"/>
+        <source>57.375</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="133"/>
+        <source>57.12</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="140"/>
+        <source>123.675</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="147"/>
+        <source>blue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="154"/>
+        <source>green</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="161"/>
+        <source>mean</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="168"/>
+        <source>103.53</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="179"/>
+        <source>Random Flip Probability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="186"/>
+        <source>224</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="193"/>
+        <source>horizontal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="200"/>
+        <source>0.5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="237"/>
+        <source>Show Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="249"/>
+        <source>Run Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="257"/>
+        <source>Resize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="264"/>
+        <source>256</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="276"/>
+        <source>Run Model Training</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="306"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="313"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="320"/>
+        <source>Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>InputImagesWidget</name>
+    <message>
+        <location filename="../view/inputimageswidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/inputimageswidget.ui" line="22"/>
+        <source>Select input folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/inputimageswidget.ui" line="32"/>
+        <source>Classify images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/inputimageswidget.ui" line="74"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.ui" line="78"/>
+        <location filename="../mainwindow.ui" line="81"/>
         <source>Home</source>
         <comment>tab_start_text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="320"/>
+        <location filename="../mainwindow.ui" line="93"/>
         <source>Import Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="329"/>
-        <location filename="../mainwindow.ui" line="980"/>
+        <location filename="../mainwindow.ui" line="102"/>
         <source>Import Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="343"/>
+        <location filename="../mainwindow.ui" line="130"/>
         <source>Load Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="353"/>
+        <location filename="../mainwindow.ui" line="137"/>
         <source>Collector Plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="382"/>
+        <location filename="../mainwindow.ui" line="144"/>
         <source>Image Count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="364"/>
+        <location filename="../mainwindow.ui" line="155"/>
         <source>Flickr API</source>
         <translation type="unfinished"></translation>
     </message>
@@ -46,535 +211,137 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="130"/>
-        <source>Project 1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="140"/>
-        <source>Project 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="150"/>
-        <source>Project 3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="194"/>
-        <source>New Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="205"/>
-        <location filename="../mainwindow.ui" line="570"/>
+        <location filename="../mainwindow.ui" line="347"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="227"/>
-        <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="369"/>
+        <location filename="../mainwindow.ui" line="160"/>
         <source>Folder API</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="374"/>
+        <location filename="../mainwindow.ui" line="165"/>
         <source>Bing Image Search API</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="425"/>
+        <location filename="../mainwindow.ui" line="110"/>
         <source>Search Keyword / Label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="432"/>
+        <location filename="../mainwindow.ui" line="226"/>
         <source>Split Validation (%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="466"/>
+        <location filename="../mainwindow.ui" line="117"/>
         <source>40%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="478"/>
+        <location filename="../mainwindow.ui" line="251"/>
         <source>Load Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="511"/>
+        <location filename="../mainwindow.ui" line="288"/>
         <source>Model 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="521"/>
+        <location filename="../mainwindow.ui" line="298"/>
         <source>Model 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="531"/>
+        <location filename="../mainwindow.ui" line="308"/>
         <source>Model 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="559"/>
+        <location filename="../mainwindow.ui" line="336"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="581"/>
-        <location filename="../mainwindow.ui" line="1025"/>
+        <location filename="../mainwindow.ui" line="358"/>
         <source>Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="650"/>
-        <source>Data Augmentation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="658"/>
-        <source>Normalize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="665"/>
-        <source>Random Flip Direction</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="689"/>
-        <source>Random Resized Crop Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="722"/>
-        <source>std</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="729"/>
-        <source>116.28</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="742"/>
-        <source>red</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="749"/>
-        <source>58.395</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="756"/>
-        <source>57.375</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="763"/>
-        <source>57.12</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="770"/>
-        <source>123.675</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="777"/>
-        <source>blue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="784"/>
-        <source>green</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="791"/>
-        <source>mean</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="798"/>
-        <source>103.53</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="809"/>
-        <source>Random Flip Probability</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="816"/>
-        <source>224</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="823"/>
-        <source>horizontal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="830"/>
-        <source>0.5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="867"/>
-        <source>Show Preview</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="879"/>
-        <source>Run Model Training</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="630"/>
+        <location filename="../mainwindow.ui" line="407"/>
         <source>Image Inspection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="95"/>
-        <source>Welcome to RCAIT!
-Select a project to get started</source>
-        <comment>welcome_label</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="644"/>
+        <location filename="../mainwindow.ui" line="426"/>
         <source>AI Training</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="909"/>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="916"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="923"/>
-        <location filename="../mainwindow.ui" line="1080"/>
+        <location filename="../mainwindow.ui" line="446"/>
         <source>Results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="937"/>
-        <source>Run Configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="945"/>
-        <source>Resize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="952"/>
-        <source>256</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="969"/>
+        <location filename="../mainwindow.ui" line="436"/>
         <source>Input Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="991"/>
-        <source>Input Image Directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1037"/>
-        <source>Preview</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1064"/>
-        <source>Classify</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1096"/>
-        <source>Training Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1102"/>
-        <source>Model selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1110"/>
-        <location filename="../mainwindow.ui" line="1251"/>
-        <source>Current Model</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1117"/>
-        <source>Model1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1127"/>
-        <source>Compare to:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1135"/>
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1140"/>
-        <source>Model2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1145"/>
-        <source>Model3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1158"/>
-        <source>Results and Comparison</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1216"/>
-        <source>88.87</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1223"/>
-        <source>68.75</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1230"/>
-        <source>Compared Model</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1237"/>
-        <source>Top1 (%)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1244"/>
-        <source>Top5 (%)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1258"/>
-        <source>90.49</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1265"/>
-        <source>71.62</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1302"/>
-        <location filename="../mainwindow.ui" line="1317"/>
-        <location filename="../mainwindow.ui" line="1461"/>
-        <source>Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1307"/>
-        <location filename="../mainwindow.ui" line="1322"/>
-        <location filename="../mainwindow.ui" line="1466"/>
-        <source>Truck</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1312"/>
-        <location filename="../mainwindow.ui" line="1327"/>
-        <location filename="../mainwindow.ui" line="1456"/>
-        <source>Flugzeug</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1332"/>
-        <source>200</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1337"/>
-        <source>20</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1342"/>
-        <location filename="../mainwindow.ui" line="1357"/>
-        <location filename="../mainwindow.ui" line="1362"/>
-        <location filename="../mainwindow.ui" line="1476"/>
-        <location filename="../mainwindow.ui" line="1481"/>
-        <location filename="../mainwindow.ui" line="1496"/>
-        <location filename="../mainwindow.ui" line="1506"/>
-        <location filename="../mainwindow.ui" line="1511"/>
-        <location filename="../mainwindow.ui" line="1516"/>
-        <location filename="../mainwindow.ui" line="1526"/>
-        <location filename="../mainwindow.ui" line="1531"/>
-        <location filename="../mainwindow.ui" line="1536"/>
-        <location filename="../mainwindow.ui" line="1546"/>
-        <location filename="../mainwindow.ui" line="1551"/>
-        <location filename="../mainwindow.ui" line="1561"/>
-        <location filename="../mainwindow.ui" line="1566"/>
-        <source>0</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1347"/>
-        <source>5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1352"/>
-        <source>180</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1367"/>
-        <source>4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1372"/>
-        <source>50</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1400"/>
-        <location filename="../mainwindow.ui" line="1596"/>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1410"/>
-        <source>Classification Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1421"/>
-        <source>Bild1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1426"/>
-        <source>Bild2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1431"/>
-        <source>Bild3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1436"/>
-        <source>Bild4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1441"/>
-        <source>Bild5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1446"/>
-        <source>Bild6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1451"/>
-        <source>Bild7</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1471"/>
-        <location filename="../mainwindow.ui" line="1501"/>
-        <location filename="../mainwindow.ui" line="1521"/>
-        <location filename="../mainwindow.ui" line="1541"/>
-        <location filename="../mainwindow.ui" line="1556"/>
-        <location filename="../mainwindow.ui" line="1571"/>
-        <source>1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1486"/>
-        <source>0.4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1491"/>
-        <source>0.6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="1616"/>
+        <location filename="../mainwindow.ui" line="455"/>
         <source>Automation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1622"/>
+        <location filename="../mainwindow.ui" line="461"/>
         <source>Batch Processing Tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1628"/>
+        <location filename="../mainwindow.ui" line="467"/>
         <source>Import New Tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1646"/>
+        <location filename="../mainwindow.ui" line="485"/>
         <source>Task 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1655"/>
+        <location filename="../mainwindow.ui" line="494"/>
         <source>Task 7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1664"/>
+        <location filename="../mainwindow.ui" line="503"/>
         <source>Task 8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1677"/>
+        <location filename="../mainwindow.ui" line="516"/>
         <source>Task 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1686"/>
+        <location filename="../mainwindow.ui" line="525"/>
         <source>Task 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1695"/>
+        <location filename="../mainwindow.ui" line="534"/>
         <source>Task 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1704"/>
+        <location filename="../mainwindow.ui" line="543"/>
         <source>Task 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1713"/>
+        <location filename="../mainwindow.ui" line="552"/>
         <source>Task 5</source>
         <translation type="unfinished"></translation>
     </message>
@@ -625,18 +392,13 @@ Select a project to get started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newprojectdialog.ui" line="24"/>
+        <location filename="../newprojectdialog.ui" line="27"/>
         <source>Project name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newprojectdialog.ui" line="34"/>
-        <source>Project base folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../newprojectdialog.ui" line="47"/>
-        <source>Browse</source>
+        <location filename="../newprojectdialog.ui" line="42"/>
+        <source>invalid name!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -672,15 +434,242 @@ Select a project to get started</source>
     </message>
 </context>
 <context>
+    <name>ResultsWidget</name>
+    <message>
+        <location filename="../resultswidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="30"/>
+        <source>Training Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="36"/>
+        <source>Compare Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="71"/>
+        <source>Top Accuracies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="87"/>
+        <source>Run 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="92"/>
+        <source>Run 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="97"/>
+        <source>Run 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="102"/>
+        <source>Top1%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="107"/>
+        <source>Top5%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="137"/>
+        <location filename="../resultswidget.ui" line="333"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="147"/>
+        <source>Classification Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="158"/>
+        <source>Bild1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="163"/>
+        <source>Bild2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="168"/>
+        <source>Bild3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="173"/>
+        <source>Bild4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="178"/>
+        <source>Bild5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="183"/>
+        <source>Bild6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="188"/>
+        <source>Bild7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="193"/>
+        <source>Flugzeug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="198"/>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="203"/>
+        <source>Truck</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="208"/>
+        <location filename="../resultswidget.ui" line="238"/>
+        <location filename="../resultswidget.ui" line="258"/>
+        <location filename="../resultswidget.ui" line="278"/>
+        <location filename="../resultswidget.ui" line="293"/>
+        <location filename="../resultswidget.ui" line="308"/>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="213"/>
+        <location filename="../resultswidget.ui" line="218"/>
+        <location filename="../resultswidget.ui" line="233"/>
+        <location filename="../resultswidget.ui" line="243"/>
+        <location filename="../resultswidget.ui" line="248"/>
+        <location filename="../resultswidget.ui" line="253"/>
+        <location filename="../resultswidget.ui" line="263"/>
+        <location filename="../resultswidget.ui" line="268"/>
+        <location filename="../resultswidget.ui" line="273"/>
+        <location filename="../resultswidget.ui" line="283"/>
+        <location filename="../resultswidget.ui" line="288"/>
+        <location filename="../resultswidget.ui" line="298"/>
+        <location filename="../resultswidget.ui" line="303"/>
+        <source>0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="223"/>
+        <source>0.4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="228"/>
+        <source>0.6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/results/resultswidget.cpp" line="147"/>
+        <source>Compare ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsView</name>
+    <message>
+        <location filename="../view/settingsview.ui" line="14"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/settingsview.ui" line="33"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StartWidget</name>
+    <message>
+        <location filename="../startwidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../startwidget.ui" line="56"/>
+        <source>Welcome to RCAIT!
+Select a project to get started</source>
+        <comment>welcome_label</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../startwidget.ui" line="95"/>
+        <source>Project 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../startwidget.ui" line="105"/>
+        <source>Project 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../startwidget.ui" line="115"/>
+        <source>Project 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../startwidget.ui" line="159"/>
+        <source>New Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../startwidget.ui" line="170"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../startwidget.ui" line="192"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>StaticList</name>
     <message>
         <location filename="../staticlist.ui" line="14"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>TrainingResultView</name>
     <message>
-        <location filename="../staticlist.ui" line="20"/>
-        <source>10 Most Misclassified Images</source>
+        <location filename="../trainingresultview.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trainingresultview.ui" line="31"/>
+        <source>Loss Curve</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trainingresultview.ui" line="62"/>
+        <source>Most Misclassified Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../trainingresultview.ui" line="96"/>
+        <source>Confusion Matrix</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -705,6 +694,21 @@ Select a project to get started</source>
         <location filename="../imagesection.ui" line="46"/>
         <source>Remove selected images</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProjectController</name>
+    <message>
+        <source>Name must contain at least 1 character</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Name may not contain special characters</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>A project with this name aleady exists in the project directory</source>
+        <translation></translation>
     </message>
 </context>
 </TS>

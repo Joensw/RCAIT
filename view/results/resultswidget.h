@@ -13,6 +13,10 @@
 class ResultsWidget : public QWidget {
 Q_OBJECT
 
+protected:
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent *) override;
+
 public:
     explicit ResultsWidget(QWidget *parent = nullptr);
 
@@ -41,6 +45,7 @@ private:
     TrainingResultView *createTrainingResultTab(const QString &tabName);
 
     void dummyFunctionTest();
+    void retranslateUi();
 
     static QPair<QLineSeries *, QLineSeries *>
     parseLossCurveData(const QMap<int, QPair<double, double>> &data_lossCurve);

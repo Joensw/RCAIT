@@ -25,6 +25,9 @@ public slots:
     void slot_loaded(QString path);
     void slot_progress(int progress);
 
+protected:
+    void changeEvent(QEvent *event);
+
 private slots:
     void on_selectFolderButton_clicked();
 
@@ -35,6 +38,7 @@ private slots:
 private:
     Ui::InputImagesWidget *ui;
     QString path;
+    void retranslateUi();
 };
 
 #endif // INPUTIMAGESWIDGET_H
