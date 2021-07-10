@@ -31,6 +31,9 @@ signals:
     void sig_abortTraining();
     void sig_results();
 
+protected:
+    void changeEvent(QEvent *event);
+
 private slots:
     void on_startButton_clicked();
 

@@ -74,12 +74,17 @@ int AITrainingWidget::getResizeValue()
     return ui->resize->value();
 }
 
-
-
-
-
 void AITrainingWidget::on_previewButton_clicked()
 {
     emit sig_showAugmentationPreview();
+}
+
+void AITrainingWidget::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        // this event is send if a translator is loaded
+        ui->retranslateUi(this);
+    }
+    //Call to parent class
+    QWidget::changeEvent(event);
 }
 
