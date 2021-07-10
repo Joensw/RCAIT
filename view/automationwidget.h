@@ -15,8 +15,11 @@ public:
     explicit AutomationWidget(QWidget *parent = nullptr);
     ~AutomationWidget();
 
+    void addTask(QString name);
+
 public slots:
     void slot_progress(int progress);
+    void slot_taskUpdate(QString name, QString state);
 
 
 signals:
@@ -36,6 +39,16 @@ private slots:
     void on_stopButton_clicked();
 
     void on_removeButton_clicked();
+
+    void on_unqueueSelectedButton_clicked();
+
+    void on_queueSelectedButton_clicked();
+
+    void on_queueAllButton_clicked();
+
+    void on_unqueueAllButton_clicked();
+
+    void on_importTasksButton_clicked();
 
 private:
     Ui::AutomationWidget *ui;
