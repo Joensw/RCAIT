@@ -25,7 +25,7 @@ public:
     int getUnqueuedSize();
     int getQueuedSize();
 
-    QList<QString> getunqueuedTasks();
+    QList<QString> getUnqueuedTasks();
     QList<QString> getQueuedTasks();
 
 public slots:
@@ -36,9 +36,10 @@ signals:
 
 
 private:
-    QList<Task*> mIdleTasks;
+    QList<Task*> mUnqueuedTasks;
     QList<Task*> mQueuedTasks;
     DataManager *mDataManager;
+    bool stop = false;
 };
 
 #endif // AUTOMATOR_H
