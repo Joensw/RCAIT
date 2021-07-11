@@ -47,10 +47,10 @@ AITrainingWidget *MainWindow::getAITrainingWidget() {
 
 ImportFilesWidget *MainWindow::getImportFilesWidget() {
     return ui->tab_import;
+}
 
 AutomationWidget *MainWindow::getAutomationWidget() {
     return ui->tab_automation;
-
 }
 
 void MainWindow::slot_settingsButton_clicked() {

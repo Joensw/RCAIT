@@ -37,9 +37,7 @@ public:
     StartWidget * getStartWidget();
     InputImagesWidget *getInputImagesWidget();
     AITrainingWidget *getAITrainingWidget();
-
     ImportFilesWidget * getImportFilesWidget();
-
     AutomationWidget *getAutomationWidget();
 
 
