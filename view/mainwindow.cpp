@@ -45,6 +45,10 @@ AITrainingWidget *MainWindow::getAITrainingWidget() {
     return ui->tab_ai_training;
 }
 
+AutomationWidget *MainWindow::getAutomationWidget() {
+    return ui->tab_automation;
+}
+
 void MainWindow::slot_settingsButton_clicked() {
     emit sig_openSettings();
 }

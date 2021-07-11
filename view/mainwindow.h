@@ -12,6 +12,7 @@
 #include <QDir>
 
 #include "aitrainingwidget.h"
+#include "automationwidget.h"
 #include "inputimageswidget.h"
 #include "startwidget.h"
 
@@ -35,6 +36,7 @@ public:
     StartWidget * getStartWidget();
     InputImagesWidget *getInputImagesWidget();
     AITrainingWidget *getAITrainingWidget();
+    AutomationWidget *getAutomationWidget();
 
 signals:
     void sig_openSettings();
