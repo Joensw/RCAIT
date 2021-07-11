@@ -13,12 +13,12 @@ public:
     ClassificationPluginManager();
 
     void loadPlugins(QString pluginDir);
-    ClassificationPluginManager * getInstance();
+    static ClassificationPluginManager * getInstance();
     QWidget * getConfigurationWidget(QString pluginName);
     void saveConfiguration(QString pluginName);
     QWidget * getInputWidget(QString pluginName);
     QMap<QString, QString> getModelNames(QString projectPath);
-    bool createNewMoel(QString ModelName, QString pluingName, QString baseModel);
+    bool createNewModel(QString ModelName, QString pluingName, QString baseModel);
     bool getAugmentationPreview(QString pluginName, QString inputPath);
     bool removeModel(QString modelName, QString pluginName);
     TrainingResult * train (QString pluginName, QString modelName, QString dataSetPath, ProgressablePlugin * receiver);

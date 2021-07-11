@@ -24,6 +24,7 @@ CONFIG += c++17 static
 SOURCES += \
     controller/aicontroller.cpp \
     controller/automationcontroller.cpp \
+    controller/modelcontroller.cpp \
     controller/projectcontroller.cpp \
     controller/controller.cpp \
     controller/settingscontroller.cpp \
@@ -84,6 +85,7 @@ SOURCES += \
 HEADERS += \
     controller/aicontroller.h \
     controller/automationcontroller.h \
+    controller/modelcontroller.h \
     controller/projectcontroller.h \
     controller/controller.h \
     controller/settingscontroller.h \
