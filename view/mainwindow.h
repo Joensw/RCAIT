@@ -47,7 +47,7 @@ private:
     QTranslator m_translator; /*< contains the translations for this application*/
     QString m_currLang; /*< contains the currently loaded language*/
     const QString m_langPath = QDir(":/i18n/").exists()? ":/i18n/" : QDir::currentPath() + "/"; /*< Path of language files. This is always fixed.*/
-    QPushButton * pushButton_settings = new QPushButton();
+    QPushButton * pushButton_settings = new QPushButton(this);
 
     void placeSettingsButton();
 

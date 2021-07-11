@@ -21,7 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::placeSettingsButton() {
-    pushButton_settings->setParent(this);
     pushButton_settings->setFlat(true);
     pushButton_settings->setIcon(QIcon(":/Resources/TabIcons/Filled/Tab_Settings_Icon.svg"));
     pushButton_settings->setIconSize(QSize(32, 57));
