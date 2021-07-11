@@ -1,7 +1,3 @@
-//
-// Created by Paul on 02.07.2021.
-//
-
 #include "datamanager.h"
 
 DataManager::DataManager(){
@@ -91,8 +87,8 @@ void DataManager::saveTrainingsResult(ClassificationResult result){
 TrainingResult DataManager::getTrainingsResult(QString modelResultName){
     return mProjectManager->getTrainingsResult(modelResultName);
 }
-QStringList DataManager::getNamesOfSavedTrainingReults(){
-    return mProjectManager->getNamesOfSavedTrainingReults();
+QStringList DataManager::getNamesOfSavedTrainingResults(){
+    return mProjectManager->getNamesOfSavedTrainingResults();
 }
 
 

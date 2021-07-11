@@ -1,9 +1,5 @@
-//
-// Created by Paul on 02.07.2021.
-//
-
-#ifndef RCAIT_DATAMANAGER_H
-#define RCAIT_DATAMANAGER_H
+#ifndef DATAMANAGER_H
+#define DATAMANAGER_H
 
 #include <QStringList>
 #include <QWidget>
@@ -46,13 +42,14 @@ public:
     void saveClassificationResult(ClassificationResult result);
     void saveTrainingsResult(ClassificationResult result);
     TrainingResult getTrainingsResult(QString modelResultName);
-    QStringList getNamesOfSavedTrainingReults();
+    QStringList getNamesOfSavedTrainingResults();
 
 private:
+    //TODO: Singleton adaption
     ProjectManager* mProjectManager;
     ModelManager* mModelManager;
     SettingsManager* mSettingsManager;
 };
 
 
-#endif //RCAIT_DATAMANAGER_H
+#endif //DATAMANAGER_H
