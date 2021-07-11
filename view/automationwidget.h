@@ -18,7 +18,7 @@ public:
     void addTask(QString name);
 
 public slots:
-    void slot_progress(int progress);
+    //void slot_progress(int progress);
     void slot_taskUpdate(QString name, QString state);
 
 

@@ -1,7 +1,7 @@
 #ifndef AUTOMATIONCONTROLLER_H
 #define AUTOMATIONCONTROLLER_H
 
-#include <DataManager.h>
+#include <datamanager.h>
 #include <QObject>
 #include <automationwidget.h>
 #include <automator.h>
