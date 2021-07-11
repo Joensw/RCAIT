@@ -4,15 +4,16 @@
 #include <QString>
 #include <QWidget>
 
+#include "classificationpluginmanager.h"
+
+
+
 
 class ModelManager
 {
 public:
-    //ModelManager::ModelManager(ClassificationPluginManager * classificationPluginManager)
     ModelManager();
 
-    //TODO update this when it exists
-    //ModelManager(ClassificationPluginManager* classificationPluginManager);
 
     void createNewModel(QString modelName, QString pluginName, QString baseModel);
     void removeModel(QString modelName, QString pluginName);
@@ -24,11 +25,8 @@ public:
 
 
 
-
-
-
 private:
-    //ClassificationPluginManager * mClassificationPluginManager;
+    ClassificationPluginManager * mClassificationPluginManager;
 
     QString mCurrentModel;
     QString mCurrentPlugin;
