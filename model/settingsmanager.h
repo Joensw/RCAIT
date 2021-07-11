@@ -23,7 +23,7 @@ public:
     void saveImageLoaderPluginDir(QString value);
     QString getImageLoaderPluginDir();
 
-
+    QStringList getClassificationPluginNames();
 
 
 

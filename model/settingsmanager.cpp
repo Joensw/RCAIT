@@ -17,6 +17,12 @@ QStringList SettingsManager::getPluginNames(){
     loaderPlugins.append(classifierPlugins);
     return loaderPlugins;
 }
+
+QStringList SettingsManager::getClassificationPluginNames(){
+    QStringList classifierPlugins;
+    return classifierPlugins;
+}
+
 //sends a request to both pluginManagers, combines them into a single list and returns them
 QList<QWidget *> SettingsManager::getPluginSettings(){
     QList<QWidget *> loaderPluginsWidgets;
