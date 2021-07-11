@@ -5,6 +5,7 @@
 #include "projectcontroller.h"
 #include "datamanager.h"
 #include "aicontroller.h"
+#include "modelcontroller.h"
 #include <mainwindow.h>
 
 #include <QObject>
@@ -26,6 +27,8 @@ private:
     ProjectController * mProjectController;
 
     AIController * mAiController;
+
+    ModelController * mModelController;
 
     DataManager * mDataManger;
 
