@@ -30,6 +30,14 @@ private:
 
 private slots:
     void on_pushButton_clearTags_clicked();
+
+    void on_pushButton_addModel_clicked();
+    void on_pushButton_removeModel_clicked();
+    void on_pushButton_loadModel_clicked();
+signals:
+    void sig_newModel();
+    void sig_removeModel(QString modelName);
+    void sig_loadModel(QString modelName);
 };
 
 #endif // RCAIT_IMPORTFILESWIDGET_H

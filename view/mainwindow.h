@@ -14,6 +14,7 @@
 #include "aitrainingwidget.h"
 #include "inputimageswidget.h"
 #include "startwidget.h"
+#include "importfileswidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,6 +36,7 @@ public:
     StartWidget * getStartWidget();
     InputImagesWidget *getInputImagesWidget();
     AITrainingWidget *getAITrainingWidget();
+    ImportFilesWidget * getImportFilesWidget();
 
 signals:
     void sig_openSettings();
