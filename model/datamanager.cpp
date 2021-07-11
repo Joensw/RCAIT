@@ -1,7 +1,7 @@
 #include "datamanager.h"
 
 DataManager::DataManager(){
-    mProjectManager = new ProjectManager;
+    mProjectManager = &ProjectManager::getInstance();
     mModelManager = new ModelManager;
     mSettingsManager = new SettingsManager;
 }

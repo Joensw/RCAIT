@@ -9,7 +9,16 @@
 
 class ProjectManager {
 public:
-    ProjectManager();
+    //Threadsafe Singleton pattern
+    ProjectManager(ProjectManager const &) = delete;
+
+    void operator=(ProjectManager const &) = delete;
+
+    static ProjectManager &getInstance() {
+        static ProjectManager instance; // Guaranteed to be destroyed.
+        // Instantiated on first use.
+        return instance;
+    }
 
     void createNewProject(QString projectName);
 
@@ -42,6 +51,8 @@ private:
     QString mProjectDataSetDir;
     QString mProjectResultsDir;
     QString mProjectName;
+
+    ProjectManager();
 };
 
 
