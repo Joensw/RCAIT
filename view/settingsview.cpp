@@ -18,13 +18,13 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
     ui->setupUi(this);
 
 
-    ui->pluginList->addItem("Global settings");
+    ui->pluginList->addItem(tr("Global settings"));
     mGlobalSettingsWidget = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout(mGlobalSettingsWidget);
 
-    QPushButton *projectDirButton = new QPushButton("Select project directory");
-    QPushButton *classificationPluginsDirButton = new QPushButton("Select classification plugin directory");
-    QPushButton *imageLoaderPluginsDirButton = new QPushButton("Select image loader plugin directory");
+    QPushButton *projectDirButton = new QPushButton(tr("Select project directory"));
+    QPushButton *classificationPluginsDirButton = new QPushButton(tr("Select classification plugin directory"));
+    QPushButton *imageLoaderPluginsDirButton = new QPushButton(tr("Select image loader plugin directory"));
     connect(projectDirButton, &QPushButton::clicked, this, &SettingsView::slot_setProjectDir);
     connect(classificationPluginsDirButton, &QPushButton::clicked, this, &SettingsView::slot_setClassificationPluginsDir);
     connect(imageLoaderPluginsDirButton, &QPushButton::clicked, this, &SettingsView::slot_setImageLoaderPluginsDir);
@@ -66,17 +66,17 @@ void SettingsView::on_saveButton_clicked()
 //private slots for global settings widget
 void SettingsView::slot_setProjectDir()
 {
-     mProjectDir = QFileDialog::getExistingDirectory(this, "Select project directory");
+     mProjectDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
 }
 
 void SettingsView::slot_setClassificationPluginsDir()
 {
-     mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, "Select project directory");
+     mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
 }
 
 void SettingsView::slot_setImageLoaderPluginsDir()
 {
-     mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, "Select project directory");
+     mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
 }
 
 

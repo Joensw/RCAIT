@@ -33,6 +33,9 @@ signals:
     void sig_unqueueSelected(int index);
 
 
+protected:
+    void changeEvent(QEvent *event);
+
 private slots:
     void on_startButton_clicked();
 
