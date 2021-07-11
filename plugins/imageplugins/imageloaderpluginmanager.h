@@ -1,5 +1,5 @@
-#ifndef RCAIT_IMAGELOADERPLUGINMANAGER_H
-#define RCAIT_IMAGELOADERPLUGINMANAGER_H
+#ifndef IMAGELOADERPLUGINMANAGER_H
+#define IMAGELOADERPLUGINMANAGER_H
 
 
 #include <QString>
@@ -12,11 +12,19 @@
 class ImageLoaderPluginManager : public PluginManager{
 private:
     ImageLoaderPluginManager();
-    static volatile ImageLoaderPluginManager* instance;
 
 public:
+    //Threadsafe singleton pattern
+    ImageLoaderPluginManager(ImageLoaderPluginManager const &) = delete;
+    void operator=(ImageLoaderPluginManager const &) = delete;
+
+    static ImageLoaderPluginManager &getInstance() {
+        static ImageLoaderPluginManager instance; // Guaranteed to be destroyed.
+        // Instantiated on first use.
+        return instance;
+    }
+
     void loadPlugins(QString pluginDir);
-    ImageLoaderPluginManager* getInstance();
     QWidget* getConfigurationWidget(QString pluginName);
     void saveConfiguration(QString pluginName);
     QWidget* getInputWidget(QString pluginName);
@@ -24,4 +32,4 @@ public:
 };
 
 
-#endif //RCAIT_IMAGELOADERPLUGINMANAGER_H
+#endif //IMAGELOADERPLUGINMANAGER_H
