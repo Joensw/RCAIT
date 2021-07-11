@@ -53,6 +53,10 @@ QString DataManager::getCurrentClassificationPlugin(){
 QStringList DataManager::getPluginNames(){
     return mSettingsManager->getPluginNames();
 }
+QStringList DataManager::getClassificationPluginNames(){
+    return mSettingsManager->getClassificationPluginNames();
+}
+
 QList<QWidget*> DataManager::getPluginSettings(){
     return mSettingsManager->getPluginSettings();
 }

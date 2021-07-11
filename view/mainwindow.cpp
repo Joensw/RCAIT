@@ -44,6 +44,15 @@ AITrainingWidget *MainWindow::getAITrainingWidget() {
     return ui->tab_ai_training;
 }
 
+
+ImportFilesWidget *MainWindow::getImportFilesWidget() {
+    return ui->tab_import;
+
+AutomationWidget *MainWindow::getAutomationWidget() {
+    return ui->tab_automation;
+
+}
+
 void MainWindow::slot_settingsButton_clicked() {
     emit sig_openSettings();
 }

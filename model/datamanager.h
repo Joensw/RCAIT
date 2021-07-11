@@ -30,6 +30,7 @@ public:
     QString getCurrentClassificationPlugin();
 
     QStringList getPluginNames();
+    QStringList getClassificationPluginNames();
     QList<QWidget*> getPluginSettings();
     void savePluginSettings(int index);
     void saveProjectsDir(QString value);
