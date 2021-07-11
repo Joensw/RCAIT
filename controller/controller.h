@@ -6,6 +6,7 @@
 #include "datamanager.h"
 #include "aicontroller.h"
 #include "modelcontroller.h"
+#include "automationcontroller.h"
 #include <mainwindow.h>
 
 #include <QObject>
@@ -28,7 +29,11 @@ private:
 
     AIController * mAiController;
 
+
     ModelController * mModelController;
+
+    AutomationController * mAutomationController;
+
 
     DataManager * mDataManger;
 

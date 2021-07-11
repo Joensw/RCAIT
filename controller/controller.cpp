@@ -8,6 +8,7 @@ Controller::Controller(QObject *parent) : QObject(parent)
     mProjectController = new ProjectController(this, mDataManger, mMainWindow->getStartWidget());
     mModelController = new ModelController(this , mDataManger, mMainWindow->getImportFilesWidget());
     mAiController = new AIController(mDataManger, mMainWindow->getInputImagesWidget(), mMainWindow->getAITrainingWidget());
+    mAutomationController = new AutomationController(mDataManger, mMainWindow->getAutomationWidget());
 
 
     connect(mMainWindow, &MainWindow::sig_openSettings, mSettingsController, &SettingsController::slot_openSettings);
