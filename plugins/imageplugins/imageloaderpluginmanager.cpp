@@ -8,10 +8,6 @@ void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
 
 }
 
-ImageLoaderPluginManager *ImageLoaderPluginManager::getInstance() {
-    return nullptr;
-}
-
 QWidget *ImageLoaderPluginManager::getConfigurationWidget(QString pluginName) {
     return nullptr;
 }

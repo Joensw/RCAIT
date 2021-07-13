@@ -37,19 +37,25 @@ signals:
 
 private:
     Ui::ResultsWidget *ui;
-    QMenu *menu_addRun = new QMenu(this);
     QPushButton *pushButton_addResult = new QPushButton(this);
+    QMenu *menu_addRun = new QMenu(pushButton_addResult);
+    QMap<QString, int> m_mapTrainingResultTabs;
 
-    void configureAddComparisonButton(QTabWidget *tabWidget);
-
-    TrainingResultView *createTrainingResultTab(const QString &tabName);
+    TrainingResultView *addTrainingResultTab(const QString &tabName);
 
     void dummyFunctionTest();
+
     void retranslateUi();
 
     static QPair<QLineSeries *, QLineSeries *>
     parseLossCurveData(const QMap<int, QPair<double, double>> &data_lossCurve);
+
+private slots:
+
+    void slot_comparisonMenu_triggered(QAction *action);
+
+    void deleteTrainingResultTab(const QString &tabName);
 };
 
 
-#endif //RCAIT_RESULTSWIDGET_H
+#endif //RESULTSWIDGET_H

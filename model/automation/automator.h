@@ -11,28 +11,35 @@
 
 class Automator : public Progressable
 {
+    Q_OBJECT
 public:
     Automator(DataManager *dataManager);
 
     void performTasks();
+    void stopTasks();
     void addTasks(QString path);
     void remove(int taskNum);
-    void setIdle(int taskNum);
-    void schedule(int taskNum);
-    QList<QString> getIdleTasks();
-    QList<QString> getSheduledTasks();
+    void unqueue(int taskNum);
+    void queue(int taskNum);
+
+    int getUnqueuedSize();
+    int getQueuedSize();
+
+    QList<QString> getUnqueuedTasks();
+    QList<QString> getQueuedTasks();
 
 public slots:
     void slot_taskUpdated();
 
 signals:
-    void sig_taskUpdate();
+    void sig_taskUpdate(QString name, QString state);
 
 
 private:
-    QList<Task*> mIdleTask;
-    QList<Task*> mSheduledTask;
+    QList<Task*> mUnqueuedTasks;
+    QList<Task*> mQueuedTasks;
     DataManager *mDataManager;
+    bool stop = false;
 };
 
 #endif // AUTOMATOR_H

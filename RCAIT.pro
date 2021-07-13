@@ -23,6 +23,8 @@ CONFIG += c++17 static
 
 SOURCES += \
     controller/aicontroller.cpp \
+    controller/automationcontroller.cpp \
+    controller/modelcontroller.cpp \
     controller/projectcontroller.cpp \
     controller/controller.cpp \
     controller/settingscontroller.cpp \
@@ -35,6 +37,7 @@ SOURCES += \
     model/automation/trainingtask.cpp \
     model/modelmanager.cpp \
     model/pluginusage/aithread.cpp \
+    model/pluginusage/classificationpluginmanager.cpp \
     model/pluginusage/classifiertrainer.cpp \
     model/pluginusage/imageloader.cpp \
     model/pluginusage/imageloader.cpp \
@@ -81,6 +84,8 @@ SOURCES += \
 
 HEADERS += \
     controller/aicontroller.h \
+    controller/automationcontroller.h \
+    controller/modelcontroller.h \
     controller/projectcontroller.h \
     controller/controller.h \
     controller/settingscontroller.h \
@@ -93,6 +98,7 @@ HEADERS += \
     model/automation/trainingtask.h \
     model/modelmanager.h \
     model/pluginusage/aithread.h \
+    model/pluginusage/classificationpluginmanager.h \
     model/pluginusage/classifiertrainer.h \
     model/pluginusage/imageloader.h \
     model/pluginusage/imageloader.h \

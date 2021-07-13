@@ -12,8 +12,10 @@
 #include <QDir>
 
 #include "aitrainingwidget.h"
+#include "automationwidget.h"
 #include "inputimageswidget.h"
 #include "startwidget.h"
+#include "importfileswidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,6 +37,9 @@ public:
     StartWidget * getStartWidget();
     InputImagesWidget *getInputImagesWidget();
     AITrainingWidget *getAITrainingWidget();
+    ImportFilesWidget * getImportFilesWidget();
+    AutomationWidget *getAutomationWidget();
+
 
 signals:
     void sig_openSettings();
@@ -47,7 +52,7 @@ private:
     QTranslator m_translator; /*< contains the translations for this application*/
     QString m_currLang; /*< contains the currently loaded language*/
     const QString m_langPath = QDir(":/i18n/").exists()? ":/i18n/" : QDir::currentPath() + "/"; /*< Path of language files. This is always fixed.*/
-    QPushButton * pushButton_settings = new QPushButton();
+    QPushButton * pushButton_settings = new QPushButton(this);
 
     void placeSettingsButton();
 

@@ -29,7 +29,7 @@
     </message>
     <message>
         <source>116.28</source>
-        <translation type="unfinished">116.28</translation>
+        <translation type="obsolete">116.28</translation>
     </message>
     <message>
         <source>red</source>
@@ -37,19 +37,19 @@
     </message>
     <message>
         <source>58.395</source>
-        <translation type="unfinished">58.395</translation>
+        <translation type="obsolete">58.395</translation>
     </message>
     <message>
         <source>57.375</source>
-        <translation type="unfinished">57.375</translation>
+        <translation type="obsolete">57.375</translation>
     </message>
     <message>
         <source>57.12</source>
-        <translation type="unfinished">57.12</translation>
+        <translation type="obsolete">57.12</translation>
     </message>
     <message>
         <source>123.675</source>
-        <translation type="unfinished">123.675</translation>
+        <translation type="obsolete">123.675</translation>
     </message>
     <message>
         <source>blue</source>
@@ -65,7 +65,7 @@
     </message>
     <message>
         <source>103.53</source>
-        <translation type="unfinished">103.53</translation>
+        <translation type="obsolete">103.53</translation>
     </message>
     <message>
         <source>Random Flip Probability</source>
@@ -73,7 +73,7 @@
     </message>
     <message>
         <source>224</source>
-        <translation type="unfinished">224</translation>
+        <translation type="obsolete">224</translation>
     </message>
     <message>
         <source>horizontal</source>
@@ -81,7 +81,7 @@
     </message>
     <message>
         <source>0.5</source>
-        <translation type="unfinished">0.5</translation>
+        <translation type="obsolete">0.5</translation>
     </message>
     <message>
         <source>Show Preview</source>
@@ -97,7 +97,7 @@
     </message>
     <message>
         <source>256</source>
-        <translation type="unfinished">256</translation>
+        <translation type="obsolete">256</translation>
     </message>
     <message>
         <source>Run Model Training</source>
@@ -114,6 +114,112 @@
     <message>
         <source>Results</source>
         <translation type="unfinished">Ergebnisse</translation>
+    </message>
+    <message>
+        <source>0,00</source>
+        <translation type="unfinished">40% {0,00?}</translation>
+    </message>
+    <message>
+        <source>0,000</source>
+        <translation type="unfinished">40% {0,000?}</translation>
+    </message>
+    <message>
+        <source>0</source>
+        <translation type="unfinished">0</translation>
+    </message>
+    <message>
+        <source>0,0000</source>
+        <translation type="unfinished">40% {0,0000?}</translation>
+    </message>
+</context>
+<context>
+    <name>AutomationWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Batch Processing Tasks</source>
+        <translation type="unfinished">Stapelverarbeitungsaufgaben</translation>
+    </message>
+    <message>
+        <source>Import New Tasks</source>
+        <translation type="unfinished">Importiere neue Aufgaben</translation>
+    </message>
+</context>
+<context>
+    <name>ImportFilesWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Import Images</source>
+        <translation type="unfinished">Importiere Bilder</translation>
+    </message>
+    <message>
+        <source>Load Images</source>
+        <translation type="unfinished">Lade Bilder</translation>
+    </message>
+    <message>
+        <source>Collector Plugin</source>
+        <translation type="unfinished">Sammlerplugin</translation>
+    </message>
+    <message>
+        <source>Split Validation (%)</source>
+        <translation type="unfinished">Validierungsanteil (%)</translation>
+    </message>
+    <message>
+        <source>Search Keyword / Label</source>
+        <translation type="unfinished">Suchbegriff / Label</translation>
+    </message>
+    <message>
+        <source>Flickr API</source>
+        <translation type="unfinished">Flickr API</translation>
+    </message>
+    <message>
+        <source>Folder API</source>
+        <translation type="unfinished">Ordner API</translation>
+    </message>
+    <message>
+        <source>Bing Image Search API</source>
+        <translation type="unfinished">Bing Bildsuche API</translation>
+    </message>
+    <message>
+        <source>Image Count</source>
+        <translation type="unfinished">Bilderanzahl</translation>
+    </message>
+    <message>
+        <source>40%</source>
+        <translation type="unfinished">40%</translation>
+    </message>
+    <message>
+        <source>Load Model</source>
+        <translation type="unfinished">Lade Modell</translation>
+    </message>
+    <message>
+        <source>Model 1</source>
+        <translation type="unfinished">Modell 1</translation>
+    </message>
+    <message>
+        <source>Model 2</source>
+        <translation type="unfinished">Modell 2</translation>
+    </message>
+    <message>
+        <source>Model 3</source>
+        <translation type="unfinished">Modell 3</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Hinzufügen</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Entfernen</translation>
+    </message>
+    <message>
+        <source>Load</source>
+        <translation type="unfinished">Laden</translation>
     </message>
 </context>
 <context>
@@ -134,6 +240,10 @@
         <source>Cancel</source>
         <translation type="unfinished">Abbrechen</translation>
     </message>
+    <message>
+        <source>Select image directory</source>
+        <translation type="unfinished">Bildordner auswählen</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -144,31 +254,31 @@
     </message>
     <message>
         <source>Import Images</source>
-        <translation>Importiere Bilder</translation>
+        <translation type="vanished">Importiere Bilder</translation>
     </message>
     <message>
         <source>Search Keyword / Label</source>
-        <translation>Suchbegriff / Label</translation>
+        <translation type="vanished">Suchbegriff / Label</translation>
     </message>
     <message>
         <source>Image Count</source>
-        <translation>Bilderanzahl</translation>
+        <translation type="vanished">Bilderanzahl</translation>
     </message>
     <message>
         <source>Collector Plugin</source>
-        <translation>Sammlerplugin</translation>
+        <translation type="vanished">Sammlerplugin</translation>
     </message>
     <message>
         <source>Flickr API</source>
-        <translation>Flickr API</translation>
+        <translation type="vanished">Flickr API</translation>
     </message>
     <message>
         <source>Bing Image Search API</source>
-        <translation>Bing Bildsuche API</translation>
+        <translation type="vanished">Bing Bildsuche API</translation>
     </message>
     <message>
         <source>Load Images</source>
-        <translation>Lade Bilder</translation>
+        <translation type="vanished">Lade Bilder</translation>
     </message>
     <message>
         <source>AI Training</source>
@@ -188,47 +298,47 @@
     </message>
     <message>
         <source>Batch Processing Tasks</source>
-        <translation>Stapelverarbeitungsaufgaben</translation>
+        <translation type="vanished">Stapelverarbeitungsaufgaben</translation>
     </message>
     <message>
         <source>Import New Tasks</source>
-        <translation>Importiere neue Aufgaben</translation>
+        <translation type="vanished">Importiere neue Aufgaben</translation>
     </message>
     <message>
         <source>Task 6</source>
-        <translation>Aufgabe 6</translation>
+        <translation type="vanished">Aufgabe 6</translation>
     </message>
     <message>
         <source>Task 7</source>
-        <translation>Aufgabe 7</translation>
+        <translation type="vanished">Aufgabe 7</translation>
     </message>
     <message>
         <source>Task 8</source>
-        <translation>Aufgabe 8</translation>
+        <translation type="vanished">Aufgabe 8</translation>
     </message>
     <message>
         <source>Task 1</source>
-        <translation>Aufgabe 1</translation>
+        <translation type="vanished">Aufgabe 1</translation>
     </message>
     <message>
         <source>Task 2</source>
-        <translation>Aufgabe 2</translation>
+        <translation type="vanished">Aufgabe 2</translation>
     </message>
     <message>
         <source>Task 3</source>
-        <translation>Aufgabe 3</translation>
+        <translation type="vanished">Aufgabe 3</translation>
     </message>
     <message>
         <source>Task 4</source>
-        <translation>Aufgabe 4</translation>
+        <translation type="vanished">Aufgabe 4</translation>
     </message>
     <message>
         <source>Task 5</source>
-        <translation>Aufgabe 5</translation>
+        <translation type="vanished">Aufgabe 5</translation>
     </message>
     <message>
         <source>Load Model</source>
-        <translation>Lade Modell</translation>
+        <translation type="vanished">Lade Modell</translation>
     </message>
     <message>
         <source>Import Files</source>
@@ -236,7 +346,7 @@
     </message>
     <message>
         <source>Folder API</source>
-        <translation>Ordner API</translation>
+        <translation type="vanished">Ordner API</translation>
     </message>
     <message>
         <source>Image Inspection</source>
@@ -248,35 +358,35 @@
     </message>
     <message>
         <source>Remove</source>
-        <translation>Entfernen</translation>
+        <translation type="vanished">Entfernen</translation>
     </message>
     <message>
         <source>Split Validation (%)</source>
-        <translation>Validierungsanteil (%)</translation>
+        <translation type="vanished">Validierungsanteil (%)</translation>
     </message>
     <message>
         <source>40%</source>
-        <translation>40%</translation>
+        <translation type="vanished">40%</translation>
     </message>
     <message>
         <source>Model 1</source>
-        <translation>Modell 1</translation>
+        <translation type="vanished">Modell 1</translation>
     </message>
     <message>
         <source>Model 2</source>
-        <translation>Modell 2</translation>
+        <translation type="vanished">Modell 2</translation>
     </message>
     <message>
         <source>Model 3</source>
-        <translation>Modell 3</translation>
+        <translation type="vanished">Modell 3</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Hinzufügen</translation>
+        <translation type="vanished">Hinzufügen</translation>
     </message>
     <message>
         <source>Load</source>
-        <translation>Laden</translation>
+        <translation type="vanished">Laden</translation>
     </message>
 </context>
 <context>
@@ -326,6 +436,21 @@
     </message>
 </context>
 <context>
+    <name>ProjectController</name>
+    <message>
+        <source>Name must contain at least 1 character</source>
+        <translation>Der Name muss mindestens aus einem Zeichen bestehen</translation>
+    </message>
+    <message>
+        <source>Name may not contain special characters</source>
+        <translation>Der Name darf keine Sonderzeichen enthalten</translation>
+    </message>
+    <message>
+        <source>A project with this name aleady exists in the project directory</source>
+        <translation>Dieser Projektname ist bereits vergeben</translation>
+    </message>
+</context>
+<context>
     <name>RemoveModelDialog</name>
     <message>
         <source>Remove Model</source>
@@ -343,8 +468,8 @@
         <translation>Projekt löschen</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;project1&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Willst du wirklich &amp;quot;Projekt 1&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Remove associated Models</source>
@@ -468,6 +593,24 @@
         <source>Save</source>
         <translation type="unfinished">Speichern</translation>
     </message>
+    <message>
+        <source>Global settings</source>
+        <translation type="unfinished">Globale Einstellungen</translation>
+    </message>
+    <message>
+        <source>Select project directory</source>
+        <translation type="unfinished">Projektverzeichnis wählen</translation>
+    </message>
+    <message>
+        <source>Select classification plugin directory</source>
+        <translatorcomment>kann man sicher eleganter übersetzen</translatorcomment>
+        <translation type="unfinished">Klassifizierungspluginverzeichnis wählen</translation>
+    </message>
+    <message>
+        <source>Select image loader plugin directory</source>
+        <translatorcomment>kann man sicher eleganter übersetzen</translatorcomment>
+        <translation type="unfinished">Bildladerpluginverzeichnis wählen</translation>
+    </message>
 </context>
 <context>
     <name>StartWidget</name>
@@ -484,15 +627,15 @@ Wähle ein Projekt aus, um loszulegen</translation>
     </message>
     <message>
         <source>Project 1</source>
-        <translation type="unfinished">Projekt 1</translation>
+        <translation type="obsolete">Projekt 1</translation>
     </message>
     <message>
         <source>Project 2</source>
-        <translation type="unfinished">Projekt 2</translation>
+        <translation type="obsolete">Projekt 2</translation>
     </message>
     <message>
         <source>Project 3</source>
-        <translation type="unfinished">Projekt 3</translation>
+        <translation type="obsolete">Projekt 3</translation>
     </message>
     <message>
         <source>New Project</source>
@@ -550,21 +693,6 @@ Wähle ein Projekt aus, um loszulegen</translation>
     <message>
         <source>Remove selected images</source>
         <translation>Entferne ausgewählte Bilder</translation>
-    </message>
-</context>
-<context>
-    <name>ProjectController</name>
-    <message>
-        <source>Name must contain at least 1 character</source>
-        <translation>Der Name muss mindestens aus einem Zeichen bestehen</translation>
-    </message>
-    <message>
-        <source>Name may not contain special characters</source>
-        <translation>Der Name darf keine Sonderzeichen enthalten</translation>
-    </message>
-    <message>
-        <source>A project with this name aleady exists in the project directory</source>
-        <translation>Dieser Projektname ist bereits vergeben</translation>
     </message>
 </context>
 </TS>

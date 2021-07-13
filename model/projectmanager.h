@@ -1,9 +1,5 @@
-//
-// Created by Paul on 02.07.2021.
-//
-
-#ifndef RCAIT_PROJECTMANAGER_H
-#define RCAIT_PROJECTMANAGER_H
+#ifndef PROJECTMANAGER_H
+#define PROJECTMANAGER_H
 
 #include <QString>
 #include "classificationresult.h"
@@ -13,25 +9,40 @@
 
 class ProjectManager {
 public:
-    ProjectManager();
+    //Threadsafe Singleton pattern
+    ProjectManager(ProjectManager const &) = delete;
+
+    void operator=(ProjectManager const &) = delete;
+
+    static ProjectManager &getInstance() {
+        static ProjectManager instance; // Guaranteed to be destroyed.
+        // Instantiated on first use.
+        return instance;
+    }
 
     void createNewProject(QString projectName);
+
     void removeProject(QString projectName);
+
     void loadProject(QString projectName);
+
     QStringList getProjects();
+
     QString getProjectPath();
+
     QString getProjectTempDir();
+
     QString getProjectDataSetDir();
+
     QString getResultsDir();
 
-
     void saveClassificationResult(ClassificationResult result);
+
     void saveTrainingsResult(ClassificationResult result);
+
     TrainingResult getTrainingsResult(QString modelResultName);
-    QStringList getNamesOfSavedTrainingReults();
 
-
-
+    QStringList getNamesOfSavedTrainingResults();
 
 
 private:
@@ -40,7 +51,9 @@ private:
     QString mProjectDataSetDir;
     QString mProjectResultsDir;
     QString mProjectName;
+
+    ProjectManager();
 };
 
 
-#endif //RCAIT_PROJECTMANAGER_H
+#endif //PROJECTMANAGER_H

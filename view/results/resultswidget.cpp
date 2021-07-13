@@ -4,25 +4,50 @@
 #include <QRandomGenerator>
 #include "resultswidget.h"
 #include "ui_resultswidget.h"
-#include "results\confusionmatrix.h"
+#include "confusionmatrix.h"
+#include "projectmanager.h"
 
 ResultsWidget::ResultsWidget(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::ResultsWidget) {
 
     ui->setupUi(this);
-    configureAddComparisonButton(ui->tabWidget_comparison);
-    //TODO: Remove dummy code
-    dummyFunctionTest();
 
-}
-
-void ResultsWidget::configureAddComparisonButton(QTabWidget *tabWidget) {
+    //Configure add run compare button
     const auto icon = QIcon(":/Resources/UISymbols/UI_Add_Result_Comparison_Icon.svg");
     pushButton_addResult->setIcon(icon);
     pushButton_addResult->setFlat(true);
     pushButton_addResult->setMenu(menu_addRun);
-    tabWidget->setCornerWidget(pushButton_addResult, Qt::TopRightCorner);
+    connect(menu_addRun, &QMenu::triggered, this, &ResultsWidget::slot_comparisonMenu_triggered);
+    ui->tabWidget_comparison->setCornerWidget(pushButton_addResult, Qt::TopRightCorner);
+
+    //Add compare button menu entries
+    auto resultsDirPath = ProjectManager::getInstance().getResultsDir();
+    auto dir = QDir(resultsDirPath);
+    auto entryList = dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
+
+    for (const auto &item : entryList) {
+        //Compare Run Button Menu
+        auto *action = new QAction(item, menu_addRun);
+        action->setCheckable(true);
+        menu_addRun->addAction(action);
+    }
+
+    //TODO: Remove dummy code
+    dummyFunctionTest();
+
+    QTableWidget *table = ui->tableWidget_topAccuracy;
+    QHeaderView *header = table->horizontalHeader();
+    header->setSectionResizeMode(QHeaderView::Stretch);
+
+}
+
+void ResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
+    if (action->isChecked()) {
+        addTrainingResultTab(action->text());
+    } else {
+        deleteTrainingResultTab(action->text());
+    }
 }
 
 QString ResultsWidget::getSelectedTrainRunIdentifier() {
@@ -39,18 +64,18 @@ void ResultsWidget::addTrainingResult(TrainingResult *result) {
     auto confusionMatrix = result->getConfusionMatrix();
     auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
 
-    auto tab = createTrainingResultTab(name);
+    auto tab = addTrainingResultTab(name);
 
     //Parse Loss curve
-    auto lossSeries = parseLossCurveData(data_lossCurve);
+    auto series = parseLossCurveData(data_lossCurve);
 
     //Pass to Most Misclassified Images
 
 //TODO: (Adrians Help) Pass QList<QImages>
 
 
-    tab->setLossCurve(lossSeries.first, lossSeries.second);
-    tab->setConfusionMatrix(nullptr);
+    tab->setLossCurve(series.first, series.second);
+    tab->setConfusionMatrix(confusionMatrix->generateConfusionMatrixGraphics("matrix.svg"));
     tab->setMostMisclassifiedImages(QList<QImage>());
 }
 
@@ -69,10 +94,10 @@ ResultsWidget::parseLossCurveData(const QMap<int, QPair<double, double>> &data_l
         *trainSeries << trainPoint;
         *validationSeries << validationPoint;
     }
-    return qMakePair(trainSeries,validationSeries);
+    return qMakePair(trainSeries, validationSeries);
 }
 
-void ResultsWidget::addClassificationResult(ClassificationResult* result) {
+void ResultsWidget::addClassificationResult(ClassificationResult *result) {
 
 }
 
@@ -80,16 +105,23 @@ ResultsWidget::~ResultsWidget() {
     delete ui;
 }
 
-TrainingResultView *ResultsWidget::createTrainingResultTab(const QString &tabName) {
+TrainingResultView *ResultsWidget::addTrainingResultTab(const QString &tabName) {
     auto tab = new TrainingResultView(this);
-    ui->tabWidget_comparison->addTab(tab, tabName);
+    int index = ui->tabWidget_comparison->addTab(tab, tabName);
+    m_mapTrainingResultTabs[tabName] = index;
     return tab;
+}
+
+void ResultsWidget::deleteTrainingResultTab(const QString &tabName) {
+    auto *widget = ui->tabWidget_comparison;
+    auto index = m_mapTrainingResultTabs.take(tabName);
+    widget->removeTab(index);
 }
 
 void ResultsWidget::dummyFunctionTest() {
     for (int i = 0; i < 3; ++i) {
         QString run = QString("Run %1").arg(i + 1);
-        auto tab = createTrainingResultTab(run);
+        auto tab = addTrainingResultTab(run);
 
         //Loss Curve
         auto *trainSeries = new QSplineSeries();
@@ -110,22 +142,16 @@ void ResultsWidget::dummyFunctionTest() {
 
         //Confusion Matrix
         QList<double> values = QList<double>();
-        QStringList labels = {"A","B","C","D","E","F","G","H"};
+        QStringList labels = {"A", "B", "C", "D", "E", "F", "G", "H"};
         const qsizetype N = labels.size();
-        for (int j = 0; j < N*N; ++j) {
+        for (int j = 0; j < N * N; ++j) {
             int random = QRandomGenerator::global()->bounded(0, 100);
             values << random;
         }
 
-        auto matrix = new ConfusionMatrix(labels,values);
-        auto item = matrix->generateConfusionMatrixGraphics("matrix_"+run+".svg");
+        auto matrix = new ConfusionMatrix(labels, values);
+        auto item = matrix->generateConfusionMatrixGraphics("matrix_" + run + ".svg");
         tab->setConfusionMatrix(item);
-
-        //Compare Button Menu
-        auto *action = new QAction(run, this);
-        action->setCheckable(true);
-        action->setChecked(true);
-        menu_addRun->addAction(action);
     }
 }
 

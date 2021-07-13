@@ -1,7 +1,3 @@
-//
-// Created by Paul on 02.07.2021.
-//
-
 #include "projectmanager.h"
 #include <QDir>
 #include <QSettings>
@@ -13,20 +9,20 @@ QString initializeString = "";
 QString resultsDirectoryName = "results";
 
 //on creation, meaning program startup, there will be no project selected.
-ProjectManager::ProjectManager(){
+ProjectManager::ProjectManager() {
     mProjectPath = initializeString;
     mProjectTempDir = initializeString;
     mProjectDataSetDir = initializeString;
     mProjectName = initializeString;
 }
 
-QStringList ProjectManager::getProjects(){
+QStringList ProjectManager::getProjects() {
     QDir projectsDir(projectDirectory);
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     return projectsDir.entryList();
 }
 
-void ProjectManager::createNewProject(QString projectName){
+void ProjectManager::createNewProject(QString projectName) {
     //NOTE: the projects directory will also have to come from somewhere,
     //currently it is created one directory up from the build directory.
 
@@ -39,9 +35,9 @@ void ProjectManager::createNewProject(QString projectName){
     QString path = "../projects/" + projectName + "/" + projectName + ".ini";
 
 
-     /*goes into the projects folder, then into the specific project folder
-     * there it creates a new ini file, which can be seen as the "project file"
-     */
+    /*goes into the projects folder, then into the specific project folder
+    * there it creates a new ini file, which can be seen as the "project file"
+    */
 
 
     //non existing folders / directories will be automatically created
@@ -59,18 +55,20 @@ void ProjectManager::createNewProject(QString projectName){
     newProjectfile.setValue("tempDirName", tempDirName);
 
     //make temp and Data subdirectories
-     QDir dir;
-     dir.mkpath(absolute + datasetDirName);
-     dir.mkpath(absolute + tempDirName);
-     dir.mkpath(absolute + resultsDirectoryName);
+    QDir dir;
+    dir.mkpath(absolute + datasetDirName);
+    dir.mkpath(absolute + tempDirName);
+    dir.mkpath(absolute + resultsDirectoryName);
 
 }
-void ProjectManager::removeProject(QString projectName){
-    QDir targetDir("../projects/" + projectName );
+
+void ProjectManager::removeProject(QString projectName) {
+    QDir targetDir("../projects/" + projectName);
     //removeRecursively deletes everything in the directory
     targetDir.removeRecursively();
 }
-void ProjectManager::loadProject(QString projectName){
+
+void ProjectManager::loadProject(QString projectName) {
     QString path = "../projects/" + projectName + "/" + projectName + ".ini";
     QSettings projectfile(path, QSettings::IniFormat);
 
@@ -82,36 +80,34 @@ void ProjectManager::loadProject(QString projectName){
     mProjectResultsDir = mProjectPath + resultsDirectoryName;
 }
 
-QString ProjectManager::getProjectPath(){
+QString ProjectManager::getProjectPath() {
     return mProjectPath;
 }
-QString ProjectManager::getProjectTempDir(){
+
+QString ProjectManager::getProjectTempDir() {
     return mProjectTempDir;
 }
-QString ProjectManager::getProjectDataSetDir(){
+
+QString ProjectManager::getProjectDataSetDir() {
     return mProjectDataSetDir;
 }
-QString ProjectManager::getResultsDir(){
+
+QString ProjectManager::getResultsDir() {
     return mProjectResultsDir;
 }
 
-void ProjectManager::saveClassificationResult(ClassificationResult result)
-{
+void ProjectManager::saveClassificationResult(ClassificationResult result) {
 
 }
 
-void ProjectManager::saveTrainingsResult(ClassificationResult result)
-{
+void ProjectManager::saveTrainingsResult(ClassificationResult result) {
 
 }
 
-TrainingResult ProjectManager::getTrainingsResult(QString modelResultName)
-{
-
+TrainingResult ProjectManager::getTrainingsResult(QString modelResultName) {
 }
 
-QStringList ProjectManager::getNamesOfSavedTrainingReults()
-{
+QStringList ProjectManager::getNamesOfSavedTrainingResults() {
     QStringList l;
     return l;
 }
