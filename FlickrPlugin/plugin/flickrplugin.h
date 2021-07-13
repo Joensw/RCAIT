@@ -68,16 +68,29 @@ class FlickrPlugin : public QObject, ImageLoaderPlugin
     Q_INTERFACES(ImageLoaderPlugin)
 
 
+private:
+   FlickrSettings m_flickrSettings;
+   /**
+    * @brief createCommandlineString
+    * @param path
+    * @param imageCount
+    * @param label
+    * @return
+    */
+   QString createCommandlineString(const QString path, const int imageCount, const QStringList* label);
+
 
 
 public:
     //ToDo: add receiver ProgressablePlugin to loadImages parameters
     bool loadImages(const QString path, const int imageCount, const QStringList* label);
     QWidget* getConfigurationWidget();
+
     void saveConfiguration();
     //getInputWidget() wird nicht implementiert. Aus Ordner laden regelt View/Controller
     void init();
     QWidget *pluginSettings;
+
 };
 //! [0]
 

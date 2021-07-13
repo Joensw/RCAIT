@@ -18,10 +18,19 @@ public:
     ~FlickrSettings();
     void saveSettings();
     void loadSettings();
+    QString getaAPIKey();
+    QString getAPISecret();
+    QString getPythonPath();
+
+
+    QSettings m_settings = {"Flickr Plugin'",QSettings::IniFormat};
 
 
 private:
     Ui::FlickrSettings *ui;
+    QString m_apiKey = "API Key";
+    QString m_apiSecret = "API Secret";
+    QString m_pythonPath = "Python Path";
 };
 
 #endif // FLICKRSETTINGS_H
