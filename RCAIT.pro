@@ -113,8 +113,8 @@ HEADERS += \
     model/results/confusionmatrix.h \
     model/results/resultimagesgenerator.h \
     model/settingsmanager.h \
-    plugins/classificationplugin.h \
-    plugins/classificationpluginmanager.h \
+    plugins/classificationplugins/classificationplugin.h \
+    plugins/classificationplugins/classificationpluginmanager.h \
     plugins/classificationresult.h \
     plugins/imageplugins/imageloaderplugin.h \
     plugins/imageplugins/imageloaderpluginmanager.h \
