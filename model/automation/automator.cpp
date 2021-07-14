@@ -1,5 +1,8 @@
 #include "automator.h"
 
+#include <QJsonDocument>
+#include <QJsonObject>
+
 
 
 Automator::Automator(DataManager *dataManager)
@@ -23,7 +26,21 @@ void Automator::stopTasks()
 
 void Automator::addTasks(QString path)
 {
-    //TODO implement
+    QFile jsonFile(path);
+    jsonFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    QString jsonData = jsonFile.readAll();
+    jsonFile.close();
+
+
+    QJsonDocument doc = QJsonDocument::fromJson(jsonData.toUtf8());
+    QVariantMap jsonMap = doc.object().toVariantMap();
+
+    if (jsonMap == NULL || jsonMap.size() == 0 || jsonMap.firstKey() != "taskType"){
+        //TODO error message
+        return;
+    }
+    //....TODO other part of function
+
 }
 
 void Automator::remove(int taskNum)

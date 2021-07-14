@@ -29,12 +29,13 @@ SOURCES += \
     controller/controller.cpp \
     controller/settingscontroller.cpp \
     model/datamanager.cpp \
-    model/automation/addprojecttask.cpp \
+    model/automation/addprojectcommand.cpp \
     model/automation/automator.cpp \
-    model/automation/classificationtask.cpp \
-    model/automation/imageloadtask.cpp \
+    model/automation/command.cpp \
+    model/automation/classificationcommand.cpp \
+    model/automation/imageloadcommand.cpp \
     model/automation/task.cpp \
-    model/automation/trainingtask.cpp \
+    model/automation/trainingcommand.cpp \
     model/modelmanager.cpp \
     model/pluginusage/aithread.cpp \
     model/pluginusage/classificationpluginmanager.cpp \
@@ -90,12 +91,13 @@ HEADERS += \
     controller/controller.h \
     controller/settingscontroller.h \
     model/datamanager.h \
-    model/automation/addprojecttask.h \
+    model/automation/addprojectcommand.h \
     model/automation/automator.h \
-    model/automation/classificationtask.h \
-    model/automation/imageloadtask.h \
+    model/automation/command.h \
+    model/automation/classificationcommand.h \
+    model/automation/imageloadcommand.h \
     model/automation/task.h \
-    model/automation/trainingtask.h \
+    model/automation/trainingcommand.h \
     model/modelmanager.h \
     model/pluginusage/aithread.h \
     model/pluginusage/classificationpluginmanager.h \
