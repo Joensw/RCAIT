@@ -38,7 +38,6 @@ SOURCES += \
     model/automation/trainingcommand.cpp \
     model/modelmanager.cpp \
     model/pluginusage/aithread.cpp \
-    model/pluginusage/classificationpluginmanager.cpp \
     model/pluginusage/classifiertrainer.cpp \
     model/pluginusage/imageloader.cpp \
     model/pluginusage/imageloader.cpp \
@@ -102,7 +101,6 @@ HEADERS += \
     model/automation/trainingcommand.h \
     model/modelmanager.h \
     model/pluginusage/aithread.h \
-    model/pluginusage/classificationpluginmanager.h \
     model/pluginusage/classifiertrainer.h \
     model/pluginusage/imageloader.h \
     model/pluginusage/imageloader.h \

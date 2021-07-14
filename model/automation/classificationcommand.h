@@ -9,7 +9,7 @@ class ClassificationCommand : public Command
 {
     Q_OBJECT
 public:
-    ClassificationCommand(QVariantMap map);
+    ClassificationCommand(QVariantMap map, Progressable* receiver);
     bool execute() override;
 
 signals:
@@ -17,7 +17,8 @@ signals:
 
 private:
    ClassificationThread *mClassifier;
-   QString mProjectName;
+   bool parsingFailed = false;
+
 
 
 };

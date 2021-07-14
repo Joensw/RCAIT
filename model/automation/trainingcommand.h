@@ -9,7 +9,7 @@ class TrainingCommand : public Command
 {
     Q_OBJECT
 public:
-    TrainingCommand(QVariantMap map);
+    TrainingCommand(QVariantMap map, Progressable* receiver);
     bool execute() override;
 
 signals:
@@ -17,6 +17,7 @@ signals:
 
 private:
     TrainingsThread *mTrainer;
+    bool parsingFailed = false;
 
 
 };

@@ -16,6 +16,7 @@ public:
      * @return true if execution was successfull, false if it failed
      */
     virtual bool execute() = 0;
+
 };
 
 #endif // COMMAND_H

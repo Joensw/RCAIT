@@ -19,18 +19,18 @@ Task::Task(QVariantMap map, DataManager *dataManager)
     mDataManager->loadProject(map.value("addProject").toString());
 
     if (commands.contains("imageLoad")) {
-        ImageLoadCommand* command = new ImageLoadCommand(map);
+        ImageLoadCommand* command = new ImageLoadCommand(map, this);
         mCommandList.append(command);
     }
 
     if (commands.contains("training")) {
-        TrainingCommand* command = new TrainingCommand(map);
+        TrainingCommand* command = new TrainingCommand(map, this);
         mCommandList.append(command);
         connect(command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
     }
 
     if (commands.contains("classification")) {
-        ClassificationCommand* command = new ClassificationCommand(map);
+        ClassificationCommand* command = new ClassificationCommand(map, this);
         mCommandList.append(command);
         connect(command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
     }
