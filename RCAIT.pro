@@ -51,6 +51,8 @@ SOURCES += \
     model/results/confusionmatrix.cpp \
     model/results/resultimagesgenerator.cpp \
     model/settingsmanager.cpp \
+    plugins/classificationplugin.cpp \
+    plugins/classificationpluginmanager.cpp \
     plugins/imageplugins/imageloaderplugin.cpp \
     plugins/imageplugins/imageloaderpluginmanager.cpp \
     plugins/plugin.cpp \
@@ -113,6 +115,8 @@ HEADERS += \
     model/results/confusionmatrix.h \
     model/results/resultimagesgenerator.h \
     model/settingsmanager.h \
+    plugins/classificationplugins/classificationplugin.h \
+    plugins/classificationplugins/classificationpluginmanager.h \
     plugins/classificationresult.h \
     plugins/imageplugins/imageloaderplugin.h \
     plugins/imageplugins/imageloaderpluginmanager.h \
