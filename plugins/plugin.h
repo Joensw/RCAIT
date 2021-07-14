@@ -1,12 +1,16 @@
-//
-// TODO: This is a dummy file, replace it with your code when you have it
-//
-
 #ifndef RCAIT_PLUGIN_H
 #define RCAIT_PLUGIN_H
 
+#include <QTextStream>
+#include <QWidget>
 
 class Plugin {
+
+public:
+    virtual QString getName();
+    virtual QWidget*  getConfigurationWidget();
+    virtual void saveConfiguration();
+    virtual QWidget*  getInputWidget();
 
 };
 
