@@ -7,7 +7,7 @@ class AddProjectCommand : public Command
 {
 public:
     AddProjectCommand(QVariantMap map);
-    void execute() override;
+    bool execute() override;
 };
 
 #endif // ADDPROJECTTASK_H

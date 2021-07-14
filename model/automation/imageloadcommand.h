@@ -9,7 +9,7 @@ class ImageLoadCommand : public Command
 {
 public:
     ImageLoadCommand(QVariantMap map);
-    void execute() override;
+    bool execute() override;
 };
 
 #endif // IMAGELOADCOMMAND_H

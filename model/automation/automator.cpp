@@ -35,12 +35,11 @@ void Automator::addTasks(QString path)
     QJsonDocument doc = QJsonDocument::fromJson(jsonData.toUtf8());
     QVariantMap jsonMap = doc.object().toVariantMap();
 
-    if (jsonMap == NULL || jsonMap.size() == 0 || jsonMap.firstKey() != "taskType"){
+    if (jsonMap.isEmpty() || jsonMap.firstKey() != "taskType" || !jsonMap.contains("projectName")){
         //TODO error message
         return;
     }
-    //....TODO other part of function
-
+    mUnqueuedTasks.append(new Task(jsonMap, mDataManager));
 }
 
 void Automator::remove(int taskNum)

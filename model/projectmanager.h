@@ -38,7 +38,7 @@ public:
 
     void saveClassificationResult(ClassificationResult result);
 
-    void saveTrainingsResult(ClassificationResult result);
+    void saveTrainingsResult(TrainingResult result);
 
     TrainingResult getTrainingsResult(QString modelResultName);
 

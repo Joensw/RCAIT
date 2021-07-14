@@ -7,15 +7,15 @@
 /**
  * @brief The Command class defines an interface for all commands in the application
  */
-class Command
+class Command : public QObject
 {
+            Q_OBJECT
 public:
     /**
-     * @brief Command
-     * @param info contains all information needed to use execute
+     * @brief execute
+     * @return true if execution was successfull, false if it failed
      */
-    Command(QVariantMap info = QVariantMap());
-    virtual void execute() = 0;
+    virtual bool execute() = 0;
 };
 
 #endif // COMMAND_H
