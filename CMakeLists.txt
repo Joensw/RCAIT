@@ -24,7 +24,7 @@ include_directories(
         view view/imageinspection view/results
         controller
         Resources
-        plugins plugins/imageplugins plugins/results
+        plugins plugins/imageplugins plugins/classificationplugins plugins/results
         )
 
 file(GLOB_RECURSE SOURCE_FILES_A

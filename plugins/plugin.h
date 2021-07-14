@@ -7,10 +7,10 @@
 class Plugin {
 
 public:
-    virtual QString getName();
-    virtual QWidget*  getConfigurationWidget();
-    virtual void saveConfiguration();
-    virtual QWidget*  getInputWidget();
+    virtual QString getName() = 0;
+    virtual QWidget*  getConfigurationWidget() = 0;
+    virtual void saveConfiguration() = 0;
+    virtual QWidget*  getInputWidget() = 0;
 
 };
 

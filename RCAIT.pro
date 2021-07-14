@@ -11,7 +11,8 @@ INCLUDEPATH += \
     controller \
     plugins \
         plugins\imageplugins \
-        plugins\results
+        plugins\results \
+        plugins\classificationplugins
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -42,7 +43,7 @@ SOURCES += \
     model/pluginusage/imageloader.cpp \
     model/pluginusage/imageloader.cpp \
     model/pluginusage/imagesearchthread.cpp \
-    model/pluginusage/imagesearchthread.cpp \
+    model/pluginusage/classificationthread.cpp \
     model/pluginusage/progressable.cpp \
     model/pluginusage/progressableplugin.cpp \
     model/pluginusage/trainingsthread.cpp \
@@ -50,8 +51,8 @@ SOURCES += \
     model/results/confusionmatrix.cpp \
     model/results/resultimagesgenerator.cpp \
     model/settingsmanager.cpp \
-    plugins/classificationplugin.cpp \
-    plugins/classificationpluginmanager.cpp \
+    plugins/classificationplugins/classificationplugin.cpp \
+    plugins/classificationplugins/classificationpluginmanager.cpp \
     plugins/imageplugins/imageloaderplugin.cpp \
     plugins/imageplugins/imageloaderpluginmanager.cpp \
     plugins/plugin.cpp \
@@ -105,7 +106,7 @@ HEADERS += \
     model/pluginusage/imageloader.h \
     model/pluginusage/imageloader.h \
     model/pluginusage/imagesearchthread.h \
-    model/pluginusage/imagesearchthread.h \
+    model/pluginusage/classificationthread.h \
     model/pluginusage/progressable.h \
     model/pluginusage/progressableplugin.h \
     model/pluginusage/trainingsthread.h \

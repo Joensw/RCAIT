@@ -24,11 +24,12 @@ public:
         return instance;
     }
 
-    void loadPlugins(QString pluginDir);
-    QWidget* getConfigurationWidget(QString pluginName);
-    void saveConfiguration(QString pluginName);
-    QWidget* getInputWidget(QString pluginName);
+    void loadPlugins(QString pluginDir) override;
+    QWidget* getConfigurationWidget(QString pluginName) override;
+    void saveConfiguration(QString pluginName) override;
+    QWidget* getInputWidget(QString pluginName) override;
     bool loadImages(QString path, ProgressablePlugin* receiver, QString pluginName, int count, QStringList labels);
+    QStringList getNamesOfPlugins() override;
 };
 
 
