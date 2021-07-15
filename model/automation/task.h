@@ -14,14 +14,12 @@ enum TaskState
     FAILED,
     COMPLETED
 };
-QString StateMap[] = { "Scheduled", "Performing", "Failed", "Completed" };
 
 class Task : public Progressable
 {
     Q_OBJECT
 public:
     Task(QVariantMap map, DataManager *dataManager);
-
     QString getName();
     void run();
 

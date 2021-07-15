@@ -3,7 +3,7 @@
 
 #include "task.h"
 
-#include <DataManager.h>
+#include <datamanager.h>
 
 #include <pluginusage/progressable.h>
 
@@ -28,7 +28,7 @@ public:
     QList<QString> getQueuedTasks();
 
 public slots:
-    void slot_taskUpdated();
+    void slot_taskUpdated(QString name, TaskState state);
     void stopTasks();
 
 signals:

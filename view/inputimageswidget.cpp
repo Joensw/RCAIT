@@ -22,17 +22,7 @@ void InputImagesWidget::slot_progress(int progress)
     ui->progressBar->setValue(progress);
 }
 
-void InputImagesWidget::slot_loaded(QString path)
-{
 
-}
-
-/*!
- * \brief InputImagesWidget::on_selectFolderButton_clicked
- *
- * Used when selectFolderButton is clicked.
- * Opens a file dialog and loads images of folder in preview.
- */
 void InputImagesWidget::on_selectFolderButton_clicked()
 {
      path = QFileDialog::getExistingDirectory(this, tr("Select image directory"));

@@ -91,6 +91,7 @@ QList<QString> Automator::getQueuedTasks()
 
 void Automator::slot_taskUpdated(QString taskName, TaskState state)
 {
+   QString StateMap[] = { "Scheduled", "Performing", "Failed", "Completed" };
    emit sig_taskUpdate(taskName, StateMap[state]);
 }
 
