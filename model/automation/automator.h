@@ -16,7 +16,6 @@ public:
     Automator(DataManager *dataManager);
 
     void performTasks();
-    void stopTasks();
     void addTasks(QString path);
     void remove(int taskNum);
     void unqueue(int taskNum);
@@ -30,6 +29,7 @@ public:
 
 public slots:
     void slot_taskUpdated();
+    void stopTasks();
 
 signals:
     void sig_taskUpdate(QString name, QString state);

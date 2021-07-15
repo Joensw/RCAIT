@@ -7,6 +7,8 @@
 Task::Task(QVariantMap map, DataManager *dataManager)
 {
     mDataManager = dataManager;
+    mName = map.value("taskName").toString();
+
     QStringList commands = map.value("taskType").toStringList();
     if (commands.isEmpty()){
         //TODO error
@@ -47,6 +49,11 @@ void Task::run()
             return;
         }
     }
+}
+
+QString Task::getName()
+{
+    return mName;
 }
 
 void Task::slot_saveTrainingResult(TrainingResult result)

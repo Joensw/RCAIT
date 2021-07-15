@@ -5,22 +5,24 @@
 
 #include <pluginusage/progressable.h>
 
-#include <DataManager.h>
+#include <datamanager.h>
 
 enum TaskState
 {
-    IDLE,
     SCHEDULED,
+    PERFORMING,
     FAILED,
-    COMPLETED,
-    PERFORMING
+    COMPLETED
 };
+QString StateMap[] = { "Scheduled", "Performing", "Failed", "Completed" };
 
 class Task : public Progressable
 {
     Q_OBJECT
 public:
-    Task(QVariantMap path, DataManager *dataManager);
+    Task(QVariantMap map, DataManager *dataManager);
+
+    QString getName();
     void run();
 
 public slots:
@@ -34,7 +36,8 @@ signals:
 
 
 private:
-    TaskState mState = IDLE;
+    QString mName;
+    TaskState mState = SCHEDULED;
     QString mProjectPath;
     DataManager *mDataManager;
     QList<Command*> mCommandList;
