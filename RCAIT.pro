@@ -49,7 +49,7 @@ SOURCES += \
     model/pluginusage/trainingsthread.cpp \
     model/projectmanager.cpp \
     model/results/confusionmatrix.cpp \
-    model/results/resultimagesgenerator.cpp \
+    model/results/losscurve.cpp \
     model/settingsmanager.cpp \
     plugins/classificationplugins/classificationplugin.cpp \
     plugins/classificationplugins/classificationpluginmanager.cpp \
@@ -112,7 +112,7 @@ HEADERS += \
     model/pluginusage/trainingsthread.h \
     model/projectmanager.h \
     model/results/confusionmatrix.h \
-    model/results/resultimagesgenerator.h \
+    model/results/losscurve.h \
     model/settingsmanager.h \
     plugins/classificationplugins/classificationplugin.h \
     plugins/classificationplugins/classificationpluginmanager.h \
