@@ -6,8 +6,7 @@ void ResultsController::updateComparisonResultOverview(TrainingResult *result) {
 
 }
 
-ResultsController::ResultsController(ResultImagesGenerator *imageGenerator, ProjectManager *manager,
-                                     ResultsWidget *resultsWidget) {
+ResultsController::ResultsController(ProjectManager *manager, ResultsWidget *resultsWidget) {
 
 }
 

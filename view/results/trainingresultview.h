@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QGraphicsItem>
-#include <QLineSeries>
 #include <QGraphicsScene>
 
 namespace Ui {

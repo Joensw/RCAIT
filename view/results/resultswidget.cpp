@@ -1,6 +1,5 @@
 #include <QPushButton>
 #include <QMenu>
-#include <QSplineSeries>
 #include <QRandomGenerator>
 #include "resultswidget.h"
 #include "ui_resultswidget.h"

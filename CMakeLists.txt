@@ -14,8 +14,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(QT_VERSION 6)
-set(REQUIRED_LIBS Core Gui Widgets Charts LinguistTools Svg SvgWidgets QuickControls2)
-set(REQUIRED_LIBS_QUALIFIED Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Charts Qt6::Svg Qt6::SvgWidgets Qt6::QuickControls2)
+set(REQUIRED_LIBS Core Gui Widgets LinguistTools Svg SvgWidgets )
+set(REQUIRED_LIBS_QUALIFIED Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Svg Qt6::SvgWidgets)
 
 set(CMAKE_AUTOUIC_SEARCH_PATHS  ${CMAKE_CURRENT_SOURCE_DIR})
 

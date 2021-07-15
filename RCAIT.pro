@@ -1,4 +1,4 @@
-QT       += core gui charts svg svgwidgets
+QT       += core gui svg svgwidgets
 
 INCLUDEPATH += \
     model \
