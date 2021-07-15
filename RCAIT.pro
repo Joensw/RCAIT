@@ -1,4 +1,4 @@
-QT       += core gui charts svg svgwidgets
+QT       += core gui svg svgwidgets
 
 INCLUDEPATH += \
     model \
@@ -11,7 +11,8 @@ INCLUDEPATH += \
     controller \
     plugins \
         plugins\imageplugins \
-        plugins\results
+        plugins\results \
+        plugins\classificationplugins
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,29 +30,29 @@ SOURCES += \
     controller/controller.cpp \
     controller/settingscontroller.cpp \
     model/datamanager.cpp \
-    model/automation/addprojecttask.cpp \
+    model/automation/addprojectcommand.cpp \
     model/automation/automator.cpp \
-    model/automation/classificationtask.cpp \
-    model/automation/imageloadtask.cpp \
+    model/automation/command.cpp \
+    model/automation/classificationcommand.cpp \
+    model/automation/imageloadcommand.cpp \
     model/automation/task.cpp \
-    model/automation/trainingtask.cpp \
+    model/automation/trainingcommand.cpp \
     model/modelmanager.cpp \
     model/pluginusage/aithread.cpp \
-    model/pluginusage/classificationpluginmanager.cpp \
     model/pluginusage/classifiertrainer.cpp \
     model/pluginusage/imageloader.cpp \
     model/pluginusage/imageloader.cpp \
     model/pluginusage/imagesearchthread.cpp \
-    model/pluginusage/imagesearchthread.cpp \
+    model/pluginusage/classificationthread.cpp \
     model/pluginusage/progressable.cpp \
     model/pluginusage/progressableplugin.cpp \
     model/pluginusage/trainingsthread.cpp \
     model/projectmanager.cpp \
     model/results/confusionmatrix.cpp \
-    model/results/resultimagesgenerator.cpp \
+    model/results/losscurve.cpp \
     model/settingsmanager.cpp \
-    plugins/classificationplugin.cpp \
-    plugins/classificationpluginmanager.cpp \
+    plugins/classificationplugins/classificationplugin.cpp \
+    plugins/classificationplugins/classificationpluginmanager.cpp \
     plugins/imageplugins/imageloaderplugin.cpp \
     plugins/imageplugins/imageloaderpluginmanager.cpp \
     plugins/plugin.cpp \
@@ -92,26 +93,26 @@ HEADERS += \
     controller/controller.h \
     controller/settingscontroller.h \
     model/datamanager.h \
-    model/automation/addprojecttask.h \
+    model/automation/addprojectcommand.h \
     model/automation/automator.h \
-    model/automation/classificationtask.h \
-    model/automation/imageloadtask.h \
+    model/automation/command.h \
+    model/automation/classificationcommand.h \
+    model/automation/imageloadcommand.h \
     model/automation/task.h \
-    model/automation/trainingtask.h \
+    model/automation/trainingcommand.h \
     model/modelmanager.h \
     model/pluginusage/aithread.h \
-    model/pluginusage/classificationpluginmanager.h \
     model/pluginusage/classifiertrainer.h \
     model/pluginusage/imageloader.h \
     model/pluginusage/imageloader.h \
     model/pluginusage/imagesearchthread.h \
-    model/pluginusage/imagesearchthread.h \
+    model/pluginusage/classificationthread.h \
     model/pluginusage/progressable.h \
     model/pluginusage/progressableplugin.h \
     model/pluginusage/trainingsthread.h \
     model/projectmanager.h \
     model/results/confusionmatrix.h \
-    model/results/resultimagesgenerator.h \
+    model/results/losscurve.h \
     model/settingsmanager.h \
     plugins/classificationplugins/classificationplugin.h \
     plugins/classificationplugins/classificationpluginmanager.h \

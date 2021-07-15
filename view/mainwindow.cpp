@@ -1,6 +1,3 @@
-#include <QGraphicsSvgItem>
-#include <QRandomGenerator>
-#include <QSplineSeries>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 

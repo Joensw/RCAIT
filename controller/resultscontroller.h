@@ -2,11 +2,10 @@
 #define RCAIT_RESULTSCONTROLLER_H
 
 
-#include <plugins/results/TrainingResult.h>
-#include <model/results/ResultImagesGenerator.h>
-#include <plugins/results/ClassificationResult.h>
-#include <view/results/ResultsWidget.h>
-#include "model/ProjectManager.h"
+#include <plugins/results/trainingresult.h>
+#include <plugins/results/classificationresult.h>
+#include <view/results/resultswidget.h>
+#include "model/projectmanager.h"
 
 class ResultsController {
 private:
@@ -15,7 +14,7 @@ private:
     void updateComparisonResultOverview(TrainingResult* result);
 
 public:
-    ResultsController(ResultImagesGenerator* imageGenerator, ProjectManager* manager, ResultsWidget* resultsWidget);
+    ResultsController(ProjectManager *manager, ResultsWidget *resultsWidget);
     void addTrainingResult(TrainingResult* result);
     void addClassificationResult(ClassificationResult* result);
 

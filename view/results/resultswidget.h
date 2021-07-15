@@ -47,9 +47,6 @@ private:
 
     void retranslateUi();
 
-    static QPair<QLineSeries *, QLineSeries *>
-    parseLossCurveData(const QMap<int, QPair<double, double>> &data_lossCurve);
-
 private slots:
 
     void slot_comparisonMenu_triggered(QAction *action);

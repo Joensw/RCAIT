@@ -3,34 +3,28 @@
 
 #include <QString>
 #include <QWidget>
-#include <QMap>
-#include <pluginusage/progressableplugin.h>
+
 #include "trainingresult.h"
+#include "progressableplugin.h"
 #include "classificationresult.h"
-#include "pluginmanager.h"
-
-
-class ClassificationPluginManager  : public PluginManager
+class ClassificationPluginManager
 {
-private:
-    ClassificationPluginManager();
-    static volatile ClassificationPluginManager* instance;
-
 public:
+    ClassificationPluginManager();
+
     void loadPlugins(QString pluginDir);
-    ClassificationPluginManager* getInstance();
-    QWidget* getConfigurationWidget(QString pluginName);
+    static ClassificationPluginManager * getInstance();
+    QWidget * getConfigurationWidget(QString pluginName);
     void saveConfiguration(QString pluginName);
-    QWidget* getInputWidget(QString pluginName);
-    QMap<QString, QString>  getModelNames(QString projectPath);
-    bool createNewModel(QString modelName, QString baseModel);
-    bool getAugmentationPreview(QString inputPath);
-    bool removeModel(QString modelName);
-    TrainingResult* train(QString modelName,QString dataSetPath, ProgressablePlugin* receiver);
-    ClassificationResult* classify(QString inputImagePath, QString modelName,ProgressablePlugin* receiver);
-
-
-
+    QWidget * getInputWidget(QString pluginName);
+    QMap<QString, QString> getModelNames(QString projectPath);
+    bool createNewModel(QString ModelName, QString pluingName, QString baseModel);
+    bool getAugmentationPreview(QString pluginName, QString inputPath);
+    bool removeModel(QString modelName, QString pluginName);
+    TrainingResult * train (QString pluginName, QString modelName, QString dataSetPath, ProgressablePlugin * receiver);
+    ClassificationResult * classify(QString pluginName, QString inputImagePath, QString modelName, ProgressablePlugin * receiver);
+private:
+    ClassificationPluginManager * instance;
 };
 
 #endif // CLASSIFICATIONPLUGINMANAGER_H

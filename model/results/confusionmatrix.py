@@ -7,6 +7,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
+# No display of plot
 plt.ioff()
 
 
@@ -34,7 +35,7 @@ def plot_confusion_matrix(cm, lbl, file, normalize, cmap=plt.cm.get_cmap('CMRmap
     plt.tight_layout()
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
-    plt.savefig(file, format="svg")
+    plt.savefig(file, format="svg", bbox_inches="tight")
     sys.exit()
 
 
@@ -60,6 +61,7 @@ if __name__ == '__main__':
     # specify the custom font to use
     plt.rcParams['font.family'] = 'sans-serif'
     plt.rcParams['font.sans-serif'] = 'SF Pro Text'
+    plt.rcParams['font.size'] = 12
 
     plot_confusion_matrix(matrix, labels, file_name, normalized)
     sys.exit()

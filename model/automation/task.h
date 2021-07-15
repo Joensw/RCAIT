@@ -1,32 +1,44 @@
 #ifndef TASK_H
 #define TASK_H
 
+#include "command.h"
+
 #include <pluginusage/progressable.h>
 
-#include <DataManager.h>
+#include <datamanager.h>
 
 enum TaskState
 {
-    IDLE,
     SCHEDULED,
+    PERFORMING,
     FAILED,
-    COMPLETED,
-    PERFORMING
+    COMPLETED
 };
 
 class Task : public Progressable
 {
+    Q_OBJECT
 public:
-    Task(QString path, ModelManager *modelManager);
+    Task(QVariantMap map, DataManager *dataManager);
+    QString getName();
     void run();
+
+public slots:
+    void slot_saveTrainingResult(TrainingResult result);
+    void slot_saveClassificationResult(ClassificationResult result);
+
 
 signals:
     void sig_stateChanged(TaskState newState);
 
+
+
 private:
-    TaskState mState = IDLE;
-    QString path;
+    QString mName;
+    TaskState mState = SCHEDULED;
+    QString mProjectPath;
     DataManager *mDataManager;
+    QList<Command*> mCommandList;
 };
 
 #endif // TASK_H

@@ -7,11 +7,11 @@
 class PluginManager {
 
 public:
-    virtual QWidget* getConfigurationWidget(QString pluginName);
-    virtual void loadPlugins(QString pluginDir);
-    virtual QWidget* getInputWidget(QString pluginName);
-    virtual QStringList getNamesOfPlugins();
-    virtual void saveConfiguration(QString pluginName);
+    virtual QWidget* getConfigurationWidget(QString pluginName) = 0;
+    virtual void loadPlugins(QString pluginDir) = 0;
+    virtual QWidget* getInputWidget(QString pluginName) = 0;
+    virtual QStringList getNamesOfPlugins() = 0;
+    virtual void saveConfiguration(QString pluginName) = 0;
 
 };
 

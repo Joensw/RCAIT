@@ -1,16 +1,18 @@
 #ifndef CANVAS_H
 #define CANVAS_H
 
+#include <QGraphicsView>
+
 class Canvas : public QGraphicsView {
 private:
-    bool mAutoScale;
+    bool m_autoScale;
 
 public:
     Canvas(bool autoScale = true);
 
     virtual ~Canvas() = default;
 
-    bool autoScale() const { return mAutoScale; }
+    [[nodiscard]] bool autoScale() const;
 
     void setAutoScale(bool autoScale);
 

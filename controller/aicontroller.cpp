@@ -17,7 +17,9 @@ AIController::AIController(DataManager *dataManager, InputImagesWidget *inputIma
     connect(mClassifierTrainer, &ClassifierTrainer::sig_classificationResultUpdated, this, &AIController::slot_classificationResultUpdated);
 
     //connect training parts
-
+    connect(mAiTrainingWidget, &AITrainingWidget::sig_startTraining, this, &AIController::slot_startTraining);
+    connect(mAiTrainingWidget, &AITrainingWidget::sig_abortTraining, this, &AIController::slot_abortTraining);
+    connect(mClassifierTrainer, &ClassifierTrainer::sig_trainingResultUpdated, this, &AIController::slot_trainingResultUpdated);
 
 
 }
@@ -49,7 +51,7 @@ void AIController::slot_classificationResultUpdated()
 
 void AIController::slot_startClassify(QString path)
 {
-    mTrainingPath = path;
+    mClassificationPath = path;
     classify();
 }
 
@@ -70,5 +72,5 @@ void AIController::train()
 
 void AIController::classify()
 {
-
+    mClassifierTrainer->classify(mDataManager->getCurrentClassificationPlugin(), mDataManager->getCurrentModel(), mClassificationPath);
 }
