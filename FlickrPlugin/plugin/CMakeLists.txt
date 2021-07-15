@@ -1,7 +1,5 @@
-# Generated from plugin.pro.
-
 cmake_minimum_required(VERSION 3.14)
-project(echoplugin LANGUAGES CXX)
+project(flickrplugin LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -9,27 +7,39 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(INSTALL_EXAMPLEDIR "examples/widgets/tools/echoplugin/plugins")
+
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/out/library)
+
+
 
 find_package(Qt6 COMPONENTS Core)
 find_package(Qt6 COMPONENTS Gui)
 find_package(Qt6 COMPONENTS Widgets)
 
-add_library(echoplugin MODULE
-    echoplugin.cpp echoplugin.h
+enable_testing()
+add_subdirectory(googletest-master)
+add_subdirectory(test)
+
+
+add_library(flickrplugin MODULE
+    flickrplugin.cpp flickrplugin.h flickrsettings.cpp flickrsettings.h
 )
-target_include_directories(echoplugin PUBLIC
+
+set_target_properties(flickrplugin PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../plugins)
+
+target_include_directories(flickrplugin PUBLIC
     ../echowindow
 )
 
-target_link_libraries(echoplugin PUBLIC
+
+
+
+target_link_libraries(flickrplugin PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Widgets
 )
 
-install(TARGETS echoplugin
-    RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
-    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
-    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
-)
+
+
+
