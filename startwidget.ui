@@ -48,7 +48,7 @@
     <widget class="QLabel" name="label_welcomeMessage">
      <property name="font">
       <font>
-       <family>SF Pro Text</family>
+       <family>Inter</family>
        <pointsize>16</pointsize>
       </font>
      </property>
@@ -82,7 +82,7 @@ Select a project to get started</string>
         <widget class="CustomListWidget" name="listWidget_projectsList">
          <property name="font">
           <font>
-           <family>SF Pro Text</family>
+           <family>Inter</family>
            <pointsize>8</pointsize>
           </font>
          </property>
@@ -149,7 +149,7 @@ selection-background-color: rgb(255, 255, 255);</string>
           <widget class="QPushButton" name="pushButton_openProject">
            <property name="font">
             <font>
-             <family>SF Pro Text</family>
+             <family>Inter</family>
              <pointsize>8</pointsize>
              <weight>50</weight>
              <bold>false</bold>

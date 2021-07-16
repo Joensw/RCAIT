@@ -41,7 +41,7 @@
       </property>
       <property name="font">
        <font>
-        <family>SF Pro Text</family>
+        <family>Inter</family>
         <pointsize>8</pointsize>
        </font>
       </property>

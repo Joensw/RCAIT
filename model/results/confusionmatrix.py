@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
     # specify the custom font to use
     plt.rcParams['font.family'] = 'sans-serif'
-    plt.rcParams['font.sans-serif'] = 'SF Pro Text'
+    plt.rcParams['font.sans-serif'] = 'Inter'
     plt.rcParams['font.size'] = 12
 
     plot_confusion_matrix(matrix, labels, file_name, normalized)

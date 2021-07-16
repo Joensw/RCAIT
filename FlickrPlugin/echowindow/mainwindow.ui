@@ -36,7 +36,7 @@
         <widget class="QPushButton" name="pushButton_5">
          <property name="font">
           <font>
-           <family>SF Pro Text</family>
+           <family>Inter</family>
            <pointsize>8</pointsize>
           </font>
          </property>
@@ -183,7 +183,7 @@
         <widget class="QListWidget" name="listWidget_5">
          <property name="font">
           <font>
-           <family>SF Pro Text</family>
+           <family>Inter</family>
            <pointsize>8</pointsize>
            <weight>50</weight>
            <bold>false</bold>

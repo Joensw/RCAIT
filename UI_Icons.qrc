@@ -46,5 +46,6 @@
         <file>Resources/UISymbols/UI_Add_Result_Comparison_Icon.svg</file>
         <file>Resources/UISymbols/ListItem_Selected.svg</file>
         <file>Resources/UISymbols/ListItem_Unselected.svg</file>
+        <file>Resources/Fonts/Inter-Regular.otf</file>
     </qresource>
 </RCC>
