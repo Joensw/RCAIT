@@ -79,6 +79,7 @@ SOURCES += \
     view/removeprojectdialog.cpp \
     view/results/canvas.cpp \
     view/results/resultswidget.cpp \
+    view/results/trainingresultstopacc.cpp \
     view/results/trainingresultview.cpp \
     view/settingsview.cpp \
     view/startwidget.cpp \
@@ -145,6 +146,7 @@ HEADERS += \
     view/removeprojectdialog.h \
     view/results/canvas.h \
     view/results/resultswidget.h \
+    view/results/trainingresultstopacc.h \
     view/results/trainingresultview.h \
     view/settingsview.h \
     view/startwidget.h \
@@ -166,6 +168,7 @@ FORMS += \
     view/aitrainingwidget.ui \
     view/automationwidget.ui \
     view/inputimageswidget.ui \
+    view/results/trainingresultstopacc.ui \
     view/settingsview.ui
 
 TRANSLATIONS += \
