@@ -1,30 +1,31 @@
-#ifndef RCAIT_RESULTSCONTROLLER_H
-#define RCAIT_RESULTSCONTROLLER_H
+#ifndef RESULTSCONTROLLER_H
+#define RESULTSCONTROLLER_H
 
 
-#include <plugins/results/trainingresult.h>
-#include <plugins/results/classificationresult.h>
-#include <view/results/resultswidget.h>
-#include "model/projectmanager.h"
+#include <trainingresult.h>
+#include <classificationresult.h>
+#include <resultswidget.h>
+#include <datamanager.h>
 
-class ResultsController {
-private:
-    QList<TrainingResult> unsavedTrainingResults;
-    QList<ClassificationResult> unsavedClassificationResults;
-    void updateComparisonResultOverview(TrainingResult* result);
+class ResultsController : public QObject{
 
+    Q_OBJECT
 public:
-    ResultsController(ProjectManager *manager, ResultsWidget *resultsWidget);
+    ResultsController(DataManager *manager, ResultsWidget *resultsWidget);
     void addTrainingResult(TrainingResult* result);
     void addClassificationResult(ClassificationResult* result);
 
-    //TODO: Check if all of these are needed
 public slots:
-    void slot_startTrainingComparison();
-    void slot_startClassificationComparison();
     void slot_saveResult();
 
+private:
+    DataManager *m_dataManager;
+    ResultsWidget *m_resultsWidget;
+    //TODO ??
+    QList<TrainingResult> m_unsavedTrainingResults;
+    QList<ClassificationResult> m_unsavedClassificationResults;
+    void updateComparisonResultOverview(TrainingResult* result);
 };
 
 
-#endif //RCAIT_RESULTSCONTROLLER_H
+#endif //RESULTSCONTROLLER_H
