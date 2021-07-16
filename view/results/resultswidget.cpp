@@ -35,17 +35,15 @@ ResultsWidget::ResultsWidget(QWidget *parent) :
     //TODO: Remove dummy code
     dummyFunctionTest();
 
-    QTableWidget *table = ui->tableWidget_topAccuracy;
-    QHeaderView *header = table->horizontalHeader();
-    header->setSectionResizeMode(QHeaderView::Stretch);
-
 }
 
 void ResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
     if (action->isChecked()) {
         addTrainingResultTab(action->text());
+        ui->tab_topAccuracy->addTableRow(action->text(),12.34,56.78);
     } else {
         deleteTrainingResultTab(action->text());
+        ui->tab_topAccuracy->removeTableRow(action->text());
     }
 }
 
@@ -85,16 +83,17 @@ ResultsWidget::~ResultsWidget() {
 }
 
 TrainingResultView *ResultsWidget::addTrainingResultTab(const QString &tabName) {
-    auto tab = new TrainingResultView(this);
-    int index = ui->tabWidget_comparison->addTab(tab, tabName);
-    m_mapTrainingResultTabs[tabName] = index;
+    auto* tab = new TrainingResultView(this);
+    ui->tabWidget_comparison->addTab(tab, tabName);
+    m_mapTrainingResultTabs[tabName] = tab;
     return tab;
 }
 
 void ResultsWidget::deleteTrainingResultTab(const QString &tabName) {
-    auto *widget = ui->tabWidget_comparison;
-    auto index = m_mapTrainingResultTabs.take(tabName);
-    widget->removeTab(index);
+    auto *tabWidget = ui->tabWidget_comparison;
+    auto tab = m_mapTrainingResultTabs.take(tabName);
+    auto index = tabWidget->indexOf(tab);
+    tabWidget->removeTab(index);
 }
 
 void ResultsWidget::dummyFunctionTest() {
@@ -109,7 +108,7 @@ void ResultsWidget::dummyFunctionTest() {
             double random = QRandomGenerator::global()->bounded(3 * 100) / 100.0;
             int random2 = QRandomGenerator::global()->bounded(-2, 15);
             sum += random2;
-            pointsMap->insert(j,qMakePair(100 / (double) abs(sum),random));
+            pointsMap->insert(j,qMakePair(100 / (double) abs(sum) +3,random));
         }
         auto lossCurve = new LossCurve(*pointsMap);
         auto itemLC = lossCurve->generateLossCurveGraphics("losscurve_" + run + ".svg");

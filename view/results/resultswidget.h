@@ -39,7 +39,7 @@ private:
     Ui::ResultsWidget *ui;
     QPushButton *pushButton_addResult = new QPushButton(this);
     QMenu *menu_addRun = new QMenu(pushButton_addResult);
-    QMap<QString, int> m_mapTrainingResultTabs;
+    QMap<QString, QWidget*> m_mapTrainingResultTabs;
 
     TrainingResultView *addTrainingResultTab(const QString &tabName);
 
