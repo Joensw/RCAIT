@@ -19,12 +19,22 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
 
 
     ui->pluginList->addItem(tr("Global settings"));
-    mGlobalSettingsWidget = new QWidget();
+
+    mGlobalSettingsWidget = new GlobalSettingsWidget();
+
+    connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setProjectDir, this, &SettingsView::slot_setProjectDir);
+    connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setClassificationPluginsDir, this, &SettingsView::slot_setClassificationPluginsDir);
+    connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setImageLoaderPluginsDir, this, &SettingsView::slot_setImageLoaderPluginsDir);
+
+
+    /*mGlobalSettingsWidget = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout(mGlobalSettingsWidget);
 
     QPushButton *projectDirButton = new QPushButton(tr("Select project directory"));
     QPushButton *classificationPluginsDirButton = new QPushButton(tr("Select classification plugin directory"));
     QPushButton *imageLoaderPluginsDirButton = new QPushButton(tr("Select image loader plugin directory"));
+
+
     connect(projectDirButton, &QPushButton::clicked, this, &SettingsView::slot_setProjectDir);
     connect(classificationPluginsDirButton, &QPushButton::clicked, this, &SettingsView::slot_setClassificationPluginsDir);
     connect(imageLoaderPluginsDirButton, &QPushButton::clicked, this, &SettingsView::slot_setImageLoaderPluginsDir);
@@ -33,6 +43,8 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
     layout->addWidget(classificationPluginsDirButton);
     layout->addWidget(imageLoaderPluginsDirButton);
 
+    replaced this with an actual class
+    */
     ui->pluginWidget->addWidget(mGlobalSettingsWidget);
 
 
@@ -45,16 +57,33 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
     }
 
 }
+//TODO include the amount in the shown text somehow
+void SettingsView::pathsUpdated(int amount)
+{
+    qDebug() << amount;
+    mGlobalSettingsWidget->showUpdate(amount);
+}
+
+void SettingsView::clearPaths()
+{
+    mClassificationPluginsDir.clear();
+    mImageLoaderPluginsDir.clear();
+    mProjectDir.clear();
+    mGlobalSettingsWidget->clearNewPaths();
+}
 
 void SettingsView::on_saveButton_clicked()
 {
     int index = ui->pluginList->currentIndex().row();
 
     if (index == 0){
+        /*
         if (mProjectDir.isNull() || mClassificationPluginsDir.isNull() || mImageLoaderPluginsDir.isNull()){
-            //TODO Error message
             return;
+            // shouldnt be a problem, this path is them simply not updated, same thing should occur if user closes out of file dialog
+            //that is why i have commented this section
         }
+        */
         emit sig_applyGlobalSettings(mProjectDir, mClassificationPluginsDir, mImageLoaderPluginsDir);
     } else {
         // -1 weil 0. Eintrag GlobalSettings ist.
@@ -66,20 +95,27 @@ void SettingsView::on_saveButton_clicked()
 //private slots for global settings widget
 void SettingsView::slot_setProjectDir()
 {
-     mProjectDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
+    mProjectDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
+    if (!mProjectDir.isEmpty()){
+        mGlobalSettingsWidget->setNewProjectPath(mProjectDir);
+    }
 }
 
 void SettingsView::slot_setClassificationPluginsDir()
 {
-     mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
+    mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
+    if (!mClassificationPluginsDir.isEmpty()) {
+        mGlobalSettingsWidget->setNewClassificationPluginPath(mClassificationPluginsDir);
+    }
 }
 
 void SettingsView::slot_setImageLoaderPluginsDir()
 {
-     mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
+    mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
+    if (!mImageLoaderPluginsDir.isEmpty()) {
+        mGlobalSettingsWidget->setNewImageLoaderPath(mImageLoaderPluginsDir);
+    }
 }
-
-
 
 
 SettingsView::~SettingsView()

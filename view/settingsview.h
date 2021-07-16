@@ -2,6 +2,10 @@
 #define SETTINGSVIEW_H
 
 #include <QWidget>
+#include <QLabel>
+#include <QMessageBox>
+
+#include "globalsettingswidget.h"
 
 namespace Ui {
 class SettingsView;
@@ -17,11 +21,13 @@ public:
     ~SettingsView();
     SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidget*> pluginConfigurationWidgets);
 
+    void pathsUpdated(int amount);
+    void clearPaths();
+
 
 signals:
     void sig_applyGlobalSettings(QString projectsDir, QString classificationPluginsDir, QString imageLoaderPluginsDir);
     void sig_applySettings(int index);
-   // void sig_closeSettings();
 
 private slots:
     void on_saveButton_clicked();
@@ -32,7 +38,7 @@ private slots:
 
 private:
     Ui::SettingsView *ui;
-    QWidget* mGlobalSettingsWidget;
+    GlobalSettingsWidget * mGlobalSettingsWidget;
 
     QString mProjectDir;
     QString mClassificationPluginsDir;
