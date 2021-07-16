@@ -19,7 +19,7 @@ QGraphicsItem *ConfusionMatrix::generateConfusionMatrixGraphics(const QString &f
     QString command("python");
 
     // python script.py <matrix data> <matrix labels> <output file name> (<normalized>)
-    QStringList params = QStringList() << file.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fileName;
+    QStringList params = QStringList() << file.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fileName << "--normalized";
     auto *process = new QProcess();
 
     process->start(command,params);

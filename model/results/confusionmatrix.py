@@ -13,7 +13,7 @@ plt.ioff()
 
 def plot_confusion_matrix(cm, lbl, file, normalize, cmap=plt.cm.get_cmap('magma_r')):
     if normalize:
-        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis] * 100
         print("Normalized confusion matrix")
         decimal = '.1f'
     else:
