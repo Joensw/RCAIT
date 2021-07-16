@@ -92,7 +92,6 @@
        <attribute name="title">
         <string>Import Files</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout"/>
       </widget>
       <widget class="ImageSection" name="tab_image_inspection">
        <attribute name="icon">
@@ -111,7 +110,6 @@
        <attribute name="title">
         <string>AI Training</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_11"/>
       </widget>
       <widget class="InputImagesWidget" name="tab_inputimages">
        <attribute name="icon">
@@ -121,7 +119,6 @@
        <attribute name="title">
         <string>Input Images</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_24"/>
       </widget>
       <widget class="ResultsWidget" name="tab_results">
        <attribute name="icon">
@@ -140,7 +137,6 @@
        <attribute name="title">
         <string>Automation</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_15"/>
       </widget>
      </widget>
     </item>
