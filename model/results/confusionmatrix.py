@@ -11,7 +11,7 @@ import numpy as np
 plt.ioff()
 
 
-def plot_confusion_matrix(cm, lbl, file, normalize, cmap=plt.cm.get_cmap('CMRmap_r')):
+def plot_confusion_matrix(cm, lbl, file, normalize, cmap=plt.cm.get_cmap('magma_r')):
     if normalize:
         cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
         print("Normalized confusion matrix")
