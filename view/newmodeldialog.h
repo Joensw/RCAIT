@@ -14,6 +14,10 @@ class NewModelDialog : public QDialog
 public:
     explicit NewModelDialog(QWidget *parent = nullptr, QStringList classificationPlugins = QStringList());
     ~NewModelDialog();
+    void setAvailableBases(QStringList bases);
+public slots:
+    void slot_classifactionPlugin_currentTextChanged(QString text);
+
 signals:
     void sig_newModelConfirm(QString modelName, QString pluginName, QString baseModel);
     void sig_pluginSelected(QString pluginName);
@@ -22,6 +26,7 @@ private:
 private slots:
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
+
 };
 
 #endif // NEWMODELDIALOG_H

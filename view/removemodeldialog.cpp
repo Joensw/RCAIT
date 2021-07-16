@@ -6,7 +6,9 @@ RemoveModelDialog::RemoveModelDialog(QWidget *parent, QString toRemove) :
     ui(new Ui::RemoveModelDialog)
 {
     ui->setupUi(this);
-    this->mToRemove = toRemove;
+    mToRemove = toRemove;
+    QString message = ui->label->text().replace("&lt;name&gt;", toRemove);
+    ui->label->setText(message);
 
 }
 
