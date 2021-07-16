@@ -1,7 +1,6 @@
 #include "flickrplugin.h"
 
 
-
 bool FlickrPlugin::loadImages(const QString path, const int imageCount, const QStringList* label)
 {
 
