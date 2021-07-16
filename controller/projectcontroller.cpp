@@ -41,6 +41,7 @@ QString ProjectController::verifyName(QString input)
 void ProjectController::slot_newProject(){
     mNewProjectDialog = new NewProjectDialog();
     mNewProjectDialog->setAttribute(Qt::WA_DeleteOnClose, true);
+    mNewProjectDialog->setModal(true);
     connect(mNewProjectDialog, &NewProjectDialog::sig_newProjectConfirm, this, &ProjectController::slot_newProjectConfirm);
     mNewProjectDialog->show();
 }
@@ -48,6 +49,7 @@ void ProjectController::slot_newProject(){
 void ProjectController::slot_removeProject(QString projectName){
     mRemoveProjectDialog = new RemoveProjectDialog(nullptr, projectName);
     mRemoveProjectDialog->setAttribute(Qt::WA_DeleteOnClose, true);
+    mRemoveProjectDialog->setModal(true);
     connect(mRemoveProjectDialog, &RemoveProjectDialog::sig_removeProjectConfirm, this, &ProjectController::slot_removeProjectConfirm);
     mRemoveProjectDialog->show();
 }
