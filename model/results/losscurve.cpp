@@ -34,7 +34,11 @@ QString LossCurve::valuesToPyText() {
     for (const auto key: m_data.keys()) {
         auto rowList = QStringList();
         auto &[train, val] = m_data[key];
-        rowList << QString::number(key) << QString::number(train) << QString::number(val);
+
+        //Convert to QString with precision of 2 digits
+        auto trainStr = QString::number(train, 'G', 5);
+        auto valStr = QString::number(val, 'G', 5);
+        rowList << QString::number(key) << trainStr << valStr;
         *result << '[' + rowList.join(',') + ']';
     }
     return '[' + result->join(',') + ']';
