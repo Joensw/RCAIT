@@ -25,9 +25,16 @@ void TrainingResultsTopAcc::addTableRow(const QString& identifier, double top1, 
     table->insertRow(row);
 
     //Fill table row
-    table->setVerticalHeaderItem(row, new QTableWidgetItem(identifier));
-    table->setItem(row, 0, new QTableWidgetItem(top1Str));
-    table->setItem(row, 1, new QTableWidgetItem(top5Str));
+    auto identifierItem = new QTableWidgetItem(identifier);
+    auto top1StrItem = new QTableWidgetItem(top1Str);
+    auto top5StrItem = new QTableWidgetItem(top5Str);
+
+    top1StrItem->setTextAlignment(Qt::AlignCenter);
+    top5StrItem->setTextAlignment(Qt::AlignCenter);
+
+    table->setVerticalHeaderItem(row, identifierItem);
+    table->setItem(row, 0, top1StrItem);
+    table->setItem(row, 1, top5StrItem);
 }
 
 void TrainingResultsTopAcc::removeTableRow(const QString& identifier) {
