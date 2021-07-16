@@ -38,7 +38,7 @@ QWidget *ImageLoaderPluginManager::getInputWidget(QString pluginName) {
 
 bool ImageLoaderPluginManager::loadImages(QString path, ProgressablePlugin *receiver, QString pluginName, int count,
                                           QStringList labels) {
-    return m_plugins.value(pluginName)->loadImages(path, *receiver, count, labels);;
+    return m_plugins.value(pluginName)->loadImages(path, receiver, count, labels);;
 }
 
 QStringList ImageLoaderPluginManager::getNamesOfPlugins()
