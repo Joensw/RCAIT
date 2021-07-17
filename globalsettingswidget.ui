@@ -58,7 +58,7 @@
        <item>
         <widget class="QLabel" name="label_projectsDir_current">
          <property name="text">
-          <string>todo :)</string>
+          <string/>
          </property>
         </widget>
        </item>

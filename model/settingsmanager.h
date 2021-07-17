@@ -5,6 +5,9 @@
 #include <QWidget>
 #include <QSettings>
 
+#include "classificationpluginmanager.h"
+#include "imageloaderpluginmanager.h"
+
 extern const QString GLOBAL_SETTINGS_LOCATION;
 
 
@@ -24,13 +27,21 @@ public:
     QString getImageLoaderPluginDir();
 
     QStringList getClassificationPluginNames();
+    QStringList getClassificationPluginBase(QString basesOf);
 
-
+    bool verifyDirectories();
+    bool verifyPaths(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory);
+    bool verifyPath(QString path);
 
 
 
 private:
-    QSettings mGlobalSettings;
+    ClassificationPluginManager * mClassificationPluginManager;
+    ImageLoaderPluginManager * mImageLoaderPluginManager;
+
+
+    QSettings * mGlobalSettings;
+
 
 
 };

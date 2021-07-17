@@ -21,6 +21,12 @@ public:
     void setNewImageLoaderPath(QString path);
     void clearNewPaths();
     void showUpdate(int amount);
+    void showNonUpdate();
+    void setError(QString error);
+
+    void setCurrentProjectsDir(QString path);
+    void setCurrentClassificationDir(QString path);
+    void setCurrentImageLoaderDir(QString path);
 signals:
     void sig_setProjectDir();
     void sig_setClassificationPluginsDir();

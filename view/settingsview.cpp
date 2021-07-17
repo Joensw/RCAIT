@@ -1,8 +1,6 @@
 #include "settingsview.h"
 #include "ui_settingsview.h"
 
-#include <QFileDialog>
-
 
 SettingsView::SettingsView(QWidget *parent) :
     QWidget(parent),
@@ -60,7 +58,10 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
 //TODO include the amount in the shown text somehow
 void SettingsView::pathsUpdated(int amount)
 {
-    qDebug() << amount;
+    if (amount == 0){
+        mGlobalSettingsWidget->showNonUpdate();
+        return;
+    }
     mGlobalSettingsWidget->showUpdate(amount);
 }
 
@@ -70,6 +71,26 @@ void SettingsView::clearPaths()
     mImageLoaderPluginsDir.clear();
     mProjectDir.clear();
     mGlobalSettingsWidget->clearNewPaths();
+}
+
+void SettingsView::setGlobalSettingsError(QString error)
+{
+    mGlobalSettingsWidget->setError(error);
+}
+
+void SettingsView::setCurrentProjectDirectory(QString path)
+{
+    mGlobalSettingsWidget->setCurrentProjectsDir(path);
+}
+
+void SettingsView::setCurrentClassificationPluginDirectory(QString path)
+{
+    mGlobalSettingsWidget->setCurrentClassificationDir(path);
+}
+
+void SettingsView::setCurrentImageLoaderPluginDirectory(QString path)
+{
+    mGlobalSettingsWidget->setCurrentImageLoaderDir(path);
 }
 
 void SettingsView::on_saveButton_clicked()

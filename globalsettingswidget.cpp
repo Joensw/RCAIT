@@ -37,11 +37,38 @@ void GlobalSettingsWidget::clearNewPaths()
 
 void GlobalSettingsWidget::showUpdate(int amount)
 {
-    if (amount == 0) {
-        ui->label_information->setText("no changes were made");
-        return;
-    }
+    ui->label_information->clear();
+    ui->label_information->setStyleSheet("QLabel { color : green; }");
     ui->label_information->setText("Sucess. Updated " + QString::number(amount) + " path(s)");
+}
+
+void GlobalSettingsWidget::showNonUpdate()
+{
+    ui->label_information->clear();
+    ui->label_information->setStyleSheet("QLabel { color : blue; }");
+    ui->label_information->setText("no changes were made");
+}
+
+void GlobalSettingsWidget::setError(QString error)
+{
+    ui->label_information->clear();
+    ui->label_information->setStyleSheet("QLabel { color : red; }");
+    ui->label_information->setText(error);
+}
+
+void GlobalSettingsWidget::setCurrentProjectsDir(QString path)
+{
+    ui->label_projectsDir_current->setText(path);
+}
+
+void GlobalSettingsWidget::setCurrentClassificationDir(QString path)
+{
+    ui->label_classificationDir_current->setText(path);
+}
+
+void GlobalSettingsWidget::setCurrentImageLoaderDir(QString path)
+{
+    ui->label_imageLoaderDir_current->setText(path);
 }
 
 void GlobalSettingsWidget::on_pushButton_project_clicked()

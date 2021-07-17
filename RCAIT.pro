@@ -22,12 +22,15 @@ CONFIG += c++17 static
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    configurationdialog.cpp \
     controller/aicontroller.cpp \
     controller/automationcontroller.cpp \
+    controller/configurationcontroller.cpp \
     controller/modelcontroller.cpp \
     controller/projectcontroller.cpp \
     controller/controller.cpp \
     controller/settingscontroller.cpp \
+    globalsettingswidget.cpp \
     model/datamanager.cpp \
     model/automation/addprojecttask.cpp \
     model/automation/automator.cpp \
@@ -83,12 +86,15 @@ SOURCES += \
     view/tags.cpp
 
 HEADERS += \
+    configurationdialog.h \
     controller/aicontroller.h \
     controller/automationcontroller.h \
+    controller/configurationcontroller.h \
     controller/modelcontroller.h \
     controller/projectcontroller.h \
     controller/controller.h \
     controller/settingscontroller.h \
+    globalsettingswidget.h \
     model/datamanager.h \
     model/automation/addprojecttask.h \
     model/automation/automator.h \
@@ -147,6 +153,8 @@ HEADERS += \
     view/tags.hpp
 
 FORMS += \
+    configurationdialog.ui \
+    globalsettingswidget.ui \
     imagesection.ui \
     importfileswidget.ui \
     mainwindow.ui \

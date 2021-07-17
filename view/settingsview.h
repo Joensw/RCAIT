@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QMessageBox>
+#include <QFileDialog>
 
 #include "globalsettingswidget.h"
 
@@ -23,6 +24,11 @@ public:
 
     void pathsUpdated(int amount);
     void clearPaths();
+    void setGlobalSettingsError(QString error);
+
+    void setCurrentProjectDirectory(QString path);
+    void setCurrentClassificationPluginDirectory(QString path);
+    void setCurrentImageLoaderPluginDirectory(QString path);
 
 
 signals:
