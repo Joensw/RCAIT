@@ -5,10 +5,14 @@
 #include <pluginusage/progressableplugin.h>
 
 class ImageSearchThread : public QThread {
+    Q_OBJECT
+    void run() override;
+
 public:
-    ImageSearchThread(Progressable* receiver, QString imagePath, QString pluginName, int count, QStringList labels);
+    ImageSearchThread(ProgressablePlugin* receiver, QString imagePath, QString pluginName, int count, QStringList labels);
+
 private:
-    Progressable* receiver;
+    ProgressablePlugin* receiver;
     volatile bool* stopped;
 
 };

@@ -5,13 +5,23 @@
 #include <QMap>
 #include <QDir>
 #include <QDirIterator>
-class imageinspectionmodel {
+class ImageInspectionModel {
+
+
+public:
+    const QMap<QString, QStringList> &getValidationDataset() const;
+
+    const QMap<QString, QStringList> &getTrainDataset() const;
+
+    const QMap<QString, QStringList> &getValidationNewData() const;
+
+    const QMap<QString, QStringList> &getTrainNewData() const;
 
 private:
-    QMap<QString, QStringList> m_validationDataset;
     QMap<QString, QStringList> m_trainDataset;
     QMap<QString, QStringList> m_validationNewData;
     QMap<QString, QStringList> m_trainNewData;
+    QMap<QString, QStringList> m_validationDataset;
 
 public:
     const QString VALIDATION_FOLDER = "Validate";
@@ -23,8 +33,8 @@ public:
 
 private:
     QStringList readLabeledFolder(QDir labeledFolder);
-    void insertLabeledImagePaths(QMap<QString, QStringList> insertTarget, QString labeledImagePath);
-    void removeImageWithIndex(QMap<QString, QStringList>, int index);
+    void insertLabeledImagePaths(QMap<QString, QStringList> *insertTarget, QString labeledImagePath);
+    void removeImageWithIndex(QMap<QString, QStringList> *removeTarget, int index);
 };
 
 

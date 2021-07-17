@@ -35,6 +35,9 @@ file(GLOB_RECURSE SOURCE_FILES_A
         "Resources/*"
         )
 
+list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/test/.*" )
+
+
 file(GLOB SOURCE_FILES_B
         "*.qrc"
         "*.ui"
@@ -67,3 +70,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ${REQUIRED_LIBS_QUALIFIED})
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(${PROJECT_NAME})
 endif()
+
+#enable_testing()
+#add_subdirectory(lib/googletest-master)
+#add_subdirectory(model/test)
+add_subdirectory(Google_tests)
