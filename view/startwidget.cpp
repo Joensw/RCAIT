@@ -60,7 +60,6 @@ void StartWidget::on_pushButton_removeProject_clicked() {
 }
 
 void StartWidget::on_pushButton_openProject_clicked(){
-    qDebug() << "startwidget";
     QListWidgetItem * item = ui->listWidget_projectsList->currentItem();
     if (item) {
         QString toOpen = item->text();

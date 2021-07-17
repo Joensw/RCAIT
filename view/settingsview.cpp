@@ -119,7 +119,9 @@ void SettingsView::slot_setProjectDir()
     mProjectDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
     if (!mProjectDir.isEmpty()){
         mGlobalSettingsWidget->setNewProjectPath(mProjectDir);
+        return;
     }
+    mGlobalSettingsWidget->setNewProjectPath("-");
 }
 
 void SettingsView::slot_setClassificationPluginsDir()
@@ -127,7 +129,9 @@ void SettingsView::slot_setClassificationPluginsDir()
     mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
     if (!mClassificationPluginsDir.isEmpty()) {
         mGlobalSettingsWidget->setNewClassificationPluginPath(mClassificationPluginsDir);
+        return;
     }
+    mGlobalSettingsWidget->setNewProjectPath("-");
 }
 
 void SettingsView::slot_setImageLoaderPluginsDir()
@@ -135,7 +139,9 @@ void SettingsView::slot_setImageLoaderPluginsDir()
     mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
     if (!mImageLoaderPluginsDir.isEmpty()) {
         mGlobalSettingsWidget->setNewImageLoaderPath(mImageLoaderPluginsDir);
+        return;
     }
+    mGlobalSettingsWidget->setNewProjectPath("-");
 }
 
 
