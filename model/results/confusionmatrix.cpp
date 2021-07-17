@@ -2,7 +2,7 @@
 
 
 ConfusionMatrix::ConfusionMatrix(const QString &identifier, const QStringList &classLabels,
-                                 const QList<double> &values)
+                                 const QList<int> &values)
         : AbstractResultGraphics("confusionmatrix_" + identifier, "svg"), m_size(classLabels.size()) {
 
     Q_ASSERT(!classLabels.isEmpty());

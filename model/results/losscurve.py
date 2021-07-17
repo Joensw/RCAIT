@@ -14,6 +14,8 @@ plt.ioff()
 
 
 def plot_loss_curve(lossdata, file):
+    np.set_printoptions(precision=2)
+    np.set_printoptions(suppress=True)
     # lossdata is a (epochs) x 3 matrix
     # at least 4 epochs are required
     print('Loss Curve data')
@@ -67,8 +69,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
     data = np.array(ast.literal_eval(args.lossdata))
     file_name = args.outfilename
-
-    np.set_printoptions(precision=1)
 
     # specify the custom font to use
     plt.rcParams['font.family'] = 'sans-serif'
