@@ -107,7 +107,7 @@ QString DataManager::getImageLoaderPluginDir(){
 void DataManager::saveClassificationResult(ClassificationResult result){
     mProjectManager->saveClassificationResult(result);
 }
-void DataManager::saveTrainingsResult(ClassificationResult result){
+void DataManager::saveTrainingsResult(TrainingResult result){
     return mProjectManager->saveTrainingsResult(result);
 }
 TrainingResult DataManager::getTrainingsResult(QString modelResultName){

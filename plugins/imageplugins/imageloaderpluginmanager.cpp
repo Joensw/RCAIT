@@ -24,3 +24,8 @@ bool ImageLoaderPluginManager::loadImages(QString path, ProgressablePlugin *rece
                                           QStringList labels) {
     return false;
 }
+
+QStringList ImageLoaderPluginManager::getNamesOfPlugins()
+{
+    return QStringList();
+}

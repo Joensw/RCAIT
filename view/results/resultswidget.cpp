@@ -1,6 +1,5 @@
 #include <QPushButton>
 #include <QMenu>
-#include <QSplineSeries>
 #include <QRandomGenerator>
 #include "resultswidget.h"
 #include "ui_resultswidget.h"
@@ -36,17 +35,15 @@ ResultsWidget::ResultsWidget(QWidget *parent) :
     //TODO: Remove dummy code
     dummyFunctionTest();
 
-    QTableWidget *table = ui->tableWidget_topAccuracy;
-    QHeaderView *header = table->horizontalHeader();
-    header->setSectionResizeMode(QHeaderView::Stretch);
-
 }
 
 void ResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
     if (action->isChecked()) {
-        addTrainingResultTab(action->text());
+        createTrainingResultTab(action->text());
+        ui->tab_topAccuracy->addTableRow(action->text(), 12.34, 56.78);
     } else {
         deleteTrainingResultTab(action->text());
+        ui->tab_topAccuracy->removeTableRow(action->text());
     }
 }
 
@@ -60,41 +57,20 @@ QString ResultsWidget::getSelectedClassifyRunIdentifier() {
 
 void ResultsWidget::addTrainingResult(TrainingResult *result) {
     QString name = "Run";
-    auto data_lossCurve = result->getLossCurveData();
+    auto lossCurve = result->getLossCurve();
     auto confusionMatrix = result->getConfusionMatrix();
     auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
 
-    auto tab = addTrainingResultTab(name);
+    auto tab = createTrainingResultTab(name);
 
-    //Parse Loss curve
-    auto series = parseLossCurveData(data_lossCurve);
 
     //Pass to Most Misclassified Images
 
 //TODO: (Adrians Help) Pass QList<QImages>
 
-
-    tab->setLossCurve(series.first, series.second);
-    tab->setConfusionMatrix(confusionMatrix->generateConfusionMatrixGraphics("matrix.svg"));
+    lossCurve->generateGraphics(tab);
+    confusionMatrix->generateGraphics(tab);
     tab->setMostMisclassifiedImages(QList<QImage>());
-}
-
-QPair<QLineSeries *, QLineSeries *>
-ResultsWidget::parseLossCurveData(const QMap<int, QPair<double, double>> &data_lossCurve) {
-    auto *trainSeries = new QSplineSeries();
-    auto *validationSeries = new QSplineSeries();
-
-    for (const auto &xValue : data_lossCurve.keys()) {
-        QPair<double, double> pair = data_lossCurve[xValue];
-        auto yTrain = pair.first;
-        auto yValidation = pair.second;
-        auto trainPoint = QPointF(xValue, yTrain);
-        auto validationPoint = QPointF(xValue, yValidation);
-
-        *trainSeries << trainPoint;
-        *validationSeries << validationPoint;
-    }
-    return qMakePair(trainSeries, validationSeries);
 }
 
 void ResultsWidget::addClassificationResult(ClassificationResult *result) {
@@ -105,53 +81,57 @@ ResultsWidget::~ResultsWidget() {
     delete ui;
 }
 
-TrainingResultView *ResultsWidget::addTrainingResultTab(const QString &tabName) {
-    auto tab = new TrainingResultView(this);
-    int index = ui->tabWidget_comparison->addTab(tab, tabName);
-    m_mapTrainingResultTabs[tabName] = index;
+TrainingResultView *ResultsWidget::createTrainingResultTab(const QString &tabName) {
+    auto *tab = new TrainingResultView(this);
+    ui->tabWidget_comparison->addTab(tab, tabName);
+    m_mapTrainingResultTabs[tabName] = tab;
     return tab;
 }
 
 void ResultsWidget::deleteTrainingResultTab(const QString &tabName) {
-    auto *widget = ui->tabWidget_comparison;
-    auto index = m_mapTrainingResultTabs.take(tabName);
-    widget->removeTab(index);
+    auto *tabWidget = ui->tabWidget_comparison;
+    auto tab = m_mapTrainingResultTabs.take(tabName);
+    auto index = tabWidget->indexOf(tab);
+    tabWidget->removeTab(index);
 }
 
 void ResultsWidget::dummyFunctionTest() {
     for (int i = 0; i < 3; ++i) {
         QString run = QString("Run %1").arg(i + 1);
-        auto tab = addTrainingResultTab(run);
+        auto tab = createTrainingResultTab(run);
 
         //Loss Curve
-        auto *trainSeries = new QSplineSeries();
-        auto *validationSeries = new QSplineSeries();
-        int precision = 1;
-        for (int j = 0; j < 20 * precision; j++) {
-            double random = QRandomGenerator::global()->bounded(3 * 100) / 100.0;
-            *validationSeries << QPointF((double) j / precision, random);
-        }
-
         int sum = 0;
-        for (int j = 0; j < 20 * precision; j++) {
-            int random = QRandomGenerator::global()->bounded(-2, 15);
-            sum += random;
-            *trainSeries << QPointF((double) j / precision, 3 + 100 / (double) abs(sum));
+        auto *pointsMap = new QMap<int, QPair<double, double>>();
+        for (int j = 0; j < 20; j++) {
+            double random = QRandomGenerator::global()->bounded(3 * 100) / 100.0;
+            int random2 = QRandomGenerator::global()->bounded(-2, 15);
+            sum += random2;
+            pointsMap->insert(j, qMakePair(100 / (double) abs(sum) + 3, random));
         }
-        tab->setLossCurve(trainSeries, validationSeries);
+        auto lossCurve = new LossCurve(run, *pointsMap);
+        lossCurve->generateGraphics(tab);
 
         //Confusion Matrix
         QList<double> values = QList<double>();
         QStringList labels = {"A", "B", "C", "D", "E", "F", "G", "H"};
         const qsizetype N = labels.size();
+        qsizetype target = 0;
         for (int j = 0; j < N * N; ++j) {
-            int random = QRandomGenerator::global()->bounded(0, 100);
+            //Check if we are on diagonal line of matrix
+            int min = 0;
+            int max = 10;
+            if (target == j) {
+                target += N + 1;
+                min = 30;
+                max = 100;
+            }
+            int random = QRandomGenerator::global()->bounded(min, max);
             values << random;
         }
 
-        auto matrix = new ConfusionMatrix(labels, values);
-        auto item = matrix->generateConfusionMatrixGraphics("matrix_" + run + ".svg");
-        tab->setConfusionMatrix(item);
+        auto matrix = new ConfusionMatrix(run, labels, values);
+        matrix->generateGraphics(tab);
     }
 }
 

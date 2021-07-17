@@ -39,22 +39,19 @@ private:
     Ui::ResultsWidget *ui;
     QPushButton *pushButton_addResult = new QPushButton(this);
     QMenu *menu_addRun = new QMenu(pushButton_addResult);
-    QMap<QString, int> m_mapTrainingResultTabs;
+    QMap<QString, QWidget*> m_mapTrainingResultTabs;
 
-    TrainingResultView *addTrainingResultTab(const QString &tabName);
+    TrainingResultView *createTrainingResultTab(const QString &tabName);
+    void deleteTrainingResultTab(const QString &tabName);
 
     void dummyFunctionTest();
 
     void retranslateUi();
 
-    static QPair<QLineSeries *, QLineSeries *>
-    parseLossCurveData(const QMap<int, QPair<double, double>> &data_lossCurve);
-
 private slots:
 
     void slot_comparisonMenu_triggered(QAction *action);
 
-    void deleteTrainingResultTab(const QString &tabName);
 };
 
 

@@ -1,5 +1,11 @@
 QT += widgets
 
+
+test {
+} else {
+
+
+
 HEADERS    = echowindow.h \
              imageloaderplugin.h \
              mainwindow.h \
@@ -27,3 +33,4 @@ CONFIG += install_ok  # Do not cargo-cult this!
 FORMS += \
     mainwindow.ui \
     settings.ui
+}

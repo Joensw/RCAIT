@@ -8,14 +8,14 @@
 #include "modelcontroller.h"
 #include "automationcontroller.h"
 #include "configurationcontroller.h"
+#include "resultscontroller.h"
 #include <mainwindow.h>
 
 #include <QObject>
 
 
-class Controller : public QObject
-{
-    Q_OBJECT
+class Controller : public QObject {
+Q_OBJECT
 public:
     explicit Controller(QObject *parent = nullptr);
 
@@ -25,19 +25,21 @@ public slots:
 private:
     MainWindow *mMainWindow;
 
-    SettingsController * mSettingsController;
+    SettingsController *mSettingsController;
 
-    ProjectController * mProjectController;
+    ProjectController *mProjectController;
 
-    AIController * mAiController;
+    AIController *mAiController;
 
-    ModelController * mModelController;
+    ResultsController *mResultsController;
 
-    AutomationController * mAutomationController;
+    ModelController *mModelController;
+
+    AutomationController *mAutomationController;
 
     ConfigurationController * mConfigurationController;
 
-    DataManager * mDataManger;
+    DataManager *mDataManger;
 
 
 };

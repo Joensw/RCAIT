@@ -99,7 +99,7 @@ void ProjectManager::saveClassificationResult(ClassificationResult result) {
 
 }
 
-void ProjectManager::saveTrainingsResult(ClassificationResult result) {
+void ProjectManager::saveTrainingsResult(TrainingResult result) {
 
 }
 

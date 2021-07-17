@@ -6,7 +6,7 @@
 
 class ImageSearchThread : public QThread {
 public:
-    ImageSearchThread(ProgressablePlugin* receiver, QString imagePath, QString pluginName, int count, QStringList labels);
+    ImageSearchThread(Progressable* receiver, QString imagePath, QString pluginName, int count, QStringList labels);
 private:
     Progressable* receiver;
     volatile bool* stopped;

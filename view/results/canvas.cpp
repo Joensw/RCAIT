@@ -2,19 +2,23 @@
 #include "canvas.h"
 
 Canvas::Canvas(bool autoScale) : QGraphicsView() {
-    setAutoScale(autoScale);
+    m_autoScale = autoScale;
+    setAutoScale(m_autoScale);
 }
 
 void Canvas::setAutoScale(bool autoScale) {
-    mAutoScale = autoScale;
-    setHorizontalScrollBarPolicy(mAutoScale ? Qt::ScrollBarAlwaysOff : Qt::ScrollBarAsNeeded);
-    setVerticalScrollBarPolicy(mAutoScale ? Qt::ScrollBarAlwaysOff : Qt::ScrollBarAsNeeded);
+    setHorizontalScrollBarPolicy(m_autoScale ? Qt::ScrollBarAlwaysOff : Qt::ScrollBarAsNeeded);
+    setVerticalScrollBarPolicy(m_autoScale ? Qt::ScrollBarAlwaysOff : Qt::ScrollBarAsNeeded);
 }
 
 void Canvas::paintEvent(QPaintEvent *pQEvent) {
     const QGraphicsScene *pQGScene = scene();
-    if (pQGScene && mAutoScale) {
+    if (pQGScene && m_autoScale) {
         fitInView(pQGScene->sceneRect(), Qt::KeepAspectRatio);
     }
     QGraphicsView::paintEvent(pQEvent);
+}
+
+bool Canvas::autoScale() const {
+    return m_autoScale;
 }

@@ -14,19 +14,35 @@ FlickrSettings::~FlickrSettings()
     delete ui;
 }
 
-
 void FlickrSettings::saveSettings()
 {
+    m_settings.setValue(m_apiKey,ui->lineEdit_ApiKey->text());
+    m_settings.setValue(m_apiSecret,ui->lineEdit_ApiSecret->text());
+    m_settings.setValue(m_pythonPath,ui->lineEdit_PythonPath->text());
 
-    QSettings settings("Flickr Plugin",QSettings::IniFormat);
-    settings.setValue("API Key",ui->lineEdit_ApiKey->text());
-    qDebug() << settings.fileName();
 }
-
-
 
 void FlickrSettings::loadSettings()
 {
-    QSettings settings("Flickr Plugin",QSettings::IniFormat);
-    ui->lineEdit_ApiKey->setText(settings.value("API Key","Bitte API Key eintragen").toString());
+    ui->lineEdit_ApiKey->setText(m_settings.value(m_apiKey).toString());
+    ui->lineEdit_ApiSecret->setText(m_settings.value(m_apiSecret).toString());
+    ui->lineEdit_PythonPath->setText(m_settings.value(m_pythonPath).toString());
 }
+
+
+QString FlickrSettings::getPythonPath(){
+    return m_settings.value(m_pythonPath).toString();
+}
+
+
+QString FlickrSettings::getaAPIKey()
+{
+    return m_settings.value(m_apiKey).toString();
+}
+
+QString FlickrSettings::getAPISecret()
+{
+    return m_settings.value(m_apiSecret).toString();
+}
+
+

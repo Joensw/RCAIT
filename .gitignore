@@ -52,7 +52,7 @@ compile_commands.json
 *creator.user*
 
 #CLion IDE configs
-CMakeLists.txt
+#CMakeLists.txt  #wollen wir doch committen
 .idea
 
 # Weird useless files

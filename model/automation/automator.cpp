@@ -1,5 +1,8 @@
 #include "automator.h"
 
+#include <QJsonDocument>
+#include <QJsonObject>
+
 
 
 Automator::Automator(DataManager *dataManager)
@@ -10,9 +13,11 @@ Automator::Automator(DataManager *dataManager)
 void Automator::performTasks()
 {
     stop = false;
-    while (!stop && !mQueuedTasks.empty()){
+    QList<Task*>::iterator i ;
+
+    for (i = mQueuedTasks.begin(); i != mQueuedTasks.end() && !stop; ++i){
         //TODO change Task so it is stoppable
-         mQueuedTasks.at(0)->run();
+         (*i)->run();
     }
 }
 
@@ -23,7 +28,20 @@ void Automator::stopTasks()
 
 void Automator::addTasks(QString path)
 {
-    //TODO implement
+    QFile jsonFile(path);
+    jsonFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    QString jsonData = jsonFile.readAll();
+    jsonFile.close();
+
+
+    QJsonDocument doc = QJsonDocument::fromJson(jsonData.toUtf8());
+    QVariantMap jsonMap = doc.object().toVariantMap();
+
+    if (jsonMap.isEmpty() || !jsonMap.contains("taskType") || !jsonMap.contains("taskName") || !jsonMap.contains("projectName")){
+        //TODO error message
+        return;
+    }
+    mUnqueuedTasks.append(new Task(jsonMap, mDataManager));
 }
 
 void Automator::remove(int taskNum)
@@ -55,18 +73,25 @@ int Automator::getQueuedSize()
 
 QList<QString> Automator::getUnqueuedTasks()
 {
-    //TODO implement
-    return QStringList();
+    QStringList list;
+    for (Task* task : mUnqueuedTasks){
+        list.append(task->getName());
+    }
+    return list;
 }
 
 QList<QString> Automator::getQueuedTasks()
 {
-    //TODO implement
-    return QStringList();
+    QStringList list;
+    for (Task* task : mQueuedTasks){
+        list.append(task->getName());
+    }
+    return list;
 }
 
-void Automator::slot_taskUpdated()
+void Automator::slot_taskUpdated(QString taskName, TaskState state)
 {
-    //TODO implement
+   QString StateMap[] = { "Scheduled", "Performing", "Failed", "Completed" };
+   emit sig_taskUpdate(taskName, StateMap[state]);
 }
 

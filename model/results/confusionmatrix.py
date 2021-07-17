@@ -7,12 +7,13 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
+# No display of plot
 plt.ioff()
 
 
-def plot_confusion_matrix(cm, lbl, file, normalize, cmap=plt.cm.get_cmap('CMRmap_r')):
+def plot_confusion_matrix(cm, lbl, file, normalize, cmap=plt.cm.get_cmap('magma_r')):
     if normalize:
-        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis] * 100
         print("Normalized confusion matrix")
         decimal = '.1f'
     else:
@@ -34,7 +35,7 @@ def plot_confusion_matrix(cm, lbl, file, normalize, cmap=plt.cm.get_cmap('CMRmap
     plt.tight_layout()
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
-    plt.savefig(file, format="svg")
+    plt.savefig(file, format="svg", bbox_inches="tight")
     sys.exit()
 
 
@@ -59,7 +60,8 @@ if __name__ == '__main__':
 
     # specify the custom font to use
     plt.rcParams['font.family'] = 'sans-serif'
-    plt.rcParams['font.sans-serif'] = 'SF Pro Text'
+    plt.rcParams['font.sans-serif'] = 'Inter'
+    plt.rcParams['font.size'] = 12
 
     plot_confusion_matrix(matrix, labels, file_name, normalized)
     sys.exit()

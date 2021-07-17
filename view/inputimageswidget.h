@@ -8,21 +8,45 @@ namespace Ui {
 class InputImagesWidget;
 }
 
+/**
+ * @brief The InputImagesWidget class is the user interface for classifying images.
+ */
 class InputImagesWidget : public QWidget
 {
     Q_OBJECT
 
 public:
+    /**
+     * @brief InputImagesWidget contructs a new InputImagesWidget.
+     *
+     * @param parent Optional parent widget.
+     */
     explicit InputImagesWidget(QWidget *parent = nullptr);
+
     ~InputImagesWidget();
 
 signals:
-    void sig_browse();
+
+    /**
+     * @brief sig_startClassify is emitted when user wants to start classification.
+     *
+     * @param path Path to folder containing the images.
+     */
     void sig_startClassify(QString path);
+
+    /**
+     * @brief sig_abortClassify is emitted when user wants to abort classification.
+     *
+     */
     void sig_abortClassify();
 
 public slots:
-    void slot_loaded(QString path);
+
+    /**
+     * @brief slot_progress is used to receive progress. Reported progress is used for progressbar.
+     *
+     * @param progress Number representing progress in percent.
+     */
     void slot_progress(int progress);
 
 protected:

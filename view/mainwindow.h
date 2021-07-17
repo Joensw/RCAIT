@@ -10,6 +10,7 @@
 #include <QTranslator>
 #include <QPushButton>
 #include <QDir>
+#include <resultswidget.h>
 
 #include "aitrainingwidget.h"
 #include "automationwidget.h"
@@ -27,17 +28,17 @@ class MainWindow : public QMainWindow
 
 protected:
     // this event is called, when a new translator is loaded or the system language is changed
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent*) override;
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void addProjects(QStringList projects);
 
     StartWidget * getStartWidget();
-    InputImagesWidget *getInputImagesWidget();
-    AITrainingWidget *getAITrainingWidget();
     ImportFilesWidget * getImportFilesWidget();
+    AITrainingWidget *getAITrainingWidget();
+    InputImagesWidget *getInputImagesWidget();
+    ResultsWidget *getResultsWidget();
     AutomationWidget *getAutomationWidget();
 
 signals:
@@ -50,12 +51,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QTranslator m_translator; /*< contains the translations for this application*/
-    QString m_currLang; /*< contains the currently loaded language*/
-    const QString m_langPath = QDir(":/i18n/").exists()? ":/i18n/" : QDir::currentPath() + "/"; /*< Path of language files. This is always fixed.*/
     QPushButton * pushButton_settings = new QPushButton(this);
 
     void placeSettingsButton();
-
 };
 #endif // MAINWINDOW_H

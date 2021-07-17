@@ -1,7 +1,6 @@
 #include "trainingresultview.h"
 
 #include <utility>
-#include <QValueAxis>
 #include "ui_trainingresultview.h"
 
 TrainingResultView::TrainingResultView(QWidget *parent) :
@@ -10,63 +9,25 @@ TrainingResultView::TrainingResultView(QWidget *parent) :
     ui->setupUi(this);
 }
 
-TrainingResultView::TrainingResultView(QWidget *parent, QLineSeries *trainSeries, QLineSeries *validationSeries,
-                                       QGraphicsItem *matrixImage, QList<QImage> images) : TrainingResultView(parent) {
+TrainingResultView::TrainingResultView(QWidget *parent, QGraphicsItem *lossCurveImage, QGraphicsItem *matrixImage,
+                                       QList<QImage> images) : TrainingResultView(parent) {
     setConfusionMatrix(matrixImage);
-    setLossCurve(trainSeries, validationSeries);
+    setLossCurve(lossCurveImage);
     setMostMisclassifiedImages(std::move(images));
 }
 
-void TrainingResultView::setLossCurve(QLineSeries *trainSeries, QLineSeries *validationSeries) {
+void TrainingResultView::setLossCurve(QGraphicsItem *lossCurveImage) {
     auto view = ui->graphicsView_losscurve;
-    QChart *chart = view->chart();
+    auto *scene = new QGraphicsScene();
+    scene->addItem(lossCurveImage);
 
-    //Less wasted space on the sides
-    chart->setBackgroundRoundness(0);
-    chart->setContentsMargins(-20, -15, -10, -40);
+    view->scale(0.9, 0.9);
+    view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
-    //Visual configuration of QLineSeries
-    auto pen = trainSeries->pen();
-    pen.setWidth(3);
-    pen.setColor("royal blue");
-    trainSeries->setName("Training");
-    trainSeries->setPen(pen);
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    pen = validationSeries->pen();
-    pen.setWidth(3);
-    pen.setColor("orange");
-    validationSeries->setName("Validation");
-    validationSeries->setPen(pen);
-
-    //Legend placement
-    chart->legend()->setAlignment(Qt::AlignBottom);
-    chart->legend()->setMarkerShape(QLegend::MarkerShapeCircle);
-    chart->legend()->show();
-
-    chart->addSeries(trainSeries);
-    chart->addSeries(validationSeries);
-
-    //Axis corrections
-    auto *axisY = new QValueAxis();
-    axisY->setLabelFormat("%.2f");
-    chart->addAxis(axisY, Qt::AlignLeft);
-
-    trainSeries->attachAxis(axisY);
-    validationSeries->attachAxis(axisY);
-
-    auto *axisX = new QValueAxis();
-    axisX->setLabelFormat("%.0f");
-    chart->addAxis(axisX, Qt::AlignBottom);
-
-    trainSeries->attachAxis(axisX);
-    validationSeries->attachAxis(axisX);
-
-    axisX->applyNiceNumbers();
-    axisY->setMin(0);
-
-    //Rendering options
-    view->setRenderHint(QPainter::Antialiasing);
-    chart->setAnimationOptions(QChart::AllAnimations);
+    view->setScene(scene);
 }
 
 void TrainingResultView::setConfusionMatrix(QGraphicsItem *matrixImage) {
@@ -74,7 +35,7 @@ void TrainingResultView::setConfusionMatrix(QGraphicsItem *matrixImage) {
     auto *scene = new QGraphicsScene();
     scene->addItem(matrixImage);
 
-    view->scale(0.9,0.9);
+    view->scale(0.85, 0.85);
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -89,4 +50,13 @@ void TrainingResultView::setMostMisclassifiedImages(QList<QImage> images) {
 
 TrainingResultView::~TrainingResultView() {
     delete ui;
+}
+
+void TrainingResultView::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        // this event is send if a translator is loaded
+        ui->retranslateUi(this);
+    }
+    //Call to parent class
+    QWidget::changeEvent(event);
 }

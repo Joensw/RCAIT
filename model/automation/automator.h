@@ -3,7 +3,7 @@
 
 #include "task.h"
 
-#include <DataManager.h>
+#include <datamanager.h>
 
 #include <pluginusage/progressable.h>
 
@@ -16,7 +16,6 @@ public:
     Automator(DataManager *dataManager);
 
     void performTasks();
-    void stopTasks();
     void addTasks(QString path);
     void remove(int taskNum);
     void unqueue(int taskNum);
@@ -29,7 +28,8 @@ public:
     QList<QString> getQueuedTasks();
 
 public slots:
-    void slot_taskUpdated();
+    void slot_taskUpdated(QString name, TaskState state);
+    void stopTasks();
 
 signals:
     void sig_taskUpdate(QString name, QString state);

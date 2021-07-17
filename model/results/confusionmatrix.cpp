@@ -1,8 +1,9 @@
 #include "confusionmatrix.h"
 
 
-ConfusionMatrix::ConfusionMatrix(const QStringList &classLabels, const QList<double> &values) : m_size(
-        classLabels.size()) {
+ConfusionMatrix::ConfusionMatrix(const QString &identifier, const QStringList &classLabels,
+                                 const QList<double> &values)
+        : AbstractResultGraphics("confusionmatrix_" + identifier, "svg"), m_size(classLabels.size()) {
 
     Q_ASSERT(!classLabels.isEmpty());
     Q_ASSERT(!values.isEmpty());
@@ -12,17 +13,18 @@ ConfusionMatrix::ConfusionMatrix(const QStringList &classLabels, const QList<dou
 }
 
 
-QGraphicsItem *ConfusionMatrix::generateConfusionMatrixGraphics(const QString &fileName) {
+void ConfusionMatrix::generateGraphicsInternal(const QString &fullFilePath) {
     //Call python script
     auto file = QFileInfo("confusionmatrix.py");
-    QString path = file.absolutePath();
     QString command("python");
 
     // python script.py <matrix data> <matrix labels> <output file name> (<normalized>)
-    QStringList params = QStringList() << file.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fileName;
+    QStringList params =
+            QStringList() << file.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fullFilePath
+                          << "--normalized";
     auto *process = new QProcess();
 
-    process->start(command,params);
+    process->start(command, params);
     process->waitForStarted();
     process->waitForFinished();
 
@@ -30,9 +32,6 @@ QGraphicsItem *ConfusionMatrix::generateConfusionMatrixGraphics(const QString &f
     qInfo() << qPrintable(strTemp.simplified());
 
     process->close();
-
-    return new QGraphicsSvgItem(path + "/" + fileName);
-
 }
 
 /**
@@ -86,5 +85,10 @@ bool ConfusionMatrix::operator==(const ConfusionMatrix other) const {
 
 bool ConfusionMatrix::operator!=(const ConfusionMatrix other) const {
     return !(*this == other);
+}
+
+void ConfusionMatrix::passResultGraphics(const QString &fullFilePath, TrainingResultView *receiver) {
+    auto *graphics = new QGraphicsSvgItem(fullFilePath);
+    receiver->setConfusionMatrix(graphics);
 }
 

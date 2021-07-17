@@ -1,32 +1,27 @@
-//TODO: This is a dummy, replace with actual class
 
 #include "resultscontroller.h"
 
-void ResultsController::updateComparisonResultOverview(TrainingResult *result) {
+ResultsController::ResultsController(DataManager *manager, ResultsWidget *resultsWidget) {
+    m_dataManager = manager;
+    m_resultsWidget = resultsWidget;
 
-}
-
-ResultsController::ResultsController(ResultImagesGenerator *imageGenerator, ProjectManager *manager,
-                                     ResultsWidget *resultsWidget) {
+    //Connect ResultsWidget to ResultsController
+    connect(resultsWidget, &ResultsWidget::sig_saveResults, this, &ResultsController::slot_saveResult);
 
 }
 
 void ResultsController::addTrainingResult(TrainingResult *result) {
-
+    m_resultsWidget->addTrainingResult(result);
 }
 
 void ResultsController::addClassificationResult(ClassificationResult *result) {
-
+    m_resultsWidget->addClassificationResult(result);
 }
 
-void ResultsController::slot_startTrainingComparison() {
-
-}
-
-void ResultsController::slot_startClassificationComparison() {
-
+void ResultsController::updateComparisonResultOverview(TrainingResult *result) {
+//TODO Fill
 }
 
 void ResultsController::slot_saveResult() {
-
+//TODO Fill
 }
