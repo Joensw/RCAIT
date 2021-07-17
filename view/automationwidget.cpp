@@ -15,7 +15,7 @@ AutomationWidget::~AutomationWidget()
     delete ui;
 }
 
-void AutomationWidget::addTask(QString name)
+void AutomationWidget::slot_taskAdded(QString name)
 {
     ui->idleTasks->addItem(name);
 }
@@ -31,6 +31,7 @@ void AutomationWidget::on_startButton_clicked()
 {
     emit sig_start();
     ui->stopButton->setEnabled(true);
+    ui->progressBar->setEnabled(true);
     ui->startButton->setEnabled(false);
     ui->queueAllButton->setEnabled(false);
     ui->unqueueAllButton->setEnabled(false);
@@ -48,6 +49,7 @@ void AutomationWidget::on_stopButton_clicked()
     ui->queueSelectedButton->setEnabled(true);
     ui->unqueueSelectedButton->setEnabled(true);
     ui->stopButton->setEnabled(false);
+    ui->progressBar->setEnabled(false);
 }
 
 

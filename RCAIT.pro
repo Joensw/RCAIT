@@ -29,6 +29,7 @@ SOURCES += \
     controller/projectcontroller.cpp \
     controller/controller.cpp \
     controller/settingscontroller.cpp \
+    controller/resultscontroller.cpp \
     model/datamanager.cpp \
     model/automation/addprojectcommand.cpp \
     model/automation/automator.cpp \
@@ -48,6 +49,7 @@ SOURCES += \
     model/pluginusage/progressableplugin.cpp \
     model/pluginusage/trainingsthread.cpp \
     model/projectmanager.cpp \
+    model/results/abstractresultgraphics.cpp \
     model/results/confusionmatrix.cpp \
     model/results/losscurve.cpp \
     model/settingsmanager.cpp \
@@ -79,6 +81,7 @@ SOURCES += \
     view/removeprojectdialog.cpp \
     view/results/canvas.cpp \
     view/results/resultswidget.cpp \
+    view/results/trainingresultstopacc.cpp \
     view/results/trainingresultview.cpp \
     view/settingsview.cpp \
     view/startwidget.cpp \
@@ -92,6 +95,7 @@ HEADERS += \
     controller/projectcontroller.h \
     controller/controller.h \
     controller/settingscontroller.h \
+    controller/resultscontroller.h \
     model/datamanager.h \
     model/automation/addprojectcommand.h \
     model/automation/automator.h \
@@ -111,6 +115,7 @@ HEADERS += \
     model/pluginusage/progressableplugin.h \
     model/pluginusage/trainingsthread.h \
     model/projectmanager.h \
+    model/results/abstractresultgraphics.h \
     model/results/confusionmatrix.h \
     model/results/losscurve.h \
     model/settingsmanager.h \
@@ -145,6 +150,7 @@ HEADERS += \
     view/removeprojectdialog.h \
     view/results/canvas.h \
     view/results/resultswidget.h \
+    view/results/trainingresultstopacc.h \
     view/results/trainingresultview.h \
     view/settingsview.h \
     view/startwidget.h \
@@ -166,6 +172,7 @@ FORMS += \
     view/aitrainingwidget.ui \
     view/automationwidget.ui \
     view/inputimageswidget.ui \
+    view/results/trainingresultstopacc.ui \
     view/settingsview.ui
 
 TRANSLATIONS += \

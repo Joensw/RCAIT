@@ -17,15 +17,17 @@ set(QT_VERSION 6)
 set(REQUIRED_LIBS Core Gui Widgets LinguistTools Svg SvgWidgets )
 set(REQUIRED_LIBS_QUALIFIED Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Svg Qt6::SvgWidgets)
 
-set(CMAKE_AUTOUIC_SEARCH_PATHS  ${CMAKE_CURRENT_SOURCE_DIR})
-
-include_directories(
+set(ALL_PROJECT_DIRS
+        ${CMAKE_CURRENT_SOURCE_DIR}
         model model/automation model/pluginusage model/results
         view view/imageinspection view/results
         controller
         Resources
         plugins plugins/imageplugins plugins/classificationplugins plugins/results
         )
+
+set(CMAKE_AUTOUIC_SEARCH_PATHS  ${ALL_PROJECT_DIRS})
+include_directories(${ALL_PROJECT_DIRS})
 
 file(GLOB_RECURSE SOURCE_FILES_A
         "model/*"

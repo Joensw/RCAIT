@@ -41,9 +41,12 @@ AITrainingWidget *MainWindow::getAITrainingWidget() {
     return ui->tab_ai_training;
 }
 
-
 ImportFilesWidget *MainWindow::getImportFilesWidget() {
     return ui->tab_import;
+}
+
+ResultsWidget *MainWindow::getResultsWidget(){
+    return ui->tab_results;
 }
 
 AutomationWidget *MainWindow::getAutomationWidget() {

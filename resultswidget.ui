@@ -62,7 +62,7 @@
             <property name="movable">
              <bool>false</bool>
             </property>
-            <widget class="QWidget" name="tab_topAccuracy">
+            <widget class="TrainingResultsTopAcc" name="tab_topAccuracy">
              <attribute name="icon">
               <iconset resource="UI_Icons.qrc">
                <normaloff>:/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg</iconset>
@@ -70,58 +70,7 @@
              <attribute name="title">
               <string>Top Accuracies</string>
              </attribute>
-             <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,0,3">
-              <item row="0" column="0">
-               <widget class="QTableWidget" name="tableWidget_topAccuracy">
-                <property name="verticalScrollBarPolicy">
-                 <enum>Qt::ScrollBarAsNeeded</enum>
-                </property>
-                <property name="horizontalScrollBarPolicy">
-                 <enum>Qt::ScrollBarAlwaysOff</enum>
-                </property>
-                <property name="sizeAdjustPolicy">
-                 <enum>QAbstractScrollArea::AdjustIgnored</enum>
-                </property>
-                <attribute name="horizontalHeaderCascadingSectionResizes">
-                 <bool>false</bool>
-                </attribute>
-                <attribute name="verticalHeaderCascadingSectionResizes">
-                 <bool>false</bool>
-                </attribute>
-                <attribute name="verticalHeaderStretchLastSection">
-                 <bool>false</bool>
-                </attribute>
-                <row>
-                 <property name="text">
-                  <string>Run 1</string>
-                 </property>
-                </row>
-                <row>
-                 <property name="text">
-                  <string>Run 2</string>
-                 </property>
-                </row>
-                <row>
-                 <property name="text">
-                  <string>Run 3</string>
-                 </property>
-                </row>
-                <column>
-                 <property name="text">
-                  <string>Top1%</string>
-                 </property>
-                </column>
-                <column>
-                 <property name="text">
-                  <string>Top5%</string>
-                 </property>
-                </column>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="Canvas" name="chartView_topAccuracy"/>
-              </item>
-             </layout>
+             <layout class="QGridLayout" name="gridLayout_3" columnstretch="1"/>
             </widget>
            </widget>
           </item>
@@ -358,9 +307,10 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>Canvas</class>
-   <extends>QGraphicsView</extends>
-   <header>canvas.h</header>
+   <class>TrainingResultsTopAcc</class>
+   <extends>QWidget</extends>
+   <header>trainingresultstopacc.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

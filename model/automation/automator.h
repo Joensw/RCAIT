@@ -24,7 +24,9 @@ public:
     int getUnqueuedSize();
     int getQueuedSize();
 
+    //probably never used
     QList<QString> getUnqueuedTasks();
+    //probably never used
     QList<QString> getQueuedTasks();
 
 public slots:
@@ -33,6 +35,7 @@ public slots:
 
 signals:
     void sig_taskUpdate(QString name, QString state);
+    void sig_taskAdded(QString name);
 
 
 private:
