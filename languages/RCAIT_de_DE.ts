@@ -210,7 +210,7 @@ The application will terminate</source>
     <name>GlobalSettingsWidget</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation type="obsolete">Form</translation>
     </message>
     <message>
         <source>Choose project directory</source>
@@ -235,6 +235,10 @@ The application will terminate</source>
     <message>
         <source>Choose imageloader-plugin directory</source>
         <translation type="unfinished">Bildladerpluginverzeichnis wählen</translation>
+    </message>
+    <message>
+        <source>Global settings</source>
+        <translation type="unfinished">Globale Einstellungen</translation>
     </message>
 </context>
 <context>
@@ -685,7 +689,7 @@ The application will terminate</source>
     </message>
     <message>
         <source>Global settings</source>
-        <translation type="unfinished">Globale Einstellungen</translation>
+        <translation type="obsolete">Globale Einstellungen</translation>
     </message>
     <message>
         <source>Select project directory</source>

@@ -30,6 +30,8 @@ public:
     void setCurrentClassificationPluginDirectory(QString path);
     void setCurrentImageLoaderPluginDirectory(QString path);
 
+public slots:
+    void slot_retranslate();
 
 signals:
     void sig_applyGlobalSettings(QString projectsDir, QString classificationPluginsDir, QString imageLoaderPluginsDir);
@@ -52,7 +54,7 @@ private:
     QString mClassificationPluginsDir;
     QString mImageLoaderPluginsDir;
 
-    void retranslate();
+
 };
 
 #endif // SETTINGSVIEW_H

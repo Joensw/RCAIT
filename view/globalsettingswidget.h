@@ -31,6 +31,7 @@ signals:
     void sig_setProjectDir();
     void sig_setClassificationPluginsDir();
     void sig_setImageLoaderPluginsDir();
+    void sig_wasTranslated();
 protected:
     void changeEvent(QEvent *event);
 private slots:

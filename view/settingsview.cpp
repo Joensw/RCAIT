@@ -16,10 +16,13 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
     ui->setupUi(this);
 
 
-    ui->pluginList->addItem(tr("Global settings"));
+  //  ui->pluginList->addItem(tr("Global settings"));
 
     mGlobalSettingsWidget = new GlobalSettingsWidget();
 
+    ui->pluginList->addItem(mGlobalSettingsWidget->windowTitle());
+
+    connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_wasTranslated, this, &SettingsView::slot_retranslate);
 
     connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setProjectDir, this, &SettingsView::slot_setProjectDir);
     connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setClassificationPluginsDir, this, &SettingsView::slot_setClassificationPluginsDir);
@@ -54,7 +57,6 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
         ui->pluginList->addItem(name);
         ui->pluginWidget->addWidget(pluginConfigurationWidgets.at(i));
     }
-
 }
 //TODO include the amount in the shown text somehow
 void SettingsView::pathsUpdated(int amount)
@@ -155,18 +157,16 @@ void SettingsView::changeEvent(QEvent *event)
 {
     if (event->type() == QEvent::LanguageChange) {
         // this event is send if a translator is loaded
-        retranslate();
         ui->retranslateUi(this);
     }
     //Call to parent class
     QWidget::changeEvent(event);
 }
 
-void SettingsView::retranslate()
+void SettingsView::slot_retranslate()
 {
     for (int i = 0; i < ui->pluginList->count(); i++){
-//
-//        ui->pluginList->item(i)->setText(tr(ui->pluginList->item(i)->text().));
+        ui->pluginList->item(i)->setText(ui->pluginWidget->widget(i)->windowTitle());
     }
 }
 

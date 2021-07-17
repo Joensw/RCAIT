@@ -220,8 +220,8 @@ The application will terminate</source>
     <name>GlobalSettingsWidget</name>
     <message>
         <location filename="../globalsettingswidget.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
+        <source>Global settings</source>
+        <translation type="unfinished">Global settings</translation>
     </message>
     <message>
         <location filename="../globalsettingswidget.ui" line="22"/>
@@ -669,14 +669,9 @@ The application will terminate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.cpp" line="19"/>
-        <source>Global settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/settingsview.cpp" line="119"/>
-        <location filename="../view/settingsview.cpp" line="129"/>
-        <location filename="../view/settingsview.cpp" line="139"/>
+        <location filename="../view/settingsview.cpp" line="121"/>
+        <location filename="../view/settingsview.cpp" line="131"/>
+        <location filename="../view/settingsview.cpp" line="141"/>
         <source>Select project directory</source>
         <translation type="unfinished"></translation>
     </message>
