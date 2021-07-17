@@ -59,7 +59,6 @@ void MainWindow::slot_settingsButton_clicked() {
 
 void MainWindow::on_pushButton_openProject_clicked()
 {
-    qDebug() << "mainWindow";
     int newIndex = ui->tabWidget->currentIndex() + 1;
     ui->tabWidget->setCurrentIndex(newIndex);
 }

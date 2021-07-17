@@ -24,9 +24,13 @@ ProjectManager::ProjectManager() {
 }
 
 QStringList ProjectManager::getProjects() {
-    QDir projectsDir(mProjectsDirectory);
-    projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
-    return projectsDir.entryList();
+    if (!mProjectsDirectory.isEmpty()){
+        QDir projectsDir(mProjectsDirectory);
+        projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
+        return projectsDir.entryList();
+    }
+    QStringList empty;
+    return empty;
 }
 
 void ProjectManager::createNewProject(QString projectName) {

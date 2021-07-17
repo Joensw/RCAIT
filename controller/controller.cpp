@@ -23,6 +23,7 @@ Controller::Controller(QObject *parent) : QObject(parent)
 void Controller::slot_configurationComplete()
 {
     delete mConfigurationController; //isnt needed anymore
+    mProjectController->refresh();
     mMainWindow->show();
 }
 

@@ -44,12 +44,14 @@ void SettingsController::slot_applyGlobalSettings(QString projectsDir, QString c
     }
     if (mDataManager->verifyPath(classificationPluginsDir)) {
         mDataManager->saveClassificationPluginDir(classificationPluginsDir);
-        mSettingsView->setCurrentProjectDirectory(classificationPluginsDir);
+        mSettingsView->setCurrentClassificationPluginDirectory(classificationPluginsDir);
+        //todo signal analog to above
         sucessfulUpdates++;
     }
     if (mDataManager->verifyPath(imageLoaderPluginsDir)) {
         mDataManager->saveImageLoaderPluginDir(imageLoaderPluginsDir);
         mSettingsView->setCurrentImageLoaderPluginDirectory(imageLoaderPluginsDir);
+        //todo signal analog to above
         sucessfulUpdates++;
     }
 

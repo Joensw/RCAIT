@@ -12,6 +12,12 @@ ProjectController::ProjectController(QObject *parent, DataManager * dataManager,
     startWidget->addProjects(mDataManager->getProjects());
 }
 
+void ProjectController::refresh()
+{
+    mStartWidget->clearProjectList();
+    mStartWidget->addProjects(mDataManager->getProjects());
+}
+
 QString ProjectController::verifyName(QString input)
 {
     QString output = "";
@@ -60,8 +66,7 @@ void ProjectController::slot_openProject(QString projectName){
 
 void ProjectController::slot_projectDirectoryChanged()
 {
-    mStartWidget->clearProjectList();
-    mStartWidget->addProjects(mDataManager->getProjects());
+    refresh();
 }
 
 void ProjectController::slot_newProjectConfirm(QString projectName)
