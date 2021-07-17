@@ -6,12 +6,17 @@
 #include <QWidget>
 #include <pluginusage/progressableplugin.h>
 #include "pluginmanager.h"
+#include "imageloaderplugin.h"
+#include <QMap>
+#include <QPluginLoader>
+#include <QDir>
 
 //Todo: Check singleton correctness
 //Todo: Implement PluginManager interface
 class ImageLoaderPluginManager : public PluginManager{
 private:
     ImageLoaderPluginManager();
+    QMap<QString, ImageLoaderPlugin*> m_plugins;
 
 public:
     //Threadsafe singleton pattern

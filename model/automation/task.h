@@ -22,6 +22,7 @@ public:
     Task(QVariantMap map, DataManager *dataManager);
     QString getName();
     void run();
+    bool isValid();
 
 public slots:
     void slot_saveTrainingResult(TrainingResult result);
@@ -39,6 +40,8 @@ private:
     QString mProjectPath;
     DataManager *mDataManager;
     QList<Command*> mCommandList;
+
+    bool valid = true;
 };
 
 #endif // TASK_H

@@ -14,6 +14,8 @@ class ProjectController : public QObject
 public:
     explicit ProjectController(QObject *parent = nullptr, DataManager *dataManager = nullptr, StartWidget *startWidget = nullptr);
 
+    void refresh();
+
 public slots:
     void slot_newProject();
     void slot_newProjectConfirm(QString projectName);
@@ -23,6 +25,7 @@ public slots:
 
     void slot_openProject(QString projectName);
 
+    void slot_projectDirectoryChanged();
 private:
     DataManager *mDataManager;
     NewProjectDialog *mNewProjectDialog;

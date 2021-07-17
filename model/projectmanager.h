@@ -44,13 +44,17 @@ public:
 
     QStringList getNamesOfSavedTrainingResults();
 
-
+    void setProjectsDirectory(QString newDirectory);
+signals:
+    void sig_projectDirectoryChanged();
 private:
     QString mProjectPath;
     QString mProjectTempDir;
     QString mProjectDataSetDir;
     QString mProjectResultsDir;
     QString mProjectName;
+
+    QString mProjectsDirectory;
 
     ProjectManager();
 };

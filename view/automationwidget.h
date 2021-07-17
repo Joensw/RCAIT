@@ -15,10 +15,11 @@ public:
     explicit AutomationWidget(QWidget *parent = nullptr);
     ~AutomationWidget();
 
-    void addTask(QString name);
+
 
 public slots:
     //void slot_progress(int progress);
+    void slot_taskAdded(QString name);
     void slot_taskUpdate(QString name, QString state);
 
 

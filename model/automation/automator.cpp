@@ -41,7 +41,11 @@ void Automator::addTasks(QString path)
         //TODO error message
         return;
     }
-    mUnqueuedTasks.append(new Task(jsonMap, mDataManager));
+    Task* task = new Task(jsonMap, mDataManager);
+    if (!task->isValid()) return;
+    mUnqueuedTasks.append(task);
+    emit sig_taskAdded(jsonMap.value("taskName").toString());
+
 }
 
 void Automator::remove(int taskNum)

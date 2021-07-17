@@ -59,3 +59,11 @@ ClassificationResult *ClassificationPluginManager::classify(QString pluginName, 
 {
 
 }
+
+QStringList ClassificationPluginManager::getClassificationPluginBases(QString plugin)
+{
+    QStringList test = QStringList();
+    test.append("base#1");
+    test.append("base#2");
+    return test;
+}

@@ -47,6 +47,8 @@ signals:
 private slots:
     void slot_settingsButton_clicked();
 
+    void on_pushButton_openProject_clicked();
+
 private:
     Ui::MainWindow *ui;
     QPushButton * pushButton_settings = new QPushButton(this);

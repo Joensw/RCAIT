@@ -13,16 +13,11 @@ ModelController::ModelController(QObject *parent, DataManager *dataManager, Impo
 
 void ModelController::slot_newModel()
 {
-    //QStringList pluginNames = mDataManager->getClassificationPluginNames();
-    //mNewModelDialog = new NewModelDialog(nullptr, pluginNames);
-    //für test zwecke eigentlicher code Steht obendrüber
-    QStringList pluginNames = QStringList();
-    pluginNames.append("MMClassification");
-    pluginNames.append("TensorFlow");
-    pluginNames.append("Plugin#3");
+    QStringList pluginNames = mDataManager->getClassificationPluginNames();
     mNewModelDialog = new NewModelDialog(nullptr, pluginNames);
 
     mNewModelDialog->setAttribute(Qt::WA_DeleteOnClose, true);
+    mNewModelDialog->setModal(true);
     connect(mNewModelDialog, &NewModelDialog::sig_newModelConfirm, this, &ModelController::slot_newModelConfirm);
     connect(mNewModelDialog, &NewModelDialog::sig_pluginSelected, this, &ModelController::slot_pluginSelected);
     mNewModelDialog->show();
@@ -38,6 +33,7 @@ void ModelController::slot_removeModel(QString modelName)
 {
     mRemoveModelDialog = new RemoveModelDialog(nullptr, modelName);
     mRemoveModelDialog->setAttribute(Qt::WA_DeleteOnClose, true);
+    mRemoveModelDialog->setModal(true);
     connect(mRemoveModelDialog, &RemoveModelDialog::sig_removeModelConfirm, this, &ModelController::slot_removeModelConfirm);
     mRemoveModelDialog->show();
 }
@@ -57,5 +53,8 @@ void ModelController::slot_loadModel(QString modelName)
 
 void ModelController::slot_pluginSelected(QString pluginName)
 {
-    //get the bases for this plugin and give them to the dialog
+    //get bases of the plugin with that name and set the second dropdown in the dialog
+    QStringList test = mDataManager->getPluginBases(pluginName);
+    mNewModelDialog->setAvailableBases(test);
+
 }

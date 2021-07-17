@@ -18,10 +18,12 @@ public:
     void createNewProject(QString projectName);
     void removeProject(QString projectName);
     void loadProject(QString projectName);
-    QString getProjectPath();
-    QString getProjectTempDir();
-    QString getProjectDataSetDir();
-
+    QString getProjectPath(); //maybe give these the prefix openProject to avoid confusion with the getters for the directories
+    QString getProjectTempDir(); //
+    QString getProjectDataSetDir(); //
+    bool verifyDirectories();
+    bool verifyPaths(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory);
+    bool verifyPath(QString path);
 
     void createNewModel(QString modelName, QString pluginName, QString baseModel);
     void removeModel(QString modelName, QString pluginName);
@@ -31,6 +33,7 @@ public:
 
     QStringList getPluginNames();
     QStringList getClassificationPluginNames();
+    QStringList getPluginBases(QString plugin);
     QList<QWidget*> getPluginSettings();
     void savePluginSettings(int index);
     void saveProjectsDir(QString value);

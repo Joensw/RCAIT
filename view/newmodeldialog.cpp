@@ -8,6 +8,7 @@ NewModelDialog::NewModelDialog(QWidget *parent, QStringList classificationPlugin
     ui->setupUi(this);
 
     ui->classificationPluginComboBox->addItems(classificationPlugins);
+    connect(ui->classificationPluginComboBox, &QComboBox::currentTextChanged, this, &NewModelDialog::slot_classifactionPlugin_currentTextChanged);
 }
 
 NewModelDialog::~NewModelDialog()
@@ -15,8 +16,19 @@ NewModelDialog::~NewModelDialog()
     delete ui;
 }
 
+void NewModelDialog::setAvailableBases(QStringList bases)
+{
+    ui->pluginProfileComboBox->clear();
+    ui->pluginProfileComboBox->addItems(bases);
+}
+
 void NewModelDialog::on_buttonBox_rejected(){
     this->reject();
+}
+
+void NewModelDialog::slot_classifactionPlugin_currentTextChanged(QString text)
+{
+    emit sig_pluginSelected(text);
 }
 
 void NewModelDialog::on_buttonBox_accepted(){

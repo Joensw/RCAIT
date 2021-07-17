@@ -23,6 +23,8 @@ public:
     bool removeModel(QString modelName, QString pluginName);
     TrainingResult * train (QString pluginName, QString modelName, QString dataSetPath, ProgressablePlugin * receiver);
     ClassificationResult * classify(QString pluginName, QString inputImagePath, QString modelName, ProgressablePlugin * receiver);
+
+    QStringList getClassificationPluginBases(QString plugin);
 private:
     ClassificationPluginManager * instance;
 };

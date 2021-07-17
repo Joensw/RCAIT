@@ -10,7 +10,11 @@
 
 class ImageController {
 public:
-    ImageController(ImageInspectionWidget* imageInspectionWidget, ImportFilesWidget* importFilesWidget, DataManager* dataManager, ImageLoader loader);
+    ImageController(ImageInspectionWidget* imageInspectionWidget, ImportFilesWidget* importFilesWidget, DataManager* dataManager, ImageLoader* loader);
+
+private:
+    ImageLoader m_imageLoader;
+
 public slots:
     void slot_remove(int sectionIndex, int imgIndex);
     void slot_loadInputImages(QString pluginName, int count, QStringList labels, int split);

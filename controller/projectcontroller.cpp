@@ -12,6 +12,12 @@ ProjectController::ProjectController(QObject *parent, DataManager * dataManager,
     startWidget->addProjects(mDataManager->getProjects());
 }
 
+void ProjectController::refresh()
+{
+    mStartWidget->clearProjectList();
+    mStartWidget->addProjects(mDataManager->getProjects());
+}
+
 QString ProjectController::verifyName(QString input)
 {
     QString output = "";
@@ -28,7 +34,7 @@ QString ProjectController::verifyName(QString input)
     }
 
     //check if name is already taken
-    QDir projectsDir("../projects");
+    QDir projectsDir(mDataManager->getProjectsDir());
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     QStringList projects = projectsDir.entryList();
     if (projects.contains(input)) {
@@ -41,6 +47,7 @@ QString ProjectController::verifyName(QString input)
 void ProjectController::slot_newProject(){
     mNewProjectDialog = new NewProjectDialog();
     mNewProjectDialog->setAttribute(Qt::WA_DeleteOnClose, true);
+    mNewProjectDialog->setModal(true);
     connect(mNewProjectDialog, &NewProjectDialog::sig_newProjectConfirm, this, &ProjectController::slot_newProjectConfirm);
     mNewProjectDialog->show();
 }
@@ -48,12 +55,18 @@ void ProjectController::slot_newProject(){
 void ProjectController::slot_removeProject(QString projectName){
     mRemoveProjectDialog = new RemoveProjectDialog(nullptr, projectName);
     mRemoveProjectDialog->setAttribute(Qt::WA_DeleteOnClose, true);
+    mRemoveProjectDialog->setModal(true);
     connect(mRemoveProjectDialog, &RemoveProjectDialog::sig_removeProjectConfirm, this, &ProjectController::slot_removeProjectConfirm);
     mRemoveProjectDialog->show();
 }
 
 void ProjectController::slot_openProject(QString projectName){
     mDataManager->loadProject(projectName);
+}
+
+void ProjectController::slot_projectDirectoryChanged()
+{
+    refresh();
 }
 
 void ProjectController::slot_newProjectConfirm(QString projectName)
