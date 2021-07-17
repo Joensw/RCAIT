@@ -25,7 +25,7 @@ private:
     qsizetype m_size;
     QList<double> m_values;
     void generateGraphicsInternal(const QString& fullFilePath) override;
-    void passResultGraphics(const QString &fullFilePath, TrainingResultView* receiver) override;
+    void passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) override;
 };
 
 #endif // CONFUSIONMATRIX_H

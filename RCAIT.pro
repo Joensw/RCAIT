@@ -146,6 +146,7 @@ HEADERS += \
     view/qinputcontrol_p.h \
     view/removemodeldialog.h \
     view/removeprojectdialog.h \
+    view/results/abstractgraphicsview.h \
     view/results/canvas.h \
     view/results/resultswidget.h \
     view/results/trainingresultstopacc.h \

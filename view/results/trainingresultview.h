@@ -4,13 +4,13 @@
 #include <QWidget>
 #include <QGraphicsItem>
 #include <QGraphicsScene>
+#include "abstractgraphicsview.h"
 
 namespace Ui {
     class TrainingResultView;
 }
 
-class TrainingResultView : public QWidget {
-Q_OBJECT
+class TrainingResultView : public AbstractGraphicsView, public QWidget {
 
 protected:
     // this event is called, when a new translator is loaded or the system language is changed
@@ -19,14 +19,11 @@ protected:
 public:
     explicit TrainingResultView(QWidget *parent = nullptr);
 
-    TrainingResultView(QWidget *parent, QGraphicsItem *lossCurveImage, QGraphicsItem *matrixImage,
-                       QList<QImage> images);
-
     ~TrainingResultView();
 
-    void setLossCurve(QGraphicsItem *lossCurveImage);
+    void setLossCurve(QGraphicsItem *lossCurveImage) override;
 
-    void setConfusionMatrix(QGraphicsItem *matrixImage);
+    void setConfusionMatrix(QGraphicsItem *matrixImage) override;
 
     void setMostMisclassifiedImages(QList<QImage> images);
 
