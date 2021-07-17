@@ -5,7 +5,7 @@
 #include "imagecontroller.h"
 
 ImageController::ImageController(ImageInspectionWidget *imageInspectionWidget, ImportFilesWidget *importFilesWidget,
-                                 DataManager *dataManager, ImageLoader loader) {
+                                 DataManager *dataManager, ImageLoader *loader) {
 
 }
 

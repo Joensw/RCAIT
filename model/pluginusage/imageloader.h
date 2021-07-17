@@ -3,6 +3,7 @@
 
 
 #include <QStringList>
+#include "imagesearchthread.h"
 
 class ImageLoader {
 public:
@@ -12,6 +13,9 @@ public:
 signals:
     void sig_imagesReady();
 //TODO connect
+
+private:
+    ImageSearchThread* m_imageSearchThread;
 
 };
 

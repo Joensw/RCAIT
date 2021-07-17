@@ -4,7 +4,7 @@ AutomationController::AutomationController(DataManager *dataManager, AutomationW
 {
     mDataManager = dataManager;
     mWidget = automationWidget;
-    mAutomator = new Automator(mDataManager);
+    mAutomator = new Automator(mDataManager);    
     connect(mWidget, &AutomationWidget::sig_start, this, &AutomationController::slot_start);
     connect(mWidget, &AutomationWidget::sig_stop, this, &AutomationController::slot_stop);
     connect(mWidget, &AutomationWidget::sig_import, this, &AutomationController::slot_import);
@@ -14,6 +14,7 @@ AutomationController::AutomationController(DataManager *dataManager, AutomationW
     connect(mWidget, &AutomationWidget::sig_unqueueAll, this, &AutomationController::slot_unqueueAll);
     connect(mWidget, &AutomationWidget::sig_unqueueSelected, this, &AutomationController::slot_unqueueSelected);
 
+    connect(mAutomator, &Automator::sig_taskAdded, mWidget, &AutomationWidget::slot_taskAdded);
     connect(mAutomator, &Automator::sig_taskUpdate, mWidget, &AutomationWidget::slot_taskUpdate);
 
 
