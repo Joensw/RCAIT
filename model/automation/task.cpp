@@ -11,8 +11,7 @@ Task::Task(QVariantMap map, DataManager *dataManager)
 
     QStringList commands = map.value("taskType").toStringList();
     if (commands.isEmpty()){
-        //TODO error
-        return;
+        valid = false;
     }
 
     if (commands.contains("addProject")){
@@ -54,6 +53,11 @@ void Task::run()
 QString Task::getName()
 {
     return mName;
+}
+
+bool Task::isValid()
+{
+    return valid;
 }
 
 void Task::slot_saveTrainingResult(TrainingResult result)
