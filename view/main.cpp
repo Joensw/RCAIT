@@ -24,6 +24,9 @@ int main(int argc, char *argv[])
     sf_pro_text.setHintingPreference(QFont::HintingPreference::PreferNoHinting); //This line did the trick
     QApplication::setFont(sf_pro_text);
 
+    QCoreApplication::setOrganizationName("PSE_SS21");
+    QCoreApplication::setApplicationName("RCAIT");
+
     Controller controller;
 
 

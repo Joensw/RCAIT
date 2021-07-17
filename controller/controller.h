@@ -7,6 +7,7 @@
 #include "aicontroller.h"
 #include "modelcontroller.h"
 #include "automationcontroller.h"
+#include "configurationcontroller.h"
 #include <mainwindow.h>
 
 #include <QObject>
@@ -18,7 +19,8 @@ class Controller : public QObject
 public:
     explicit Controller(QObject *parent = nullptr);
 
-signals:
+public slots:
+    void slot_configurationComplete();
 
 private:
     MainWindow *mMainWindow;
@@ -29,13 +31,14 @@ private:
 
     AIController * mAiController;
 
-
     ModelController * mModelController;
 
     AutomationController * mAutomationController;
 
+    ConfigurationController * mConfigurationController;
 
     DataManager * mDataManger;
+
 
 };
 

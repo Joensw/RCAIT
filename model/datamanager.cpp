@@ -32,6 +32,21 @@ QString DataManager::getProjectDataSetDir(){
     return mProjectManager->getProjectDataSetDir();
 }
 
+bool DataManager::verifyDirectories()
+{
+    return mSettingsManager->verifyDirectories();
+}
+
+bool DataManager::verifyPaths(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory)
+{
+    return mSettingsManager->verifyPaths(projectsDirectory, classificationPluginDirectory, imageLoaderDirectory);
+}
+
+bool DataManager::verifyPath(QString path)
+{
+    return mSettingsManager->verifyPath(path);
+}
+
 void DataManager::createNewModel(QString modelName, QString pluginName, QString baseModel){
     mModelManager->createNewModel(modelName, pluginName, baseModel);
 }
@@ -43,11 +58,11 @@ void DataManager::loadModel(QString modelName, QString pluginName){
 }
 QString DataManager::getCurrentModel(){
     return mModelManager->getCurrentModel();
-
 }
 QString DataManager::getCurrentClassificationPlugin(){
     return mModelManager->getCurrentPlugin();
 }
+
 
 
 QStringList DataManager::getPluginNames(){
@@ -56,6 +71,11 @@ QStringList DataManager::getPluginNames(){
 QStringList DataManager::getClassificationPluginNames(){
     return mSettingsManager->getClassificationPluginNames();
 }
+QStringList DataManager::getPluginBases(QString plugin)
+{
+    return mSettingsManager->getClassificationPluginBase(plugin);
+}
+
 
 QList<QWidget*> DataManager::getPluginSettings(){
     return mSettingsManager->getPluginSettings();
