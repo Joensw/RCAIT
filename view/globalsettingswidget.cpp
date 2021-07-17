@@ -85,3 +85,12 @@ void GlobalSettingsWidget::on_pushButton_imageLoader_clicked()
 {
     emit sig_setImageLoaderPluginsDir();
 }
+
+void GlobalSettingsWidget::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        // this event is send if a translator is loaded
+        ui->retranslateUi(this);
+    }
+    //Call to parent class
+    QWidget::changeEvent(event);
+}

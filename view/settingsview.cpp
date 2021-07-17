@@ -20,6 +20,7 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
 
     mGlobalSettingsWidget = new GlobalSettingsWidget();
 
+
     connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setProjectDir, this, &SettingsView::slot_setProjectDir);
     connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setClassificationPluginsDir, this, &SettingsView::slot_setClassificationPluginsDir);
     connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setImageLoaderPluginsDir, this, &SettingsView::slot_setImageLoaderPluginsDir);
@@ -150,4 +151,22 @@ SettingsView::~SettingsView()
     delete ui;
 }
 
+void SettingsView::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        // this event is send if a translator is loaded
+        retranslate();
+        ui->retranslateUi(this);
+    }
+    //Call to parent class
+    QWidget::changeEvent(event);
+}
+
+void SettingsView::retranslate()
+{
+    for (int i = 0; i < ui->pluginList->count(); i++){
+//
+//        ui->pluginList->item(i)->setText(tr(ui->pluginList->item(i)->text().));
+    }
+}
 
