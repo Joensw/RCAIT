@@ -23,15 +23,14 @@ CONFIG += c++17 static
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    configurationdialog.cpp \
     controller/aicontroller.cpp \
     controller/automationcontroller.cpp \
     controller/configurationcontroller.cpp \
     controller/modelcontroller.cpp \
     controller/projectcontroller.cpp \
     controller/controller.cpp \
+    controller/resultscontroller.cpp \
     controller/settingscontroller.cpp \
-    globalsettingswidget.cpp \
     model/datamanager.cpp \
     model/automation/addprojectcommand.cpp \
     model/automation/automator.cpp \
@@ -67,9 +66,11 @@ SOURCES += \
     view/aitrainingwidget.cpp \
     view/aspectratiolabel.cpp \
     view/automationwidget.cpp \
+    view/configurationdialog.cpp \
     view/customlistwidget.cpp \
     view/customtabbar.cpp \
     view/customtabwidget.cpp \
+    view/globalsettingswidget.cpp \
     view/imagegallery.cpp \
     view/imagegallerytree.cpp \
     view/imagesection.cpp \
@@ -91,15 +92,14 @@ SOURCES += \
     view/tags.cpp
 
 HEADERS += \
-    configurationdialog.h \
     controller/aicontroller.h \
     controller/automationcontroller.h \
     controller/configurationcontroller.h \
     controller/modelcontroller.h \
     controller/projectcontroller.h \
     controller/controller.h \
+    controller/resultscontroller.h \
     controller/settingscontroller.h \
-    globalsettingswidget.h \
     model/datamanager.h \
     model/automation/addprojectcommand.h \
     model/automation/automator.h \
@@ -138,9 +138,11 @@ HEADERS += \
     view/aitrainingwidget.h \
     view/aspectratiolabel.h \
     view/automationwidget.h \
+    view/configurationdialog.h \
     view/customlistwidget.h \
     view/customtabbar.h \
     view/customtabwidget.h \
+    view/globalsettingswidget.h \
     view/imagegallery.h \
     view/imagegallerytree.h \
     view/imagesection.h \
