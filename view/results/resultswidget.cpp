@@ -113,7 +113,7 @@ void ResultsWidget::dummyFunctionTest() {
         lossCurve->generateGraphics(tab);
 
         //Confusion Matrix
-        QList<double> values = QList<double>();
+        QList<int> values = QList<int>();
         QStringList labels = {"A", "B", "C", "D", "E", "F", "G", "H"};
         const qsizetype N = labels.size();
         qsizetype target = 0;
