@@ -131,7 +131,7 @@ void SettingsView::slot_setClassificationPluginsDir()
         mGlobalSettingsWidget->setNewClassificationPluginPath(mClassificationPluginsDir);
         return;
     }
-    mGlobalSettingsWidget->setNewProjectPath("-");
+    mGlobalSettingsWidget->setNewClassificationPluginPath("-");
 }
 
 void SettingsView::slot_setImageLoaderPluginsDir()
@@ -141,7 +141,7 @@ void SettingsView::slot_setImageLoaderPluginsDir()
         mGlobalSettingsWidget->setNewImageLoaderPath(mImageLoaderPluginsDir);
         return;
     }
-    mGlobalSettingsWidget->setNewProjectPath("-");
+    mGlobalSettingsWidget->setNewImageLoaderPath("-");
 }
 
 
