@@ -48,6 +48,7 @@ SOURCES += \
     model/pluginusage/progressableplugin.cpp \
     model/pluginusage/trainingsthread.cpp \
     model/projectmanager.cpp \
+    model/results/abstractresultgraphics.cpp \
     model/results/confusionmatrix.cpp \
     model/results/losscurve.cpp \
     model/settingsmanager.cpp \
@@ -112,6 +113,7 @@ HEADERS += \
     model/pluginusage/progressableplugin.h \
     model/pluginusage/trainingsthread.h \
     model/projectmanager.h \
+    model/results/abstractresultgraphics.h \
     model/results/confusionmatrix.h \
     model/results/losscurve.h \
     model/settingsmanager.h \

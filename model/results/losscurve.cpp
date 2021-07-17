@@ -3,21 +3,22 @@
 #include <QProcess>
 #include "losscurve.h"
 
-LossCurve::LossCurve(const QMap<int, QPair<double, double>> &data) {
+LossCurve::LossCurve(const QString &identifier, const QMap<int, QPair<double, double>> &data)
+        : AbstractResultGraphics("losscurve_" + identifier, "svg") {
     m_data = data;
 }
 
-QGraphicsItem *LossCurve::generateLossCurveGraphics(const QString &fileName) {
+void LossCurve::generateGraphicsInternal(const QString &fullFilePath) {
     //Call python script
     auto file = QFileInfo("losscurve.py");
     QString path = file.absolutePath();
     QString command("python");
 
     // python script.py <loss curve data> <output file name>
-    QStringList params = QStringList() << file.absoluteFilePath() << valuesToPyText() << fileName;
+    QStringList params = QStringList() << file.absoluteFilePath() << valuesToPyText() << fullFilePath;
     auto *process = new QProcess();
 
-    process->start(command,params);
+    process->start(command, params);
     process->waitForStarted();
     process->waitForFinished();
 
@@ -25,8 +26,6 @@ QGraphicsItem *LossCurve::generateLossCurveGraphics(const QString &fileName) {
     qInfo() << qPrintable(strTemp.simplified());
 
     process->close();
-
-    return new QGraphicsSvgItem(path + "/" + fileName);
 }
 
 QString LossCurve::valuesToPyText() {
@@ -48,10 +47,15 @@ QPair<double, double> LossCurve::operator[](int epoch) const {
     return m_data[epoch];
 }
 
-bool LossCurve::operator==(const LossCurve& other) const {
+bool LossCurve::operator==(const LossCurve &other) const {
     return m_data == other.m_data;
 }
 
-bool LossCurve::operator!=(const LossCurve& other) const {
+bool LossCurve::operator!=(const LossCurve &other) const {
     return m_data != other.m_data;
+}
+
+void LossCurve::passResultGraphics(const QString &fullFilePath, TrainingResultView *receiver) {
+    auto *graphics = new QGraphicsSvgItem(fullFilePath);
+    receiver->setLossCurve(graphics);
 }
