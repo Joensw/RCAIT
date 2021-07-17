@@ -148,6 +148,100 @@
     </message>
 </context>
 <context>
+    <name>ConfigurationController</name>
+    <message>
+        <source>Please specifiy all paths uniquely before proceeding.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ConfigurationDialog</name>
+    <message>
+        <source>Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>select project directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>select classification plugin directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>select image loader plugin directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;error&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quit confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit?
+The application will terminate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select project directory</source>
+        <translation type="unfinished">Projektverzeichnis wählen</translation>
+    </message>
+    <message>
+        <source>Select classification plugin directory</source>
+        <translation type="unfinished">Klassifizierungspluginverzeichnis wählen</translation>
+    </message>
+    <message>
+        <source>Select image-loader plugin directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>GlobalSettingsWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="obsolete">Form</translation>
+    </message>
+    <message>
+        <source>Choose project directory</source>
+        <translation type="unfinished">Projektverzeichnis wählen</translation>
+    </message>
+    <message>
+        <source>current path:</source>
+        <translation type="unfinished">aktueller Pfad:</translation>
+    </message>
+    <message>
+        <source>new path:</source>
+        <translation type="unfinished">neuer Pfad:</translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose classification-plugin Directory</source>
+        <translation>Klassifizierungspluginverzeichnis wählen</translation>
+    </message>
+    <message>
+        <source>Choose imageloader-plugin directory</source>
+        <translation type="unfinished">Bildladerpluginverzeichnis wählen</translation>
+    </message>
+    <message>
+        <source>Global settings</source>
+        <translation type="unfinished">Globale Einstellungen</translation>
+    </message>
+</context>
+<context>
     <name>ImportFilesWidget</name>
     <message>
         <source>Form</source>
@@ -496,23 +590,23 @@
     </message>
     <message>
         <source>Run 1</source>
-        <translation type="unfinished">Durchlauf 1</translation>
+        <translation type="obsolete">Durchlauf 1</translation>
     </message>
     <message>
         <source>Run 2</source>
-        <translation type="unfinished">Durchlauf 2</translation>
+        <translation type="obsolete">Durchlauf 2</translation>
     </message>
     <message>
         <source>Run 3</source>
-        <translation type="unfinished">Durchlauf 3</translation>
+        <translation type="obsolete">Durchlauf 3</translation>
     </message>
     <message>
         <source>Top1%</source>
-        <translation type="unfinished">Top1%</translation>
+        <translation type="obsolete">Top1%</translation>
     </message>
     <message>
         <source>Top5%</source>
-        <translation type="unfinished">Top5%</translation>
+        <translation type="obsolete">Top5%</translation>
     </message>
     <message>
         <source>Save</source>
@@ -595,7 +689,7 @@
     </message>
     <message>
         <source>Global settings</source>
-        <translation type="unfinished">Globale Einstellungen</translation>
+        <translation type="obsolete">Globale Einstellungen</translation>
     </message>
     <message>
         <source>Select project directory</source>
@@ -604,12 +698,12 @@
     <message>
         <source>Select classification plugin directory</source>
         <translatorcomment>kann man sicher eleganter übersetzen</translatorcomment>
-        <translation type="unfinished">Klassifizierungspluginverzeichnis wählen</translation>
+        <translation type="obsolete">Klassifizierungspluginverzeichnis wählen</translation>
     </message>
     <message>
         <source>Select image loader plugin directory</source>
         <translatorcomment>kann man sicher eleganter übersetzen</translatorcomment>
-        <translation type="unfinished">Bildladerpluginverzeichnis wählen</translation>
+        <translation type="obsolete">Bildladerpluginverzeichnis wählen</translation>
     </message>
 </context>
 <context>
@@ -674,6 +768,13 @@ Wähle ein Projekt aus, um loszulegen</translation>
     <message>
         <source>Confusion Matrix</source>
         <translation type="unfinished">Konfusionsmatrix</translation>
+    </message>
+</context>
+<context>
+    <name>TrainingResultsTopAcc</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
     </message>
 </context>
 <context>
