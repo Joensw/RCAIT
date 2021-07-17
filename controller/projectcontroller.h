@@ -23,6 +23,8 @@ public slots:
 
     void slot_openProject(QString projectName);
 
+    void slot_projectDirectoryChanged();
+
 private:
     DataManager *mDataManager;
     NewProjectDialog *mNewProjectDialog;

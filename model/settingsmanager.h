@@ -33,8 +33,6 @@ public:
     bool verifyPaths(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory);
     bool verifyPath(QString path);
 
-
-
 private:
     ClassificationPluginManager * mClassificationPluginManager;
     ImageLoaderPluginManager * mImageLoaderPluginManager;

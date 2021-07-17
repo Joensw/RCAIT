@@ -3,7 +3,7 @@
 DataManager::DataManager(){
     mSettingsManager = new SettingsManager;
     mProjectManager = &ProjectManager::getInstance();
-    mProjectManager->setProjectsDirectory(mSettingsManager->getProjectsDir());
+    mProjectManager->setProjectsDirectory(mSettingsManager->getProjectsDir()); //could be put into constructor
     mModelManager = new ModelManager;
 }
 QStringList DataManager::getProjects(){
@@ -86,6 +86,7 @@ void DataManager::savePluginSettings(int index){
 }
 void DataManager::saveProjectsDir(QString value){
     mSettingsManager->saveProjectsDir(value);
+    mProjectManager->setProjectsDirectory(value);
 }
 QString DataManager::getProjectsDir(){
     return mSettingsManager->getProjectsDir();

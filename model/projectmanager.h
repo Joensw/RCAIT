@@ -45,8 +45,6 @@ public:
     QStringList getNamesOfSavedTrainingResults();
 
     void setProjectsDirectory(QString newDirectory);
-
-
 private:
     QString mProjectPath;
     QString mProjectTempDir;

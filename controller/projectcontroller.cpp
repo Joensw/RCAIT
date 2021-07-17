@@ -58,6 +58,12 @@ void ProjectController::slot_openProject(QString projectName){
     mDataManager->loadProject(projectName);
 }
 
+void ProjectController::slot_projectDirectoryChanged()
+{
+    mStartWidget->clearProjectList();
+    mStartWidget->addProjects(mDataManager->getProjects());
+}
+
 void ProjectController::slot_newProjectConfirm(QString projectName)
 {
     QString error = verifyName(projectName);

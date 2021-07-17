@@ -48,7 +48,6 @@ bool SettingsManager::verifyDirectories()
 
 bool SettingsManager::verifyPaths(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory)
 {
-    qDebug() << "oyo";
     if (projectsDirectory == classificationPluginDirectory ||
         projectsDirectory == imageLoaderDirectory ||
         classificationPluginDirectory == imageLoaderDirectory) {

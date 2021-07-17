@@ -39,6 +39,7 @@ void SettingsController::slot_applyGlobalSettings(QString projectsDir, QString c
     if (mDataManager->verifyPath(projectsDir)) {
         mDataManager->saveProjectsDir(projectsDir);
         mSettingsView->setCurrentProjectDirectory(projectsDir);
+        emit sig_projectDirectoryChanged();
         sucessfulUpdates++;
     }
     if (mDataManager->verifyPath(classificationPluginsDir)) {

@@ -114,3 +114,4 @@ void ProjectManager::setProjectsDirectory(QString newDirectory)
 }
 
 
+

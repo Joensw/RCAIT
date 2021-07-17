@@ -25,8 +25,8 @@ public slots:
     void slot_applySettings(int index);
     void slot_applyGlobalSettings(QString projectDir, QString classificationPluginDir, QString imageLoaderPluginsDir);
 
-
-
+signals:
+    void sig_projectDirectoryChanged();
 
 private:
     SettingsView *mSettingsView;
