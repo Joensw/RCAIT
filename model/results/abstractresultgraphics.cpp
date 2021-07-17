@@ -46,9 +46,9 @@ void AbstractResultGraphics::launch_externalGraphicsGenerator(const QString &com
 
     QString strTemp = QString::fromLocal8Bit(process->readAll());  // Get the output
 
-    qInfo() << "=== " << command << " " << args.join(',') << " ===" << "\n"
+    qInfo() << qPrintable(QString("===%1 %2===\n").arg(command,args.join(" ")))
             << qPrintable(strTemp.simplified()) << "\n" //Print in console
-            << "=== " << "END OF OUTPUT" << " ===";
+            << qPrintable(QString("===%1===").arg("END OF OUTPUT"));
 
     process->close();
 }
