@@ -5,6 +5,7 @@ import itertools
 import sys
 
 import matplotlib.pyplot as plt
+from matplotlib.ticker import PercentFormatter
 import numpy as np
 
 # No display of plot
@@ -15,13 +16,15 @@ def plot_confusion_matrix(cm, lbl, file, normalize, cmap=plt.cm.get_cmap('magma_
     if normalize:
         cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis] * 100
         print("Normalized confusion matrix")
+        plt.imshow(cm, interpolation='nearest', cmap=cmap, vmin=0, vmax=100)
+        plt.colorbar(format=PercentFormatter(100))
         decimal = '.1f'
     else:
         print('Confusion matrix, without normalization')
+        plt.imshow(cm, interpolation='nearest', cmap=cmap)
+        plt.colorbar()
         decimal = '.0f'
     print(cm)
-    plt.imshow(cm, interpolation='nearest', cmap=cmap)
-    plt.colorbar()
     plt.xticks(range(len(lbl)), lbl, rotation=45)
     plt.yticks(range(len(lbl)), lbl)
 

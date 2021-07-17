@@ -5,7 +5,7 @@ import itertools
 import sys
 
 import numpy as np
-from matplotlib.ticker import MaxNLocator, FuncFormatter
+from matplotlib.ticker import MaxNLocator, PercentFormatter
 from scipy.interpolate import make_interp_spline
 import matplotlib.pyplot as plt
 
@@ -21,8 +21,8 @@ def plot_loss_curve(lossdata, file):
 
     # Raw data
     epochs = lossdata[:, 0]  # 0th column
-    train = lossdata[:, 1] / 100  # 1st column
-    validation = lossdata[:, 2] / 100  # 2nd column
+    train = lossdata[:, 1]  # 1st column
+    validation = lossdata[:, 2]  # 2nd column
 
     # Chart line creation
     ax = plt.figure().gca()
@@ -37,8 +37,10 @@ def plot_loss_curve(lossdata, file):
     plt.plot(epochs_x, validation_y, label="Validation", color='orange', linewidth=3)
 
     # Formatting
+    ax.set_xlim([1, len(epochs)])
+    ax.set_ylim([0, 100])
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-    ax.yaxis.set_major_formatter(FuncFormatter('{0:.0%}'.format))
+    ax.yaxis.set_major_formatter(PercentFormatter(100))
     ax.set_aspect(1. / ax.get_data_ratio())
 
     # Grid
