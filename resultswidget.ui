@@ -70,7 +70,6 @@
              <attribute name="title">
               <string>Top Accuracies</string>
              </attribute>
-             <layout class="QGridLayout" name="gridLayout_3" columnstretch="1"/>
             </widget>
            </widget>
           </item>
