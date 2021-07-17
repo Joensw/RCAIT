@@ -5,35 +5,32 @@
 
 
 QString projectDirectory = "../projects";
-QString initializeString = "";
-QString resultsDirectoryName = "results";
 
-//on creation, meaning program startup, there will be no project selected.
+//names of the subfolders in the project directory
+//NOTE: it should be possible to change these, havent tested this yet
+QString resultsDirectoryName = "results";
+QString datasetDirectoryName = "data";
+QString tempDirectoryName = "temp";
+
+//keys of the <String, String> pair in the project file
+QString projectNameIdentifier = "projectName";
+QString projectDirectoryIdentifier_projectsFile = "projectDir";
+QString projectDatasetDirectoryIdentifier = "datasetDirName";
+QString projectTempDirectoryIdentifier = "tempDirName";
+
+//on creation, meaning program startup, there will be no project selected. all the strings will be null/empty
 ProjectManager::ProjectManager() {
-    mProjectPath = initializeString;
-    mProjectTempDir = initializeString;
-    mProjectDataSetDir = initializeString;
-    mProjectName = initializeString;
+
 }
 
 QStringList ProjectManager::getProjects() {
-    QDir projectsDir(projectDirectory);
+    QDir projectsDir(mProjectsDirectory);
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     return projectsDir.entryList();
 }
 
 void ProjectManager::createNewProject(QString projectName) {
-    //NOTE: the projects directory will also have to come from somewhere,
-    //currently it is created one directory up from the build directory.
-
-
-    //These will actually be defined elsewhere, such as the settings Manager
-    const QString datasetDirName = "data";
-    const QString tempDirName = "temp";
-
-
-    QString path = "../projects/" + projectName + "/" + projectName + ".ini";
-
+    QString newProjectPath = mProjectsDirectory + "/" + projectName + "/" + projectName + ".ini";
 
     /*goes into the projects folder, then into the specific project folder
     * there it creates a new ini file, which can be seen as the "project file"
@@ -41,42 +38,40 @@ void ProjectManager::createNewProject(QString projectName) {
 
 
     //non existing folders / directories will be automatically created
-    QSettings newProjectfile(path, QSettings::IniFormat);
+    QSettings newProjectfile(newProjectPath, QSettings::IniFormat);
 
     //this is only to get an absolute path, without .. and .
-    QDir projectDir(QFileInfo(path).absoluteDir());
+    QDir projectDir(QFileInfo(newProjectPath).absoluteDir());
     QString absolute = projectDir.absolutePath();
-    absolute.append("/");
 
-    //todo replace stings with cosntants
-    newProjectfile.setValue("projectName", projectName);
-    newProjectfile.setValue("projectDir", absolute);
-    newProjectfile.setValue("datasetDirName", datasetDirName);
-    newProjectfile.setValue("tempDirName", tempDirName);
+    newProjectfile.setValue(projectNameIdentifier, projectName);
+    newProjectfile.setValue(projectDirectoryIdentifier_projectsFile, absolute);
+    newProjectfile.setValue(projectDatasetDirectoryIdentifier, datasetDirectoryName);
+    newProjectfile.setValue(projectTempDirectoryIdentifier, tempDirectoryName);
 
     //make temp and Data subdirectories
     QDir dir;
-    dir.mkpath(absolute + datasetDirName);
-    dir.mkpath(absolute + tempDirName);
-    dir.mkpath(absolute + resultsDirectoryName);
-
+    dir.mkpath(absolute + "/" +  datasetDirectoryName);
+    dir.mkpath(absolute + "/" + tempDirectoryName);
+    dir.mkpath(absolute + "/" +  resultsDirectoryName);
 }
 
 void ProjectManager::removeProject(QString projectName) {
-    QDir targetDir("../projects/" + projectName);
-    //removeRecursively deletes everything in the directory
+    QDir targetDir(mProjectsDirectory + "/" + projectName);
     targetDir.removeRecursively();
 }
 
 void ProjectManager::loadProject(QString projectName) {
-    QString path = "../projects/" + projectName + "/" + projectName + ".ini";
-    QSettings projectfile(path, QSettings::IniFormat);
+    //QString path = "../projects/" + projectName + "/" + projectName + ".ini";
+    QString loadProjectPath = mProjectsDirectory + "/" + projectName + "/" + projectName + ".ini";
+
+    QSettings projectfile(loadProjectPath, QSettings::IniFormat);
 
     //todo replace strings with constants
-    mProjectName = projectfile.value("projectName").toString();
-    mProjectPath = projectfile.value("projectDir").toString();
-    mProjectDataSetDir = mProjectPath + projectfile.value("datasetDirName").toString();
-    mProjectTempDir = mProjectPath + projectfile.value("tempDirName").toString();
+    mProjectName = projectfile.value(projectNameIdentifier).toString();
+    mProjectPath = projectfile.value(projectDirectoryIdentifier_projectsFile).toString();
+    mProjectDataSetDir = mProjectPath + projectfile.value(projectDatasetDirectoryIdentifier).toString();
+    mProjectTempDir = mProjectPath + projectfile.value(projectTempDirectoryIdentifier).toString();
     mProjectResultsDir = mProjectPath + resultsDirectoryName;
 }
 
@@ -105,11 +100,17 @@ void ProjectManager::saveTrainingsResult(ClassificationResult result) {
 }
 
 TrainingResult ProjectManager::getTrainingsResult(QString modelResultName) {
+
 }
 
 QStringList ProjectManager::getNamesOfSavedTrainingResults() {
     QStringList l;
     return l;
+}
+
+void ProjectManager::setProjectsDirectory(QString newDirectory)
+{
+    mProjectsDirectory = newDirectory;
 }
 
 

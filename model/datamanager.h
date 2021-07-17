@@ -18,12 +18,12 @@ public:
     void createNewProject(QString projectName);
     void removeProject(QString projectName);
     void loadProject(QString projectName);
-    QString getProjectPath();
-    QString getProjectTempDir();
-    QString getProjectDataSetDir();
-    bool verifyDirectories(); //is new was not in UML, is needed to check if paths currently stored for the directories are valid
-    bool verifyPaths(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory); //is new was not in UML, is needed to check if path candidates are valid
-    bool verifyPath(QString path); //is new was not in UML, is needed to by settings manager to check paths indivually
+    QString getProjectPath(); //maybe give these the prefix openProject to avoid confusion with the getters for the directories
+    QString getProjectTempDir(); //
+    QString getProjectDataSetDir(); //
+    bool verifyDirectories();
+    bool verifyPaths(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory);
+    bool verifyPath(QString path);
 
     void createNewModel(QString modelName, QString pluginName, QString baseModel);
     void removeModel(QString modelName, QString pluginName);
@@ -32,8 +32,8 @@ public:
     QString getCurrentClassificationPlugin();
 
     QStringList getPluginNames();
-    QStringList getClassificationPluginNames(); //is new was not in UML, is needed on importfile widget to show available classification plugins
-    QStringList getPluginBases(QString plugin); //is new was not in UML, is needed on the newModelDialog to show the bases for a specific plugin
+    QStringList getClassificationPluginNames();
+    QStringList getPluginBases(QString plugin);
     QList<QWidget*> getPluginSettings();
     void savePluginSettings(int index);
     void saveProjectsDir(QString value);

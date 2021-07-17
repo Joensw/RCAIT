@@ -1,7 +1,7 @@
 #include "settingsmanager.h"
 
-//const QString GLOBAL_SETTINGS_LOCATION = "../settings.ini"; probably just use regular QSettings functionality
-QString projectDirectoryIdentifier = "ProjectDirectory";
+
+QString projectDirectoryIdentifier_settingsFile = "ProjectDirectory";
 QString classificationPluginDirectoryIdentifier = "ClassificationPluginPath";
 QString imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
 
@@ -31,13 +31,13 @@ QStringList SettingsManager::getClassificationPluginBase(QString plugin)
 
 bool SettingsManager::verifyDirectories()
 {
-    if (mGlobalSettings->contains(projectDirectoryIdentifier)
+    if (mGlobalSettings->contains(projectDirectoryIdentifier_settingsFile)
         && mGlobalSettings->contains(classificationPluginDirectoryIdentifier)
         && mGlobalSettings->contains(imageLoaderPluginDirectoryIdentifier)) {
         //all keys exist and have values
 
         //extract values
-        QString projectPath = mGlobalSettings->value(projectDirectoryIdentifier).toString();
+        QString projectPath = mGlobalSettings->value(projectDirectoryIdentifier_settingsFile).toString();
         QString classificationPath = mGlobalSettings->value(classificationPluginDirectoryIdentifier).toString();
         QString imageLoaderPath = mGlobalSettings->value(imageLoaderPluginDirectoryIdentifier).toString();
 
@@ -48,6 +48,7 @@ bool SettingsManager::verifyDirectories()
 
 bool SettingsManager::verifyPaths(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory)
 {
+    qDebug() << "oyo";
     if (projectsDirectory == classificationPluginDirectory ||
         projectsDirectory == imageLoaderDirectory ||
         classificationPluginDirectory == imageLoaderDirectory) {
@@ -58,7 +59,6 @@ bool SettingsManager::verifyPaths(QString projectsDirectory, QString classificat
     if (projectsDirectory.isEmpty() || classificationPluginDirectory.isEmpty() || imageLoaderDirectory.isEmpty()){
         return false;
     }
-
 
     //make dirs from the values, check if they exist
     //if they dont they the programm cannot operate
@@ -100,11 +100,11 @@ void SettingsManager::savePluginSettings(int index){
 }
 
 void SettingsManager::saveProjectsDir(QString value){
-    mGlobalSettings->setValue(projectDirectoryIdentifier, value);
+    mGlobalSettings->setValue(projectDirectoryIdentifier_settingsFile, value);
 }
 
 QString SettingsManager::getProjectsDir(){
-    return mGlobalSettings->value(projectDirectoryIdentifier).toString();
+    return mGlobalSettings->value(projectDirectoryIdentifier_settingsFile).toString();
 }
 
 void SettingsManager::saveClassificationPluginDir(QString value){

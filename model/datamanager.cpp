@@ -1,9 +1,10 @@
 #include "datamanager.h"
 
 DataManager::DataManager(){
-    mProjectManager = &ProjectManager::getInstance();
-    mModelManager = new ModelManager;
     mSettingsManager = new SettingsManager;
+    mProjectManager = &ProjectManager::getInstance();
+    mProjectManager->setProjectsDirectory(mSettingsManager->getProjectsDir());
+    mModelManager = new ModelManager;
 }
 QStringList DataManager::getProjects(){
     return mProjectManager->getProjects();

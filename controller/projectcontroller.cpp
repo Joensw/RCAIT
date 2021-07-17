@@ -28,7 +28,7 @@ QString ProjectController::verifyName(QString input)
     }
 
     //check if name is already taken
-    QDir projectsDir("../projects");
+    QDir projectsDir(mDataManager->getProjectsDir());
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     QStringList projects = projectsDir.entryList();
     if (projects.contains(input)) {
