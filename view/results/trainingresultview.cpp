@@ -20,6 +20,8 @@ void TrainingResultView::setLossCurve(QGraphicsItem *lossCurveImage) {
     auto view = ui->graphicsView_losscurve;
     auto *scene = new QGraphicsScene();
     scene->addItem(lossCurveImage);
+    //Jump back to main programs thread to avoid warnings
+    scene->moveToThread(this->thread());
 
     view->scale(0.9, 0.9);
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
@@ -34,6 +36,8 @@ void TrainingResultView::setConfusionMatrix(QGraphicsItem *matrixImage) {
     auto view = ui->graphicsView_confusionmatrix;
     auto *scene = new QGraphicsScene();
     scene->addItem(matrixImage);
+    //Jump back to main programs thread to avoid warnings
+    scene->moveToThread(this->thread());
 
     view->scale(0.85, 0.85);
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
