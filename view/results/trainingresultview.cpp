@@ -1,19 +1,10 @@
 #include "trainingresultview.h"
-
-#include <utility>
 #include "ui_trainingresultview.h"
 
 TrainingResultView::TrainingResultView(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::TrainingResultView) {
     ui->setupUi(this);
-}
-
-TrainingResultView::TrainingResultView(QWidget *parent, QGraphicsItem *lossCurveImage, QGraphicsItem *matrixImage,
-                                       QList<QImage> images) : TrainingResultView(parent) {
-    setConfusionMatrix(matrixImage);
-    setLossCurve(lossCurveImage);
-    setMostMisclassifiedImages(std::move(images));
 }
 
 void TrainingResultView::setLossCurve(QGraphicsItem *lossCurveImage) {

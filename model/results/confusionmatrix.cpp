@@ -14,24 +14,12 @@ ConfusionMatrix::ConfusionMatrix(const QString &identifier, const QStringList &c
 
 
 void ConfusionMatrix::generateGraphicsInternal(const QString &fullFilePath) {
-    //Call python script
-    auto file = QFileInfo("confusionmatrix.py");
-    QString command("python");
-
     // python script.py <matrix data> <matrix labels> <output file name> (<normalized>)
+    auto file = QFileInfo("confusionmatrix.py");
     QStringList params =
             QStringList() << file.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fullFilePath
                           << "--normalized";
-    auto *process = new QProcess();
-
-    process->start(command, params);
-    process->waitForStarted();
-    process->waitForFinished();
-
-    QString strTemp = QString::fromLocal8Bit(process->readAll());  // Get the output
-    qInfo() << qPrintable(strTemp.simplified());
-
-    process->close();
+    AbstractResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 
 /**
@@ -40,7 +28,7 @@ void ConfusionMatrix::generateGraphicsInternal(const QString &fullFilePath) {
  */
 double ConfusionMatrix::operator()(int row, int column) const {
     Q_ASSERT(row >= 0 && row < m_size && column >= 0 && column < m_size);
-    return m_values.at(row * m_size + column);
+    return m_values[row * m_size + column];
 }
 
 /**
@@ -87,7 +75,7 @@ bool ConfusionMatrix::operator!=(const ConfusionMatrix other) const {
     return !(*this == other);
 }
 
-void ConfusionMatrix::passResultGraphics(const QString &fullFilePath, TrainingResultView *receiver) {
+void ConfusionMatrix::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
     receiver->setConfusionMatrix(graphics);
 }

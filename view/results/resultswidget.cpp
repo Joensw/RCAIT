@@ -103,9 +103,9 @@ void ResultsWidget::dummyFunctionTest() {
         //Loss Curve
         int sum = 0;
         auto *pointsMap = new QMap<int, QPair<double, double>>();
-        for (int j = 0; j < 20; j++) {
+        for (int j = 1; j <= 20; j++) {
             double random = QRandomGenerator::global()->bounded(3 * 100) / 100.0;
-            int random2 = QRandomGenerator::global()->bounded(-2, 15);
+            int random2 = QRandomGenerator::global()->bounded(-2, 10);
             sum += random2;
             pointsMap->insert(j, qMakePair(100 / (double) abs(sum) + 3, random));
         }
