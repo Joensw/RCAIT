@@ -70,9 +70,9 @@ void ProjectManager::loadProject(QString projectName) {
     //todo replace strings with constants
     mProjectName = projectfile.value(projectNameIdentifier).toString();
     mProjectPath = projectfile.value(projectDirectoryIdentifier_projectsFile).toString();
-    mProjectDataSetDir = mProjectPath + projectfile.value(projectDatasetDirectoryIdentifier).toString();
-    mProjectTempDir = mProjectPath + projectfile.value(projectTempDirectoryIdentifier).toString();
-    mProjectResultsDir = mProjectPath + resultsDirectoryName;
+    mProjectDataSetDir = mProjectPath + "/" + projectfile.value(projectDatasetDirectoryIdentifier).toString();
+    mProjectTempDir = mProjectPath + "/" + projectfile.value(projectTempDirectoryIdentifier).toString();
+    mProjectResultsDir = mProjectPath + "/" + resultsDirectoryName;
 }
 
 QString ProjectManager::getProjectPath() {

@@ -40,12 +40,13 @@ public:
     ImportFilesWidget * getImportFilesWidget();
     AutomationWidget *getAutomationWidget();
 
-
 signals:
     void sig_openSettings();
 
 private slots:
     void slot_settingsButton_clicked();
+
+    void on_pushButton_openProject_clicked();
 
 private:
     Ui::MainWindow *ui;

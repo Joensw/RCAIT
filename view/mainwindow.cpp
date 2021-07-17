@@ -57,6 +57,13 @@ void MainWindow::slot_settingsButton_clicked() {
     emit sig_openSettings();
 }
 
+void MainWindow::on_pushButton_openProject_clicked()
+{
+    qDebug() << "mainWindow";
+    int newIndex = ui->tabWidget->currentIndex() + 1;
+    ui->tabWidget->setCurrentIndex(newIndex);
+}
+
 void MainWindow::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         // this event is send if a translator is loaded
