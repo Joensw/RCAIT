@@ -16,7 +16,7 @@ ImageLoadCommand::ImageLoadCommand(QVariantMap map, Progressable* receiver)
         return;
     }
 
-    mImageSearcher = new ImageSearchThread((ProgressablePlugin*)receiver, imagePath, imagePluginName, count, labels);
+    mImageSearcher = new ImageSearchThread(receiver, imagePath, imagePluginName, count, labels);
 
 }
 

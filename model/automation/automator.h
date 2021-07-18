@@ -30,12 +30,15 @@ public:
     QList<QString> getQueuedTasks();
 
 public slots:
+    void slot_makeProgress(int progress) override;
+
     void slot_taskUpdated(QString name, TaskState state);
     void stopTasks();
 
 signals:
     void sig_taskUpdate(QString name, QString state);
     void sig_taskAdded(QString name);
+    void sig_progress(int);
 
 
 private:
@@ -43,6 +46,7 @@ private:
     QList<Task*> mQueuedTasks;
     DataManager *mDataManager;
     bool stop = false;
+    int tasksCompleted = 0;
 };
 
 #endif // AUTOMATOR_H

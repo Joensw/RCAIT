@@ -17,7 +17,10 @@ void Automator::performTasks()
 
     for (i = mQueuedTasks.begin(); i != mQueuedTasks.end() && !stop; ++i){
         //TODO change Task so it is stoppable
-         (*i)->run();
+        connect((*i), &Task::sig_progress, this, &Automator::slot_makeProgress);
+        (*i)->run();
+        disconnect((*i), &Task::sig_progress, this, &Automator::slot_makeProgress);
+        tasksCompleted++;
     }
 }
 
@@ -91,6 +94,12 @@ QList<QString> Automator::getQueuedTasks()
         list.append(task->getName());
     }
     return list;
+}
+
+void Automator::slot_makeProgress(int progress)
+{
+    int localProgress =(tasksCompleted * 100 + progress) / (mQueuedTasks.size() * 100);
+    emit sig_progress(localProgress);
 }
 
 void Automator::slot_taskUpdated(QString taskName, TaskState state)

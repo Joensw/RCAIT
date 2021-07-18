@@ -11,7 +11,7 @@ class Progressable : public QObject
 public:
     Progressable();
 public slots:
-    virtual void slot_makeProgress(int progress);
+    virtual void slot_makeProgress(int progress) = 0;
 
 };
 

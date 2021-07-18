@@ -9,10 +9,10 @@ class ImageSearchThread : public QThread {
     //void run() override;
 
 public:
-    ImageSearchThread(ProgressablePlugin* receiver, QString imagePath, QString pluginName, int count, QStringList labels);
+    ImageSearchThread(Progressable* receiver, QString imagePath, QString pluginName, int count, QStringList labels);
 
 private:
-    ProgressablePlugin* receiver;
+    Progressable* receiver;
     volatile bool* stopped;
 
 };

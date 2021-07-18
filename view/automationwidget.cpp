@@ -15,6 +15,11 @@ AutomationWidget::~AutomationWidget()
     delete ui;
 }
 
+void AutomationWidget::slot_progress(int progress)
+{
+    ui->progressBar->setValue(progress);
+}
+
 void AutomationWidget::slot_taskAdded(QString name)
 {
     ui->idleTasks->addItem(name);

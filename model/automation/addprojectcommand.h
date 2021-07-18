@@ -3,6 +3,8 @@
 
 #include "command.h"
 
+
+// never used, remove later
 class AddProjectCommand : public Command
 {
 public:

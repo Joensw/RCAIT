@@ -47,6 +47,7 @@ void Task::run()
             //TODO optional parameter "undoOnFail" and the according undo implementation
             return;
         }
+        commandsDone++;
     }
 }
 
@@ -58,6 +59,12 @@ QString Task::getName()
 bool Task::isValid()
 {
     return valid;
+}
+
+void Task::slot_makeProgress(int progress)
+{
+    int localProgress = (commandsDone * 100 + progress) / (mCommandList.size() * 100);
+    emit sig_progress(localProgress);
 }
 
 void Task::slot_saveTrainingResult(TrainingResult result)

@@ -25,12 +25,15 @@ public:
     bool isValid();
 
 public slots:
+    void slot_makeProgress(int progress) override;
+
     void slot_saveTrainingResult(TrainingResult result);
     void slot_saveClassificationResult(ClassificationResult result);
 
 
 signals:
     void sig_stateChanged(TaskState newState);
+    void sig_progress(int progress);
 
 
 
@@ -42,6 +45,7 @@ private:
     QList<Command*> mCommandList;
 
     bool valid = true;
+    int commandsDone = 0;
 };
 
 #endif // TASK_H
