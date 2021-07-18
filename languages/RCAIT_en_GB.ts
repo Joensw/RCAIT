@@ -761,9 +761,9 @@ Select a project to get started</source>
     </message>
 </context>
 <context>
-    <name>TrainingResultsTopAcc</name>
+    <name>TopAccuraciesView</name>
     <message>
-        <location filename="../view/results/trainingresultstopacc.ui" line="14"/>
+        <location filename="../view/results/topaccuraciesview.ui" line="14"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>

@@ -1,12 +1,12 @@
-#include "trainingresultstopacc.h"
-#include "ui_trainingresultstopacc.h"
+#include "topaccuraciesview.h"
+#include "ui_topaccuraciesview.h"
 
-TrainingResultsTopAcc::TrainingResultsTopAcc(QWidget *parent) :
+TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
         QWidget(parent),
-        ui(new Ui::TrainingResultsTopAcc) {
+        ui(new Ui::TopAccuraciesView) {
     ui->setupUi(this);
 
-    QTableWidget *table = ui->tableWidget_topAccuracy;
+    QTableWidget *table = ui->tableWidget_topAccuracies;
 
     table->setColumnCount(2);
     table->setHorizontalHeaderLabels({"Top 1%", "Top5%"});
@@ -15,14 +15,15 @@ TrainingResultsTopAcc::TrainingResultsTopAcc(QWidget *parent) :
     header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-void TrainingResultsTopAcc::addTableRow(const QString& identifier, double top1, double top5) {
-    QTableWidget *table = ui->tableWidget_topAccuracy;
+void TopAccuraciesView::addTableRow(const QString& identifier, double top1, double top5) {
+    QTableWidget *table = ui->tableWidget_topAccuracies;
     //Convert doubles to String with 2 decimal spots precision
     auto top1Str = QString::number(top1, 'G', 5);
     auto top5Str = QString::number(top5, 'G', 5);
 
     int row = table->rowCount();
     table->insertRow(row);
+    emit sig_accuraciesTable_rowAdded(identifier,top1,top5);
 
     //Fill table row
     auto identifierItem = new QTableWidgetItem(identifier);
@@ -37,8 +38,9 @@ void TrainingResultsTopAcc::addTableRow(const QString& identifier, double top1, 
     table->setItem(row, 1, top5StrItem);
 }
 
-void TrainingResultsTopAcc::removeTableRow(const QString& identifier) {
-    QTableWidget *table = ui->tableWidget_topAccuracy;
+void TopAccuraciesView::removeTableRow(const QString& identifier) {
+    QTableWidget *table = ui->tableWidget_topAccuracies;
+    emit sig_accuraciesTable_rowRemoved(identifier);
     for (int i = 0; i < table->rowCount(); i++) {
         if (table->verticalHeaderItem(i)->text() == identifier){
             table->removeRow(i);
@@ -47,6 +49,6 @@ void TrainingResultsTopAcc::removeTableRow(const QString& identifier) {
     }
 }
 
-TrainingResultsTopAcc::~TrainingResultsTopAcc() {
+TopAccuraciesView::~TopAccuraciesView() {
     delete ui;
 }
