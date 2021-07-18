@@ -48,7 +48,6 @@ void ImportFilesWidget::on_pushButton_addModel_clicked()
 
 void ImportFilesWidget::on_pushButton_removeModel_clicked()
 {
-    //if there are no projects, or no current item, dont do anything
     QListWidgetItem * item = ui->listWidget_modelNames->currentItem();
     if (item) {
         QString toRemove = item->text();

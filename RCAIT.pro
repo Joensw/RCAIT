@@ -29,7 +29,6 @@ SOURCES += \
     controller/modelcontroller.cpp \
     controller/projectcontroller.cpp \
     controller/controller.cpp \
-    controller/resultscontroller.cpp \
     controller/settingscontroller.cpp \
     controller/resultscontroller.cpp \
     model/datamanager.cpp \
@@ -43,7 +42,6 @@ SOURCES += \
     model/modelmanager.cpp \
     model/pluginusage/aithread.cpp \
     model/pluginusage/classifiertrainer.cpp \
-    model/pluginusage/imageloader.cpp \
     model/pluginusage/imageloader.cpp \
     model/pluginusage/imagesearchthread.cpp \
     model/pluginusage/classificationthread.cpp \
@@ -99,7 +97,6 @@ HEADERS += \
     controller/modelcontroller.h \
     controller/projectcontroller.h \
     controller/controller.h \
-    controller/resultscontroller.h \
     controller/settingscontroller.h \
     controller/resultscontroller.h \
     model/datamanager.h \
@@ -113,7 +110,6 @@ HEADERS += \
     model/modelmanager.h \
     model/pluginusage/aithread.h \
     model/pluginusage/classifiertrainer.h \
-    model/pluginusage/imageloader.h \
     model/pluginusage/imageloader.h \
     model/pluginusage/imagesearchthread.h \
     model/pluginusage/classificationthread.h \
