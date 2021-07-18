@@ -39,14 +39,14 @@ void GlobalSettingsWidget::showUpdate(int amount)
 {
     ui->label_information->clear();
     ui->label_information->setStyleSheet("QLabel { color : green; }");
-    ui->label_information->setText("Sucess. Updated " + QString::number(amount) + " path(s)");
+    ui->label_information->setText(tr("Sucess. Updated ") + QString::number(amount) + tr(" path(s)"));
 }
 
 void GlobalSettingsWidget::showNonUpdate()
 {
     ui->label_information->clear();
     ui->label_information->setStyleSheet("QLabel { color : blue; }");
-    ui->label_information->setText("no changes were made");
+    ui->label_information->setText(tr("no changes were made"));
 }
 
 void GlobalSettingsWidget::setError(QString error)

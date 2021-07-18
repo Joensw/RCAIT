@@ -259,6 +259,21 @@ The application will terminate</source>
         <source>Choose imageloader-plugin directory</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../view/globalsettingswidget.cpp" line="42"/>
+        <source>Sucess. Updated </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/globalsettingswidget.cpp" line="42"/>
+        <source> path(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/globalsettingswidget.cpp" line="49"/>
+        <source>no changes were made</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ImportFilesWidget</name>
@@ -669,10 +684,18 @@ The application will terminate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.cpp" line="121"/>
-        <location filename="../view/settingsview.cpp" line="131"/>
-        <location filename="../view/settingsview.cpp" line="141"/>
+        <location filename="../view/settingsview.cpp" line="122"/>
         <source>Select project directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/settingsview.cpp" line="132"/>
+        <source>Select classification plugin directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/settingsview.cpp" line="142"/>
+        <source>Select image loader plugin directory</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

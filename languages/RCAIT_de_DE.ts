@@ -240,6 +240,18 @@ The application will terminate</source>
         <source>Global settings</source>
         <translation type="unfinished">Globale Einstellungen</translation>
     </message>
+    <message>
+        <source>Sucess. Updated </source>
+        <translation type="unfinished"> </translation>
+    </message>
+    <message>
+        <source> path(s)</source>
+        <translation type="unfinished"> Pfad(e) wurden erfolgreich aktualisiert</translation>
+    </message>
+    <message>
+        <source>no changes were made</source>
+        <translation type="unfinished">keine Änderung vorgenommen</translation>
+    </message>
 </context>
 <context>
     <name>ImportFilesWidget</name>
@@ -693,17 +705,17 @@ The application will terminate</source>
     </message>
     <message>
         <source>Select project directory</source>
-        <translation type="unfinished">Projektverzeichnis wählen</translation>
+        <translation>Projektverzeichnis wählen</translation>
     </message>
     <message>
         <source>Select classification plugin directory</source>
         <translatorcomment>kann man sicher eleganter übersetzen</translatorcomment>
-        <translation type="obsolete">Klassifizierungspluginverzeichnis wählen</translation>
+        <translation>Klassifizierungspluginverzeichnis wählen</translation>
     </message>
     <message>
         <source>Select image loader plugin directory</source>
         <translatorcomment>kann man sicher eleganter übersetzen</translatorcomment>
-        <translation type="obsolete">Bildladerpluginverzeichnis wählen</translation>
+        <translation>Bildladerpluginverzeichnis wählen</translation>
     </message>
 </context>
 <context>
