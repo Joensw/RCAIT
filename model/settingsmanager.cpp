@@ -8,7 +8,7 @@ QString imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
 SettingsManager::SettingsManager()
 {
     mGlobalSettings = new QSettings();
-    mClassificationPluginManager = ClassificationPluginManager::getInstance();
+    mClassificationPluginManager = &ClassificationPluginManager::getInstance();
     mImageLoaderPluginManager = &ImageLoaderPluginManager::getInstance();
 
 }
