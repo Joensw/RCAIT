@@ -22,7 +22,7 @@ ImageLoadCommand::ImageLoadCommand(QVariantMap map, Progressable* receiver)
 
 bool ImageLoadCommand::execute(){
     if(parsingFailed) return false;
-    mImageSearcher->start();
-    mImageSearcher->wait();
+    //mImageSearcher->start();   //ToDo: Auf neue Thread Struktur anpassen
+    //mImageSearcher->wait();
     return true;
 }

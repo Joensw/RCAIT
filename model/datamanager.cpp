@@ -117,4 +117,8 @@ QStringList DataManager::getNamesOfSavedTrainingResults(){
     return mProjectManager->getNamesOfSavedTrainingResults();
 }
 
+QStringList DataManager::getImageLoaderPluginNames() {
+    return mSettingsManager->getImageLoaderPluginNames();
+}
+
 

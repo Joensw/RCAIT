@@ -7,13 +7,18 @@
 #include "imageinspectionwidget.h"
 #include "importfileswidget.h"
 #include "datamanager.h"
+#include "imagesection.h"
 
-class ImageController {
+class ImageController : public QObject{
+    Q_OBJECT
 public:
-    ImageController(ImageInspectionWidget* imageInspectionWidget, ImportFilesWidget* importFilesWidget, DataManager* dataManager, ImageLoader* loader);
+    ImageController(ImageSection* imageSection, ImportFilesWidget* importFilesWidget, DataManager* dataManager);
 
 private:
     ImageLoader m_imageLoader;
+    ImageSection* m_imageSection;
+    ImportFilesWidget* m_importFilesWidget;
+    DataManager* m_dataManager;
 
 public slots:
     void slot_remove(int sectionIndex, int imgIndex);

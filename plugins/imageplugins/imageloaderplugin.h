@@ -8,6 +8,7 @@
 //Todo: Extend Plugin class
 class ImageLoaderPlugin : public Plugin{
 public:
+    virtual void init() = 0;
     virtual bool loadImages(QString path, ProgressablePlugin* receiver, int count, QStringList labels) = 0;
 };
 

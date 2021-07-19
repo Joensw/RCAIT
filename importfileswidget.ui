@@ -100,21 +100,6 @@
           <property name="enabled">
            <bool>true</bool>
           </property>
-          <item>
-           <property name="text">
-            <string>Flickr API</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Folder API</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Bing Image Search API</string>
-           </property>
-          </item>
          </widget>
         </item>
         <item row="6" column="1">
@@ -174,6 +159,9 @@
          <widget class="QSlider" name="horizontalSlider">
           <property name="maximum">
            <number>100</number>
+          </property>
+          <property name="pageStep">
+           <number>1</number>
           </property>
           <property name="value">
            <number>40</number>
@@ -368,6 +356,7 @@ selection-background-color: rgb(255, 255, 255);</string>
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="UI_Icons.qrc"/>
   <include location="UI_Icons.qrc"/>
  </resources>
  <connections/>
