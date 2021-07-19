@@ -22,41 +22,50 @@ void SettingsController:: slot_applySettings(int index)
     mDataManager->savePluginSettings(index);
 }
 
-//todo verify projects again at end, paths cant be changed to the same thing one by one!
 void SettingsController::slot_applyGlobalSettings(QString projectsDir, QString classificationPluginsDir, QString imageLoaderPluginsDir)
 {
     char sucessfulUpdates = 0;
 
-    //this if condition is a bit ugly, we check for identical paths but have to make sure we ignore them incase they are empty
-    //as on an empty path no change is performed
-    if ( ((projectsDir == classificationPluginsDir) && (!projectsDir.isEmpty() && !classificationPluginsDir.isEmpty()))
-        || ((projectsDir == imageLoaderPluginsDir) && (!projectsDir.isEmpty() && !imageLoaderPluginsDir.isEmpty()))
-        || ((classificationPluginsDir == imageLoaderPluginsDir) && (!classificationPluginsDir.isEmpty() && !imageLoaderPluginsDir.isEmpty())) ) {
-        mSettingsView->setGlobalSettingsError("Some of the specified paths are identical, the settings have not been applied!");
-        return;
-    }
+    QString tempProjectsDir = mDataManager->getProjectsDir();
+    QString tempClassificationPluginDir = mDataManager->getClassificationPluginDir();
+    QString tempImageLoaderPluginDir = mDataManager->getImageLoaderPluginDir();
 
-    if (mDataManager->verifyPath(projectsDir)) {
-        mDataManager->saveProjectsDir(projectsDir);
-        mSettingsView->setCurrentProjectDirectory(projectsDir);
+
+    if (!projectsDir.isEmpty()) {
         emit sig_projectDirectoryChanged();
         sucessfulUpdates++;
+        tempProjectsDir = projectsDir;
     }
-    if (mDataManager->verifyPath(classificationPluginsDir)) {
-        mDataManager->saveClassificationPluginDir(classificationPluginsDir);
-        mSettingsView->setCurrentClassificationPluginDirectory(classificationPluginsDir);
+    if (!classificationPluginsDir.isEmpty()) {
         //todo signal analog to above
         sucessfulUpdates++;
+        tempClassificationPluginDir = classificationPluginsDir;
     }
-    if (mDataManager->verifyPath(imageLoaderPluginsDir)) {
-        mDataManager->saveImageLoaderPluginDir(imageLoaderPluginsDir);
-        mSettingsView->setCurrentImageLoaderPluginDirectory(imageLoaderPluginsDir);
+    if (!imageLoaderPluginsDir.isEmpty()) {
         //todo signal analog to above
         sucessfulUpdates++;
+        tempImageLoaderPluginDir = imageLoaderPluginsDir;
     }
+    //above: basically check if there is actual update, ie. isnt empty,
+    //below: check if all paths are allowed / valid, and if any of them are overlapping
+    if (mDataManager->verifyPaths(tempProjectsDir, tempClassificationPluginDir, tempImageLoaderPluginDir)){
+        mDataManager->saveProjectsDir(tempProjectsDir);
+        mDataManager->saveClassificationPluginDir(tempClassificationPluginDir);
+        mDataManager->saveImageLoaderPluginDir(tempImageLoaderPluginDir);
 
-    mSettingsView->pathsUpdated(sucessfulUpdates);
-    mSettingsView->clearPaths();
+        mSettingsView->setCurrentProjectDirectory(tempProjectsDir);
+        mSettingsView->setCurrentClassificationPluginDirectory(tempClassificationPluginDir);
+        mSettingsView->setCurrentImageLoaderPluginDirectory(tempImageLoaderPluginDir);
+
+        mSettingsView->pathsUpdated(sucessfulUpdates);
+        mSettingsView->clearPaths();
+        return;
+
+    }
+    //new structure isnt allowed
+    mSettingsView->setGlobalSettingsError(tr("Settings have not been updated, there is a conflict.\n "
+                                             "paths may not be identical and must exist, this includes new and unchanged paths"));
+
 
 }
 
