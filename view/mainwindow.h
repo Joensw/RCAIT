@@ -17,6 +17,7 @@
 #include "inputimageswidget.h"
 #include "startwidget.h"
 #include "importfileswidget.h"
+#include "imagesection.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -40,6 +41,7 @@ public:
     InputImagesWidget *getInputImagesWidget();
     ResultsWidget *getResultsWidget();
     AutomationWidget *getAutomationWidget();
+    ImageSection* getImageSectionWidget();
 
 signals:
     void sig_openSettings();

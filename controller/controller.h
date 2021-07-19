@@ -10,6 +10,7 @@
 #include "configurationcontroller.h"
 #include "resultscontroller.h"
 #include <mainwindow.h>
+#include "imagecontroller.h"
 
 #include <QObject>
 
@@ -38,6 +39,8 @@ private:
     AutomationController *mAutomationController;
 
     ConfigurationController * mConfigurationController;
+
+    ImageController* mImageController;
 
     DataManager *mDataManger;
 

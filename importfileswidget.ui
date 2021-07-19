@@ -100,21 +100,6 @@
           <property name="enabled">
            <bool>true</bool>
           </property>
-          <item>
-           <property name="text">
-            <string>Flickr API</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Folder API</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Bing Image Search API</string>
-           </property>
-          </item>
          </widget>
         </item>
         <item row="6" column="1">

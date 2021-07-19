@@ -53,6 +53,11 @@ AutomationWidget *MainWindow::getAutomationWidget() {
     return ui->tab_automation;
 }
 
+ImageSection *MainWindow::getImageSectionWidget()
+{
+    return ui->tab_image_inspection;
+}
+
 void MainWindow::slot_settingsButton_clicked() {
     emit sig_openSettings();
 }

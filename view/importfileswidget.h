@@ -24,6 +24,7 @@ public:
     explicit ImportFilesWidget(QWidget *parent = nullptr);
     ~ImportFilesWidget();
 
+    void setAvailablePlugins(QStringList pluginNames);
 private:
     Ui::ImportFilesWidget *ui;
 
@@ -45,6 +46,7 @@ signals:
     void sig_newModel();
     void sig_removeModel(QString modelName);
     void sig_loadModel(QString modelName);
+    void sig_loadInputImages(QString pluginName, int count, QStringList label,int split);
 };
 
 #endif // RCAIT_IMPORTFILESWIDGET_H

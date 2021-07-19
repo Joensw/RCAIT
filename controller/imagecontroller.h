@@ -7,10 +7,11 @@
 #include "imageinspectionwidget.h"
 #include "importfileswidget.h"
 #include "datamanager.h"
+#include "imagesection.h"
 
 class ImageController {
 public:
-    ImageController(ImageInspectionWidget* imageInspectionWidget, ImportFilesWidget* importFilesWidget, DataManager* dataManager, ImageLoader* loader);
+    ImageController(ImageSection* imageSection, ImportFilesWidget* importFilesWidget, DataManager* dataManager);
 
 private:
     ImageLoader m_imageLoader;

@@ -5,18 +5,23 @@
 #include <QStringList>
 #include "imagesearchthread.h"
 
-class ImageLoader {
+class ImageLoader : public ProgressablePlugin {
+    Q_OBJECT
+    QThread imageloadThread;
 public:
     ImageLoader();
     void loadInputImages(int count, QStringList labels, QString pluginName, QString tempImageDir);
 
+    ~ImageLoader() {
+        imageloadThread.quit();
+        imageloadThread.wait();
+    }
+
+public slots:
+    void handleResults(const QString &);
 signals:
+    void operate();
     void sig_imagesReady();
-//TODO connect
-
-private:
-    ImageSearchThread* m_imageSearchThread;
-
 };
 
 

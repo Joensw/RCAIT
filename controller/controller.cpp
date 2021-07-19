@@ -15,9 +15,12 @@ Controller::Controller(QObject *parent) : QObject(parent)
     mAiController = new AIController(mDataManger, mMainWindow->getInputImagesWidget(), mMainWindow->getAITrainingWidget());
     mAutomationController = new AutomationController(mDataManger, mMainWindow->getAutomationWidget());
     mResultsController = new ResultsController(mDataManger, mMainWindow->getResultsWidget());
+    mImageController = new ImageController(mMainWindow->getImageSectionWidget(),mMainWindow->getImportFilesWidget(),mDataManger);
+
     connect(mSettingsController, &SettingsController::sig_projectDirectoryChanged, mProjectController, &ProjectController::slot_projectDirectoryChanged);
 
     mConfigurationController->verify();
+
 
     connect(mMainWindow, &MainWindow::sig_openSettings, mSettingsController, &SettingsController::slot_openSettings);
 }
@@ -27,5 +30,6 @@ void Controller::slot_configurationComplete()
     delete mConfigurationController; //isnt needed anymore
     mProjectController->refresh();
     mMainWindow->show();
+
 }
 
