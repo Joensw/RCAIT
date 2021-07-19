@@ -10,6 +10,7 @@ SettingsManager::SettingsManager()
     mGlobalSettings = new QSettings();
     mClassificationPluginManager = ClassificationPluginManager::getInstance();
     mImageLoaderPluginManager = &ImageLoaderPluginManager::getInstance();
+    mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 
 }
 QStringList SettingsManager::getPluginNames(){

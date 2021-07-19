@@ -8,7 +8,11 @@
 
 ImageSearchThread::ImageSearchThread(Progressable *receiver, QString imagePath, QString pluginName, int count, QStringList labels)
 {
-
+    //m_receiver = receiver;
+    m_imagePath = imagePath;
+    m_pluginName = pluginName;
+    m_count = count;
+    m_labels = labels;
 
 
 }

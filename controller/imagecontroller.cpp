@@ -8,6 +8,9 @@ ImageController::ImageController(ImageSection *imageSection, ImportFilesWidget *
                                  DataManager *dataManager) {
 
 importFilesWidget->setAvailablePlugins(dataManager->getImageLoaderPluginNames());
+m_importFilesWidget = importFilesWidget;
+
+connect(m_importFilesWidget, &ImportFilesWidget::sig_loadInputImages, this, &ImageController::slot_loadInputImages);
 
 
 }
