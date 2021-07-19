@@ -38,6 +38,7 @@ file(GLOB_RECURSE SOURCE_FILES_A
         )
 
 list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/test/.*" )
+list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/flickrplugin/.*" )
 
 
 file(GLOB SOURCE_FILES_B
@@ -78,3 +79,4 @@ endif()
 #add_subdirectory(lib/googletest-master)
 #add_subdirectory(model/test)
 add_subdirectory(Google_tests)
+add_subdirectory(plugins/imageplugins/flickrplugin)
