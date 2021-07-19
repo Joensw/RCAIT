@@ -77,7 +77,7 @@ private:
     * @param label
     * @return
     */
-   QString createCommandlineString(const QString path, const int imageCount, const QStringList* label);
+   QString createCommandlineString( QString path,  int imageCount,  QStringList* label);
 
 
 

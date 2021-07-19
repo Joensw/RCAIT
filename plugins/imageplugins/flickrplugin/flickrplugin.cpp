@@ -1,12 +1,13 @@
 #include "flickrplugin.h"
 
 
-bool FlickrPlugin::loadImages(const QString path,ProgressablePlugin* receiver, const int imageCount, const QStringList label)
+bool FlickrPlugin::loadImages(QString path,ProgressablePlugin* receiver,  int imageCount,  QStringList label)
 {
 
 
 
     QString fullCommand = createCommandlineString(path, imageCount, &label);
+    qDebug() << fullCommand;
     QProcess *process = new QProcess();
     process->startCommand(fullCommand);
 
@@ -22,7 +23,7 @@ bool FlickrPlugin::loadImages(const QString path,ProgressablePlugin* receiver, c
 }
 
 
-QString FlickrPlugin::createCommandlineString(const QString path, const int imageCount, const QStringList* label){
+QString FlickrPlugin::createCommandlineString( QString path,  int imageCount,  QStringList* label){
     //get and format command line parameters for python script call
     QString downloadPath = QString("-p ").append(path);
     QString imageCountStr = QString("-c ").append(QString::number(imageCount));

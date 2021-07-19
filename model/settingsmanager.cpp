@@ -92,10 +92,12 @@ QList<QWidget *> SettingsManager::getPluginSettings(){
     return loaderPluginsWidgets;
 }
 void SettingsManager::savePluginSettings(int index){
-    QStringList loaderPlugins;
+    QStringList loaderPlugins = mImageLoaderPluginManager->getNamesOfPlugins();
     QStringList classifierPlugins;
     loaderPlugins.append(classifierPlugins);
     QString name = loaderPlugins.at(index);
+    mImageLoaderPluginManager->saveConfiguration(name);
+    //ToDo: Wenn Klassifikationspluginmanager verwendet wird kurz checken bei wem das Plugin ist
     //mClassificationPluginManager.saveConfiguration(name)
 }
 

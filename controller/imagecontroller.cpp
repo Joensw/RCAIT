@@ -32,7 +32,7 @@ void ImageController::slot_loadInputImages(QString pluginName, int count, QStrin
 
     //m_imageLoader.loadInputImages(count,labels,pluginName,m_dataManger->getProjectTempDir());
     //ToDo: Mit Tempdir ersetzen wenn available
-    m_imageLoader.loadInputImages(count,labels,pluginName,"C:\\Users\\Mr Stealyourgirl\\Desktop\\ok");
+    m_imageLoader.loadInputImages(count,labels,pluginName,m_dataManager->getProjectDataSetDir());
 
 }
 
