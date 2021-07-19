@@ -15,7 +15,7 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
     header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-void TopAccuraciesView::addTableRow(const QString& identifier, double top1, double top5) {
+void TopAccuraciesView::addTableRow(const QString &identifier, double top1, double top5) {
     QTableWidget *table = ui->tableWidget_topAccuracies;
     //Convert doubles to String with 2 decimal spots precision
     auto top1Str = QString::number(top1, 'G', 5);
@@ -23,7 +23,7 @@ void TopAccuraciesView::addTableRow(const QString& identifier, double top1, doub
 
     int row = table->rowCount();
     table->insertRow(row);
-    emit sig_accuraciesTable_rowAdded(identifier,top1,top5);
+    emit sig_accuraciesTable_rowAdded(identifier, top1, top5);
 
     //Fill table row
     auto identifierItem = new QTableWidgetItem(identifier);
@@ -38,11 +38,11 @@ void TopAccuraciesView::addTableRow(const QString& identifier, double top1, doub
     table->setItem(row, 1, top5StrItem);
 }
 
-void TopAccuraciesView::removeTableRow(const QString& identifier) {
+void TopAccuraciesView::removeTableRow(const QString &identifier) {
     QTableWidget *table = ui->tableWidget_topAccuracies;
     emit sig_accuraciesTable_rowRemoved(identifier);
     for (int i = 0; i < table->rowCount(); i++) {
-        if (table->verticalHeaderItem(i)->text() == identifier){
+        if (table->verticalHeaderItem(i)->text() == identifier) {
             table->removeRow(i);
             return;
         }
@@ -51,4 +51,24 @@ void TopAccuraciesView::removeTableRow(const QString& identifier) {
 
 TopAccuraciesView::~TopAccuraciesView() {
     delete ui;
+}
+
+void TopAccuraciesView::setTopAccuraciesGraphics(QGraphicsItem *topAccuraciesImage) {
+    auto view = ui->graphicsView_topAccuracies;
+    auto *scene = new QGraphicsScene();
+    scene->addItem(topAccuraciesImage);
+    //Jump back to main programs thread to avoid warnings
+    scene->moveToThread(this->thread());
+
+    view->scale(0.9, 0.9);
+    view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    view->setScene(scene);
+}
+
+void TopAccuraciesView::on_pushButton_updateGraphics_pressed() {
+    emit sig_requestTopAccuraciesGraphics(this);
 }

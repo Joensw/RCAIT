@@ -31,6 +31,8 @@ public:
 
     void addClassificationResult(ClassificationResult *result);
 
+    TopAccuraciesView *getTopAccuraciesView();
+
 signals:
 
     void sig_saveResults();
@@ -47,6 +49,10 @@ private:
     void dummyFunctionTest();
 
     void retranslateUi();
+
+    void configure_compareRunButton();
+
+    void configure_compareRunMenu();
 
 private slots:
 

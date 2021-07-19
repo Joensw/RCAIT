@@ -8,6 +8,8 @@ public:
     virtual void setLossCurve(QGraphicsItem *lossCurveImage) {};
 
     virtual void setConfusionMatrix(QGraphicsItem *matrixImage) {};
+
+    virtual void setTopAccuraciesGraphics(QGraphicsItem *topAccuraciesImage) {};
 };
 
 #endif // ABSTRACTGRAPHICSVIEW_H
