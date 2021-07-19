@@ -74,8 +74,7 @@ void ResultsWidget::addTrainingResult(TrainingResult *result) {
 
     lossCurve->generateGraphics(tab);
     confusionMatrix->generateGraphics(tab);
-    //TODO
-    tab->setMostMisclassifiedImages(QList<QImage>());
+    tab->setMostMisclassifiedImages(mostMisclassifiedImages);
 }
 
 void ResultsWidget::addClassificationResult(ClassificationResult *result) {

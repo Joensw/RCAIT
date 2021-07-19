@@ -63,17 +63,7 @@
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="StaticList" name="widget" native="true">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-         </widget>
+         <widget class="ImageGallery" name="imageGallery_mostMisclassifiedImages" native="true"/>
         </item>
        </layout>
       </widget>
@@ -112,15 +102,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>StaticList</class>
-   <extends>QWidget</extends>
-   <header>staticlist.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>Canvas</class>
    <extends>QGraphicsView</extends>
    <header>canvas.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ImageGallery</class>
+   <extends>QWidget</extends>
+   <header>imagegallery.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

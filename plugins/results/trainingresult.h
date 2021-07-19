@@ -10,14 +10,14 @@
 
 class TrainingResult : public Result {
 private:
-    QStringList m_mostMisclassifiedImages;
+    QList<QImage> m_mostMisclassifiedImages;
     LossCurve *m_lossCurve;
     ConfusionMatrix *m_confusionMatrix;
     double m_top1Accuracy;
     double m_top5Accuracy;
 
 public:
-    TrainingResult(LossCurve *lossCurve, ConfusionMatrix *confusionMatrix, QStringList mostMisclassifiedImages,
+    TrainingResult(LossCurve *lossCurve, ConfusionMatrix *confusionMatrix, QList<QImage> mostMisclassifiedImages,
                    double top1Accuracy, double top5Accuracy, const QList<QImage> &additionalResults);
 
     [[nodiscard]] ConfusionMatrix *getConfusionMatrix() const;
@@ -28,7 +28,7 @@ public:
 
     [[nodiscard]] double getTop5Accuracy() const;
 
-    [[nodiscard]] QStringList getMostMisclassifiedImages() const;
+    [[nodiscard]] QList<QImage> getMostMisclassifiedImages() const;
 
 };
 

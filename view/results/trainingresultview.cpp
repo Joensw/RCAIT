@@ -39,8 +39,9 @@ void TrainingResultView::setConfusionMatrix(QGraphicsItem *matrixImage) {
     view->setScene(scene);
 }
 
-void TrainingResultView::setMostMisclassifiedImages(QList<QImage> images) {
-//TODO Access staticlist or imagegallery
+void TrainingResultView::setMostMisclassifiedImages(const QList<QImage>& images) {
+    auto gallery = ui->imageGallery_mostMisclassifiedImages;
+    //TODO Adrians help
 }
 
 TrainingResultView::~TrainingResultView() {
