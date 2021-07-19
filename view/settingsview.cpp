@@ -15,9 +15,6 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
 {
     ui->setupUi(this);
 
-
-  //  ui->pluginList->addItem(tr("Global settings"));
-
     mGlobalSettingsWidget = new GlobalSettingsWidget();
 
     ui->pluginList->addItem(mGlobalSettingsWidget->windowTitle());
@@ -28,25 +25,6 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
     connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setClassificationPluginsDir, this, &SettingsView::slot_setClassificationPluginsDir);
     connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setImageLoaderPluginsDir, this, &SettingsView::slot_setImageLoaderPluginsDir);
 
-
-    /*mGlobalSettingsWidget = new QWidget();
-    QVBoxLayout *layout = new QVBoxLayout(mGlobalSettingsWidget);
-
-    QPushButton *projectDirButton = new QPushButton(tr("Select project directory"));
-    QPushButton *classificationPluginsDirButton = new QPushButton(tr("Select classification plugin directory"));
-    QPushButton *imageLoaderPluginsDirButton = new QPushButton(tr("Select image loader plugin directory"));
-
-
-    connect(projectDirButton, &QPushButton::clicked, this, &SettingsView::slot_setProjectDir);
-    connect(classificationPluginsDirButton, &QPushButton::clicked, this, &SettingsView::slot_setClassificationPluginsDir);
-    connect(imageLoaderPluginsDirButton, &QPushButton::clicked, this, &SettingsView::slot_setImageLoaderPluginsDir);
-
-    layout->addWidget(projectDirButton);
-    layout->addWidget(classificationPluginsDirButton);
-    layout->addWidget(imageLoaderPluginsDirButton);
-
-    replaced this with an actual class
-    */
     ui->pluginWidget->addWidget(mGlobalSettingsWidget);
 
 
@@ -58,7 +36,7 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
         ui->pluginWidget->addWidget(pluginConfigurationWidgets.at(i));
     }
 }
-//TODO include the amount in the shown text somehow
+
 void SettingsView::pathsUpdated(int amount)
 {
     if (amount == 0){
@@ -105,7 +83,7 @@ void SettingsView::on_saveButton_clicked()
         if (mProjectDir.isNull() || mClassificationPluginsDir.isNull() || mImageLoaderPluginsDir.isNull()){
             return;
             // shouldnt be a problem, this path is them simply not updated, same thing should occur if user closes out of file dialog
-            //that is why i have commented this section
+            // that is why i have commented this section
         }
         */
         emit sig_applyGlobalSettings(mProjectDir, mClassificationPluginsDir, mImageLoaderPluginsDir);

@@ -26,10 +26,10 @@ SOURCES += \
     controller/aicontroller.cpp \
     controller/automationcontroller.cpp \
     controller/configurationcontroller.cpp \
+    controller/imagecontroller.cpp \
     controller/modelcontroller.cpp \
     controller/projectcontroller.cpp \
     controller/controller.cpp \
-    controller/resultscontroller.cpp \
     controller/settingscontroller.cpp \
     controller/resultscontroller.cpp \
     model/datamanager.cpp \
@@ -44,7 +44,6 @@ SOURCES += \
     model/pluginusage/aithread.cpp \
     model/pluginusage/classifiertrainer.cpp \
     model/pluginusage/imageloader.cpp \
-    model/pluginusage/imageloader.cpp \
     model/pluginusage/imagesearchthread.cpp \
     model/pluginusage/classificationthread.cpp \
     model/pluginusage/progressable.cpp \
@@ -54,6 +53,8 @@ SOURCES += \
     model/results/abstractresultgraphics.cpp \
     model/results/confusionmatrix.cpp \
     model/results/losscurve.cpp \
+    model/results/resultsprocessor.cpp \
+    model/results/topaccuraciesgraphics.cpp \
     model/settingsmanager.cpp \
     plugins/classificationplugins/classificationplugin.cpp \
     plugins/classificationplugins/classificationpluginmanager.cpp \
@@ -96,10 +97,10 @@ HEADERS += \
     controller/aicontroller.h \
     controller/automationcontroller.h \
     controller/configurationcontroller.h \
+    controller/imagecontroller.h \
     controller/modelcontroller.h \
     controller/projectcontroller.h \
     controller/controller.h \
-    controller/resultscontroller.h \
     controller/settingscontroller.h \
     controller/resultscontroller.h \
     model/datamanager.h \
@@ -114,7 +115,6 @@ HEADERS += \
     model/pluginusage/aithread.h \
     model/pluginusage/classifiertrainer.h \
     model/pluginusage/imageloader.h \
-    model/pluginusage/imageloader.h \
     model/pluginusage/imagesearchthread.h \
     model/pluginusage/classificationthread.h \
     model/pluginusage/progressable.h \
@@ -124,6 +124,8 @@ HEADERS += \
     model/results/abstractresultgraphics.h \
     model/results/confusionmatrix.h \
     model/results/losscurve.h \
+    model/results/resultsprocessor.h \
+    model/results/topaccuraciesgraphics.h \
     model/settingsmanager.h \
     plugins/classificationplugins/classificationplugin.h \
     plugins/classificationplugins/classificationpluginmanager.h \
