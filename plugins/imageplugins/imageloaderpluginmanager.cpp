@@ -14,7 +14,7 @@ void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
         if (plugin) {
             ImageLoaderPlugin* imageLoaderPlugin = qobject_cast<ImageLoaderPlugin *>(plugin);
             imageLoaderPlugin->init(); //ToDo: call init function if necessary
-            imageLoaderPlugin->getConfigurationWidget();
+            m_pluginConfigurationWidgets.append(imageLoaderPlugin->getConfigurationWidget());
             if (imageLoaderPlugin){
 
                 m_pluginsSharedPointer.insert( imageLoaderPlugin->getName(), QSharedPointer<ImageLoaderPlugin>(imageLoaderPlugin));
@@ -47,4 +47,9 @@ bool ImageLoaderPluginManager::loadImages(QString path, ProgressablePlugin *rece
 QStringList ImageLoaderPluginManager::getNamesOfPlugins()
 {
     return m_pluginsSharedPointer.keys();
+}
+
+QList<QWidget *> ImageLoaderPluginManager::getConfigurationWidgets()
+{
+    return m_pluginConfigurationWidgets;
 }

@@ -37,6 +37,8 @@ public:
     QWidget* getInputWidget(QString pluginName) override;
     bool loadImages(QString path, ProgressablePlugin* receiver, QString pluginName, int count, QStringList labels);
     QStringList getNamesOfPlugins() override;
+    QList<QWidget*> getConfigurationWidgets();
+    QList<QWidget*> m_pluginConfigurationWidgets;
 };
 
 

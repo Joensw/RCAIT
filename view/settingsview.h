@@ -120,6 +120,8 @@ private:
     QString mProjectDir;
     QString mClassificationPluginsDir;
     QString mImageLoaderPluginsDir;
+    QStringList mPluginNames;
+    QList<QWidget*> mConfigurationWidgets;
 
 
 };

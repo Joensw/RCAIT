@@ -14,9 +14,9 @@ SettingsManager::SettingsManager()
 
 }
 QStringList SettingsManager::getPluginNames(){
-    QStringList loaderPlugins;
+    QStringList loaderPlugins = mImageLoaderPluginManager->getNamesOfPlugins();
     QStringList classifierPlugins;
-    loaderPlugins.append(classifierPlugins);
+    //loaderPlugins.append(classifierPlugins);
     return loaderPlugins;
 }
 
@@ -86,7 +86,7 @@ bool SettingsManager::verifyPath(QString path)
 }
 
 QList<QWidget *> SettingsManager::getPluginSettings(){
-    QList<QWidget *> loaderPluginsWidgets;
+    QList<QWidget *> loaderPluginsWidgets = mImageLoaderPluginManager->getConfigurationWidgets();
     QList<QWidget *> classifierPluginsWidgets;
     loaderPluginsWidgets.append(classifierPluginsWidgets);
     return loaderPluginsWidgets;
