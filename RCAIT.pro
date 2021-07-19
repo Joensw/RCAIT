@@ -26,6 +26,7 @@ SOURCES += \
     controller/aicontroller.cpp \
     controller/automationcontroller.cpp \
     controller/configurationcontroller.cpp \
+    controller/imagecontroller.cpp \
     controller/modelcontroller.cpp \
     controller/projectcontroller.cpp \
     controller/controller.cpp \
@@ -52,6 +53,8 @@ SOURCES += \
     model/results/abstractresultgraphics.cpp \
     model/results/confusionmatrix.cpp \
     model/results/losscurve.cpp \
+    model/results/resultsprocessor.cpp \
+    model/results/topaccuraciesgraphics.cpp \
     model/settingsmanager.cpp \
     plugins/classificationplugins/classificationplugin.cpp \
     plugins/classificationplugins/classificationpluginmanager.cpp \
@@ -94,6 +97,7 @@ HEADERS += \
     controller/aicontroller.h \
     controller/automationcontroller.h \
     controller/configurationcontroller.h \
+    controller/imagecontroller.h \
     controller/modelcontroller.h \
     controller/projectcontroller.h \
     controller/controller.h \
@@ -120,6 +124,8 @@ HEADERS += \
     model/results/abstractresultgraphics.h \
     model/results/confusionmatrix.h \
     model/results/losscurve.h \
+    model/results/resultsprocessor.h \
+    model/results/topaccuraciesgraphics.h \
     model/settingsmanager.h \
     plugins/classificationplugins/classificationplugin.h \
     plugins/classificationplugins/classificationpluginmanager.h \
