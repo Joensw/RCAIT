@@ -148,6 +148,13 @@
     </message>
 </context>
 <context>
+    <name>ClassificationResultView</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+</context>
+<context>
     <name>ConfigurationController</name>
     <message>
         <source>Please specifiy all paths uniquely before proceeding.</source>
@@ -281,15 +288,15 @@ The application will terminate</source>
     </message>
     <message>
         <source>Flickr API</source>
-        <translation type="unfinished">Flickr API</translation>
+        <translation type="obsolete">Flickr API</translation>
     </message>
     <message>
         <source>Folder API</source>
-        <translation type="unfinished">Ordner API</translation>
+        <translation type="obsolete">Ordner API</translation>
     </message>
     <message>
         <source>Bing Image Search API</source>
-        <translation type="unfinished">Bing Bildsuche API</translation>
+        <translation type="obsolete">Bing Bildsuche API</translation>
     </message>
     <message>
         <source>Image Count</source>
@@ -594,7 +601,7 @@ The application will terminate</source>
     </message>
     <message>
         <source>Compare Results</source>
-        <translation type="unfinished">Ergebnisse vergleichen</translation>
+        <translation type="obsolete">Ergebnisse vergleichen</translation>
     </message>
     <message>
         <source>Top Accuracies</source>
@@ -622,7 +629,7 @@ The application will terminate</source>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Speichern</translation>
+        <translation type="obsolete">Speichern</translation>
     </message>
     <message>
         <source>Classification Results</source>
@@ -630,63 +637,87 @@ The application will terminate</source>
     </message>
     <message>
         <source>Bild1</source>
-        <translation type="unfinished">Bild1</translation>
+        <translation type="obsolete">Bild1</translation>
     </message>
     <message>
         <source>Bild2</source>
-        <translation type="unfinished">Bild2</translation>
+        <translation type="obsolete">Bild2</translation>
     </message>
     <message>
         <source>Bild3</source>
-        <translation type="unfinished">Bild3</translation>
+        <translation type="obsolete">Bild3</translation>
     </message>
     <message>
         <source>Bild4</source>
-        <translation type="unfinished">Bild4</translation>
+        <translation type="obsolete">Bild4</translation>
     </message>
     <message>
         <source>Bild5</source>
-        <translation type="unfinished">Bild5</translation>
+        <translation type="obsolete">Bild5</translation>
     </message>
     <message>
         <source>Bild6</source>
-        <translation type="unfinished">Bild6</translation>
+        <translation type="obsolete">Bild6</translation>
     </message>
     <message>
         <source>Bild7</source>
-        <translation type="unfinished">Bild7</translation>
+        <translation type="obsolete">Bild7</translation>
     </message>
     <message>
         <source>Flugzeug</source>
-        <translation type="unfinished">Flugzeug</translation>
+        <translation type="obsolete">Flugzeug</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished">Auto</translation>
+        <translation type="obsolete">Auto</translation>
     </message>
     <message>
         <source>Truck</source>
-        <translation type="unfinished">Lkw</translation>
+        <translation type="obsolete">Lkw</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation type="obsolete">1</translation>
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation type="obsolete">0</translation>
     </message>
     <message>
         <source>0.4</source>
-        <translation type="unfinished">0.4</translation>
+        <translation type="obsolete">0.4</translation>
     </message>
     <message>
         <source>0.6</source>
-        <translation type="unfinished">0.6</translation>
+        <translation type="obsolete">0.6</translation>
     </message>
     <message>
         <source>Compare ...</source>
         <translation type="unfinished">Vergleiche ...</translation>
+    </message>
+    <message>
+        <source>Compare Training Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compare Classification Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seite</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsController</name>
+    <message>
+        <source>Settings have not been updated, there is a conflict.
+ paths may not be identical and must exist, this includes new and unchanged paths</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -764,6 +795,17 @@ Wähle ein Projekt aus, um loszulegen</translation>
     </message>
 </context>
 <context>
+    <name>TopAccuraciesView</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TrainingResultView</name>
     <message>
         <source>Form</source>
@@ -780,13 +822,6 @@ Wähle ein Projekt aus, um loszulegen</translation>
     <message>
         <source>Confusion Matrix</source>
         <translation type="unfinished">Konfusionsmatrix</translation>
-    </message>
-</context>
-<context>
-    <name>TopAccuraciesView</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished">Form</translation>
     </message>
 </context>
 <context>

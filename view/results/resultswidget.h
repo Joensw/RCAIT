@@ -4,6 +4,7 @@
 
 #include <QWidget>
 #include <QMenu>
+#include <QPushButton>
 #include <results/trainingresult.h>
 #include <ui_resultswidget.h>
 #include "classificationresult.h"
@@ -53,6 +54,8 @@ private:
     void configure_compareRunButton();
 
     void configure_compareRunMenu();
+
+    void configure_saveRunButton();
 
 private slots:
 

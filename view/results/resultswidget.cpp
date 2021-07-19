@@ -44,12 +44,13 @@ void ResultsWidget::configure_compareRunButton() {
     pushButton_addResult->setFlat(true);
     pushButton_addResult->setMenu(menu_addRun);
     connect(menu_addRun, &QMenu::triggered, this, &ResultsWidget::slot_comparisonMenu_triggered);
-    ui->tabWidget_comparison->setCornerWidget(pushButton_addResult, Qt::TopRightCorner);
+    ui->tabWidget_trainingresults->setCornerWidget(pushButton_addResult, Qt::TopRightCorner);
 }
 
 void ResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
     if (action->isChecked()) {
         createTrainingResultTab(action->text());
+        //TODO Signal
         ui->tab_topAccuracies->addTableRow(action->text(), 12.34, 56.78);
     } else {
         deleteTrainingResultTab(action->text());
@@ -87,13 +88,13 @@ ResultsWidget::~ResultsWidget() {
 
 TrainingResultView *ResultsWidget::createTrainingResultTab(const QString &tabName) {
     auto *tab = new TrainingResultView(this);
-    ui->tabWidget_comparison->addTab(tab, tabName);
+    ui->tabWidget_trainingresults->addTab(tab, tabName);
     m_mapTrainingResultTabs[tabName] = tab;
     return tab;
 }
 
 void ResultsWidget::deleteTrainingResultTab(const QString &tabName) {
-    auto *tabWidget = ui->tabWidget_comparison;
+    auto *tabWidget = ui->tabWidget_trainingresults;
     auto tab = m_mapTrainingResultTabs.take(tabName);
     auto index = tabWidget->indexOf(tab);
     tabWidget->removeTab(index);

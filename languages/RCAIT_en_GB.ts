@@ -143,6 +143,14 @@
     </message>
 </context>
 <context>
+    <name>ClassificationResultView</name>
+    <message>
+        <location filename="../view/results/classificationresultview.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConfigurationController</name>
     <message>
         <location filename="../controller/configurationcontroller.cpp" line="24"/>
@@ -308,62 +316,47 @@ The application will terminate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="105"/>
-        <source>Flickr API</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="110"/>
-        <source>Folder API</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="115"/>
-        <source>Bing Image Search API</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="192"/>
+        <location filename="../importfileswidget.ui" line="180"/>
         <source>Image Count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="212"/>
+        <location filename="../importfileswidget.ui" line="200"/>
         <source>40%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="237"/>
+        <location filename="../importfileswidget.ui" line="225"/>
         <source>Load Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="258"/>
+        <location filename="../importfileswidget.ui" line="246"/>
         <source>Model 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="268"/>
+        <location filename="../importfileswidget.ui" line="256"/>
         <source>Model 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="278"/>
+        <location filename="../importfileswidget.ui" line="266"/>
         <source>Model 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="306"/>
+        <location filename="../importfileswidget.ui" line="294"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="317"/>
+        <location filename="../importfileswidget.ui" line="305"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="328"/>
+        <location filename="../importfileswidget.ui" line="316"/>
         <source>Load</source>
         <translation type="unfinished"></translation>
     </message>
@@ -559,7 +552,22 @@ The application will terminate</source>
     </message>
     <message>
         <location filename="../resultswidget.ui" line="36"/>
-        <source>Compare Results</source>
+        <source>Compare Training Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="97"/>
+        <source>Save </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="129"/>
+        <source>Compare Classification Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resultswidget.ui" line="160"/>
+        <source>Seite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -568,106 +576,22 @@ The application will terminate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resultswidget.ui" line="97"/>
-        <location filename="../resultswidget.ui" line="293"/>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="107"/>
+        <location filename="../resultswidget.ui" line="123"/>
         <source>Classification Results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resultswidget.ui" line="118"/>
-        <source>Bild1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="123"/>
-        <source>Bild2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="128"/>
-        <source>Bild3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="133"/>
-        <source>Bild4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="138"/>
-        <source>Bild5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="143"/>
-        <source>Bild6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="148"/>
-        <source>Bild7</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="153"/>
-        <source>Flugzeug</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="158"/>
-        <source>Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="163"/>
-        <source>Truck</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="168"/>
-        <location filename="../resultswidget.ui" line="198"/>
-        <location filename="../resultswidget.ui" line="218"/>
-        <location filename="../resultswidget.ui" line="238"/>
-        <location filename="../resultswidget.ui" line="253"/>
-        <location filename="../resultswidget.ui" line="268"/>
-        <source>1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="173"/>
-        <location filename="../resultswidget.ui" line="178"/>
-        <location filename="../resultswidget.ui" line="193"/>
-        <location filename="../resultswidget.ui" line="203"/>
-        <location filename="../resultswidget.ui" line="208"/>
-        <location filename="../resultswidget.ui" line="213"/>
-        <location filename="../resultswidget.ui" line="223"/>
-        <location filename="../resultswidget.ui" line="228"/>
-        <location filename="../resultswidget.ui" line="233"/>
-        <location filename="../resultswidget.ui" line="243"/>
-        <location filename="../resultswidget.ui" line="248"/>
-        <location filename="../resultswidget.ui" line="258"/>
-        <location filename="../resultswidget.ui" line="263"/>
-        <source>0</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="183"/>
-        <source>0.4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="188"/>
-        <source>0.6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/results/resultswidget.cpp" line="153"/>
+        <location filename="../view/results/resultswidget.cpp" line="157"/>
         <source>Compare ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsController</name>
+    <message>
+        <location filename="../controller/settingscontroller.cpp" line="66"/>
+        <source>Settings have not been updated, there is a conflict.
+ paths may not be identical and must exist, this includes new and unchanged paths</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -684,17 +608,17 @@ The application will terminate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.cpp" line="122"/>
+        <location filename="../view/settingsview.cpp" line="100"/>
         <source>Select project directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.cpp" line="132"/>
+        <location filename="../view/settingsview.cpp" line="110"/>
         <source>Select classification plugin directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.cpp" line="142"/>
+        <location filename="../view/settingsview.cpp" line="120"/>
         <source>Select image loader plugin directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -738,6 +662,19 @@ Select a project to get started</source>
     </message>
 </context>
 <context>
+    <name>TopAccuraciesView</name>
+    <message>
+        <location filename="../view/results/topaccuraciesview.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/results/topaccuraciesview.ui" line="42"/>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TrainingResultView</name>
     <message>
         <location filename="../trainingresultview.ui" line="14"/>
@@ -755,16 +692,8 @@ Select a project to get started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../trainingresultview.ui" line="90"/>
+        <location filename="../trainingresultview.ui" line="80"/>
         <source>Confusion Matrix</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TopAccuraciesView</name>
-    <message>
-        <location filename="../view/results/topaccuraciesview.ui" line="14"/>
-        <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
