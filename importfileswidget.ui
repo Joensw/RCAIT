@@ -175,6 +175,9 @@
           <property name="maximum">
            <number>100</number>
           </property>
+          <property name="pageStep">
+           <number>1</number>
+          </property>
           <property name="value">
            <number>40</number>
           </property>
@@ -368,6 +371,7 @@ selection-background-color: rgb(255, 255, 255);</string>
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="UI_Icons.qrc"/>
   <include location="UI_Icons.qrc"/>
  </resources>
  <connections/>

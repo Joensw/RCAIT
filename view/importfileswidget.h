@@ -6,6 +6,7 @@
 #define RCAIT_IMPORTFILESWIDGET_H
 
 #include <QWidget>
+#include <QValidator>
 
 namespace Ui {
 class ImportFilesWidget;
@@ -26,6 +27,7 @@ public:
 private:
     Ui::ImportFilesWidget *ui;
 
+
     void retranslateUi();
 
 private slots:
@@ -34,6 +36,11 @@ private slots:
     void on_pushButton_addModel_clicked();
     void on_pushButton_removeModel_clicked();
     void on_pushButton_loadModel_clicked();
+
+    void on_pushButton_loadImages_clicked();
+    void on_horizontalSlider_sliderMoved(int position);
+
+
 signals:
     void sig_newModel();
     void sig_removeModel(QString modelName);

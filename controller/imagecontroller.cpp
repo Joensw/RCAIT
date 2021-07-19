@@ -15,6 +15,12 @@ void ImageController::slot_remove(int sectionIndex, int imgIndex) {
 
 void ImageController::slot_loadInputImages(QString pluginName, int count, QStringList labels, int split) {
 
+    qDebug() << "slot_inputimages called\n";
+    qDebug() << pluginName;
+    qDebug() << count;
+    qDebug() << labels;
+    qDebug() << split;
+
 }
 
 void ImageController::slot_confirm() {

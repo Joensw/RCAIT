@@ -10,6 +10,9 @@ ImportFilesWidget::ImportFilesWidget(QWidget *parent) :
     ui(new Ui::ImportFilesWidget)
 {
     ui->setupUi(this);
+    ui->label_splitPercent->setText(QString::number(ui->horizontalSlider->value())+"%");
+
+
 }
 
 ImportFilesWidget::~ImportFilesWidget()
@@ -63,6 +66,35 @@ void ImportFilesWidget::on_pushButton_loadModel_clicked()
         QString toLoad = item->text();
         emit sig_loadModel(toLoad);
     }
+}
+
+
+
+
+void ImportFilesWidget::on_pushButton_loadImages_clicked()
+{
+    std::vector<QString> labelsVector =  ui->lineEdit_labels->tags();
+    QStringList labelsList;
+    for( QString label : labelsVector){
+        labelsList.append(label);
+    }
+
+    emit sig_loadInputImages( ui->comboBox_plugins->currentText(),ui->spinBox_amount->value(),labelsList,ui->horizontalSlider->value());
+
+}
+
+void ImportFilesWidget::setAvailablePlugins(QStringList pluginNames) {
+    ui->comboBox_plugins->clear();
+    ui->comboBox_plugins->addItems(pluginNames);
+}
+
+
+
+
+
+void ImportFilesWidget::on_horizontalSlider_sliderMoved(int position)
+{
+     ui->label_splitPercent->setText(QString::number(position)+"%");
 }
 
 
