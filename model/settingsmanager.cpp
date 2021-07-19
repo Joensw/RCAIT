@@ -8,8 +8,9 @@ QString imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
 SettingsManager::SettingsManager()
 {
     mGlobalSettings = new QSettings();
-    mClassificationPluginManager = ClassificationPluginManager::getInstance();
+    mClassificationPluginManager = &ClassificationPluginManager::getInstance();
     mImageLoaderPluginManager = &ImageLoaderPluginManager::getInstance();
+    mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 
 }
 QStringList SettingsManager::getPluginNames(){
@@ -117,4 +118,8 @@ void SettingsManager::saveImageLoaderPluginDir(QString value){
 }
 QString SettingsManager::getImageLoaderPluginDir(){
     return mGlobalSettings->value(imageLoaderPluginDirectoryIdentifier).toString();
+}
+
+QStringList SettingsManager::getImageLoaderPluginNames() {
+    return mImageLoaderPluginManager->getNamesOfPlugins();
 }

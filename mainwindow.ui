@@ -206,6 +206,7 @@
  </customwidgets>
  <resources>
   <include location="UI_Icons.qrc"/>
+  <include location="UI_Icons.qrc"/>
  </resources>
  <connections/>
 </ui>

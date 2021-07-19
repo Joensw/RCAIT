@@ -783,7 +783,7 @@ Wähle ein Projekt aus, um loszulegen</translation>
     </message>
 </context>
 <context>
-    <name>TrainingResultsTopAcc</name>
+    <name>TopAccuraciesView</name>
     <message>
         <source>Form</source>
         <translation type="unfinished">Form</translation>

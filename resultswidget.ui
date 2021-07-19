@@ -62,7 +62,7 @@
             <property name="movable">
              <bool>false</bool>
             </property>
-            <widget class="TrainingResultsTopAcc" name="tab_topAccuracy">
+            <widget class="TopAccuraciesView" name="tab_topAccuracies">
              <attribute name="icon">
               <iconset resource="UI_Icons.qrc">
                <normaloff>:/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg</iconset>
@@ -306,9 +306,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TrainingResultsTopAcc</class>
+   <class>TopAccuraciesView</class>
    <extends>QWidget</extends>
-   <header>trainingresultstopacc.h</header>
+   <header>topaccuraciesview.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

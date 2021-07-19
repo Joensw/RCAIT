@@ -13,11 +13,11 @@ void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
         QObject *plugin = pluginLoader.instance();
         if (plugin) {
             ImageLoaderPlugin* imageLoaderPlugin = qobject_cast<ImageLoaderPlugin *>(plugin);
-            //imageLoaderPlugin->init(); ToDo: call init function if necessary
+            imageLoaderPlugin->init(); //ToDo: call init function if necessary
             if (imageLoaderPlugin){
                 m_plugins.insert(fileName,imageLoaderPlugin);
             }
-            //pluginLoader.unload(); ToDo: Maybe use this
+            pluginLoader.unload(); //ToDo: Maybe use this
         }
     }
 
@@ -38,6 +38,9 @@ QWidget *ImageLoaderPluginManager::getInputWidget(QString pluginName) {
 
 bool ImageLoaderPluginManager::loadImages(QString path, ProgressablePlugin *receiver, QString pluginName, int count,
                                           QStringList labels) {
+    ImageLoaderPlugin* test = m_plugins.value(pluginName);
+
+
     return m_plugins.value(pluginName)->loadImages(path, receiver, count, labels);;
 }
 
