@@ -25,6 +25,7 @@ public:
     QString getClassificationPluginDir();
     void saveImageLoaderPluginDir(QString value);
     QString getImageLoaderPluginDir();
+    QStringList getImageLoaderPluginNames();
 
     QStringList getClassificationPluginNames();
     QStringList getClassificationPluginBase(QString basesOf);

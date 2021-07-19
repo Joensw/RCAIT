@@ -7,6 +7,7 @@
 ImageController::ImageController(ImageSection *imageSection, ImportFilesWidget *importFilesWidget,
                                  DataManager *dataManager) {
 
+importFilesWidget->setAvailablePlugins(dataManager->getImageLoaderPluginNames());
 
 
 }

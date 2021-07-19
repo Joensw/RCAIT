@@ -118,3 +118,7 @@ void SettingsManager::saveImageLoaderPluginDir(QString value){
 QString SettingsManager::getImageLoaderPluginDir(){
     return mGlobalSettings->value(imageLoaderPluginDirectoryIdentifier).toString();
 }
+
+QStringList SettingsManager::getImageLoaderPluginNames() {
+    return mImageLoaderPluginManager->getNamesOfPlugins();
+}

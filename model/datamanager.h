@@ -42,6 +42,7 @@ public:
     QString getClassificationPluginDir();
     void saveImageLoaderPluginDir(QString value);
     QString getImageLoaderPluginDir();
+    QStringList getImageLoaderPluginNames();
 
     void saveClassificationResult(ClassificationResult result);
     void saveTrainingsResult(TrainingResult result);
