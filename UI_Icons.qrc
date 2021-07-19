@@ -41,5 +41,7 @@
         <file>Resources/UISymbols/ListItem_Selected.svg</file>
         <file>Resources/UISymbols/ListItem_Unselected.svg</file>
         <file>Resources/Fonts/Inter-Regular.otf</file>
+        <file>Resources/UISymbols/UI_Reload_Icon.svg</file>
+        <file>Resources/UISymbols/UI_Save_Icon.svg</file>
     </qresource>
 </RCC>

@@ -33,14 +33,14 @@
        <item>
         <widget class="QGroupBox" name="groupBox_7">
          <property name="title">
-          <string>Compare Results</string>
+          <string>Compare Training Results</string>
          </property>
          <property name="flat">
           <bool>false</bool>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <widget class="QTabWidget" name="tabWidget_comparison">
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QTabWidget" name="tabWidget_trainingresults">
             <property name="layoutDirection">
              <enum>Qt::LeftToRight</enum>
             </property>
@@ -49,7 +49,7 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>16</width>
+              <width>20</width>
               <height>16</height>
              </size>
             </property>
@@ -93,8 +93,24 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_saveTrainingResults">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
            <property name="text">
-            <string>Save</string>
+            <string>Save Results </string>
+           </property>
+           <property name="icon">
+            <iconset resource="UI_Icons.qrc">
+             <normaloff>:/Resources/UISymbols/UI_Save_Icon.svg</normaloff>:/Resources/UISymbols/UI_Save_Icon.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -106,195 +122,81 @@
       <attribute name="title">
        <string>Classification Results</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <layout class="QVBoxLayout" name="verticalLayout_8">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QGroupBox" name="groupBox_8">
+         <property name="title">
+          <string>Compare Classification Results</string>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QTabWidget" name="tabWidget_classificationresults">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="currentIndex">
+             <number>-1</number>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="elideMode">
+             <enum>Qt::ElideNone</enum>
+            </property>
+            <property name="documentMode">
+             <bool>true</bool>
+            </property>
+            <property name="movable">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_27">
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_26">
-           <item>
-            <widget class="QTableWidget" name="tableWidget_classificationTable">
-             <row>
-              <property name="text">
-               <string>Bild1</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Bild2</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Bild3</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Bild4</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Bild5</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Bild6</string>
-              </property>
-             </row>
-             <row>
-              <property name="text">
-               <string>Bild7</string>
-              </property>
-             </row>
-             <column>
-              <property name="text">
-               <string>Flugzeug</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Auto</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Truck</string>
-              </property>
-             </column>
-             <item row="0" column="0">
-              <property name="text">
-               <string>1</string>
-              </property>
-             </item>
-             <item row="0" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="0" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="1" column="0">
-              <property name="text">
-               <string>0.4</string>
-              </property>
-             </item>
-             <item row="1" column="1">
-              <property name="text">
-               <string>0.6</string>
-              </property>
-             </item>
-             <item row="1" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="2" column="0">
-              <property name="text">
-               <string>1</string>
-              </property>
-             </item>
-             <item row="2" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="2" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="3" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="3" column="1">
-              <property name="text">
-               <string>1</string>
-              </property>
-             </item>
-             <item row="3" column="2">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="4" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="4" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="4" column="2">
-              <property name="text">
-               <string>1</string>
-              </property>
-             </item>
-             <item row="5" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="5" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="5" column="2">
-              <property name="text">
-               <string>1</string>
-              </property>
-             </item>
-             <item row="6" column="0">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="6" column="1">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </item>
-             <item row="6" column="2">
-              <property name="text">
-               <string>1</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
+          <spacer name="horizontalSpacer_14">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_27">
-           <item>
-            <spacer name="horizontalSpacer_14">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_saveClassificationResults">
-             <property name="text">
-              <string>Save</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
+          <widget class="QPushButton" name="pushButton_saveClassificationResults">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string>Save Results </string>
+           </property>
+           <property name="icon">
+            <iconset resource="UI_Icons.qrc">
+             <normaloff>:/Resources/UISymbols/UI_Save_Icon.svg</normaloff>:/Resources/UISymbols/UI_Save_Icon.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
