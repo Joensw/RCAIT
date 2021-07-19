@@ -5,6 +5,7 @@
 #include <trainingresult.h>
 #include <classificationresult.h>
 #include <resultswidget.h>
+#include <resultsprocessor.h>
 #include <datamanager.h>
 
 class ResultsController : public QObject{
@@ -21,6 +22,7 @@ public slots:
 private:
     DataManager *m_dataManager;
     ResultsWidget *m_resultsWidget;
+    ResultsProcessor *m_resultsProcessor;
     //TODO ??
     QList<TrainingResult> m_unsavedTrainingResults;
     QList<ClassificationResult> m_unsavedClassificationResults;
