@@ -11,15 +11,19 @@ ResultsWidget::ResultsWidget(QWidget *parent) :
         ui(new Ui::ResultsWidget) {
 
     ui->setupUi(this);
+    configure_compareRunButton();
+    configure_compareRunMenu();
 
-    //Configure add run compare button
-    const auto icon = QIcon(":/Resources/UISymbols/UI_Add_Result_Comparison_Icon.svg");
-    pushButton_addResult->setIcon(icon);
-    pushButton_addResult->setFlat(true);
-    pushButton_addResult->setMenu(menu_addRun);
-    connect(menu_addRun, &QMenu::triggered, this, &ResultsWidget::slot_comparisonMenu_triggered);
-    ui->tabWidget_comparison->setCornerWidget(pushButton_addResult, Qt::TopRightCorner);
+    //Connect signals
+    //connect(ui->tab_topAccuracies, &TopAccuraciesView::sig_tableUpdated, this, &ResultsWidget::slot_updateAccuraciesGraphics);
 
+
+    //TODO: Remove dummy code
+    dummyFunctionTest();
+
+}
+
+void ResultsWidget::configure_compareRunMenu() {
     //Add compare button menu entries
     auto resultsDirPath = ProjectManager::getInstance().getResultsDir();
     auto dir = QDir(resultsDirPath);
@@ -31,19 +35,25 @@ ResultsWidget::ResultsWidget(QWidget *parent) :
         action->setCheckable(true);
         menu_addRun->addAction(action);
     }
+}
 
-    //TODO: Remove dummy code
-    dummyFunctionTest();
-
+void ResultsWidget::configure_compareRunButton() {
+    //Configure add run compare button
+    const auto icon = QIcon(":/Resources/UISymbols/UI_Add_Result_Comparison_Icon.svg");
+    pushButton_addResult->setIcon(icon);
+    pushButton_addResult->setFlat(true);
+    pushButton_addResult->setMenu(menu_addRun);
+    connect(menu_addRun, &QMenu::triggered, this, &ResultsWidget::slot_comparisonMenu_triggered);
+    ui->tabWidget_comparison->setCornerWidget(pushButton_addResult, Qt::TopRightCorner);
 }
 
 void ResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
     if (action->isChecked()) {
         createTrainingResultTab(action->text());
-        ui->tab_topAccuracy->addTableRow(action->text(), 12.34, 56.78);
+        ui->tab_topAccuracies->addTableRow(action->text(), 12.34, 56.78);
     } else {
         deleteTrainingResultTab(action->text());
-        ui->tab_topAccuracy->removeTableRow(action->text());
+        ui->tab_topAccuracies->removeTableRow(action->text());
     }
 }
 
@@ -56,20 +66,15 @@ QString ResultsWidget::getSelectedClassifyRunIdentifier() {
 }
 
 void ResultsWidget::addTrainingResult(TrainingResult *result) {
-    QString name = "Run";
     auto lossCurve = result->getLossCurve();
     auto confusionMatrix = result->getConfusionMatrix();
     auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
 
-    auto tab = createTrainingResultTab(name);
-
-
-    //Pass to Most Misclassified Images
-
-//TODO: (Adrians Help) Pass QList<QImages>
+    auto tab = createTrainingResultTab(result->getTimestamp());
 
     lossCurve->generateGraphics(tab);
     confusionMatrix->generateGraphics(tab);
+    //TODO
     tab->setMostMisclassifiedImages(QList<QImage>());
 }
 
@@ -151,4 +156,8 @@ void ResultsWidget::changeEvent(QEvent *event) {
  */
 void ResultsWidget::retranslateUi() {
     pushButton_addResult->setText(tr("Compare ..."));
+}
+
+TopAccuraciesView* ResultsWidget::getTopAccuraciesView(){
+    return ui->tab_topAccuracies;
 }

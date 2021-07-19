@@ -8,7 +8,7 @@
 
 class LossCurve : public AbstractResultGraphics{
 public:
-    explicit LossCurve(const QString &identifier, const QMap<int, QPair<double, double>> &data);
+    LossCurve(const QString &identifier, const QMap<int, QPair<double, double>> &data);
     QString valuesToPyText();
 
     QPair<double,double> operator[](int epoch) const;

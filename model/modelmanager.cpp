@@ -1,22 +1,24 @@
 #include "modelmanager.h"
 
+#include <utility>
+
 
 ModelManager::ModelManager(){
     mCurrentModel = "";
     mCurrentPlugin = "";
-    mClassificationPluginManager = ClassificationPluginManager::getInstance();
+    mClassificationPluginManager = &ClassificationPluginManager::getInstance();
 }
 
 void ModelManager::createNewModel(QString modelName, QString pluginName, QString baseModel){
-    mClassificationPluginManager->createNewModel(modelName, pluginName, baseModel);
+    mClassificationPluginManager->createNewModel(std::move(modelName), std::move(pluginName), std::move(baseModel));
 }
 void ModelManager::removeModel(QString modelName, QString pluginName){
-    mClassificationPluginManager->removeModel(modelName, pluginName);
+    mClassificationPluginManager->removeModel(std::move(modelName), std::move(pluginName));
 }
 
 void ModelManager::loadModel(QString modelName, QString pluginName){
-    mCurrentModel = modelName;
-    mCurrentPlugin = pluginName;
+    mCurrentModel = std::move(modelName);
+    mCurrentPlugin = std::move(pluginName);
 }
 
 QString ModelManager::getCurrentPlugin(){

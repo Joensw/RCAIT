@@ -60,9 +60,9 @@ def plot_loss_curve(lossdata, file):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Generates a confusion matrix and stores it as an image.')
+    parser = argparse.ArgumentParser(description='Generates a loss curve and stores it as an image.')
     parser.add_argument('lossdata', metavar='data',
-                        help='Raw point data for train/val curves, formatted as a python array')
+                        help='Raw point data for train/validation curves, formatted as a python array')
     parser.add_argument('outfilename', metavar='outfile',
                         help='Output file name including extension')
 
