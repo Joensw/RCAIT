@@ -55,8 +55,6 @@ private:
 
     void configure_compareRunMenu();
 
-    void configure_saveRunButton();
-
 private slots:
 
     void slot_comparisonMenu_triggered(QAction *action);
