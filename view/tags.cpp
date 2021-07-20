@@ -637,7 +637,8 @@ void Tags::keyPressEvent(QKeyEvent* event) {
             }
             event->accept();
             break;
-        case Qt::Key_Space:
+        case Qt::Key_Enter:
+        case Qt::Key_Return:
             if (!impl->currentText().isEmpty()) {
                 impl->tags.insert(impl->tags.begin() + std::ptrdiff_t(impl->editing_index + 1), Tag());
                 impl->editNextTag();
