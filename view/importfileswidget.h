@@ -25,6 +25,7 @@ public:
     ~ImportFilesWidget();
 
     void setAvailablePlugins(QStringList pluginNames);
+    void updateProgressBar(int progress);
 private:
     Ui::ImportFilesWidget *ui;
 

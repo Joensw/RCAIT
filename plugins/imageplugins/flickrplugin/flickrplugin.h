@@ -60,6 +60,7 @@
 #include "imageloaderplugin.h"
 #include "flickrsettings.h"
 
+
 //! [0]
 class FlickrPlugin : public QObject, ImageLoaderPlugin
 {
@@ -91,6 +92,9 @@ public:
     QString getName() override;
     QWidget*  getInputWidget() override;
     QWidget *pluginSettings;
+
+private slots:
+    void slot_readOutPut();
 
 };
 //! [0]

@@ -9,6 +9,7 @@ bool FlickrPlugin::loadImages(QString path,ProgressablePlugin* receiver,  int im
     QString fullCommand = createCommandlineString(path, imageCount, &label);
     qDebug() << fullCommand;
     QProcess *process = new QProcess();
+    process->setProcessChannelMode(QProcess::ProcessChannelMode::ForwardedOutputChannel);
     process->startCommand(fullCommand);
 
     process->waitForStarted();
@@ -19,8 +20,13 @@ bool FlickrPlugin::loadImages(QString path,ProgressablePlugin* receiver,  int im
 
     process->close();
 
+    delete process;
+    //emit receiver->sig_progress(100);
+
     return res;
 }
+
+
 
 
 QString FlickrPlugin::createCommandlineString( QString path,  int imageCount,  QStringList* label){
@@ -69,6 +75,11 @@ QString FlickrPlugin::getName()
 QWidget *FlickrPlugin::getInputWidget()
 {
     return nullptr;
+}
+
+void FlickrPlugin::slot_readOutPut()
+{
+
 }
 
 //! [0]

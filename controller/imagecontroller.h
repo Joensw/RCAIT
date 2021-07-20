@@ -15,7 +15,7 @@ public:
     ImageController(ImageSection* imageSection, ImportFilesWidget* importFilesWidget, DataManager* dataManager);
 
 private:
-    ImageLoader m_imageLoader;
+    ImageLoader* m_imageLoader;
     ImageSection* m_imageSection;
     ImportFilesWidget* m_importFilesWidget;
     DataManager* m_dataManager;
@@ -25,6 +25,7 @@ public slots:
     void slot_loadInputImages(QString pluginName, int count, QStringList labels, int split);
     void slot_confirm();
     void slot_imagesReady();
+    void slot_handelImageLoadProgress(int progress);
     //Todo connect
 };
 
