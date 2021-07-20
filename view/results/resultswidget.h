@@ -23,10 +23,6 @@ public:
 
     ~ResultsWidget();
 
-    QString getSelectedTrainRunIdentifier();
-
-    QString getSelectedClassifyRunIdentifier();
-
     void addTrainingResult(TrainingResult *result);
 
     void addClassificationResult(ClassificationResult *result);
@@ -36,6 +32,8 @@ public:
 signals:
 
     void sig_saveResults();
+
+    void sig_loadTrainingDataToCompare(const QString& runNameToCompare, TrainingResultView* view);
 
 private:
     Ui::ResultsWidget *ui;

@@ -59,14 +59,6 @@ void ResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
     }
 }
 
-QString ResultsWidget::getSelectedTrainRunIdentifier() {
-    return QString();
-}
-
-QString ResultsWidget::getSelectedClassifyRunIdentifier() {
-    return QString();
-}
-
 void ResultsWidget::addTrainingResult(TrainingResult *result) {
     auto lossCurve = result->getLossCurve();
     auto confusionMatrix = result->getConfusionMatrix();
