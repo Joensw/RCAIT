@@ -11,17 +11,23 @@ class ImageLoader : public ProgressablePlugin {
 public:
     ImageLoader();
     void loadInputImages(int count, QStringList labels, QString pluginName, QString tempImageDir);
+    void load();
 
     ~ImageLoader() {
         imageloadThread.quit();
         imageloadThread.wait();
     }
 
+private:
+    ImageSearchThread *m_worker;
+
+
 public slots:
     void handleResults(const QString &);
 signals:
     void operate();
     void sig_imagesReady();
+
 };
 
 

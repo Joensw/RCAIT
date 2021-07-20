@@ -30,7 +30,8 @@ QString DataManager::getProjectTempDir(){
 }
 
 QString DataManager::getProjectDataSetDir(){
-    return mProjectManager->getProjectDataSetDir();
+
+   return mProjectManager->getProjectDataSetDir();
 }
 
 bool DataManager::verifyDirectories()

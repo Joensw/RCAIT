@@ -38,6 +38,7 @@ file(GLOB_RECURSE SOURCE_FILES_A
         )
 
 list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/test/.*" )
+list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/flickrplugin/.*" )
 
 
 file(GLOB SOURCE_FILES_B
@@ -49,6 +50,7 @@ file(GLOB SOURCE_FILES_B
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/confusionmatrix.py ${CMAKE_CURRENT_BINARY_DIR}/confusionmatrix.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/losscurve.py ${CMAKE_CURRENT_BINARY_DIR}/losscurve.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/topaccuraciesgraphics.py ${CMAKE_CURRENT_BINARY_DIR}/topaccuraciesgraphics.py COPYONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/flickrplugin/flickrapi_photosearch.py ${CMAKE_CURRENT_BINARY_DIR}/flickrapi_photosearch.py COPYONLY)
 
 set(SOURCE_FILES ${SOURCE_FILES_A} ${SOURCE_FILES_B})
 
@@ -78,3 +80,4 @@ endif()
 #add_subdirectory(lib/googletest-master)
 #add_subdirectory(model/test)
 add_subdirectory(Google_tests)
+add_subdirectory(plugins/imageplugins/flickrplugin)

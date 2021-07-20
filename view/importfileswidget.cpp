@@ -87,6 +87,11 @@ void ImportFilesWidget::setAvailablePlugins(QStringList pluginNames) {
     ui->comboBox_plugins->addItems(pluginNames);
 }
 
+void ImportFilesWidget::updateProgressBar(int progress)
+{
+    ui->progressBar_images->setValue(progress);
+}
+
 
 
 

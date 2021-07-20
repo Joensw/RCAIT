@@ -1,0 +1,1 @@
+print("Programm wurde erfolgreich ausgeführt")

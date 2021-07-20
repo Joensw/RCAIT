@@ -18,7 +18,8 @@ ImageSearchThread::ImageSearchThread(Progressable *receiver, QString imagePath, 
 }
 
 void ImageSearchThread::loadImages() {
-    m_imageLoaderPluginManager.loadImages(R"(C:\Users\Mr Stealyourgirl\Desktop\ok)", m_receiver, m_pluginName, m_count, m_labels);
+
+    m_imageLoaderPluginManager.loadImages(m_imagePath, m_receiver, m_pluginName, m_count, m_labels);
     emit resultReady("");
 
 }
