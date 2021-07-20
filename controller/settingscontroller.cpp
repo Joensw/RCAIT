@@ -30,9 +30,7 @@ void SettingsController::slot_applyGlobalSettings(QString projectsDir, QString c
     QString tempClassificationPluginDir = mDataManager->getClassificationPluginDir();
     QString tempImageLoaderPluginDir = mDataManager->getImageLoaderPluginDir();
 
-
     if (!projectsDir.isEmpty()) {
-        emit sig_projectDirectoryChanged();
         sucessfulUpdates++;
         tempProjectsDir = projectsDir;
     }
@@ -59,11 +57,13 @@ void SettingsController::slot_applyGlobalSettings(QString projectsDir, QString c
 
         mSettingsView->pathsUpdated(sucessfulUpdates);
         mSettingsView->clearPaths();
+
+        emit sig_projectDirectoryChanged();
         return;
 
     }
     //new structure isnt allowed
-    mSettingsView->setGlobalSettingsError(tr("Settings have not been updated, there is a conflict.\n "
+    mSettingsView->setGlobalSettingsError(tr("Settings have not been updated, there is a conflict.\n"
                                              "paths may not be identical and must exist, this includes new and unchanged paths"));
 
 
