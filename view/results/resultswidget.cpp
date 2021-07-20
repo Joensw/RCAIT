@@ -48,14 +48,15 @@ void ResultsWidget::configure_compareRunButton() {
 }
 
 void ResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
-    auto tab = ui->tab_topAccuracies;
+    auto topAccuracies = ui->tab_topAccuracies;
+    const QString &runNameToCompare = action->text();
     if (action->isChecked()) {
-        createTrainingResultTab(action->text());
-        //TODO Signal
-        tab->addTableRow(action->text(), QRandomGenerator::global()->bounded(100), QRandomGenerator::global()->bounded(100));
+        auto tab = createTrainingResultTab(runNameToCompare);
+        emit sig_loadTrainingDataToCompare(runNameToCompare, tab);
+        topAccuracies->addTableRow(runNameToCompare, QRandomGenerator::global()->bounded(100), QRandomGenerator::global()->bounded(100));
     } else {
-        deleteTrainingResultTab(action->text());
-        tab->removeTableRow(action->text());
+        deleteTrainingResultTab(runNameToCompare);
+        topAccuracies->removeTableRow(runNameToCompare);
     }
 }
 

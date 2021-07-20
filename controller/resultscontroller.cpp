@@ -5,6 +5,7 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
     m_resultsWidget = resultsWidget;
     m_resultsProcessor = new ResultsProcessor();
 
+    //Training Results
     // Connect 'Top Accuracies Table' related signals/slots
     connect(m_resultsWidget->getTopAccuraciesView(),&TopAccuraciesView::sig_requestTopAccuraciesGraphics, m_resultsProcessor,
             &ResultsProcessor::slot_generateTopAccuraciesGraphics);
@@ -12,6 +13,10 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
             &ResultsProcessor::slot_addedRow_topAccuraciesTable);
     connect(m_resultsWidget->getTopAccuraciesView(),&TopAccuraciesView::sig_accuraciesTable_rowRemoved, m_resultsProcessor,
             &ResultsProcessor::slot_removedRow_topAccuraciesTable);
+
+    //Connect 'Compare Run' related signals/slots
+    connect(m_resultsWidget, &ResultsWidget::sig_loadTrainingDataToCompare, m_resultsProcessor,
+            &ResultsProcessor::slot_loadTrainingDataToCompare);
 
 
     //Connect ResultsWidget to ResultsController
