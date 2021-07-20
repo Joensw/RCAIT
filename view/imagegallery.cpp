@@ -69,30 +69,22 @@ void ImageGallery::removeselected() {
     qDeleteAll(selectedItems());
 }
 
-void ImageGallery::addDir(const QDir& imageDirectory) {
+void ImageGallery::addDir(const QDir& imageDirectory)
+{
     QStringList images = imageDirectory.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
 
 
             foreach(QString imageName, images) {
-
-            QString path = imageDirectory.path() + "/" + imageName;
-
-
-            QImage image(path);
-
-            int squareSize = image.height() < image.width() ? image.height() : image.width();
-            int leftX = image.width() / 2 - squareSize / 2;
-            int leftY = image.height() / 2 - squareSize / 2;
-
-
-            QImage copy = image.copy(leftX, leftY, squareSize, squareSize);
-            QListWidgetItem *item = new QListWidgetItem();
-            QPixmap tempImage = QPixmap::fromImage(copy);
-            item->setData(Qt::DecorationRole, tempImage.scaled(200, 200, Qt::KeepAspectRatio));
-
-
-            addItem(item);
+                QString path = imageDirectory.path() + "/" + imageName;
+                addImage(QImage(path));
             }
+}
+
+void ImageGallery::addDir(QList<QImage> imageList)
+{
+    foreach(QImage image, imageList) {
+        addImage(image);
+    }
 }
 
 void ImageGallery::concurrentAddDir(const QString path)
@@ -118,6 +110,44 @@ void ImageGallery::concurrentAddDir(const QString path)
     connect(this, &ImageGallery::sig_stopLoading, addDirParallel, &addDirTask::terminate);
     addDirParallel->start();
    // QThreadPool::globalInstance()->start(addDirParallel);
+}
+
+void ImageGallery::concurrentAddDir(const QList<QImage> imageList)
+{
+    class addDirTask : public QRunnable {
+    public:
+        addDirTask(ImageGallery *gallery, QList<QImage> images) {
+            this->mGallery = gallery;
+            this->mPathDir = std::move(images);
+        }
+
+        void run() override {
+            mGallery->addDir(mPathDir);
+        }
+
+    private:
+        ImageGallery *mGallery;
+        QList<QImage> mPathDir;
+    };
+
+    auto *addDirParallel = new addDirTask(this, imageList);
+    QThreadPool::globalInstance()->start(addDirParallel);
+}
+
+
+void ImageGallery::addImage(QImage image){
+    int squareSize = image.height() < image.width() ? image.height() : image.width();
+    int leftX = image.width() / 2 - squareSize / 2;
+    int leftY = image.height() / 2 - squareSize / 2;
+
+
+    QImage copy = image.copy(leftX, leftY, squareSize, squareSize);
+    QListWidgetItem *item = new QListWidgetItem();
+    QPixmap tempImage = QPixmap::fromImage(copy);
+    item->setData(Qt::DecorationRole, tempImage.scaled(200, 200, Qt::KeepAspectRatio));
+
+
+    addItem(item);
 }
 
 void ImageGallery::setDragDropEnabled(bool var)
