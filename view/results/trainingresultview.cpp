@@ -41,7 +41,7 @@ void TrainingResultView::setConfusionMatrix(QGraphicsItem *matrixImage) {
 
 void TrainingResultView::setMostMisclassifiedImages(const QList<QImage>& images) {
     auto gallery = ui->imageGallery_mostMisclassifiedImages;
-    //TODO Adrians help
+    gallery->concurrentAddDir(images);
 }
 
 TrainingResultView::~TrainingResultView() {

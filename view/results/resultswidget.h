@@ -27,7 +27,6 @@ public:
 
     QString getSelectedClassifyRunIdentifier();
 
-    //Todo: These will probably not just be QImages!
     void addTrainingResult(TrainingResult *result);
 
     void addClassificationResult(ClassificationResult *result);
