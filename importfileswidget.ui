@@ -149,7 +149,10 @@
             </property>
             <property name="icon">
              <iconset resource="UI_Icons.qrc">
-              <normaloff>:/Resources/UISymbols/UI_Delete_All_Items.svg</normaloff>:/Resources/UISymbols/UI_Delete_All_Items.svg</iconset>
+              <normaloff>:/Resources/UISymbols/UI_Backspace_Icon.svg</normaloff>:/Resources/UISymbols/UI_Backspace_Icon.svg</iconset>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -356,7 +359,6 @@ selection-background-color: rgb(255, 255, 255);</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="UI_Icons.qrc"/>
   <include location="UI_Icons.qrc"/>
  </resources>
  <connections/>

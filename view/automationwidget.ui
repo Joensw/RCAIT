@@ -143,7 +143,7 @@
           </property>
           <property name="icon">
            <iconset resource="../UI_Icons.qrc">
-            <normaloff>:/Resources/UISymbols/UI_Play_Icon.svg</normaloff>:/Resources/UISymbols/UI_Play_Icon.svg</iconset>
+            <normaloff>:/Resources/UISymbols/UI_Start_Icon.svg</normaloff>:/Resources/UISymbols/UI_Start_Icon.svg</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -166,7 +166,7 @@
           </property>
           <property name="icon">
            <iconset resource="../UI_Icons.qrc">
-            <normaloff>:/Resources/UISymbols/UI_Stop_Icon.svg</normaloff>:/Resources/UISymbols/UI_Stop_Icon.svg</iconset>
+            <normaloff>:/Resources/UISymbols/UI_Pause_Icon.svg</normaloff>:/Resources/UISymbols/UI_Pause_Icon.svg</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -186,7 +186,7 @@
           </property>
           <property name="icon">
            <iconset resource="../UI_Icons.qrc">
-            <normaloff>:/Resources/UISymbols/UI_Delete_All_Items.svg</normaloff>:/Resources/UISymbols/UI_Delete_All_Items.svg</iconset>
+            <normaloff>:/Resources/UISymbols/UI_Delete_Alt_Icon.svg</normaloff>:/Resources/UISymbols/UI_Delete_Alt_Icon.svg</iconset>
           </property>
           <property name="iconSize">
            <size>
