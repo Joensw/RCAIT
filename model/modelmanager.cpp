@@ -4,8 +4,6 @@
 
 
 ModelManager::ModelManager(){
-    mCurrentModel = "";
-    mCurrentPlugin = "";
     mClassificationPluginManager = &ClassificationPluginManager::getInstance();
 }
 

@@ -16,6 +16,7 @@ public:
 
     QStringList getProjects();
     void createNewProject(QString projectName);
+    bool createNewProject(QString projectName, QString * error);
     void removeProject(QString projectName);
     void loadProject(QString projectName);
     QString getProjectPath(); //maybe give these the prefix openProject to avoid confusion with the getters for the directories

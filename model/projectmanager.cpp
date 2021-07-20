@@ -23,23 +23,13 @@ ProjectManager::ProjectManager() {
 
 }
 
-QStringList ProjectManager::getProjects() {
-    if (!mProjectsDirectory.isEmpty()){
-        QDir projectsDir(mProjectsDirectory);
-        projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
-        return projectsDir.entryList();
-    }
-    QStringList empty;
-    return empty;
-}
-
-void ProjectManager::createNewProject(QString projectName) {
+void ProjectManager::createNewProject(QString projectName)
+{
     QString newProjectPath = mProjectsDirectory + "/" + projectName + "/" + projectName + ".ini";
 
     /*goes into the projects folder, then into the specific project folder
     * there it creates a new ini file, which can be seen as the "project file"
     */
-
 
     //non existing folders / directories will be automatically created
     QSettings newProjectfile(newProjectPath, QSettings::IniFormat);
@@ -60,13 +50,30 @@ void ProjectManager::createNewProject(QString projectName) {
     dir.mkpath(absolute + "/" +  resultsDirectoryName);
 }
 
+QStringList ProjectManager::getProjects() {
+    if (!mProjectsDirectory.isEmpty()){
+        QDir projectsDir(mProjectsDirectory);
+        projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
+        return projectsDir.entryList();
+    }
+    QStringList empty;
+    return empty;
+}
+
+bool ProjectManager::createNewProject(QString projectName, QString * error) {
+    if (!verifyName(projectName, error)){
+        return false;
+    }
+    createNewProject(projectName);
+    return true;
+}
+
 void ProjectManager::removeProject(QString projectName) {
     QDir targetDir(mProjectsDirectory + "/" + projectName);
     targetDir.removeRecursively();
 }
 
 void ProjectManager::loadProject(QString projectName) {
-    //QString path = "../projects/" + projectName + "/" + projectName + ".ini";
     QString loadProjectPath = mProjectsDirectory + "/" + projectName + "/" + projectName + ".ini";
 
     QSettings projectfile(loadProjectPath, QSettings::IniFormat);
@@ -115,6 +122,34 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
 void ProjectManager::setProjectsDirectory(QString newDirectory)
 {
     mProjectsDirectory = newDirectory;
+}
+
+bool ProjectManager::verifyName(QString input, QString *error)
+{
+    bool status = true;
+    if (input.length() == 0){
+        error->append(QObject::tr("Name must contain at least 1 character") +"\n");
+        status = false;
+    }
+
+    //check if name comtains special characters
+    QRegularExpression rx1("^[\\w]*$");
+    QRegularExpressionMatch match = rx1.match(input);
+    if (!match.hasMatch()) {
+        error->append(QObject::tr("Name may not contain special characters") + "\n");
+        status = false;
+    }
+
+    //check if name is already taken
+    QDir projectsDir(mProjectsDirectory);
+    projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
+    QStringList projects = projectsDir.entryList();
+    if (projects.contains(input)) {
+        error->append(QObject::tr("A project with this name aleady exists in the project directory"));
+        status = false;
+
+    }
+    return status;
 }
 
 
