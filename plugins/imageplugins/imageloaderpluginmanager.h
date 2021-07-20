@@ -17,6 +17,8 @@ class ImageLoaderPluginManager : public PluginManager{
 private:
     ImageLoaderPluginManager();
     QMap<QString, ImageLoaderPlugin*> m_plugins;
+    QSharedPointer<ImageLoaderPlugin> test;
+    QMap<QString, QSharedPointer<ImageLoaderPlugin>> m_pluginsSharedPointer;
 
 public:
     //Threadsafe singleton pattern
@@ -35,6 +37,8 @@ public:
     QWidget* getInputWidget(QString pluginName) override;
     bool loadImages(QString path, ProgressablePlugin* receiver, QString pluginName, int count, QStringList labels);
     QStringList getNamesOfPlugins() override;
+    QList<QWidget*> getConfigurationWidgets();
+    QList<QWidget*> m_pluginConfigurationWidgets;
 };
 
 

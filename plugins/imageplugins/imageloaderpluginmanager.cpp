@@ -14,10 +14,13 @@ void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
         if (plugin) {
             ImageLoaderPlugin* imageLoaderPlugin = qobject_cast<ImageLoaderPlugin *>(plugin);
             imageLoaderPlugin->init(); //ToDo: call init function if necessary
+            m_pluginConfigurationWidgets.append(imageLoaderPlugin->getConfigurationWidget());
             if (imageLoaderPlugin){
-                m_plugins.insert(fileName,imageLoaderPlugin);
+
+                m_pluginsSharedPointer.insert( imageLoaderPlugin->getName(), QSharedPointer<ImageLoaderPlugin>(imageLoaderPlugin));
+
             }
-            pluginLoader.unload(); //ToDo: Maybe use this
+            //pluginLoader.unload(); //ToDo: Maybe use this
         }
     }
 
@@ -25,26 +28,28 @@ void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
 }
 
 QWidget *ImageLoaderPluginManager::getConfigurationWidget(QString pluginName) {
-    return m_plugins.value(pluginName)->getConfigurationWidget();
+    return m_pluginsSharedPointer.value(pluginName)->getConfigurationWidget();
 }
 
 void ImageLoaderPluginManager::saveConfiguration(QString pluginName) {
-    m_plugins.value(pluginName)->saveConfiguration();
+    m_pluginsSharedPointer.value(pluginName)->saveConfiguration();
 }
 
 QWidget *ImageLoaderPluginManager::getInputWidget(QString pluginName) {
-    return m_plugins.value(pluginName)->getConfigurationWidget();
+    return m_pluginsSharedPointer.value(pluginName)->getConfigurationWidget();
 }
 
 bool ImageLoaderPluginManager::loadImages(QString path, ProgressablePlugin *receiver, QString pluginName, int count,
                                           QStringList labels) {
-    ImageLoaderPlugin* test = m_plugins.value(pluginName);
-
-
-    return m_plugins.value(pluginName)->loadImages(path, receiver, count, labels);;
+   return m_pluginsSharedPointer.value(pluginName)->loadImages(path, receiver, count, labels);;
 }
 
 QStringList ImageLoaderPluginManager::getNamesOfPlugins()
 {
-    return m_plugins.keys();
+    return m_pluginsSharedPointer.keys();
+}
+
+QList<QWidget *> ImageLoaderPluginManager::getConfigurationWidgets()
+{
+    return m_pluginConfigurationWidgets;
 }

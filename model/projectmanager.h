@@ -2,6 +2,7 @@
 #define PROJECTMANAGER_H
 
 #include <QString>
+#include <QObject>
 #include "classificationresult.h"
 #include "trainingresult.h"
 #include "classificationresult.h"
@@ -21,6 +22,8 @@ public:
     }
 
     void createNewProject(QString projectName);
+
+    bool createNewProject(QString projectName, QString * error);
 
     void removeProject(QString projectName);
 
@@ -48,6 +51,8 @@ public:
 signals:
     void sig_projectDirectoryChanged();
 private:
+    bool verifyName(QString input, QString * error);
+
     QString mProjectPath;
     QString mProjectTempDir;
     QString mProjectDataSetDir;

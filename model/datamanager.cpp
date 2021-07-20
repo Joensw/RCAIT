@@ -9,8 +9,13 @@ DataManager::DataManager(){
 QStringList DataManager::getProjects(){
     return mProjectManager->getProjects();
 }
-void DataManager::createNewProject(QString projectName){
+
+void DataManager::createNewProject(QString projectName)
+{
     mProjectManager->createNewProject(projectName);
+}
+bool DataManager::createNewProject(QString projectName, QString * error){
+    return mProjectManager->createNewProject(projectName, error);
 }
 
 void DataManager::removeProject(QString projectName){
@@ -30,7 +35,8 @@ QString DataManager::getProjectTempDir(){
 }
 
 QString DataManager::getProjectDataSetDir(){
-    return mProjectManager->getProjectDataSetDir();
+
+   return mProjectManager->getProjectDataSetDir();
 }
 
 bool DataManager::verifyDirectories()

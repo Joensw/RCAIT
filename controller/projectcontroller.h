@@ -32,8 +32,6 @@ private:
     RemoveProjectDialog *mRemoveProjectDialog;
     StartWidget * mStartWidget;
 
-    QString verifyName(QString input);
-
 };
 
 #endif // PROJECTCONTROLLER_H

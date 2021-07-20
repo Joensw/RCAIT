@@ -14,7 +14,8 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
     ui(new Ui::SettingsView)
 {
     ui->setupUi(this);
-
+    mPluginNames = pluginNames;
+    mConfigurationWidgets = pluginConfigurationWidgets;
     mGlobalSettingsWidget = new GlobalSettingsWidget();
 
     ui->pluginList->addItem(mGlobalSettingsWidget->windowTitle());
@@ -28,13 +29,16 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
     ui->pluginWidget->addWidget(mGlobalSettingsWidget);
 
 
-    assert(pluginNames.size() == pluginConfigurationWidgets.size());
+    assert(mPluginNames.size() == mConfigurationWidgets.size());
 
-    int i = 0;
-    for(QString name : pluginNames){
+   int i = 0;
+    for(QString name : mPluginNames){
         ui->pluginList->addItem(name);
-        ui->pluginWidget->addWidget(pluginConfigurationWidgets.at(i));
+        ui->pluginWidget->addWidget(mConfigurationWidgets.at(i));
+        i++;
     }
+
+
 }
 
 void SettingsView::pathsUpdated(int amount)
