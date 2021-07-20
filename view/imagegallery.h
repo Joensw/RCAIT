@@ -45,6 +45,8 @@ public:
      */
     void addDir(const QDir& imageDir);
 
+    void addDir(QList<QImage> imageList);
+
     /**
      * @brief addDir
      * @param imageDir
@@ -65,12 +67,16 @@ public:
 
     void clearAndStop();
 
+    void concurrentAddDir(const QList<QImage> imageList);
+
+
 signals:
     void sig_stopLoading();
 
 
 private:
 
+    void addImage(QImage image);
 };
 
 #endif // IMAGEGALLERY_H
