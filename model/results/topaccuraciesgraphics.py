@@ -1,14 +1,12 @@
 # confusion_matrix
 import argparse
 import ast
-import itertools
 import sys
 
+import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.figure import figaspect
-from matplotlib.ticker import MaxNLocator, PercentFormatter
-from scipy.interpolate import make_interp_spline
-import matplotlib.pyplot as plt
+from matplotlib.ticker import PercentFormatter
 
 # No display of plot
 plt.ioff()
@@ -18,28 +16,27 @@ def plot_top_accuracies_graphics(accdata, identifiers, file):
     np.set_printoptions(precision=2)
     np.set_printoptions(suppress=True)
     # Top accuracy is a (compared runs number) x 2 matrix
-    # at least 4 lines of data are required
     print('Top Accuracies data')
     print(accdata)
 
     # Sort by top1 Accuracy (stable sort)
-    accdata = accdata[accdata[:, 0].argsort(kind='mergesort')]
+    permutation = accdata[:, 0].argsort(kind='mergesort')
+    accdata = accdata[permutation]
+    identifiers = identifiers[permutation]
+
+    x = np.arange(len(identifiers))  # the label locations
+    width = 0.35  # the width of the bars
 
     # Raw data
-    top1data = accdata[:, 0]  # 0th column
-    top5data = accdata[:, 1]  # 1st column
+    top1data = accdata[:, 0]  # 1st column
+    top5data = accdata[:, 1]  # 2nd column
+
+    w, h = figaspect(1 / 3)
+    fig, ax = plt.subplots(figsize=(w, h))
 
     # Chart line creation
-    ax = plt.figure().gca()
-    model_top1s = make_interp_spline(range(len(identifiers)), top1data)
-    model_top5s = make_interp_spline(range(len(identifiers)), top5data)
-    identifiers_x = np.linspace(1, len(identifiers), 500)
-    top1s_y = model_top1s(identifiers_x)
-    top5s_y = model_top5s(identifiers_x)
-
-    # Chart line configuration
-    plt.plot(identifiers_x, top1s_y, label="Top 1%", color='royalblue', linewidth=4)
-    plt.plot(identifiers_x, top5s_y, label="Top 5%", color='orange', linewidth=4)
+    top1Bars = ax.bar(x - width / 2, top1data, width, label='Top 1%', color='royalblue')
+    top5Bars = ax.bar(x + width / 2, top5data, width, label='Top 5%', color='orange')
 
     # Remove bounding box
     ax.spines['top'].set_visible(False)
@@ -62,12 +59,9 @@ def plot_top_accuracies_graphics(accdata, identifiers, file):
         labelbottom=True)  # labels along the left edge are on
 
     # Formatting
-    ax.set_xlim([1, len(identifiers)])
     ax.set_ylim([0, 105])
-    ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     ax.yaxis.set_major_formatter(PercentFormatter(100))
-
-    # Ticks and axes
+    ax.set_xticks(x)
     ax.set_xticklabels(identifiers, rotation=45)
 
     # Grid
@@ -75,9 +69,11 @@ def plot_top_accuracies_graphics(accdata, identifiers, file):
     ax.set_axisbelow(True)
 
     # Labels
-    ax.legend(loc="lower center", ncol=2, bbox_to_anchor=(0.5, -0.5), frameon=False)
+    ax.bar_label(top1Bars, padding=3)
+    ax.bar_label(top5Bars, padding=3)
+    ax.legend(loc="lower left", ncol=1, bbox_to_anchor=(-0.05, -0.3), frameon=True)
     plt.ylabel("Accuracy")
-    plt.tight_layout()
+    fig.tight_layout()
 
     plt.savefig(file, format="svg", bbox_inches="tight")
     sys.exit()
@@ -95,7 +91,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     data = np.array(ast.literal_eval(args.accuracies_data))
-    labels = ast.literal_eval(args.row_labels)
+    labels = np.array(ast.literal_eval(args.row_labels))
     file_name = args.outfile_name
 
     # specify the custom font to use
