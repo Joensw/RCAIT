@@ -32,7 +32,7 @@ private:
     RemoveProjectDialog *mRemoveProjectDialog;
     StartWidget * mStartWidget;
 
-    QString verifyName(QString input);
+    bool verifyName(QString input, QString * error);
 
 };
 

@@ -18,19 +18,19 @@ void ProjectController::refresh()
     mStartWidget->addProjects(mDataManager->getProjects());
 }
 
-QString ProjectController::verifyName(QString input)
-{
-    QString output = "";
-    //check if name is invalid
+bool ProjectController::verifyName(QString input, QString * error){
+    bool status = true;
     if (input.length() == 0){
-        output.append(tr("Name must contain at least 1 character") +"\n");
+        error->append(tr("Name must contain at least 1 character") +"\n");
+        status = false;
     }
 
     //check if name comtains special characters
     QRegularExpression rx1("^[\\w]*$");
     QRegularExpressionMatch match = rx1.match(input);
     if (!match.hasMatch()) {
-        output.append(tr("Name may not contain special characters") + "\n");
+        error->append(tr("Name may not contain special characters") + "\n");
+        status = false;
     }
 
     //check if name is already taken
@@ -38,10 +38,11 @@ QString ProjectController::verifyName(QString input)
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     QStringList projects = projectsDir.entryList();
     if (projects.contains(input)) {
-        output.append(tr("A project with this name aleady exists in the project directory"));
+        error->append(tr("A project with this name aleady exists in the project directory"));
+        status = false;
 
     }
-    return output;
+    return status;
 }
 
 void ProjectController::slot_newProject(){
@@ -71,7 +72,9 @@ void ProjectController::slot_projectDirectoryChanged()
 
 void ProjectController::slot_newProjectConfirm(QString projectName)
 {
-    QString error = verifyName(projectName);
+    QString error;
+    verifyName(projectName, &error);
+
     if (!error.isEmpty()){
         mNewProjectDialog->setErrorMessage(error);
         mNewProjectDialog->showErrorMessage();
