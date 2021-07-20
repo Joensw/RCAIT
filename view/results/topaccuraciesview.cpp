@@ -13,6 +13,8 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
     //Stretch table headers to fill the space available
     QHeaderView *header = table->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
+
+    configure_updateGraphicsButton();
 }
 
 void TopAccuraciesView::addTableRow(const QString &identifier, double top1, double top5) {
@@ -71,4 +73,12 @@ void TopAccuraciesView::setTopAccuraciesGraphics(QGraphicsItem *topAccuraciesIma
 
 void TopAccuraciesView::on_pushButton_updateGraphics_pressed() {
     emit sig_requestTopAccuraciesGraphics(this);
+}
+
+void TopAccuraciesView::configure_updateGraphicsButton() {
+    const auto icon = QIcon(":/Resources/UISymbols/UI_Reload_Icon.svg");
+    m_pushButton_updateGraphics->setIcon(icon);
+    m_pushButton_updateGraphics->setFlat(true);
+    connect(m_pushButton_updateGraphics, &QPushButton::pressed, this, &TopAccuraciesView::on_pushButton_updateGraphics_pressed);
+    ui->verticalLayout_tableLayout->addWidget(m_pushButton_updateGraphics);
 }

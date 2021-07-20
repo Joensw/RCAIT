@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMap>
 #include <QTableWidgetItem>
+#include <QPushButton>
 #include "abstractgraphicsview.h"
 
 namespace Ui {
@@ -36,7 +37,9 @@ private slots:
 
 private:
     Ui::TopAccuraciesView *ui;
+    QPushButton* m_pushButton_updateGraphics = new QPushButton(this);
 
+    void configure_updateGraphicsButton();
 };
 
 #endif // TOPACCURACIESVIEW_H

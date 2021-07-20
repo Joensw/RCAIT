@@ -48,13 +48,14 @@ void ResultsWidget::configure_compareRunButton() {
 }
 
 void ResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
+    auto tab = ui->tab_topAccuracies;
     if (action->isChecked()) {
         createTrainingResultTab(action->text());
         //TODO Signal
-        ui->tab_topAccuracies->addTableRow(action->text(), 12.34, 56.78);
+        tab->addTableRow(action->text(), QRandomGenerator::global()->bounded(100), QRandomGenerator::global()->bounded(100));
     } else {
         deleteTrainingResultTab(action->text());
-        ui->tab_topAccuracies->removeTableRow(action->text());
+        tab->removeTableRow(action->text());
     }
 }
 
