@@ -20,7 +20,7 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QTableWidget" name="tableWidget_topAccuracies">
+      <widget class="CustomTableWidget" name="tableWidget_topAccuracies">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -36,10 +36,19 @@
        <property name="sizeAdjustPolicy">
         <enum>QAbstractScrollArea::AdjustIgnored</enum>
        </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::NoSelection</enum>
+       </property>
        <property name="sortingEnabled">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
         <bool>false</bool>
        </attribute>
        <attribute name="verticalHeaderCascadingSectionResizes">
@@ -62,6 +71,11 @@
    <class>Canvas</class>
    <extends>QGraphicsView</extends>
    <header>canvas.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CustomTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>customtablewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

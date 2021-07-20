@@ -11,9 +11,10 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
     table->setColumnCount(2);
     table->setHorizontalHeaderLabels({"Top 1%", "Top5%"});
     //Stretch table headers to fill the space available
-    QHeaderView *header = table->horizontalHeader();
-    header->setSectionResizeMode(QHeaderView::Stretch);
-
+    QHeaderView *h_header = table->horizontalHeader();
+    QHeaderView *v_header = table->verticalHeader();
+    h_header->setSectionResizeMode(QHeaderView::Stretch);
+    v_header->setSectionResizeMode(QHeaderView::Fixed);
     configure_updateGraphicsButton();
 }
 
@@ -77,8 +78,30 @@ void TopAccuraciesView::on_pushButton_updateGraphics_pressed() {
 
 void TopAccuraciesView::configure_updateGraphicsButton() {
     const auto icon = QIcon(":/Resources/UISymbols/UI_Reload_Icon.svg");
-    m_pushButton_updateGraphics->setIcon(icon);
-    m_pushButton_updateGraphics->setFlat(true);
-    connect(m_pushButton_updateGraphics, &QPushButton::pressed, this, &TopAccuraciesView::on_pushButton_updateGraphics_pressed);
-    ui->verticalLayout_tableLayout->addWidget(m_pushButton_updateGraphics);
+    m_pushButton_updateGraphics = ui->tableWidget_topAccuracies->findChild<QAbstractButton *>();
+    if (m_pushButton_updateGraphics) {
+        m_pushButton_updateGraphics->setIcon(icon);
+        connect(m_pushButton_updateGraphics, &QPushButton::pressed, this,
+                &TopAccuraciesView::on_pushButton_updateGraphics_pressed);
+    }
+}
+
+
+void TopAccuraciesView::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        // this event is send if a translator is loaded
+        retranslateUi();
+        ui->retranslateUi(this);
+    }
+    //Call to parent class
+    QWidget::changeEvent(event);
+}
+
+/**
+ * Translate and set all the strings which
+ * were not created in the UI builder
+ */
+void TopAccuraciesView::retranslateUi() {
+    if (m_pushButton_updateGraphics)
+        m_pushButton_updateGraphics->setToolTip("Update graphics...");
 }

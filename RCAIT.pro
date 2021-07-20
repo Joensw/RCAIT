@@ -71,6 +71,7 @@ SOURCES += \
     view/configurationdialog.cpp \
     view/customlistwidget.cpp \
     view/customtabbar.cpp \
+    view/customtablewidget.cpp \
     view/customtabwidget.cpp \
     view/globalsettingswidget.cpp \
     view/imagegallery.cpp \
@@ -146,6 +147,7 @@ HEADERS += \
     view/configurationdialog.h \
     view/customlistwidget.h \
     view/customtabbar.h \
+    view/customtablewidget.h \
     view/customtabwidget.h \
     view/globalsettingswidget.h \
     view/imagegallery.h \

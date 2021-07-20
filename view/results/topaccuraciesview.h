@@ -14,6 +14,10 @@ namespace Ui {
 class TopAccuraciesView : public QWidget, public AbstractGraphicsView {
 Q_OBJECT
 
+protected:
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent *) override;
+
 public:
     explicit TopAccuraciesView(QWidget *parent = nullptr);
 
@@ -37,9 +41,11 @@ private slots:
 
 private:
     Ui::TopAccuraciesView *ui;
-    QPushButton* m_pushButton_updateGraphics = new QPushButton(this);
+    QAbstractButton* m_pushButton_updateGraphics;
 
     void configure_updateGraphicsButton();
+
+    void retranslateUi();
 };
 
 #endif // TOPACCURACIESVIEW_H
