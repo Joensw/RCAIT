@@ -55,6 +55,8 @@ public:
      */
     void concurrentAddDir(const QString path);
 
+    void addImage(QImage image);
+
     /**
      * @brief setDragDropEnabled
      * @param var
@@ -70,13 +72,16 @@ public:
     void concurrentAddDir(const QList<QImage> imageList);
 
 
+private slots:
+    void slot_isReady();
+
 signals:
     void sig_stopLoading();
 
-
 private:
+    QThread* running;
+    bool mReady = true;
 
-    void addImage(QImage image);
 };
 
 #endif // IMAGEGALLERY_H
