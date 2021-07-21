@@ -1,4 +1,5 @@
 #include "imagegallery.h"
+#include <QApplication>
 #include <QGridLayout>
 #include <QtCore>
 #include <utility>
@@ -92,24 +93,48 @@ void ImageGallery::concurrentAddDir(const QString path)
     class addDirTask : public QThread {
     public:
         addDirTask(ImageGallery *gallery, QDir pathDir) {
+            abort = false;
             this->mGallery = gallery;
             this->mPathDir = std::move(pathDir);
         }
 
+        ~addDirTask(){
+            delete mGallery;
+        }
+
         void run() override {
-            mGallery->addDir(mPathDir);
+            QStringList images = mPathDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
+
+            foreach(QString imageName, images) {
+                if (abort) {
+                    return;
+                }
+                QString localPath = mPathDir.path() + "/" + imageName;
+                mGallery->addImage(QImage(localPath));
+            }
+        }
+
+        void quit() {
+            abort = true;
         }
 
     private:
         ImageGallery *mGallery;
         QDir mPathDir;
+        volatile bool abort;
     };
 
-    auto *addDirParallel = new addDirTask(this, QDir(path));
+    delete running;
 
-    connect(this, &ImageGallery::sig_stopLoading, addDirParallel, &addDirTask::terminate);
-    addDirParallel->start();
-   // QThreadPool::globalInstance()->start(addDirParallel);
+
+    auto running = new addDirTask(this, QDir(path));
+
+    connect(this, &ImageGallery::sig_stopLoading, running, &addDirTask::quit);
+    connect(running, &QThread::finished, this, &ImageGallery::slot_isReady);
+
+    if(count() != 0) clear();
+    running->start();
+    mReady = false;
 }
 
 void ImageGallery::concurrentAddDir(const QList<QImage> imageList)
@@ -132,6 +157,11 @@ void ImageGallery::concurrentAddDir(const QList<QImage> imageList)
 
     auto *addDirParallel = new addDirTask(this, imageList);
     QThreadPool::globalInstance()->start(addDirParallel);
+}
+
+void ImageGallery::slot_isReady()
+{
+    mReady = true;
 }
 
 
@@ -168,10 +198,18 @@ QSize ImageGallery::sizeHint() const
     return minimumSizeHint();
 }
 
-void ImageGallery::clearAndStop(){
+void ImageGallery::clearAndStop()
+{
     emit sig_stopLoading();
-    clear();
+    while(!mReady){
+        QApplication::processEvents();
+        QThread::sleep(1);
+    };
+    if(count() != 0) clear();
 }
+
+
+
 
 
 
