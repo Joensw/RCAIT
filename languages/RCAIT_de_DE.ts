@@ -155,6 +155,25 @@
     </message>
 </context>
 <context>
+    <name>ClassificationResultsWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Compare Classification Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Results </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compare ...</source>
+        <translation type="unfinished">Vergleiche ...</translation>
+    </message>
+</context>
+<context>
     <name>ConfigurationController</name>
     <message>
         <source>Please specifiy all paths uniquely before proceeding.</source>
@@ -552,15 +571,30 @@ The application will terminate</source>
     <name>ProjectController</name>
     <message>
         <source>Name must contain at least 1 character</source>
-        <translation>Der Name muss mindestens aus einem Zeichen bestehen</translation>
+        <translation type="vanished">Der Name muss mindestens aus einem Zeichen bestehen</translation>
     </message>
     <message>
         <source>Name may not contain special characters</source>
-        <translation>Der Name darf keine Sonderzeichen enthalten</translation>
+        <translation type="vanished">Der Name darf keine Sonderzeichen enthalten</translation>
     </message>
     <message>
         <source>A project with this name aleady exists in the project directory</source>
-        <translation>Dieser Projektname ist bereits vergeben</translation>
+        <translation type="vanished">Dieser Projektname ist bereits vergeben</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>Name must contain at least 1 character</source>
+        <translation type="unfinished">Der Name muss mindestens aus einem Zeichen bestehen</translation>
+    </message>
+    <message>
+        <source>Name may not contain special characters</source>
+        <translation type="unfinished">Der Name darf keine Sonderzeichen enthalten</translation>
+    </message>
+    <message>
+        <source>A project with this name aleady exists in the project directory</source>
+        <translation type="unfinished">Dieser Projektname ist bereits vergeben</translation>
     </message>
 </context>
 <context>
@@ -605,7 +639,7 @@ The application will terminate</source>
     </message>
     <message>
         <source>Top Accuracies</source>
-        <translation type="unfinished">Top-Genauigkeiten</translation>
+        <translation type="obsolete">Top-Genauigkeiten</translation>
     </message>
     <message>
         <source>Run 1</source>
@@ -693,30 +727,14 @@ The application will terminate</source>
     </message>
     <message>
         <source>Compare ...</source>
-        <translation type="unfinished">Vergleiche ...</translation>
-    </message>
-    <message>
-        <source>Compare Training Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Compare Classification Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Seite</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Vergleiche ...</translation>
     </message>
 </context>
 <context>
     <name>SettingsController</name>
     <message>
         <source>Settings have not been updated, there is a conflict.
- paths may not be identical and must exist, this includes new and unchanged paths</source>
+paths may not be identical and must exist, this includes new and unchanged paths</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -800,10 +818,6 @@ Wähle ein Projekt aus, um loszulegen</translation>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
-    <message>
-        <source>Update</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>TrainingResultView</name>
@@ -822,6 +836,29 @@ Wähle ein Projekt aus, um loszulegen</translation>
     <message>
         <source>Confusion Matrix</source>
         <translation type="unfinished">Konfusionsmatrix</translation>
+    </message>
+</context>
+<context>
+    <name>TrainingResultsWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Compare Training Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Top Accuracies</source>
+        <translation type="unfinished">Top-Genauigkeiten</translation>
+    </message>
+    <message>
+        <source>Save Results </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compare ...</source>
+        <translation type="unfinished">Vergleiche ...</translation>
     </message>
 </context>
 <context>
