@@ -3,8 +3,6 @@
 
 
 #include <QWidget>
-#include <QMenu>
-#include <QPushButton>
 #include <results/trainingresult.h>
 #include <ui_resultswidget.h>
 #include "classificationresult.h"
@@ -27,34 +25,18 @@ public:
 
     void addClassificationResult(ClassificationResult *result);
 
-    TopAccuraciesView *getTopAccuraciesView();
+    TrainingResultsWidget* getTrainingResultsWidget();
+
+    ClassificationResultsWidget* getClassificationResultsWidget();
 
 signals:
 
     void sig_saveResults();
 
-    void sig_loadTrainingDataToCompare(const QString& runNameToCompare, TrainingResultView* view);
-
 private:
     Ui::ResultsWidget *ui;
-    QPushButton *pushButton_addResult = new QPushButton(this);
-    QMenu *menu_addRun = new QMenu(pushButton_addResult);
-    QMap<QString, QWidget*> m_mapTrainingResultTabs;
-
-    TrainingResultView *createTrainingResultTab(const QString &tabName);
-    void deleteTrainingResultTab(const QString &tabName);
-
-    void dummyFunctionTest();
-
-    void retranslateUi();
-
-    void configure_compareRunButton();
-
-    void configure_compareRunMenu();
-
-private slots:
-
-    void slot_comparisonMenu_triggered(QAction *action);
+    TrainingResultsWidget* m_trainingResultsWidget;
+    ClassificationResultsWidget* m_classificationResultsWidget;
 
 };
 

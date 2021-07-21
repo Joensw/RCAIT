@@ -6,16 +6,17 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
     m_resultsProcessor = new ResultsProcessor();
 
     //Training Results
+    auto trainingResultsWidget = m_resultsWidget->getTrainingResultsWidget();
     // Connect 'Top Accuracies Table' related signals/slots
-    connect(m_resultsWidget->getTopAccuraciesView(),&TopAccuraciesView::sig_requestTopAccuraciesGraphics, m_resultsProcessor,
+    connect(trainingResultsWidget->getTopAccuraciesView(),&TopAccuraciesView::sig_requestTopAccuraciesGraphics, m_resultsProcessor,
             &ResultsProcessor::slot_generateTopAccuraciesGraphics);
-    connect(m_resultsWidget->getTopAccuraciesView(),&TopAccuraciesView::sig_accuraciesTable_rowAdded, m_resultsProcessor,
+    connect(trainingResultsWidget->getTopAccuraciesView(),&TopAccuraciesView::sig_accuraciesTable_rowAdded, m_resultsProcessor,
             &ResultsProcessor::slot_addedRow_topAccuraciesTable);
-    connect(m_resultsWidget->getTopAccuraciesView(),&TopAccuraciesView::sig_accuraciesTable_rowRemoved, m_resultsProcessor,
+    connect(trainingResultsWidget->getTopAccuraciesView(),&TopAccuraciesView::sig_accuraciesTable_rowRemoved, m_resultsProcessor,
             &ResultsProcessor::slot_removedRow_topAccuraciesTable);
 
     //Connect 'Compare Run' related signals/slots
-    connect(m_resultsWidget, &ResultsWidget::sig_loadTrainingDataToCompare, m_resultsProcessor,
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_loadTrainingDataToCompare, m_resultsProcessor,
             &ResultsProcessor::slot_loadTrainingDataToCompare);
 
 
