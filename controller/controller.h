@@ -14,13 +14,22 @@
 
 #include <QObject>
 
-
+/**
+ * @brief The Controller class creates and holds all the specific controllers and the application main window
+ */
 class Controller : public QObject {
 Q_OBJECT
 public:
+    /**
+     * @brief Controller a Controller with the given parameters. Initialises all the other controllers and the data manager
+     * @param parent optional parent object
+     */
     explicit Controller(QObject *parent = nullptr);
 
 public slots:
+    /**
+     * @brief slot_configurationComplete shows the main window of the application
+     */
     void slot_configurationComplete();
 
 private:
