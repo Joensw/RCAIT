@@ -37,7 +37,7 @@ signals:
     void sig_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver);
 
 private slots:
-    void on_pushButton_updateGraphics_pressed();
+    void slot_pushButton_updateGraphics_pressed();
 
 private:
     Ui::TopAccuraciesView *ui;

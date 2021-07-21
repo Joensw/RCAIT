@@ -16,6 +16,10 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
     h_header->setSectionResizeMode(QHeaderView::Stretch);
     v_header->setSectionResizeMode(QHeaderView::Fixed);
     configure_updateGraphicsButton();
+
+    //Internal signals/slots
+    connect(m_pushButton_updateGraphics, &QAbstractButton::pressed, this,
+            &TopAccuraciesView::slot_pushButton_updateGraphics_pressed);
 }
 
 void TopAccuraciesView::addTableRow(const QString &identifier, double top1, double top5) {
@@ -72,7 +76,7 @@ void TopAccuraciesView::setTopAccuraciesGraphics(QGraphicsItem *topAccuraciesIma
     view->setScene(scene);
 }
 
-void TopAccuraciesView::on_pushButton_updateGraphics_pressed() {
+void TopAccuraciesView::slot_pushButton_updateGraphics_pressed() {
     emit sig_requestTopAccuraciesGraphics(this);
 }
 
@@ -81,8 +85,6 @@ void TopAccuraciesView::configure_updateGraphicsButton() {
     m_pushButton_updateGraphics = ui->tableWidget_topAccuracies->findChild<QAbstractButton *>();
     if (m_pushButton_updateGraphics) {
         m_pushButton_updateGraphics->setIcon(icon);
-        connect(m_pushButton_updateGraphics, &QPushButton::pressed, this,
-                &TopAccuraciesView::on_pushButton_updateGraphics_pressed);
     }
 }
 
