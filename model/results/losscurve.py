@@ -1,13 +1,12 @@
 # confusion_matrix
 import argparse
 import ast
-import itertools
 import sys
 
+import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.ticker import MaxNLocator, PercentFormatter
 from scipy.interpolate import make_interp_spline
-import matplotlib.pyplot as plt
 
 # No display of plot
 plt.ioff()
@@ -17,7 +16,6 @@ def plot_loss_curve(lossdata, file):
     np.set_printoptions(precision=2)
     np.set_printoptions(suppress=True)
     # lossdata is a (epochs) x 3 matrix
-    # at least 4 epochs are required
     print('Loss Curve data')
     print(lossdata)
 
@@ -28,8 +26,10 @@ def plot_loss_curve(lossdata, file):
 
     # Chart line creation
     ax = plt.figure().gca()
-    model_train = make_interp_spline(epochs, train)
-    model_val = make_interp_spline(epochs, validation)
+
+    # Default ist k=3. If there are not enough points, choose a smaller k >= 0
+    model_train = make_interp_spline(epochs, train, k=max(0, min(len(epochs) - 1, 3)))
+    model_val = make_interp_spline(epochs, validation, k=max(0, min(len(epochs) - 1, 3)))
     epochs_x = np.linspace(1, len(epochs), 500)
     train_y = model_train(epochs_x)
     validation_y = model_val(epochs_x)
