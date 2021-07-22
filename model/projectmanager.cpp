@@ -4,8 +4,6 @@
 #include <QRegularExpression>
 
 
-QString projectDirectory = "../projects";
-
 //names of the subfolders in the project directory
 //NOTE: it should be possible to change these, havent tested this yet
 QString resultsDirectoryName = "results";
@@ -39,7 +37,7 @@ void ProjectManager::createNewProject(QString projectName)
     QString absolute = projectDir.absolutePath();
 
     newProjectfile.setValue(projectNameIdentifier, projectName);
-    newProjectfile.setValue(projectDirectoryIdentifier_projectsFile, absolute);
+    //newProjectfile.setValue(projectDirectoryIdentifier_projectsFile, absolute);
     newProjectfile.setValue(projectDatasetDirectoryIdentifier, datasetDirectoryName);
     newProjectfile.setValue(projectTempDirectoryIdentifier, tempDirectoryName);
 
@@ -78,9 +76,9 @@ void ProjectManager::loadProject(QString projectName) {
 
     QSettings projectfile(loadProjectPath, QSettings::IniFormat);
 
-    //todo replace strings with constants
     mProjectName = projectfile.value(projectNameIdentifier).toString();
-    mProjectPath = projectfile.value(projectDirectoryIdentifier_projectsFile).toString();
+    mProjectPath = mProjectsDirectory + "/" + projectName;
+    //mProjectPath = projectfile.value(projectDirectoryIdentifier_projectsFile).toString();
     mProjectDataSetDir = mProjectPath + "/" + projectfile.value(projectDatasetDirectoryIdentifier).toString();
     mProjectTempDir = mProjectPath + "/" + projectfile.value(projectTempDirectoryIdentifier).toString();
     mProjectResultsDir = mProjectPath + "/" + resultsDirectoryName;
