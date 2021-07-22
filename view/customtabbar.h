@@ -14,10 +14,15 @@
 #include <QtWidgets/QTabBar>
 #include <QStyleOptionTab>
 
-
+/**
+ * @brief The CustomTabBar class is used in the CustomTabWidget
+ */
 class CustomTabBar : public QTabBar
 {
 public:
+    /**
+     * @brief CustomTabBar create a new CustomTabBar
+     */
     CustomTabBar();
 protected:
     void paintEvent(QPaintEvent *);

@@ -23,6 +23,9 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+/**
+ * @brief The MainWindow class is the primary UI for the application and houses all critical features.
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -32,6 +35,10 @@ protected:
     void changeEvent(QEvent*) override;
 
 public:
+    /**
+     * @brief MainWindow creates a new MainWindow
+     * @param parent
+     */
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -44,11 +51,14 @@ public:
     ImageSection* getImageSectionWidget();
 
 signals:
+    /**
+     * @brief sig_openSettings emitted when the settings UI is to be opened
+     */
     void sig_openSettings();
 
 private slots:
+    //slots correspond with the identically named button in the UI
     void slot_settingsButton_clicked();
-
     void on_pushButton_openProject_clicked();
 
 private:
