@@ -14,6 +14,8 @@ public:
     [[nodiscard]] QList<QImage> getAdditionalResults();
 
     [[nodiscard]] QString getTimestamp();
+
+    static QString generateIdentifier();
 };
 
 

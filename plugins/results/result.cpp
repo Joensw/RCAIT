@@ -3,8 +3,12 @@
 
 Result::Result(const QList<QImage> &additionalResults) {
     m_additionalResults = additionalResults;
+    m_timestamp = generateIdentifier();
+}
+
+QString Result::generateIdentifier(){
     auto date = QDateTime::currentDateTime();
-    m_timestamp = date.toString("dd_MM_yy+hh-mm");
+    return date.toString("dd_MM_yy#hh-mm-ss");
 }
 
 QList<QImage> Result::getAdditionalResults() {

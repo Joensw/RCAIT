@@ -3,7 +3,7 @@
 
 ResultsProcessor::ResultsProcessor() {
     //TODO Create identifier utility class which creates date/time identifier statically
-    m_topAccuraciesGraphics = new TopAccuraciesGraphics("TODO");
+    m_topAccuraciesGraphics = new TopAccuraciesGraphics(Result::generateIdentifier());
 }
 
 void ResultsProcessor::slot_generateTopAccuraciesGraphics(AbstractGraphicsView *receiver) {
