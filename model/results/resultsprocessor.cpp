@@ -1,4 +1,5 @@
 #include <projectmanager.h>
+#include <classificationresultview.h>
 #include "resultsprocessor.h"
 
 ResultsProcessor::ResultsProcessor() {
@@ -48,4 +49,8 @@ void ResultsProcessor::slot_loadTrainingImagesToCompare(const QString &runNameTo
 void ResultsProcessor::slot_loadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view) {
     view->addTableRow(runNameToCompare, QRandomGenerator::global()->bounded(100), QRandomGenerator::global()->bounded(100));
     //TODO Load real accuracy data from JSON file
+}
+
+void ResultsProcessor::slot_loadClassificationDataToCompare(const QString &runNameToCompare, ClassificationResultView *view) {
+    //TODO Load data from JSON file
 }

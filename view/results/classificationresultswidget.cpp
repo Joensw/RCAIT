@@ -11,6 +11,7 @@ ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
 
     connect(menu_addRun, &QMenu::triggered, this, &ClassificationResultsWidget::slot_comparisonMenu_triggered);
 
+    //TODO Replace dummy (without it, comparison menu won't appear)
     ui->tabWidget_classificationresults->addTab(new QWidget(), "DUMMY");
     configure_compareRunButton();
     configure_compareRunMenu();
@@ -44,7 +45,15 @@ void ClassificationResultsWidget::addClassificationResult(ClassificationResult *
 }
 
 void ClassificationResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
-//TODO: Fill
+    const QString &runNameToCompare = action->text();
+    if (action->isChecked()) {
+        auto tab = createClassificationResultTab(runNameToCompare);
+        emit sig_loadClassificationDataToCompare(runNameToCompare, tab);
+        //TODO Implementation/design of classification results graphic w/ stacked barcharts
+        //emit sig_loadClassificationImagesToCompare(runNameToCompare, topAccuracies);
+    } else {
+        deleteClassificationResultTab(runNameToCompare);
+    }
 }
 
 void ClassificationResultsWidget::changeEvent(QEvent *event) {
@@ -68,4 +77,18 @@ void ClassificationResultsWidget::retranslateUi() {
 ClassificationResultsWidget::~ClassificationResultsWidget()
 {
     delete ui;
+}
+
+ClassificationResultView *ClassificationResultsWidget::createClassificationResultTab(const QString &tabName) {
+    auto *tab = new ClassificationResultView(this);
+    ui->tabWidget_classificationresults->addTab(tab, tabName);
+    m_mapClassificationResultTabs[tabName] = tab;
+    return tab;
+}
+
+void ClassificationResultsWidget::deleteClassificationResultTab(const QString &tabName) {
+    auto *tabWidget = ui->tabWidget_classificationresults;
+    auto tab = m_mapClassificationResultTabs.take(tabName);
+    auto index = tabWidget->indexOf(tab);
+    tabWidget->removeTab(index);
 }

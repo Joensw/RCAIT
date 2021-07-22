@@ -25,6 +25,8 @@ public slots:
 
     void slot_loadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view);
 
+    void slot_loadClassificationDataToCompare(const QString &runNameToCompare, ClassificationResultView *view);
+
 private:
     TopAccuraciesGraphics *m_topAccuraciesGraphics;
 

@@ -5,14 +5,19 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
     m_resultsWidget = resultsWidget;
     m_resultsProcessor = new ResultsProcessor();
 
-    //Training Results
+    /*
+     * Training Results
+     */
     auto trainingResultsWidget = m_resultsWidget->getTrainingResultsWidget();
     // Connect 'Top Accuracies Table' related signals/slots
-    connect(trainingResultsWidget->getTopAccuraciesView(),&TopAccuraciesView::sig_requestTopAccuraciesGraphics, m_resultsProcessor,
+    connect(trainingResultsWidget->getTopAccuraciesView(), &TopAccuraciesView::sig_requestTopAccuraciesGraphics,
+            m_resultsProcessor,
             &ResultsProcessor::slot_generateTopAccuraciesGraphics);
-    connect(trainingResultsWidget->getTopAccuraciesView(),&TopAccuraciesView::sig_accuraciesTable_rowAdded, m_resultsProcessor,
+    connect(trainingResultsWidget->getTopAccuraciesView(), &TopAccuraciesView::sig_accuraciesTable_rowAdded,
+            m_resultsProcessor,
             &ResultsProcessor::slot_addedRow_topAccuraciesTable);
-    connect(trainingResultsWidget->getTopAccuraciesView(),&TopAccuraciesView::sig_accuraciesTable_rowRemoved, m_resultsProcessor,
+    connect(trainingResultsWidget->getTopAccuraciesView(), &TopAccuraciesView::sig_accuraciesTable_rowRemoved,
+            m_resultsProcessor,
             &ResultsProcessor::slot_removedRow_topAccuraciesTable);
 
     //Connect 'Compare Run' related signals/slots
@@ -20,6 +25,16 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
             &ResultsProcessor::slot_loadTrainingImagesToCompare);
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_loadAccuracyDataToCompare, m_resultsProcessor,
             &ResultsProcessor::slot_loadAccuracyDataToCompare);
+
+/*
+ * Classification Results
+ */
+    auto classificationResultsWidget = m_resultsWidget->getClassificationResultsWidget();
+
+    //Connect 'Compare Run' related signals/slots
+    connect(classificationResultsWidget, &ClassificationResultsWidget::sig_loadClassificationDataToCompare,
+            m_resultsProcessor,
+            &ResultsProcessor::slot_loadClassificationDataToCompare);
 
     //Connect ResultsWidget to ResultsController
     connect(m_resultsWidget, &ResultsWidget::sig_saveResults, this, &ResultsController::slot_saveResult);
@@ -35,9 +50,9 @@ void ResultsController::addClassificationResult(ClassificationResult *result) {
 }
 
 void ResultsController::updateComparisonResultOverview(TrainingResult *result) {
-//TODO Fill
+//TODO Useless
 }
 
 void ResultsController::slot_saveResult() {
-//TODO Fill
+//TODO Move
 }

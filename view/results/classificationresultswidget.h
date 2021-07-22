@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QMenu>
 #include <classificationresult.h>
+#include "classificationresultview.h"
 
 namespace Ui {
 class ClassificationResultsWidget;
@@ -35,9 +36,18 @@ private:
 
     void retranslateUi();
 
+    ClassificationResultView *createClassificationResultTab(const QString &tabName);
+
+    void deleteClassificationResultTab(const QString &tabName);
+
 private slots:
 
     void slot_comparisonMenu_triggered(QAction *action);
+
+signals:
+
+    void sig_loadClassificationDataToCompare(const QString &runNameToCompare, ClassificationResultView *view);
+
 };
 
 #endif // CLASSIFICATIONRESULTSWIDGET_H
