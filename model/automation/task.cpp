@@ -3,6 +3,8 @@
 #include "task.h"
 #include "trainingcommand.h"
 
+#include <QApplication>
+
 
 Task::Task(QVariantMap map, DataManager *dataManager)
 {
@@ -40,16 +42,25 @@ Task::Task(QVariantMap map, DataManager *dataManager)
 
 void Task::run()
 {
-    for(Command* cmd: mCommandList){
-        if(!cmd->execute()){
-            mState = FAILED;
-            sig_stateChanged(mState);
-            //TODO optional parameter "undoOnFail" and the according undo implementation
-            return;
-        }
-        commandsDone++;
+    if (commandsDone >= mCommandList.count()){
+        mState = COMPLETED;
+        emit sig_stateChanged(mState);
+        return;
     }
+    int tempCommandsDone = commandsDone;
+    if (!mCommandList.at(commandsDone)->execute()) {
+        mState = FAILED;
+        emit sig_stateChanged(mState);
+        return;
+    }
+    while(tempCommandsDone == commandsDone){
+        QApplication::processEvents();
+        QThread::sleep(1);
+    }
+    run();
 }
+
+
 
 QString Task::getName()
 {
@@ -64,6 +75,7 @@ bool Task::isValid()
 void Task::slot_makeProgress(int progress)
 {
     int localProgress = (commandsDone * 100 + progress) / (mCommandList.size() * 100);
+    if(progress == 100) commandsDone++;
     emit sig_progress(localProgress);
 }
 
