@@ -21,11 +21,11 @@ void ConfigurationController::slot_directoriesSpecified(QString projectsDir, QSt
         emit sig_configurationComplete();
         return;
     }
-    mConfigurationDialog->setError(tr("Please specifiy all paths uniquely before proceeding."));
+    mConfigurationDialog->showError();
 }
 
 void  ConfigurationController::verify(){
-    if (!mDataManager->verifyDirectories()) { //paths can't be verified maybe a folder was deleted
+    if (!mDataManager->verifyDirectories()) {
         mConfigurationDialog->open();
         return;
     }

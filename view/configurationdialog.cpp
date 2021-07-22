@@ -29,7 +29,6 @@ void ConfigurationDialog::closeEvent(QCloseEvent *event)
                                         QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel);
         switch (ret) {
         case QMessageBox::Ok:
-            emit sig_forceClose();
             event->accept();
             break;
         case QMessageBox::Cancel:
@@ -46,9 +45,9 @@ void ConfigurationDialog::reject()
     this->close();
 }
 
-void ConfigurationDialog::setError(QString error)
+void ConfigurationDialog::showError()
 {
-    ui->label_error->setText(error);
+    ui->label_error->setText(tr("Please specifiy all paths uniquely before proceeding."));
     ui->label_error->show();
 }
 

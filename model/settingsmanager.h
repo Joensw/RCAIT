@@ -14,8 +14,7 @@ extern const QString GLOBAL_SETTINGS_LOCATION;
  * The SettingsManager contains logic for global settings of the application as well as plugin specific settings
  * @brief The SettingsManager class contains the logic for for the settings UI
  */
-class SettingsManager
-{
+class SettingsManager{
 public:
     SettingsManager(); //might also become a singleton? TODO
     /**
@@ -66,6 +65,17 @@ public:
      * @return the absolute path to the current image loader plugin directory
      */
     QString getImageLoaderPluginDir();
+
+    /**
+     * @brief applyGlobalSettings changes the program paths acording to parameters, if they are resolvable.
+     * @param projectsDir the new projects directory
+     * @param classificationPluginDir the new classification plugin directory
+     * @param imageLoaderPluginDir the new image loader pluign directory
+     * @param error optional argument, if an error occurs it will be written to here
+     * @return true if the new paths could be applied, false otherwise
+     */
+    bool applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
+                             QString * error = nullptr, int * pathsChanged = nullptr);
 
     /**
      * @return the names of all loaded image loader plugins

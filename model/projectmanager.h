@@ -10,7 +10,7 @@
 /**
  * @brief The ProjectManager class contains the logic for manipulating the projects of the application
  */
-class ProjectManager {
+class ProjectManager{
 public:
     //Threadsafe Singleton pattern
     ProjectManager(ProjectManager const &) = delete;
@@ -112,12 +112,7 @@ public:
      * @param newDirectory the new projects directory
      */
     void setProjectsDirectory(QString newDirectory);
-signals:
 
-    /**
-     * @brief sig_projectDirectoryChanged emitted when the projects directory changes, to let view elements know to update
-     */
-    void sig_projectDirectoryChanged();
 private:
     bool verifyName(QString input, QString * error);
 

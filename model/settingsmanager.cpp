@@ -122,6 +122,52 @@ QString SettingsManager::getImageLoaderPluginDir(){
     return mGlobalSettings->value(imageLoaderPluginDirectoryIdentifier).toString();
 }
 
+bool SettingsManager::applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
+                                          QString *error, int * pathsChanged){
+
+    int pathsChangedTemp = 0;
+    QString tempProjectsDir = getProjectsDir();
+    QString tempClassificationPluginDir = getClassificationPluginDir();
+    QString tempImageLoaderPluginDir = getImageLoaderPluginDir();
+
+    //Check if there is an actual update to any of the paths
+    if (!projectsDir.isEmpty()) {
+        pathsChangedTemp++;
+        tempProjectsDir = projectsDir;
+    }
+    if (!classificationPluginDir.isEmpty()) {
+        //todo signal analog to above
+        pathsChangedTemp++;
+        tempClassificationPluginDir = classificationPluginDir;
+    }
+    if (!imageLoaderPluginDir.isEmpty()) {
+        pathsChangedTemp++;
+        tempImageLoaderPluginDir = imageLoaderPluginDir;
+    }
+
+    //check if all paths are allowed and if any of them are overlapping
+    if (verifyPaths(tempProjectsDir, tempClassificationPluginDir, tempImageLoaderPluginDir)){
+        saveProjectsDir(tempProjectsDir);
+        saveClassificationPluginDir(tempClassificationPluginDir);
+        saveImageLoaderPluginDir(tempImageLoaderPluginDir);
+
+        if (pathsChanged != nullptr){
+            *pathsChanged = pathsChangedTemp;
+        }
+
+        return true;
+
+    }
+    if (error != nullptr){
+        *error = "Settings have not been updated, there is a conflict.\n"
+             "paths may not be identical and must exist, this includes new and unchanged paths";
+    }
+    if (pathsChanged != nullptr){
+        *pathsChanged = 0;
+    }
+    return false;
+}
+
 QStringList SettingsManager::getImageLoaderPluginNames() {
     return mImageLoaderPluginManager->getNamesOfPlugins();
 }

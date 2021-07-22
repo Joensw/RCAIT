@@ -44,6 +44,9 @@ public:
     void saveImageLoaderPluginDir(QString value);
     QString getImageLoaderPluginDir();
     QStringList getImageLoaderPluginNames();
+    bool applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
+                             QString * error = nullptr, int * pathsChanged = nullptr);
+
 
     void saveClassificationResult(ClassificationResult result);
     void saveTrainingsResult(TrainingResult result);

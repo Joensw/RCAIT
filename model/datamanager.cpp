@@ -127,4 +127,14 @@ QStringList DataManager::getImageLoaderPluginNames() {
     return mSettingsManager->getImageLoaderPluginNames();
 }
 
+bool DataManager::applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir, QString *error, int *pathsChanged)
+{
+    if(mSettingsManager->applyGlobalSettings(projectsDir, classificationPluginDir, imageLoaderPluginDir, error, pathsChanged)){
+            mProjectManager->setProjectsDirectory(projectsDir);
+            return true;
+    }
+    return false;
+
+}
+
 
