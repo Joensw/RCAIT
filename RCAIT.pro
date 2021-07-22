@@ -86,9 +86,11 @@ SOURCES += \
     view/removemodeldialog.cpp \
     view/removeprojectdialog.cpp \
     view/results/canvas.cpp \
+    view/results/classificationresultswidget.cpp \
     view/results/classificationresultview.cpp \
     view/results/resultswidget.cpp \
     view/results/topaccuraciesview.cpp \
+    view/results/trainingresultswidget.cpp \
     view/results/trainingresultview.cpp \
     view/settingsview.cpp \
     view/startwidget.cpp \
@@ -163,9 +165,11 @@ HEADERS += \
     view/removeprojectdialog.h \
     view/results/abstractgraphicsview.h \
     view/results/canvas.h \
+    view/results/classificationresultswidget.h \
     view/results/classificationresultview.h \
     view/results/resultswidget.h \
     view/results/topaccuraciesview.h \
+    view/results/trainingresultswidget.h \
     view/results/trainingresultview.h \
     view/settingsview.h \
     view/startwidget.h \
@@ -189,8 +193,10 @@ FORMS += \
     view/aitrainingwidget.ui \
     view/automationwidget.ui \
     view/inputimageswidget.ui \
+    view/results/classificationresultswidget.ui \
     view/results/classificationresultview.ui \
     view/results/topaccuraciesview.ui \
+    view/results/trainingresultswidget.ui \
     view/settingsview.ui
 
 TRANSLATIONS += \

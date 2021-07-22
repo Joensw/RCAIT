@@ -151,6 +151,29 @@
     </message>
 </context>
 <context>
+    <name>ClassificationResultsWidget</name>
+    <message>
+        <location filename="../view/results/classificationresultswidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/results/classificationresultswidget.ui" line="20"/>
+        <source>Compare Classification Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/results/classificationresultswidget.ui" line="75"/>
+        <source>Save Results </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/results/classificationresultswidget.cpp" line="65"/>
+        <source>Compare ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConfigurationController</name>
     <message>
         <location filename="../controller/configurationcontroller.cpp" line="24"/>
@@ -316,47 +339,47 @@ The application will terminate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="180"/>
+        <location filename="../importfileswidget.ui" line="183"/>
         <source>Image Count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="200"/>
+        <location filename="../importfileswidget.ui" line="203"/>
         <source>40%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="225"/>
+        <location filename="../importfileswidget.ui" line="228"/>
         <source>Load Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="246"/>
+        <location filename="../importfileswidget.ui" line="249"/>
         <source>Model 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="256"/>
+        <location filename="../importfileswidget.ui" line="259"/>
         <source>Model 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="266"/>
+        <location filename="../importfileswidget.ui" line="269"/>
         <source>Model 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="294"/>
+        <location filename="../importfileswidget.ui" line="297"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="305"/>
+        <location filename="../importfileswidget.ui" line="308"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importfileswidget.ui" line="316"/>
+        <location filename="../importfileswidget.ui" line="319"/>
         <source>Load</source>
         <translation type="unfinished"></translation>
     </message>
@@ -490,21 +513,21 @@ The application will terminate</source>
     </message>
 </context>
 <context>
-    <name>ProjectController</name>
+    <name>QObject</name>
     <message>
-        <location filename="../controller/projectcontroller.cpp" line="26"/>
+        <location filename="../model/projectmanager.cpp" line="131"/>
         <source>Name must contain at least 1 character</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../controller/projectcontroller.cpp" line="33"/>
+        <location filename="../model/projectmanager.cpp" line="139"/>
         <source>Name may not contain special characters</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../controller/projectcontroller.cpp" line="41"/>
+        <location filename="../model/projectmanager.cpp" line="148"/>
         <source>A project with this name aleady exists in the project directory</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -551,38 +574,8 @@ The application will terminate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resultswidget.ui" line="36"/>
-        <source>Compare Training Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="97"/>
-        <source>Save </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="129"/>
-        <source>Compare Classification Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="160"/>
-        <source>Seite</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="71"/>
-        <source>Top Accuracies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resultswidget.ui" line="123"/>
+        <location filename="../resultswidget.ui" line="35"/>
         <source>Classification Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/results/resultswidget.cpp" line="157"/>
-        <source>Compare ...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -591,7 +584,7 @@ The application will terminate</source>
     <message>
         <location filename="../controller/settingscontroller.cpp" line="66"/>
         <source>Settings have not been updated, there is a conflict.
- paths may not be identical and must exist, this includes new and unchanged paths</source>
+paths may not be identical and must exist, this includes new and unchanged paths</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -608,17 +601,17 @@ The application will terminate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.cpp" line="100"/>
+        <location filename="../view/settingsview.cpp" line="104"/>
         <source>Select project directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.cpp" line="110"/>
+        <location filename="../view/settingsview.cpp" line="114"/>
         <source>Select classification plugin directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.cpp" line="120"/>
+        <location filename="../view/settingsview.cpp" line="124"/>
         <source>Select image loader plugin directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -668,11 +661,6 @@ Select a project to get started</source>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../view/results/topaccuraciesview.ui" line="42"/>
-        <source>Update</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>TrainingResultView</name>
@@ -694,6 +682,34 @@ Select a project to get started</source>
     <message>
         <location filename="../trainingresultview.ui" line="80"/>
         <source>Confusion Matrix</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TrainingResultsWidget</name>
+    <message>
+        <location filename="../view/results/trainingresultswidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/results/trainingresultswidget.ui" line="20"/>
+        <source>Compare Training Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/results/trainingresultswidget.ui" line="55"/>
+        <source>Top Accuracies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/results/trainingresultswidget.ui" line="84"/>
+        <source>Save Results </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/results/trainingresultswidget.cpp" line="146"/>
+        <source>Compare ...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

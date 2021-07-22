@@ -20,6 +20,5 @@ bool TrainingCommand::execute()
 {
     if(parsingFailed) return false;
     mTrainer->start();
-    mTrainer->wait();
     return true;
 }

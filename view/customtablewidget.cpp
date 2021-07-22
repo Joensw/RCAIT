@@ -1,9 +1,13 @@
 #include "customtablewidget.h"
 
 CustomTableWidget::CustomTableWidget(QWidget *parent) : QTableWidget(parent) {
-    auto *btn = findChild<QAbstractButton *>();
-    if (btn)
-        btn->installEventFilter(this);
+    auto *cornerButton = getCornerButton();
+    if (cornerButton)
+        cornerButton->installEventFilter(this);
+}
+
+QAbstractButton *CustomTableWidget::getCornerButton(){
+    return findChild<QAbstractButton *>();
 }
 
 bool CustomTableWidget::eventFilter(QObject *o, QEvent *e) {

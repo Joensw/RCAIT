@@ -23,6 +23,12 @@ public:
      * @return status of the event
      */
     bool eventFilter(QObject *o, QEvent *e) override;
+
+    /**
+     * Tries to find the 'hidden' corner button from Qt's original implementation
+     * @return pointer to button or nullptr otherwise
+     */
+    QAbstractButton *getCornerButton();
 };
 
 #endif //CUSTOMTABLEWIDGET_H

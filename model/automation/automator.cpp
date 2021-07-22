@@ -98,7 +98,7 @@ QList<QString> Automator::getQueuedTasks()
 
 void Automator::slot_makeProgress(int progress)
 {
-    int localProgress =(tasksCompleted * 100 + progress) / (mQueuedTasks.size() * 100);
+    int localProgress = (tasksCompleted * 100 + progress) / (mQueuedTasks.size() * 100);
     emit sig_progress(localProgress);
 }
 
