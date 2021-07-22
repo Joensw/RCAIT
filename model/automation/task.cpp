@@ -42,6 +42,10 @@ Task::Task(QVariantMap map, DataManager *dataManager)
 
 void Task::run()
 {
+    if (commandsDone == 0){
+        mState = PERFORMING;
+        emit sig_stateChanged(mState);
+    }
     if (commandsDone >= mCommandList.count()){
         mState = COMPLETED;
         emit sig_stateChanged(mState);

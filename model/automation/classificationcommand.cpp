@@ -20,7 +20,5 @@ bool ClassificationCommand::execute()
 {
     if(parsingFailed) return false;
     mClassifier->start();
-    //TODO dont wait, loop in progressable till progress 100 reported should work
-    mClassifier->wait();
     return true;
 }
