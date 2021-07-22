@@ -21,6 +21,7 @@ public:
     explicit ConfigurationController(QObject *parent = nullptr, DataManager *dataManager = nullptr);
 
     /**
+     * If the paths are not resolvable the configuration UI will open, otherwise a signal to symbolize a successful configuration will be emitted
      * @brief verify checks if application critical paths are set correctly
      */
     void verify();

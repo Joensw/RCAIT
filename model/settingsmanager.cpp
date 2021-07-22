@@ -33,8 +33,8 @@ QStringList SettingsManager::getClassificationPluginBase(QString plugin)
 bool SettingsManager::verifyDirectories()
 {
     if (mGlobalSettings->contains(projectDirectoryIdentifier_settingsFile)
-        && mGlobalSettings->contains(classificationPluginDirectoryIdentifier)
-        && mGlobalSettings->contains(imageLoaderPluginDirectoryIdentifier)) {
+            && mGlobalSettings->contains(classificationPluginDirectoryIdentifier)
+            && mGlobalSettings->contains(imageLoaderPluginDirectoryIdentifier)) {
         //all keys exist and have values
 
         //extract values
@@ -50,8 +50,8 @@ bool SettingsManager::verifyDirectories()
 bool SettingsManager::verifyPaths(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory)
 {
     if (projectsDirectory == classificationPluginDirectory ||
-        projectsDirectory == imageLoaderDirectory ||
-        classificationPluginDirectory == imageLoaderDirectory) {
+            projectsDirectory == imageLoaderDirectory ||
+            classificationPluginDirectory == imageLoaderDirectory) {
         return false;
     }
 
@@ -130,13 +130,13 @@ bool SettingsManager::applyGlobalSettings(QString projectsDir, QString classific
     QString tempClassificationPluginDir = getClassificationPluginDir();
     QString tempImageLoaderPluginDir = getImageLoaderPluginDir();
 
+
     //Check if there is an actual update to any of the paths
     if (!projectsDir.isEmpty()) {
         pathsChangedTemp++;
         tempProjectsDir = projectsDir;
     }
     if (!classificationPluginDir.isEmpty()) {
-        //todo signal analog to above
         pathsChangedTemp++;
         tempClassificationPluginDir = classificationPluginDir;
     }

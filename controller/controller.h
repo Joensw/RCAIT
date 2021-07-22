@@ -18,7 +18,7 @@
  * @brief The Controller class creates and holds all the specific controllers and the application main window
  */
 class Controller : public QObject {
-Q_OBJECT
+    Q_OBJECT
 public:
     /**
      * @brief Controller a Controller with the given parameters. Initialises all the other controllers and the data manager
