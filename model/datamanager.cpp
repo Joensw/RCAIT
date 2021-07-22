@@ -91,6 +91,7 @@ void DataManager::savePluginSettings(int index){
     mSettingsManager->savePluginSettings(index);
 }
 void DataManager::saveProjectsDir(QString value){
+    qDebug() << value;
     mSettingsManager->saveProjectsDir(value);
     mProjectManager->setProjectsDirectory(value);
 }
@@ -130,7 +131,7 @@ QStringList DataManager::getImageLoaderPluginNames() {
 bool DataManager::applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir, QString *error, int *pathsChanged)
 {
     if(mSettingsManager->applyGlobalSettings(projectsDir, classificationPluginDir, imageLoaderPluginDir, error, pathsChanged)){
-            mProjectManager->setProjectsDirectory(projectsDir);
+            mProjectManager->setProjectsDirectory(getProjectsDir());
             return true;
     }
     return false;
