@@ -18,7 +18,7 @@ void ResultsProcessor::slot_removedRow_topAccuraciesTable(const QString &identif
     m_topAccuraciesGraphics->removeDataRow(identifier);
 }
 
-void ResultsProcessor::slot_loadTrainingDataToCompare(const QString &runNameToCompare, TrainingResultView *view) {
+void ResultsProcessor::slot_loadTrainingImagesToCompare(const QString &runNameToCompare, TrainingResultView *view) {
     auto dirPath = ProjectManager::getInstance().getResultsDir();
     auto dir = QDir(dirPath + '/' + runNameToCompare);
 
@@ -42,5 +42,10 @@ void ResultsProcessor::slot_loadTrainingDataToCompare(const QString &runNameToCo
             continue;
         }
     }
-    //TODO Load Top1% and Top5%, and load most misclassified images.
+    //TODO Load most misclassified images.
+}
+
+void ResultsProcessor::slot_loadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view) {
+    view->addTableRow(runNameToCompare, QRandomGenerator::global()->bounded(100), QRandomGenerator::global()->bounded(100));
+    //TODO Load real accuracy data from JSON file
 }

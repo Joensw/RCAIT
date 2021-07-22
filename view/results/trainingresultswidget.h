@@ -51,7 +51,9 @@ private:
 
 signals:
 
-    void sig_loadTrainingDataToCompare(const QString &runNameToCompare, TrainingResultView *view);
+    void sig_loadTrainingImagesToCompare(const QString &runNameToCompare, TrainingResultView *view);
+
+    void sig_loadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view);
 
 private slots:
 

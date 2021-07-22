@@ -2,10 +2,12 @@
 #define RESULTSPROCESSOR_H
 
 
-#include "topaccuraciesgraphics.h"
 #include <QString>
 #include <QMap>
+#include <QRandomGenerator>
 #include <trainingresultview.h>
+#include <topaccuraciesview.h>
+#include "topaccuraciesgraphics.h"
 
 class ResultsProcessor : public QObject{
     Q_OBJECT
@@ -19,7 +21,9 @@ public slots:
 
     void slot_removedRow_topAccuraciesTable(const QString &identifier);
 
-    void slot_loadTrainingDataToCompare(const QString& runNameToCompare, TrainingResultView* view);
+    void slot_loadTrainingImagesToCompare(const QString& runNameToCompare, TrainingResultView* view);
+
+    void slot_loadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view);
 
 private:
     TopAccuraciesGraphics *m_topAccuraciesGraphics;

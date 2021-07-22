@@ -120,8 +120,8 @@ void TrainingResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
     const QString &runNameToCompare = action->text();
     if (action->isChecked()) {
         auto tab = createTrainingResultTab(runNameToCompare);
-        emit sig_loadTrainingDataToCompare(runNameToCompare, tab);
-        topAccuracies->addTableRow(runNameToCompare, QRandomGenerator::global()->bounded(100), QRandomGenerator::global()->bounded(100));
+        emit sig_loadTrainingImagesToCompare(runNameToCompare, tab);
+        emit sig_loadAccuracyDataToCompare(runNameToCompare, topAccuracies);
     } else {
         deleteTrainingResultTab(runNameToCompare);
         topAccuracies->removeTableRow(runNameToCompare);

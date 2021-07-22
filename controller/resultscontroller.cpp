@@ -16,9 +16,10 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
             &ResultsProcessor::slot_removedRow_topAccuraciesTable);
 
     //Connect 'Compare Run' related signals/slots
-    connect(trainingResultsWidget, &TrainingResultsWidget::sig_loadTrainingDataToCompare, m_resultsProcessor,
-            &ResultsProcessor::slot_loadTrainingDataToCompare);
-
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_loadTrainingImagesToCompare, m_resultsProcessor,
+            &ResultsProcessor::slot_loadTrainingImagesToCompare);
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_loadAccuracyDataToCompare, m_resultsProcessor,
+            &ResultsProcessor::slot_loadAccuracyDataToCompare);
 
     //Connect ResultsWidget to ResultsController
     connect(m_resultsWidget, &ResultsWidget::sig_saveResults, this, &ResultsController::slot_saveResult);
