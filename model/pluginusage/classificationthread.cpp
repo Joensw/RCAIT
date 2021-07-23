@@ -5,3 +5,8 @@ ClassificationThread::ClassificationThread(Progressable *receiver, QString image
 {
 
 }
+
+ClassificationResult *ClassificationThread::getResult()
+{
+
+}

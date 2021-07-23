@@ -13,6 +13,7 @@ ClassificationCommand::ClassificationCommand(QVariantMap map, Progressable* rece
     }
 
     mClassifier = new ClassificationThread(receiver, imagePath, modelName, aiPluginName);
+    connect(mClassifier, &ClassificationThread::finished, this, &ClassificationCommand::slot_saveResult);
 
 }
 
@@ -21,4 +22,14 @@ bool ClassificationCommand::execute()
     if(parsingFailed) return false;
     mClassifier->start();
     return true;
+}
+
+void ClassificationCommand::slot_saveResult()
+{
+    ClassificationResult* result = mClassifier->getResult();
+    if (result == nullptr){
+        //emit sig_failed() or something
+        return;
+    }
+    emit sig_saveResult(*result);
 }

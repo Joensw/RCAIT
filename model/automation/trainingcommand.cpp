@@ -13,6 +13,7 @@ TrainingCommand::TrainingCommand(QVariantMap map, Progressable* receiver)
     }
 
     mTrainer = new TrainingsThread(receiver, imagePath, modelName, aiPluginName);
+    connect(mTrainer, &TrainingsThread::finished, this, &TrainingCommand::slot_saveResult);
 
 }
 
@@ -22,3 +23,14 @@ bool TrainingCommand::execute()
     mTrainer->start();
     return true;
 }
+
+void TrainingCommand::slot_saveResult()
+{
+    TrainingResult* result = mTrainer->getResult();
+    if (result == nullptr){
+        //emit sig_failed() or something
+        return;
+    }
+    emit sig_saveResult(*result);
+}
+
