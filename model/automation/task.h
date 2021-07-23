@@ -15,24 +15,81 @@ enum TaskState
     COMPLETED
 };
 
+/**
+ * @brief The Task class is responsible for executing (multiple) commands.
+ *
+ */
 class Task : public Progressable
 {
     Q_OBJECT
 public:
+
+    /**
+     * @brief Task constructs a Task.
+     *
+     * @param map stores information for commands.
+     * @param dataManager source of general information.
+     */
     Task(QVariantMap map, DataManager *dataManager);
+
+    /**
+     * @brief getName returns name of the Task.
+     *
+     * @return Task name.
+     */
     QString getName();
+
+    /**
+     * @brief run executes all commands of the Task.
+     *
+     */
     void run();
+
+    /**
+     * @brief isValid returns validity of Task.
+     *
+     * @return true if task is valid (parsing successfull), else false.
+     */
     bool isValid();
 
 public slots:
+
+    /**
+     * @brief slot_makeProgress defines behavior when accepting progress signals.
+     *
+     * @param progress number in percent.
+     */
     void slot_makeProgress(int progress) override;
 
+    /**
+     * @brief slot_saveTrainingResult saves training result.
+     *
+     * @param result training result.
+     */
     void slot_saveTrainingResult(TrainingResult result);
+
+    /**
+     * @brief slot_saveClassificationResult saves classification result.
+     *
+     * @param result classification result.
+     */
     void slot_saveClassificationResult(ClassificationResult result);
 
 
 signals:
+
+    /**
+     * @brief sig_stateChanged signals changing task state.
+     *
+     * @param newState new task state.
+     */
     void sig_stateChanged(TaskState newState);
+
+    /**
+     * @brief sig_progress signals progress of task.
+     *
+     * @param progress number in percent.
+     */
     void sig_progress(int progress);
 
 
