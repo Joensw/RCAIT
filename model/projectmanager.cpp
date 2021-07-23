@@ -5,10 +5,12 @@
 
 
 //names of the subfolders in the project directory
-//NOTE: it should be possible to change these, havent tested this yet
+//These can be changed, however projects based on the old naming scheme become unreadable
 QString resultsDirectoryName = "results";
 QString datasetDirectoryName = "data";
 QString tempDirectoryName = "temp";
+QString trainingsResultsDirectoryName = "training_results";
+QString classificationResultsDirectoryName = "classification_results";
 
 //keys of the <String, String> pair in the project file
 QString projectNameIdentifier = "projectName";
@@ -41,11 +43,16 @@ void ProjectManager::createNewProject(QString projectName)
     newProjectfile.setValue(projectDatasetDirectoryIdentifier, datasetDirectoryName);
     newProjectfile.setValue(projectTempDirectoryIdentifier, tempDirectoryName);
 
-    //make temp and Data subdirectories
+    //make temp, results and Data subdirectories
     QDir dir;
     dir.mkpath(absolute + "/" +  datasetDirectoryName);
     dir.mkpath(absolute + "/" + tempDirectoryName);
     dir.mkpath(absolute + "/" +  resultsDirectoryName);
+
+    //make subdirectories for results
+
+     dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + trainingsResultsDirectoryName);
+     dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + classificationResultsDirectoryName);
 }
 
 QStringList ProjectManager::getProjects() {
