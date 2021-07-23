@@ -33,7 +33,6 @@ SOURCES += \
     controller/settingscontroller.cpp \
     controller/resultscontroller.cpp \
     model/datamanager.cpp \
-    model/automation/addprojectcommand.cpp \
     model/automation/automator.cpp \
     model/automation/command.cpp \
     model/automation/classificationcommand.cpp \
@@ -108,7 +107,6 @@ HEADERS += \
     controller/settingscontroller.h \
     controller/resultscontroller.h \
     model/datamanager.h \
-    model/automation/addprojectcommand.h \
     model/automation/automator.h \
     model/automation/command.h \
     model/automation/classificationcommand.h \

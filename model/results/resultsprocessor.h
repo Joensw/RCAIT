@@ -7,6 +7,7 @@
 #include <QRandomGenerator>
 #include <trainingresultview.h>
 #include <topaccuraciesview.h>
+#include <classificationresultview.h>
 #include "topaccuraciesgraphics.h"
 
 class ResultsProcessor : public QObject{
