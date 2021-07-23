@@ -1,5 +1,7 @@
 #include "classificationcommand.h"
 
+#include <classificationpluginmanager.h>
+
 
 ClassificationCommand::ClassificationCommand(QVariantMap map, Progressable* receiver)
 {
@@ -10,6 +12,14 @@ ClassificationCommand::ClassificationCommand(QVariantMap map, Progressable* rece
     if (imagePath.isNull() || modelName.isNull() || aiPluginName.isNull()){
         parsingFailed = true;
         return;
+    }
+
+    QWidget* inputWidget = ClassificationPluginManager::getInstance().getInputWidget(aiPluginName);
+
+    auto end = map.end();
+    for(auto it = map.begin(); it != end; ++it){
+        const char* charstring = it.key().toUtf8().data();
+        inputWidget->setProperty(charstring, it.value());
     }
 
     mClassifier = new ClassificationThread(receiver, imagePath, modelName, aiPluginName);

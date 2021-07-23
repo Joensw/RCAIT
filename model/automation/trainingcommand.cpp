@@ -1,5 +1,7 @@
 #include "trainingcommand.h"
 
+#include <classificationpluginmanager.h>
+
 
 TrainingCommand::TrainingCommand(QVariantMap map, Progressable* receiver)
 {
@@ -11,6 +13,15 @@ TrainingCommand::TrainingCommand(QVariantMap map, Progressable* receiver)
         parsingFailed = true;
         return;
     }
+
+    QWidget* inputWidget = ClassificationPluginManager::getInstance().getInputWidget(aiPluginName);
+
+    auto end = map.end();
+    for(auto it = map.begin(); it != end; ++it){
+        const char* charstring = it.key().toUtf8().data();
+        inputWidget->setProperty(charstring, it.value());
+    }
+
 
     mTrainer = new TrainingsThread(receiver, imagePath, modelName, aiPluginName);
     connect(mTrainer, &TrainingsThread::finished, this, &TrainingCommand::slot_saveResult);
