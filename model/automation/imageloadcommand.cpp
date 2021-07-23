@@ -1,5 +1,5 @@
 #include "imageloadcommand.h"
-
+#include "imageloaderpluginmanager.h"
 
 
 ImageLoadCommand::ImageLoadCommand(QVariantMap map, Progressable* receiver)
@@ -15,6 +15,15 @@ ImageLoadCommand::ImageLoadCommand(QVariantMap map, Progressable* receiver)
         parsingFailed = true;
         return;
     }
+
+    QWidget* inputWidget = ImageLoaderPluginManager::getInstance().getInputWidget(imagePluginName);
+
+    auto end = map.end();
+    for(auto it = map.begin(); it != end; ++it){
+        const char* charstring = it.key().toUtf8().data();
+        inputWidget->setProperty(charstring, it.value());
+    }
+
 
     mImageSearcher = new ImageSearchThread(receiver, imagePath, imagePluginName, count, labels);
 
