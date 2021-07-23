@@ -45,6 +45,11 @@ bool LossCurve::operator!=(const LossCurve &other) const {
     return m_data != other.m_data;
 }
 
+QMap<int, QPair<double, double> > LossCurve::getData()
+{
+    return m_data;
+}
+
 void LossCurve::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
     receiver->setLossCurve(graphics);

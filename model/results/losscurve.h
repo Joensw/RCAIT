@@ -15,6 +15,8 @@ public:
     bool operator==(const LossCurve& other) const;
     bool operator!=(const LossCurve& other) const;
 
+    QMap<int, QPair<double, double>> getData();
+
 private:
     QMap<int, QPair<double, double>> m_data;
     void generateGraphicsInternal(const QString& fullFilePath) override;

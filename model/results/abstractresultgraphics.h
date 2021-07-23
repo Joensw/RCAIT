@@ -23,6 +23,8 @@ public:
 
     void generateGraphics(AbstractGraphicsView *receiver);
 
+    QString getIdentifier();
+
 protected:
     static void launch_externalGraphicsGenerator(const QString &command, const QStringList &args);
 

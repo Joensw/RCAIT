@@ -75,6 +75,16 @@ bool ConfusionMatrix::operator!=(const ConfusionMatrix other) const {
     return !(*this == other);
 }
 
+QStringList ConfusionMatrix::getClassLabels()
+{
+    return m_classLabels;
+}
+
+QList<int> ConfusionMatrix::getValues()
+{
+    return m_values;
+}
+
 void ConfusionMatrix::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
     receiver->setConfusionMatrix(graphics);

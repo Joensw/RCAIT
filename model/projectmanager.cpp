@@ -1,4 +1,7 @@
 #include "projectmanager.h"
+#include "confusionmatrix.h"
+#include "losscurve.h"
+
 #include <QDir>
 #include <QSettings>
 #include <QRegularExpression>
@@ -89,6 +92,8 @@ void ProjectManager::loadProject(QString projectName) {
     mProjectDataSetDir = mProjectPath + "/" + projectfile.value(projectDatasetDirectoryIdentifier).toString();
     mProjectTempDir = mProjectPath + "/" + projectfile.value(projectTempDirectoryIdentifier).toString();
     mProjectResultsDir = mProjectPath + "/" + resultsDirectoryName;
+
+    qDebug() << getNamesOfSavedTrainingResults();
 }
 
 QString ProjectManager::getProjectPath() {
@@ -106,22 +111,121 @@ QString ProjectManager::getProjectDataSetDir() {
 QString ProjectManager::getResultsDir() {
     return mProjectResultsDir;
 }
-
+/* Currently this is not readable by a human because it is in binary format.
+ * the information is recoverable by opening a datastream to the file and reading the contents in
+ * order they were entered and then building a new ClassificationResult object from this.
+ * ie out << map << list1 << list2 is read with in >> map >> list 1 >> list
+ */
 void ProjectManager::saveClassificationResult(ClassificationResult result) {
+    QFile file(mProjectResultsDir + "/" + result.generateIdentifier());
 
+    if (!file.open(QIODevice::WriteOnly)){
+        qDebug() << "Could not save classification results";
+        return;
+    }
+
+    QDataStream out(&file);
+    out.setVersion(QDataStream::Qt_6_1);
+
+    out << result.getClassificationData() << result.getLabels() << result.getAdditionalResults();
+
+    file.flush();
+    file.close();
 }
 
 void ProjectManager::saveTrainingsResult(TrainingResult result) {
+    QFile file(mProjectResultsDir + "/" + result.generateIdentifier());
 
+    if (!file.open(QIODevice::WriteOnly)){
+        qDebug() << "Could not save training results";
+        return;
+    }
+
+    QDataStream out(&file);
+    out.setVersion(QDataStream::Qt_6_1);
+
+    ConfusionMatrix * cmTemp = result.getConfusionMatrix();
+    LossCurve * lcTemp = result.getLossCurve();
+
+    QString identifierCM = cmTemp->getIdentifier();
+    QStringList classLabels = cmTemp->getClassLabels();
+    QList<int> values= cmTemp->getValues();
+
+    QMap<int, QPair<double, double>> data = lcTemp->getData();
+    QString identiferLC = lcTemp->getIdentifier();
+
+    QList<QImage> additionalResults = result.getAdditionalResults();
+
+    out << result.getTop1Accuracy() << result.getTop5Accuracy() << result.getMostMisclassifiedImages()
+        << identifierCM << classLabels << values << data << identiferLC << additionalResults;
+
+    file.flush();
+    file.close();
 }
 
 TrainingResult ProjectManager::getTrainingsResult(QString modelResultName) {
+    QFile file(mProjectResultsDir + "/" + modelResultName);
 
+    if (!file.open(QIODevice::WriteOnly)){
+        qDebug() << "Could not open training results";
+        //return;
+    }
+
+    QDataStream in(&file);
+    in.setVersion(QDataStream::Qt_6_1);
+
+    QString identifierCM;
+    QStringList classLabels;
+    QList<int> values;
+
+    QMap<int, QPair<double, double>> data;
+    QString identiferLC;
+
+    double top1Acc;
+    double top5Acc;
+    QList<QImage> mostMisclassifiedImages;
+
+    QList<QImage> additionalResults;
+
+    in >> top1Acc >> top5Acc >> mostMisclassifiedImages >> identifierCM >> classLabels >> values >> data >> identiferLC >> additionalResults;
+
+    //reconstruct Confusion matrix
+    ConfusionMatrix * confMatrix = new ConfusionMatrix(identifierCM, classLabels, values);
+    //QSharedPointer<ConfusionMatrix> confMatrix = QSharedPointer<ConfusionMatrix>(new ConfusionMatrix(identifierCM, classLabels, values));
+    //reconstruct loss curve
+    LossCurve * lossCurve = new LossCurve(identiferLC, data);
+    //QSharedPointer<LossCurve> lossCurve = QSharedPointer<LossCurve>(new LossCurve(identiferLC, data));
+    //reconstruct training result
+    TrainingResult constructedTR(lossCurve, confMatrix, mostMisclassifiedImages, top1Acc, top5Acc, additionalResults);
+
+    file.close();
+
+    return constructedTR;
 }
 
 QStringList ProjectManager::getNamesOfSavedTrainingResults() {
-    QStringList l;
-    return l;
+    if (mProjectPath.isEmpty()) {
+        qDebug() << "should not have been called yet, no project has been opened";
+    }
+    QString trainingResults = mProjectPath + "/" + resultsDirectoryName + "/" + trainingsResultsDirectoryName;
+    if (!mProjectPath.isEmpty()){
+        QDir trainingResultsDir(trainingResults);
+
+        QStringList filters;
+        filters << "*.txt";
+        trainingResultsDir.setNameFilters(filters);
+
+        trainingResultsDir.setFilter(QDir::Files | QDir::NoDotAndDotDot);
+
+        QFileInfoList filelist = trainingResultsDir.entryInfoList();
+        QStringList fileNameList;
+        for(QFileInfo f: filelist){
+            fileNameList.append(f.baseName());
+        }
+        return fileNameList ;
+    }
+    QStringList empty;
+    return empty;
 }
 
 void ProjectManager::setProjectsDirectory(QString newDirectory)

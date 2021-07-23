@@ -20,6 +20,9 @@ public:
     bool operator==(ConfusionMatrix other) const;
     bool operator!=(ConfusionMatrix other) const;
 
+    //needed for serialisation
+    QStringList getClassLabels();
+    QList<int> getValues();
 private:
     QStringList m_classLabels;
     qsizetype m_size;

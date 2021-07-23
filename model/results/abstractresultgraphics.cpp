@@ -37,6 +37,12 @@ void AbstractResultGraphics::generateGraphics(AbstractGraphicsView *receiver) {
     QThreadPool::globalInstance()->start(generateGraphicsTask);
 }
 
+QString AbstractResultGraphics::getIdentifier()
+{
+    return m_identifier;
+}
+
+
 void AbstractResultGraphics::launch_externalGraphicsGenerator(const QString &command, const QStringList &args) {
     auto *process = new QProcess();
 
