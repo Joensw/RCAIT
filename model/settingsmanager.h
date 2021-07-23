@@ -16,6 +16,10 @@ extern const QString GLOBAL_SETTINGS_LOCATION;
  */
 class SettingsManager{
 public:
+
+    /**
+     * @brief SettingsManager create a new SettingsManager
+     */
     SettingsManager(); //might also become a singleton? TODO
     /**
      * @return a list of the names of all the plugins that were loaded
@@ -72,6 +76,7 @@ public:
      * @param classificationPluginDir the new classification plugin directory
      * @param imageLoaderPluginDir the new image loader pluign directory
      * @param error optional argument, if an error occurs it will be written to here
+     * @param pathChanged optional argument, the amount of paths updated will be written here
      * @return true if the new paths could be applied, false otherwise
      */
     bool applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
@@ -89,7 +94,7 @@ public:
 
     /**
      * @param basesOf the classification plugin
-     * @return list of of the bases a particular classification plugin
+     * @return list of the bases of a particular classification plugin
      */
     QStringList getClassificationPluginBase(QString basesOf);
 

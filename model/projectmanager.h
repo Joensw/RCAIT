@@ -59,19 +59,19 @@ public:
     QStringList getProjects();
 
     /**
-     * @brief will return null string if no project is opened
+     * @brief getProjectPath will return null string if no project is opened
      * @return absolute path to the currently opened project's subdirectory
      */
     QString getProjectPath();
 
     /**
-     * @brief will return null string if no project is opened
+     * @brief getProjectTempDir will return null string if no project is opened
      * @return absolute path to the temporary directory of the currently opened project
      */
     QString getProjectTempDir();
 
     /**
-     * @brief will return null string if no project is opened
+     * @brief getProjectDataSetDir will return null string if no project is opened
      * @return absoulute path to the data set directory of the currently opened project
      */
     QString getProjectDataSetDir();
@@ -82,27 +82,29 @@ public:
      */
     QString getResultsDir();
 
-    /** TODO
-     * @brief saveClassificationResult
+    /** Serialises the object in a binary format, it is not readable to a human.
+     *  The object is saved to the classifcation result sub directory
+     * @brief saveClassificationResult serialises and saves a classification results object
      * @param result
      */
     void saveClassificationResult(ClassificationResult result);
 
-    /** TODO
-     * @brief saveTrainingsResult
+    /** Serialises the object in a binary format, it is not readable to a human.
+     *  The object is saved to the training result sub directory
+     * @brief saveTrainingsResult serialises and saves a training result object.
      * @param result
      */
     void saveTrainingsResult(TrainingResult result);
 
-    /** TODO
-     * @brief getTrainingsResult
-     * @param modelResultName
-     * @return
+    /**
+     * @brief getTrainingsResult rebuilds a TrainingResult object
+     * @param modelResultName name of the file the object is to be built from
+     * @return the rebuilt object
      */
     TrainingResult getTrainingsResult(QString modelResultName);
 
-    /** TODO
-     * @brief getNamesOfSavedTrainingResults
+    /** Only .txt files are returns and within the list they have no file ending
+     * @brief getNamesOfSavedTrainingResults returns the names of all the files in the trainings results folder
      * @return
      */
     QStringList getNamesOfSavedTrainingResults();
