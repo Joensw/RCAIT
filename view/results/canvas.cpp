@@ -3,12 +3,6 @@
 
 Canvas::Canvas(bool autoScale) : QGraphicsView() {
     m_autoScale = autoScale;
-    setAutoScale(m_autoScale);
-}
-
-void Canvas::setAutoScale(bool autoScale) {
-    setHorizontalScrollBarPolicy(m_autoScale ? Qt::ScrollBarAlwaysOff : Qt::ScrollBarAsNeeded);
-    setVerticalScrollBarPolicy(m_autoScale ? Qt::ScrollBarAlwaysOff : Qt::ScrollBarAsNeeded);
 }
 
 void Canvas::paintEvent(QPaintEvent *pQEvent) {
@@ -19,6 +13,6 @@ void Canvas::paintEvent(QPaintEvent *pQEvent) {
     QGraphicsView::paintEvent(pQEvent);
 }
 
-bool Canvas::autoScale() const {
+bool Canvas::getAutoScale() const {
     return m_autoScale;
 }

@@ -11,6 +11,10 @@ void ResultsProcessor::slot_generateTopAccuraciesGraphics(AbstractGraphicsView *
     m_topAccuraciesGraphics->generateGraphics(receiver);
 }
 
+void ResultsProcessor::slot_generateClassificationResultGraphics(AbstractGraphicsView *receiver) {
+ //TODO
+}
+
 void ResultsProcessor::slot_addedRow_topAccuraciesTable(const QString &identifier, double top1, double top5) {
     m_topAccuraciesGraphics->addDataRow(identifier, top1, top5);
 }
@@ -47,10 +51,12 @@ void ResultsProcessor::slot_loadTrainingImagesToCompare(const QString &runNameTo
 }
 
 void ResultsProcessor::slot_loadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view) {
-    view->addTableRow(runNameToCompare, QRandomGenerator::global()->bounded(100), QRandomGenerator::global()->bounded(100));
+    view->addTableRow(runNameToCompare, QRandomGenerator::global()->bounded(100),
+                      QRandomGenerator::global()->bounded(100));
     //TODO Load real accuracy data from JSON file
 }
 
-void ResultsProcessor::slot_loadClassificationDataToCompare(const QString &runNameToCompare, ClassificationResultView *view) {
+void ResultsProcessor::slot_loadClassificationDataToCompare(const QString &runNameToCompare,
+                                                            ClassificationResultView *view) {
     //TODO Load data from JSON file
 }
