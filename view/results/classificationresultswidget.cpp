@@ -4,9 +4,8 @@
 #include "ui_classificationresultswidget.h"
 
 ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ClassificationResultsWidget)
-{
+        QWidget(parent),
+        ui(new Ui::ClassificationResultsWidget) {
     ui->setupUi(this);
 
     connect(menu_addRun, &QMenu::triggered, this, &ClassificationResultsWidget::slot_comparisonMenu_triggered);
@@ -15,6 +14,7 @@ ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
     ui->tabWidget_classificationresults->addTab(new QWidget(), "DUMMY");
     configure_compareRunButton();
     configure_compareRunMenu();
+
 }
 
 void ClassificationResultsWidget::configure_compareRunMenu() {
@@ -74,8 +74,7 @@ void ClassificationResultsWidget::retranslateUi() {
     pushButton_addResult->setText(tr("Compare ..."));
 }
 
-ClassificationResultsWidget::~ClassificationResultsWidget()
-{
+ClassificationResultsWidget::~ClassificationResultsWidget() {
     delete ui;
 }
 
@@ -83,6 +82,9 @@ ClassificationResultView *ClassificationResultsWidget::createClassificationResul
     auto *tab = new ClassificationResultView(this);
     ui->tabWidget_classificationresults->addTab(tab, tabName);
     m_mapClassificationResultTabs[tabName] = tab;
+
+    //Forward signals
+    connect(tab, &ClassificationResultView::sig_requestClassificationResultGraphics, this, &ClassificationResultsWidget::slot_requestClassificationResultGraphics);
     return tab;
 }
 
@@ -91,4 +93,9 @@ void ClassificationResultsWidget::deleteClassificationResultTab(const QString &t
     auto tab = m_mapClassificationResultTabs.take(tabName);
     auto index = tabWidget->indexOf(tab);
     tabWidget->removeTab(index);
+}
+
+void ClassificationResultsWidget::slot_requestClassificationResultGraphics(AbstractGraphicsView *receiver) {
+    //Forwarded signal
+    emit sig_requestClassificationResultGraphics(receiver);
 }

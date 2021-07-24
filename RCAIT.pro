@@ -50,6 +50,7 @@ SOURCES += \
     model/pluginusage/trainingsthread.cpp \
     model/projectmanager.cpp \
     model/results/abstractresultgraphics.cpp \
+    model/results/classificationgraphics.cpp \
     model/results/confusionmatrix.cpp \
     model/results/losscurve.cpp \
     model/results/resultsprocessor.cpp \
@@ -124,6 +125,7 @@ HEADERS += \
     model/pluginusage/trainingsthread.h \
     model/projectmanager.h \
     model/results/abstractresultgraphics.h \
+    model/results/classificationgraphics.h \
     model/results/confusionmatrix.h \
     model/results/losscurve.h \
     model/results/resultsprocessor.h \

@@ -24,9 +24,6 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
 
 void TopAccuraciesView::addTableRow(const QString &identifier, double top1, double top5) {
     QTableWidget *table = ui->tableWidget_topAccuracies;
-    //Convert doubles to String with 2 decimal spots precision
-    auto top1Str = QString::number(top1, 'G', 5);
-    auto top5Str = QString::number(top5, 'G', 5);
 
     int row = table->rowCount();
     table->insertRow(row);
@@ -34,15 +31,15 @@ void TopAccuraciesView::addTableRow(const QString &identifier, double top1, doub
 
     //Fill table row
     auto identifierItem = new QTableWidgetItem(identifier);
-    auto top1StrItem = new QTableWidgetItem(top1Str);
-    auto top5StrItem = new QTableWidgetItem(top5Str);
-
-    top1StrItem->setTextAlignment(Qt::AlignCenter);
-    top5StrItem->setTextAlignment(Qt::AlignCenter);
-
-    table->setVerticalHeaderItem(row, identifierItem);
-    table->setItem(row, 0, top1StrItem);
-    table->setItem(row, 1, top5StrItem);
+    int col = 0;
+    for (const auto &value : {top1,top5}){
+        //Convert doubles to String with 2 decimal spots precision
+        auto valueStr = QString::number(value, 'G', 5);
+        auto valueStrItem = new QTableWidgetItem(valueStr);
+        valueStrItem->setTextAlignment(Qt::AlignCenter);
+        table->setVerticalHeaderItem(row, identifierItem);
+        table->setItem(row, col++, valueStrItem);
+    }
 }
 
 void TopAccuraciesView::removeTableRow(const QString &identifier) {
