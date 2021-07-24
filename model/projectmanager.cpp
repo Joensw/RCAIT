@@ -219,7 +219,7 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
 
         QFileInfoList filelist = trainingResultsDir.entryInfoList();
         QStringList fileNameList;
-        for(QFileInfo f: filelist){
+        for(const QFileInfo &f: filelist){
             fileNameList.append(f.baseName());
         }
         return fileNameList ;

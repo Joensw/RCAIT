@@ -5,7 +5,6 @@
 #include <QObject>
 #include "classificationresult.h"
 #include "trainingresult.h"
-#include "classificationresult.h"
 
 /**
  * @brief The ProjectManager class contains the logic for manipulating the projects of the application
