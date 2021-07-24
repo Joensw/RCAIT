@@ -24,11 +24,11 @@
         <file>Resources/UISymbols/UI_Move_Left.svg</file>
         <file>Resources/UISymbols/UI_Move_Right.svg</file>
         <file>Resources/UISymbols/UI_Play_Icon.svg</file>
-        <file>Resources/TaskIcons/Task_Add.svg</file>
-        <file>Resources/TaskIcons/Task_Empty.svg</file>
-        <file>Resources/TaskIcons/Task_Error.svg</file>
-        <file>Resources/TaskIcons/Task_Success.svg</file>
-        <file>Resources/TaskIcons/Task_Running.svg</file>
+        <file>Resources/TaskIcons/Not_Scheduled.svg</file>
+        <file>Resources/TaskIcons/Scheduled.svg</file>
+        <file>Resources/TaskIcons/Failed.svg</file>
+        <file>Resources/TaskIcons/Completed.svg</file>
+        <file>Resources/TaskIcons/Performing.svg</file>
         <file>Resources/UISymbols/UI_Stop_Icon.svg</file>
         <file>Resources/UISymbols/UI_Add_Task.svg</file>
         <file>Resources/UISymbols/UI_Folder_Icon.svg</file>
