@@ -54,3 +54,8 @@ void ImageController::slot_handelImageLoadProgress(int progress)
 {
     m_importFilesWidget->updateProgressBar(progress);
 }
+
+void ImageController::slot_openProject()
+{
+    qDebug() << "Project chosen";
+}

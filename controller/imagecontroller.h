@@ -26,6 +26,7 @@ public slots:
     void slot_confirm();
     void slot_imagesReady();
     void slot_handelImageLoadProgress(int progress);
+    void slot_openProject();
     //Todo connect
 };
 

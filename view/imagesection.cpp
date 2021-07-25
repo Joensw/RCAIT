@@ -14,7 +14,7 @@ ImageSection::ImageSection(QWidget *parent) :
     ui->setupUi(this);
 
 
-
+/*
     ui->inputImages = new ImageGalleryTree(inputImagePath);
     ui->gridLayout->addWidget(ui->inputImages, 1, 0, 1, 1);
     ui->gridLayout->update();
@@ -22,7 +22,7 @@ ImageSection::ImageSection(QWidget *parent) :
      ui->trainingImages = new ImageGalleryTree(trainingImagePath );
      ui->gridLayout->addWidget(ui->trainingImages, 1, 1, 1, 1);
      ui->gridLayout->update();
-
+*/
 }
 
 

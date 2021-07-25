@@ -16,7 +16,7 @@ Controller::Controller(QObject *parent) : QObject(parent)
     mAutomationController = new AutomationController(mDataManger, mMainWindow->getAutomationWidget());
     mResultsController = new ResultsController(mDataManger, mMainWindow->getResultsWidget());
     mImageController = new ImageController(mMainWindow->getImageSectionWidget(),mMainWindow->getImportFilesWidget(),mDataManger);
-
+    connect(mMainWindow->getStartWidget(), &StartWidget::sig_openProject, mImageController, &ImageController::slot_openProject);
     connect(mSettingsController, &SettingsController::sig_projectDirectoryChanged, mProjectController, &ProjectController::slot_projectDirectoryChanged);
 
     mConfigurationController->verify();
