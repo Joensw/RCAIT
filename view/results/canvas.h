@@ -8,17 +8,17 @@ private:
     bool m_autoScale;
 
 public:
-    Canvas(bool autoScale = true);
+    explicit Canvas(bool autoScale = true);
 
-    virtual ~Canvas() = default;
+    ~Canvas() override = default;
 
-    [[nodiscard]] bool autoScale() const;
+    [[nodiscard]] bool getAutoScale() const;
 
     void setAutoScale(bool autoScale);
 
 protected:
 
-    virtual void paintEvent(QPaintEvent *pQEvent) override;
+    void paintEvent(QPaintEvent *pQEvent) override;
 };
 
 #endif // CANVAS_H

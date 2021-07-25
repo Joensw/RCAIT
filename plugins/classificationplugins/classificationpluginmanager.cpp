@@ -23,6 +23,7 @@ void ClassificationPluginManager::saveConfiguration(QString pluginName)
 
 QWidget *ClassificationPluginManager::getInputWidget(QString pluginName)
 {
+    if(m_plugins.isEmpty()) return new QWidget();
     return m_plugins.value(pluginName)->getConfigurationWidget();
 }
 

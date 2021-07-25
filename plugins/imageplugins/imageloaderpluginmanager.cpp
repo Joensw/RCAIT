@@ -36,6 +36,7 @@ void ImageLoaderPluginManager::saveConfiguration(QString pluginName) {
 }
 
 QWidget *ImageLoaderPluginManager::getInputWidget(QString pluginName) {
+    if(m_pluginsSharedPointer.isEmpty()) return new QWidget();
     return m_pluginsSharedPointer.value(pluginName)->getConfigurationWidget();
 }
 

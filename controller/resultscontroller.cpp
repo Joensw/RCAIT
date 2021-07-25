@@ -35,6 +35,7 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
     connect(classificationResultsWidget, &ClassificationResultsWidget::sig_loadClassificationDataToCompare,
             m_resultsProcessor,
             &ResultsProcessor::slot_loadClassificationDataToCompare);
+    connect(classificationResultsWidget, &ClassificationResultsWidget::sig_requestClassificationResultGraphics, m_resultsProcessor, &ResultsProcessor::slot_generateClassificationResultGraphics);
 
     //Connect ResultsWidget to ResultsController
     connect(m_resultsWidget, &ResultsWidget::sig_saveResults, this, &ResultsController::slot_saveResult);

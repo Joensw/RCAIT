@@ -10,6 +10,8 @@ public:
     virtual void setConfusionMatrix(QGraphicsItem *matrixImage) {};
 
     virtual void setTopAccuraciesGraphics(QGraphicsItem *topAccuraciesImage) {};
+
+    virtual void setClassificationGraphics(QGraphicsItem *classificationGraphicsImage) {};
 };
 
 #endif // ABSTRACTGRAPHICSVIEW_H

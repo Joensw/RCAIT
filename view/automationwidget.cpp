@@ -27,6 +27,10 @@ void AutomationWidget::slot_taskAdded(QString name)
 
 void AutomationWidget::slot_taskUpdate(QString name, QString state)
 {
+    if (state == "Not_Scheduled"){
+         ui->idleTasks->findItems(name, Qt::MatchExactly).at(0)->setIcon(QIcon(":/Resources/TaskIcons/Not_Scheduled.svg"));
+         return;
+    }
     QList<QListWidgetItem*> task = ui->queuedTasks->findItems(name, Qt::MatchExactly);
     //icons have to be named after states
     task.at(0)->setIcon(QIcon(":/Resources/TaskIcons/" + state + ".svg"));
@@ -70,8 +74,8 @@ void AutomationWidget::on_removeButton_clicked()
 void AutomationWidget::on_unqueueSelectedButton_clicked()
 {
     for (QModelIndex index : ui->queuedTasks->selectionModel()->selectedIndexes()){
+        ui->idleTasks->addItem(ui->queuedTasks->takeItem(index.row()));
         emit sig_unqueueSelected(index.row());
-        ui->idleTasks->addItem(ui->queuedTasks->item(index.row())->text());
     }
     qDeleteAll(ui->queuedTasks->selectedItems());
 }
@@ -80,8 +84,8 @@ void AutomationWidget::on_unqueueSelectedButton_clicked()
 void AutomationWidget::on_queueSelectedButton_clicked()
 {
     for (QModelIndex index : ui->idleTasks->selectionModel()->selectedIndexes()){
+        ui->queuedTasks->addItem(ui->idleTasks->takeItem(index.row()));
         emit sig_queueSelected(index.row());
-        ui->queuedTasks->addItem(ui->idleTasks->item(index.row())->text());
     }
     qDeleteAll(ui->idleTasks->selectedItems());
 }
@@ -89,25 +93,23 @@ void AutomationWidget::on_queueSelectedButton_clicked()
 
 void AutomationWidget::on_queueAllButton_clicked()
 {
-    emit sig_queueAll();
-
     int size = ui->idleTasks->count();
 
     for (int i = size - 1; i >= 0; i--){
         ui->queuedTasks->addItem(ui->idleTasks->takeItem(i));
     }
+    emit sig_queueAll();
 }
 
 
 void AutomationWidget::on_unqueueAllButton_clicked()
 {
-    emit sig_unqueueAll();
-
     int size = ui->queuedTasks->count();
 
     for (int i = size - 1; i >= 0; i--){
         ui->idleTasks->addItem(ui->queuedTasks->takeItem(i));
     }
+    emit sig_unqueueAll();
 }
 
 

@@ -13,9 +13,15 @@ Automator::Automator(DataManager *dataManager)
 void Automator::performTasks()
 {
     stop = false;
-    QList<Task*>::iterator i ;
+    QList<Task*>::iterator i;
+    tasksCompleted = 0;
 
     for (i = mQueuedTasks.begin(); i != mQueuedTasks.end() && !stop; ++i){
+        if ((*i)->getState() == COMPLETED || (*i)->getState() == FAILED){
+            tasksCompleted++;
+            continue;
+        }
+
         //TODO change Task so it is stoppable
         connect((*i), &Task::sig_progress, this, &Automator::slot_makeProgress);
         (*i)->run();
@@ -48,7 +54,7 @@ void Automator::addTasks(QString path)
     if (!task->isValid()) return;
     mUnqueuedTasks.append(task);
     emit sig_taskAdded(jsonMap.value("taskName").toString());
-
+    emit sig_taskUpdate(mUnqueuedTasks.last()->getName(), "Not_Scheduled");
 }
 
 void Automator::remove(int taskNum)
@@ -60,12 +66,14 @@ void Automator::unqueue(int taskNum)
 {
     mUnqueuedTasks.append(mQueuedTasks.at(taskNum));
     mQueuedTasks.remove(taskNum);
+    emit sig_taskUpdate(mUnqueuedTasks.last()->getName(), "Not_Scheduled");
 }
 
 void Automator::queue(int taskNum)
 {
     mQueuedTasks.append(mUnqueuedTasks.at(taskNum));
     mUnqueuedTasks.remove(taskNum);
+    emit sig_taskUpdate(mQueuedTasks.last()->getName(), "Scheduled");
 }
 
 int Automator::getUnqueuedSize()
