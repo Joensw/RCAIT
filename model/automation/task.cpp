@@ -71,6 +71,11 @@ QString Task::getName()
     return mName;
 }
 
+TaskState Task::getState()
+{
+    return mState;
+}
+
 bool Task::isValid()
 {
     return valid;

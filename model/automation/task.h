@@ -39,6 +39,16 @@ public:
      */
     QString getName();
 
+
+    /**
+     * @brief getState returns state of the Task.
+     *
+     * @return Task state.
+     */
+    TaskState getState(){
+        return mState;
+    }
+
     /**
      * @brief run executes all commands of the Task.
      *

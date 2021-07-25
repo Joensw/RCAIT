@@ -13,9 +13,15 @@ Automator::Automator(DataManager *dataManager)
 void Automator::performTasks()
 {
     stop = false;
-    QList<Task*>::iterator i ;
+    QList<Task*>::iterator i;
+    tasksCompleted = 0;
 
     for (i = mQueuedTasks.begin(); i != mQueuedTasks.end() && !stop; ++i){
+        if ((*i)->getState() == COMPLETED || (*i)->getState() == FAILED){
+            tasksCompleted++;
+            continue;
+        }
+
         //TODO change Task so it is stoppable
         connect((*i), &Task::sig_progress, this, &Automator::slot_makeProgress);
         (*i)->run();
