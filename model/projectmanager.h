@@ -6,6 +6,20 @@
 #include "classificationresult.h"
 #include "trainingresult.h"
 
+//names of the subfolders in the project directory
+//These can be changed, however projects based on the old naming scheme become unreadable
+extern const QString resultsDirectoryName;
+extern const QString datasetDirectoryName;
+extern const QString tempDirectoryName;
+extern const QString trainingsResultsDirectoryName;
+extern const QString classificationResultsDirectoryName;
+
+//keys of the <String, String> pair in the project file
+extern const QString projectNameIdentifier;
+extern const QString projectDirectoryIdentifier_projectsFile;
+extern const QString projectDatasetDirectoryIdentifier;
+extern const QString projectTempDirectoryIdentifier;
+
 /**
  * @brief The ProjectManager class contains the logic for manipulating the projects of the application
  */
