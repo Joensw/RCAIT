@@ -45,9 +45,7 @@ public:
      *
      * @return Task state.
      */
-    TaskState getState(){
-        return mState;
-    }
+    TaskState getState();
 
     /**
      * @brief run executes all commands of the Task.
