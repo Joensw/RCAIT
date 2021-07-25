@@ -27,8 +27,25 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 set(Sources
         test_imageinspectionmodel.cpp
         ../model/imageinspectionmodel.h
-        ../model/imageinspectionmodel.cpp)
+        ../model/imageinspectionmodel.cpp
 
+        test_projectmanager.cpp
+        ../model/projectmanager.h
+        ../model/projectmanager.cpp
+        ../plugins/results/classificationresult.cpp
+        ../plugins/results/classificationresult.h
+        ../plugins/results/trainingresult.cpp
+        ../plugins/results/trainingresult.h
+        ../plugins/results/result.cpp
+        ../plugins/results/result.h
+
+        ../model/results/confusionmatrix.cpp
+        ../model/results/confusionmatrix.h
+        ../model/results/losscurve.cpp
+        ../model/results/losscurve.h
+        ../model/results/abstractresultgraphics.cpp
+        ../model/results/abstractresultgraphics.h
+        )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 add_executable(Google_Tests_run ${Sources})
