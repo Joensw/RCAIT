@@ -6,8 +6,10 @@
 #include <QApplication>
 
 
-Task::Task(QVariantMap map, DataManager *dataManager)
+Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
 {
+
+
     mDataManager = dataManager;
     mName = map.value("taskName").toString();
 
@@ -20,6 +22,11 @@ Task::Task(QVariantMap map, DataManager *dataManager)
         mDataManager->createNewProject(map.value("addProject").toString());
     }
     mDataManager->loadProject(map.value("addProject").toString());
+
+    if (!list.isEmpty()){
+        mCommandList = list;
+        return;
+    }
 
     if (commands.contains("imageLoad")) {
         ImageLoadCommand* command = new ImageLoadCommand(map, this);

@@ -30,7 +30,7 @@ public:
      * @param map stores information for commands.
      * @param dataManager source of general information.
      */
-    Task(QVariantMap map, DataManager *dataManager);
+    Task(QVariantMap map, DataManager *dataManager, QList<Command*> commandList = QList<Command*>());
 
     /**
      * @brief getName returns name of the Task.
