@@ -66,8 +66,16 @@ ImageGallery::ImageGallery(QWidget *parent, const QDir& imageDirectory) {
 ImageGallery::~ImageGallery() = default;
 
 
-void ImageGallery::removeselected() {
+QList<int> ImageGallery::removeselected() {
+    QList<int> selected;
+    for(int i = 0; i < this->count(); i++){
+        if(this->item(i)->isSelected()){
+            selected.append(i);
+            qDebug() << item(i) << "is selected";
+        }
+    }
     qDeleteAll(selectedItems());
+    return selected;
 }
 
 void ImageGallery::addDir(const QDir& imageDirectory)
@@ -206,6 +214,53 @@ void ImageGallery::clearAndStop()
         QThread::sleep(1);
     };
     if(count() != 0) clear();
+}
+
+ImageGallery::ImageGallery(QWidget *parent, QStringList images) {
+
+    setMovement(QListView::Static);
+    setParent(parent);
+    setViewMode(ViewMode::IconMode);
+    setSelectionMode(QListView::MultiSelection);
+    setIconSize(QSize(100, 100));
+    setFlow(QListWidget::LeftToRight);
+    setResizeMode(QListWidget::Adjust);
+    setUniformItemSizes(true);
+
+
+
+    setDragEnabled(true);
+    setAcceptDrops(true);
+    setDefaultDropAction(Qt::MoveAction);
+
+
+    class addDirTask : public QRunnable {
+    public:
+        addDirTask(ImageGallery *gallery, QStringList addImages) {
+            this->mGallery = gallery;
+            this->mImages = addImages;
+        }
+
+        void run() override {
+            QList<QImage> imageList;
+
+            foreach(QString image, mImages){
+                imageList.append(QImage(image));
+            }
+
+            mGallery->addDir(imageList);
+        }
+
+    private:
+        ImageGallery *mGallery;
+        QStringList mImages;
+    };
+
+    auto *addDirParallel = new addDirTask(this, images);
+    QThreadPool::globalInstance()->start(addDirParallel);
+
+
+
 }
 
 

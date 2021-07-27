@@ -8,6 +8,7 @@
 #include "importfileswidget.h"
 #include "datamanager.h"
 #include "imagesection.h"
+#include "imageinspectionmodel.h"
 
 class ImageController : public QObject{
     Q_OBJECT
@@ -19,14 +20,19 @@ private:
     ImageSection* m_imageSection;
     ImportFilesWidget* m_importFilesWidget;
     DataManager* m_dataManager;
+    ImageInspectionModel m_imageInspectionModel;
+    int m_split = 100;
+    void updateDatasetDisplay();
+    void updateNewDatasetDisplay();
 
 public slots:
-    void slot_remove(int sectionIndex, int imgIndex);
+    void slot_remove(int treeWidgetIndex, QMap<QString, QList<int>> removedImages);
     void slot_loadInputImages(QString pluginName, int count, QStringList labels, int split);
     void slot_confirm();
     void slot_imagesReady();
     void slot_handelImageLoadProgress(int progress);
     void slot_openProject();
+    void slot_mergeDatasets();
     //Todo connect
 };
 

@@ -2,7 +2,7 @@
 #define IMAGESECTION_H
 
 #include "imagegallery.h"
-
+#include "imagegallerytree.h"
 #include <QWidget>
 
 namespace Ui {
@@ -30,7 +30,18 @@ public:
      * @param trainingPath absolute path to images
      */
     ImageSection(QWidget *parent, QStringList inputPath, QStringList trainingPath);
+    void setCurrentDataSetTrainImages(QMap<QString, QStringList> labelToPathsMap);
+    void setCurrentDataSetValidationImages(QMap<QString, QStringList> labelToPathsMap);
 
+    void setNewValidationImages(QMap<QString, QStringList> labelToPathsMap);
+    void setNewTrainImages(QMap<QString, QStringList> labelToPathsMap);
+
+private:
+    void replaceGalleryTree(ImageGalleryTree* oldGalleryTree, ImageGalleryTree* newGalleryTree);
+
+signals:
+    void sig_mergeDatasets();
+    void sig_removeImages(int treeWidgetIndex, QMap<QString, QList<int>> removedImages);
 
 
 private slots:
@@ -39,6 +50,10 @@ private slots:
      */
     void on_pushButton_clicked();
 
+
+    void on_pushButton_commit_clicked();
+
+    void on_pushButton_removeImages_clicked();
 
 private:
     Ui::imagesection *ui;

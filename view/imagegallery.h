@@ -29,13 +29,16 @@ public:
      */
     ImageGallery(QWidget *parent, const QDir& imageDirectory);
 
+
+    ImageGallery(QWidget *parent, QStringList images);
+
     ~ImageGallery();
 
 
     /**
      * @brief removeselected
      */
-    void removeselected();
+    QList<int> removeselected();
 
     /**
      * @brief addDir
