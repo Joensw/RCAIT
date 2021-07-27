@@ -21,14 +21,65 @@ find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 # 'lib' is the folder with Google Test sources
 add_subdirectory(lib)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+include_directories(${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
 
 # 'Google_Tests_run' is the target name
 
 set(Sources
         test_imageinspectionmodel.cpp
         ../model/imageinspectionmodel.h
-        ../model/imageinspectionmodel.cpp)
+        ../model/imageinspectionmodel.cpp
 
+        test_task.cpp
+        ../model/automation/task.h
+        ../model/automation/task.cpp
+        ../model/datamanager.h
+        ../model/datamanager.cpp
+        ../model/settingsmanager.h
+        ../model/settingsmanager.cpp
+        ../model/modelmanager.h
+        ../model/modelmanager.cpp
+        ../model/pluginusage/progressable.h
+        ../model/pluginusage/progressable.cpp
+        ../model/pluginusage/aithread.h
+        ../model/pluginusage/aithread.cpp
+        ../model/pluginusage/classificationthread.h
+        ../model/pluginusage/classificationthread.cpp
+        ../model/pluginusage/trainingsthread.h
+        ../model/pluginusage/trainingsthread.cpp
+        ../model/pluginusage/imagesearchthread.h
+        ../model/pluginusage/imagesearchthread.cpp
+        ../model/automation/command.h
+        ../model/automation/command.cpp
+        ../model/automation/classificationcommand.h
+        ../model/automation/classificationcommand.cpp
+        ../model/automation/imageloadcommand.h
+        ../model/automation/imageloadcommand.cpp
+        ../model/automation/trainingcommand.h
+        ../model/automation/trainingcommand.cpp
+        ../plugins/classificationplugins/classificationpluginmanager.h
+        ../plugins/classificationplugins/classificationpluginmanager.cpp
+        ../plugins/imageplugins/imageloaderpluginmanager.h
+        ../plugins/imageplugins/imageloaderpluginmanager.cpp
+
+
+        test_projectmanager.cpp
+        ../model/projectmanager.h
+        ../model/projectmanager.cpp
+        ../plugins/results/classificationresult.cpp
+        ../plugins/results/classificationresult.h
+        ../plugins/results/trainingresult.cpp
+        ../plugins/results/trainingresult.h
+        ../plugins/results/result.cpp
+        ../plugins/results/result.h
+
+        ../model/results/confusionmatrix.cpp
+        ../model/results/confusionmatrix.h
+        ../model/results/losscurve.cpp
+        ../model/results/losscurve.h
+        ../model/results/abstractresultgraphics.cpp
+        ../model/results/abstractresultgraphics.h
+        )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 add_executable(Google_Tests_run ${Sources})

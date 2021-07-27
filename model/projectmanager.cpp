@@ -9,17 +9,17 @@
 
 //names of the subfolders in the project directory
 //These can be changed, however projects based on the old naming scheme become unreadable
-QString resultsDirectoryName = "results";
-QString datasetDirectoryName = "data";
-QString tempDirectoryName = "temp";
-QString trainingsResultsDirectoryName = "training_results";
-QString classificationResultsDirectoryName = "classification_results";
+const QString resultsDirectoryName = "results";
+const QString datasetDirectoryName = "data";
+const QString tempDirectoryName = "temp";
+const QString trainingsResultsDirectoryName = "training_results";
+const QString classificationResultsDirectoryName = "classification_results";
 
 //keys of the <String, String> pair in the project file
-QString projectNameIdentifier = "projectName";
-QString projectDirectoryIdentifier_projectsFile = "projectDir";
-QString projectDatasetDirectoryIdentifier = "datasetDirName";
-QString projectTempDirectoryIdentifier = "tempDirName";
+const QString projectNameIdentifier = "projectName";
+const QString projectDirectoryIdentifier_projectsFile = "projectDir";
+const QString projectDatasetDirectoryIdentifier = "datasetDirName";
+const QString projectTempDirectoryIdentifier = "tempDirName";
 
 //on creation, meaning program startup, there will be no project selected. all the strings will be null/empty
 ProjectManager::ProjectManager() {
@@ -117,7 +117,7 @@ QString ProjectManager::getResultsDir() {
  * ie out << map << list1 << list2 is read with in >> map >> list 1 >> list
  */
 void ProjectManager::saveClassificationResult(ClassificationResult result) {
-    QFile file(mProjectResultsDir + "/" + result.generateIdentifier());
+    QFile file(mProjectResultsDir + "/" + classificationResultsDirectoryName + "/" + result.generateIdentifier());
 
     if (!file.open(QIODevice::WriteOnly)){
         qDebug() << "Could not save classification results";
@@ -219,7 +219,7 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
 
         QFileInfoList filelist = trainingResultsDir.entryInfoList();
         QStringList fileNameList;
-        for(QFileInfo f: filelist){
+        for(const QFileInfo &f: filelist){
             fileNameList.append(f.baseName());
         }
         return fileNameList ;
