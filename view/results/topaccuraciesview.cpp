@@ -32,10 +32,19 @@ void TopAccuraciesView::addTableRow(const QString &identifier, double top1, doub
     //Fill table row
     auto identifierItem = new QTableWidgetItem(identifier);
     int col = 0;
-    for (const auto &value : {top1,top5}){
+
+    auto values = {top1, top5};
+    auto colors = {"royal blue","orange"};
+    for(auto [v,c] = std::tuple(values.begin(), colors.begin()); v != values.end() && c != colors.end(); ++v, ++c)
+    {
         //Convert doubles to String with 2 decimal spots precision
-        auto valueStr = QString::number(value, 'G', 5);
+        auto valueStr = QString::number(*v, 'G', 5);
         auto valueStrItem = new QTableWidgetItem(valueStr);
+
+        auto color = QColor(*c);
+        color.setAlphaF(0.7);
+        valueStrItem->setBackground(QBrush(color));
+
         valueStrItem->setTextAlignment(Qt::AlignCenter);
         table->setVerticalHeaderItem(row, identifierItem);
         table->setItem(row, col++, valueStrItem);
