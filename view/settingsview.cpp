@@ -16,7 +16,7 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
     ui->setupUi(this);
     mPluginNames = pluginNames;
     mConfigurationWidgets = pluginConfigurationWidgets;
-    mGlobalSettingsWidget = new GlobalSettingsWidget();
+    mGlobalSettingsWidget = new GlobalSettingsWidget(this);
 
     ui->pluginList->addItem(mGlobalSettingsWidget->windowTitle());
 
@@ -144,6 +144,7 @@ void SettingsView::changeEvent(QEvent *event)
     //Call to parent class
     QWidget::changeEvent(event);
 }
+
 
 void SettingsView::slot_retranslate()
 {
