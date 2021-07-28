@@ -1,6 +1,8 @@
 #include "globalsettingswidget.h"
 #include "ui_globalsettingswidget.h"
 
+#include <QResizeEvent>
+
 GlobalSettingsWidget::GlobalSettingsWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GlobalSettingsWidget)
@@ -15,17 +17,23 @@ GlobalSettingsWidget::~GlobalSettingsWidget()
 
 void GlobalSettingsWidget::setNewProjectPath(QString path)
 {
-    ui->label_projectsDir_new->setText(path);
+    QFontMetrics metrics(ui->label_projectsDir_new->font());
+    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
+    ui->label_projectsDir_new->setText(text);
 }
 
 void GlobalSettingsWidget::setNewClassificationPluginPath(QString path)
 {
-    ui->label_classificationDir_new->setText(path);
+    QFontMetrics metrics(ui->label_classificationDir_new->font());
+    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
+    ui->label_classificationDir_new->setText(text);
 }
 
 void GlobalSettingsWidget::setNewImageLoaderPath(QString path)
 {
-    ui->label_imageLoaderDir_new->setText(path);
+    QFontMetrics metrics(ui->label_imageLoaderDir_new->font());
+    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
+    ui->label_imageLoaderDir_new->setText(text);
 }
 
 void GlobalSettingsWidget::clearNewPaths()
@@ -58,17 +66,23 @@ void GlobalSettingsWidget::setError(QString error)
 
 void GlobalSettingsWidget::setCurrentProjectsDir(QString path)
 {
-    ui->label_projectsDir_current->setText(path);
+    QFontMetrics metrics(ui->label_projectsDir_current->font());
+    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
+    ui->label_projectsDir_current->setText(text);
 }
 
 void GlobalSettingsWidget::setCurrentClassificationDir(QString path)
 {
-    ui->label_classificationDir_current->setText(path);
+    QFontMetrics metrics(ui->label_classificationDir_current->font());
+    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
+    ui->label_classificationDir_current->setText(text);
 }
 
 void GlobalSettingsWidget::setCurrentImageLoaderDir(QString path)
 {
-    ui->label_imageLoaderDir_current->setText(path);
+    QFontMetrics metrics(ui->label_imageLoaderDir_current->font());
+    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
+    ui->label_imageLoaderDir_current->setText(text);
 }
 
 void GlobalSettingsWidget::on_pushButton_project_clicked()
@@ -86,7 +100,9 @@ void GlobalSettingsWidget::on_pushButton_imageLoader_clicked()
     emit sig_setImageLoaderPluginsDir();
 }
 
-void GlobalSettingsWidget::changeEvent(QEvent *event) {
+
+void GlobalSettingsWidget::changeEvent(QEvent *event)
+{
     if (event->type() == QEvent::LanguageChange) {
         // this event is send if a translator is loaded
         QString tempProjects = ui->label_projectsDir_current->text();
@@ -98,6 +114,34 @@ void GlobalSettingsWidget::changeEvent(QEvent *event) {
         ui->label_imageLoaderDir_current->setText(tempImage);
         emit sig_wasTranslated();
     }
+
+    // should be executed on resize but does nothing instead...
+    //    QFontMetrics metrics(ui->label_imageLoaderDir_current->font());
+    //    QString path =  ui->label_imageLoaderDir_current->text();
+    //    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() / 3) * 2);
+    //    ui->label_imageLoaderDir_current->setText(text);
+
+    //    path =  ui->label_imageLoaderDir_new->text();
+    //    text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() / 3) * 2);
+    //    ui->label_imageLoaderDir_new->setText(text);
+
+    //    path =  ui->label_classificationDir_current->text();
+    //    text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() / 3) * 2);
+    //    ui->label_classificationDir_current->setText(text);
+
+    //    path =  ui->label_classificationDir_new->text();
+    //    text = metrics.elidedText(path, Qt::ElideRight,(parentWidget()->width() / 3) * 2);
+    //    ui->label_classificationDir_new->setText(text);
+
+    //    path =  ui->label_projectsDir_current->text();
+    //    text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() / 3) * 2);
+    //    ui->label_projectsDir_current->setText(text);
+
+    //    path =  ui->label_projectsDir_new->text();
+    //    text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() / 3) * 2);
+    //    ui->label_projectsDir_new->setText(text);
+
     //Call to parent class
     QWidget::changeEvent(event);
+
 }

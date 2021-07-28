@@ -105,7 +105,6 @@ signals:
 
 protected:
     void changeEvent(QEvent *event);
-
 private slots:
     void on_saveButton_clicked();
 
