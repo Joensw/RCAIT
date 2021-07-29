@@ -4,10 +4,11 @@
 
 ResultsProcessor::ResultsProcessor() {
     //TODO Create identifier utility class which creates date/time identifier statically
-    m_topAccuraciesGraphics = new TopAccuraciesGraphics(Result::generateIdentifier());
+    m_topAccuraciesGraphics = new TopAccuraciesGraphics();
 }
 
 void ResultsProcessor::slot_generateTopAccuraciesGraphics(AbstractGraphicsView *receiver) {
+    m_topAccuraciesGraphics->updateIdentifier(Result::generateIdentifier());
     m_topAccuraciesGraphics->generateGraphics(receiver);
 }
 

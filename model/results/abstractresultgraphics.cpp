@@ -5,9 +5,9 @@
 #include <QProcess>
 #include "abstractresultgraphics.h"
 
-AbstractResultGraphics::AbstractResultGraphics(const QString &identifier, const QString &extension)
-        : m_identifier(identifier),
-          m_extension(extension),
+AbstractResultGraphics::AbstractResultGraphics(QString identifier, QString extension)
+        : m_identifier(std::move(identifier)),
+          m_extension(std::move(extension)),
           m_fullName(m_identifier + '.' + m_extension) {
 
 }
@@ -40,6 +40,16 @@ void AbstractResultGraphics::generateGraphics(AbstractGraphicsView *receiver) {
 QString AbstractResultGraphics::getIdentifier()
 {
     return m_identifier;
+}
+
+void AbstractResultGraphics::updateIdentifier(const QString &identifier) {
+    m_identifier = identifier;
+    m_fullName = m_identifier + '.' + m_extension;
+}
+
+void AbstractResultGraphics::updateExtension(const QString &extension) {
+    m_extension = extension;
+    m_fullName = m_identifier + '.' + m_extension;
 }
 
 
