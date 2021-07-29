@@ -90,7 +90,7 @@ bool Task::isValid()
 
 void Task::slot_makeProgress(int progress)
 {
-    int localProgress = (commandsDone * 100 + progress) / (mCommandList.size() * 100);
+    int localProgress = (commandsDone * 100 + progress) / (mCommandList.size());
     if(progress == 100) commandsDone++;
     emit sig_progress(localProgress);
 }

@@ -1,12 +1,12 @@
 #include <gtest/gtest.h>
-#include <QObject>
+#include <QtTest/QSignalSpy>
 #include "../model/automation/task.h"
 
 class MockCommand : public Command {
  public:
     MockCommand(){}
     bool execute() override{
-        for (int i = 0; i <= 100; i++) {
+        for (int i = 1; i <= 100; i++) {
             mProgressable->slot_makeProgress(i);
         }
         return true;
@@ -21,7 +21,7 @@ private:
 };
 
 
-//check if loading labeled dataset imagefilepaths work
+//check if running task and percentage signals work
 TEST(TaskTest, testruncompleted){
     //set up
     QVariantMap map = QVariantMap();
@@ -34,16 +34,18 @@ TEST(TaskTest, testruncompleted){
 
     //init task
     Task* task = new Task(map, mngr, cmdList);
+    QSignalSpy spy(task, &Task::sig_progress);
 
     //register progressable
     for (int i = 0; i < 3; i++){
         ((MockCommand*)cmdList.at(i))->setProgressable(task);
     }
 
+    //test for correct state, then run
+    EXPECT_TRUE(task->getState() == TaskState::SCHEDULED);
     task->run();
 
+    EXPECT_EQ(spy.at(150).at(0).toInt(), 50);
     EXPECT_TRUE(task->getName() == "example");
     EXPECT_TRUE(task->getState() == TaskState::COMPLETED);
-
-
 }
