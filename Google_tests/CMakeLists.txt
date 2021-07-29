@@ -75,8 +75,8 @@ set(Sources
 
         ../model/results/confusionmatrix.cpp
         ../model/results/confusionmatrix.h
-        ../model/results/losscurve.cpp
-        ../model/results/losscurve.h
+        ../model/results/accuracycurve.cpp
+        ../model/results/accuracycurve.h
         ../model/results/abstractresultgraphics.cpp
         ../model/results/abstractresultgraphics.h
         )

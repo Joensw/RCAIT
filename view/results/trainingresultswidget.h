@@ -5,7 +5,7 @@
 #include <QMenu>
 #include <QPushButton>
 #include <QRandomGenerator>
-#include <losscurve.h>
+#include <accuracycurve.h>
 #include <confusionmatrix.h>
 #include <projectmanager.h>
 #include "topaccuraciesview.h"

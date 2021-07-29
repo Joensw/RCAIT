@@ -48,7 +48,7 @@ file(GLOB SOURCE_FILES_B
         )
 
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/confusionmatrix.py ${CMAKE_CURRENT_BINARY_DIR}/confusionmatrix.py COPYONLY)
-CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/losscurve.py ${CMAKE_CURRENT_BINARY_DIR}/losscurve.py COPYONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/accuracycurve.py ${CMAKE_CURRENT_BINARY_DIR}/accuracycurve.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/topaccuraciesgraphics.py ${CMAKE_CURRENT_BINARY_DIR}/topaccuraciesgraphics.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/classificationgraphics.py ${CMAKE_CURRENT_BINARY_DIR}/classificationgraphics.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/flickrplugin/flickrapi_photosearch.py ${CMAKE_CURRENT_BINARY_DIR}/flickrapi_photosearch.py COPYONLY)

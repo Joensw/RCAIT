@@ -41,13 +41,13 @@ void TrainingResultsWidget::configure_compareRunButton() {
 }
 
 void TrainingResultsWidget::addTrainingResult(TrainingResult *result) {
-    auto lossCurve = result->getLossCurve();
+    auto accCurve = result->getAccuracyCurve();
     auto confusionMatrix = result->getConfusionMatrix();
     auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
 
     auto tab = createTrainingResultTab(result->getTimestamp());
 
-    lossCurve->generateGraphics(tab);
+    accCurve->generateGraphics(tab);
     confusionMatrix->generateGraphics(tab);
     tab->setMostMisclassifiedImages(mostMisclassifiedImages);
 }
@@ -80,17 +80,17 @@ void TrainingResultsWidget::dummyFunctionTest() {
         QString run = QString("Run %1").arg(i + 1);
         auto tab = createTrainingResultTab(run);
 
-        //Loss Curve
+        //Accuracy Curve
         int sum = 0;
         auto *pointsMap = new QMap<int, QPair<double, double>>();
         for (int j = 1; j <= 20; j++) {
             double random = QRandomGenerator::global()->bounded(3 * 100) / 100.0;
-            int random2 = QRandomGenerator::global()->bounded(-2, 10);
+            int random2 = QRandomGenerator::global()->bounded(1, 10);
             sum += random2;
-            pointsMap->insert(j, qMakePair(100 / (double) abs(sum) + 3, random));
+            pointsMap->insert(j, qMakePair(-100.0/sum+100, random+90));
         }
-        auto lossCurve = new LossCurve(run, *pointsMap);
-        lossCurve->generateGraphics(tab);
+        auto ac = new AccuracyCurve(run, *pointsMap);
+        ac->generateGraphics(tab);
 
         //Confusion Matrix
         QList<int> values = QList<int>();

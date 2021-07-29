@@ -5,7 +5,7 @@
 
 class AbstractGraphicsView {
 public:
-    virtual void setLossCurve(QGraphicsItem *lossCurveImage) {};
+    virtual void setAccuracyCurve(QGraphicsItem *accuracyCurveImage) {};
 
     virtual void setConfusionMatrix(QGraphicsItem *matrixImage) {};
 

@@ -12,24 +12,25 @@ from scipy.interpolate import make_interp_spline
 plt.ioff()
 
 
-def plot_loss_curve(lossdata, file):
+def plot_acc_curve(accdata, file):
     np.set_printoptions(precision=2)
     np.set_printoptions(suppress=True)
-    # lossdata is a (epochs) x 3 matrix
-    print('Loss Curve data')
-    print(lossdata)
+    # accdata is a (epochs) x 3 matrix
+    print('Accuracy Curve data')
+    print(accdata)
 
     # Raw data
-    epochs = lossdata[:, 0]  # 0th column
-    train = lossdata[:, 1]  # 1st column
-    validation = lossdata[:, 2]  # 2nd column
+    epochs = accdata[:, 0]  # 0th column
+    train = accdata[:, 1]  # 1st column
+    validation = accdata[:, 2]  # 2nd column
 
     # Chart line creation
     ax = plt.figure().gca()
 
     # Default ist k=3. If there are not enough points, choose a smaller k >= 0
-    model_train = make_interp_spline(epochs, train, k=max(0, min(len(epochs) - 1, 3)))
-    model_val = make_interp_spline(epochs, validation, k=max(0, min(len(epochs) - 1, 3)))
+    k = max(0, min(len(epochs) - 1, 3))
+    model_train = make_interp_spline(epochs, train, k)
+    model_val = make_interp_spline(epochs, validation, k)
     epochs_x = np.linspace(1, len(epochs), 500)
     train_y = model_train(epochs_x)
     validation_y = model_val(epochs_x)
@@ -52,7 +53,7 @@ def plot_loss_curve(lossdata, file):
     # Labels
     plt.legend(loc="upper right")
     plt.xlabel("Epoch")
-    plt.ylabel("Loss")
+    plt.ylabel("Accuracy")
     plt.tight_layout()
 
     plt.savefig(file, format="svg", bbox_inches="tight")
@@ -60,14 +61,14 @@ def plot_loss_curve(lossdata, file):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Generates a loss curve and stores it as an image.')
-    parser.add_argument('lossdata', metavar='data',
+    parser = argparse.ArgumentParser(description='Generates an accuracy curve and stores it as an image.')
+    parser.add_argument('accdata', metavar='data',
                         help='Raw point data for train/validation curves, formatted as a python array')
     parser.add_argument('outfilename', metavar='outfile',
                         help='Output file name including extension')
 
     args = parser.parse_args()
-    data = np.array(ast.literal_eval(args.lossdata))
+    data = np.array(ast.literal_eval(args.accdata))
     file_name = args.outfilename
 
     # specify the custom font to use
@@ -75,5 +76,5 @@ if __name__ == '__main__':
     plt.rcParams['font.sans-serif'] = 'Inter'
     plt.rcParams['font.size'] = 12
 
-    plot_loss_curve(data, file_name)
+    plot_acc_curve(data, file_name)
     sys.exit()

@@ -39,12 +39,12 @@ void ResultsProcessor::slot_loadTrainingImagesToCompare(const QString &runNameTo
                 view->setConfusionMatrix(new QGraphicsPixmapItem(file.absoluteFilePath()));
             continue;
         }
-        if (baseName == "losscurve_" + runNameToCompare) {
+        if (baseName == "accuracycurve_" + runNameToCompare) {
 
             if (ext == "svg")
-                view->setLossCurve(new QGraphicsSvgItem(file.absoluteFilePath()));
+                view->setAccuracyCurve(new QGraphicsSvgItem(file.absoluteFilePath()));
             else
-                view->setLossCurve(new QGraphicsPixmapItem(file.absoluteFilePath()));
+                view->setAccuracyCurve(new QGraphicsPixmapItem(file.absoluteFilePath()));
             continue;
         }
     }

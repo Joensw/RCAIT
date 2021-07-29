@@ -21,7 +21,7 @@ public:
 
     ~TrainingResultView();
 
-    void setLossCurve(QGraphicsItem *lossCurveImage) override;
+    void setAccuracyCurve(QGraphicsItem *accuracyCurveImage) override;
 
     void setConfusionMatrix(QGraphicsItem *matrixImage) override;
 
