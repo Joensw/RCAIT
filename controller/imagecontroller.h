@@ -21,7 +21,7 @@ private:
     ImportFilesWidget* m_importFilesWidget;
     DataManager* m_dataManager;
     ImageInspectionModel m_imageInspectionModel;
-    int m_split = 100;
+    int m_split = 40;
     void updateDatasetDisplay();
     void updateNewDatasetDisplay();
 
