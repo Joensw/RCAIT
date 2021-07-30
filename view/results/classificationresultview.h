@@ -21,7 +21,7 @@ protected:
 public:
     explicit ClassificationResultView(QWidget *parent = nullptr);
 
-    void addTableRow(const QString &identifier, const QList<double>& data);
+    void addTableRow(const QString &identifier, double acc, const QString &label);
 
     void removeTableRow(const QString &identifier);
 
@@ -32,7 +32,7 @@ public:
 signals:
     void sig_classificationResultTable_rowRemoved(const ClassificationResultView* view, const QString &identifier);
 
-    void sig_classificationResultTable_rowAdded(const ClassificationResultView* view, const QString &identifier, const QList<double>& data);
+    void sig_classificationResultTable_rowAdded(const ClassificationResultView* view, const QString &identifier, double acc, const QString &label);
 
     void sig_requestClassificationResultGraphics(AbstractGraphicsView *receiver);
 

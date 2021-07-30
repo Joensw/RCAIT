@@ -11,9 +11,11 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
     //Stretch table headers to fill the space available
     QHeaderView *h_header = table->horizontalHeader();
     QHeaderView *v_header = table->verticalHeader();
-    h_header->setSectionResizeMode(QHeaderView::Fixed);
+    h_header->setSectionResizeMode(QHeaderView::Stretch);
     v_header->setSectionResizeMode(QHeaderView::Fixed);
 
+    table->setColumnCount(2);
+    table->setHorizontalHeaderLabels({"Accuracy", "Label"});
 
     configure_updateGraphicsButton();
 
@@ -24,23 +26,24 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
     dummyFunctionTest();
 }
 
-void ClassificationResultView::addTableRow(const QString &identifier, const QList<double> &data) {
+void ClassificationResultView::addTableRow(const QString &identifier, double acc, const QString &label) {
     QTableWidget *table = ui->tableWidget_classificationresult;
 
     int row = table->rowCount();
     table->insertRow(row);
-    emit sig_classificationResultTable_rowAdded(this, identifier, data);
+    emit sig_classificationResultTable_rowAdded(this, identifier, acc, label);
 
     //Fill table row
     auto identifierItem = new QTableWidgetItem(identifier);
     int col = 0;
-    for (const auto &value : data) {
-        //Convert doubles to String with 2 decimal spots precision
-        auto valueStr = QString::number(value, 'G', 5);
-        auto valueStrItem = new QTableWidgetItem(valueStr);
-        valueStrItem->setTextAlignment(Qt::AlignCenter);
+
+    //Convert doubles to String with 2 decimal spots precision
+    auto accStr = QString::number(acc, 'G', 5);
+    for (const auto &value : {accStr,label}) {
+        auto item = new QTableWidgetItem(value);
+        item->setTextAlignment(Qt::AlignCenter);
         table->setVerticalHeaderItem(row, identifierItem);
-        table->setItem(row, col++, valueStrItem);
+        table->setItem(row, col++, item);
     }
 }
 
@@ -108,23 +111,12 @@ ClassificationResultView::~ClassificationResultView() {
 }
 
 void ClassificationResultView::dummyFunctionTest() {
-    QTableWidget *table = ui->tableWidget_classificationresult;
     QStringList labels = {"Car", "Truck", "Airplane", "Boat", "Bike"};
-    table->setColumnCount(labels.size());
-    table->setHorizontalHeaderLabels(labels);
 
     for (int j = 0; j < 20; ++j) {
-        QList<double> randomData;
-        int target = 100;
-        for (int i = 0; i < labels.size(); ++i) {
-            int random;
-            if (i == labels.size() - 1)
-                random = target;
-            else
-                random = QRandomGenerator::global()->bounded(target);
-            target -= random;
-            randomData << random;
-        }
-        this->addTableRow(QString("Image %1").arg(j), randomData);
+        long long randomLabel = QRandomGenerator::global()->bounded(labels.size());
+        auto label = labels[randomLabel];
+        int random = QRandomGenerator::global()->bounded(65, 100);
+        this->addTableRow(QString("Image %1").arg(j), random, label);
     }
 }
