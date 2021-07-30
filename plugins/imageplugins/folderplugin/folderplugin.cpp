@@ -10,8 +10,10 @@ bool FolderPlugin::loadImages(const QString path, ProgressablePlugin* receiver, 
 
     switch(mode){
         case 0: {
-            QStringList imagefolders = folder.entryList(QDir::AllDirs);
+            QStringList imagefolders = folder.entryList(QDir::Dirs);
+            int i = 0;
             foreach(QString folderName, imagefolders){
+                if (folderName == "." || folderName == "..") continue;
                 folder.cd(folderName);
                 QStringList imagelist = folder.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
                 if (!imagelist.isEmpty()){
@@ -30,10 +32,6 @@ bool FolderPlugin::loadImages(const QString path, ProgressablePlugin* receiver, 
         case 2: {
             QStringList images = folder.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
             return addLabel(images, folder, output);
-//            foreach(QString imageName, images) {
-//                QString path = folder.path() + "/" + imageName;
-//                QFile::copy(path, output.path() + "/" + imageName);
-//            }
             break;
         }
 
