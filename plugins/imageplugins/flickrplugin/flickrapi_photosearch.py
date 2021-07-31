@@ -8,7 +8,7 @@ from pathlib import Path
 #ToDo: Count übersetzen in page + per_page optional arguments (max per_page = 100)
 url_start = 'https://live.staticflickr.com/'
 file_extension = '.jpg'
-
+progress = 0
 
 parser = ArgumentParser()
 parser.add_argument("-p", "--path", dest="path",
@@ -36,10 +36,18 @@ print(args_dict['imagecount'])
 
 flickr = flickrapi.FlickrAPI(args_dict['apikey'], args_dict['apisecret'], format='parsed-json')
 
+#print progress x/100
+print(int(progress), flush= True)
+
+
+numLabels = len(args_dict['labels'])
+labelProgress = 100/numLabels
+
 for label in args_dict['labels']:
     response = flickr.photos.search(text=label, per_page=args_dict['imagecount'])
 
-    
+    numFotos = len(response['photos']['photo'])
+    fotoProgress = labelProgress/numFotos
     for foto in response['photos']['photo']:
         url = url_start
         url += foto['server']
@@ -56,8 +64,12 @@ for label in args_dict['labels']:
         r = requests.get(foto['url'], stream=True)
         with open(args_dict['path'] + '/' + label + '/' +  foto['id'] + file_extension, 'wb') as out_file:
             shutil.copyfileobj(r.raw, out_file)
-        del r   
+        del r
+        progress+=fotoProgress
+        print(int(progress), flush=True)   
 
+   
+    print(int(progress), flush=True)
 
 #print(args)
 
