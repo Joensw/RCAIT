@@ -23,38 +23,12 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
     connect(m_pushButton_updateGraphics, &QAbstractButton::pressed, this,
             &ClassificationResultView::slot_pushButton_updateGraphics_pressed);
 
-    dummyFunctionTest();
 }
 
-void ClassificationResultView::addTableRow(const QString &identifier, double acc, const QString &label) {
-    QTableWidget *table = ui->tableWidget_classificationresult;
-
-    int row = table->rowCount();
-    table->insertRow(row);
-    emit sig_classificationResultTable_rowAdded(this, identifier, acc, label);
-
-    //Fill table row
-    auto identifierItem = new QTableWidgetItem(identifier);
-    int col = 0;
-
-    //Convert doubles to String with 2 decimal spots precision
-    auto accStr = QString::number(acc, 'G', 5);
-    for (const auto &value : {accStr,label}) {
-        auto item = new QTableWidgetItem(value);
-        item->setTextAlignment(Qt::AlignCenter);
-        table->setVerticalHeaderItem(row, identifierItem);
-        table->setItem(row, col++, item);
-    }
-}
-
-void ClassificationResultView::removeTableRow(const QString &identifier) {
-    QTableWidget *table = ui->tableWidget_classificationresult;
-    emit sig_classificationResultTable_rowRemoved(this, identifier);
-    for (int i = 0; i < table->rowCount(); i++) {
-        if (table->verticalHeaderItem(i)->text() == identifier) {
-            table->removeRow(i);
-            return;
-        }
+void ClassificationResultView::setClassificationData(const QList<QPair<QString, QStringList>>& data){
+    auto table = ui->tableWidget_classificationresult;
+    for (const auto &[key,valuesList] : data){
+        table->addTableRow(key,valuesList);
     }
 }
 
@@ -108,15 +82,4 @@ void ClassificationResultView::retranslateUi() {
 
 ClassificationResultView::~ClassificationResultView() {
     delete ui;
-}
-
-void ClassificationResultView::dummyFunctionTest() {
-    QStringList labels = {"Car", "Truck", "Airplane", "Boat", "Bike"};
-
-    for (int j = 0; j < 20; ++j) {
-        long long randomLabel = QRandomGenerator::global()->bounded(labels.size());
-        auto label = labels[randomLabel];
-        int random = QRandomGenerator::global()->bounded(65, 100);
-        this->addTableRow(QString("Image %1").arg(j), random, label);
-    }
 }

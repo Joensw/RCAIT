@@ -55,6 +55,8 @@ signals:
 
     void sig_loadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view);
 
+    void sig_unloadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view);
+
 private slots:
 
     void slot_comparisonMenu_triggered(QAction *action);

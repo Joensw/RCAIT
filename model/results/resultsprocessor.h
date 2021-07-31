@@ -21,19 +21,16 @@ public slots:
 
     void slot_generateClassificationResultGraphics(AbstractGraphicsView *receiver);
 
-    void slot_addedRow_topAccuraciesTable(const QString &identifier, double top1, double top5);
-
-    void slot_removedRow_topAccuraciesTable(const QString &identifier);
-
     void slot_loadTrainingImagesToCompare(const QString& runNameToCompare, TrainingResultView* view);
 
     void slot_loadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view);
+
+    void slot_unloadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view);
 
     void slot_loadClassificationDataToCompare(const QString &runNameToCompare, ClassificationResultView *view);
 
 private:
     TopAccuraciesGraphics *m_topAccuraciesGraphics;
-    QMap<ClassificationResultView*, ClassificationGraphics*> m_classificationGraphicsMap;
 
 };
 

@@ -6,6 +6,7 @@
 #include <QTableWidgetItem>
 #include <QPushButton>
 #include "abstractgraphicsview.h"
+#include "customtablewidget.h"
 
 namespace Ui {
     class ClassificationResultView;
@@ -21,33 +22,28 @@ protected:
 public:
     explicit ClassificationResultView(QWidget *parent = nullptr);
 
-    void addTableRow(const QString &identifier, double acc, const QString &label);
-
-    void removeTableRow(const QString &identifier);
-
     void setClassificationGraphics(QGraphicsItem *classificationGraphicsImage) override;
+
+    void setClassificationData(const QList<QPair<QString, QStringList>> &data);
 
     ~ClassificationResultView();
 
 signals:
-    void sig_classificationResultTable_rowRemoved(const ClassificationResultView* view, const QString &identifier);
-
-    void sig_classificationResultTable_rowAdded(const ClassificationResultView* view, const QString &identifier, double acc, const QString &label);
 
     void sig_requestClassificationResultGraphics(AbstractGraphicsView *receiver);
 
 private slots:
+
     void slot_pushButton_updateGraphics_pressed();
 
 private:
     Ui::ClassificationResultView *ui;
-    QAbstractButton* m_pushButton_updateGraphics;
+    QAbstractButton *m_pushButton_updateGraphics;
 
     void configure_updateGraphicsButton();
 
     void retranslateUi();
 
-    void dummyFunctionTest();
 };
 
 #endif // CLASSIFICATIONRESULTVIEW_H
