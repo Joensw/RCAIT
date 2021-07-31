@@ -23,7 +23,7 @@ private:
 
 
 public slots:
-    void handleResults(const QString &);
+    void handleResults();
 signals:
     void operate();
     void sig_imagesReady();

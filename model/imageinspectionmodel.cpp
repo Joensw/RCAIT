@@ -18,13 +18,13 @@ void ImageInspectionModel::mergeDataSets() {
     //move files since we can do it here for free before cleaning up the data structures
     foreach(QString label, m_trainNewData.keys()){
         for(QString& imagePath : m_trainNewData.value(label)){
-            removeFile(imagePath,label ,TRAIN_FOLDER);
+            moveFile(imagePath, label, TRAIN_FOLDER);
         }
     }
 
     foreach(QString label, m_validationNewData.keys()){
         for(QString& imagePath : m_validationNewData.value(label)){
-            removeFile(imagePath,label ,VALIDATION_FOLDER);
+            moveFile(imagePath, label, VALIDATION_FOLDER);
         }
     }
 
@@ -62,8 +62,10 @@ void ImageInspectionModel::loadNewData(QString path, int split) {
     //create a temporary map to calculate split for train and validate
     QMap<QString, QStringList> allData;
     insertLabeledImagePaths(&allData,path);
+    QStringList allDataKeys = allData.keys();
 
-    foreach(QString key, allData.keys()){
+    for(QString& key : allDataKeys){
+        qDebug() << key;
         int dataPoints = allData.value(key).count();
         double splitPerc = (double) split/ (double) 100;
         double splitPosDbl = (double) dataPoints * splitPerc;
@@ -71,11 +73,20 @@ void ImageInspectionModel::loadNewData(QString path, int split) {
         int splitPosInt = floor(splitPosDbl);
 
         QStringList data = allData.value(key);
-        m_trainNewData.insert(key,QStringList(data.mid(0,splitPosInt - 1)));
-        if(!(splitPosInt == data.count())){
-             m_validationNewData.insert(key,QStringList(data.mid(splitPosInt - 1)));
+        QStringList trainData;
+        QStringList validationData;
+        //put images in train/validation lists depending on split. Could be done with QList.mid but crashes the debugger
+        for(int i = 0; i < dataPoints; i++){
+            if(i < splitPosInt){
+                validationData.append(data.at(i));
+            } else {
+                trainData.append(data.at(i));
+            }
         }
-        m_validationNewData.insert(key,QStringList());
+
+        m_trainNewData.insert(key,trainData);
+        m_validationNewData.insert(key,validationData);
+
     }
 
 }
@@ -139,7 +150,7 @@ const QMap<QString, QStringList> &ImageInspectionModel::getTrainNewData() const 
     return m_trainNewData;
 }
 
-void ImageInspectionModel::removeFile(QString imagePath,QString label, QString trainOrValidate) {
+void ImageInspectionModel::moveFile(QString imagePath, QString label, QString trainOrValidate) {
     QFile file(imagePath);
     QFileInfo fileInfo(file);
     QDir folder(fileInfo.absoluteDir());
@@ -153,8 +164,8 @@ void ImageInspectionModel::removeFile(QString imagePath,QString label, QString t
     if(destFile.exists()){
         destFile.remove();
     }
-    if(file.rename(newFileName)){
-        qDebug() << "check if file is already in target folder";
+    if(!file.rename(newFileName)){
+        qDebug() << "Error renaming file";
     }
     imagePath = newFileName;
     if(folder.isEmpty()){
