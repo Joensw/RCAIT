@@ -1,19 +1,19 @@
-#ifndef LOSSCURVE_H
-#define LOSSCURVE_H
+#ifndef ACCURACYCURVE_H
+#define ACCURACYCURVE_H
 
 
 #include <QGraphicsItem>
 #include <trainingresultview.h>
 #include "abstractresultgraphics.h"
 
-class LossCurve : public AbstractResultGraphics{
+class AccuracyCurve : public AbstractResultGraphics{
 public:
-    LossCurve(const QString &identifier, const QMap<int, QPair<double, double>> &data);
+    AccuracyCurve(const QString &identifier, const QMap<int, QPair<double, double>> &data);
     QString valuesToPyText();
 
     QPair<double,double> operator[](int epoch) const;
-    bool operator==(const LossCurve& other) const;
-    bool operator!=(const LossCurve& other) const;
+    bool operator==(const AccuracyCurve& other) const;
+    bool operator!=(const AccuracyCurve& other) const;
 
     QMap<int, QPair<double, double>> getData();
 
@@ -23,4 +23,4 @@ private:
     void passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) override;
 };
 
-#endif // LOSSCURVE_H
+#endif // ACCURACYCURVE_H

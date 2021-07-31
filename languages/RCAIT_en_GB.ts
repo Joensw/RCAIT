@@ -168,16 +168,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/results/classificationresultswidget.cpp" line="65"/>
+        <location filename="../view/results/classificationresultswidget.cpp" line="74"/>
         <source>Compare ...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ConfigurationController</name>
-    <message>
-        <location filename="../controller/configurationcontroller.cpp" line="24"/>
-        <source>Please specifiy all paths uniquely before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -232,17 +224,22 @@ The application will terminate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/configurationdialog.cpp" line="65"/>
+        <location filename="../view/configurationdialog.cpp" line="50"/>
+        <source>Please specifiy all paths uniquely before proceeding.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/configurationdialog.cpp" line="64"/>
         <source>Select project directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/configurationdialog.cpp" line="71"/>
+        <location filename="../view/configurationdialog.cpp" line="70"/>
         <source>Select classification plugin directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/configurationdialog.cpp" line="77"/>
+        <location filename="../view/configurationdialog.cpp" line="76"/>
         <source>Select image-loader plugin directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -261,47 +258,47 @@ The application will terminate</source>
     </message>
     <message>
         <location filename="../globalsettingswidget.ui" line="54"/>
-        <location filename="../globalsettingswidget.ui" line="130"/>
-        <location filename="../globalsettingswidget.ui" line="206"/>
+        <location filename="../globalsettingswidget.ui" line="136"/>
+        <location filename="../globalsettingswidget.ui" line="218"/>
         <source>current path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../globalsettingswidget.ui" line="78"/>
-        <location filename="../globalsettingswidget.ui" line="154"/>
-        <location filename="../globalsettingswidget.ui" line="230"/>
+        <location filename="../globalsettingswidget.ui" line="81"/>
+        <location filename="../globalsettingswidget.ui" line="163"/>
+        <location filename="../globalsettingswidget.ui" line="245"/>
         <source>new path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../globalsettingswidget.ui" line="85"/>
-        <location filename="../globalsettingswidget.ui" line="161"/>
-        <location filename="../globalsettingswidget.ui" line="237"/>
+        <location filename="../globalsettingswidget.ui" line="88"/>
+        <location filename="../globalsettingswidget.ui" line="170"/>
+        <location filename="../globalsettingswidget.ui" line="252"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../globalsettingswidget.ui" line="98"/>
+        <location filename="../globalsettingswidget.ui" line="104"/>
         <source>Choose classification-plugin Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../globalsettingswidget.ui" line="174"/>
+        <location filename="../globalsettingswidget.ui" line="186"/>
         <source>Choose imageloader-plugin directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/globalsettingswidget.cpp" line="42"/>
+        <location filename="../view/globalsettingswidget.cpp" line="50"/>
         <source>Sucess. Updated </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/globalsettingswidget.cpp" line="42"/>
+        <location filename="../view/globalsettingswidget.cpp" line="50"/>
         <source> path(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/globalsettingswidget.cpp" line="49"/>
+        <location filename="../view/globalsettingswidget.cpp" line="57"/>
         <source>no changes were made</source>
         <translation type="unfinished"></translation>
     </message>
@@ -515,17 +512,17 @@ The application will terminate</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../model/projectmanager.cpp" line="131"/>
+        <location filename="../model/projectmanager.cpp" line="240"/>
         <source>Name must contain at least 1 character</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../model/projectmanager.cpp" line="139"/>
+        <location filename="../model/projectmanager.cpp" line="248"/>
         <source>Name may not contain special characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../model/projectmanager.cpp" line="148"/>
+        <location filename="../model/projectmanager.cpp" line="257"/>
         <source>A project with this name aleady exists in the project directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -580,23 +577,14 @@ The application will terminate</source>
     </message>
 </context>
 <context>
-    <name>SettingsController</name>
-    <message>
-        <location filename="../controller/settingscontroller.cpp" line="66"/>
-        <source>Settings have not been updated, there is a conflict.
-paths may not be identical and must exist, this includes new and unchanged paths</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>SettingsView</name>
     <message>
-        <location filename="../view/settingsview.ui" line="14"/>
+        <location filename="../view/settingsview.ui" line="26"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.ui" line="33"/>
+        <location filename="../view/settingsview.ui" line="70"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
@@ -671,7 +659,7 @@ Select a project to get started</source>
     </message>
     <message>
         <location filename="../trainingresultview.ui" line="31"/>
-        <source>Loss Curve</source>
+        <source>Accuracy Curve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -721,17 +709,32 @@ Select a project to get started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../imagesection.ui" line="51"/>
+        <source>Current dataset training images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imagesection.ui" line="58"/>
+        <source>New training images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imagesection.ui" line="83"/>
+        <source>Current dataset validation images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imagesection.ui" line="102"/>
+        <source>New validation images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../imagesection.ui" line="121"/>
+        <source>Merge into dataset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../imagesection.ui" line="32"/>
-        <source>Validation images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../imagesection.ui" line="39"/>
-        <source>Training images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../imagesection.ui" line="46"/>
         <source>Remove selected images</source>
         <translation type="unfinished"></translation>
     </message>

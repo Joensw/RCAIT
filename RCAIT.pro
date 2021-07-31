@@ -52,7 +52,7 @@ SOURCES += \
     model/results/abstractresultgraphics.cpp \
     model/results/classificationgraphics.cpp \
     model/results/confusionmatrix.cpp \
-    model/results/losscurve.cpp \
+    model/results/accuracycurve.cpp \
     model/results/resultsprocessor.cpp \
     model/results/topaccuraciesgraphics.cpp \
     model/settingsmanager.cpp \
@@ -127,7 +127,7 @@ HEADERS += \
     model/results/abstractresultgraphics.h \
     model/results/classificationgraphics.h \
     model/results/confusionmatrix.h \
-    model/results/losscurve.h \
+    model/results/accuracycurve.h \
     model/results/resultsprocessor.h \
     model/results/topaccuraciesgraphics.h \
     model/settingsmanager.h \

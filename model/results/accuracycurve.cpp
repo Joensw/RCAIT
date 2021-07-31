@@ -1,21 +1,21 @@
 #include <QFileInfo>
 #include <QGraphicsSvgItem>
 #include <QProcess>
-#include "losscurve.h"
+#include "accuracycurve.h"
 
-LossCurve::LossCurve(const QString &identifier, const QMap<int, QPair<double, double>> &data)
-        : AbstractResultGraphics("losscurve_" + identifier, "svg") {
+AccuracyCurve::AccuracyCurve(const QString &identifier, const QMap<int, QPair<double, double>> &data)
+        : AbstractResultGraphics("accuracycurve_" + identifier, "svg") {
     m_data = data;
 }
 
-void LossCurve::generateGraphicsInternal(const QString &fullFilePath) {
-    // python script.py <loss curve data> <output file name>
-    auto pyScript = QFileInfo("losscurve.py");
+void AccuracyCurve::generateGraphicsInternal(const QString &fullFilePath) {
+    // python script.py <acc curve data> <output file name>
+    auto pyScript = QFileInfo("accuracycurve.py");
     QStringList params = QStringList() << pyScript.absoluteFilePath() << valuesToPyText() << fullFilePath;
     AbstractResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 
-QString LossCurve::valuesToPyText() {
+QString AccuracyCurve::valuesToPyText() {
     auto result = new QStringList();
 
     for (const auto key: m_data.keys()) {
@@ -33,24 +33,24 @@ QString LossCurve::valuesToPyText() {
     return '[' + result->join(',') + ']';
 }
 
-QPair<double, double> LossCurve::operator[](int epoch) const {
+QPair<double, double> AccuracyCurve::operator[](int epoch) const {
     return m_data[epoch];
 }
 
-bool LossCurve::operator==(const LossCurve &other) const {
+bool AccuracyCurve::operator==(const AccuracyCurve &other) const {
     return m_data == other.m_data;
 }
 
-bool LossCurve::operator!=(const LossCurve &other) const {
+bool AccuracyCurve::operator!=(const AccuracyCurve &other) const {
     return m_data != other.m_data;
 }
 
-QMap<int, QPair<double, double> > LossCurve::getData()
+QMap<int, QPair<double, double> > AccuracyCurve::getData()
 {
     return m_data;
 }
 
-void LossCurve::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
+void AccuracyCurve::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
-    receiver->setLossCurve(graphics);
+    receiver->setAccuracyCurve(graphics);
 }

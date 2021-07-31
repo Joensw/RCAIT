@@ -7,10 +7,10 @@ TrainingResultView::TrainingResultView(QWidget *parent) :
     ui->setupUi(this);
 }
 
-void TrainingResultView::setLossCurve(QGraphicsItem *lossCurveImage) {
-    auto view = ui->graphicsView_losscurve;
+void TrainingResultView::setAccuracyCurve(QGraphicsItem *accuracyCurveImage) {
+    auto view = ui->graphicsView_accuracycurve;
     auto *scene = new QGraphicsScene();
-    scene->addItem(lossCurveImage);
+    scene->addItem(accuracyCurveImage);
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 

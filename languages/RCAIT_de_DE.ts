@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
     <name>AITrainingWidget</name>
@@ -162,11 +160,11 @@
     </message>
     <message>
         <source>Compare Classification Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Klassifizierungsergebnisse vergleichen</translation>
     </message>
     <message>
         <source>Save Results </source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnisse speichern</translation>
     </message>
     <message>
         <source>Compare ...</source>
@@ -177,47 +175,47 @@
     <name>ConfigurationController</name>
     <message>
         <source>Please specifiy all paths uniquely before proceeding.</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Bitte geben Sie alle Pfade einmalig an, bevor Sie fortfahren.</translation>
     </message>
 </context>
 <context>
     <name>ConfigurationDialog</name>
     <message>
         <source>Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguration</translation>
     </message>
     <message>
         <source>select project directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Projektverzeichnis auswählen</translation>
     </message>
     <message>
         <source>path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pfad:</translation>
     </message>
     <message>
         <source>select classification plugin directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Klassifizierungs-Plugin-Verzeichnis auswählen</translation>
     </message>
     <message>
         <source>select image loader plugin directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin-Verzeichnis für den Bildlader auswählen</translation>
     </message>
     <message>
         <source>&lt;error&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Fehler&gt;</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Quit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Zum Beenden bestätigen</translation>
     </message>
     <message>
         <source>Are you sure you want to quit?
 The application will terminate</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie die Anwendung beenden möchten?</translation>
     </message>
     <message>
         <source>Select project directory</source>
@@ -229,7 +227,11 @@ The application will terminate</source>
     </message>
     <message>
         <source>Select image-loader plugin directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie das Image-Loader-Plugin-Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Please specifiy all paths uniquely before proceeding.</source>
+        <translation type="unfinished">Bitte geben Sie alle Pfade einmalig an, bevor Sie fortfahren.</translation>
     </message>
 </context>
 <context>
@@ -252,7 +254,7 @@ The application will terminate</source>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <source>Choose classification-plugin Directory</source>
@@ -276,7 +278,7 @@ The application will terminate</source>
     </message>
     <message>
         <source>no changes were made</source>
-        <translation type="unfinished">keine Änderung vorgenommen</translation>
+        <translation type="unfinished">keine Ã„nderung vorgenommen</translation>
     </message>
 </context>
 <context>
@@ -604,8 +606,8 @@ The application will terminate</source>
         <translation>Modell löschen</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -615,8 +617,8 @@ The application will terminate</source>
         <translation>Projekt löschen</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Remove associated Models</source>
@@ -735,7 +737,7 @@ The application will terminate</source>
     <message>
         <source>Settings have not been updated, there is a conflict.
 paths may not be identical and must exist, this includes new and unchanged paths</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Die Einstellungen wurden nicht aktualisiert, es besteht ein Konflikt.\Pfade dürfen nicht identisch sein und müssen existieren, dies schließt neue und unveränderte Pfade ein</translation>
     </message>
 </context>
 <context>
@@ -758,12 +760,12 @@ paths may not be identical and must exist, this includes new and unchanged paths
     </message>
     <message>
         <source>Select classification plugin directory</source>
-        <translatorcomment>kann man sicher eleganter übersetzen</translatorcomment>
+        <translatorcomment>kann man sicher eleganter ÃƒÂ¼bersetzen</translatorcomment>
         <translation>Klassifizierungspluginverzeichnis wählen</translation>
     </message>
     <message>
         <source>Select image loader plugin directory</source>
-        <translatorcomment>kann man sicher eleganter übersetzen</translatorcomment>
+        <translatorcomment>kann man sicher eleganter ÃƒÂ¼bersetzen</translatorcomment>
         <translation>Bildladerpluginverzeichnis wählen</translation>
     </message>
 </context>
@@ -827,7 +829,7 @@ Wähle ein Projekt aus, um loszulegen</translation>
     </message>
     <message>
         <source>Loss Curve</source>
-        <translation type="unfinished">Verlustkurve</translation>
+        <translation type="obsolete">Verlustkurve</translation>
     </message>
     <message>
         <source>Most Misclassified Images</source>
@@ -836,6 +838,10 @@ Wähle ein Projekt aus, um loszulegen</translation>
     <message>
         <source>Confusion Matrix</source>
         <translation type="unfinished">Konfusionsmatrix</translation>
+    </message>
+    <message>
+        <source>Accuracy Curve</source>
+        <translation>Genauigkeitskurve</translation>
     </message>
 </context>
 <context>
@@ -846,7 +852,7 @@ Wähle ein Projekt aus, um loszulegen</translation>
     </message>
     <message>
         <source>Compare Training Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Trainingsergebnisse vergleichen</translation>
     </message>
     <message>
         <source>Top Accuracies</source>
@@ -854,7 +860,7 @@ Wähle ein Projekt aus, um loszulegen</translation>
     </message>
     <message>
         <source>Save Results </source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnisse speichern</translation>
     </message>
     <message>
         <source>Compare ...</source>
@@ -869,15 +875,35 @@ Wähle ein Projekt aus, um loszulegen</translation>
     </message>
     <message>
         <source>Validation images</source>
-        <translation>Validierungsbilder</translation>
+        <translation type="vanished">Validierungsbilder</translation>
     </message>
     <message>
         <source>Training images</source>
-        <translation>Trainingsbilder</translation>
+        <translation type="vanished">Trainingsbilder</translation>
     </message>
     <message>
         <source>Remove selected images</source>
         <translation>Entferne ausgewählte Bilder</translation>
+    </message>
+    <message>
+        <source>Current dataset training images</source>
+        <translation>Aktuelle Trainingsbilder aus dem Datensatz</translation>
+    </message>
+    <message>
+        <source>New training images</source>
+        <translation>Neue Trainingsbilder</translation>
+    </message>
+    <message>
+        <source>Current dataset validation images</source>
+        <translation>Aktueller Datensatz Validierungsbilder</translation>
+    </message>
+    <message>
+        <source>New validation images</source>
+        <translation>Neue Validierungsbilder</translation>
+    </message>
+    <message>
+        <source>Merge into dataset</source>
+        <translation>In Datensatz zusammenführen</translation>
     </message>
 </context>
 </TS>

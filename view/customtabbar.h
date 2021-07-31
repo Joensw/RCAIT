@@ -1,5 +1,6 @@
 #ifndef CUSTOMTABBAR_H
 #define CUSTOMTABBAR_H
+
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
@@ -14,18 +15,25 @@
 #include <QtWidgets/QTabBar>
 #include <QStyleOptionTab>
 
+#define OFFSET(x) ((int) x*0.12)
+#define SELECTED_OFFSET(x) ((int) x*0.08)
+
 /**
  * @brief The CustomTabBar class is used in the CustomTabWidget
  */
-class CustomTabBar : public QTabBar
-{
+class CustomTabBar : public QTabBar {
 public:
-    /**
-     * @brief CustomTabBar create a new CustomTabBar
-     */
-    CustomTabBar();
+/**
+ * @brief CustomTabBar constructor
+ * @param tabWidget Associated TabWidget
+ */
+    CustomTabBar(QTabWidget *tabWidget);
+
 protected:
-    void paintEvent(QPaintEvent *);
+    void paintEvent(QPaintEvent *) override;
+
+private:
+    QTabWidget *m_tabWidget;
 };
 
 #endif // CUSTOMTABBAR_H

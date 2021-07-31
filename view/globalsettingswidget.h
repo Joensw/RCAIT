@@ -80,6 +80,8 @@ public:
      * @param path path to be shown
      */
     void setCurrentImageLoaderDir(QString path);
+
+
 signals:
     /**
      * @brief sig_setProjectDir emitted when a file dialog is to be opened to choose a new projects directory
@@ -100,8 +102,12 @@ signals:
      * @brief sig_wasTranslated emitted when a translation of the current objet has taken place
      */
     void sig_wasTranslated();
+
+
+
 protected:
     void changeEvent(QEvent *event);
+   // void resizeEvent(QResizeEvent *event);
 private slots:
     //slots correspond with the identically named button in the UI
     void on_pushButton_project_clicked();

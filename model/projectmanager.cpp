@@ -1,6 +1,6 @@
 #include "projectmanager.h"
 #include "confusionmatrix.h"
-#include "losscurve.h"
+#include "accuracycurve.h"
 
 #include <QDir>
 #include <QSettings>
@@ -145,14 +145,14 @@ void ProjectManager::saveTrainingsResult(TrainingResult result) {
     out.setVersion(QDataStream::Qt_6_1);
 
     ConfusionMatrix * cmTemp = result.getConfusionMatrix();
-    LossCurve * lcTemp = result.getLossCurve();
+    AccuracyCurve * acTemp = result.getAccuracyCurve();
 
     QString identifierCM = cmTemp->getIdentifier();
     QStringList classLabels = cmTemp->getClassLabels();
     QList<int> values= cmTemp->getValues();
 
-    QMap<int, QPair<double, double>> data = lcTemp->getData();
-    QString identiferLC = lcTemp->getIdentifier();
+    QMap<int, QPair<double, double>> data = acTemp->getData();
+    QString identiferLC = acTemp->getIdentifier();
 
     QList<QImage> additionalResults = result.getAdditionalResults();
 
@@ -179,7 +179,7 @@ TrainingResult ProjectManager::getTrainingsResult(QString modelResultName) {
     QList<int> values;
 
     QMap<int, QPair<double, double>> data;
-    QString identiferLC;
+    QString identiferAC;
 
     double top1Acc;
     double top5Acc;
@@ -187,16 +187,16 @@ TrainingResult ProjectManager::getTrainingsResult(QString modelResultName) {
 
     QList<QImage> additionalResults;
 
-    in >> top1Acc >> top5Acc >> mostMisclassifiedImages >> identifierCM >> classLabels >> values >> data >> identiferLC >> additionalResults;
+    in >> top1Acc >> top5Acc >> mostMisclassifiedImages >> identifierCM >> classLabels >> values >> data >> identiferAC >> additionalResults;
 
     //reconstruct Confusion matrix
-    ConfusionMatrix * confMatrix = new ConfusionMatrix(identifierCM, classLabels, values);
+    auto * confMatrix = new ConfusionMatrix(identifierCM, classLabels, values);
     //QSharedPointer<ConfusionMatrix> confMatrix = QSharedPointer<ConfusionMatrix>(new ConfusionMatrix(identifierCM, classLabels, values));
     //reconstruct loss curve
-    LossCurve * lossCurve = new LossCurve(identiferLC, data);
-    //QSharedPointer<LossCurve> lossCurve = QSharedPointer<LossCurve>(new LossCurve(identiferLC, data));
+    auto * accCurve = new AccuracyCurve(identiferAC, data);
+    //QSharedPointer<AccuracyCurve> accCurve = QSharedPointer<AccuracyCurve>(new AccuracyCurve(identiferAC, data));
     //reconstruct training result
-    TrainingResult constructedTR(lossCurve, confMatrix, mostMisclassifiedImages, top1Acc, top5Acc, additionalResults);
+    TrainingResult constructedTR(accCurve, confMatrix, mostMisclassifiedImages, top1Acc, top5Acc, additionalResults);
 
     file.close();
 
