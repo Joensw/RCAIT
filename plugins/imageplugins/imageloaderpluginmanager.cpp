@@ -5,6 +5,10 @@ ImageLoaderPluginManager::ImageLoaderPluginManager() {
 }
 
 void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
+    m_pluginsSharedPointer.clear();
+    m_pluginConfigurationWidgets.clear();
+
+
     QDir pluginsDir(pluginDir);
     const QStringList entries = pluginsDir.entryList(QDir::Files);
 
@@ -17,7 +21,7 @@ void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
             m_pluginConfigurationWidgets.append(imageLoaderPlugin->getConfigurationWidget());
             if (imageLoaderPlugin){
 
-                m_pluginsSharedPointer.insert( imageLoaderPlugin->getName(), QSharedPointer<ImageLoaderPlugin>(imageLoaderPlugin));
+                m_pluginsSharedPointer.insert( imageLoaderPlugin->getName(), imageLoaderPlugin);
 
             }
             //pluginLoader.unload(); //ToDo: Maybe use this

@@ -33,6 +33,8 @@ void SettingsController::slot_applyGlobalSettings(QString projectsDir, QString c
         mSettingsView->pathsUpdated(sucessfulUpdates);
         mSettingsView->clearPaths();
         emit sig_projectDirectoryChanged();
+        emit sig_imagePluginsDirectoryChanged();
+        mSettingsView->addPluginWidgets(mDataManager->getPluginNames(), mDataManager->getPluginSettings());
         return;
     }
     mSettingsView->setGlobalSettingsError(errorMessage);

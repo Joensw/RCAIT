@@ -18,6 +18,7 @@ Controller::Controller(QObject *parent) : QObject(parent)
     mImageController = new ImageController(mMainWindow->getImageSectionWidget(),mMainWindow->getImportFilesWidget(),mDataManger);
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_openProject, mImageController, &ImageController::slot_openProject);
     connect(mSettingsController, &SettingsController::sig_projectDirectoryChanged, mProjectController, &ProjectController::slot_projectDirectoryChanged);
+    connect(mSettingsController, &SettingsController::sig_imagePluginsDirectoryChanged, mImageController, &ImageController::slot_imagePluginDirectoryChanged);
 
     mConfigurationController->verify();
 
