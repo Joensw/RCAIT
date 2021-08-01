@@ -50,6 +50,7 @@ void ImageController::slot_imagesReady() {
 void ImageController::slot_handelImageLoadProgress(int progress)
 {
     m_importFilesWidget->updateProgressBar(progress);
+    emit sig_imagesLoaded(); //testing purposes for tabController
 }
 
 void ImageController::slot_openProject()

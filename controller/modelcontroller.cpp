@@ -48,7 +48,7 @@ void ModelController::slot_removeModelConfirm()
 void ModelController::slot_loadModel(QString modelName)
 {
     mDataManager->loadModel(modelName, "PLACEHOLDER");
-
+    emit sig_modelLoaded();
 }
 
 void ModelController::slot_pluginSelected(QString pluginName)
