@@ -92,8 +92,6 @@ void ProjectManager::loadProject(QString projectName) {
     mProjectDataSetDir = mProjectPath + "/" + projectfile.value(projectDatasetDirectoryIdentifier).toString();
     mProjectTempDir = mProjectPath + "/" + projectfile.value(projectTempDirectoryIdentifier).toString();
     mProjectResultsDir = mProjectPath + "/" + resultsDirectoryName;
-
-    qDebug() << getNamesOfSavedTrainingResults();
 }
 
 QString ProjectManager::getProjectPath() {

@@ -50,6 +50,7 @@ void ImageController::slot_handelImageLoadProgress(int progress)
     //if finished we display
     if(progress == 100){
         updateNewDatasetDisplay();
+        emit sig_imagesLoaded();
     }
 
 }

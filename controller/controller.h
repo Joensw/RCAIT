@@ -11,6 +11,7 @@
 #include "resultscontroller.h"
 #include <mainwindow.h>
 #include "imagecontroller.h"
+#include "tabcontroller.h"
 
 #include <QObject>
 
@@ -50,6 +51,8 @@ private:
     ConfigurationController * mConfigurationController;
 
     ImageController* mImageController;
+
+    TabController* mTabController;
 
     DataManager *mDataManger;
 
