@@ -6,18 +6,22 @@
 #include <QMap>
 #include <QImage>
 #include "result.h"
+#include <classificationgraphics.h>
 
 class ClassificationResult : public Result {
 private:
     QMap<QString, QList<double>> m_classificationData;
+    ClassificationGraphics* m_classificationGraphics;
     QList<QString> m_labels;
 public:
-    ClassificationResult(QMap<QString, QList<double>> classificationData,
-                         QList<QString> labels, QList<QImage> additionalResults);
+    ClassificationResult(const QMap<QString, QList<double>> &classificationData,
+                         QList<QString> labels, const QList<QImage>& additionalResults);
 
     QMap<QString, QList<double>> getClassificationData();
 
     QList<QString> getLabels();
+
+    ClassificationGraphics *getClassificationGraphics() const;
 };
 
 

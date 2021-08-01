@@ -1,11 +1,12 @@
 #include "classificationresult.h"
 #include <utility>
 
-ClassificationResult::ClassificationResult(QMap<QString, QList<double>> classificationData,
-                                           QList<QString> labels, QList<QImage> additionalResults)
-        : Result(std::move(additionalResults)) {
+ClassificationResult::ClassificationResult(const QMap<QString, QList<double>> &classificationData,
+                                           QList<QString> labels, const QList<QImage>& additionalResults)
+        : Result(additionalResults) {
 
-    m_classificationData = std::move(classificationData);
+    m_classificationGraphics = new ClassificationGraphics(this->getTimestamp(), classificationData);
+    m_classificationData = classificationData;
     m_labels = std::move(labels);
 }
 
@@ -15,4 +16,8 @@ QMap<QString, QList<double>> ClassificationResult::getClassificationData() {
 
 QList<QString> ClassificationResult::getLabels() {
     return m_labels;
+}
+
+ClassificationGraphics *ClassificationResult::getClassificationGraphics() const {
+    return m_classificationGraphics;
 }
