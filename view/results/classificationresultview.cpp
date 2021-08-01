@@ -6,7 +6,7 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
         ui(new Ui::ClassificationResultView) {
     ui->setupUi(this);
 
-    QTableWidget *table = ui->tableWidget_classificationresult;
+    auto *table = ui->tableWidget_classificationresult;
 
     //Stretch table headers to fill the space available
     QHeaderView *h_header = table->horizontalHeader();
@@ -16,13 +16,7 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
 
     table->setColumnCount(2);
     table->setHorizontalHeaderLabels({"Accuracy", "Label"});
-
-    configure_updateGraphicsButton();
-
-    //Internal signals/slots
-    connect(m_pushButton_updateGraphics, &QAbstractButton::pressed, this,
-            &ClassificationResultView::slot_pushButton_updateGraphics_pressed);
-
+    table->setCornerButtonEnabled(false);
 }
 
 void ClassificationResultView::setClassificationData(const QList<QPair<QString, QStringList>>& data){
@@ -47,19 +41,6 @@ void ClassificationResultView::setClassificationGraphics(QGraphicsItem *classifi
 
     view->setScene(scene);
 }
-
-void ClassificationResultView::slot_pushButton_updateGraphics_pressed() {
-    emit sig_requestClassificationResultGraphics(this);
-}
-
-void ClassificationResultView::configure_updateGraphicsButton() {
-    const auto icon = QIcon(":/Resources/UISymbols/UI_Reload_Icon.svg");
-    m_pushButton_updateGraphics = ui->tableWidget_classificationresult->getCornerButton();
-    if (m_pushButton_updateGraphics) {
-        m_pushButton_updateGraphics->setIcon(icon);
-    }
-}
-
 
 void ClassificationResultView::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {

@@ -40,8 +40,6 @@ private:
     Ui::ClassificationResultView *ui;
     QAbstractButton *m_pushButton_updateGraphics;
 
-    void configure_updateGraphicsButton();
-
     void retranslateUi();
 
 };
