@@ -22,6 +22,9 @@ public:
      */
     void refresh();
 
+signals:
+    void sig_projectPathUpdated();
+
 public slots:
     /**
      * @brief slot_newProject opens the UI to create a new project

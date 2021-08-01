@@ -36,6 +36,7 @@ void ProjectController::slot_removeProject(QString projectName){
 
 void ProjectController::slot_openProject(QString projectName){
     mDataManager->loadProject(projectName);
+    emit sig_projectPathUpdated();
 }
 
 void ProjectController::slot_projectDirectoryChanged()

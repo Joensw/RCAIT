@@ -15,6 +15,8 @@ class ImageController : public QObject{
 public:
     ImageController(ImageSection* imageSection, ImportFilesWidget* importFilesWidget, DataManager* dataManager);
 
+signals:
+    void sig_imagesLoaded();
 private:
     ImageLoader* m_imageLoader;
     ImageSection* m_imageSection;

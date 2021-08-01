@@ -58,15 +58,15 @@ ImageSection *MainWindow::getImageSectionWidget()
     return ui->tab_image_inspection;
 }
 
+CustomTabWidget *MainWindow::getTabWidget()
+{
+    return ui->tabWidget;
+}
+
 void MainWindow::slot_settingsButton_clicked() {
     emit sig_openSettings();
 }
 
-void MainWindow::on_pushButton_openProject_clicked()
-{
-    int newIndex = ui->tabWidget->currentIndex() + 1;
-    ui->tabWidget->setCurrentIndex(newIndex);
-}
 
 void MainWindow::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {

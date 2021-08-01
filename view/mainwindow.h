@@ -18,6 +18,7 @@
 #include "startwidget.h"
 #include "importfileswidget.h"
 #include "imagesection.h"
+#include "customtabwidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -49,6 +50,7 @@ public:
     ResultsWidget *getResultsWidget();
     AutomationWidget *getAutomationWidget();
     ImageSection* getImageSectionWidget();
+    CustomTabWidget* getTabWidget();
 
 signals:
     /**
@@ -59,7 +61,6 @@ signals:
 private slots:
     //slots correspond with the identically named button in the UI
     void slot_settingsButton_clicked();
-    void on_pushButton_openProject_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -12,6 +12,7 @@
  */
 class ModelController : public QObject
 {
+    Q_OBJECT
 public:
     explicit ModelController(QObject *parent = nullptr, DataManager *dataManager = nullptr, ImportFilesWidget *importFilesWidget = nullptr);
 public slots:
@@ -50,6 +51,8 @@ public slots:
      * @param pluginName
      */
     void slot_pluginSelected(QString pluginName);
+signals:
+    void sig_modelLoaded();
 private:
     DataManager *mDataManager;
     NewModelDialog *mNewModelDialog;
