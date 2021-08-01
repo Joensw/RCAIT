@@ -31,6 +31,7 @@ void ImageController::slot_loadInputImages(QString pluginName, int count, QStrin
     m_imageLoader = new ImageLoader();
     m_imageLoader->loadInputImages(count,labels,pluginName,tempDir);
     connect(m_imageLoader, &ImageLoader::sig_progress, this, &ImageController::slot_handelImageLoadProgress);
+    connect(m_imageLoader, &ImageLoader::sig_imagesReady, this, &ImageController::slot_imagesReady);
     m_imageLoader->load();
 
 }
@@ -41,18 +42,14 @@ void ImageController::slot_confirm() {
 
 void ImageController::slot_imagesReady() {
 
+    updateNewDatasetDisplay();
+    updateDatasetDisplay();
 }
+
 
 void ImageController::slot_handelImageLoadProgress(int progress)
 {
     m_importFilesWidget->updateProgressBar(progress);
-
-    //if finished we display
-    if(progress == 100){
-        updateNewDatasetDisplay();
-        updateDatasetDisplay();
-    }
-
 }
 
 void ImageController::slot_openProject()
