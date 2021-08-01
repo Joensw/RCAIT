@@ -43,7 +43,8 @@ void ImageGalleryTree::addDir(QString path)
     addTopLevelItem(name);
 
     QTreeWidgetItem* imageGalleryItem = new QTreeWidgetItem(name);
-    ImageGallery* gallery = new ImageGallery(this, QDir(path));
+    ImageGallery* gallery = new ImageGallery(this);
+    gallery->concurrentAddDir(path);
     galleries->append(gallery);
     setItemWidget(imageGalleryItem,0, gallery);
     imageGalleryItem->setFlags(Qt::ItemNeverHasChildren);

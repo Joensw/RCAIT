@@ -21,14 +21,6 @@ public:
      */
     explicit ImageGallery(QWidget *parent = nullptr);
 
-    /**
-     * @brief ImageGallery::ImageGallery
-     * @param parent
-     * @param imageDirectory
-     * @deprecated please use default constructor and addDir(QDir)/concurrentAddDir(QString) instead
-     */
-    ImageGallery(QWidget *parent, const QDir& imageDirectory);
-
 
     ImageGallery(QWidget *parent, QStringList images);
 
@@ -46,7 +38,7 @@ public:
      *
      * Adds images in a directory to the imagelist
      */
-    void addDir(const QDir& imageDir);
+    void addDir(const QStringList imageDir);
 
     void addDir(QList<QImage> imageList);
 
@@ -75,6 +67,7 @@ public:
     void concurrentAddDir(const QList<QImage> imageList);
 
 
+    void concurrentAddDir(const QStringList imageList);
 private slots:
     void slot_isReady();
 
