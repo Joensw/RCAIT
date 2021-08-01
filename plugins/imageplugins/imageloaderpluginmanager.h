@@ -18,7 +18,7 @@ private:
     ImageLoaderPluginManager();
     QMap<QString, ImageLoaderPlugin*> m_plugins;
     QSharedPointer<ImageLoaderPlugin> test;
-    QMap<QString, QSharedPointer<ImageLoaderPlugin>> m_pluginsSharedPointer;
+    QMap<QString, ImageLoaderPlugin*> m_pluginsSharedPointer;
 
 public:
     //Threadsafe singleton pattern

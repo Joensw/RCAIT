@@ -124,7 +124,7 @@ void TrainingResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
         emit sig_loadAccuracyDataToCompare(runNameToCompare, topAccuracies);
     } else {
         deleteTrainingResultTab(runNameToCompare);
-        topAccuracies->removeTableRow(runNameToCompare);
+        emit sig_unloadAccuracyDataToCompare(runNameToCompare, topAccuracies);
     }
 }
 

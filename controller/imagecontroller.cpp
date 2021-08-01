@@ -18,8 +18,6 @@ connect(m_importFilesWidget, &ImportFilesWidget::sig_loadInputImages, this, &Ima
 connect(m_imageSection, &ImageSection::sig_mergeDatasets, this, &ImageController::slot_mergeDatasets);
 connect(m_imageSection, &ImageSection::sig_removeImages, this, &ImageController::slot_remove);
 
-
-
 }
 
 
@@ -67,9 +65,15 @@ void ImageController::slot_mergeDatasets() {
 
 }
 
+
 void ImageController::slot_updateImageLoadStatusText(QString status)
 {
     m_importFilesWidget->updateStatusText(status);
+}
+void ImageController::slot_imagePluginDirectoryChanged()
+{
+    m_importFilesWidget->setAvailablePlugins(m_dataManager->getImageLoaderPluginNames());
+
 }
 
 void ImageController::updateDatasetDisplay() {

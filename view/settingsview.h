@@ -79,6 +79,12 @@ public:
      */
     void setCurrentImageLoaderPluginDirectory(QString path);
 
+    /**
+     * @brief addPluginWidgets adds plugin widgets to SettingsView.
+     * @param pluginNames names of plugins.
+     * @param pluginConfigurationWidgets config widgets of plugins.
+     */
+    void addPluginWidgets(QStringList pluginNames, QList<QWidget *> pluginConfigurationWidgets);
 public slots:
     /**
      * @brief slot_retranslate is used to update translated pluginlist.
