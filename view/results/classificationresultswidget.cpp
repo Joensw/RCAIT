@@ -48,9 +48,9 @@ void ClassificationResultsWidget::slot_comparisonMenu_triggered(QAction *action)
     const QString &runNameToCompare = action->text();
     if (action->isChecked()) {
         auto tab = createClassificationResultTab(runNameToCompare);
-        emit sig_loadClassificationDataToCompare(runNameToCompare, tab);
+        emit sig_comparison_loadClassificationData(runNameToCompare, tab);
         //TODO Implementation/design of classification results graphic w/ stacked barcharts
-        //emit sig_loadClassificationImagesToCompare(runNameToCompare, topAccuracies);
+        emit sig_comparison_loadClassificationGraphics(runNameToCompare, tab);
     } else {
         deleteClassificationResultTab(runNameToCompare);
     }
@@ -83,8 +83,6 @@ ClassificationResultView *ClassificationResultsWidget::createClassificationResul
     ui->tabWidget_classificationresults->addTab(tab, tabName);
     m_mapClassificationResultTabs[tabName] = tab;
 
-    //Forward signals
-    connect(tab, &ClassificationResultView::sig_requestClassificationResultGraphics, this, &ClassificationResultsWidget::slot_requestClassificationResultGraphics);
     return tab;
 }
 
@@ -93,9 +91,4 @@ void ClassificationResultsWidget::deleteClassificationResultTab(const QString &t
     auto tab = m_mapClassificationResultTabs.take(tabName);
     auto index = tabWidget->indexOf(tab);
     tabWidget->removeTab(index);
-}
-
-void ClassificationResultsWidget::slot_requestClassificationResultGraphics(AbstractGraphicsView *receiver) {
-    //Forwarded signal
-    emit sig_requestClassificationResultGraphics(receiver);
 }

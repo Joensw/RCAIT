@@ -10,18 +10,18 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
      */
     auto trainingResultsWidget = m_resultsWidget->getTrainingResultsWidget();
     // Connect 'Top Accuracies Table' related signals/slots
-    connect(trainingResultsWidget->getTopAccuraciesView(), &TopAccuraciesView::sig_requestTopAccuraciesGraphics,
+    connect(trainingResultsWidget->getTopAccuraciesView(), &TopAccuraciesView::sig_normal_requestTopAccuraciesGraphics,
             m_resultsProcessor,
-            &ResultsProcessor::slot_generateTopAccuraciesGraphics);
+            &ResultsProcessor::slot_normal_generateTopAccuraciesGraphics);
 
     //Connect 'Compare Run' related signals/slots
-    connect(trainingResultsWidget, &TrainingResultsWidget::sig_loadTrainingImagesToCompare, m_resultsProcessor,
-            &ResultsProcessor::slot_loadTrainingImagesToCompare);
-    connect(trainingResultsWidget, &TrainingResultsWidget::sig_loadAccuracyDataToCompare, m_resultsProcessor,
-            &ResultsProcessor::slot_loadAccuracyDataToCompare);
-    connect(trainingResultsWidget, &TrainingResultsWidget::sig_unloadAccuracyDataToCompare,
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_loadTrainingResultGraphics, m_resultsProcessor,
+            &ResultsProcessor::slot_comparison_loadTrainingResultGraphics);
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_loadAccuracyData, m_resultsProcessor,
+            &ResultsProcessor::slot_comparison_loadAccuracyData);
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_unloadAccuracyData,
             m_resultsProcessor,
-            &ResultsProcessor::slot_unloadAccuracyDataToCompare);
+            &ResultsProcessor::slot_comparison_unloadAccuracyData);
 
 /*
  * Classification Results
@@ -29,10 +29,9 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
     auto classificationResultsWidget = m_resultsWidget->getClassificationResultsWidget();
 
     //Connect 'Compare Run' related signals/slots
-    connect(classificationResultsWidget, &ClassificationResultsWidget::sig_loadClassificationDataToCompare,
+    connect(classificationResultsWidget, &ClassificationResultsWidget::sig_comparison_loadClassificationData,
             m_resultsProcessor,
-            &ResultsProcessor::slot_loadClassificationDataToCompare);
-    connect(classificationResultsWidget, &ClassificationResultsWidget::sig_requestClassificationResultGraphics, m_resultsProcessor, &ResultsProcessor::slot_generateClassificationResultGraphics);
+            &ResultsProcessor::slot_comparison_loadClassificationData);
 
     //Connect ResultsWidget to ResultsController
     connect(m_resultsWidget, &ResultsWidget::sig_saveResults, this, &ResultsController::slot_saveResult);

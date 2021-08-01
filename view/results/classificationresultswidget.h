@@ -44,11 +44,11 @@ private slots:
 
     void slot_comparisonMenu_triggered(QAction *action);
 
-    void slot_requestClassificationResultGraphics(AbstractGraphicsView *receiver);
-
 signals:
 
-    void sig_loadClassificationDataToCompare(const QString &runNameToCompare, ClassificationResultView *view);
+    void sig_comparison_loadClassificationData(const QString &runNameToCompare, ClassificationResultView *view);
+
+    void sig_comparison_loadClassificationGraphics(const QString &runNameToCompare, ClassificationResultView *view);
 
     void sig_requestClassificationResultGraphics(AbstractGraphicsView *receiver);
 

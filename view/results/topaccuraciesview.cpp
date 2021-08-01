@@ -60,7 +60,7 @@ void TopAccuraciesView::setTopAccuraciesGraphics(QGraphicsItem *topAccuraciesIma
 }
 
 void TopAccuraciesView::slot_pushButton_updateGraphics_pressed() {
-    emit sig_requestTopAccuraciesGraphics(this);
+    emit sig_normal_requestTopAccuraciesGraphics(this);
 }
 
 void TopAccuraciesView::configure_updateGraphicsButton() {

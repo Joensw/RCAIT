@@ -31,7 +31,7 @@ public:
 
 signals:
 
-    void sig_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver);
+    void sig_normal_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver);
 
 private slots:
 

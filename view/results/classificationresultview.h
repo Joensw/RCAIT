@@ -28,14 +28,6 @@ public:
 
     ~ClassificationResultView();
 
-signals:
-
-    void sig_requestClassificationResultGraphics(AbstractGraphicsView *receiver);
-
-private slots:
-
-    void slot_pushButton_updateGraphics_pressed();
-
 private:
     Ui::ClassificationResultView *ui;
     QAbstractButton *m_pushButton_updateGraphics;

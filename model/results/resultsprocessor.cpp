@@ -7,16 +7,16 @@ ResultsProcessor::ResultsProcessor() {
     m_topAccuraciesGraphics = new TopAccuraciesGraphics();
 }
 
-void ResultsProcessor::slot_generateTopAccuraciesGraphics(AbstractGraphicsView *receiver) {
+void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(AbstractGraphicsView *receiver) {
     m_topAccuraciesGraphics->updateIdentifier(Result::generateIdentifier());
     m_topAccuraciesGraphics->generateGraphics(receiver);
 }
 
-void ResultsProcessor::slot_generateClassificationResultGraphics(AbstractGraphicsView *receiver) {
+void ResultsProcessor::slot_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver) {
     //TODO
 }
 
-void ResultsProcessor::slot_loadTrainingImagesToCompare(const QString &runNameToCompare, TrainingResultView *view) {
+void ResultsProcessor::slot_comparison_loadTrainingResultGraphics(const QString &runNameToCompare, TrainingResultView *view) {
         //Accuracy Curve
         int sum = 0;
         auto *pointsMap = new QMap<int, QPair<double, double>>();
@@ -77,7 +77,7 @@ void ResultsProcessor::slot_loadTrainingImagesToCompare(const QString &runNameTo
     //TODO Load most misclassified images.
 }
 
-void ResultsProcessor::slot_loadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view) {
+void ResultsProcessor::slot_comparison_loadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view) {
     double top1 = QRandomGenerator::global()->bounded(100);
     double top5 = QRandomGenerator::global()->bounded(100);
     m_topAccuraciesGraphics->addDataRow(runNameToCompare, {top1, top5});
@@ -85,12 +85,12 @@ void ResultsProcessor::slot_loadAccuracyDataToCompare(const QString &runNameToCo
     //TODO Load real accuracy data from JSON file
 }
 
-void ResultsProcessor::slot_unloadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view) {
+void ResultsProcessor::slot_comparison_unloadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view) {
     m_topAccuraciesGraphics->removeDataRow(runNameToCompare);
     view->removeTopAccuraciesEntry(runNameToCompare);
 }
 
-void ResultsProcessor::slot_loadClassificationDataToCompare(const QString &runNameToCompare,
+void ResultsProcessor::slot_comparison_loadClassificationData(const QString &runNameToCompare,
                                                             ClassificationResultView *view) {
     //TODO Load data from JSON file
     QStringList labels = {"Car", "Truck", "Airplane", "Boat", "Bike"};
@@ -105,44 +105,6 @@ void ResultsProcessor::slot_loadClassificationDataToCompare(const QString &runNa
 
 }
 
-/**
-* void TrainingResultsWidget::dummyFunctionTest() {
-    for (int i = 0; i < 3; ++i) {
-        QString run = QString("Run %1").arg(i + 1);
-        auto tab = createTrainingResultTab(run);
+void ResultsProcessor::slot_comparison_loadClassificationResultGraphics(AbstractGraphicsView *receiver) {
 
-        //Accuracy Curve
-        int sum = 0;
-        auto *pointsMap = new QMap<int, QPair<double, double>>();
-        for (int j = 1; j <= 20; j++) {
-            double random = QRandomGenerator::global()->bounded(3 * 100) / 100.0;
-            int random2 = QRandomGenerator::global()->bounded(1, 10);
-            sum += random2;
-            pointsMap->insert(j, qMakePair(-100.0/sum+100, random+90));
-        }
-        auto ac = new AccuracyCurve(run, *pointsMap);
-        ac->generateGraphics(tab);
-
-        //Confusion Matrix
-        QList<int> values = QList<int>();
-        QStringList labels = {"A", "B", "C", "D", "E", "F", "G", "H"};
-        const qsizetype N = labels.size();
-        qsizetype target = 0;
-        for (int j = 0; j < N * N; ++j) {
-            //Check if we are on diagonal line of matrix
-            int min = 0;
-            int max = 10;
-            if (target == j) {
-                target += N + 1;
-                min = 30;
-                max = 100;
-            }
-            int random = QRandomGenerator::global()->bounded(min, max);
-            values << random;
-        }
-
-        auto matrix = new ConfusionMatrix(run, labels, values);
-        matrix->generateGraphics(tab);
-    }
 }
-*/

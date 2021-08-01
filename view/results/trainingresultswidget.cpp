@@ -76,11 +76,11 @@ void TrainingResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
     const QString &runNameToCompare = action->text();
     if (action->isChecked()) {
         auto tab = createTrainingResultTab(runNameToCompare);
-        emit sig_loadTrainingImagesToCompare(runNameToCompare, tab);
-        emit sig_loadAccuracyDataToCompare(runNameToCompare, topAccuracies);
+        emit sig_comparison_loadTrainingResultGraphics(runNameToCompare, tab);
+        emit sig_comparison_loadAccuracyData(runNameToCompare, topAccuracies);
     } else {
         deleteTrainingResultTab(runNameToCompare);
-        emit sig_unloadAccuracyDataToCompare(runNameToCompare, topAccuracies);
+        emit sig_comparison_unloadAccuracyData(runNameToCompare, topAccuracies);
     }
 }
 

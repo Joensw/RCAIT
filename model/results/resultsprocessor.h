@@ -17,17 +17,21 @@ public:
     ResultsProcessor();
 
 public slots:
-    void slot_generateTopAccuraciesGraphics(AbstractGraphicsView *receiver);
+    //Top Accuracies slots
+    void slot_normal_generateTopAccuraciesGraphics(AbstractGraphicsView *receiver);
+    void slot_comparison_loadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view);
+    void slot_comparison_unloadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view);
 
-    void slot_generateClassificationResultGraphics(AbstractGraphicsView *receiver);
+    //Classification result slots
+    void slot_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver);
+    void slot_comparison_loadClassificationData(const QString &runNameToCompare, ClassificationResultView *view);
+    void slot_comparison_loadClassificationResultGraphics(AbstractGraphicsView *receiver);
 
-    void slot_loadTrainingImagesToCompare(const QString& runNameToCompare, TrainingResultView* view);
+    //Training result slots
+    void slot_comparison_loadTrainingResultGraphics(const QString& runNameToCompare, TrainingResultView* view);
 
-    void slot_loadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view);
 
-    void slot_unloadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view);
 
-    void slot_loadClassificationDataToCompare(const QString &runNameToCompare, ClassificationResultView *view);
 
 private:
     TopAccuraciesGraphics *m_topAccuraciesGraphics;

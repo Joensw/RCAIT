@@ -49,11 +49,11 @@ private:
 
 signals:
 
-    void sig_loadTrainingImagesToCompare(const QString &runNameToCompare, TrainingResultView *view);
+    void sig_comparison_loadTrainingResultGraphics(const QString &runNameToCompare, TrainingResultView *view);
 
-    void sig_loadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view);
+    void sig_comparison_loadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view);
 
-    void sig_unloadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view);
+    void sig_comparison_unloadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view);
 
 private slots:
 
