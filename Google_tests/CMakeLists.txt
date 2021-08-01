@@ -82,6 +82,8 @@ set(Sources
         ../model/results/accuracycurve.h
         ../model/results/abstractresultgraphics.cpp
         ../model/results/abstractresultgraphics.h
+        ../model/results/classificationgraphics.h
+        ../model/results/classificationgraphics.cpp
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
