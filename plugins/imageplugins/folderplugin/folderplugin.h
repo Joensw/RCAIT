@@ -18,7 +18,7 @@
 class FolderPlugin : public QObject, ImageLoaderPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.ImageLoaderPlugin" FILE "FolderPlugin.json")
+    Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.FolderPlugin" FILE "FolderPlugin.json")
     Q_INTERFACES(ImageLoaderPlugin)
 public:
 

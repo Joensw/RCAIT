@@ -39,6 +39,8 @@ file(GLOB_RECURSE SOURCE_FILES_A
 
 list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/test/.*" )
 list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/flickrplugin/.*" )
+list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/folderplugin/.*" )
+list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/bingplugin/.*" )
 
 
 file(GLOB SOURCE_FILES_B
@@ -52,6 +54,7 @@ CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/accuracycurve.py ${CMAK
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/topaccuraciesgraphics.py ${CMAKE_CURRENT_BINARY_DIR}/topaccuraciesgraphics.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/classificationgraphics.py ${CMAKE_CURRENT_BINARY_DIR}/classificationgraphics.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/flickrplugin/flickrapi_photosearch.py ${CMAKE_CURRENT_BINARY_DIR}/flickrapi_photosearch.py COPYONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/bingplugin/bingapi_photosearch.py ${CMAKE_CURRENT_BINARY_DIR}/bingapi_photosearch.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/flickrplugin/test.py ${CMAKE_CURRENT_BINARY_DIR}/test.py COPYONLY)
 
 set(SOURCE_FILES ${SOURCE_FILES_A} ${SOURCE_FILES_B})
@@ -83,4 +86,5 @@ endif()
 #add_subdirectory(model/test)
 add_subdirectory(Google_tests)
 add_subdirectory(plugins/imageplugins/flickrplugin)
+add_subdirectory(plugins/imageplugins/bingplugin)
 add_subdirectory(plugins/imageplugins/folderplugin)

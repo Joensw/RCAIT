@@ -48,8 +48,8 @@
 **
 ****************************************************************************/
 
-#ifndef FLICKRPLUGIN_H
-#define FLICKRPLUGIN_H
+#ifndef BINGPLUGIN_H
+#define BINGPLUGIN_H
 
 #include <QObject>
 #include <QtPlugin>
@@ -58,22 +58,22 @@
 #include <QProcess>
 #include <QProcessEnvironment>
 #include "imageloaderplugin.h"
-#include "flickrsettings.h"
+#include "bingsettings.h"
 #include "progressableplugin.h"
 #include "QRegularExpression"
 
 
 
 //! [0]
-class FlickrPlugin : public QObject, ImageLoaderPlugin
+class BingPlugin : public QObject, ImageLoaderPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.FlickrPlugin" FILE "FlickrPlugin.json")
+    Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.BingPlugin" FILE "BingPlugin.json")
     Q_INTERFACES(ImageLoaderPlugin)
 
 
 private:
-   FlickrSettings m_flickrSettings;
+   BingSettings m_bingSettings;
    /**
     * @brief createCommandlineString
     * @param path
