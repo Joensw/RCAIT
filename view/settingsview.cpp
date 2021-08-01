@@ -41,6 +41,26 @@ SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidg
 
 }
 
+void SettingsView::addPluginWidgets( QStringList pluginNames, QList<QWidget *> pluginConfigurationWidgets)
+{
+   for(int i = ui->pluginWidget->count() - 1; i >= 1; --i)
+   {
+       delete(ui->pluginList->takeItem(i));
+       QWidget* widget = ui->pluginWidget->widget(i);
+       ui->pluginWidget->removeWidget(widget);
+       widget->deleteLater();
+
+   }
+   assert(pluginNames.size() == pluginConfigurationWidgets.size());
+
+   int i = 0;
+   for(QString name : pluginNames){
+       ui->pluginList->addItem(name);
+       ui->pluginWidget->addWidget(pluginConfigurationWidgets.at(i));
+       i++;
+   }
+}
+
 void SettingsView::pathsUpdated(int amount)
 {
     if (amount == 0){

@@ -13,18 +13,15 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
     connect(trainingResultsWidget->getTopAccuraciesView(), &TopAccuraciesView::sig_requestTopAccuraciesGraphics,
             m_resultsProcessor,
             &ResultsProcessor::slot_generateTopAccuraciesGraphics);
-    connect(trainingResultsWidget->getTopAccuraciesView(), &TopAccuraciesView::sig_accuraciesTable_rowAdded,
-            m_resultsProcessor,
-            &ResultsProcessor::slot_addedRow_topAccuraciesTable);
-    connect(trainingResultsWidget->getTopAccuraciesView(), &TopAccuraciesView::sig_accuraciesTable_rowRemoved,
-            m_resultsProcessor,
-            &ResultsProcessor::slot_removedRow_topAccuraciesTable);
 
     //Connect 'Compare Run' related signals/slots
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_loadTrainingImagesToCompare, m_resultsProcessor,
             &ResultsProcessor::slot_loadTrainingImagesToCompare);
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_loadAccuracyDataToCompare, m_resultsProcessor,
             &ResultsProcessor::slot_loadAccuracyDataToCompare);
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_unloadAccuracyDataToCompare,
+            m_resultsProcessor,
+            &ResultsProcessor::slot_unloadAccuracyDataToCompare);
 
 /*
  * Classification Results

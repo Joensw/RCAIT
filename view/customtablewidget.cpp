@@ -6,10 +6,12 @@ CustomTableWidget::CustomTableWidget(QWidget *parent) : QTableWidget(parent) {
         cornerButton->installEventFilter(this);
 }
 
-QAbstractButton *CustomTableWidget::getCornerButton(){
+QAbstractButton *CustomTableWidget::getCornerButton() {
     return findChild<QAbstractButton *>();
 }
 
+/*!\reimp
+*/
 bool CustomTableWidget::eventFilter(QObject *o, QEvent *e) {
     if (e->type() != QEvent::Paint) return QTableWidget::eventFilter(o, e);
     auto *button = qobject_cast<QAbstractButton *>(o);
@@ -34,4 +36,42 @@ bool CustomTableWidget::eventFilter(QObject *o, QEvent *e) {
     painter.drawControl(QStyle::CE_Header, opt);
     //Finish event
     return true;
+}
+
+int CustomTableWidget::addTableRow(const QString &identifier, const QStringList &data) {
+    int row = rowCount();
+    insertRow(row);
+    m_data.append(qMakePair(identifier, data));
+
+    //Fill table row
+    auto identifierItem = new QTableWidgetItem(identifier);
+
+    int col = 0;
+    for (const auto &value : data) {
+        auto item = new QTableWidgetItem(value);
+        item->setTextAlignment(Qt::AlignCenter);
+        setVerticalHeaderItem(row, identifierItem);
+        setItem(row, col++, item);
+    }
+    return row;
+}
+
+bool CustomTableWidget::removeTableRow(const QString &identifier) {
+    for (int i = 0; i < rowCount(); i++) {
+        if (verticalHeaderItem(i)->text() == identifier) {
+            removeRow(i);
+            m_data.remove(i);
+            return true;
+        }
+    }
+    return false;
+}
+
+QTableWidgetItem *CustomTableWidget::operator()(int row, int column) const{
+    return this->at(row, column);
+}
+
+QTableWidgetItem *CustomTableWidget::at(int row, int column) const {
+    Q_ASSERT(row >= 0 && row < rowCount() && column >= 0 && column < columnCount());
+    return item(row, column);
 }

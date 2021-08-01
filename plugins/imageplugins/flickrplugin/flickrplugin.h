@@ -59,6 +59,9 @@
 #include <QProcessEnvironment>
 #include "imageloaderplugin.h"
 #include "flickrsettings.h"
+#include "progressableplugin.h"
+#include "QRegularExpression"
+
 
 
 //! [0]
@@ -92,9 +95,12 @@ public:
     QString getName() override;
     QWidget*  getInputWidget() override;
     QWidget *pluginSettings;
+    QProcess* m_process;
+    ProgressablePlugin* m_receiver;
 
 private slots:
     void slot_readOutPut();
+    void slot_pluginFinished();
 
 };
 //! [0]

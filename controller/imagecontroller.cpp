@@ -18,19 +18,20 @@ connect(m_importFilesWidget, &ImportFilesWidget::sig_loadInputImages, this, &Ima
 connect(m_imageSection, &ImageSection::sig_mergeDatasets, this, &ImageController::slot_mergeDatasets);
 connect(m_imageSection, &ImageSection::sig_removeImages, this, &ImageController::slot_remove);
 
-
-
 }
 
 
 void ImageController::slot_loadInputImages(QString pluginName, int count, QStringList labels, int split) {
     m_importFilesWidget->updateProgressBar(0);
+    m_importFilesWidget->updateStatusText("");
     m_split = split;
 
     QString tempDir = m_dataManager->getProjectTempDir();
     m_imageLoader = new ImageLoader();
     m_imageLoader->loadInputImages(count,labels,pluginName,tempDir);
     connect(m_imageLoader, &ImageLoader::sig_progress, this, &ImageController::slot_handelImageLoadProgress);
+    connect(m_imageLoader, &ImageLoader::sig_imagesReady, this, &ImageController::slot_imagesReady);
+    connect(m_imageLoader, &ImageLoader::sig_statusUpdate, this, &ImageController::slot_updateImageLoadStatusText);
     m_imageLoader->load();
 
 }
@@ -41,18 +42,15 @@ void ImageController::slot_confirm() {
 
 void ImageController::slot_imagesReady() {
 
+    updateNewDatasetDisplay();
+    updateDatasetDisplay();
 }
+
 
 void ImageController::slot_handelImageLoadProgress(int progress)
 {
     m_importFilesWidget->updateProgressBar(progress);
-
-    //if finished we display
-    if(progress == 100){
-        updateNewDatasetDisplay();
-        emit sig_imagesLoaded();
-    }
-
+    emit sig_imagesLoaded(); //testing purposes for tabController
 }
 
 void ImageController::slot_openProject()
@@ -65,6 +63,17 @@ void ImageController::slot_mergeDatasets() {
     m_imageInspectionModel.mergeDataSets();
     updateNewDatasetDisplay();
     updateDatasetDisplay();
+
+}
+
+
+void ImageController::slot_updateImageLoadStatusText(QString status)
+{
+    m_importFilesWidget->updateStatusText(status);
+}
+void ImageController::slot_imagePluginDirectoryChanged()
+{
+    m_importFilesWidget->setAvailablePlugins(m_dataManager->getImageLoaderPluginNames());
 
 }
 

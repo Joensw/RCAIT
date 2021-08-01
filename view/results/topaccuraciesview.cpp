@@ -22,44 +22,21 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
             &TopAccuraciesView::slot_pushButton_updateGraphics_pressed);
 }
 
-void TopAccuraciesView::addTableRow(const QString &identifier, double top1, double top5) {
-    QTableWidget *table = ui->tableWidget_topAccuracies;
+void TopAccuraciesView::addTopAccuraciesEntry(const QString &identifier, double top1, double top5) {
+    auto table = ui->tableWidget_topAccuracies;
+    auto top1Str = QString::number(top1, 'G', 5);
+    auto top5Str = QString::number(top5, 'G', 5);
 
-    int row = table->rowCount();
-    table->insertRow(row);
-    emit sig_accuraciesTable_rowAdded(identifier, top1, top5);
+    int row = table->addTableRow(identifier, {top1Str, top5Str});
 
-    //Fill table row
-    auto identifierItem = new QTableWidgetItem(identifier);
-    int col = 0;
-
-    auto values = {top1, top5};
-    auto colors = {"royal blue","orange"};
-    for(auto [v,c] = std::tuple(values.begin(), colors.begin()); v != values.end() && c != colors.end(); ++v, ++c)
-    {
-        //Convert doubles to String with 2 decimal spots precision
-        auto valueStr = QString::number(*v, 'G', 5);
-        auto valueStrItem = new QTableWidgetItem(valueStr);
-
-        auto color = QColor(*c);
-        color.setAlphaF(0.7);
-        valueStrItem->setBackground(QBrush(color));
-
-        valueStrItem->setTextAlignment(Qt::AlignCenter);
-        table->setVerticalHeaderItem(row, identifierItem);
-        table->setItem(row, col++, valueStrItem);
-    }
+    //Set colors matching the graphical result
+    table->at(row,0)->setBackground(QBrush("royal blue"));
+    table->at(row,1)->setBackground(QBrush("orange"));
 }
 
-void TopAccuraciesView::removeTableRow(const QString &identifier) {
-    QTableWidget *table = ui->tableWidget_topAccuracies;
-    emit sig_accuraciesTable_rowRemoved(identifier);
-    for (int i = 0; i < table->rowCount(); i++) {
-        if (table->verticalHeaderItem(i)->text() == identifier) {
-            table->removeRow(i);
-            return;
-        }
-    }
+void TopAccuraciesView::removeTopAccuraciesEntry(const QString &identifier) {
+    auto *table = ui->tableWidget_topAccuracies;
+    table->removeTableRow(identifier);
 }
 
 TopAccuraciesView::~TopAccuraciesView() {

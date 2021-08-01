@@ -117,6 +117,7 @@ QString SettingsManager::getClassificationPluginDir(){
 }
 void SettingsManager::saveImageLoaderPluginDir(QString value){
     mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, value);
+    mImageLoaderPluginManager->loadPlugins(value);
 }
 QString SettingsManager::getImageLoaderPluginDir(){
     return mGlobalSettings->value(imageLoaderPluginDirectoryIdentifier).toString();

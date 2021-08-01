@@ -61,6 +61,9 @@ set(Sources
         ../plugins/classificationplugins/classificationpluginmanager.cpp
         ../plugins/imageplugins/imageloaderpluginmanager.h
         ../plugins/imageplugins/imageloaderpluginmanager.cpp
+        ../model/pluginusage/progressableplugin.h
+        ../model/pluginusage/progressableplugin.cpp
+
 
 
         test_projectmanager.cpp

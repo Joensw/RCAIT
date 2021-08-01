@@ -56,7 +56,7 @@ compile_commands.json
 .idea
 
 # Weird useless files
-*.json
+
 
 ### MicrosoftOffice ###
 *.tmp

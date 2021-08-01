@@ -13,15 +13,7 @@ void ResultsProcessor::slot_generateTopAccuraciesGraphics(AbstractGraphicsView *
 }
 
 void ResultsProcessor::slot_generateClassificationResultGraphics(AbstractGraphicsView *receiver) {
- //TODO
-}
-
-void ResultsProcessor::slot_addedRow_topAccuraciesTable(const QString &identifier, double top1, double top5) {
-    m_topAccuraciesGraphics->addDataRow(identifier, top1, top5);
-}
-
-void ResultsProcessor::slot_removedRow_topAccuraciesTable(const QString &identifier) {
-    m_topAccuraciesGraphics->removeDataRow(identifier);
+    //TODO
 }
 
 void ResultsProcessor::slot_loadTrainingImagesToCompare(const QString &runNameToCompare, TrainingResultView *view) {
@@ -52,12 +44,29 @@ void ResultsProcessor::slot_loadTrainingImagesToCompare(const QString &runNameTo
 }
 
 void ResultsProcessor::slot_loadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view) {
-    view->addTableRow(runNameToCompare, QRandomGenerator::global()->bounded(100),
-                      QRandomGenerator::global()->bounded(100));
+    double top1 = QRandomGenerator::global()->bounded(100);
+    double top5 = QRandomGenerator::global()->bounded(100);
+    m_topAccuraciesGraphics->addDataRow(runNameToCompare, {top1, top5});
+    view->addTopAccuraciesEntry(runNameToCompare, top1, top5);
     //TODO Load real accuracy data from JSON file
+}
+
+void ResultsProcessor::slot_unloadAccuracyDataToCompare(const QString &runNameToCompare, TopAccuraciesView *view) {
+    m_topAccuraciesGraphics->removeDataRow(runNameToCompare);
+    view->removeTopAccuraciesEntry(runNameToCompare);
 }
 
 void ResultsProcessor::slot_loadClassificationDataToCompare(const QString &runNameToCompare,
                                                             ClassificationResultView *view) {
     //TODO Load data from JSON file
+    QStringList labels = {"Car", "Truck", "Airplane", "Boat", "Bike"};
+    QList<QPair<QString, QStringList>> data;
+    for (int j = 0; j < 20; ++j) {
+        long long randomLabel = QRandomGenerator::global()->bounded(labels.size());
+        auto label = labels[randomLabel];
+        int random = QRandomGenerator::global()->bounded(65, 100);
+        data << qMakePair(QString("Image %1").arg(j), QStringList() << QString::number(random) << label);
+    }
+    view->setClassificationData(data);
+
 }

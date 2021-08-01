@@ -20,8 +20,11 @@ Controller::Controller(QObject *parent) : QObject(parent)
     connect(mConfigurationController, &ConfigurationController::sig_configurationComplete, this, &Controller::slot_configurationComplete);
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_openProject, mImageController, &ImageController::slot_openProject);
     connect(mSettingsController, &SettingsController::sig_projectDirectoryChanged, mProjectController, &ProjectController::slot_projectDirectoryChanged);
+
     connect(mImageController, &ImageController::sig_imagesLoaded, mTabController, &TabController::slot_imagesLoaded);
     connect(mModelController, &ModelController::sig_modelLoaded, mTabController, &TabController::slot_modelLoaded);
+
+    connect(mSettingsController, &SettingsController::sig_imagePluginsDirectoryChanged, mImageController, &ImageController::slot_imagePluginDirectoryChanged);
 
     mConfigurationController->verify();
 

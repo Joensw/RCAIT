@@ -21,27 +21,25 @@ protected:
 public:
     explicit TopAccuraciesView(QWidget *parent = nullptr);
 
-    void addTableRow(const QString &identifier, double top1, double top5);
+    void addTopAccuraciesEntry(const QString &identifier, double top1, double top5);
 
-    void removeTableRow(const QString &identifier);
+    void removeTopAccuraciesEntry(const QString &identifier);
 
     void setTopAccuraciesGraphics(QGraphicsItem *topAccuraciesImage) override;
 
     ~TopAccuraciesView();
 
 signals:
-    void sig_accuraciesTable_rowRemoved(const QString &identifier);
-
-    void sig_accuraciesTable_rowAdded(const QString &identifier, double top1, double top5);
 
     void sig_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver);
 
 private slots:
+
     void slot_pushButton_updateGraphics_pressed();
 
 private:
     Ui::TopAccuraciesView *ui;
-    QAbstractButton* m_pushButton_updateGraphics;
+    QAbstractButton *m_pushButton_updateGraphics;
 
     void configure_updateGraphicsButton();
 

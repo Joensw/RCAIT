@@ -23,7 +23,7 @@ private:
     ImportFilesWidget* m_importFilesWidget;
     DataManager* m_dataManager;
     ImageInspectionModel m_imageInspectionModel;
-    int m_split = 100;
+    int m_split = 40;
     void updateDatasetDisplay();
     void updateNewDatasetDisplay();
 
@@ -35,6 +35,11 @@ public slots:
     void slot_handelImageLoadProgress(int progress);
     void slot_openProject();
     void slot_mergeDatasets();
+
+    void slot_updateImageLoadStatusText(QString status);
+
+    void slot_imagePluginDirectoryChanged();
+
     //Todo connect
 };
 

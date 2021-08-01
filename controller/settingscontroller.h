@@ -58,6 +58,13 @@ signals:
      */
     void sig_projectDirectoryChanged();
 
+
+    /**
+     * @brief sig_imgagePluginsChanged emitted when image plugins directory is changed.
+     *
+     */
+    void sig_imagePluginsDirectoryChanged();
+
 private:
     SettingsView *mSettingsView;
 
