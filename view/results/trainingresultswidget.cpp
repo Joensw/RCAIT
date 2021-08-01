@@ -11,10 +11,6 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent) :
 
     configure_compareRunButton();
     configure_compareRunMenu();
-
-
-    //TODO: Remove dummy code
-    dummyFunctionTest();
 }
 
 void TrainingResultsWidget::configure_compareRunMenu() {
@@ -73,46 +69,6 @@ void TrainingResultsWidget::deleteTrainingResultTab(const QString &tabName) {
     auto tab = m_mapTrainingResultTabs.take(tabName);
     auto index = tabWidget->indexOf(tab);
     tabWidget->removeTab(index);
-}
-
-void TrainingResultsWidget::dummyFunctionTest() {
-    for (int i = 0; i < 3; ++i) {
-        QString run = QString("Run %1").arg(i + 1);
-        auto tab = createTrainingResultTab(run);
-
-        //Accuracy Curve
-        int sum = 0;
-        auto *pointsMap = new QMap<int, QPair<double, double>>();
-        for (int j = 1; j <= 20; j++) {
-            double random = QRandomGenerator::global()->bounded(3 * 100) / 100.0;
-            int random2 = QRandomGenerator::global()->bounded(1, 10);
-            sum += random2;
-            pointsMap->insert(j, qMakePair(-100.0/sum+100, random+90));
-        }
-        auto ac = new AccuracyCurve(run, *pointsMap);
-        ac->generateGraphics(tab);
-
-        //Confusion Matrix
-        QList<int> values = QList<int>();
-        QStringList labels = {"A", "B", "C", "D", "E", "F", "G", "H"};
-        const qsizetype N = labels.size();
-        qsizetype target = 0;
-        for (int j = 0; j < N * N; ++j) {
-            //Check if we are on diagonal line of matrix
-            int min = 0;
-            int max = 10;
-            if (target == j) {
-                target += N + 1;
-                min = 30;
-                max = 100;
-            }
-            int random = QRandomGenerator::global()->bounded(min, max);
-            values << random;
-        }
-
-        auto matrix = new ConfusionMatrix(run, labels, values);
-        matrix->generateGraphics(tab);
-    }
 }
 
 void TrainingResultsWidget::slot_comparisonMenu_triggered(QAction *action) {

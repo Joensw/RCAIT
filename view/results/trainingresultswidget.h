@@ -41,8 +41,6 @@ private:
 
     void deleteTrainingResultTab(const QString &tabName);
 
-    void dummyFunctionTest();
-
     void retranslateUi();
 
     void configure_compareRunButton();
