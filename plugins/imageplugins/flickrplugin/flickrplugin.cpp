@@ -75,9 +75,11 @@ void FlickrPlugin::slot_readOutPut()
        QString line = QString::fromLocal8Bit(m_process->readLine());
        QString parsedProgress = line.remove(QRegularExpression("[\r\n]"));
        int progress = parsedProgress.toInt(&ok,10);
-       qDebug() << progress;
+       qDebug() << parsedProgress;
        if(ok){
-       emit m_receiver->sig_progress(progress);
+           emit m_receiver->sig_progress(progress);
+       } else {
+           emit m_receiver->sig_statusUpdate(parsedProgress);
        }
     }
 }

@@ -26,24 +26,18 @@ parser.add_argument("-s", "--secret",  dest="apisecret", metavar="SECRET",
 args = parser.parse_args()
 args_dict = vars(args)
 
-
-print(args_dict['apikey'])
-print(args_dict['apisecret'])
-print(args_dict['path'])
-print(args_dict['labels'])
-print(args_dict['imagecount'])
-
-
+print("Connecting to Flickr API", flush= True)
 flickr = flickrapi.FlickrAPI(args_dict['apikey'], args_dict['apisecret'], format='parsed-json')
-
-#print progress x/100
+print("Connection complete", flush= True)
 print(int(progress), flush= True)
 
 
 numLabels = len(args_dict['labels'])
 labelProgress = 100/numLabels
 
+
 for label in args_dict['labels']:
+    print("Requesting " + label + " fotos URLs", flush= True)
     response = flickr.photos.search(text=label, per_page=args_dict['imagecount'])
 
     numFotos = len(response['photos']['photo'])
@@ -58,7 +52,7 @@ for label in args_dict['labels']:
         url += file_extension
         foto['url'] = url
 
-
+    print("Downloading " + label + " fotos", flush= True)
     Path(args_dict['path'] + '/' + label).mkdir(parents=True, exist_ok=True)
     for foto in response['photos']['photo']:
         r = requests.get(foto['url'], stream=True)
@@ -71,5 +65,6 @@ for label in args_dict['labels']:
    
     print(int(progress), flush=True)
 
-#print(args)
+
+print("Image downloads finished successfully", flush=True)
 

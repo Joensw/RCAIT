@@ -17,6 +17,7 @@ signals:
     void sig_pluginAborted();
     void sig_pluginFinished();
     void sig_progress(int progress);
+    void sig_statusUpdate(QString status);
 
 
 private:

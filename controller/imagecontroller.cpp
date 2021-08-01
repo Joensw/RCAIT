@@ -25,6 +25,7 @@ connect(m_imageSection, &ImageSection::sig_removeImages, this, &ImageController:
 
 void ImageController::slot_loadInputImages(QString pluginName, int count, QStringList labels, int split) {
     m_importFilesWidget->updateProgressBar(0);
+    m_importFilesWidget->updateStatusText("");
     m_split = split;
 
     QString tempDir = m_dataManager->getProjectTempDir();
@@ -32,6 +33,7 @@ void ImageController::slot_loadInputImages(QString pluginName, int count, QStrin
     m_imageLoader->loadInputImages(count,labels,pluginName,tempDir);
     connect(m_imageLoader, &ImageLoader::sig_progress, this, &ImageController::slot_handelImageLoadProgress);
     connect(m_imageLoader, &ImageLoader::sig_imagesReady, this, &ImageController::slot_imagesReady);
+    connect(m_imageLoader, &ImageLoader::sig_statusUpdate, this, &ImageController::slot_updateImageLoadStatusText);
     m_imageLoader->load();
 
 }
@@ -63,6 +65,11 @@ void ImageController::slot_mergeDatasets() {
     updateNewDatasetDisplay();
     updateDatasetDisplay();
 
+}
+
+void ImageController::slot_updateImageLoadStatusText(QString status)
+{
+    m_importFilesWidget->updateStatusText(status);
 }
 
 void ImageController::updateDatasetDisplay() {

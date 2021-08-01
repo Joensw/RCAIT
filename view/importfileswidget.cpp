@@ -92,6 +92,11 @@ void ImportFilesWidget::updateProgressBar(int progress)
     ui->progressBar_images->setValue(progress);
 }
 
+void ImportFilesWidget::updateStatusText(QString status)
+{
+    ui->label_pluginStatus->setText(status);
+}
+
 
 
 

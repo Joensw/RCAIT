@@ -41,6 +41,13 @@ public:
      * @param progress integer argument from 1-100 representing the progress in %
      */
     void updateProgressBar(int progress);
+
+    /**
+     * @brief updateStatusText sets the Text of the label above the statusbar to the input text
+     * @param status the text to set
+     */
+    void updateStatusText(QString status);
+
 private:
     Ui::ImportFilesWidget *ui;
 
