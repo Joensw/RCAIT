@@ -71,7 +71,7 @@ void ClassificationResultsWidget::slot_updateSaveButton(int index) {
 
 void ClassificationResultsWidget::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
-        // this event is send if a translator is loaded
+        // this event is sent if a translator is loaded
         retranslateUi();
         ui->retranslateUi(this);
     }

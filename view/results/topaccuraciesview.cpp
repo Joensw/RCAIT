@@ -74,7 +74,7 @@ void TopAccuraciesView::configure_updateGraphicsButton() {
 
 void TopAccuraciesView::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
-        // this event is send if a translator is loaded
+        // this event is sent if a translator is loaded
         retranslateUi();
         ui->retranslateUi(this);
     }

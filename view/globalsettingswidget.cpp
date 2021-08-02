@@ -104,7 +104,7 @@ void GlobalSettingsWidget::on_pushButton_imageLoader_clicked()
 void GlobalSettingsWidget::changeEvent(QEvent *event)
 {
     if (event->type() == QEvent::LanguageChange) {
-        // this event is send if a translator is loaded
+        // this event is sent if a translator is loaded
         QString tempProjects = ui->label_projectsDir_current->text();
         QString tempClassification = ui->label_classificationDir_current->text();
         QString tempImage = ui->label_imageLoaderDir_current->text();
