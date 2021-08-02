@@ -1,6 +1,7 @@
 #include <QFileInfo>
 #include <QGraphicsSvgItem>
 #include <QProcess>
+#include <mapadapt.h>
 #include "accuracycurve.h"
 
 AccuracyCurve::AccuracyCurve(const QString &identifier, const QMap<int, QPair<double, double>> &data)
@@ -18,7 +19,7 @@ void AccuracyCurve::generateGraphicsInternal(const QString &fullFilePath) {
 QString AccuracyCurve::valuesToPyText() {
     auto result = QStringList();
 
-    for (const auto key: m_data.keys()) {
+    for (const auto& [key,_]: MapAdapt(m_data)) {
         auto &[train, val] = m_data[key];
 
         //Convert to QString with precision of 2 digits

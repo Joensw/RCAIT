@@ -1,5 +1,6 @@
 #include <QString>
 #include <QFileInfo>
+#include <mapadapt.h>
 #include "classificationgraphics.h"
 
 ClassificationGraphics::ClassificationGraphics(const QString &identifier,
@@ -28,7 +29,7 @@ QString ClassificationGraphics::valuesToPyText() {
 
 QString ClassificationGraphics::labelsToPyText() {
     auto results = QStringList();
-    for (const auto &key : m_data.keys()) {
+    for (const auto& [key,_]: MapAdapt(m_data)) {
         results << QString("'%1'").arg(key);
     }
     return '[' + results.join(',') + ']';
