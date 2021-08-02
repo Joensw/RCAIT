@@ -66,7 +66,7 @@ void Task::run()
     }
     while(tempCommandsDone == commandsDone){
         QApplication::processEvents();
-        QThread::sleep(1);
+        QThread::sleep(4);
     }
     run();
 }

@@ -4,6 +4,7 @@
 #include "command.h"
 
 #include <imagesearchthread.h>
+#include <imageloader.h>
 
 
 /**
@@ -30,8 +31,12 @@ public:
     bool execute() override;
 
 private:
-    ImageSearchThread* mImageSearcher;
+    ImageLoader* mImageSearcher;
     bool parsingFailed = false;
+    int mCount;
+    QStringList mLabels;
+    QString mPluginName;
+    QString mPath;
 
 };
 

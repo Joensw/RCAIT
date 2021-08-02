@@ -62,7 +62,7 @@ QString FolderPlugin::getName()
 
 QWidget *FolderPlugin::getInputWidget()
 {
-    return new QWidget();
+    return mConfigWidget;
 }
 
 bool FolderPlugin::addLabel(QStringList images, QDir in, QDir out)

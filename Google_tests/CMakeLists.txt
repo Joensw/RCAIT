@@ -49,6 +49,8 @@ set(Sources
         ../model/pluginusage/trainingsthread.cpp
         ../model/pluginusage/imagesearchthread.h
         ../model/pluginusage/imagesearchthread.cpp
+        ../model/pluginusage/imageloader.h
+        ../model/pluginusage/imageloader.cpp
         ../model/automation/command.h
         ../model/automation/command.cpp
         ../model/automation/classificationcommand.h
@@ -82,6 +84,8 @@ set(Sources
         ../model/results/accuracycurve.h
         ../model/results/abstractresultgraphics.cpp
         ../model/results/abstractresultgraphics.h
+        ../model/results/classificationgraphics.h
+        ../model/results/classificationgraphics.cpp
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

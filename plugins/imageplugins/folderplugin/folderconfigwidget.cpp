@@ -17,12 +17,22 @@ FolderConfigwidget::~FolderConfigwidget()
 
 int FolderConfigwidget::getLoadMode()
 {
-    return ui->comboBox->currentIndex();
+    return loadMode;
+}
+
+void FolderConfigwidget::setLoadMode(int mode)
+{
+    loadMode = mode;
 }
 
 QString FolderConfigwidget::getImageFolder()
 {
     return imageFolder;
+}
+
+void FolderConfigwidget::setImageFolder(QString folder)
+{
+    imageFolder = folder;
 }
 
 
@@ -31,5 +41,11 @@ void FolderConfigwidget::on_loadFolderButton_clicked()
 {
     imageFolder = QFileDialog::getExistingDirectory(this, tr("Select image directory"));
     return;
+}
+
+
+void FolderConfigwidget::on_comboBox_currentIndexChanged(int index)
+{
+    loadMode = index;
 }
 
