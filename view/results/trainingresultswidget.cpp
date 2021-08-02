@@ -42,7 +42,7 @@ void TrainingResultsWidget::addTrainingResult(TrainingResult *result) {
     auto confusionMatrix = result->getConfusionMatrix();
     auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
 
-    auto tab = createTrainingResultTab(result->getTimestamp());
+    auto tab = createTrainingResultTab(result->getIdentifier());
 
     accCurve->generateGraphics(tab);
     confusionMatrix->generateGraphics(tab);

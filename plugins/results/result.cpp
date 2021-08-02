@@ -15,6 +15,6 @@ QList<QImage> Result::getAdditionalResults() {
     return m_additionalResults;
 }
 
-QString Result::getTimestamp() {
+QString Result::getIdentifier() {
     return m_timestamp;
 }

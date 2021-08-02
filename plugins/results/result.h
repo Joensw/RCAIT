@@ -13,7 +13,7 @@ public:
     explicit Result(const QList<QImage>& additionalResults = QList<QImage>());
     [[nodiscard]] QList<QImage> getAdditionalResults();
 
-    [[nodiscard]] QString getTimestamp();
+    [[nodiscard]] QString getIdentifier();
 
     static QString generateIdentifier();
 };

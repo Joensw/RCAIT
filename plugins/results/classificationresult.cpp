@@ -5,7 +5,7 @@ ClassificationResult::ClassificationResult(const QMap<QString, QList<double>> &c
                                            QList<QString> labels, const QList<QImage>& additionalResults)
         : Result(additionalResults) {
 
-    m_classificationGraphics = new ClassificationGraphics(this->getTimestamp(), classificationData);
+    m_classificationGraphics = new ClassificationGraphics(this->getIdentifier(), classificationData);
     m_classificationData = classificationData;
     m_labels = std::move(labels);
 }
