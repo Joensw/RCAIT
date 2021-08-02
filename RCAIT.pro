@@ -114,6 +114,7 @@ HEADERS += \
     model/automation/imageloadcommand.h \
     model/automation/task.h \
     model/automation/trainingcommand.h \
+    model/mapadapt.h \
     model/modelmanager.h \
     model/pluginusage/aithread.h \
     model/pluginusage/classifiertrainer.h \
