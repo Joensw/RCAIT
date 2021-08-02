@@ -41,7 +41,7 @@ bool CustomTableWidget::eventFilter(QObject *o, QEvent *e) {
 int CustomTableWidget::addTableRow(const QString &identifier, const QStringList &data) {
     int row = rowCount();
     insertRow(row);
-    m_data.append(qMakePair(identifier, data));
+    m_data[identifier] = data;
 
     //Fill table row
     auto identifierItem = new QTableWidgetItem(identifier);
@@ -60,7 +60,7 @@ bool CustomTableWidget::removeTableRow(const QString &identifier) {
     for (int i = 0; i < rowCount(); i++) {
         if (verticalHeaderItem(i)->text() == identifier) {
             removeRow(i);
-            m_data.remove(i);
+            m_data.remove(identifier);
             return true;
         }
     }
