@@ -1,3 +1,4 @@
+#include <mapadapt.h>
 #include "classificationresultview.h"
 #include "ui_classificationresultview.h"
 
@@ -45,20 +46,10 @@ void ClassificationResultView::setClassificationGraphics(QGraphicsItem *classifi
 void ClassificationResultView::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         // this event is send if a translator is loaded
-        retranslateUi();
         ui->retranslateUi(this);
     }
     //Call to parent class
     QWidget::changeEvent(event);
-}
-
-/**
- * Translate and set all the strings which
- * were not created in the UI builder
- */
-void ClassificationResultView::retranslateUi() {
-    if (m_pushButton_updateGraphics)
-        m_pushButton_updateGraphics->setToolTip("Update graphics...");
 }
 
 ClassificationResultView::~ClassificationResultView() {

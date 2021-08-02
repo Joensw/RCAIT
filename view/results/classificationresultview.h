@@ -24,16 +24,12 @@ public:
 
     void setClassificationGraphics(QGraphicsItem *classificationGraphicsImage) override;
 
-    void setClassificationData(const QList<QPair<QString, QStringList>> &data);
+    void setClassificationData(const QMap<QString, QStringList> &data);
 
     ~ClassificationResultView();
 
 private:
     Ui::ClassificationResultView *ui;
-    QAbstractButton *m_pushButton_updateGraphics;
-
-    void retranslateUi();
-
 };
 
 #endif // CLASSIFICATIONRESULTVIEW_H
