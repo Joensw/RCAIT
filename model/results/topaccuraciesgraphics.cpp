@@ -9,7 +9,7 @@ TopAccuraciesGraphics::TopAccuraciesGraphics(const QString &identifier,
 }
 
 QString TopAccuraciesGraphics::valuesToPyText() {
-    auto result = new QStringList();
+    auto result = QStringList();
 
     for (auto &[key, valuesList]: m_data) {
 
@@ -21,9 +21,9 @@ QString TopAccuraciesGraphics::valuesToPyText() {
             rowList << valStr;
 
         }
-        *result << '[' + rowList.join(',') + ']';
+        result << '[' + rowList.join(',') + ']';
     }
-    return '[' + result->join(',') + ']';
+    return '[' + result.join(',') + ']';
 }
 
 QString TopAccuraciesGraphics::labelsToPyText() {

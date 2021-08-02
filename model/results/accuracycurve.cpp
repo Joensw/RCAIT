@@ -16,7 +16,7 @@ void AccuracyCurve::generateGraphicsInternal(const QString &fullFilePath) {
 }
 
 QString AccuracyCurve::valuesToPyText() {
-    auto result = new QStringList();
+    auto result = QStringList();
 
     for (const auto key: m_data.keys()) {
         auto &[train, val] = m_data[key];
@@ -28,9 +28,9 @@ QString AccuracyCurve::valuesToPyText() {
         //List for each row, which shall be joined in a single QString
         auto rowList = QStringList();
         rowList << QString::number(key) << trainStr << valStr;
-        *result << '[' + rowList.join(',') + ']';
+        result << '[' + rowList.join(',') + ']';
     }
-    return '[' + result->join(',') + ']';
+    return '[' + result.join(',') + ']';
 }
 
 QPair<double, double> AccuracyCurve::operator[](int epoch) const {

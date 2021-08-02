@@ -10,7 +10,7 @@ ClassificationGraphics::ClassificationGraphics(const QString &identifier,
 }
 
 QString ClassificationGraphics::valuesToPyText() {
-    auto result = new QStringList();
+    auto result = QStringList();
 
     for (const auto &row_data: m_data) {
         //List for each row, which shall be joined in a single QString
@@ -21,13 +21,13 @@ QString ClassificationGraphics::valuesToPyText() {
             auto valueStr = QString::number(value, 'G', 5);
             rowList << valueStr;
         }
-        *result << '[' + rowList.join(',') + ']';
+        result << '[' + rowList.join(',') + ']';
     }
-    return '[' + result->join(',') + ']';
+    return '[' + result.join(',') + ']';
 }
 
 QString ClassificationGraphics::labelsToPyText() {
-    QStringList results;
+    auto results = QStringList();
     for (const auto &key : m_data.keys()) {
         results << QString("'%1'").arg(key);
     }
