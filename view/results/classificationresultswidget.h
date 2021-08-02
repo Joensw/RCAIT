@@ -50,9 +50,11 @@ signals:
 
     void sig_comparison_loadClassificationData(const QString &runNameToCompare, ClassificationResultView *view);
 
-    void sig_comparison_loadClassificationGraphics(const QString &runNameToCompare, ClassificationResultView *view);
+    void sig_comparison_loadClassificationResultGraphics(const QString &runNameToCompare, ClassificationResultView *view);
 
-    void sig_requestClassificationResultGraphics(AbstractGraphicsView *receiver);
+    void sig_normal_loadClassificationData(ClassificationResultView* view, ClassificationResult* result);
+
+    void sig_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver, ClassificationResult* result);
 
 };
 

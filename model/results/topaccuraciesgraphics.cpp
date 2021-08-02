@@ -55,7 +55,7 @@ QList<double> TopAccuraciesGraphics::operator[](const QString &identifier) const
         if (key == identifier)
             return valuesList;
     }
-    return QList<double>();
+    return {};
 }
 
 void TopAccuraciesGraphics::setData(const QList<QPair<QString, QList<double>>> &mData) {

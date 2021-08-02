@@ -43,7 +43,9 @@ void ClassificationResultsWidget::configure_compareRunButton() {
 }
 
 void ClassificationResultsWidget::addClassificationResult(ClassificationResult *result) {
-//TODO: Fill
+    auto tab = createClassificationResultTab(result->getIdentifier());
+    emit sig_normal_loadClassificationData(tab, result);
+    emit sig_normal_generateClassificationResultGraphics(tab, result);
 }
 
 void ClassificationResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
@@ -53,7 +55,7 @@ void ClassificationResultsWidget::slot_comparisonMenu_triggered(QAction *action)
         tab->setSaved(true);
         emit sig_comparison_loadClassificationData(runNameToCompare, tab);
         //TODO Implementation/design of classification results graphic w/ stacked barcharts
-        emit sig_comparison_loadClassificationGraphics(runNameToCompare, tab);
+        emit sig_comparison_loadClassificationResultGraphics(runNameToCompare, tab);
     } else {
         deleteClassificationResultTab(runNameToCompare);
     }
@@ -61,7 +63,7 @@ void ClassificationResultsWidget::slot_comparisonMenu_triggered(QAction *action)
 
 void ClassificationResultsWidget::slot_updateSaveButton(int index) {
     auto widget = ui->tabWidget_classificationresults->widget(index);
-    auto tab = dynamic_cast<AbstractGraphicsView*>(widget);
+    auto tab = dynamic_cast<AbstractGraphicsView *>(widget);
     auto saveButton = ui->pushButton_saveClassificationResults;
 
     saveButton->setEnabled(!tab->isSaved());

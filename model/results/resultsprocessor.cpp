@@ -1,6 +1,7 @@
 #include <projectmanager.h>
 #include <classificationresultview.h>
 #include "resultsprocessor.h"
+#include "mapadapt.h"
 
 ResultsProcessor::ResultsProcessor() {
     //TODO Create identifier utility class which creates date/time identifier statically
@@ -12,43 +13,40 @@ void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(AbstractGraphic
     m_topAccuraciesGraphics->generateGraphics(receiver);
 }
 
-void ResultsProcessor::slot_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver) {
-    //TODO
-}
+void ResultsProcessor::slot_comparison_loadTrainingResultGraphics(const QString &runNameToCompare,
+                                                                  TrainingResultView *view) {
+    //Accuracy Curve
+    int sum = 0;
+    auto *pointsMap = new QMap<int, QPair<double, double>>();
+    for (int j = 1; j <= 20; j++) {
+        double random = QRandomGenerator::global()->bounded(3 * 100) / 100.0;
+        int random2 = QRandomGenerator::global()->bounded(1, 10);
+        sum += random2;
+        pointsMap->insert(j, qMakePair(-100.0 / sum + 100, random + 90));
+    }
+    auto ac = new AccuracyCurve(runNameToCompare, *pointsMap);
+    ac->generateGraphics(view);
 
-void ResultsProcessor::slot_comparison_loadTrainingResultGraphics(const QString &runNameToCompare, TrainingResultView *view) {
-        //Accuracy Curve
-        int sum = 0;
-        auto *pointsMap = new QMap<int, QPair<double, double>>();
-        for (int j = 1; j <= 20; j++) {
-            double random = QRandomGenerator::global()->bounded(3 * 100) / 100.0;
-            int random2 = QRandomGenerator::global()->bounded(1, 10);
-            sum += random2;
-            pointsMap->insert(j, qMakePair(-100.0/sum+100, random+90));
+    //Confusion Matrix
+    QList<int> values = QList<int>();
+    QStringList labels = {"A", "B", "C", "D", "E", "F", "G", "H"};
+    const qsizetype N = labels.size();
+    qsizetype target = 0;
+    for (int j = 0; j < N * N; ++j) {
+        int min = 0;
+        int max = 10;
+        //Check if we are on diagonal line of matrix
+        if (target == j) {
+            target += N + 1;
+            min = 30;
+            max = 100;
         }
-        auto ac = new AccuracyCurve(runNameToCompare, *pointsMap);
-        ac->generateGraphics(view);
+        int random = QRandomGenerator::global()->bounded(min, max);
+        values << random;
+    }
 
-        //Confusion Matrix
-        QList<int> values = QList<int>();
-        QStringList labels = {"A", "B", "C", "D", "E", "F", "G", "H"};
-        const qsizetype N = labels.size();
-        qsizetype target = 0;
-        for (int j = 0; j < N * N; ++j) {
-            //Check if we are on diagonal line of matrix
-            int min = 0;
-            int max = 10;
-            if (target == j) {
-                target += N + 1;
-                min = 30;
-                max = 100;
-            }
-            int random = QRandomGenerator::global()->bounded(min, max);
-            values << random;
-        }
-
-        auto matrix = new ConfusionMatrix(runNameToCompare, labels, values);
-        matrix->generateGraphics(view);
+    auto matrix = new ConfusionMatrix(runNameToCompare, labels, values);
+    matrix->generateGraphics(view);
     /*
     auto dirPath = ProjectManager::getInstance().getResultsDir();
     auto dir = QDir(dirPath + '/' + runNameToCompare);
@@ -91,20 +89,51 @@ void ResultsProcessor::slot_comparison_unloadAccuracyData(const QString &runName
 }
 
 void ResultsProcessor::slot_comparison_loadClassificationData(const QString &runNameToCompare,
-                                                            ClassificationResultView *view) {
+                                                              ClassificationResultView *view) {
     //TODO Load data from JSON file
     QStringList labels = {"Car", "Truck", "Airplane", "Boat", "Bike"};
-    QList<QPair<QString, QStringList>> data;
+    QMap<QString, QStringList> data;
     for (int j = 0; j < 20; ++j) {
         long long randomLabel = QRandomGenerator::global()->bounded(labels.size());
         auto label = labels[randomLabel];
         int random = QRandomGenerator::global()->bounded(65, 100);
-        data << qMakePair(QString("Image %1").arg(j), QStringList() << QString::number(random) << label);
+        data.insert(QString("Image %1").arg(j), {QString::number(random), label});
     }
     view->setClassificationData(data);
 
 }
 
-void ResultsProcessor::slot_comparison_loadClassificationResultGraphics(AbstractGraphicsView *receiver) {
+void ResultsProcessor::slot_normal_loadClassificationData(ClassificationResultView *view,
+                                                          ClassificationResult *result) {
+    auto map = result->getClassificationData();
+    auto labels = result->getLabels();
+    Q_ASSERT(!map.isEmpty());
+    Q_ASSERT(!labels.isEmpty());
 
+    auto tableMap = QMap<QString,QStringList>();
+
+    for (const auto &[image, accList] : MapAdapt(map)) {
+        //Assert that each accuracy value has a corresponding label
+        Q_ASSERT(accList.size() == labels.size());
+        auto max = std::max_element(accList.begin(), accList.end());
+
+        //Calculate argmax(map)
+        auto index_max = std::distance(accList.begin(), max);
+        auto max_accuracy = QString::number(*max);
+        auto label = labels[index_max];
+
+        tableMap[image] = {max_accuracy,label};
+    }
+    view->setClassificationData(tableMap);
+}
+
+void ResultsProcessor::slot_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver,
+                                                                        ClassificationResult *result) {
+    auto graphics = result->getClassificationGraphics();
+    graphics->generateGraphics(receiver);
+}
+
+void ResultsProcessor::slot_comparison_loadClassificationResultGraphics(const QString &runNameToCompare,
+                                                                        AbstractGraphicsView *receiver) {
+//TODO Fill
 }
