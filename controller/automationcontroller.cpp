@@ -1,4 +1,5 @@
 #include "automationcontroller.h"
+#include <QtConcurrent/QtConcurrent>
 
 AutomationController::AutomationController(DataManager *dataManager, AutomationWidget * automationWidget)
 {
@@ -23,7 +24,8 @@ AutomationController::AutomationController(DataManager *dataManager, AutomationW
 
 void AutomationController::slot_start()
 {
-    mAutomator->performTasks();
+
+    QtConcurrent::run(&Automator::performTasks, mAutomator);
 }
 
 void AutomationController::slot_stop()
