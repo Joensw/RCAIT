@@ -71,32 +71,21 @@ class FlickrPlugin : public QObject, ImageLoaderPlugin
     Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.FlickrPlugin" FILE "FlickrPlugin.json")
     Q_INTERFACES(ImageLoaderPlugin)
 
-
-private:
-   FlickrSettings m_flickrSettings;
-   /**
-    * @brief createCommandlineString
-    * @param path
-    * @param imageCount
-    * @param label
-    * @return
-    */
-   QString createCommandlineString( QString path,  int imageCount,  QStringList* label);
-
-
-
 public:
-    //ToDo: add receiver ProgressablePlugin to loadImages parameters
     bool loadImages(QString path, ProgressablePlugin* receiver ,int imageCount,  QStringList label) override;
     QWidget* getConfigurationWidget() override;
     void saveConfiguration() override;
-    //getInputWidget() wird nicht implementiert. Aus Ordner laden regelt View/Controller
     void init() override;
     QString getName() override;
     QWidget*  getInputWidget() override;
-    QWidget *pluginSettings;
-    QProcess* m_process;
-    ProgressablePlugin* m_receiver;
+
+
+private:
+   FlickrSettings m_flickrSettings;
+   QWidget *pluginSettings;
+   QProcess* m_process;
+   ProgressablePlugin* m_receiver;
+   QString createCommandlineString( QString path,  int imageCount,  QStringList* label);
 
 private slots:
     void slot_readOutPut();

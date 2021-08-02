@@ -23,14 +23,19 @@ ImageLoadCommand::ImageLoadCommand(QVariantMap map, Progressable* receiver)
         const char* charstring = it.key().toUtf8().data();
         inputWidget->setProperty(charstring, it.value());
     }
+    mCount = count;
+    mLabels = labels;
+    mPluginName = imagePluginName;
+    mPath = imagePath;
 
 
-    mImageSearcher = new ImageSearchThread(receiver, imagePath, imagePluginName, count, labels);
+   mImageSearcher = new ImageLoader();
+   connect(mImageSearcher, &ImageLoader::sig_progress, receiver, &Progressable::slot_makeProgress);
 
 }
 
 bool ImageLoadCommand::execute(){
     if(parsingFailed) return false;
-    mImageSearcher->loadImages();
+    mImageSearcher->loadInputImages(mCount, mLabels, mPluginName, mPath);
     return true;
 }

@@ -1,7 +1,7 @@
 #include "imagegallery.h"
 #include <QApplication>
 #include <QGridLayout>
-#include <QtCore>
+#include <QtConcurrent/QtConcurrent>
 #include <utility>
 
 
@@ -104,46 +104,12 @@ void ImageGallery::concurrentAddDir(const QString path)
 
 void ImageGallery::concurrentAddDir(const QList<QImage> imageList)
 {
-    class addDirTask : public QRunnable {
-    public:
-        addDirTask(ImageGallery *gallery, QList<QImage> images) {
-            this->mGallery = gallery;
-            this->mPathDir = std::move(images);
-        }
-
-        void run() override {
-            mGallery->addDir(mPathDir);
-        }
-
-    private:
-        ImageGallery *mGallery;
-        QList<QImage> mPathDir;
-    };
-
-    auto *addDirParallel = new addDirTask(this, imageList);
-    QThreadPool::globalInstance()->start(addDirParallel);
+    QtConcurrent::run(static_cast<void(ImageGallery::*)(QList<QImage>)>(&ImageGallery::addDir), this, imageList);
 }
 
 void ImageGallery::concurrentAddDir(const QList<QString> imageList)
 {
-    class addDirTask : public QRunnable {
-    public:
-        addDirTask(ImageGallery *gallery, QList<QString> images) {
-            this->mGallery = gallery;
-            this->mPathDir = std::move(images);
-        }
-
-        void run() override {
-            mGallery->addDir(mPathDir);
-        }
-
-    private:
-        ImageGallery *mGallery;
-        QList<QString> mPathDir;
-    };
-
-    auto *addDirParallel = new addDirTask(this, imageList);
-    QThreadPool::globalInstance()->start(addDirParallel);
+    QtConcurrent::run(static_cast<void(ImageGallery::*)(QList<QString>)>(&ImageGallery::addDir), this, imageList);
 }
 
 void ImageGallery::slot_isReady()
@@ -212,33 +178,7 @@ ImageGallery::ImageGallery(QWidget *parent, QStringList images) {
     setAcceptDrops(true);
     setDefaultDropAction(Qt::MoveAction);
 
-
-    class addDirTask : public QRunnable {
-    public:
-        addDirTask(ImageGallery *gallery, QStringList addImages) {
-            this->mGallery = gallery;
-            this->mImages = addImages;
-        }
-
-        void run() override {
-            QList<QImage> imageList;
-
-            foreach(QString image, mImages){
-                imageList.append(QImage(image));
-            }
-
-            mGallery->addDir(imageList);
-        }
-
-    private:
-        ImageGallery *mGallery;
-        QStringList mImages;
-    };
-
-    auto *addDirParallel = new addDirTask(this, images);
-    QThreadPool::globalInstance()->start(addDirParallel);
-
-
+    QtConcurrent::run(static_cast<void(ImageGallery::*)(QList<QString>)>(&ImageGallery::addDir), this, images);
 
 }
 
