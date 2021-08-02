@@ -58,6 +58,8 @@ signals:
 private slots:
 
     void slot_comparisonMenu_triggered(QAction *action);
+
+    void slot_updateSaveButton(int index);
 };
 
 #endif // TRAININGRESULTSWIDGET_H

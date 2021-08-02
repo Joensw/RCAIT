@@ -9,9 +9,11 @@ ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
     ui->setupUi(this);
 
     connect(menu_addRun, &QMenu::triggered, this, &ClassificationResultsWidget::slot_comparisonMenu_triggered);
+    connect(ui->tabWidget_classificationresults, &QTabWidget::currentChanged, this,
+            &ClassificationResultsWidget::slot_updateSaveButton);
 
     //TODO Replace dummy (without it, comparison menu won't appear)
-    ui->tabWidget_classificationresults->addTab(new QWidget(), "DUMMY");
+    createClassificationResultTab("DUMMY");
     configure_compareRunButton();
     configure_compareRunMenu();
 
@@ -48,12 +50,21 @@ void ClassificationResultsWidget::slot_comparisonMenu_triggered(QAction *action)
     const QString &runNameToCompare = action->text();
     if (action->isChecked()) {
         auto tab = createClassificationResultTab(runNameToCompare);
+        tab->setSaved(true);
         emit sig_comparison_loadClassificationData(runNameToCompare, tab);
         //TODO Implementation/design of classification results graphic w/ stacked barcharts
         emit sig_comparison_loadClassificationGraphics(runNameToCompare, tab);
     } else {
         deleteClassificationResultTab(runNameToCompare);
     }
+}
+
+void ClassificationResultsWidget::slot_updateSaveButton(int index) {
+    auto widget = ui->tabWidget_classificationresults->widget(index);
+    auto tab = dynamic_cast<AbstractGraphicsView*>(widget);
+    auto saveButton = ui->pushButton_saveClassificationResults;
+
+    saveButton->setEnabled(!tab->isSaved());
 }
 
 void ClassificationResultsWidget::changeEvent(QEvent *event) {

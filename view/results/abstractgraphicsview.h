@@ -18,7 +18,7 @@ public:
     void setSaved(bool isSaved) { m_isSaved = isSaved; };
 
 private:
-    bool m_isSaved;
+    bool m_isSaved = false;
 };
 
 #endif // ABSTRACTGRAPHICSVIEW_H

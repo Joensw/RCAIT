@@ -44,6 +44,8 @@ private slots:
 
     void slot_comparisonMenu_triggered(QAction *action);
 
+    void slot_updateSaveButton(int index);
+
 signals:
 
     void sig_comparison_loadClassificationData(const QString &runNameToCompare, ClassificationResultView *view);
