@@ -110,7 +110,7 @@ void ResultsProcessor::slot_normal_loadClassificationData(ClassificationResultVi
     Q_ASSERT(!map.isEmpty());
     Q_ASSERT(!labels.isEmpty());
 
-    auto tableMap = QMap<QString,QStringList>();
+    auto tableMap = QMap<QString, QStringList>();
 
     for (const auto &[image, accList] : MapAdapt(map)) {
         //Assert that each accuracy value has a corresponding label
@@ -122,7 +122,7 @@ void ResultsProcessor::slot_normal_loadClassificationData(ClassificationResultVi
         auto max_accuracy = QString::number(*max);
         auto label = labels[index_max];
 
-        tableMap[image] = {max_accuracy,label};
+        tableMap[image] = {max_accuracy, label};
     }
     view->setClassificationData(tableMap);
 }
@@ -136,4 +136,6 @@ void ResultsProcessor::slot_normal_generateClassificationResultGraphics(Abstract
 void ResultsProcessor::slot_comparison_loadClassificationResultGraphics(const QString &runNameToCompare,
                                                                         AbstractGraphicsView *receiver) {
 //TODO Fill
+    auto file = QFileInfo("classification_TEST.svg");
+    receiver->setClassificationGraphics(new QGraphicsSvgItem(file.absoluteFilePath()));
 }

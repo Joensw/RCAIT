@@ -34,7 +34,7 @@ void ClassificationResultView::setClassificationGraphics(QGraphicsItem *classifi
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 
-    view->scale(2, 2);
+    view->scale(0.6, 0.6);
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
