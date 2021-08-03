@@ -3,9 +3,7 @@
 #include <QGridLayout>
 #include <QtConcurrent/QtConcurrent>
 #include <utility>
-
-
-
+#include <QScroller>
 
 
 ImageGallery::ImageGallery(QWidget *parent) :
@@ -21,6 +19,10 @@ ImageGallery::ImageGallery(QWidget *parent) :
 
     setDefaultDropAction(Qt::MoveAction);
     setDragDropEnabled(false);
+
+    // Add full touch compliance
+    QScroller::grabGesture(this, QScroller::TouchGesture);
+
 }
 
 

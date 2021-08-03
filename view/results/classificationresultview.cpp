@@ -1,4 +1,5 @@
 #include <mapadapt.h>
+#include <QScroller>
 #include "classificationresultview.h"
 #include "ui_classificationresultview.h"
 
@@ -8,6 +9,10 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
     ui->setupUi(this);
 
     auto *table = ui->tableWidget_classificationresult;
+
+    // Add full touch compliance
+    QScroller::grabGesture(ui->graphicsView_classificationresult, QScroller::TouchGesture);
+    QScroller::grabGesture(ui->tableWidget_classificationresult, QScroller::TouchGesture);
 
     //Stretch table headers to fill the space available
     QHeaderView *h_header = table->horizontalHeader();
