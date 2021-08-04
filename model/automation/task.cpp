@@ -51,19 +51,26 @@ void Task::run()
 {
     if (commandsDone == 0){
         mState = PERFORMING;
-        emit sig_stateChanged(mState);
+        emit sig_stateChanged(mName, mState);
     }
-    if (commandsDone >= mCommandList.count()){
+    if (commandsDone == mCommandList.count()){
         mState = COMPLETED;
-        emit sig_stateChanged(mState);
+        emit sig_stateChanged(mName, mState);
+        return;
+    }
+    if (commandsDone > mCommandList.count()){
+        mState = FAILED;
+        emit sig_stateChanged(mName, mState);
+        commandsDone = 0;
         return;
     }
     int tempCommandsDone = commandsDone;
     if (!mCommandList.at(commandsDone)->execute()) {
         mState = FAILED;
-        emit sig_stateChanged(mState);
+        emit sig_stateChanged(mName, mState);
         return;
     }
+
     while(tempCommandsDone == commandsDone){
         QApplication::processEvents();
         QThread::sleep(4);
@@ -86,6 +93,13 @@ TaskState Task::getState()
 bool Task::isValid()
 {
     return valid;
+}
+
+void Task::abort()
+{
+    commandsDone = mCommandList.size() + 1;
+    emit sig_pluginAborted();
+    emit sig_progress(100);
 }
 
 void Task::slot_makeProgress(int progress)

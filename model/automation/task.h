@@ -60,6 +60,11 @@ public:
      */
     bool isValid();
 
+    /**
+     * @brief abort aborts the Task.
+     */
+    void abort();
+
 public slots:
 
     /**
@@ -91,7 +96,7 @@ signals:
      *
      * @param newState new task state.
      */
-    void sig_stateChanged(TaskState newState);
+    void sig_stateChanged(QString name, TaskState newState);
 
     /**
      * @brief sig_progress signals progress of task.
