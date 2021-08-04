@@ -56,14 +56,14 @@ signals:
      * @brief sig_projectDirectoryChanged emitted when project directory is changed.
      *
      */
-    void sig_projectDirectoryChanged();
+    void sig_projectDirectoryChanged(const QString& newDirectory);
 
 
     /**
      * @brief sig_imgagePluginsChanged emitted when image plugins directory is changed.
      *
      */
-    void sig_imagePluginsDirectoryChanged();
+    void sig_imagePluginsDirectoryChanged(const QString& newDirectory);
 
 private:
     SettingsView *mSettingsView;

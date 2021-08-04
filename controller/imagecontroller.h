@@ -38,7 +38,7 @@ public slots:
 
     void slot_updateImageLoadStatusText(QString status);
 
-    void slot_imagePluginDirectoryChanged();
+    void slot_imagePluginDirectoryChanged(const QString& newDirectory);
 
     //Todo connect
 };
