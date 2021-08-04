@@ -92,7 +92,6 @@ void AutomationWidget::on_unqueueSelectedButton_clicked()
         ui->idleTasks->addItem(ui->queuedTasks->takeItem(index.row()));
         emit sig_unqueueSelected(index.row());
     }
-    qDeleteAll(ui->queuedTasks->selectedItems());
 }
 
 
@@ -102,7 +101,6 @@ void AutomationWidget::on_queueSelectedButton_clicked()
         ui->queuedTasks->addItem(ui->idleTasks->takeItem(index.row()));
         emit sig_queueSelected(index.row());
     }
-    qDeleteAll(ui->idleTasks->selectedItems());
 }
 
 
