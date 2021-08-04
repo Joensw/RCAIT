@@ -1,5 +1,6 @@
 #include <mapadapt.h>
 #include <QScroller>
+#include <QScrollBar>
 #include "classificationresultview.h"
 #include "ui_classificationresultview.h"
 
@@ -46,6 +47,9 @@ void ClassificationResultView::setClassificationGraphics(QGraphicsItem *classifi
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     view->setScene(scene);
+
+    //Scroll up to the beginning of the scene on startup
+    view->verticalScrollBar()->setValue(1);
 }
 
 void ClassificationResultView::changeEvent(QEvent *event) {
