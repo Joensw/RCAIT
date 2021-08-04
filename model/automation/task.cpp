@@ -51,17 +51,17 @@ void Task::run()
 {
     if (commandsDone == 0){
         mState = PERFORMING;
-        emit sig_stateChanged(mState);
+        emit sig_stateChanged(mName, mState);
     }
     if (commandsDone >= mCommandList.count()){
         mState = COMPLETED;
-        emit sig_stateChanged(mState);
+        emit sig_stateChanged(mName, mState);
         return;
     }
     int tempCommandsDone = commandsDone;
     if (!mCommandList.at(commandsDone)->execute()) {
         mState = FAILED;
-        emit sig_stateChanged(mState);
+        emit sig_stateChanged(mName, mState);
         return;
     }
     while(tempCommandsDone == commandsDone){

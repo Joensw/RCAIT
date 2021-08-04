@@ -24,10 +24,13 @@ void Automator::performTasks()
 
         //TODO change Task so it is stoppable
         connect((*i), &Task::sig_progress, this, &Automator::slot_makeProgress);
+        connect((*i), &Task::sig_stateChanged, this, &Automator::slot_taskUpdated);
         (*i)->run();
         disconnect((*i), &Task::sig_progress, this, &Automator::slot_makeProgress);
+        disconnect((*i), &Task::sig_stateChanged, this, &Automator::slot_taskUpdated);
         tasksCompleted++;
     }
+    emit sig_progress(100);
 }
 
 void Automator::stopTasks()
