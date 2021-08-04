@@ -131,6 +131,8 @@ private:
     QList<Task*> mUnqueuedTasks;
     QList<Task*> mQueuedTasks;
     DataManager *mDataManager;
+    QList<Task*>::iterator mRunningTask;
+
     bool stop = false;
     int tasksCompleted = 0;
 };

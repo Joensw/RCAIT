@@ -60,6 +60,11 @@ public:
      */
     bool isValid();
 
+    /**
+     * @brief abort aborts the Task.
+     */
+    void abort();
+
 public slots:
 
     /**

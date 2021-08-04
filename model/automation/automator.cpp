@@ -13,21 +13,21 @@ Automator::Automator(DataManager *dataManager)
 void Automator::performTasks()
 {
     stop = false;
-    QList<Task*>::iterator i;
+ // QList<Task*>::iterator i;
     tasksCompleted = 0;
 
-    for (i = mQueuedTasks.begin(); i != mQueuedTasks.end() && !stop; ++i){
-        if ((*i)->getState() == COMPLETED || (*i)->getState() == FAILED){
+    for (mRunningTask = mQueuedTasks.begin(); mRunningTask != mQueuedTasks.end() && !stop; ++mRunningTask){
+        if ((*mRunningTask)->getState() == COMPLETED || (*mRunningTask)->getState() == FAILED){
             tasksCompleted++;
             continue;
         }
 
         //TODO change Task so it is stoppable
-        connect((*i), &Task::sig_progress, this, &Automator::slot_makeProgress);
-        connect((*i), &Task::sig_stateChanged, this, &Automator::slot_taskUpdated);
-        (*i)->run();
-        disconnect((*i), &Task::sig_progress, this, &Automator::slot_makeProgress);
-        disconnect((*i), &Task::sig_stateChanged, this, &Automator::slot_taskUpdated);
+        connect((*mRunningTask), &Task::sig_progress, this, &Automator::slot_makeProgress);
+        connect((*mRunningTask), &Task::sig_stateChanged, this, &Automator::slot_taskUpdated);
+        (*mRunningTask)->run();
+        disconnect((*mRunningTask), &Task::sig_progress, this, &Automator::slot_makeProgress);
+        disconnect((*mRunningTask), &Task::sig_stateChanged, this, &Automator::slot_taskUpdated);
         tasksCompleted++;
     }
     emit sig_progress(100);
@@ -36,6 +36,7 @@ void Automator::performTasks()
 void Automator::stopTasks()
 {
     stop = true;
+    (*mRunningTask)->abort();
 }
 
 void Automator::addTasks(QString path)
