@@ -2,19 +2,19 @@
 #include <utility>
 
 ClassificationResult::ClassificationResult(const QMap<QString, QList<double>> &classificationData,
-                                           QList<QString> labels, const QStringList& additionalResults)
-        : Result(additionalResults) {
+                                           QList<QString> labels, const QStringList &additionalResults)
+        : Result(additionalResults),
+          m_classificationData(classificationData) {
 
     m_classificationGraphics = new ClassificationGraphics(this->getIdentifier(), classificationData);
-    m_classificationData = classificationData;
     m_labels = std::move(labels);
 }
 
-QMap<QString, QList<double>> ClassificationResult::getClassificationData() {
+QMap<QString, QList<double>> ClassificationResult::getClassificationData() const {
     return m_classificationData;
 }
 
-QList<QString> ClassificationResult::getLabels() {
+QList<QString> ClassificationResult::getLabels() const {
     return m_labels;
 }
 

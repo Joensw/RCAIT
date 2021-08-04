@@ -5,12 +5,13 @@
 TrainingResult::TrainingResult(AccuracyCurve *accCurve, ConfusionMatrix *confusionMatrix,
                                QStringList mostMisclassifiedImages,
                                double top1Accuracy, double top5Accuracy, const QStringList &additionalResults)
-        : Result(additionalResults) {
-    m_accCurve = accCurve;
-    m_confusionMatrix = confusionMatrix;
+        : Result(additionalResults),
+          m_accCurve(accCurve),
+          m_confusionMatrix(confusionMatrix),
+          m_top1Accuracy(top1Accuracy),
+          m_top5Accuracy(top5Accuracy) {
+
     m_mostMisclassifiedImages = std::move(mostMisclassifiedImages);
-    m_top1Accuracy = top1Accuracy;
-    m_top5Accuracy = top5Accuracy;
 }
 
 AccuracyCurve *TrainingResult::getAccuracyCurve() {
