@@ -251,36 +251,6 @@
            <string notr="true">selection-color: rgb(0, 0, 0);
 selection-background-color: rgb(255, 255, 255);</string>
           </property>
-          <item>
-           <property name="text">
-            <string>Model 1</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <activeon>:/Resources/TaskIcons/Task_Empty.svg</activeon>
-            </iconset>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Model 2</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <selectedoff>:/Resources/TaskIcons/Task_Empty.svg</selectedoff>
-            </iconset>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Model 3</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <selectedoff>:/Resources/TaskIcons/Task_Empty.svg</selectedoff>
-            </iconset>
-           </property>
-          </item>
          </widget>
         </item>
         <item>
