@@ -97,10 +97,10 @@ public:
 
 
     /**
-     * @brief getTraingsResultsDir will return null string if no project is opened
+     * @brief getTrainingResultsDir will return null string if no project is opened
      * @return  absolute path to the trainings results subdirectory of the currently opened project
      */
-    QString getTraingsResultsDir();
+    QString getTrainingResultsDir();
 
     /**
      * @brief getClassificationResultsDir will return null string if no project is opened

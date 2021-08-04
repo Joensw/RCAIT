@@ -111,7 +111,7 @@ QString ProjectManager::getResultsDir() {
     return mProjectResultsDir;
 }
 
-QString ProjectManager::getTraingsResultsDir()
+QString ProjectManager::getTrainingResultsDir()
 {
     return mProjectResultsDir + "/" + trainingsResultsDirectoryName;
 }
