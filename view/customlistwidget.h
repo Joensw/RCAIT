@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QWidget>
 #include <QListWidget>
+#include <QScroller>
 
 /**
  * It is used in the UI for example for the project list and model list.

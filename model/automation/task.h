@@ -19,7 +19,7 @@ enum TaskState
  * @brief The Task class is responsible for executing (multiple) commands.
  *
  */
-class Task : public Progressable
+class Task : public ProgressablePlugin
 {
     Q_OBJECT
 public:

@@ -21,7 +21,7 @@ public:
      * @param map contains necessary information for command.
      * @param receiver object to receive progress.
      */
-    ImageLoadCommand(QVariantMap map, Progressable* receiver);
+    ImageLoadCommand(QVariantMap map, QString path, ProgressablePlugin* receiver);
 
     /**
      * @brief execute executes the command.
@@ -31,7 +31,7 @@ public:
     bool execute() override;
 
 private:
-    ImageLoader* mImageSearcher;
+    ImageSearchThread* mImageSearcher;
     bool parsingFailed = false;
     int mCount;
     QStringList mLabels;

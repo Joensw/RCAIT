@@ -35,6 +35,7 @@ public:
 private:
     FolderConfigwidget* mConfigWidget;
     int mode = 0;
+    QString imageDir;
     bool addLabel(QStringList list, QDir in, QDir out);
 
 };

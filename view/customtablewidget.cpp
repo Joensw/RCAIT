@@ -1,9 +1,16 @@
+#include <QScroller>
 #include "customtablewidget.h"
 
 CustomTableWidget::CustomTableWidget(QWidget *parent) : QTableWidget(parent) {
     auto *cornerButton = getCornerButton();
     if (cornerButton)
         cornerButton->installEventFilter(this);
+
+    // Add full touch compliance
+    this->setAttribute(Qt::WA_AcceptTouchEvents,true);
+    this->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    this->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+    QScroller::grabGesture(this,QScroller::TouchGesture);
 }
 
 QAbstractButton *CustomTableWidget::getCornerButton() {

@@ -2,12 +2,18 @@
 #include "ui_automationwidget.h"
 
 #include <QFileDialog>
+#include <QScroller>
 
 AutomationWidget::AutomationWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AutomationWidget)
 {
     ui->setupUi(this);
+
+    // Add full touch compliance
+    QScroller::grabGesture(ui->idleTasks, QScroller::TouchGesture);
+    QScroller::grabGesture(ui->queuedTasks, QScroller::TouchGesture);
+
 }
 
 AutomationWidget::~AutomationWidget()

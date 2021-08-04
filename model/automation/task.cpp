@@ -19,9 +19,9 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
     }
 
     if (commands.contains("addProject")){
-        mDataManager->createNewProject(map.value("addProject").toString());
+        mDataManager->createNewProject(map.value("projectName").toString());
     }
-    mDataManager->loadProject(map.value("addProject").toString());
+    mDataManager->loadProject(map.value("projectName").toString());
 
     if (!list.isEmpty()){
         mCommandList = list;
@@ -29,7 +29,7 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
     }
 
     if (commands.contains("imageLoad")) {
-        ImageLoadCommand* command = new ImageLoadCommand(map, this);
+        ImageLoadCommand* command = new ImageLoadCommand(map, mDataManager->getProjectTempDir(), this);
         mCommandList.append(command);
     }
 

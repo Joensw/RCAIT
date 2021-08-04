@@ -56,7 +56,7 @@ bool ClassificationGraphics::operator!=(const ClassificationGraphics &other) con
 }
 
 void ClassificationGraphics::generateGraphicsInternal(const QString &fullFilePath) {
-    // python script.py <loss curve data> <output file name>
+    // python script.py <classification data> <classification labels> <output file name>
     auto pyScript = QFileInfo("classificationgraphics.py");
     QStringList params =
             QStringList() << pyScript.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fullFilePath;
