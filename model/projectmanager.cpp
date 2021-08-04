@@ -9,6 +9,7 @@
 
 //names of the subfolders in the project directory
 //These can be changed, however projects based on the old naming scheme become unreadable
+//TODO: could optimize this by reading everything from the project file
 const QString resultsDirectoryName = "results";
 const QString datasetDirectoryName = "data";
 const QString tempDirectoryName = "temp";
@@ -109,10 +110,21 @@ QString ProjectManager::getProjectDataSetDir() {
 QString ProjectManager::getResultsDir() {
     return mProjectResultsDir;
 }
+
+QString ProjectManager::getTraingsResultsDir()
+{
+    return mProjectResultsDir + "/" + trainingsResultsDirectoryName;
+}
+
+QString ProjectManager::getClassificationResultsDir()
+{
+    return mProjectResultsDir + "/" + classificationResultsDirectoryName;
+}
 /* Currently this is not readable by a human because it is in binary format.
  * the information is recoverable by opening a datastream to the file and reading the contents in
  * order they were entered and then building a new ClassificationResult object from this.
  * ie out << map << list1 << list2 is read with in >> map >> list 1 >> list
+ * see the tests on how this can be done
  */
 void ProjectManager::saveClassificationResult(ClassificationResult result) {
     QFile file(mProjectResultsDir + "/" + classificationResultsDirectoryName + "/" + result.generateIdentifier());

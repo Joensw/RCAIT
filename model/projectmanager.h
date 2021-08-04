@@ -95,6 +95,19 @@ public:
      */
     QString getResultsDir();
 
+
+    /**
+     * @brief getTraingsResultsDir will return null string if no project is opened
+     * @return  absolute path to the trainings results subdirectory of the currently opened project
+     */
+    QString getTraingsResultsDir();
+
+    /**
+     * @brief getClassificationResultsDir will return null string if no project is opened
+     * @return absolute path to the classification results subdirectory of the currently opened project
+     */
+    QString getClassificationResultsDir();
+
     /** Serialises the object in a binary format, it is not readable to a human.
      *  The object is saved to the classifcation result sub directory
      * @brief saveClassificationResult serialises and saves a classification results object
