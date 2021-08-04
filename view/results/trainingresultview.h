@@ -25,7 +25,7 @@ public:
 
     void setConfusionMatrix(QGraphicsItem *matrixImage) override;
 
-    void setMostMisclassifiedImages(const QList<QImage>& images);
+    void setMostMisclassifiedImages(const QStringList& images);
 
 private:
     Ui::TrainingResultView *ui;

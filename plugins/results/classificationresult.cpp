@@ -2,7 +2,7 @@
 #include <utility>
 
 ClassificationResult::ClassificationResult(const QMap<QString, QList<double>> &classificationData,
-                                           QList<QString> labels, const QList<QImage>& additionalResults)
+                                           QList<QString> labels, const QStringList& additionalResults)
         : Result(additionalResults) {
 
     m_classificationGraphics = new ClassificationGraphics(this->getIdentifier(), classificationData);

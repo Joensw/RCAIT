@@ -15,7 +15,7 @@ private:
     QList<QString> m_labels;
 public:
     ClassificationResult(const QMap<QString, QList<double>> &classificationData,
-                         QList<QString> labels, const QList<QImage>& additionalResults);
+                         QList<QString> labels, const QStringList& additionalResults);
 
     QMap<QString, QList<double>> getClassificationData();
 

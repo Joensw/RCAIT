@@ -1,19 +1,16 @@
 #ifndef RESULT_H
 #define RESULT_H
 
-
-#include <QImage>
-
 class Result {
 private:
-    QList<QImage> m_additionalResults;
-    QString m_timestamp;
+    QStringList m_additionalResults;
+    QString m_identifier;
 
 public:
-    explicit Result(const QList<QImage>& additionalResults = QList<QImage>());
-    [[nodiscard]] QList<QImage> getAdditionalResults();
+    explicit Result(QStringList  additionalResults = QStringList());
+    [[nodiscard]] QStringList getAdditionalResults() const;
 
-    [[nodiscard]] QString getIdentifier();
+    [[nodiscard]] QString getIdentifier() const;
 
     static QString generateIdentifier();
 };

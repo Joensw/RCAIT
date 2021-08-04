@@ -3,8 +3,8 @@
 #include <utility>
 
 TrainingResult::TrainingResult(AccuracyCurve *accCurve, ConfusionMatrix *confusionMatrix,
-                               QList<QImage> mostMisclassifiedImages,
-                               double top1Accuracy, double top5Accuracy, const QList<QImage> &additionalResults)
+                               QStringList mostMisclassifiedImages,
+                               double top1Accuracy, double top5Accuracy, const QStringList &additionalResults)
         : Result(additionalResults) {
     m_accCurve = accCurve;
     m_confusionMatrix = confusionMatrix;
@@ -21,7 +21,7 @@ ConfusionMatrix *TrainingResult::getConfusionMatrix() const {
     return m_confusionMatrix;
 }
 
-QList<QImage> TrainingResult::getMostMisclassifiedImages() const {
+QStringList TrainingResult::getMostMisclassifiedImages() const {
     return m_mostMisclassifiedImages;
 }
 

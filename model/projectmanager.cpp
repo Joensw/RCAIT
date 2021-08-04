@@ -164,7 +164,7 @@ void ProjectManager::saveTrainingsResult(TrainingResult result) {
     QMap<int, QPair<double, double>> data = acTemp->getData();
     QString identiferLC = acTemp->getIdentifier();
 
-    QList<QImage> additionalResults = result.getAdditionalResults();
+    QStringList additionalResults = result.getAdditionalResults();
 
     out << result.getTop1Accuracy() << result.getTop5Accuracy() << result.getMostMisclassifiedImages()
         << identifierCM << classLabels << values << data << identiferLC << additionalResults;
@@ -193,9 +193,9 @@ TrainingResult ProjectManager::getTrainingsResult(QString modelResultName) {
 
     double top1Acc;
     double top5Acc;
-    QList<QImage> mostMisclassifiedImages;
+    QStringList mostMisclassifiedImages;
 
-    QList<QImage> additionalResults;
+    QStringList additionalResults;
 
     in >> top1Acc >> top5Acc >> mostMisclassifiedImages >> identifierCM >> classLabels >> values >> data >> identiferAC >> additionalResults;
 
