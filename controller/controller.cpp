@@ -25,6 +25,7 @@ Controller::Controller(QObject *parent) : QObject(parent)
     connect(mModelController, &ModelController::sig_modelLoaded, mTabController, &TabController::slot_modelLoaded);
 
     connect(mSettingsController, &SettingsController::sig_imagePluginsDirectoryChanged, mImageController, &ImageController::slot_imagePluginDirectoryChanged);
+    connect(mProjectController, &ProjectController::sig_projectPathUpdated, mResultsController, &ResultsController::slot_projectPathUpdated);
 
     mConfigurationController->verify();
 

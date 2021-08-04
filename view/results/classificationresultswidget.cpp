@@ -3,6 +3,7 @@
 #include "classificationresultswidget.h"
 #include "ui_classificationresultswidget.h"
 
+//TODO Extract common methods/attributes in superclass
 ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::ClassificationResultsWidget) {
@@ -15,13 +16,22 @@ ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
     //TODO Replace dummy (without it, comparison menu won't appear)
     createClassificationResultTab("DUMMY");
     configure_compareRunButton();
-    configure_compareRunMenu();
 
 }
 
-void ClassificationResultsWidget::configure_compareRunMenu() {
+void ClassificationResultsWidget::configure_compareRunMenu(const QString &resultsDirPath) {
+    //Cleanup, because results dir was changed
+    //Remove opened tabs
+    for (const auto &action : menu_addRun->actions()) {
+        if (action->isChecked()) {
+            auto runName = action->text();
+            removeComparisonResult(runName);
+        }
+    }
+    //Clear menu entries
+    menu_addRun->clear();
+
     //Add compare button menu entries
-    auto resultsDirPath = ProjectManager::getInstance().getResultsDir();
     auto dir = QDir(resultsDirPath);
     auto entryList = dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
 
@@ -50,15 +60,22 @@ void ClassificationResultsWidget::addClassificationResult(ClassificationResult *
 
 void ClassificationResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
     const QString &runNameToCompare = action->text();
-    if (action->isChecked()) {
-        auto tab = createClassificationResultTab(runNameToCompare);
-        tab->setSaved(true);
-        emit sig_comparison_loadClassificationData(runNameToCompare, tab);
-        //TODO Implementation/design of classification results graphic w/ stacked barcharts
-        emit sig_comparison_loadClassificationResultGraphics(runNameToCompare, tab);
-    } else {
-        deleteClassificationResultTab(runNameToCompare);
-    }
+    if (action->isChecked())
+        addComparisonResult(runNameToCompare);
+    else
+        removeComparisonResult(runNameToCompare);
+}
+
+void ClassificationResultsWidget::addComparisonResult(const QString &runNameToCompare) {
+    auto tab = createClassificationResultTab(runNameToCompare);
+    //TODO Move to slot
+    tab->setSaved(true);
+    emit sig_comparison_loadClassificationData(runNameToCompare, tab);
+    emit sig_comparison_loadClassificationResultGraphics(runNameToCompare, tab);
+}
+
+void ClassificationResultsWidget::removeComparisonResult(const QString &runNameToCompare) {
+    deleteClassificationResultTab(runNameToCompare);
 }
 
 void ClassificationResultsWidget::slot_updateSaveButton(int index) {
@@ -104,4 +121,9 @@ void ClassificationResultsWidget::deleteClassificationResultTab(const QString &t
     auto tab = m_mapClassificationResultTabs.take(tabName);
     auto index = tabWidget->indexOf(tab);
     tabWidget->removeTab(index);
+}
+
+void ClassificationResultsWidget::slot_updateResultFolderPaths(const QString &trainingResultsPath,
+                                                               const QString &classificationResultsPath) {
+    configure_compareRunMenu(classificationResultsPath);
 }

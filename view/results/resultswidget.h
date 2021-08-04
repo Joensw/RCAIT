@@ -25,6 +25,8 @@ public:
 
     void addClassificationResult(ClassificationResult *result);
 
+    void updateResultFolderPaths();
+
     TrainingResultsWidget* getTrainingResultsWidget();
 
     ClassificationResultsWidget* getClassificationResultsWidget();
@@ -32,6 +34,8 @@ public:
 signals:
 
     void sig_saveResults();
+
+    void sig_updateResultFolderPaths(const QString& trainingResultsPath, const QString& classificationResultsPath);
 
 private:
     Ui::ResultsWidget *ui;

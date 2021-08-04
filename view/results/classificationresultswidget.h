@@ -8,12 +8,11 @@
 #include "classificationresultview.h"
 
 namespace Ui {
-class ClassificationResultsWidget;
+    class ClassificationResultsWidget;
 }
 
-class ClassificationResultsWidget : public QWidget
-{
-    Q_OBJECT
+class ClassificationResultsWidget : public QWidget {
+Q_OBJECT
 
 protected:
     // this event is called, when a new translator is loaded or the system language is changed
@@ -21,7 +20,9 @@ protected:
 
 public:
     explicit ClassificationResultsWidget(QWidget *parent = nullptr);
+
     ~ClassificationResultsWidget();
+
     void addClassificationResult(ClassificationResult *result);
 
 private:
@@ -32,7 +33,7 @@ private:
 
     void configure_compareRunButton();
 
-    void configure_compareRunMenu();
+    void configure_compareRunMenu(const QString& resultsDirPath);
 
     void retranslateUi();
 
@@ -40,22 +41,30 @@ private:
 
     void deleteClassificationResultTab(const QString &tabName);
 
+    void addComparisonResult(const QString &runNameToCompare);
+
+    void removeComparisonResult(const QString &runNameToCompare);
+
 private slots:
 
     void slot_comparisonMenu_triggered(QAction *action);
 
     void slot_updateSaveButton(int index);
 
+public slots:
+
+    void slot_updateResultFolderPaths(const QString &trainingResultsPath, const QString &classificationResultsPath);
+
 signals:
 
     void sig_comparison_loadClassificationData(const QString &runNameToCompare, ClassificationResultView *view);
 
-    void sig_comparison_loadClassificationResultGraphics(const QString &runNameToCompare, ClassificationResultView *view);
+    void sig_comparison_loadClassificationResultGraphics(const QString &runNameToCompare,
+                                                         ClassificationResultView *view);
 
-    void sig_normal_loadClassificationData(ClassificationResultView* view, ClassificationResult* result);
+    void sig_normal_loadClassificationData(ClassificationResultView *view, ClassificationResult *result);
 
-    void sig_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver, ClassificationResult* result);
-
+    void sig_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver, ClassificationResult *result);
 };
 
 #endif // CLASSIFICATIONRESULTSWIDGET_H

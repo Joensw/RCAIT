@@ -1,6 +1,7 @@
 #include "trainingresultswidget.h"
 #include "ui_trainingresultswidget.h"
 
+//TODO Extract common methods/attributes in superclass
 TrainingResultsWidget::TrainingResultsWidget(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::TrainingResultsWidget) {
@@ -11,12 +12,22 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent) :
             &TrainingResultsWidget::slot_updateSaveButton);
 
     configure_compareRunButton();
-    configure_compareRunMenu();
 }
 
-void TrainingResultsWidget::configure_compareRunMenu() {
+void TrainingResultsWidget::configure_compareRunMenu(const QString &resultsDirPath) {
+
+    //Cleanup, because results dir was changed
+    //Remove opened tabs
+    for (const auto &action : menu_addRun->actions()) {
+        if (action->isChecked()) {
+            auto runName = action->text();
+            removeComparisonResult(runName);
+        }
+    }
+    //Clear menu entries
+    menu_addRun->clear();
+
     //Add compare button menu entries
-    auto resultsDirPath = ProjectManager::getInstance().getResultsDir();
     auto dir = QDir(resultsDirPath);
     auto entryList = dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
 
@@ -75,23 +86,39 @@ void TrainingResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
     action->blockSignals(true);
     auto topAccuracies = ui->tab_topAccuracies;
     const QString &runNameToCompare = action->text();
-    if (action->isChecked()) {
-        auto tab = createTrainingResultTab(runNameToCompare);
-        tab->setSaved(true);
-        emit sig_comparison_loadTrainingResultGraphics(runNameToCompare, tab);
-        emit sig_comparison_loadAccuracyData(runNameToCompare, topAccuracies);
-    } else {
-        deleteTrainingResultTab(runNameToCompare);
-        emit sig_comparison_unloadAccuracyData(runNameToCompare, topAccuracies);
-    }
+
+    if (action->isChecked())
+        addComparisonResult(runNameToCompare);
+    else
+        removeComparisonResult(runNameToCompare);
+}
+
+void TrainingResultsWidget::addComparisonResult(const QString &runNameToCompare) {
+    auto topAccuracies = ui->tab_topAccuracies;
+    auto tab = createTrainingResultTab(runNameToCompare);
+    //TODO move to slot
+    tab->setSaved(true);
+    emit sig_comparison_loadTrainingResultGraphics(runNameToCompare, tab);
+    emit sig_comparison_loadAccuracyData(runNameToCompare, topAccuracies);
+}
+
+void TrainingResultsWidget::removeComparisonResult(const QString &runNameToCompare) {
+    deleteTrainingResultTab(runNameToCompare);
+    auto topAccuracies = ui->tab_topAccuracies;
+    emit sig_comparison_unloadAccuracyData(runNameToCompare, topAccuracies);
 }
 
 void TrainingResultsWidget::slot_updateSaveButton(int index) {
     auto widget = ui->tabWidget_trainingresults->widget(index);
-    auto tab = dynamic_cast<AbstractGraphicsView*>(widget);
+    auto tab = dynamic_cast<AbstractGraphicsView *>(widget);
     auto saveButton = ui->pushButton_saveTrainingResults;
 
     saveButton->setEnabled(!tab->isSaved());
+}
+
+void TrainingResultsWidget::slot_updateResultFolderPaths(const QString &trainingResultsPath,
+                                                         const QString &classificationResultsPath) {
+    configure_compareRunMenu(trainingResultsPath);
 }
 
 void TrainingResultsWidget::changeEvent(QEvent *event) {

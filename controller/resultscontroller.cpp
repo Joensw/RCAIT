@@ -15,7 +15,8 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
             &ResultsProcessor::slot_normal_generateTopAccuraciesGraphics);
 
     //Connect 'Compare Run' related signals/slots
-    connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_loadTrainingResultGraphics, m_resultsProcessor,
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_loadTrainingResultGraphics,
+            m_resultsProcessor,
             &ResultsProcessor::slot_comparison_loadTrainingResultGraphics);
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_loadAccuracyData, m_resultsProcessor,
             &ResultsProcessor::slot_comparison_loadAccuracyData);
@@ -61,4 +62,8 @@ void ResultsController::updateComparisonResultOverview(TrainingResult *result) {
 
 void ResultsController::slot_saveResult() {
 //TODO Move
+}
+
+void ResultsController::slot_projectPathUpdated() {
+    m_resultsWidget->updateResultFolderPaths();
 }

@@ -1,9 +1,5 @@
-#include <QPushButton>
-#include <QMenu>
-#include <QRandomGenerator>
 #include "resultswidget.h"
 #include "ui_resultswidget.h"
-#include "confusionmatrix.h"
 #include "projectmanager.h"
 
 ResultsWidget::ResultsWidget(QWidget *parent) :
@@ -15,6 +11,13 @@ ResultsWidget::ResultsWidget(QWidget *parent) :
     //Setup widget variables
     m_trainingResultsWidget = ui->tab_trainingResults;
     m_classificationResultsWidget = ui->tab_classificationResults;
+
+    //Connect signals & slots
+    connect(this, &ResultsWidget::sig_updateResultFolderPaths, m_trainingResultsWidget,
+            &TrainingResultsWidget::slot_updateResultFolderPaths);
+    connect(this, &ResultsWidget::sig_updateResultFolderPaths, m_classificationResultsWidget,
+            &ClassificationResultsWidget::slot_updateResultFolderPaths);
+
 }
 
 void ResultsWidget::addTrainingResult(TrainingResult *result) {
@@ -44,4 +47,11 @@ TrainingResultsWidget *ResultsWidget::getTrainingResultsWidget() {
 
 ClassificationResultsWidget *ResultsWidget::getClassificationResultsWidget() {
     return m_classificationResultsWidget;
+}
+
+void ResultsWidget::updateResultFolderPaths() {
+    ProjectManager *pm = &ProjectManager::getInstance();
+    auto trainingPath = pm->getTrainingResultsDir();
+    auto classificationPath = pm->getClassificationResultsDir();
+    emit sig_updateResultFolderPaths(trainingPath, classificationPath);
 }

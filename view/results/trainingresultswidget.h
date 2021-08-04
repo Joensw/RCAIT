@@ -45,7 +45,11 @@ private:
 
     void configure_compareRunButton();
 
-    void configure_compareRunMenu();
+    void configure_compareRunMenu(const QString& resultsDirPath);
+
+    void removeComparisonResult(const QString &runNameToCompare);
+
+    void addComparisonResult(const QString &runNameToCompare);
 
 signals:
 
@@ -60,6 +64,10 @@ private slots:
     void slot_comparisonMenu_triggered(QAction *action);
 
     void slot_updateSaveButton(int index);
+
+public slots:
+
+    void slot_updateResultFolderPaths(const QString &trainingResultsPath, const QString &classificationResultsPath);
 };
 
 #endif // TRAININGRESULTSWIDGET_H
