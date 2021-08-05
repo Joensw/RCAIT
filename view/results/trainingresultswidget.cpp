@@ -49,15 +49,9 @@ void TrainingResultsWidget::configure_compareRunButton() {
 }
 
 void TrainingResultsWidget::addTrainingResult(TrainingResult *result) {
-    auto accCurve = result->getAccuracyCurve();
-    auto confusionMatrix = result->getConfusionMatrix();
-    auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
-
     auto tab = createTrainingResultTab(result->getIdentifier());
-
-    accCurve->generateGraphics(tab);
-    confusionMatrix->generateGraphics(tab);
-    tab->setMostMisclassifiedImages(mostMisclassifiedImages);
+    emit sig_normal_generateTrainingResultGraphics(tab,result);
+    emit sig_normal_loadTrainingResultData(tab,result);
 }
 
 TrainingResultsWidget::~TrainingResultsWidget() {
@@ -83,7 +77,6 @@ void TrainingResultsWidget::deleteTrainingResultTab(const QString &tabName) {
 }
 
 void TrainingResultsWidget::slot_comparisonMenu_triggered(QAction *action) {
-    action->blockSignals(true);
     auto topAccuracies = ui->tab_topAccuracies;
     const QString &runNameToCompare = action->text();
 

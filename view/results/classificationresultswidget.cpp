@@ -70,7 +70,7 @@ void ClassificationResultsWidget::addComparisonResult(const QString &runNameToCo
     auto tab = createClassificationResultTab(runNameToCompare);
     //TODO Move to slot
     tab->setSaved(true);
-    emit sig_comparison_loadClassificationData(runNameToCompare, tab);
+    emit sig_comparison_loadClassificationResultData(runNameToCompare, tab);
     emit sig_comparison_loadClassificationResultGraphics(runNameToCompare, tab);
 }
 

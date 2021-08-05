@@ -57,7 +57,7 @@ public slots:
 
 signals:
 
-    void sig_comparison_loadClassificationData(const QString &runNameToCompare, ClassificationResultView *view);
+    void sig_comparison_loadClassificationResultData(const QString &runNameToCompare, ClassificationResultView *view);
 
     void sig_comparison_loadClassificationResultGraphics(const QString &runNameToCompare,
                                                          ClassificationResultView *view);

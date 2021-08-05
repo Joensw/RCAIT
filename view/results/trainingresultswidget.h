@@ -59,6 +59,10 @@ signals:
 
     void sig_comparison_unloadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view);
 
+    void sig_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver, TrainingResult* result);
+
+    void sig_normal_loadTrainingResultData(TrainingResultView* view, TrainingResult* result);
+
 private slots:
 
     void slot_comparisonMenu_triggered(QAction *action);
