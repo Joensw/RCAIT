@@ -187,17 +187,17 @@ FORMS += \
     newprojectdialog.ui \
     removemodeldialog.ui \
     removeprojectdialog.ui \
-    resultswidget.ui \
     startwidget.ui \
     staticlist.ui \
-    trainingresultview.ui \
     view/aitrainingwidget.ui \
     view/automationwidget.ui \
     view/inputimageswidget.ui \
     view/results/classificationresultswidget.ui \
     view/results/classificationresultview.ui \
+    view/results/resultswidget.ui \
     view/results/topaccuraciesview.ui \
     view/results/trainingresultswidget.ui \
+    view/results/trainingresultview.ui \
     view/settingsview.ui
 
 TRANSLATIONS += \
