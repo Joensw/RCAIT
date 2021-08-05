@@ -22,7 +22,6 @@ void Automator::performTasks()
             continue;
         }
 
-        //TODO change Task so it is stoppable
         connect((*mRunningTask), &Task::sig_progress, this, &Automator::slot_makeProgress);
         connect((*mRunningTask), &Task::sig_stateChanged, this, &Automator::slot_taskUpdated);
         (*mRunningTask)->run();
@@ -41,19 +40,32 @@ void Automator::stopTasks()
 
 void Automator::addTasks(QString path)
 {
+    //Open json
     QFile jsonFile(path);
     jsonFile.open(QIODevice::ReadOnly | QIODevice::Text);
     QString jsonData = jsonFile.readAll();
     jsonFile.close();
 
-
+    //convert to variantmap
     QJsonDocument doc = QJsonDocument::fromJson(jsonData.toUtf8());
     QVariantMap jsonMap = doc.object().toVariantMap();
 
+    //check for required task keys
     if (jsonMap.isEmpty() || !jsonMap.contains("taskType") || !jsonMap.contains("taskName") || !jsonMap.contains("projectName")){
         //TODO error message
         return;
     }
+
+    //check if task with same name already exists
+    QString name = jsonMap.value("taskName").toString();
+    for (int i = 0; i < mQueuedTasks.size(); i++){
+        if(mQueuedTasks.at(i)->getName() == name) return;
+    }
+    for (int i = 0; i < mUnqueuedTasks.size(); i++){
+        if(mUnqueuedTasks.at(i)->getName() == name) return;
+    }
+
+    //create task and add to list
     Task* task = new Task(jsonMap, mDataManager);
     if (!task->isValid()) return;
     mUnqueuedTasks.append(task);
