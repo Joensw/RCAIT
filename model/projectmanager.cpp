@@ -9,7 +9,7 @@
 
 //names of the subfolders in the project directory
 //These can be changed, however projects based on the old naming scheme become unreadable.
-//Make sure to choose names that are not disallowed in windows ar under linux
+//Make sure to choose names that are not disallowed in windows ar under linux!
 //TODO: could optimize this by reading everything from the project file
 const QString resultsDirectoryName = "results";
 const QString datasetDirectoryName = "data";
@@ -19,9 +19,11 @@ const QString classificationResultsDirectoryName = "classification_results";
 
 //keys of the <String, String> pair in the project file
 const QString projectNameIdentifier = "projectName";
-const QString projectDirectoryIdentifier_projectsFile = "projectDir";
 const QString projectDatasetDirectoryIdentifier = "datasetDirName";
 const QString projectTempDirectoryIdentifier = "tempDirName";
+const QString projectResultsDirectoryIdentifier = "resultsDirName";
+const QString projectTrainingsResultsDirectoryIdentifer = "trainingResultsDirName";
+const QString projectClassificationResultsDirectoryIdentifier = "classificationResultsDirName";
 
 //on creation, meaning program startup, there will be no project selected. all the strings will be null/empty
 ProjectManager::ProjectManager() {
@@ -42,13 +44,15 @@ void ProjectManager::createNewProject(QString projectName)
     //this is only to get an absolute path, without .. and .
     QDir projectDir(QFileInfo(newProjectPath).absoluteDir());
 
-    qDebug() << projectDir.absolutePath();
     QString absolute = projectDir.absolutePath();
 
     newProjectfile.setValue(projectNameIdentifier, projectName);
-    //newProjectfile.setValue(projectDirectoryIdentifier_projectsFile, absolute);
     newProjectfile.setValue(projectDatasetDirectoryIdentifier, datasetDirectoryName);
     newProjectfile.setValue(projectTempDirectoryIdentifier, tempDirectoryName);
+
+    newProjectfile.setValue(projectResultsDirectoryIdentifier, resultsDirectoryName);
+    newProjectfile.setValue(projectTrainingsResultsDirectoryIdentifer, trainingsResultsDirectoryName);
+    newProjectfile.setValue(projectClassificationResultsDirectoryIdentifier, classificationResultsDirectoryName);
 
     //make temp, results and data subdirectories
     QDir dir;
@@ -92,10 +96,11 @@ void ProjectManager::loadProject(QString projectName) {
 
     mProjectName = projectfile.value(projectNameIdentifier).toString();
     mProjectPath = mProjectsDirectory + "/" + projectName;
-    //mProjectPath = projectfile.value(projectDirectoryIdentifier_projectsFile).toString();
     mProjectDataSetDir = mProjectPath + "/" + projectfile.value(projectDatasetDirectoryIdentifier).toString();
     mProjectTempDir = mProjectPath + "/" + projectfile.value(projectTempDirectoryIdentifier).toString();
-    mProjectResultsDir = mProjectPath + "/" + resultsDirectoryName;
+    mProjectResultsDir = mProjectPath + "/" + projectfile.value(projectResultsDirectoryIdentifier).toString();
+    mProjectTrainingResultsDir =  mProjectResultsDir + "/" + projectfile.value(projectTrainingsResultsDirectoryIdentifer).toString();
+    mProjectClassificationResultsDir = mProjectResultsDir + "/" + projectfile.value(projectClassificationResultsDirectoryIdentifier).toString();
 }
 
 QString ProjectManager::getProjectPath() {
@@ -116,12 +121,12 @@ QString ProjectManager::getResultsDir() {
 
 QString ProjectManager::getTrainingResultsDir()
 {
-    return mProjectResultsDir + "/" + trainingsResultsDirectoryName;
+    return mProjectTrainingResultsDir;
 }
 
 QString ProjectManager::getClassificationResultsDir()
 {
-    return mProjectResultsDir + "/" + classificationResultsDirectoryName;
+    return mProjectClassificationResultsDir;
 }
 
 QStringList ProjectManager::getNamesOfSavedTrainingResults() {

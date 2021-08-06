@@ -7,7 +7,7 @@ QString testProjectName = "testProject";
 TEST(ProjectManagerTest, testFalseName){
     ProjectManager * pm = &ProjectManager::getInstance();
     QString error;
-    bool out = pm->createNewProject("ThisNameIsNotAllowedBecauseItContains:SpecialCharacters!", &error);
+    bool out = pm->createNewProject("ThisNameIsNotAllowedBecauseItContains/SpecialCharacters\\*", &error);
     EXPECT_FALSE(out);
 }
 
@@ -78,6 +78,9 @@ TEST(ProjectManagerTest, loadProject){
     EXPECT_TRUE(pm->getProjectDataSetDir() == (projectPath + "/" + datasetDirectoryName));
     EXPECT_TRUE(pm->getProjectTempDir() == (projectPath + "/" + tempDirectoryName));
 
+    EXPECT_TRUE(pm->getResultsDir() == (projectPath + "/" + resultsDirectoryName));
+    EXPECT_TRUE(pm->getClassificationResultsDir() == (projectPath + "/" + resultsDirectoryName + "/" + classificationResultsDirectoryName));
+    EXPECT_TRUE(pm->getTrainingResultsDir() == (projectPath + "/" + resultsDirectoryName + "/" + trainingsResultsDirectoryName));
     //TearDown
     projectsDir.removeRecursively();
 }

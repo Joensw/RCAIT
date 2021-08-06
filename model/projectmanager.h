@@ -19,6 +19,9 @@ extern const QString projectNameIdentifier;
 extern const QString projectDirectoryIdentifier_projectsFile;
 extern const QString projectDatasetDirectoryIdentifier;
 extern const QString projectTempDirectoryIdentifier;
+extern const QString projectResultsDirectoryIdentifier;
+extern const QString projectTrainingsResultsDirectoryIdentifer;
+extern const QString projectClassificationResultsDirectoryIdentifier;
 
 /**
  * @brief The ProjectManager class contains the logic for manipulating the projects of the application
@@ -127,6 +130,8 @@ private:
     QString mProjectTempDir;
     QString mProjectDataSetDir;
     QString mProjectResultsDir;
+    QString mProjectTrainingResultsDir;
+    QString mProjectClassificationResultsDir;
     QString mProjectName;
 
     QString mProjectsDirectory;
