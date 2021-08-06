@@ -5,9 +5,9 @@
 
 #include "folderconfigwidget.h"
 
-#include "../imageloaderplugin.h"
-#include "../plugin.h"
-#include "../../../model/pluginusage/progressableplugin.h"
+#include "imageloaderplugin.h"
+#include "plugin.h"
+#include "progressableplugin.h"
 #include <QDir>
 #include <QObject>
 #include <QtWidgets/QWidget>
@@ -31,11 +31,14 @@ public:
     QString getName() override;
     QWidget*  getInputWidget() override;
 
+public slots:
+    void slot_abort();
 
 private:
     FolderConfigwidget* mConfigWidget;
     int mode = 0;
     QString imageDir;
+    bool abort = false;
     bool addLabel(QStringList list, QDir in, QDir out);
 
 };
