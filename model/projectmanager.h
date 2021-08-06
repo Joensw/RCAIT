@@ -108,28 +108,7 @@ public:
      */
     QString getClassificationResultsDir();
 
-    /** Serialises the object in a binary format, it is not readable to a human.
-     *  The object is saved to the classifcation result sub directory
-     * @brief saveClassificationResult serialises and saves a classification results object
-     * @param result
-     */
-    void saveClassificationResult(ClassificationResult result);
-
-    /** Serialises the object in a binary format, it is not readable to a human.
-     *  The object is saved to the training result sub directory
-     * @brief saveTrainingsResult serialises and saves a training result object.
-     * @param result
-     */
-    void saveTrainingsResult(TrainingResult result);
-
-    /**
-     * @brief getTrainingsResult rebuilds a TrainingResult object
-     * @param modelResultName name of the file the object is to be built from
-     * @return the rebuilt object
-     */
-    TrainingResult getTrainingsResult(QString modelResultName);
-
-    /** Only .txt files are returns and within the list they have no file ending
+    /** Only .txt files are returned and within the list they have no file ending
      * @brief getNamesOfSavedTrainingResults returns the names of all the files in the trainings results folder
      * @return
      */
