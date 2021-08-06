@@ -1,5 +1,4 @@
 #include "trainingresultswidget.h"
-#include "ui_trainingresultswidget.h"
 
 TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
         : GenericComparisonWidget(parent) {
