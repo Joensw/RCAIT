@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ClassificationResultsWidget</class>
- <widget class="QWidget" name="ClassificationResultsWidget">
+ <class>GenericComparisonWidget</class>
+ <widget class="QWidget" name="GenericComparisonWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -15,16 +15,16 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox_8">
+    <widget class="QGroupBox" name="groupBox_comparison">
      <property name="title">
-      <string>Compare Classification Results</string>
+      <string/>
      </property>
      <property name="flat">
       <bool>false</bool>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="0">
-       <widget class="QTabWidget" name="tabWidget_classificationresults">
+       <widget class="QTabWidget" name="tabWidget_compareResults">
         <property name="layoutDirection">
          <enum>Qt::LeftToRight</enum>
         </property>
@@ -52,9 +52,9 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_27">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <spacer name="horizontalSpacer_14">
+      <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -67,7 +67,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_saveClassificationResults">
+      <widget class="QPushButton" name="pushButton_saveCurrentTab">
        <property name="layoutDirection">
         <enum>Qt::RightToLeft</enum>
        </property>

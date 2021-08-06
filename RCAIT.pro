@@ -88,6 +88,7 @@ SOURCES += \
     view/results/canvas.cpp \
     view/results/classificationresultswidget.cpp \
     view/results/classificationresultview.cpp \
+    view/results/genericcomparisonwidget.cpp \
     view/results/resultswidget.cpp \
     view/results/topaccuraciesview.cpp \
     view/results/trainingresultswidget.cpp \
@@ -168,6 +169,7 @@ HEADERS += \
     view/results/canvas.h \
     view/results/classificationresultswidget.h \
     view/results/classificationresultview.h \
+    view/results/genericcomparisonwidget.h \
     view/results/resultswidget.h \
     view/results/topaccuraciesview.h \
     view/results/trainingresultswidget.h \
@@ -192,8 +194,8 @@ FORMS += \
     view/aitrainingwidget.ui \
     view/automationwidget.ui \
     view/inputimageswidget.ui \
-    view/results/classificationresultswidget.ui \
     view/results/classificationresultview.ui \
+    view/results/genericcomparisonwidget.ui \
     view/results/resultswidget.ui \
     view/results/topaccuraciesview.ui \
     view/results/trainingresultswidget.ui \

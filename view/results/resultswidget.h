@@ -35,8 +35,6 @@ signals:
 
     void sig_saveResults();
 
-    void sig_updateResultFolderPaths(const QString& trainingResultsPath, const QString& classificationResultsPath);
-
 private:
     Ui::ResultsWidget *ui;
     TrainingResultsWidget* m_trainingResultsWidget;

@@ -136,7 +136,7 @@ void ResultsProcessor::slot_comparison_loadClassificationResultGraphics(const QS
                                                                         AbstractGraphicsView *receiver) {
 //TODO Fill
     auto file = QFileInfo("classification_TEST.svg");
-    receiver->setClassificationGraphics(QGraphicsSvgItem(file.absoluteFilePath()));
+    receiver->setClassificationGraphics(new QGraphicsSvgItem(file.absoluteFilePath()));
 }
 
 void ResultsProcessor::slot_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver,

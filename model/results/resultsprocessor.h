@@ -10,6 +10,8 @@
 #include <classificationresultview.h>
 #include "topaccuraciesgraphics.h"
 #include "classificationgraphics.h"
+#include "trainingresult.h"
+#include "classificationresult.h"
 
 class ResultsProcessor : public QObject{
     Q_OBJECT
