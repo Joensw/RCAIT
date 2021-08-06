@@ -4,7 +4,6 @@
 #include "mapadapt.h"
 
 ResultsProcessor::ResultsProcessor() {
-    //TODO Create identifier utility class which creates date/time identifier statically
     m_topAccuraciesGraphics = new TopAccuraciesGraphics();
 }
 
@@ -88,8 +87,8 @@ void ResultsProcessor::slot_comparison_unloadAccuracyData(const QString &runName
     view->removeTopAccuraciesEntry(runNameToCompare);
 }
 
-void ResultsProcessor::slot_comparison_loadClassificationData(const QString &runNameToCompare,
-                                                              ClassificationResultView *view) {
+void ResultsProcessor::slot_comparison_loadClassificationResultData(const QString &runNameToCompare,
+                                                                    ClassificationResultView *view) {
     //TODO Load data from JSON file
     QStringList labels = {"Car", "Truck", "Airplane", "Boat", "Bike"};
     QMap<QString, QStringList> data;
@@ -103,8 +102,8 @@ void ResultsProcessor::slot_comparison_loadClassificationData(const QString &run
 
 }
 
-void ResultsProcessor::slot_normal_loadClassificationData(ClassificationResultView *view,
-                                                          ClassificationResult *result) {
+void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationResultView *view,
+                                                                ClassificationResult *result) {
     auto map = result->getClassificationData();
     auto labels = result->getLabels();
     Q_ASSERT(!map.isEmpty());
@@ -138,4 +137,17 @@ void ResultsProcessor::slot_comparison_loadClassificationResultGraphics(const QS
 //TODO Fill
     auto file = QFileInfo("classification_TEST.svg");
     receiver->setClassificationGraphics(new QGraphicsSvgItem(file.absoluteFilePath()));
+}
+
+void ResultsProcessor::slot_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver,
+                                                                  TrainingResult *result) {
+    auto accCurve = result->getAccuracyCurve();
+    auto confusionMatrix = result->getConfusionMatrix();
+    accCurve->generateGraphics(receiver);
+    confusionMatrix->generateGraphics(receiver);
+}
+
+void ResultsProcessor::slot_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result) {
+    auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
+    view->setMostMisclassifiedImages(mostMisclassifiedImages);
 }

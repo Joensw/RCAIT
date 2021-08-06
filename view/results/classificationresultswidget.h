@@ -6,58 +6,28 @@
 #include <QMenu>
 #include <classificationresult.h>
 #include "classificationresultview.h"
+#include "genericcomparisonwidget.h"
 
-namespace Ui {
-    class ClassificationResultsWidget;
-}
-
-class ClassificationResultsWidget : public QWidget {
+class ClassificationResultsWidget : public GenericComparisonWidget {
 Q_OBJECT
-
-protected:
-    // this event is called, when a new translator is loaded or the system language is changed
-    void changeEvent(QEvent *) override;
 
 public:
     explicit ClassificationResultsWidget(QWidget *parent = nullptr);
 
-    ~ClassificationResultsWidget();
+    ~ClassificationResultsWidget() = default;
 
     void addClassificationResult(ClassificationResult *result);
 
 private:
-    Ui::ClassificationResultsWidget *ui;
-    QPushButton *pushButton_addResult = new QPushButton(this);
-    QMenu *menu_addRun = new QMenu(pushButton_addResult);
-    QMap<QString, QWidget *> m_mapClassificationResultTabs;
+    ClassificationResultView *createResultTab(const QString &tabName) override;
 
-    void configure_compareRunButton();
+    void addComparisonResult(const QString &runNameToCompare) override;
 
-    void configure_compareRunMenu(const QString& resultsDirPath);
-
-    void retranslateUi();
-
-    ClassificationResultView *createClassificationResultTab(const QString &tabName);
-
-    void deleteClassificationResultTab(const QString &tabName);
-
-    void addComparisonResult(const QString &runNameToCompare);
-
-    void removeComparisonResult(const QString &runNameToCompare);
-
-private slots:
-
-    void slot_comparisonMenu_triggered(QAction *action);
-
-    void slot_updateSaveButton(int index);
-
-public slots:
-
-    void slot_updateResultFolderPaths(const QString &trainingResultsPath, const QString &classificationResultsPath);
+    void removeComparisonResult(const QString &runNameToCompare) override;
 
 signals:
 
-    void sig_comparison_loadClassificationData(const QString &runNameToCompare, ClassificationResultView *view);
+    void sig_comparison_loadClassificationResultData(const QString &runNameToCompare, ClassificationResultView *view);
 
     void sig_comparison_loadClassificationResultGraphics(const QString &runNameToCompare,
                                                          ClassificationResultView *view);

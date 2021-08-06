@@ -10,6 +10,8 @@
 #include <classificationresultview.h>
 #include "topaccuraciesgraphics.h"
 #include "classificationgraphics.h"
+#include "trainingresult.h"
+#include "classificationresult.h"
 
 class ResultsProcessor : public QObject{
     Q_OBJECT
@@ -23,16 +25,15 @@ public slots:
     void slot_comparison_unloadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view);
 
     //Classification result slots
-    void slot_normal_loadClassificationData(ClassificationResultView* view, ClassificationResult* result);
+    void slot_normal_loadClassificationResultData(ClassificationResultView* view, ClassificationResult* result);
     void slot_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver, ClassificationResult* result);
-    void slot_comparison_loadClassificationData(const QString &runNameToCompare, ClassificationResultView *view);
+    void slot_comparison_loadClassificationResultData(const QString &runNameToCompare, ClassificationResultView *view);
     void slot_comparison_loadClassificationResultGraphics(const QString &runNameToCompare, AbstractGraphicsView *receiver);
 
     //Training result slots
     void slot_comparison_loadTrainingResultGraphics(const QString& runNameToCompare, TrainingResultView* view);
-
-
-
+    void slot_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver, TrainingResult *result);
+    void slot_normal_loadTrainingResultData(TrainingResultView* view, TrainingResult* result);
 
 private:
     TopAccuraciesGraphics *m_topAccuraciesGraphics;
