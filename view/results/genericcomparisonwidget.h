@@ -49,6 +49,8 @@ private:
 
     void configure_comparisonMenu(const QString &targetDir);
 
+    void cleanup_comparisonMenu();
+
     void retranslateUi();
 
     virtual void addComparisonResult(const QString &runNameToCompare) = 0;

@@ -74,7 +74,11 @@ void GenericComparisonWidget::slot_updateSaveButton(int index) {
 }
 
 void GenericComparisonWidget::updateResultFolderPath(const QString &newDirPath) {
-    //TODO Extract method
+    cleanup_comparisonMenu();
+    configure_comparisonMenu(newDirPath);
+}
+
+void GenericComparisonWidget::cleanup_comparisonMenu() {
     //Cleanup, because results dir was changed
     //Remove opened tabs
     for (const auto &action : m_menu_addComparison->actions()) {
@@ -85,8 +89,6 @@ void GenericComparisonWidget::updateResultFolderPath(const QString &newDirPath) 
     }
     //Clear menu entries
     m_menu_addComparison->clear();
-
-    configure_comparisonMenu(newDirPath);
 }
 
 void GenericComparisonWidget::changeEvent(QEvent *event) {
