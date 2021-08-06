@@ -28,7 +28,6 @@ void GenericComparisonWidget::configure_comparisonButton() {
     m_pushButton_addComparison->setIcon(icon);
     m_pushButton_addComparison->setFlat(true);
     m_pushButton_addComparison->setMenu(m_menu_addComparison);
-    m_pushButton_addComparison->setMinimumHeight(m_tabWidget->minimumHeight()*2);
 
     m_tabWidget->setCornerWidget(m_pushButton_addComparison, Qt::TopRightCorner);
 }
