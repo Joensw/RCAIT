@@ -12,6 +12,89 @@ void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(AbstractGraphic
     m_topAccuraciesGraphics->generateGraphics(receiver);
 }
 
+void ResultsProcessor::slot_comparison_loadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view) {
+    double top1 = QRandomGenerator::global()->bounded(100);
+    double top5 = QRandomGenerator::global()->bounded(100);
+    m_topAccuraciesGraphics->addDataRow(runNameToCompare, {top1, top5});
+    view->addTopAccuraciesEntry(runNameToCompare, top1, top5);
+    //TODO Load real accuracy data from JSON file
+}
+
+void ResultsProcessor::slot_comparison_unloadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view) {
+    m_topAccuraciesGraphics->removeDataRow(runNameToCompare);
+    view->removeTopAccuraciesEntry(runNameToCompare);
+}
+
+
+
+
+void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationResultView *view,
+                                                                ClassificationResult *result) {
+    auto map = result->getClassificationData();
+    auto labels = result->getLabels();
+    Q_ASSERT(!map.isEmpty());
+    Q_ASSERT(!labels.isEmpty());
+
+    auto tableMap = QMap<QString, QStringList>();
+
+    for (const auto &[image, accList] : MapAdapt(map)) {
+        //Assert that each accuracy value has a corresponding label
+        Q_ASSERT(accList.size() == labels.size());
+        auto max = std::max_element(accList.begin(), accList.end());
+
+        //Calculate argmax(map)
+        auto index_max = std::distance(accList.begin(), max);
+        auto max_accuracy = QString::number(*max);
+        auto label = labels[index_max];
+
+        tableMap[image] = {max_accuracy, label};
+    }
+    view->setClassificationData(tableMap);
+}
+
+void ResultsProcessor::slot_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver,
+                                                                        ClassificationResult *result) {
+    auto graphics = result->getClassificationGraphics();
+    graphics->generateGraphics(receiver);
+}
+
+void ResultsProcessor::slot_comparison_loadClassificationResultData(const QString &runNameToCompare,
+                                                                    ClassificationResultView *view) {
+    //TODO Load data from JSON file
+    QStringList labels = {"Car", "Truck", "Airplane", "Boat", "Bike"};
+    QMap<QString, QStringList> data;
+    for (int j = 0; j < 20; ++j) {
+        long long randomLabel = QRandomGenerator::global()->bounded(labels.size());
+        auto label = labels[randomLabel];
+        int random = QRandomGenerator::global()->bounded(65, 100);
+        data.insert(QString("Image %1").arg(j), {QString::number(random), label});
+    }
+    view->setClassificationData(data);
+
+}
+
+void ResultsProcessor::slot_comparison_loadClassificationResultGraphics(const QString &runNameToCompare,
+                                                                        AbstractGraphicsView *receiver) {
+    //TODO Fill
+    auto file = QFileInfo("classification_TEST.svg");
+    receiver->setClassificationGraphics(new QGraphicsSvgItem(file.absoluteFilePath()));
+}
+
+
+
+void ResultsProcessor::slot_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result) {
+    auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
+    view->setMostMisclassifiedImages(mostMisclassifiedImages);
+}
+
+void ResultsProcessor::slot_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver,
+                                                                  TrainingResult *result) {
+    auto accCurve = result->getAccuracyCurve();
+    auto confusionMatrix = result->getConfusionMatrix();
+    accCurve->generateGraphics(receiver);
+    confusionMatrix->generateGraphics(receiver);
+}
+
 void ResultsProcessor::slot_comparison_loadTrainingResultGraphics(const QString &runNameToCompare,
                                                                   TrainingResultView *view) {
     //Accuracy Curve
@@ -72,82 +155,4 @@ void ResultsProcessor::slot_comparison_loadTrainingResultGraphics(const QString 
     }
      */
     //TODO Load most misclassified images.
-}
-
-void ResultsProcessor::slot_comparison_loadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view) {
-    double top1 = QRandomGenerator::global()->bounded(100);
-    double top5 = QRandomGenerator::global()->bounded(100);
-    m_topAccuraciesGraphics->addDataRow(runNameToCompare, {top1, top5});
-    view->addTopAccuraciesEntry(runNameToCompare, top1, top5);
-    //TODO Load real accuracy data from JSON file
-}
-
-void ResultsProcessor::slot_comparison_unloadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view) {
-    m_topAccuraciesGraphics->removeDataRow(runNameToCompare);
-    view->removeTopAccuraciesEntry(runNameToCompare);
-}
-
-void ResultsProcessor::slot_comparison_loadClassificationResultData(const QString &runNameToCompare,
-                                                                    ClassificationResultView *view) {
-    //TODO Load data from JSON file
-    QStringList labels = {"Car", "Truck", "Airplane", "Boat", "Bike"};
-    QMap<QString, QStringList> data;
-    for (int j = 0; j < 20; ++j) {
-        long long randomLabel = QRandomGenerator::global()->bounded(labels.size());
-        auto label = labels[randomLabel];
-        int random = QRandomGenerator::global()->bounded(65, 100);
-        data.insert(QString("Image %1").arg(j), {QString::number(random), label});
-    }
-    view->setClassificationData(data);
-
-}
-
-void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationResultView *view,
-                                                                ClassificationResult *result) {
-    auto map = result->getClassificationData();
-    auto labels = result->getLabels();
-    Q_ASSERT(!map.isEmpty());
-    Q_ASSERT(!labels.isEmpty());
-
-    auto tableMap = QMap<QString, QStringList>();
-
-    for (const auto &[image, accList] : MapAdapt(map)) {
-        //Assert that each accuracy value has a corresponding label
-        Q_ASSERT(accList.size() == labels.size());
-        auto max = std::max_element(accList.begin(), accList.end());
-
-        //Calculate argmax(map)
-        auto index_max = std::distance(accList.begin(), max);
-        auto max_accuracy = QString::number(*max);
-        auto label = labels[index_max];
-
-        tableMap[image] = {max_accuracy, label};
-    }
-    view->setClassificationData(tableMap);
-}
-
-void ResultsProcessor::slot_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver,
-                                                                        ClassificationResult *result) {
-    auto graphics = result->getClassificationGraphics();
-    graphics->generateGraphics(receiver);
-}
-
-void ResultsProcessor::slot_comparison_loadClassificationResultGraphics(const QString &runNameToCompare,
-                                                                        AbstractGraphicsView *receiver) {
-//TODO Fill
-    auto file = QFileInfo("classification_TEST.svg");
-    receiver->setClassificationGraphics(new QGraphicsSvgItem(file.absoluteFilePath()));
-}
-
-void ResultsProcessor::slot_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver,
-                                                                  TrainingResult *result) {
-    auto accCurve = result->getAccuracyCurve();
-    auto confusionMatrix = result->getConfusionMatrix();
-    accCurve->generateGraphics(receiver);
-    confusionMatrix->generateGraphics(receiver);
-}
-
-void ResultsProcessor::slot_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result) {
-    auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
-    view->setMostMisclassifiedImages(mostMisclassifiedImages);
 }

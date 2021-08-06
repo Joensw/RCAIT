@@ -31,9 +31,9 @@ public slots:
     void slot_comparison_loadClassificationResultGraphics(const QString &runNameToCompare, AbstractGraphicsView *receiver);
 
     //Training result slots
-    void slot_comparison_loadTrainingResultGraphics(const QString& runNameToCompare, TrainingResultView* view);
-    void slot_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver, TrainingResult *result);
     void slot_normal_loadTrainingResultData(TrainingResultView* view, TrainingResult* result);
+    void slot_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver, TrainingResult *result);
+    void slot_comparison_loadTrainingResultGraphics(const QString& runNameToCompare, TrainingResultView* view);
 
 private:
     TopAccuraciesGraphics *m_topAccuraciesGraphics;
