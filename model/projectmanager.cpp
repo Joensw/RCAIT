@@ -8,7 +8,8 @@
 
 
 //names of the subfolders in the project directory
-//These can be changed, however projects based on the old naming scheme become unreadable
+//These can be changed, however projects based on the old naming scheme become unreadable.
+//Make sure to choose names that are not disallowed in windows ar under linux
 //TODO: could optimize this by reading everything from the project file
 const QString resultsDirectoryName = "results";
 const QString datasetDirectoryName = "data";
@@ -40,6 +41,8 @@ void ProjectManager::createNewProject(QString projectName)
 
     //this is only to get an absolute path, without .. and .
     QDir projectDir(QFileInfo(newProjectPath).absoluteDir());
+
+    qDebug() << projectDir.absolutePath();
     QString absolute = projectDir.absolutePath();
 
     newProjectfile.setValue(projectNameIdentifier, projectName);
@@ -47,7 +50,7 @@ void ProjectManager::createNewProject(QString projectName)
     newProjectfile.setValue(projectDatasetDirectoryIdentifier, datasetDirectoryName);
     newProjectfile.setValue(projectTempDirectoryIdentifier, tempDirectoryName);
 
-    //make temp, results and Data subdirectories
+    //make temp, results and data subdirectories
     QDir dir;
     dir.mkpath(absolute + "/" +  datasetDirectoryName);
     dir.mkpath(absolute + "/" + tempDirectoryName);
@@ -55,8 +58,8 @@ void ProjectManager::createNewProject(QString projectName)
 
     //make subdirectories for results
 
-     dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + trainingsResultsDirectoryName);
-     dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + classificationResultsDirectoryName);
+    dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + trainingsResultsDirectoryName);
+    dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + classificationResultsDirectoryName);
 }
 
 QStringList ProjectManager::getProjects() {
@@ -151,32 +154,36 @@ void ProjectManager::setProjectsDirectory(QString newDirectory)
     mProjectsDirectory = newDirectory;
 }
 
-bool ProjectManager::verifyName(QString input, QString *error)
+bool ProjectManager::verifyName(QString projectName, QString *error)
 {
-    bool status = true;
-    if (input.length() == 0){
+    if (projectName.length() == 0){
         error->append(QObject::tr("Name must contain at least 1 character") +"\n");
-        status = false;
+        return false;
     }
 
-    //check if name comtains special characters
-    QRegularExpression rx1("^[\\w]*$");
-    QRegularExpressionMatch match = rx1.match(input);
-    if (!match.hasMatch()) {
-        error->append(QObject::tr("Name may not contain special characters") + "\n");
-        status = false;
+    //the next step is easier if we filters these outs prematurely
+    if (projectName.contains("/") || projectName.contains("\\")) {
+        error->append(QObject::tr("Name may not contain the  \"/\" or \"\\\" \" \" characters") + "\n");
+        return false;
     }
+
+    //check if folders with this name can simply not be created
+    QDir tempDir(mProjectsDirectory + "/" + projectName );
+    if (!tempDir.mkpath(mProjectsDirectory + "/" + projectName )){
+        return false;
+    }
+    tempDir.removeRecursively();
 
     //check if name is already taken
     QDir projectsDir(mProjectsDirectory);
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     QStringList projects = projectsDir.entryList();
-    if (projects.contains(input)) {
+    if (projects.contains(projectName)) {
         error->append(QObject::tr("A project with this name aleady exists in the project directory"));
-        status = false;
+        return false;
 
     }
-    return status;
+    return true;
 }
 
 

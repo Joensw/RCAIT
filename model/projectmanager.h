@@ -121,7 +121,7 @@ public:
     void setProjectsDirectory(QString newDirectory);
 
 private:
-    bool verifyName(QString input, QString * error);
+    bool verifyName(QString projectName, QString * error);
 
     QString mProjectPath;
     QString mProjectTempDir;
