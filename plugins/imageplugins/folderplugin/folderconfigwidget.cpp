@@ -27,6 +27,9 @@ void FolderConfigwidget::setLoadMode(int mode)
 
 QString FolderConfigwidget::getImageFolder()
 {
+    ui->save_label->clear();
+    ui->save_label->setStyleSheet("QLabel { color : green; }");
+    ui->save_label->setText(tr("Saved changes."));
     return imageFolder;
 }
 
@@ -39,13 +42,18 @@ void FolderConfigwidget::setImageFolder(QString folder)
 
 void FolderConfigwidget::on_loadFolderButton_clicked()
 {
+    ui->save_label->clear();
     imageFolder = QFileDialog::getExistingDirectory(this, tr("Select image directory"));
-    return;
+    ui->save_label->setStyleSheet("QLabel { color : blue; }");
+    ui->save_label->setText(tr("There may be unsaved changes."));
 }
 
 
 void FolderConfigwidget::on_comboBox_currentIndexChanged(int index)
 {
+    ui->save_label->clear();
     loadMode = index;
+    ui->save_label->setStyleSheet("QLabel { color : blue; }");
+    ui->save_label->setText(tr("There may be unsaved changes."));
 }
 
