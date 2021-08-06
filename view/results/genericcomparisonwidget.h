@@ -11,6 +11,7 @@
 #include <type_traits>
 #include "result.h"
 #include "abstractgraphicsview.h"
+#include "popupmenu.h"
 
 using namespace std;
 
@@ -43,7 +44,7 @@ private:
     Ui::GenericComparisonWidget *ui;
     QPushButton *m_pushButton_addComparison = new QPushButton(this);
     QPushButton *m_pushButton_saveCurrentTab;
-    QMenu *m_menu_addComparison = new QMenu(m_pushButton_addComparison);
+    QMenu *m_menu_addComparison = new PopupMenu(m_pushButton_addComparison);
 
     void configure_comparisonButton();
 
