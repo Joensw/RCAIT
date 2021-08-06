@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>240</width>
-    <height>110</height>
+    <width>269</width>
+    <height>123</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>221</width>
-     <height>91</height>
+     <width>251</width>
+     <height>101</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -28,7 +28,7 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Loading method</string>
+         <string>Loading method:</string>
         </property>
        </widget>
       </item>
@@ -59,6 +59,17 @@
        <widget class="QPushButton" name="loadFolderButton">
         <property name="text">
          <string>Load folder</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="save_label">
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>

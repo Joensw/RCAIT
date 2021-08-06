@@ -4,6 +4,8 @@
 
 bool FolderPlugin::loadImages(const QString path, ProgressablePlugin* receiver, const int imageCount = 0, const QStringList label = QStringList())
 {
+    abort = false;
+    connect(receiver, &ProgressablePlugin::sig_pluginAborted, this, &FolderPlugin::slot_abort);
     QDir output(path);
     QDir folder = QDir(imageDir);
     if (!folder.exists() || !output.exists()){
@@ -16,6 +18,7 @@ bool FolderPlugin::loadImages(const QString path, ProgressablePlugin* receiver, 
             QStringList imagefolders = folder.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
             int i = 0;
             foreach(QString folderName, imagefolders){
+                if (abort) return false;
                 folder.cd(folderName);
                 QStringList imagelist = folder.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
                 if (!imagelist.isEmpty()){
@@ -75,11 +78,17 @@ QWidget *FolderPlugin::getInputWidget()
     return mConfigWidget;
 }
 
+void FolderPlugin::slot_abort()
+{
+    abort = true;
+}
+
 bool FolderPlugin::addLabel(QStringList images, QDir in, QDir out)
 {
     out.mkdir(in.dirName());
     if(!out.cd(in.dirName())) return false;
     foreach(QString imageName, images) {
+        if (abort) return false;
         QString path = in.path() + "/" + imageName;
         QFile::copy(path, out.path() + "/" + imageName);
     }
