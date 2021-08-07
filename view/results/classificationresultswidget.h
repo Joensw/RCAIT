@@ -27,10 +27,10 @@ private:
 
 signals:
 
-    void sig_comparison_loadClassificationResultData(const QString &runNameToCompare, ClassificationResultView *view);
+    void sig_comparison_loadClassificationResultData(ClassificationResultView *view, const QString &runNameToCompare);
 
-    void sig_comparison_loadClassificationResultGraphics(const QString &runNameToCompare,
-                                                         ClassificationResultView *view);
+    void
+    sig_comparison_loadClassificationResultGraphics(ClassificationResultView *view, const QString &runNameToCompare);
 
     void sig_normal_loadClassificationData(ClassificationResultView *view, ClassificationResult *result);
 

@@ -15,6 +15,9 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
             &ResultsProcessor::slot_normal_generateTopAccuraciesGraphics);
 
     //Connect 'Compare Run' related signals/slots
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_loadTrainingResultData,
+            m_resultsProcessor,
+            &ResultsProcessor::slot_comparison_loadTrainingResultData);
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_loadTrainingResultGraphics,
             m_resultsProcessor,
             &ResultsProcessor::slot_comparison_loadTrainingResultGraphics);
@@ -24,7 +27,7 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
             m_resultsProcessor,
             &ResultsProcessor::slot_comparison_unloadAccuracyData);
 
-    //Connect signals/slots related to showing classification results
+    //Connect signals/slots related to showing training results
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_normal_generateTrainingResultGraphics,
             m_resultsProcessor, &ResultsProcessor::slot_normal_generateTrainingResultGraphics);
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_normal_loadTrainingResultData, m_resultsProcessor,

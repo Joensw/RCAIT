@@ -37,11 +37,13 @@ private:
 
 signals:
 
-    void sig_comparison_loadTrainingResultGraphics(const QString &runNameToCompare, TrainingResultView *view);
+    void sig_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare);
 
-    void sig_comparison_loadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view);
+    void sig_comparison_loadTrainingResultGraphics(AbstractGraphicsView *receiver, const QString &runNameToCompare);
 
-    void sig_comparison_unloadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view);
+    void sig_comparison_loadAccuracyData(TopAccuraciesView *view, const QString &runNameToCompare);
+
+    void sig_comparison_unloadAccuracyData(TopAccuraciesView *view, const QString &runNameToCompare);
 
     void sig_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver, TrainingResult *result);
 

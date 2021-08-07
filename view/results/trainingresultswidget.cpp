@@ -20,13 +20,14 @@ void TrainingResultsWidget::addComparisonResult(const QString &runNameToCompare)
     auto tab = createResultTab(runNameToCompare);
     //TODO move to slot
     tab->setSaved(true);
-    emit sig_comparison_loadTrainingResultGraphics(runNameToCompare, tab);
-    emit sig_comparison_loadAccuracyData(runNameToCompare, m_topAccuraciesView);
+    emit sig_comparison_loadTrainingResultGraphics(tab, runNameToCompare);
+    emit sig_comparison_loadTrainingResultData(tab,runNameToCompare);
+    emit sig_comparison_loadAccuracyData(m_topAccuraciesView, runNameToCompare);
 }
 
 void TrainingResultsWidget::removeComparisonResult(const QString &runNameToCompare) {
     deleteResultTab(runNameToCompare);
-    emit sig_comparison_unloadAccuracyData(runNameToCompare, m_topAccuraciesView);
+    emit sig_comparison_unloadAccuracyData(m_topAccuraciesView, runNameToCompare);
 }
 
 void TrainingResultsWidget::configure_topAccuraciesTab() {
