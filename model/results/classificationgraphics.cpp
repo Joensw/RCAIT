@@ -5,7 +5,7 @@
 
 ClassificationGraphics::ClassificationGraphics(const QString &identifier,
                                                const QMap<QString, QList<double>> &data)
-        : AbstractResultGraphics("classificationgraphics_" + identifier, "svg") {
+        : AbstractResultGraphics("classification_" + identifier, "svg") {
 
     m_data = data;
 }
