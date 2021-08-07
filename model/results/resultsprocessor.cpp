@@ -141,7 +141,7 @@ void ResultsProcessor::loadGraphicsInView(AbstractGraphicsView *receiver, const 
             auto extension = match.captured(2);
 
             if (resultsFolder != identifier) continue;
-            qDebug() << "ID MATCH " << file.fileName();
+
             QGraphicsItem* graphics;
             if (extension == "svg")
                 graphics = new QGraphicsSvgItem(file.absoluteFilePath());
