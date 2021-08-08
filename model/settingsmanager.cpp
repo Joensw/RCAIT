@@ -160,8 +160,8 @@ bool SettingsManager::applyGlobalSettings(QString projectsDir, QString classific
 
     }
     if (error != nullptr){
-        *error = "Settings have not been updated, there is a conflict.\n"
-             "Paths may not be identical and must exist, this includes new and unchanged paths.";
+        *error = QObject::tr("Settings have not been updated, there is a conflict.") + "\n" +
+             QObject::tr("Paths may not be identical and must exist, this includes new and unchanged paths.");
     }
     if (pathsChanged != nullptr){
         *pathsChanged = 0;
