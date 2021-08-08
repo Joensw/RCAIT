@@ -8,7 +8,9 @@
 #include "classificationpluginmanager.h"
 #include "imageloaderpluginmanager.h"
 
-extern const QString GLOBAL_SETTINGS_LOCATION;
+extern const QString projectDirectoryIdentifier_settingsFile;
+extern const QString classificationPluginDirectoryIdentifier;
+extern const QString imageLoaderPluginDirectoryIdentifier;
 
 /**
  * The SettingsManager contains logic for global settings of the application as well as plugin specific settings

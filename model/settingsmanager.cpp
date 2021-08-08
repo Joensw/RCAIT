@@ -1,9 +1,9 @@
 #include "settingsmanager.h"
 
 
-QString projectDirectoryIdentifier_settingsFile = "ProjectDirectory";
-QString classificationPluginDirectoryIdentifier = "ClassificationPluginPath";
-QString imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
+const QString projectDirectoryIdentifier_settingsFile = "ProjectDirectory";
+const QString classificationPluginDirectoryIdentifier = "ClassificationPluginPath";
+const QString imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
 
 SettingsManager::SettingsManager()
 {

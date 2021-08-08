@@ -52,7 +52,7 @@ void ProjectController::slot_newProjectConfirm(QString projectName)
         mNewProjectDialog->showErrorMessage();
         return;
     }
-    mStartWidget->addProject(projectName);
+    refresh();
     mNewProjectDialog->close();
 }
 
