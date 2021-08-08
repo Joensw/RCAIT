@@ -80,5 +80,6 @@ void TopAccuraciesGraphics::generateGraphicsInternal(const QString &fullFilePath
 
 void TopAccuraciesGraphics::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
-    receiver->setTopAccuraciesGraphics(graphics);
+    auto ptr = QSharedPointer<QGraphicsItem>(graphics);
+    receiver->setTopAccuraciesGraphics(ptr);
 }

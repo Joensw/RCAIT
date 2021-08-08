@@ -21,14 +21,17 @@ public:
 
     ~TrainingResultView();
 
-    void setAccuracyCurve(QGraphicsItem *accuracyCurveImage) override;
+    void setAccuracyCurve(const QSharedPointer<QGraphicsItem> &accuracyCurveImage) override;
 
-    void setConfusionMatrix(QGraphicsItem *matrixImage) override;
+    void setConfusionMatrix(const QSharedPointer<QGraphicsItem> &matrixImage) override;
 
     void setMostMisclassifiedImages(const QStringList& images);
 
 private:
     Ui::TrainingResultView *ui;
+
+    QSharedPointer<QGraphicsItem> m_accuracyCurveImage;
+    QSharedPointer<QGraphicsItem> m_confusionMatrixImage;
 };
 
 #endif // TRAININGRESULTVIEW_H

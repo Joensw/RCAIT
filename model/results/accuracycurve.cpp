@@ -53,5 +53,6 @@ QMap<int, QPair<double, double> > AccuracyCurve::getData()
 
 void AccuracyCurve::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
-    receiver->setAccuracyCurve(graphics);
+    auto ptr = QSharedPointer<QGraphicsItem>(graphics);
+    receiver->setAccuracyCurve(ptr);
 }

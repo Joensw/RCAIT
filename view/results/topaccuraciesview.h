@@ -25,7 +25,7 @@ public:
 
     void removeTopAccuraciesEntry(const QString &identifier);
 
-    void setTopAccuraciesGraphics(QGraphicsItem *topAccuraciesImage) override;
+    void setTopAccuraciesGraphics(const QSharedPointer<QGraphicsItem> &topAccuraciesImage) override;
 
     ~TopAccuraciesView();
 
@@ -40,6 +40,8 @@ private slots:
 private:
     Ui::TopAccuraciesView *ui;
     QAbstractButton *m_pushButton_updateGraphics;
+
+    QSharedPointer<QGraphicsItem> m_topAccuraciesImage;
 
     void configure_updateGraphicsButton();
 

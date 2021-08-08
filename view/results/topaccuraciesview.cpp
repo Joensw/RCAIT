@@ -43,10 +43,12 @@ TopAccuraciesView::~TopAccuraciesView() {
     delete ui;
 }
 
-void TopAccuraciesView::setTopAccuraciesGraphics(QGraphicsItem *topAccuraciesImage) {
+void TopAccuraciesView::setTopAccuraciesGraphics(const QSharedPointer<QGraphicsItem> &topAccuraciesImage) {
+    m_topAccuraciesImage = topAccuraciesImage;
+
     auto view = ui->graphicsView_topAccuracies;
     auto *scene = new QGraphicsScene();
-    scene->addItem(topAccuraciesImage);
+    scene->addItem(topAccuraciesImage.get());
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 

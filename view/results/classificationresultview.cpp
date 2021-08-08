@@ -33,10 +33,13 @@ void ClassificationResultView::setClassificationData(const QMap<QString, QString
     }
 }
 
-void ClassificationResultView::setClassificationGraphics(QGraphicsItem *classificationGraphicsImage) {
+void ClassificationResultView::setClassificationGraphics(
+        const QSharedPointer<QGraphicsItem> &classificationGraphicsImage) {
+    m_classificationGraphics = classificationGraphicsImage;
+
     auto view = ui->graphicsView_classificationresult;
     auto *scene = new QGraphicsScene();
-    scene->addItem(classificationGraphicsImage);
+    scene->addItem(classificationGraphicsImage.get());
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 

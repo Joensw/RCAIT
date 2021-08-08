@@ -65,5 +65,6 @@ void ClassificationGraphics::generateGraphicsInternal(const QString &fullFilePat
 
 void ClassificationGraphics::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
-    receiver->setClassificationGraphics(graphics);
+    auto ptr = QSharedPointer<QGraphicsItem>(graphics);
+    receiver->setClassificationGraphics(ptr);
 }

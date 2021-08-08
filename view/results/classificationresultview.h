@@ -22,7 +22,7 @@ protected:
 public:
     explicit ClassificationResultView(QWidget *parent = nullptr);
 
-    void setClassificationGraphics(QGraphicsItem *classificationGraphicsImage) override;
+    void setClassificationGraphics(const QSharedPointer<QGraphicsItem> &classificationGraphicsImage) override;
 
     void setClassificationData(const QMap<QString, QStringList> &data);
 
@@ -30,6 +30,7 @@ public:
 
 private:
     Ui::ClassificationResultView *ui;
+    QSharedPointer<QGraphicsItem> m_classificationGraphics;
 };
 
 #endif // CLASSIFICATIONRESULTVIEW_H

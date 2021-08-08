@@ -126,7 +126,7 @@ void ResultsProcessor::slot_comparison_loadTrainingResultGraphics(AbstractGraphi
 }
 
 void ResultsProcessor::loadGraphicsInView(AbstractGraphicsView *receiver, const QString &resultsFolder,
-                                          const QString &baseDir){
+                                          const QString &baseDir) {
     auto dir = QDir(baseDir);
     dir.cd(resultsFolder);
 
@@ -142,24 +142,26 @@ void ResultsProcessor::loadGraphicsInView(AbstractGraphicsView *receiver, const 
 
             if (resultsFolder != identifier) continue;
 
-            QGraphicsItem* graphics;
+            QGraphicsItem *graphics;
             if (extension == "svg")
                 graphics = new QGraphicsSvgItem(file.absoluteFilePath());
             else
                 graphics = new QGraphicsPixmapItem(file.absoluteFilePath());
 
-            switch(i){
+            auto graphics_ptr = QSharedPointer<QGraphicsItem>(graphics);
+
+            switch (i) {
                 case CLASSIFICATION:
-                    receiver->setClassificationGraphics(graphics);
+                    receiver->setClassificationGraphics(graphics_ptr);
                     break;
                 case ACCURACYCURVE:
-                    receiver->setAccuracyCurve(graphics);
+                    receiver->setAccuracyCurve(graphics_ptr);
                     break;
                 case CONFUSIONMATRIX:
-                    receiver->setConfusionMatrix(graphics);
+                    receiver->setConfusionMatrix(graphics_ptr);
                     break;
                 case TOPACCURACIES:
-                    receiver->setTopAccuraciesGraphics(graphics);
+                    receiver->setTopAccuraciesGraphics(graphics_ptr);
                     break;
                 default:
                     qDebug() << "Attempted to set unknown result graphics type";
