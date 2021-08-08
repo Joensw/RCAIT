@@ -19,15 +19,15 @@ TEST(ProjectManagerTest, createValidProject){
     bool out = pm->createNewProject(testProjectName, &error);
     EXPECT_TRUE(out);
 
-    QDir testDataDir(tempProjectsDir + "/" + testProjectName + "/" + datasetDirectoryName);
-    QDir testTempDir(tempProjectsDir + "/" + testProjectName + "/" + tempDirectoryName);
-    QDir testResultsDir(tempProjectsDir + "/" + testProjectName + "/" + resultsDirectoryName);
+    QDir testDataDir(pm->getProjectDataSetDir() );
+    QDir testTempDir(pm->getProjectTempDir());
+    QDir testResultsDir(pm->getResultsDir());
     EXPECT_TRUE(testDataDir.exists());
     EXPECT_TRUE(testTempDir.exists());
     EXPECT_TRUE(testResultsDir.exists());
 
-    QDir testClassResultsDir(tempProjectsDir + "/" + testProjectName + "/" + resultsDirectoryName + "/" + classificationResultsDirectoryName);
-    QDir testTrainResultsDir(tempProjectsDir + "/" + testProjectName + "/" + resultsDirectoryName + "/" + trainingsResultsDirectoryName);
+    QDir testClassResultsDir(pm->getTrainingResultsDir());
+    QDir testTrainResultsDir(pm->getClassificationResultsDir());
     EXPECT_TRUE(testClassResultsDir.exists());
     EXPECT_TRUE(testTrainResultsDir.exists());
 
@@ -75,12 +75,6 @@ TEST(ProjectManagerTest, loadProject){
     QDir projectDir(tempProjectsDir + "/" + testProjectName);
     QString projectPath = projectDir.absolutePath();
     EXPECT_TRUE(pm->getProjectPath() == projectPath);
-    EXPECT_TRUE(pm->getProjectDataSetDir() == (projectPath + "/" + datasetDirectoryName));
-    EXPECT_TRUE(pm->getProjectTempDir() == (projectPath + "/" + tempDirectoryName));
-
-    EXPECT_TRUE(pm->getResultsDir() == (projectPath + "/" + resultsDirectoryName));
-    EXPECT_TRUE(pm->getClassificationResultsDir() == (projectPath + "/" + resultsDirectoryName + "/" + classificationResultsDirectoryName));
-    EXPECT_TRUE(pm->getTrainingResultsDir() == (projectPath + "/" + resultsDirectoryName + "/" + trainingsResultsDirectoryName));
     //TearDown
     projectsDir.removeRecursively();
 }
@@ -106,6 +100,7 @@ TEST(ProjectManagerTest, getProjects){
     //TearDown
     projectsDir.removeRecursively();
 }
+
 
 
 
