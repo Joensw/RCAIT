@@ -19,6 +19,7 @@ public:
      * @brief ImageLoadCommand constructs a ImageLoadCommand by parsing from a map.
      *
      * @param map contains necessary information for command.
+     * @param path load pictures into path.
      * @param receiver object to receive progress.
      */
     ImageLoadCommand(QVariantMap map, QString path, ProgressablePlugin* receiver);

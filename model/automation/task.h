@@ -108,6 +108,8 @@ signals:
 
 
 private:
+    const int DEFAULT_SPLIT = 30;
+
     QString mName;
     TaskState mState = SCHEDULED;
     QString mProjectPath;
