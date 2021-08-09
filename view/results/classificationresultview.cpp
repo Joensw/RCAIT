@@ -18,7 +18,7 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
     //Stretch table headers to fill the space available
     QHeaderView *h_header = table->horizontalHeader();
     QHeaderView *v_header = table->verticalHeader();
-    h_header->setSectionResizeMode(QHeaderView::Stretch);
+    h_header->setStretchLastSection(true);
     v_header->setSectionResizeMode(QHeaderView::Fixed);
 
     table->setColumnCount(2);
