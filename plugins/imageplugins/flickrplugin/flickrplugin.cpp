@@ -23,7 +23,7 @@ QString FlickrPlugin::createCommandlineString( QString path,  int imageCount,  Q
     QString downloadPath = QString("-p ").append(path);
     QString imageCountStr = QString("-c ").append(QString::number(imageCount));
     QFileInfo pythonfile = QFileInfo("flickrapi_photosearch.py");
-    //QFileInfo pythonfile = QFileInfo("test.py");
+
 
     QString scriptPath = pythonfile.absoluteFilePath();
     QString command = m_flickrSettings.getPythonPath();
@@ -34,7 +34,7 @@ QString FlickrPlugin::createCommandlineString( QString path,  int imageCount,  Q
     for ( const auto& i : *label  )
     {
         labelConcat.append(" ");
-        labelConcat.append(i);
+        labelConcat.append('"' + i + '"');
     }
 
     QString fullCommand = command +  " " + scriptPath + " " + downloadPath  + " " +imageCountStr +" " + labelConcat +" " + apiKey +" " + apiSecret;
