@@ -17,7 +17,7 @@ QString TopAccuraciesGraphics::valuesToPyText() {
         auto rowList = QStringList();
         for (const auto &value : valuesList) {
             //Convert to QString with precision of 2 digits
-            auto valStr = QString::number(value, 'G', 5);
+            auto valStr = QString::number(value, 'f', 2);
             rowList << valStr;
 
         }

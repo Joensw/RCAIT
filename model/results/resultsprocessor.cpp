@@ -81,9 +81,9 @@ void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationRe
         Q_ASSERT(accList.size() == labels.size());
         auto max = std::max_element(accList.begin(), accList.end());
 
-        //Calculate argmax(map)
+        //Calculate argmax(map), choose label with the highest accuracy
         auto index_max = std::distance(accList.begin(), max);
-        auto max_accuracy = QString::number(*max);
+        auto max_accuracy = QString::number(*max, 'f', 2);
         auto label = labels[index_max];
 
         tableMap[rowNumber++] = {max_accuracy, label};

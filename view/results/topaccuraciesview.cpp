@@ -24,8 +24,8 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
 
 void TopAccuraciesView::addTopAccuraciesEntry(const QString &identifier, double top1, double top5) {
     auto table = ui->tableWidget_topAccuracies;
-    auto top1Str = QString::number(top1, 'G', 5);
-    auto top5Str = QString::number(top5, 'G', 5);
+    auto top1Str = QString::number(top1, 'f', 2);
+    auto top5Str = QString::number(top5, 'f', 2);
 
     int row = table->addTableRow(identifier, {top1Str, top5Str});
 

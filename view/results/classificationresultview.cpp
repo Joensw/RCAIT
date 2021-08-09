@@ -26,10 +26,10 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
     table->setCornerButtonEnabled(false);
 }
 
-void ClassificationResultView::setClassificationData(const QMap<int, QStringList> &data){
+void ClassificationResultView::setClassificationData(const QMap<int, QStringList> &data) {
     auto table = ui->tableWidget_classificationresult;
-    for (const auto &[key,valuesList] : MapAdapt(data)){
-        table->addTableRow(QString::number(key),valuesList);
+    for (const auto &[key, valuesList] : MapAdapt(data)) {
+        table->addTableRow(QString::number(key), valuesList);
     }
 }
 
