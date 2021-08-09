@@ -8,7 +8,9 @@
 
 
 //names of the subfolders in the project directory
-//These can be changed, however projects based on the old naming scheme become unreadable
+//These can be changed, however projects based on the old naming scheme become unreadable.
+//Make sure to choose names that are not disallowed in windows ar under linux!
+//TODO: could optimize this by reading everything from the project file
 const QString resultsDirectoryName = "results";
 const QString datasetDirectoryName = "data";
 const QString tempDirectoryName = "temp";
@@ -17,9 +19,11 @@ const QString classificationResultsDirectoryName = "classification_results";
 
 //keys of the <String, String> pair in the project file
 const QString projectNameIdentifier = "projectName";
-const QString projectDirectoryIdentifier_projectsFile = "projectDir";
 const QString projectDatasetDirectoryIdentifier = "datasetDirName";
 const QString projectTempDirectoryIdentifier = "tempDirName";
+const QString projectResultsDirectoryIdentifier = "resultsDirName";
+const QString projectTrainingsResultsDirectoryIdentifer = "trainingResultsDirName";
+const QString projectClassificationResultsDirectoryIdentifier = "classificationResultsDirName";
 
 //on creation, meaning program startup, there will be no project selected. all the strings will be null/empty
 ProjectManager::ProjectManager() {
@@ -39,14 +43,18 @@ void ProjectManager::createNewProject(QString projectName)
 
     //this is only to get an absolute path, without .. and .
     QDir projectDir(QFileInfo(newProjectPath).absoluteDir());
+
     QString absolute = projectDir.absolutePath();
 
     newProjectfile.setValue(projectNameIdentifier, projectName);
-    //newProjectfile.setValue(projectDirectoryIdentifier_projectsFile, absolute);
     newProjectfile.setValue(projectDatasetDirectoryIdentifier, datasetDirectoryName);
     newProjectfile.setValue(projectTempDirectoryIdentifier, tempDirectoryName);
 
-    //make temp, results and Data subdirectories
+    newProjectfile.setValue(projectResultsDirectoryIdentifier, resultsDirectoryName);
+    newProjectfile.setValue(projectTrainingsResultsDirectoryIdentifer, trainingsResultsDirectoryName);
+    newProjectfile.setValue(projectClassificationResultsDirectoryIdentifier, classificationResultsDirectoryName);
+
+    //make temp, results and data subdirectories
     QDir dir;
     dir.mkpath(absolute + "/" +  datasetDirectoryName);
     dir.mkpath(absolute + "/" + tempDirectoryName);
@@ -54,8 +62,8 @@ void ProjectManager::createNewProject(QString projectName)
 
     //make subdirectories for results
 
-     dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + trainingsResultsDirectoryName);
-     dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + classificationResultsDirectoryName);
+    dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + trainingsResultsDirectoryName);
+    dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + classificationResultsDirectoryName);
 }
 
 QStringList ProjectManager::getProjects() {
@@ -88,10 +96,11 @@ void ProjectManager::loadProject(QString projectName) {
 
     mProjectName = projectfile.value(projectNameIdentifier).toString();
     mProjectPath = mProjectsDirectory + "/" + projectName;
-    //mProjectPath = projectfile.value(projectDirectoryIdentifier_projectsFile).toString();
     mProjectDataSetDir = mProjectPath + "/" + projectfile.value(projectDatasetDirectoryIdentifier).toString();
     mProjectTempDir = mProjectPath + "/" + projectfile.value(projectTempDirectoryIdentifier).toString();
-    mProjectResultsDir = mProjectPath + "/" + resultsDirectoryName;
+    mProjectResultsDir = mProjectPath + "/" + projectfile.value(projectResultsDirectoryIdentifier).toString();
+    mProjectTrainingResultsDir =  mProjectResultsDir + "/" + projectfile.value(projectTrainingsResultsDirectoryIdentifer).toString();
+    mProjectClassificationResultsDir = mProjectResultsDir + "/" + projectfile.value(projectClassificationResultsDirectoryIdentifier).toString();
 }
 
 QString ProjectManager::getProjectPath() {
@@ -109,96 +118,15 @@ QString ProjectManager::getProjectDataSetDir() {
 QString ProjectManager::getResultsDir() {
     return mProjectResultsDir;
 }
-/* Currently this is not readable by a human because it is in binary format.
- * the information is recoverable by opening a datastream to the file and reading the contents in
- * order they were entered and then building a new ClassificationResult object from this.
- * ie out << map << list1 << list2 is read with in >> map >> list 1 >> list
- */
-void ProjectManager::saveClassificationResult(ClassificationResult result) {
-    QFile file(mProjectResultsDir + "/" + classificationResultsDirectoryName + "/" + result.generateIdentifier());
 
-    if (!file.open(QIODevice::WriteOnly)){
-        qDebug() << "Could not save classification results";
-        return;
-    }
-
-    QDataStream out(&file);
-    out.setVersion(QDataStream::Qt_6_1);
-
-    out << result.getClassificationData() << result.getLabels() << result.getAdditionalResults();
-
-    file.flush();
-    file.close();
+QString ProjectManager::getTrainingResultsDir()
+{
+    return mProjectTrainingResultsDir;
 }
 
-void ProjectManager::saveTrainingsResult(TrainingResult result) {
-    QFile file(mProjectResultsDir + "/" + result.generateIdentifier());
-
-    if (!file.open(QIODevice::WriteOnly)){
-        qDebug() << "Could not save training results";
-        return;
-    }
-
-    QDataStream out(&file);
-    out.setVersion(QDataStream::Qt_6_1);
-
-    ConfusionMatrix * cmTemp = result.getConfusionMatrix();
-    AccuracyCurve * acTemp = result.getAccuracyCurve();
-
-    QString identifierCM = cmTemp->getIdentifier();
-    QStringList classLabels = cmTemp->getClassLabels();
-    QList<int> values= cmTemp->getValues();
-
-    QMap<int, QPair<double, double>> data = acTemp->getData();
-    QString identiferLC = acTemp->getIdentifier();
-
-    QList<QImage> additionalResults = result.getAdditionalResults();
-
-    out << result.getTop1Accuracy() << result.getTop5Accuracy() << result.getMostMisclassifiedImages()
-        << identifierCM << classLabels << values << data << identiferLC << additionalResults;
-
-    file.flush();
-    file.close();
-}
-
-TrainingResult ProjectManager::getTrainingsResult(QString modelResultName) {
-    QFile file(mProjectResultsDir + "/" + modelResultName);
-
-    if (!file.open(QIODevice::WriteOnly)){
-        qDebug() << "Could not open training results";
-        //return;
-    }
-
-    QDataStream in(&file);
-    in.setVersion(QDataStream::Qt_6_1);
-
-    QString identifierCM;
-    QStringList classLabels;
-    QList<int> values;
-
-    QMap<int, QPair<double, double>> data;
-    QString identiferAC;
-
-    double top1Acc;
-    double top5Acc;
-    QList<QImage> mostMisclassifiedImages;
-
-    QList<QImage> additionalResults;
-
-    in >> top1Acc >> top5Acc >> mostMisclassifiedImages >> identifierCM >> classLabels >> values >> data >> identiferAC >> additionalResults;
-
-    //reconstruct Confusion matrix
-    auto * confMatrix = new ConfusionMatrix(identifierCM, classLabels, values);
-    //QSharedPointer<ConfusionMatrix> confMatrix = QSharedPointer<ConfusionMatrix>(new ConfusionMatrix(identifierCM, classLabels, values));
-    //reconstruct loss curve
-    auto * accCurve = new AccuracyCurve(identiferAC, data);
-    //QSharedPointer<AccuracyCurve> accCurve = QSharedPointer<AccuracyCurve>(new AccuracyCurve(identiferAC, data));
-    //reconstruct training result
-    TrainingResult constructedTR(accCurve, confMatrix, mostMisclassifiedImages, top1Acc, top5Acc, additionalResults);
-
-    file.close();
-
-    return constructedTR;
+QString ProjectManager::getClassificationResultsDir()
+{
+    return mProjectClassificationResultsDir;
 }
 
 QStringList ProjectManager::getNamesOfSavedTrainingResults() {
@@ -231,32 +159,36 @@ void ProjectManager::setProjectsDirectory(QString newDirectory)
     mProjectsDirectory = newDirectory;
 }
 
-bool ProjectManager::verifyName(QString input, QString *error)
+bool ProjectManager::verifyName(QString projectName, QString *error)
 {
-    bool status = true;
-    if (input.length() == 0){
+    if (projectName.length() == 0){
         error->append(QObject::tr("Name must contain at least 1 character") +"\n");
-        status = false;
+        return false;
     }
 
-    //check if name comtains special characters
-    QRegularExpression rx1("^[\\w]*$");
-    QRegularExpressionMatch match = rx1.match(input);
-    if (!match.hasMatch()) {
-        error->append(QObject::tr("Name may not contain special characters") + "\n");
-        status = false;
+    //the next step is easier if we filters these outs prematurely
+    if (projectName.contains("/") || projectName.contains("\\")) {
+        error->append(QObject::tr("Name may not contain the  \"/\" or \"\\\" \" \" characters") + "\n");
+        return false;
     }
+
+    //check if folders with this name can simply not be created
+    QDir tempDir(mProjectsDirectory + "/" + projectName );
+    if (!tempDir.mkpath(mProjectsDirectory + "/" + projectName )){
+        return false;
+    }
+    tempDir.removeRecursively();
 
     //check if name is already taken
     QDir projectsDir(mProjectsDirectory);
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     QStringList projects = projectsDir.entryList();
-    if (projects.contains(input)) {
+    if (projects.contains(projectName)) {
         error->append(QObject::tr("A project with this name aleady exists in the project directory"));
-        status = false;
+        return false;
 
     }
-    return status;
+    return true;
 }
 
 

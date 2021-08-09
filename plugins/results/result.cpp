@@ -1,20 +1,20 @@
 #include <QDateTime>
+#include <utility>
 #include "result.h"
 
-Result::Result(const QList<QImage> &additionalResults) {
-    m_additionalResults = additionalResults;
-    m_timestamp = generateIdentifier();
+Result::Result(QStringList additionalResults) : m_additionalResults(std::move(additionalResults)){
+    m_identifier = generateIdentifier();
 }
 
-QString Result::generateIdentifier(){
+QString Result::generateIdentifier() {
     auto date = QDateTime::currentDateTime();
-    return date.toString("dd_MM_yy#hh-mm-ss");
+    return date.toString("dd_MM_yy#hh-mm");
 }
 
-QList<QImage> Result::getAdditionalResults() {
+QStringList Result::getAdditionalResults() const {
     return m_additionalResults;
 }
 
-QString Result::getTimestamp() {
-    return m_timestamp;
+QString Result::getIdentifier() const{
+    return m_identifier;
 }

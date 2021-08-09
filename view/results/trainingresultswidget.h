@@ -10,54 +10,45 @@
 #include <projectmanager.h>
 #include "topaccuraciesview.h"
 #include "trainingresultview.h"
+#include "genericcomparisonwidget.h"
 
-namespace Ui {
-    class TrainingResultsWidget;
-}
-
-class TrainingResultsWidget : public QWidget {
+class TrainingResultsWidget : public GenericComparisonWidget {
 Q_OBJECT
-
-protected:
-    // this event is called, when a new translator is loaded or the system language is changed
-    void changeEvent(QEvent *) override;
 
 public:
     explicit TrainingResultsWidget(QWidget *parent = nullptr);
 
-    ~TrainingResultsWidget();
+    ~TrainingResultsWidget() = default;
 
     void addTrainingResult(TrainingResult *result);
 
     TopAccuraciesView *getTopAccuraciesView();
 
 private:
-    Ui::TrainingResultsWidget *ui;
-    QPushButton *pushButton_addResult = new QPushButton(this);
-    QMenu *menu_addRun = new QMenu(pushButton_addResult);
-    QMap<QString, QWidget *> m_mapTrainingResultTabs;
+    TopAccuraciesView *m_topAccuraciesView;
 
-    TrainingResultView *createTrainingResultTab(const QString &tabName);
+    void addComparisonResult(const QString &runNameToCompare) override;
 
-    void deleteTrainingResultTab(const QString &tabName);
+    void removeComparisonResult(const QString &runNameToCompare) override;
 
-    void retranslateUi();
+    void configure_topAccuraciesTab();
 
-    void configure_compareRunButton();
-
-    void configure_compareRunMenu();
+    TrainingResultView *createResultTab(const QString &tabName) override;
 
 signals:
 
-    void sig_comparison_loadTrainingResultGraphics(const QString &runNameToCompare, TrainingResultView *view);
+    void sig_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare);
 
-    void sig_comparison_loadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view);
+    void sig_comparison_loadTrainingResultGraphics(AbstractGraphicsView *receiver, const QString &runNameToCompare);
 
-    void sig_comparison_unloadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view);
+    void sig_comparison_loadAccuracyData(TopAccuraciesView *view, const QString &runNameToCompare);
 
-private slots:
+    void sig_comparison_unloadAccuracyData(TopAccuraciesView *view, const QString &runNameToCompare);
 
-    void slot_comparisonMenu_triggered(QAction *action);
+    void sig_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver, TrainingResult *result);
+
+    void sig_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result);
+
 };
 
 #endif // TRAININGRESULTSWIDGET_H

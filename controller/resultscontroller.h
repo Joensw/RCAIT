@@ -8,15 +8,20 @@
 #include <resultsprocessor.h>
 #include <datamanager.h>
 
-class ResultsController : public QObject{
+class ResultsController : public QObject {
 
-    Q_OBJECT
+Q_OBJECT
 public:
     ResultsController(DataManager *manager, ResultsWidget *resultsWidget);
-    void addTrainingResult(TrainingResult* result);
-    void addClassificationResult(ClassificationResult* result);
+
+    void addTrainingResult(TrainingResult *result);
+
+    void addClassificationResult(ClassificationResult *result);
+
+    void slot_projectPathUpdated();
 
 public slots:
+
     void slot_saveResult();
 
 private:
@@ -26,7 +31,8 @@ private:
     //TODO ??
     QList<TrainingResult> m_unsavedTrainingResults;
     QList<ClassificationResult> m_unsavedClassificationResults;
-    void updateComparisonResultOverview(TrainingResult* result);
+
+    void updateComparisonResultOverview(TrainingResult *result);
 };
 
 

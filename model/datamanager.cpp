@@ -112,13 +112,13 @@ QString DataManager::getImageLoaderPluginDir(){
 }
 
 void DataManager::saveClassificationResult(ClassificationResult result){
-    mProjectManager->saveClassificationResult(result);
+
 }
 void DataManager::saveTrainingsResult(TrainingResult result){
-    return mProjectManager->saveTrainingsResult(result);
+
 }
 TrainingResult DataManager::getTrainingsResult(QString modelResultName){
-    return mProjectManager->getTrainingsResult(modelResultName);
+
 }
 QStringList DataManager::getNamesOfSavedTrainingResults(){
     return mProjectManager->getNamesOfSavedTrainingResults();

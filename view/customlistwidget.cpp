@@ -8,6 +8,11 @@ static const QIcon unselectedIcon = QIcon(unselectedIconPath);
 CustomListWidget::CustomListWidget(QWidget *parent) : QListWidget(parent) {
     connect(this, &CustomListWidget::currentItemChanged, this, &CustomListWidget::updateSelectionIcon);
 
+    // Add full touch compliance
+    this->setAttribute(Qt::WA_AcceptTouchEvents,true);
+    this->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    this->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+    QScroller::grabGesture(this,QScroller::TouchGesture);
 }
 
 void CustomListWidget::addItem(const QString &label) {

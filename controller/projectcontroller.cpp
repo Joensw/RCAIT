@@ -39,7 +39,7 @@ void ProjectController::slot_openProject(QString projectName){
     emit sig_projectPathUpdated();
 }
 
-void ProjectController::slot_projectDirectoryChanged()
+void ProjectController::slot_projectDirectoryChanged(const QString& newDirectory)
 {
     refresh();
 }

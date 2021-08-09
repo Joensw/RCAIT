@@ -25,6 +25,8 @@ public:
 
     void addClassificationResult(ClassificationResult *result);
 
+    void updateResultFolderPaths();
+
     TrainingResultsWidget* getTrainingResultsWidget();
 
     ClassificationResultsWidget* getClassificationResultsWidget();

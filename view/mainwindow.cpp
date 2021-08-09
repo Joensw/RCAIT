@@ -70,7 +70,7 @@ void MainWindow::slot_settingsButton_clicked() {
 
 void MainWindow::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
-        // this event is send if a translator is loaded
+        // this event is sent if a translator is loaded
         ui->retranslateUi(this);
     }
     QMainWindow::changeEvent(event);

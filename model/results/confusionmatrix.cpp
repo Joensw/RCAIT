@@ -48,15 +48,15 @@ QString ConfusionMatrix::labelsToPyText() {
  * @return QString matrix representation e.g. [[1,2],[3,4]]
  */
 QString ConfusionMatrix::valuesToPyText() {
-    auto result = new QStringList();
+    auto result = QStringList();
     for (qsizetype row = 0; row < m_size; row++) {
         auto rowList = new QStringList();
         for (qsizetype col = 0; col < m_size; col++) {
             *rowList << QString::number(m_values[row * m_size + col]);
         }
-        *result << '[' + rowList->join(',') + ']';
+        result << '[' + rowList->join(',') + ']';
     }
-    return '[' + result->join(',') + ']';
+    return '[' + result.join(',') + ']';
 }
 
 bool ConfusionMatrix::operator==(const ConfusionMatrix other) const {
@@ -87,6 +87,7 @@ QList<int> ConfusionMatrix::getValues()
 
 void ConfusionMatrix::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
-    receiver->setConfusionMatrix(graphics);
+    auto ptr = QSharedPointer<QGraphicsItem>(graphics);
+    receiver->setConfusionMatrix(ptr);
 }
 

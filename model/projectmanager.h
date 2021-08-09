@@ -19,6 +19,9 @@ extern const QString projectNameIdentifier;
 extern const QString projectDirectoryIdentifier_projectsFile;
 extern const QString projectDatasetDirectoryIdentifier;
 extern const QString projectTempDirectoryIdentifier;
+extern const QString projectResultsDirectoryIdentifier;
+extern const QString projectTrainingsResultsDirectoryIdentifer;
+extern const QString projectClassificationResultsDirectoryIdentifier;
 
 /**
  * @brief The ProjectManager class contains the logic for manipulating the projects of the application
@@ -95,28 +98,20 @@ public:
      */
     QString getResultsDir();
 
-    /** Serialises the object in a binary format, it is not readable to a human.
-     *  The object is saved to the classifcation result sub directory
-     * @brief saveClassificationResult serialises and saves a classification results object
-     * @param result
-     */
-    void saveClassificationResult(ClassificationResult result);
-
-    /** Serialises the object in a binary format, it is not readable to a human.
-     *  The object is saved to the training result sub directory
-     * @brief saveTrainingsResult serialises and saves a training result object.
-     * @param result
-     */
-    void saveTrainingsResult(TrainingResult result);
 
     /**
-     * @brief getTrainingsResult rebuilds a TrainingResult object
-     * @param modelResultName name of the file the object is to be built from
-     * @return the rebuilt object
+     * @brief getTrainingResultsDir will return null string if no project is opened
+     * @return  absolute path to the trainings results subdirectory of the currently opened project
      */
-    TrainingResult getTrainingsResult(QString modelResultName);
+    QString getTrainingResultsDir();
 
-    /** Only .txt files are returns and within the list they have no file ending
+    /**
+     * @brief getClassificationResultsDir will return null string if no project is opened
+     * @return absolute path to the classification results subdirectory of the currently opened project
+     */
+    QString getClassificationResultsDir();
+
+    /** Only .txt files are returned and within the list they have no file ending
      * @brief getNamesOfSavedTrainingResults returns the names of all the files in the trainings results folder
      * @return
      */
@@ -129,12 +124,14 @@ public:
     void setProjectsDirectory(QString newDirectory);
 
 private:
-    bool verifyName(QString input, QString * error);
+    bool verifyName(QString projectName, QString * error);
 
     QString mProjectPath;
     QString mProjectTempDir;
     QString mProjectDataSetDir;
     QString mProjectResultsDir;
+    QString mProjectTrainingResultsDir;
+    QString mProjectClassificationResultsDir;
     QString mProjectName;
 
     QString mProjectsDirectory;

@@ -4,6 +4,7 @@
 #include "command.h"
 
 #include <imagesearchthread.h>
+#include <imageloader.h>
 
 
 /**
@@ -18,9 +19,10 @@ public:
      * @brief ImageLoadCommand constructs a ImageLoadCommand by parsing from a map.
      *
      * @param map contains necessary information for command.
+     * @param path load pictures into path.
      * @param receiver object to receive progress.
      */
-    ImageLoadCommand(QVariantMap map, Progressable* receiver);
+    ImageLoadCommand(QVariantMap map, QString path, ProgressablePlugin* receiver);
 
     /**
      * @brief execute executes the command.
@@ -32,6 +34,10 @@ public:
 private:
     ImageSearchThread* mImageSearcher;
     bool parsingFailed = false;
+    int mCount;
+    QStringList mLabels;
+    QString mPluginName;
+    QString mPath;
 
 };
 

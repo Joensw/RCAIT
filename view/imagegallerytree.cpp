@@ -5,11 +5,13 @@
 #include <QScrollBar>
 #include <QStandardItemModel>
 #include <QtConcurrent/QtConcurrentRun>
+#include <QScroller>
 
 QList<ImageGallery> list;
 
 ImageGalleryTree::ImageGalleryTree(QWidget* parent){
-
+    // Add full touch compliance
+    QScroller::grabGesture(this, QScroller::TouchGesture);
 }
 ImageGalleryTree::ImageGalleryTree(QStringList paths)
 {

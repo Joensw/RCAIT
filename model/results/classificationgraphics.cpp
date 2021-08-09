@@ -1,16 +1,17 @@
 #include <QString>
 #include <QFileInfo>
+#include <mapadapt.h>
 #include "classificationgraphics.h"
 
 ClassificationGraphics::ClassificationGraphics(const QString &identifier,
                                                const QMap<QString, QList<double>> &data)
-        : AbstractResultGraphics("classificationgraphics_" + identifier, "svg") {
+        : AbstractResultGraphics("classification_" + identifier, "svg") {
 
     m_data = data;
 }
 
 QString ClassificationGraphics::valuesToPyText() {
-    auto result = new QStringList();
+    auto result = QStringList();
 
     for (const auto &row_data: m_data) {
         //List for each row, which shall be joined in a single QString
@@ -21,14 +22,14 @@ QString ClassificationGraphics::valuesToPyText() {
             auto valueStr = QString::number(value, 'G', 5);
             rowList << valueStr;
         }
-        *result << '[' + rowList.join(',') + ']';
+        result << '[' + rowList.join(',') + ']';
     }
-    return '[' + result->join(',') + ']';
+    return '[' + result.join(',') + ']';
 }
 
 QString ClassificationGraphics::labelsToPyText() {
-    QStringList results;
-    for (const auto &key : m_data.keys()) {
+    auto results = QStringList();
+    for (const auto& [key,_]: MapAdapt(m_data)) {
         results << QString("'%1'").arg(key);
     }
     return '[' + results.join(',') + ']';
@@ -55,7 +56,7 @@ bool ClassificationGraphics::operator!=(const ClassificationGraphics &other) con
 }
 
 void ClassificationGraphics::generateGraphicsInternal(const QString &fullFilePath) {
-    // python script.py <loss curve data> <output file name>
+    // python script.py <classification data> <classification labels> <output file name>
     auto pyScript = QFileInfo("classificationgraphics.py");
     QStringList params =
             QStringList() << pyScript.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fullFilePath;
@@ -64,5 +65,6 @@ void ClassificationGraphics::generateGraphicsInternal(const QString &fullFilePat
 
 void ClassificationGraphics::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
-    receiver->setClassificationGraphics(graphics);
+    auto ptr = QSharedPointer<QGraphicsItem>(graphics);
+    receiver->setClassificationGraphics(ptr);
 }

@@ -1,6 +1,7 @@
 #include <QFileInfo>
 #include <QGraphicsSvgItem>
 #include <QProcess>
+#include <mapadapt.h>
 #include "accuracycurve.h"
 
 AccuracyCurve::AccuracyCurve(const QString &identifier, const QMap<int, QPair<double, double>> &data)
@@ -16,9 +17,9 @@ void AccuracyCurve::generateGraphicsInternal(const QString &fullFilePath) {
 }
 
 QString AccuracyCurve::valuesToPyText() {
-    auto result = new QStringList();
+    auto result = QStringList();
 
-    for (const auto key: m_data.keys()) {
+    for (const auto& [key,_]: MapAdapt(m_data)) {
         auto &[train, val] = m_data[key];
 
         //Convert to QString with precision of 2 digits
@@ -28,9 +29,9 @@ QString AccuracyCurve::valuesToPyText() {
         //List for each row, which shall be joined in a single QString
         auto rowList = QStringList();
         rowList << QString::number(key) << trainStr << valStr;
-        *result << '[' + rowList.join(',') + ']';
+        result << '[' + rowList.join(',') + ']';
     }
-    return '[' + result->join(',') + ']';
+    return '[' + result.join(',') + ']';
 }
 
 QPair<double, double> AccuracyCurve::operator[](int epoch) const {
@@ -52,5 +53,6 @@ QMap<int, QPair<double, double> > AccuracyCurve::getData()
 
 void AccuracyCurve::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
-    receiver->setAccuracyCurve(graphics);
+    auto ptr = QSharedPointer<QGraphicsItem>(graphics);
+    receiver->setAccuracyCurve(ptr);
 }

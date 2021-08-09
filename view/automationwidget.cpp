@@ -2,12 +2,18 @@
 #include "ui_automationwidget.h"
 
 #include <QFileDialog>
+#include <QScroller>
 
 AutomationWidget::AutomationWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AutomationWidget)
 {
     ui->setupUi(this);
+
+    // Add full touch compliance
+    QScroller::grabGesture(ui->idleTasks, QScroller::TouchGesture);
+    QScroller::grabGesture(ui->queuedTasks, QScroller::TouchGesture);
+
 }
 
 AutomationWidget::~AutomationWidget()
@@ -18,6 +24,15 @@ AutomationWidget::~AutomationWidget()
 void AutomationWidget::slot_progress(int progress)
 {
     ui->progressBar->setValue(progress);
+    if(progress == 100){
+        ui->startButton->setEnabled(true);
+        ui->queueAllButton->setEnabled(true);
+        ui->unqueueAllButton->setEnabled(true);
+        ui->queueSelectedButton->setEnabled(true);
+        ui->unqueueSelectedButton->setEnabled(true);
+        ui->stopButton->setEnabled(false);
+        ui->progressBar->setEnabled(false);
+    }
 }
 
 void AutomationWidget::slot_taskAdded(QString name)
@@ -77,7 +92,6 @@ void AutomationWidget::on_unqueueSelectedButton_clicked()
         ui->idleTasks->addItem(ui->queuedTasks->takeItem(index.row()));
         emit sig_unqueueSelected(index.row());
     }
-    qDeleteAll(ui->queuedTasks->selectedItems());
 }
 
 
@@ -87,7 +101,6 @@ void AutomationWidget::on_queueSelectedButton_clicked()
         ui->queuedTasks->addItem(ui->idleTasks->takeItem(index.row()));
         emit sig_queueSelected(index.row());
     }
-    qDeleteAll(ui->idleTasks->selectedItems());
 }
 
 
@@ -122,7 +135,7 @@ void AutomationWidget::on_importTasksButton_clicked()
 
 void AutomationWidget::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
-        // this event is send if a translator is loaded
+        // this event is sent if a translator is loaded
         ui->retranslateUi(this);
     }
     //Call to parent class

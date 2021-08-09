@@ -1,83 +1,35 @@
 #include <projectmanager.h>
 #include <classificationresultview.h>
 #include "resultsprocessor.h"
+#include "mapadapt.h"
+
+enum Type {
+    CLASSIFICATION,
+    ACCURACYCURVE,
+    CONFUSIONMATRIX,
+    TOPACCURACIES,
+    _COUNT
+};
+const std::array<QRegularExpression, _COUNT> TYPES2REGEX = {
+        QRegularExpression("classification_(.*)\\.(svg|png)$"),
+        QRegularExpression("accuracycurve_(.*)\\.(svg|png)$"),
+        QRegularExpression("confusionmatrix_(.*)\\.(svg|png)$"),
+        QRegularExpression("topaccuracies_(.*)\\.(svg|png)$")
+};
 
 ResultsProcessor::ResultsProcessor() {
-    //TODO Create identifier utility class which creates date/time identifier statically
     m_topAccuraciesGraphics = new TopAccuraciesGraphics();
 }
 
+/**
+ * Top Accuracies slots
+ */
 void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(AbstractGraphicsView *receiver) {
     m_topAccuraciesGraphics->updateIdentifier(Result::generateIdentifier());
     m_topAccuraciesGraphics->generateGraphics(receiver);
 }
 
-void ResultsProcessor::slot_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver) {
-    //TODO
-}
-
-void ResultsProcessor::slot_comparison_loadTrainingResultGraphics(const QString &runNameToCompare, TrainingResultView *view) {
-        //Accuracy Curve
-        int sum = 0;
-        auto *pointsMap = new QMap<int, QPair<double, double>>();
-        for (int j = 1; j <= 20; j++) {
-            double random = QRandomGenerator::global()->bounded(3 * 100) / 100.0;
-            int random2 = QRandomGenerator::global()->bounded(1, 10);
-            sum += random2;
-            pointsMap->insert(j, qMakePair(-100.0/sum+100, random+90));
-        }
-        auto ac = new AccuracyCurve(runNameToCompare, *pointsMap);
-        ac->generateGraphics(view);
-
-        //Confusion Matrix
-        QList<int> values = QList<int>();
-        QStringList labels = {"A", "B", "C", "D", "E", "F", "G", "H"};
-        const qsizetype N = labels.size();
-        qsizetype target = 0;
-        for (int j = 0; j < N * N; ++j) {
-            //Check if we are on diagonal line of matrix
-            int min = 0;
-            int max = 10;
-            if (target == j) {
-                target += N + 1;
-                min = 30;
-                max = 100;
-            }
-            int random = QRandomGenerator::global()->bounded(min, max);
-            values << random;
-        }
-
-        auto matrix = new ConfusionMatrix(runNameToCompare, labels, values);
-        matrix->generateGraphics(view);
-    /*
-    auto dirPath = ProjectManager::getInstance().getResultsDir();
-    auto dir = QDir(dirPath + '/' + runNameToCompare);
-
-    for (const auto &file : dir.entryInfoList(QDir::Files, QDir::Name)) {
-        auto baseName = file.baseName();
-        auto ext = file.completeSuffix();
-        if (baseName == "confusionmatrix_" + runNameToCompare) {
-
-            if (ext == "svg")
-                view->setConfusionMatrix(new QGraphicsSvgItem(file.absoluteFilePath()));
-            else
-                view->setConfusionMatrix(new QGraphicsPixmapItem(file.absoluteFilePath()));
-            continue;
-        }
-        if (baseName == "accuracycurve_" + runNameToCompare) {
-
-            if (ext == "svg")
-                view->setAccuracyCurve(new QGraphicsSvgItem(file.absoluteFilePath()));
-            else
-                view->setAccuracyCurve(new QGraphicsPixmapItem(file.absoluteFilePath()));
-            continue;
-        }
-    }
-     */
-    //TODO Load most misclassified images.
-}
-
-void ResultsProcessor::slot_comparison_loadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view) {
+void ResultsProcessor::slot_comparison_loadAccuracyData(TopAccuraciesView *view, const QString &runNameToCompare) {
     double top1 = QRandomGenerator::global()->bounded(100);
     double top5 = QRandomGenerator::global()->bounded(100);
     m_topAccuraciesGraphics->addDataRow(runNameToCompare, {top1, top5});
@@ -85,26 +37,137 @@ void ResultsProcessor::slot_comparison_loadAccuracyData(const QString &runNameTo
     //TODO Load real accuracy data from JSON file
 }
 
-void ResultsProcessor::slot_comparison_unloadAccuracyData(const QString &runNameToCompare, TopAccuraciesView *view) {
+void ResultsProcessor::slot_comparison_unloadAccuracyData(TopAccuraciesView *view, const QString &runNameToCompare) {
     m_topAccuraciesGraphics->removeDataRow(runNameToCompare);
     view->removeTopAccuraciesEntry(runNameToCompare);
 }
 
-void ResultsProcessor::slot_comparison_loadClassificationData(const QString &runNameToCompare,
-                                                            ClassificationResultView *view) {
+
+/**
+ * Classification result slots
+ */
+void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationResultView *view,
+                                                                ClassificationResult *result) {
+    auto map = result->getClassificationData();
+    auto labels = result->getLabels();
+    Q_ASSERT(!map.isEmpty());
+    Q_ASSERT(!labels.isEmpty());
+
+    auto tableMap = QMap<QString, QStringList>();
+
+    for (const auto &[image, accList] : MapAdapt(map)) {
+        //Assert that each accuracy value has a corresponding label
+        Q_ASSERT(accList.size() == labels.size());
+        auto max = std::max_element(accList.begin(), accList.end());
+
+        //Calculate argmax(map)
+        auto index_max = std::distance(accList.begin(), max);
+        auto max_accuracy = QString::number(*max);
+        auto label = labels[index_max];
+
+        tableMap[image] = {max_accuracy, label};
+    }
+    view->setClassificationData(tableMap);
+}
+
+void ResultsProcessor::slot_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver,
+                                                                        ClassificationResult *result) {
+    auto graphics = result->getClassificationGraphics();
+    graphics->generateGraphics(receiver);
+}
+
+void ResultsProcessor::slot_comparison_loadClassificationResultData(ClassificationResultView *view,
+                                                                    const QString &runNameToCompare) {
     //TODO Load data from JSON file
     QStringList labels = {"Car", "Truck", "Airplane", "Boat", "Bike"};
-    QList<QPair<QString, QStringList>> data;
+    QMap<QString, QStringList> data;
     for (int j = 0; j < 20; ++j) {
         long long randomLabel = QRandomGenerator::global()->bounded(labels.size());
         auto label = labels[randomLabel];
         int random = QRandomGenerator::global()->bounded(65, 100);
-        data << qMakePair(QString("Image %1").arg(j), QStringList() << QString::number(random) << label);
+        data.insert(QString("Image %1").arg(j), {QString::number(random), label});
     }
     view->setClassificationData(data);
 
 }
 
-void ResultsProcessor::slot_comparison_loadClassificationResultGraphics(AbstractGraphicsView *receiver) {
+void ResultsProcessor::slot_comparison_loadClassificationResultGraphics(AbstractGraphicsView *receiver,
+                                                                        const QString &runNameToCompare) {
+    auto dirPath = ProjectManager::getInstance().getClassificationResultsDir();
+    loadGraphicsInView(receiver, runNameToCompare, dirPath);
+}
 
+
+/**
+ * Training result slots
+ */
+void ResultsProcessor::slot_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result) {
+    auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
+    view->setMostMisclassifiedImages(mostMisclassifiedImages);
+}
+
+void ResultsProcessor::slot_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver,
+                                                                  TrainingResult *result) {
+    auto accCurve = result->getAccuracyCurve();
+    auto confusionMatrix = result->getConfusionMatrix();
+    accCurve->generateGraphics(receiver);
+    confusionMatrix->generateGraphics(receiver);
+}
+
+void
+ResultsProcessor::slot_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare) {
+    //TODO Load most misclassified images.
+}
+
+void ResultsProcessor::slot_comparison_loadTrainingResultGraphics(AbstractGraphicsView *receiver,
+                                                                  const QString &runNameToCompare) {
+    auto dirPath = ProjectManager::getInstance().getTrainingResultsDir();
+    loadGraphicsInView(receiver, runNameToCompare, dirPath);
+}
+
+void ResultsProcessor::loadGraphicsInView(AbstractGraphicsView *receiver, const QString &resultsFolder,
+                                          const QString &baseDir) {
+    auto dir = QDir(baseDir);
+    dir.cd(resultsFolder);
+
+    for (const auto &file : dir.entryInfoList(QDir::Files, QDir::Time)) {
+        for (int i = 0; i < _COUNT; i++) {
+            auto regex = TYPES2REGEX[i];
+            auto match = regex.match(file.fileName());
+
+            if (!match.hasMatch()) continue;
+
+            auto identifier = match.captured(1);
+            auto extension = match.captured(2);
+
+            if (resultsFolder != identifier) continue;
+
+            QGraphicsItem *graphics;
+            if (extension == "svg")
+                graphics = new QGraphicsSvgItem(file.absoluteFilePath());
+            else
+                graphics = new QGraphicsPixmapItem(file.absoluteFilePath());
+
+            auto graphics_ptr = QSharedPointer<QGraphicsItem>(graphics);
+
+            switch (i) {
+                case CLASSIFICATION:
+                    receiver->setClassificationGraphics(graphics_ptr);
+                    break;
+                case ACCURACYCURVE:
+                    receiver->setAccuracyCurve(graphics_ptr);
+                    break;
+                case CONFUSIONMATRIX:
+                    receiver->setConfusionMatrix(graphics_ptr);
+                    break;
+                case TOPACCURACIES:
+                    receiver->setTopAccuraciesGraphics(graphics_ptr);
+                    break;
+                default:
+                    qDebug() << "Attempted to set unknown result graphics type";
+                    break;
+            }
+
+        }
+    }
 }

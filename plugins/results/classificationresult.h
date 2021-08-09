@@ -15,11 +15,11 @@ private:
     QList<QString> m_labels;
 public:
     ClassificationResult(const QMap<QString, QList<double>> &classificationData,
-                         QList<QString> labels, const QList<QImage>& additionalResults);
+                         QList<QString> labels, const QStringList& additionalResults);
 
-    QMap<QString, QList<double>> getClassificationData();
+    QMap<QString, QList<double>> getClassificationData() const;
 
-    QList<QString> getLabels();
+    QList<QString> getLabels() const;
 
     ClassificationGraphics *getClassificationGraphics() const;
 };

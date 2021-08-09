@@ -32,7 +32,7 @@ public:
 
 private:
 
-    QList<QPair<QString, QStringList>> m_data;
+    QMap<QString,QStringList> m_data;
 
     /**
      * Paints the given custom resources like label and icon on the button

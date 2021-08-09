@@ -9,7 +9,7 @@ TopAccuraciesGraphics::TopAccuraciesGraphics(const QString &identifier,
 }
 
 QString TopAccuraciesGraphics::valuesToPyText() {
-    auto result = new QStringList();
+    auto result = QStringList();
 
     for (auto &[key, valuesList]: m_data) {
 
@@ -21,9 +21,9 @@ QString TopAccuraciesGraphics::valuesToPyText() {
             rowList << valStr;
 
         }
-        *result << '[' + rowList.join(',') + ']';
+        result << '[' + rowList.join(',') + ']';
     }
-    return '[' + result->join(',') + ']';
+    return '[' + result.join(',') + ']';
 }
 
 QString TopAccuraciesGraphics::labelsToPyText() {
@@ -55,7 +55,7 @@ QList<double> TopAccuraciesGraphics::operator[](const QString &identifier) const
         if (key == identifier)
             return valuesList;
     }
-    return QList<double>();
+    return {};
 }
 
 void TopAccuraciesGraphics::setData(const QList<QPair<QString, QList<double>>> &mData) {
@@ -80,5 +80,6 @@ void TopAccuraciesGraphics::generateGraphicsInternal(const QString &fullFilePath
 
 void TopAccuraciesGraphics::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
-    receiver->setTopAccuraciesGraphics(graphics);
+    auto ptr = QSharedPointer<QGraphicsItem>(graphics);
+    receiver->setTopAccuraciesGraphics(ptr);
 }

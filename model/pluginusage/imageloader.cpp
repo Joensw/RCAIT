@@ -10,6 +10,7 @@ void ImageLoader::loadInputImages(int count, QStringList labels, QString pluginN
     m_worker = new ImageSearchThread((ProgressablePlugin*) this, tempImageDir,pluginName,count, labels);
     m_worker->moveToThread(&imageloadThread);
     connect(&imageloadThread, &QThread::finished, m_worker, &QObject::deleteLater);
+    connect(&imageloadThread, &QThread::finished, this, &ImageLoader::handleResults);
     connect(this, &ImageLoader::operate, m_worker, &ImageSearchThread::loadImages);
     connect(this, &ImageLoader::sig_pluginFinished, this, &ImageLoader::handleResults);
     imageloadThread.start();

@@ -1,9 +1,5 @@
-#include <QPushButton>
-#include <QMenu>
-#include <QRandomGenerator>
 #include "resultswidget.h"
 #include "ui_resultswidget.h"
-#include "confusionmatrix.h"
 #include "projectmanager.h"
 
 ResultsWidget::ResultsWidget(QWidget *parent) :
@@ -31,7 +27,7 @@ ResultsWidget::~ResultsWidget() {
 
 void ResultsWidget::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
-        // this event is send if a translator is loaded
+        // this event is sent if a translator is loaded
         ui->retranslateUi(this);
     }
     //Call to parent class
@@ -44,4 +40,13 @@ TrainingResultsWidget *ResultsWidget::getTrainingResultsWidget() {
 
 ClassificationResultsWidget *ResultsWidget::getClassificationResultsWidget() {
     return m_classificationResultsWidget;
+}
+
+void ResultsWidget::updateResultFolderPaths() {
+    ProjectManager *pm = &ProjectManager::getInstance();
+    auto trainingPath = pm->getTrainingResultsDir();
+    auto classificationPath = pm->getClassificationResultsDir();
+
+    m_trainingResultsWidget->updateResultFolderPath(trainingPath);
+    m_classificationResultsWidget->updateResultFolderPath(classificationPath);
 }

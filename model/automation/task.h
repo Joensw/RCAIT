@@ -19,7 +19,7 @@ enum TaskState
  * @brief The Task class is responsible for executing (multiple) commands.
  *
  */
-class Task : public Progressable
+class Task : public ProgressablePlugin
 {
     Q_OBJECT
 public:
@@ -60,6 +60,11 @@ public:
      */
     bool isValid();
 
+    /**
+     * @brief abort aborts the Task.
+     */
+    void abort();
+
 public slots:
 
     /**
@@ -91,7 +96,7 @@ signals:
      *
      * @param newState new task state.
      */
-    void sig_stateChanged(TaskState newState);
+    void sig_stateChanged(QString name, TaskState newState);
 
     /**
      * @brief sig_progress signals progress of task.
@@ -103,6 +108,8 @@ signals:
 
 
 private:
+    const int DEFAULT_SPLIT = 30;
+
     QString mName;
     TaskState mState = SCHEDULED;
     QString mProjectPath;

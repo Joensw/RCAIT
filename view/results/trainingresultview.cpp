@@ -7,10 +7,13 @@ TrainingResultView::TrainingResultView(QWidget *parent) :
     ui->setupUi(this);
 }
 
-void TrainingResultView::setAccuracyCurve(QGraphicsItem *accuracyCurveImage) {
+void TrainingResultView::setAccuracyCurve(const QSharedPointer<QGraphicsItem> &accuracyCurveImage) {
+    m_accuracyCurveImage = accuracyCurveImage;
+
     auto view = ui->graphicsView_accuracycurve;
     auto *scene = new QGraphicsScene();
-    scene->addItem(accuracyCurveImage);
+
+    scene->addItem(accuracyCurveImage.get());
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 
@@ -23,10 +26,12 @@ void TrainingResultView::setAccuracyCurve(QGraphicsItem *accuracyCurveImage) {
     view->setScene(scene);
 }
 
-void TrainingResultView::setConfusionMatrix(QGraphicsItem *matrixImage) {
+void TrainingResultView::setConfusionMatrix(const QSharedPointer<QGraphicsItem> &matrixImage) {
+    m_confusionMatrixImage = matrixImage;
+
     auto view = ui->graphicsView_confusionmatrix;
     auto *scene = new QGraphicsScene();
-    scene->addItem(matrixImage);
+    scene->addItem(matrixImage.get());
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 
@@ -39,7 +44,7 @@ void TrainingResultView::setConfusionMatrix(QGraphicsItem *matrixImage) {
     view->setScene(scene);
 }
 
-void TrainingResultView::setMostMisclassifiedImages(const QList<QImage>& images) {
+void TrainingResultView::setMostMisclassifiedImages(const QStringList& images) {
     auto gallery = ui->imageGallery_mostMisclassifiedImages;
     gallery->concurrentAddDir(images);
 }
@@ -50,7 +55,7 @@ TrainingResultView::~TrainingResultView() {
 
 void TrainingResultView::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
-        // this event is send if a translator is loaded
+        // this event is sent if a translator is loaded
         ui->retranslateUi(this);
     }
     //Call to parent class

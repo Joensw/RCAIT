@@ -15,7 +15,11 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
             &ResultsProcessor::slot_normal_generateTopAccuraciesGraphics);
 
     //Connect 'Compare Run' related signals/slots
-    connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_loadTrainingResultGraphics, m_resultsProcessor,
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_loadTrainingResultData,
+            m_resultsProcessor,
+            &ResultsProcessor::slot_comparison_loadTrainingResultData);
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_loadTrainingResultGraphics,
+            m_resultsProcessor,
             &ResultsProcessor::slot_comparison_loadTrainingResultGraphics);
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_loadAccuracyData, m_resultsProcessor,
             &ResultsProcessor::slot_comparison_loadAccuracyData);
@@ -23,15 +27,31 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
             m_resultsProcessor,
             &ResultsProcessor::slot_comparison_unloadAccuracyData);
 
+    //Connect signals/slots related to showing training results
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_normal_generateTrainingResultGraphics,
+            m_resultsProcessor, &ResultsProcessor::slot_normal_generateTrainingResultGraphics);
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_normal_loadTrainingResultData, m_resultsProcessor,
+            &ResultsProcessor::slot_normal_loadTrainingResultData);
 /*
  * Classification Results
  */
     auto classificationResultsWidget = m_resultsWidget->getClassificationResultsWidget();
 
     //Connect 'Compare Run' related signals/slots
-    connect(classificationResultsWidget, &ClassificationResultsWidget::sig_comparison_loadClassificationData,
+    connect(classificationResultsWidget, &ClassificationResultsWidget::sig_comparison_loadClassificationResultData,
             m_resultsProcessor,
-            &ResultsProcessor::slot_comparison_loadClassificationData);
+            &ResultsProcessor::slot_comparison_loadClassificationResultData);
+    connect(classificationResultsWidget, &ClassificationResultsWidget::sig_comparison_loadClassificationResultGraphics,
+            m_resultsProcessor,
+            &ResultsProcessor::slot_comparison_loadClassificationResultGraphics);
+
+    //Connect signals/slots related to showing classification results
+    connect(classificationResultsWidget, &ClassificationResultsWidget::sig_normal_loadClassificationData,
+            m_resultsProcessor,
+            &ResultsProcessor::slot_normal_loadClassificationResultData);
+    connect(classificationResultsWidget, &ClassificationResultsWidget::sig_normal_generateClassificationResultGraphics,
+            m_resultsProcessor,
+            &ResultsProcessor::slot_normal_generateClassificationResultGraphics);
 
     //Connect ResultsWidget to ResultsController
     connect(m_resultsWidget, &ResultsWidget::sig_saveResults, this, &ResultsController::slot_saveResult);
@@ -52,4 +72,8 @@ void ResultsController::updateComparisonResultOverview(TrainingResult *result) {
 
 void ResultsController::slot_saveResult() {
 //TODO Move
+}
+
+void ResultsController::slot_projectPathUpdated() {
+    m_resultsWidget->updateResultFolderPaths();
 }
