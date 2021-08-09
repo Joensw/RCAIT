@@ -24,7 +24,7 @@ public:
 
     void setClassificationGraphics(const QSharedPointer<QGraphicsItem> &classificationGraphicsImage) override;
 
-    void setClassificationData(const QMap<QString, QStringList> &data);
+    void setClassificationData(const QMap<int, QStringList> &data);
 
     ~ClassificationResultView();
 

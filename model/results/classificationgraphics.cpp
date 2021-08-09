@@ -19,7 +19,7 @@ QString ClassificationGraphics::valuesToPyText() {
 
         //Convert to QString with precision of 2 digits
         for (const auto &value : row_data) {
-            auto valueStr = QString::number(value, 'G', 5);
+            auto valueStr = QString::number(value, 'f', 2);
             rowList << valueStr;
         }
         result << '[' + rowList.join(',') + ']';

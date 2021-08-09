@@ -1,10 +1,10 @@
 # confusion_matrix
 import argparse
 import ast
-import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib import font_manager
 from matplotlib.figure import figaspect
 from matplotlib.ticker import PercentFormatter
 
@@ -76,7 +76,6 @@ def plot_top_accuracies_graphics(accdata, identifiers, file):
     fig.tight_layout()
 
     plt.savefig(file, format="svg", bbox_inches="tight")
-    sys.exit()
 
 
 if __name__ == '__main__':
@@ -95,9 +94,10 @@ if __name__ == '__main__':
     file_name = args.outfile_name
 
     # specify the custom font to use
+    font_path = 'Inter-Regular.otf'
+    prop = font_manager.FontProperties(fname=font_path)
     plt.rcParams['font.family'] = 'sans-serif'
-    plt.rcParams['font.sans-serif'] = 'Inter'
+    plt.rcParams['font.sans-serif'] = prop.get_name()
     plt.rcParams['font.size'] = 12
 
     plot_top_accuracies_graphics(data, labels, file_name)
-    sys.exit()
