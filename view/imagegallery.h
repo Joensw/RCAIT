@@ -20,6 +20,7 @@ public:
      * Creates an empty ImageGallery. Use this constructor instead of ImageGallery(QWidget *parent, const QDir& imageDirectory).
      */
     explicit ImageGallery(QWidget *parent = nullptr);
+    ImageGallery(QWidget *parent, int row, int collums);
 
 
     ImageGallery(QWidget *parent, QStringList images);
@@ -68,15 +69,27 @@ public:
 
 
     void concurrentAddDir(const QStringList imageList);
+
+    /**
+     * @brief setQuadraticGrid sets fixed number of rows and collums for imagegallery;
+     * @param rows number of rows and collums
+     */
+    void setQuadraticGrid(int rows);
 private slots:
     void slot_isReady();
 
 signals:
     void sig_stopLoading();
 
+protected slots:
+    void resizeEvent(QResizeEvent *e);
 private:
     QThread* running;
     bool mReady = true;
+
+    // used for resizing images with fixed-sized lists
+    QList<QImage> mImageList;
+    int mRows = - 1;
 
 };
 
