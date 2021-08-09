@@ -59,6 +59,8 @@ set(Sources
         ../model/automation/imageloadcommand.cpp
         ../model/automation/trainingcommand.h
         ../model/automation/trainingcommand.cpp
+        ../model/automation/splitcommand.h
+        ../model/automation/splitcommand.cpp
         ../plugins/classificationplugins/classificationpluginmanager.h
         ../plugins/classificationplugins/classificationpluginmanager.cpp
         ../plugins/imageplugins/imageloaderpluginmanager.h

@@ -1,5 +1,6 @@
 #include "classificationcommand.h"
 #include "imageloadcommand.h"
+#include "splitcommand.h"
 #include "task.h"
 #include "trainingcommand.h"
 
@@ -30,6 +31,15 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
 
     if (commands.contains("imageLoad")) {
         ImageLoadCommand* command = new ImageLoadCommand(map, mDataManager->getProjectTempDir(), this);
+        mCommandList.append(command);
+    }
+
+    if (commands.contains("split")) {
+        bool ok;
+        int split = map.value("split").toInt(&ok);
+        if(!ok) split = DEFAULT_SPLIT;
+
+        SplitCommand* command = new SplitCommand(mDataManager->getProjectTempDir(),mDataManager->getProjectDataSetDir(), split, this);
         mCommandList.append(command);
     }
 
