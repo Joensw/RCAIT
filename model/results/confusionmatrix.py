@@ -1,12 +1,12 @@
 # confusion_matrix
 import argparse
 import ast
-import itertools
-import sys
 
+import itertools
 import matplotlib.pyplot as plt
-from matplotlib.ticker import PercentFormatter
 import numpy as np
+from matplotlib import font_manager
+from matplotlib.ticker import PercentFormatter
 
 # No display of plot
 plt.ioff()
@@ -39,7 +39,6 @@ def plot_confusion_matrix(cm, lbl, file, normalize, cmap=plt.cm.get_cmap('magma_
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
     plt.savefig(file, format="svg", bbox_inches="tight")
-    sys.exit()
 
 
 if __name__ == '__main__':
@@ -62,9 +61,10 @@ if __name__ == '__main__':
     np.set_printoptions(precision=1)
 
     # specify the custom font to use
+    font_path = 'Inter-Regular.otf'
+    prop = font_manager.FontProperties(fname=font_path)
     plt.rcParams['font.family'] = 'sans-serif'
-    plt.rcParams['font.sans-serif'] = 'Inter'
+    plt.rcParams['font.sans-serif'] = prop.get_name()
     plt.rcParams['font.size'] = 12
 
     plot_confusion_matrix(matrix, labels, file_name, normalized)
-    sys.exit()
