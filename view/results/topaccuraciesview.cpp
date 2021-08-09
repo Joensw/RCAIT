@@ -90,5 +90,5 @@ void TopAccuraciesView::changeEvent(QEvent *event) {
  */
 void TopAccuraciesView::retranslateUi() {
     if (m_pushButton_updateGraphics)
-        m_pushButton_updateGraphics->setToolTip("Update graphics...");
+        m_pushButton_updateGraphics->setToolTip(tr("Update graphics..."));
 }
