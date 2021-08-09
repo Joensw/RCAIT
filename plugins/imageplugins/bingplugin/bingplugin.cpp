@@ -32,10 +32,11 @@ QString BingPlugin::createCommandlineString( QString path,  int imageCount,  QSt
     for ( const auto& i : *label  )
     {
         labelConcat.append(" ");
-        labelConcat.append(i);
+        labelConcat.append('"' + i + '"');
     }
 
-    QString fullCommand = command +  " " + scriptPath + " " + downloadPath  + " " +imageCountStr +" " + labelConcat;
+    //set the -u flag to write directly to standardoutput without buffering
+    QString fullCommand = command +  " -u " + scriptPath + " " + downloadPath  + " " +imageCountStr +" " + labelConcat;
     return fullCommand;
 
 }
@@ -67,17 +68,32 @@ QWidget *BingPlugin::getInputWidget()
 
 void BingPlugin::slot_readOutPut()
 {
+    QRegularExpression lineBreak("[\r\n]");
+
+    QRegularExpression progressUpdate(QRegularExpression::escape("[%] Downloading Image"));
+    QRegularExpression errorUpdate(QRegularExpression::escape("[!] Issue getting"));
 
     while (m_process->canReadLine()) {
        bool ok;
        QString line = QString::fromLocal8Bit(m_process->readLine());
-       QString parsedProgress = line.remove(QRegularExpression("[\r\n]"));
-       int progress = parsedProgress.toInt(&ok,10);
-       qDebug() << parsedProgress;
-       if(ok){
-           emit m_receiver->sig_progress(progress);
-       } else {
+       QString parsedProgress = line.remove(lineBreak);
+
+       QRegularExpressionMatch updateMatch = progressUpdate.match(parsedProgress, 0, QRegularExpression::PartialPreferCompleteMatch);
+       if(updateMatch.hasMatch()){
+           qDebug() << parsedProgress;
            emit m_receiver->sig_statusUpdate(parsedProgress);
+       } else {
+           QRegularExpressionMatch errorMatch = errorUpdate.match(parsedProgress, 0, QRegularExpression::PartialPreferCompleteMatch);
+           if(errorMatch.hasMatch()){
+               qDebug() << parsedProgress;
+               emit m_receiver->sig_statusUpdate(parsedProgress);
+           }
+       }
+
+       int progress = parsedProgress.toInt(&ok,10);
+       if(ok){
+
+           emit m_receiver->sig_progress(progress);
        }
     }
 }

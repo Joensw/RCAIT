@@ -32,12 +32,12 @@ labelProgress = 100/numLabels
 
 
 for label in args_dict['labels']:
-    print("Requesting " + label + " images", flush= True)
+    print("[%] Downloading Images for label " + label, flush= True)
     downloader.download(label, limit=args_dict['imagecount'],  output_dir=args_dict['path'], adult_filter_off=True, force_replace=False, timeout=60, verbose=True)
     
     progress+= labelProgress
     print(int(progress), flush=True)
 
 
-print("Image downloads finished successfully", flush=True)
+print("[%] Downloading Images successful", flush=True)
 
