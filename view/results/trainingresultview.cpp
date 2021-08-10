@@ -5,6 +5,7 @@ TrainingResultView::TrainingResultView(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::TrainingResultView) {
     ui->setupUi(this);
+    ui->imageGallery_mostMisclassifiedImages->setQuadraticGrid(3);
 }
 
 void TrainingResultView::setAccuracyCurve(const QSharedPointer<QGraphicsItem> &accuracyCurveImage) {

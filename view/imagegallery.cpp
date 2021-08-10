@@ -4,6 +4,7 @@
 #include <QtConcurrent/QtConcurrent>
 #include <utility>
 #include <QScroller>
+#include <QResizeEvent>
 
 
 ImageGallery::ImageGallery(QWidget *parent) :
@@ -24,6 +25,8 @@ ImageGallery::ImageGallery(QWidget *parent) :
     QScroller::grabGesture(this, QScroller::TouchGesture);
 
 }
+
+
 
 
 ImageGallery::~ImageGallery() = default;
@@ -127,6 +130,9 @@ void ImageGallery::addImage(QImage image){
 
 
     QImage copy = image.copy(leftX, leftY, squareSize, squareSize);
+    if (mRows >= 1){
+        mImageList.append(copy);
+    }
     QListWidgetItem *item = new QListWidgetItem();
     QPixmap tempImage = QPixmap::fromImage(copy);
     item->setData(Qt::DecorationRole, tempImage.scaled(200, 200, Qt::KeepAspectRatio));
@@ -182,6 +188,28 @@ ImageGallery::ImageGallery(QWidget *parent, QStringList images) {
 
     QtConcurrent::run(static_cast<void(ImageGallery::*)(QList<QString>)>(&ImageGallery::addDir), this, images);
 
+}
+
+void ImageGallery::setQuadraticGrid(int rows) {
+    mRows = rows;
+}
+
+
+void ImageGallery::resizeEvent(QResizeEvent *e)
+{
+    if (mRows <= 0){
+        QWidget::resizeEvent(e);
+        return;
+    }
+    int squaresize = e->size().width() < e->size().height() ?   e->size().width() : e->size().height();
+    squaresize /= mRows;
+    QSize newSize = QSize(squaresize - 1 , squaresize - 1);
+    setIconSize(newSize);
+    for(int i = 0; i < this->count(); i++){
+     item(i)->setData(Qt::DecorationRole, QPixmap::fromImage(mImageList.at(i)).scaled(squaresize/3, squaresize/3, Qt::KeepAspectRatio));
+    }
+    setGridSize(newSize);
+    QWidget::resizeEvent(e);
 }
 
 
