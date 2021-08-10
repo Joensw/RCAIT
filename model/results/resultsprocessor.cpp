@@ -41,8 +41,6 @@ void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(AbstractGraphic
 }
 
 void ResultsProcessor::slot_comparison_loadAccuracyData(TopAccuraciesView *view, const QString &runNameToCompare) {
-    view->setSaved(true);
-
     auto fileName = QString("training_%1.json").arg(runNameToCompare);
     auto dirPath = ProjectManager::getInstance().getTrainingResultsDir();
     auto dir = QDir(dirPath);
