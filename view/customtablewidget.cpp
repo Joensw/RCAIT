@@ -20,9 +20,13 @@ QAbstractButton *CustomTableWidget::getCornerButton() {
 /*!\reimp
 */
 bool CustomTableWidget::eventFilter(QObject *o, QEvent *e) {
+    //Pass call to parent
     if (e->type() != QEvent::Paint) return QTableWidget::eventFilter(o, e);
+
+    //This is the right event, so try to get the button
     auto *button = qobject_cast<QAbstractButton *>(o);
     if (!button) return false;
+
     QStyleOptionHeader opt;
     opt.initFrom(button);
     QStyle::State state = QStyle::State_None;
@@ -34,6 +38,7 @@ bool CustomTableWidget::eventFilter(QObject *o, QEvent *e) {
         state |= QStyle::State_Sunken;
     opt.state = state;
     opt.rect = button->rect();
+
     //Painting icon and text, only difference to Qt's implementation
     opt.icon = button->icon();
     opt.iconAlignment = Qt::AlignHCenter | Qt::AlignVCenter;
