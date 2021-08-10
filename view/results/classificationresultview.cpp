@@ -22,7 +22,7 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
     v_header->setSectionResizeMode(QHeaderView::Fixed);
 
     table->setColumnCount(2);
-    table->setHorizontalHeaderLabels({"Accuracy", "Label"});
+    table->setHorizontalHeaderLabels({"Confidence", "Label"});
     table->setCornerButtonEnabled(false);
 }
 
