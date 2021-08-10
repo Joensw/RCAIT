@@ -41,8 +41,13 @@ bool CustomTableWidget::eventFilter(QObject *o, QEvent *e) {
 
     //Painting icon and text, only difference to Qt's implementation
     opt.icon = button->icon();
-    opt.iconAlignment = Qt::AlignHCenter | Qt::AlignVCenter;
     opt.text = button->text();
+    if (opt.text.isEmpty()){
+        //Center icon iff there is no text
+        opt.iconAlignment = Qt::AlignHCenter | Qt::AlignVCenter;
+    }
+
+    //Draw the button
     opt.position = QStyleOptionHeader::OnlyOneSection;
     QStylePainter painter(button);
     painter.drawControl(QStyle::CE_Header, opt);
