@@ -206,7 +206,7 @@ void ImageGallery::resizeEvent(QResizeEvent *e)
     QSize newSize = QSize(squaresize - 1 , squaresize - 1);
     setIconSize(newSize);
     for(int i = 0; i < this->count(); i++){
-     item(i)->setData(Qt::DecorationRole, QPixmap::fromImage(mImageList.at(i)).scaled(squaresize/3, squaresize/3, Qt::KeepAspectRatio));
+     item(i)->setData(Qt::DecorationRole, QPixmap::fromImage(mImageList.at(i)).scaled(squaresize, squaresize, Qt::KeepAspectRatio));
     }
     setGridSize(newSize);
     QWidget::resizeEvent(e);
