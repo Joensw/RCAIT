@@ -158,11 +158,20 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
         return false;
     }
 
-    //the next step is easier if we filters these outs prematurely
-    if (projectName.contains("/") || projectName.contains("\\") || projectName.contains(" ")) {
-        error->append(QObject::tr("Name may not contain the  \"/\" or \"\\\" \" \" characters") + "\n");
+
+    QRegularExpression noSpacesEx("^[ ]+$");
+    QRegularExpressionMatch match = noSpacesEx.match(projectName);
+    if (match.hasMatch()){
+        error->append(QObject::tr("Name should contain more than only space (\" \") characters"));
         return false;
     }
+
+    //the next step is easier if we filters these outs prematurely
+    if (projectName.contains("/") || projectName.contains("\\")) {
+        error->append(QObject::tr("Name may not contain the  \"/\" or \"\\\" characters") + "\n");
+        return false;
+    }
+
 
     //check if name is already taken
     QDir projectsDir(mProjectsDirectory);
