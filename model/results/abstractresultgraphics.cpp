@@ -37,21 +37,17 @@ void AbstractResultGraphics::generateGraphics(AbstractGraphicsView *receiver) {
     QThreadPool::globalInstance()->start(generateGraphicsTask);
 }
 
-QString AbstractResultGraphics::getIdentifier()
-{
+const QString &AbstractResultGraphics::getIdentifier() const {
     return m_identifier;
 }
 
-void AbstractResultGraphics::updateIdentifier(const QString &identifier) {
-    m_identifier = identifier;
-    m_fullName = m_identifier + '.' + m_extension;
+const QString &AbstractResultGraphics::getExtension() const {
+    return m_extension;
 }
 
-void AbstractResultGraphics::updateExtension(const QString &extension) {
-    m_extension = extension;
-    m_fullName = m_identifier + '.' + m_extension;
+const QString &AbstractResultGraphics::getFullName() const {
+    return m_fullName;
 }
-
 
 void AbstractResultGraphics::launch_externalGraphicsGenerator(const QString &command, const QStringList &args) {
     auto *process = new QProcess();

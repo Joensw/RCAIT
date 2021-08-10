@@ -29,14 +29,13 @@ const std::array<QRegularExpression, _COUNT2> RESULTTYPE2REGEX = {
 
 
 ResultsProcessor::ResultsProcessor() {
-    m_topAccuraciesGraphics = new TopAccuraciesGraphics();
+    m_topAccuraciesGraphics = new TopAccuraciesGraphics("comparison");
 }
 
 /**
  * Top Accuracies slots
  */
 void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(AbstractGraphicsView *receiver) {
-    m_topAccuraciesGraphics->updateIdentifier(Result::generateIdentifier());
     m_topAccuraciesGraphics->generateGraphics(receiver);
 }
 
