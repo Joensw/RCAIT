@@ -5,6 +5,9 @@
 #include <QMap>
 #include <QDir>
 #include <QDirIterator>
+#include <QRegularExpression>
+
+
 class ImageInspectionModel {
 
 
@@ -39,7 +42,9 @@ private:
     void insertLabeledImagePaths(QMap<QString, QStringList> *insertTarget, QString labeledImagePath);
     void removeImageWithIndex(QMap<QString, QStringList> *removeTarget, QMap<QString, QList<int>> removedImages);
     void mergeMap(QMap<QString, QStringList> *mergeIn, QMap<QString, QStringList> mergeFrom);
-    void moveFile(QString imagePath, QString label, QString trainOrValidate);
+    void moveFile(QString imagePath, QString label, QString trainOrValidate, int fileNumber);
+    int getFreeImageNumber(QStringList paths, QString label);
+    static bool compareNames(const QString& s1,const QString& s2);
 
 };
 
