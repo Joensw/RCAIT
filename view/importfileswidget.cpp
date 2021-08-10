@@ -94,7 +94,9 @@ void ImportFilesWidget::updateProgressBar(int progress)
 
 void ImportFilesWidget::updateStatusText(QString status)
 {
-    ui->label_pluginStatus->setText(status);
+    QFont labelFont = ui->label_pluginStatus->font();
+    QFontMetricsF labelFontMetrics(labelFont);
+    ui->label_pluginStatus->setText(labelFontMetrics.elidedText(status,Qt::TextElideMode::ElideRight, ui->label_pluginStatus->width()));
 }
 
 

@@ -5,12 +5,16 @@ TrainingResultView::TrainingResultView(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::TrainingResultView) {
     ui->setupUi(this);
+    ui->imageGallery_mostMisclassifiedImages->setQuadraticGrid(3);
 }
 
-void TrainingResultView::setAccuracyCurve(QGraphicsItem *accuracyCurveImage) {
+void TrainingResultView::setAccuracyCurve(const QSharedPointer<QGraphicsItem> &accuracyCurveImage) {
+    m_accuracyCurveImage = accuracyCurveImage;
+
     auto view = ui->graphicsView_accuracycurve;
     auto *scene = new QGraphicsScene();
-    scene->addItem(accuracyCurveImage);
+
+    scene->addItem(accuracyCurveImage.get());
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 
@@ -23,10 +27,12 @@ void TrainingResultView::setAccuracyCurve(QGraphicsItem *accuracyCurveImage) {
     view->setScene(scene);
 }
 
-void TrainingResultView::setConfusionMatrix(QGraphicsItem *matrixImage) {
+void TrainingResultView::setConfusionMatrix(const QSharedPointer<QGraphicsItem> &matrixImage) {
+    m_confusionMatrixImage = matrixImage;
+
     auto view = ui->graphicsView_confusionmatrix;
     auto *scene = new QGraphicsScene();
-    scene->addItem(matrixImage);
+    scene->addItem(matrixImage.get());
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 

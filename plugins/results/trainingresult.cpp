@@ -2,16 +2,32 @@
 
 #include <utility>
 
-TrainingResult::TrainingResult(AccuracyCurve *accCurve, ConfusionMatrix *confusionMatrix,
-                               QStringList mostMisclassifiedImages,
-                               double top1Accuracy, double top5Accuracy, const QStringList &additionalResults)
+TrainingResult::TrainingResult(const QMap<int, QPair<double, double>> &accuracyCurveData,
+                               const QStringList &classLabels, const QList<int> &confusionMatrixValues,
+                               QStringList mostMisclassifiedImages, double top1Accuracy, double top5Accuracy,
+                               const QStringList &additionalResults)
         : Result(additionalResults),
-          m_accCurve(accCurve),
-          m_confusionMatrix(confusionMatrix),
+          m_accuracyCurveData(accuracyCurveData),
+          m_classLabels(classLabels),
+          m_confusionMatrixValues(confusionMatrixValues),
           m_top1Accuracy(top1Accuracy),
           m_top5Accuracy(top5Accuracy) {
 
+    m_accCurve = new AccuracyCurve(this->getIdentifier(), accuracyCurveData);
+    m_confusionMatrix = new ConfusionMatrix(this->getIdentifier(), classLabels, confusionMatrixValues);
     m_mostMisclassifiedImages = std::move(mostMisclassifiedImages);
+}
+
+const QMap<int, QPair<double, double>> &TrainingResult::getAccuracyCurveData() const {
+    return m_accuracyCurveData;
+}
+
+const QStringList &TrainingResult::getClassLabels() const {
+    return m_classLabels;
+}
+
+const QList<int> &TrainingResult::getConfusionMatrixValues() const {
+    return m_confusionMatrixValues;
 }
 
 AccuracyCurve *TrainingResult::getAccuracyCurve() {

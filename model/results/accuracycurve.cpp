@@ -23,8 +23,8 @@ QString AccuracyCurve::valuesToPyText() {
         auto &[train, val] = m_data[key];
 
         //Convert to QString with precision of 2 digits
-        auto trainStr = QString::number(train, 'G', 5);
-        auto valStr = QString::number(val, 'G', 5);
+        auto trainStr = QString::number(train, 'f', 2);
+        auto valStr = QString::number(val, 'f', 2);
 
         //List for each row, which shall be joined in a single QString
         auto rowList = QStringList();
@@ -53,5 +53,6 @@ QMap<int, QPair<double, double> > AccuracyCurve::getData()
 
 void AccuracyCurve::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
-    receiver->setAccuracyCurve(graphics);
+    auto ptr = QSharedPointer<QGraphicsItem>(graphics);
+    receiver->setAccuracyCurve(ptr);
 }

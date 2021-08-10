@@ -17,7 +17,7 @@ QString TopAccuraciesGraphics::valuesToPyText() {
         auto rowList = QStringList();
         for (const auto &value : valuesList) {
             //Convert to QString with precision of 2 digits
-            auto valStr = QString::number(value, 'G', 5);
+            auto valStr = QString::number(value, 'f', 2);
             rowList << valStr;
 
         }
@@ -80,5 +80,6 @@ void TopAccuraciesGraphics::generateGraphicsInternal(const QString &fullFilePath
 
 void TopAccuraciesGraphics::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
-    receiver->setTopAccuraciesGraphics(graphics);
+    auto ptr = QSharedPointer<QGraphicsItem>(graphics);
+    receiver->setTopAccuraciesGraphics(ptr);
 }

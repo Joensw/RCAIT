@@ -24,8 +24,8 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
 
 void TopAccuraciesView::addTopAccuraciesEntry(const QString &identifier, double top1, double top5) {
     auto table = ui->tableWidget_topAccuracies;
-    auto top1Str = QString::number(top1, 'G', 5);
-    auto top5Str = QString::number(top5, 'G', 5);
+    auto top1Str = QString::number(top1, 'f', 2);
+    auto top5Str = QString::number(top5, 'f', 2);
 
     int row = table->addTableRow(identifier, {top1Str, top5Str});
 
@@ -43,10 +43,12 @@ TopAccuraciesView::~TopAccuraciesView() {
     delete ui;
 }
 
-void TopAccuraciesView::setTopAccuraciesGraphics(QGraphicsItem *topAccuraciesImage) {
+void TopAccuraciesView::setTopAccuraciesGraphics(const QSharedPointer<QGraphicsItem> &topAccuraciesImage) {
+    m_topAccuraciesImage = topAccuraciesImage;
+
     auto view = ui->graphicsView_topAccuracies;
     auto *scene = new QGraphicsScene();
-    scene->addItem(topAccuraciesImage);
+    scene->addItem(topAccuraciesImage.get());
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 
@@ -88,5 +90,5 @@ void TopAccuraciesView::changeEvent(QEvent *event) {
  */
 void TopAccuraciesView::retranslateUi() {
     if (m_pushButton_updateGraphics)
-        m_pushButton_updateGraphics->setToolTip("Update graphics...");
+        m_pushButton_updateGraphics->setToolTip(tr("Update graphics..."));
 }

@@ -1,10 +1,10 @@
 import argparse
 import ast
-import sys
 
+import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
-import matplotlib.pyplot as plt
+from matplotlib import font_manager
 from matplotlib.gridspec import GridSpec
 
 # No display of plot
@@ -67,7 +67,7 @@ def plot_classification_graphics(data, paths, category_names, file):
         # Add one legend for all bars
         fig.legend(handles, labels, loc='upper left', ncol=len(category_names), fontsize='30')
         plt.savefig(file, format="svg", bbox_inches="tight")
-        sys.exit()
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generates a comparison graphic of the classified images and stores '
@@ -88,9 +88,10 @@ if __name__ == '__main__':
     file_name = args.outfile_name
 
     # specify the custom font to use
+    font_path = 'Inter-Regular.otf'
+    prop = font_manager.FontProperties(fname=font_path)
     plt.rcParams['font.family'] = 'sans-serif'
-    plt.rcParams['font.sans-serif'] = 'Inter'
+    plt.rcParams['font.sans-serif'] = prop.get_name()
     plt.rcParams['font.size'] = 12
 
     plot_classification_graphics(values, image_paths, classes, file_name)
-    sys.exit()

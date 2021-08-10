@@ -56,6 +56,7 @@ void GenericComparisonWidget::deleteResultTab(const QString &tabName) {
     auto tab = m_mapTabsByName.take(tabName);
     auto index = m_tabWidget->indexOf(tab);
     m_tabWidget->removeTab(index);
+    delete tab;
 }
 
 void GenericComparisonWidget::slot_comparisonMenu_triggered(QAction *action) {

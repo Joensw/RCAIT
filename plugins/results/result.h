@@ -12,8 +12,10 @@ public:
 
     [[nodiscard]] QString getIdentifier() const;
 
-    static QString generateIdentifier();
+    static QString generateTimestamp();
+
+    static QString generateExtendedTimestamp();
 };
 
 
-#endif //RCAIT_RESULT_H
+#endif //RESULT_H

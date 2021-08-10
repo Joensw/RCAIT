@@ -18,7 +18,7 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
     //Stretch table headers to fill the space available
     QHeaderView *h_header = table->horizontalHeader();
     QHeaderView *v_header = table->verticalHeader();
-    h_header->setSectionResizeMode(QHeaderView::Stretch);
+    h_header->setStretchLastSection(true);
     v_header->setSectionResizeMode(QHeaderView::Fixed);
 
     table->setColumnCount(2);
@@ -26,17 +26,20 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
     table->setCornerButtonEnabled(false);
 }
 
-void ClassificationResultView::setClassificationData(const QMap<QString, QStringList> &data){
+void ClassificationResultView::setClassificationData(const QMap<int, QStringList> &data) {
     auto table = ui->tableWidget_classificationresult;
-    for (const auto &[key,valuesList] : MapAdapt(data)){
-        table->addTableRow(key,valuesList);
+    for (const auto &[key, valuesList] : MapAdapt(data)) {
+        table->addTableRow(QString::number(key), valuesList);
     }
 }
 
-void ClassificationResultView::setClassificationGraphics(QGraphicsItem *classificationGraphicsImage) {
+void ClassificationResultView::setClassificationGraphics(
+        const QSharedPointer<QGraphicsItem> &classificationGraphicsImage) {
+    m_classificationGraphics = classificationGraphicsImage;
+
     auto view = ui->graphicsView_classificationresult;
     auto *scene = new QGraphicsScene();
-    scene->addItem(classificationGraphicsImage);
+    scene->addItem(classificationGraphicsImage.get());
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 

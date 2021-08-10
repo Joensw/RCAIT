@@ -3,12 +3,17 @@
 #include "result.h"
 
 Result::Result(QStringList additionalResults) : m_additionalResults(std::move(additionalResults)){
-    m_identifier = generateIdentifier();
+    m_identifier = generateTimestamp();
 }
 
-QString Result::generateIdentifier() {
+QString Result::generateTimestamp() {
     auto date = QDateTime::currentDateTime();
     return date.toString("dd_MM_yy#hh-mm");
+}
+
+QString Result::generateExtendedTimestamp() {
+    auto date = QDateTime::currentDateTime();
+    return date.toString("dd_MM_yy#hh-mm-ss");
 }
 
 QStringList Result::getAdditionalResults() const {

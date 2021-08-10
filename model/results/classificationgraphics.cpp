@@ -19,7 +19,7 @@ QString ClassificationGraphics::valuesToPyText() {
 
         //Convert to QString with precision of 2 digits
         for (const auto &value : row_data) {
-            auto valueStr = QString::number(value, 'G', 5);
+            auto valueStr = QString::number(value, 'f', 2);
             rowList << valueStr;
         }
         result << '[' + rowList.join(',') + ']';
@@ -65,5 +65,6 @@ void ClassificationGraphics::generateGraphicsInternal(const QString &fullFilePat
 
 void ClassificationGraphics::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
-    receiver->setClassificationGraphics(graphics);
+    auto ptr = QSharedPointer<QGraphicsItem>(graphics);
+    receiver->setClassificationGraphics(ptr);
 }

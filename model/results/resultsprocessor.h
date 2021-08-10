@@ -40,6 +40,8 @@ private:
     TopAccuraciesGraphics *m_topAccuraciesGraphics;
 
     static void loadGraphicsInView(AbstractGraphicsView *receiver, const QString &resultsFolder, const QString &baseDir);
+
+    [[nodiscard]] QJsonObject readJSON(const QString &filepath) const;
 };
 
 #endif // RESULTSPROCESSOR_H

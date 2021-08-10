@@ -5,13 +5,13 @@
 
 class AbstractGraphicsView {
 public:
-    virtual void setAccuracyCurve(QGraphicsItem *accuracyCurveImage) {};
+    virtual void setAccuracyCurve(const QSharedPointer<QGraphicsItem> &accuracyCurveImage) {};
 
-    virtual void setConfusionMatrix(QGraphicsItem *matrixImage) {};
+    virtual void setConfusionMatrix(const QSharedPointer<QGraphicsItem> &matrixImage) {};
 
-    virtual void setTopAccuraciesGraphics(QGraphicsItem *topAccuraciesImage) {};
+    virtual void setTopAccuraciesGraphics(const QSharedPointer<QGraphicsItem> &topAccuraciesImage) {};
 
-    virtual void setClassificationGraphics(QGraphicsItem *classificationGraphicsImage) {};
+    virtual void setClassificationGraphics(const QSharedPointer<QGraphicsItem> &classificationGraphicsImage) {};
 
     [[nodiscard]] bool isSaved() const { return m_isSaved; };
 
