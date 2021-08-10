@@ -17,14 +17,22 @@ void ImageInspectionModel::mergeDataSets() {
     mergeMap(&m_validationDataset,m_validationNewData);
     //move files since we can do it here for free before cleaning up the data structures
     foreach(QString label, m_trainNewData.keys()){
+        QStringList dataPaths = QStringList() << m_DataPath  + "/" + TRAIN_FOLDER + "/" + label << m_DataPath  + "/" + VALIDATION_FOLDER + "/" + label;
+        int fileNumber = getFreeImageNumber(dataPaths,label);
+
         for(QString& imagePath : m_trainNewData.value(label)){
-            moveFile(imagePath, label, TRAIN_FOLDER);
+            moveFile(imagePath, label, TRAIN_FOLDER, fileNumber);
+            fileNumber++;
         }
     }
 
     foreach(QString label, m_validationNewData.keys()){
+        QStringList dataPaths = QStringList() << m_DataPath  + "/" + TRAIN_FOLDER + "/" + label << m_DataPath  + "/" + VALIDATION_FOLDER + "/" + label;
+        int fileNumber = getFreeImageNumber(dataPaths,label);
+
         for(QString& imagePath : m_validationNewData.value(label)){
-            moveFile(imagePath, label, VALIDATION_FOLDER);
+            moveFile(imagePath, label, VALIDATION_FOLDER, fileNumber);
+            fileNumber++;
         }
     }
 
@@ -150,16 +158,17 @@ const QMap<QString, QStringList> &ImageInspectionModel::getTrainNewData() const 
     return m_trainNewData;
 }
 
-void ImageInspectionModel::moveFile(QString imagePath, QString label, QString trainOrValidate) {
+void ImageInspectionModel::moveFile(QString imagePath, QString label, QString trainOrValidate, int fileNumber) {
     QFile file(imagePath);
     QFileInfo fileInfo(file);
+    QString suffix = fileInfo.completeSuffix();
     QDir folder(fileInfo.absoluteDir());
     QString filename(fileInfo.fileName());
     QString newPath = m_DataPath  + "/" + trainOrValidate + "/" + label;
     if(!QDir(newPath).exists()) {
         QDir().mkdir(newPath);
     }
-    QString newFileName = newPath + "/" + filename;
+    QString newFileName = newPath + "/" + label + "_" + QString::number(fileNumber) + "." + suffix;
     QFile destFile(newFileName);
     if(destFile.exists()){
         destFile.remove();
@@ -172,6 +181,58 @@ void ImageInspectionModel::moveFile(QString imagePath, QString label, QString tr
         folder.removeRecursively();
     }
 
+}
+
+int ImageInspectionModel::getFreeImageNumber(QStringList paths, QString label)
+{
+    int res = 1;
+    QStringList fileList;
+    for(QString path : paths){
+        QDir dir(path);
+        dir.setNameFilters(QStringList()<<label + "_*");
+        fileList.append(dir.entryList());
+    }
+
+    if(fileList.empty()){
+        return res;
+    }
+
+    std::sort(fileList.begin(),fileList.end(),compareNames);
+    QRegularExpression re("\\d+");
+    QRegularExpressionMatch match = re.match(fileList.last());
+    if (match.hasMatch()) {
+        bool ok;
+        QString matched = match.captured(0);
+        int lastNumber = matched.toInt(&ok,10);
+        if(ok){
+            res = lastNumber + 1;
+        }
+    }
+
+    return res;
+}
+
+bool ImageInspectionModel::compareNames(const QString &s1, const QString &s2)
+{
+
+    QRegularExpression re("\\d+");
+    QRegularExpressionMatch match1 = re.match(s1);
+    QRegularExpressionMatch match2 = re.match(s2);
+    int matched1Number = 0;
+    int matched2Number = 0;
+    if (match1.hasMatch()) {
+        bool ok;
+        QString matched1 = match1.captured(0);
+        matched1Number = matched1.toInt(&ok,10);
+        }
+
+    if (match2.hasMatch()) {
+        bool ok;
+        QString matched2 = match2.captured(0);
+        matched2Number = matched2.toInt(&ok,10);
+        }
+
+    return matched1Number <= matched2Number;
 }
 
 

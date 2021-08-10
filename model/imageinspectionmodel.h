@@ -5,17 +5,11 @@
 #include <QMap>
 #include <QDir>
 #include <QDirIterator>
+#include <QRegularExpression>
+
+
 class ImageInspectionModel {
 
-
-public:
-    const QMap<QString, QStringList> &getValidationDataset() const;
-
-    const QMap<QString, QStringList> &getTrainDataset() const;
-
-    const QMap<QString, QStringList> &getValidationNewData() const;
-
-    const QMap<QString, QStringList> &getTrainNewData() const;
 
 private:
     QMap<QString, QStringList> m_trainDataset;
@@ -33,13 +27,20 @@ public:
     void loadNewData(QString path, int split);
     void mergeDataSets();
     void removeImage(int selectionIndex, QMap<QString, QList<int>> removedImages);
+    const QMap<QString, QStringList> &getValidationDataset() const;
+    const QMap<QString, QStringList> &getTrainDataset() const;
+    const QMap<QString, QStringList> &getValidationNewData() const;
+    const QMap<QString, QStringList> &getTrainNewData() const;
+
 
 private:
     QStringList readLabeledFolder(QDir labeledFolder);
     void insertLabeledImagePaths(QMap<QString, QStringList> *insertTarget, QString labeledImagePath);
     void removeImageWithIndex(QMap<QString, QStringList> *removeTarget, QMap<QString, QList<int>> removedImages);
     void mergeMap(QMap<QString, QStringList> *mergeIn, QMap<QString, QStringList> mergeFrom);
-    void moveFile(QString imagePath, QString label, QString trainOrValidate);
+    void moveFile(QString imagePath, QString label, QString trainOrValidate, int fileNumber);
+    int getFreeImageNumber(QStringList paths, QString label);
+    static bool compareNames(const QString& s1,const QString& s2);
 
 };
 

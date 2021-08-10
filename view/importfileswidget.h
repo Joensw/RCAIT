@@ -7,6 +7,7 @@
 
 #include <QWidget>
 #include <QValidator>
+#include <QFontMetricsF>
 
 namespace Ui {
 class ImportFilesWidget;

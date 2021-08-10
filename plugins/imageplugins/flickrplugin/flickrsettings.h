@@ -16,10 +16,28 @@ class FlickrSettings : public QWidget
 public:
     explicit FlickrSettings(QWidget *parent = nullptr);
     ~FlickrSettings();
+    /**
+     * @brief saveSettings saves the settings
+     */
     void saveSettings();
+    /**
+     * @brief loadSettings loads the settings from the persistent storage
+     */
     void loadSettings();
+    /**
+     * @brief getaAPIKey gets the API Key
+     * @return the API Key
+     */
     QString getaAPIKey();
+    /**
+     * @brief getAPISecret get the API secret
+     * @return the API secret
+     */
     QString getAPISecret();
+    /**
+     * @brief getPythonPath gets the path of the python executable
+     * @return the python executable path
+     */
     QString getPythonPath();
 
 private:

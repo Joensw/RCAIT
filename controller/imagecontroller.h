@@ -35,12 +35,8 @@ public slots:
     void slot_handelImageLoadProgress(int progress);
     void slot_openProject();
     void slot_mergeDatasets();
-
     void slot_updateImageLoadStatusText(QString status);
-
     void slot_imagePluginDirectoryChanged(const QString& newDirectory);
-
-    //Todo connect
 };
 
 
