@@ -16,21 +16,28 @@ class BingSettings : public QWidget
 public:
     explicit BingSettings(QWidget *parent = nullptr);
     ~BingSettings();
+    /**
+     * @brief saveSettings safes the settings
+     */
     void saveSettings();
+    /**
+     * @brief loadSettings loads the settings
+     */
     void loadSettings();
-    QString getaAPIKey();
-    QString getAPISecret();
+    /**
+     * @brief getPythonPath gets the Path of the python executable
+     * @return the python path
+     */
     QString getPythonPath();
 
 
-    QSettings m_settings = {"Bing Plugin",QSettings::IniFormat};
+
 
 
 private:
     Ui::BingSettings *ui;
-    QString m_apiKey = "API Key";
-    QString m_apiSecret = "API Secret";
     QString m_pythonPath = "Python Path";
+    QSettings m_settings = {"Bing Plugin",QSettings::IniFormat};
 };
 
 #endif // BINGSETTINGS_H

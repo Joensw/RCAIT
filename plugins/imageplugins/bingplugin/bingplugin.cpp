@@ -25,8 +25,6 @@ QString BingPlugin::createCommandlineString( QString path,  int imageCount,  QSt
 
     QString scriptPath = pythonfile.absoluteFilePath();
     QString command = m_bingSettings.getPythonPath();
-    QString apiKey = QString("-k ").append(m_bingSettings.getaAPIKey());
-    QString apiSecret = QString("-s ").append(m_bingSettings.getAPISecret());
     QString labelConcat = "-l";
 
     for ( const auto& i : *label  )

@@ -11,15 +11,6 @@
 class ImageInspectionModel {
 
 
-public:
-    const QMap<QString, QStringList> &getValidationDataset() const;
-
-    const QMap<QString, QStringList> &getTrainDataset() const;
-
-    const QMap<QString, QStringList> &getValidationNewData() const;
-
-    const QMap<QString, QStringList> &getTrainNewData() const;
-
 private:
     QMap<QString, QStringList> m_trainDataset;
     QMap<QString, QStringList> m_validationNewData;
@@ -36,6 +27,11 @@ public:
     void loadNewData(QString path, int split);
     void mergeDataSets();
     void removeImage(int selectionIndex, QMap<QString, QList<int>> removedImages);
+    const QMap<QString, QStringList> &getValidationDataset() const;
+    const QMap<QString, QStringList> &getTrainDataset() const;
+    const QMap<QString, QStringList> &getValidationNewData() const;
+    const QMap<QString, QStringList> &getTrainNewData() const;
+
 
 private:
     QStringList readLabeledFolder(QDir labeledFolder);

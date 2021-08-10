@@ -74,29 +74,46 @@ class BingPlugin : public QObject, ImageLoaderPlugin
 
 private:
    BingSettings m_bingSettings;
-   /**
-    * @brief createCommandlineString
-    * @param path
-    * @param imageCount
-    * @param label
-    * @return
-    */
+   QWidget *pluginSettings;
+   QProcess* m_process;
+   ProgressablePlugin* m_receiver;
    QString createCommandlineString( QString path,  int imageCount,  QStringList* label);
 
-
-
 public:
-    //ToDo: add receiver ProgressablePlugin to loadImages parameters
+   /**
+     * @brief loadImages loads images through the Bing API
+     * @param path to save the images to
+     * @param receiver takes status updates
+     * @param imageCount count of images to download
+     * @param label list of labels to download images of
+     * @return
+     */
     bool loadImages(QString path, ProgressablePlugin* receiver ,int imageCount,  QStringList label) override;
+    /**
+     * @brief getConfigurationWidget returns a widget in which the Plugin can be configured
+     * @return the configuration widget
+     */
     QWidget* getConfigurationWidget() override;
+    /**
+     * @brief saveConfiguration saves the configuration in the widget to the settings object
+     */
     void saveConfiguration() override;
-    //getInputWidget() wird nicht implementiert. Aus Ordner laden regelt View/Controller
+    /**
+     * @brief init initializes the plugin
+     */
     void init() override;
+    /**
+     * @brief getName returns the name of the plugin
+     * @return the plugin name
+     */
     QString getName() override;
+    /**
+     * @brief getInputWidget is not implemented
+     * @return null
+     */
     QWidget*  getInputWidget() override;
-    QWidget *pluginSettings;
-    QProcess* m_process;
-    ProgressablePlugin* m_receiver;
+
+
 
 private slots:
     void slot_readOutPut();
