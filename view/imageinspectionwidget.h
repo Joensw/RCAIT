@@ -1,35 +1,35 @@
-#ifndef IMAGESECTION_H
-#define IMAGESECTION_H
+#ifndef IMAGEINSPECTIONWIDGET_H
+#define IMAGEINSPECTIONWIDGET_H
 
 #include "imagegallery.h"
 #include "imagegallerytree.h"
 #include <QWidget>
 
 namespace Ui {
-class imagesection;
+class ImageInspectionWidget;
 }
 /**
- * @brief The ImageSection class is UI class which can display pictures from directory structures
+ * @brief The ImageInspectionWidget class is UI class which can display pictures from directory structures
  */
-class ImageSection : public QWidget
+class ImageInspectionWidget : public QWidget
 {
     Q_OBJECT
 
 public:
     /**
-     * @brief ImageSection creates a new ImageSection
+     * @brief ImageInspectionWidget creates a new ImageInspectionWidget
      * @param parent optional parent argument
      */
-    explicit ImageSection(QWidget *parent = nullptr);
-    ~ImageSection();
+    explicit ImageInspectionWidget(QWidget *parent = nullptr);
+    ~ImageInspectionWidget();
 
     /**
-     * @brief ImageSection creates a new ImageSection
+     * @brief ImageInspectionWidget creates a new ImageInspectionWidget
      * @param parent optional parent argument
      * @param inputPath absolute path to images
      * @param trainingPath absolute path to images
      */
-    ImageSection(QWidget *parent, QStringList inputPath, QStringList trainingPath);
+    ImageInspectionWidget(QWidget *parent, QStringList inputPath, QStringList trainingPath);
     void setCurrentDataSetTrainImages(QMap<QString, QStringList> labelToPathsMap);
     void setCurrentDataSetValidationImages(QMap<QString, QStringList> labelToPathsMap);
 
@@ -56,10 +56,10 @@ private slots:
     void on_pushButton_removeImages_clicked();
 
 private:
-    Ui::imagesection *ui;
+    Ui::ImageInspectionWidget *ui;
 
 
 
 };
 
-#endif // IMAGESECTION_H
+#endif // IMAGEINSPECTIONWIDGET_H

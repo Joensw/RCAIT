@@ -17,7 +17,7 @@
 #include "inputimageswidget.h"
 #include "startwidget.h"
 #include "importfileswidget.h"
-#include "imagesection.h"
+#include "imageinspectionwidget.h"
 #include "customtabwidget.h"
 
 QT_BEGIN_NAMESPACE
@@ -49,7 +49,7 @@ public:
     InputImagesWidget *getInputImagesWidget();
     ResultsWidget *getResultsWidget();
     AutomationWidget *getAutomationWidget();
-    ImageSection* getImageSectionWidget();
+    ImageInspectionWidget* getImageInspectionWidget();
     CustomTabWidget* getTabWidget();
 
 signals:

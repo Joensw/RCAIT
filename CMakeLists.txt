@@ -20,7 +20,7 @@ set(REQUIRED_LIBS_QUALIFIED Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Svg Qt6::SvgWid
 set(ALL_PROJECT_DIRS
         ${CMAKE_CURRENT_SOURCE_DIR}
         model model/automation model/pluginusage model/results
-        view view/imageinspection view/results
+        view view/results
         controller
         Resources
         plugins plugins/imageplugins plugins/classificationplugins plugins/results
