@@ -3,8 +3,6 @@
 //Definitions
 const QString selectedIconPath = ":/Resources/UISymbols/ListItem_Selected.svg";
 const QString unselectedIconPath = ":/Resources/UISymbols/ListItem_Unselected.svg";
-const QIcon selectedIcon = QIcon(selectedIconPath);
-const QIcon unselectedIcon = QIcon(unselectedIconPath);
 
 CustomListWidget::CustomListWidget(QWidget *parent) : QListWidget(parent) {
     connect(this, &CustomListWidget::currentItemChanged, this, &CustomListWidget::updateSelectionIcon);
@@ -19,7 +17,7 @@ CustomListWidget::CustomListWidget(QWidget *parent) : QListWidget(parent) {
 void CustomListWidget::addItem(const QString &label) {
     auto *item = new QListWidgetItem(this);
     item->setText(label);
-    item->setIcon(unselectedIcon);
+    item->setIcon(QIcon(unselectedIconPath));
     QListWidget::addItem(item);
 }
 
@@ -31,9 +29,9 @@ void CustomListWidget::addItems(const QStringList &labels) {
 
 void CustomListWidget::updateSelectionIcon(QListWidgetItem *current, QListWidgetItem *previous) {
     if (previous){
-        previous->setIcon(unselectedIcon);
+        previous->setIcon(QIcon(unselectedIconPath));
     }
     if (current) {
-        current->setIcon(selectedIcon);
+        current->setIcon(QIcon(selectedIconPath));
     }
 }
