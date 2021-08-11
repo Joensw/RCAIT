@@ -1,5 +1,5 @@
-#ifndef RCAIT_IMAGESEARCHTHREAD_H
-#define RCAIT_IMAGESEARCHTHREAD_H
+#ifndef IMAGESEARCHTHREAD_H
+#define IMAGESEARCHTHREAD_H
 
 #include <QThread>
 #include <pluginusage/progressableplugin.h>
@@ -34,4 +34,4 @@ private:
 };
 
 
-#endif //RCAIT_IMAGESEARCHTHREAD_H
+#endif //IMAGESEARCHTHREAD_H

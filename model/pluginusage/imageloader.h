@@ -1,5 +1,5 @@
-#ifndef RCAIT_IMAGELOADER_H
-#define RCAIT_IMAGELOADER_H
+#ifndef IMAGELOADER_H
+#define IMAGELOADER_H
 
 
 #include <QStringList>
@@ -31,4 +31,4 @@ signals:
 };
 
 
-#endif //RCAIT_IMAGELOADER_H
+#endif //IMAGELOADER_H

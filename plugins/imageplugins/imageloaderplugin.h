@@ -1,5 +1,5 @@
-#ifndef RCAIT_IMAGELOADERPLUGIN_H
-#define RCAIT_IMAGELOADERPLUGIN_H
+#ifndef IMAGELOADERPLUGIN_H
+#define IMAGELOADERPLUGIN_H
 
 #include <QString>
 #include <pluginusage/progressableplugin.h>
@@ -19,4 +19,4 @@ QT_BEGIN_NAMESPACE
 Q_DECLARE_INTERFACE(ImageLoaderPlugin, ImageLoaderPlugin_iid)
 QT_END_NAMESPACE
 
-#endif //RCAIT_IMAGELOADERPLUGIN_H
+#endif //IMAGELOADERPLUGIN_H

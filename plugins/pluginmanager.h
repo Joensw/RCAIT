@@ -1,5 +1,5 @@
-#ifndef RCAIT_PLUGINMANAGER_H
-#define RCAIT_PLUGINMANAGER_H
+#ifndef PLUGINMANAGER_H
+#define PLUGINMANAGER_H
 
 #include <QTextStream>
 #include <QWidget>
@@ -16,4 +16,4 @@ public:
 };
 
 
-#endif //RCAIT_PLUGINMANAGER_H
+#endif //PLUGINMANAGER_H

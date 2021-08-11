@@ -1,5 +1,5 @@
-#ifndef RCAIT_IMAGECONTROLLER_H
-#define RCAIT_IMAGECONTROLLER_H
+#ifndef IMAGECONTROLLER_H
+#define IMAGECONTROLLER_H
 
 
 #include <Qt>
@@ -40,4 +40,4 @@ public slots:
 };
 
 
-#endif //RCAIT_IMAGECONTROLLER_H
+#endif //IMAGECONTROLLER_H

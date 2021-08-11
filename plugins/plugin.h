@@ -1,5 +1,5 @@
-#ifndef RCAIT_PLUGIN_H
-#define RCAIT_PLUGIN_H
+#ifndef PLUGIN_H
+#define PLUGIN_H
 
 #include <QTextStream>
 #include <QWidget>
@@ -15,4 +15,4 @@ public:
 };
 
 
-#endif //RCAIT_PLUGIN_H
+#endif //PLUGIN_H

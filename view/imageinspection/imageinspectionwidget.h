@@ -2,8 +2,8 @@
 // TODO: This is a dummy file, replace it with your code when you have it
 //
 
-#ifndef RCAIT_IMAGEINSPECTIONWIDGET_H
-#define RCAIT_IMAGEINSPECTIONWIDGET_H
+#ifndef IMAGEINSPECTIONWIDGET_H
+#define IMAGEINSPECTIONWIDGET_H
 
 
 class ImageInspectionWidget {
@@ -11,4 +11,4 @@ class ImageInspectionWidget {
 };
 
 
-#endif //RCAIT_IMAGEINSPECTIONWIDGET_H
+#endif //IMAGEINSPECTIONWIDGET_H

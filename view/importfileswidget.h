@@ -1,9 +1,5 @@
-//
-// Created by Paul on 02.07.2021.
-//
-
-#ifndef RCAIT_IMPORTFILESWIDGET_H
-#define RCAIT_IMPORTFILESWIDGET_H
+#ifndef IMPORTFILESWIDGET_H
+#define IMPORTFILESWIDGET_H
 
 #include <QWidget>
 #include <QValidator>
@@ -95,4 +91,4 @@ signals:
     void sig_loadInputImages(QString pluginName, int count, QStringList label,int split);
 };
 
-#endif // RCAIT_IMPORTFILESWIDGET_H
+#endif // IMPORTFILESWIDGET_H

@@ -1,5 +1,5 @@
-#ifndef RCAIT_IMAGEINSPECTIONMODEL_H
-#define RCAIT_IMAGEINSPECTIONMODEL_H
+#ifndef IMAGEINSPECTIONMODEL_H
+#define IMAGEINSPECTIONMODEL_H
 #include <QString>
 #include <QStringList>
 #include <QMap>
@@ -45,4 +45,4 @@ private:
 };
 
 
-#endif //RCAIT_IMAGEINSPECTIONMODEL_H
+#endif //IMAGEINSPECTIONMODEL_H
