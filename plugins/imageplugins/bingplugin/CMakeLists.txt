@@ -16,7 +16,6 @@ find_package(Qt6 COMPONENTS Core)
 find_package(Qt6 COMPONENTS Gui)
 find_package(Qt6 COMPONENTS Widgets)
 
-enable_testing()
 #add_subdirectory(googletest-master)
 #add_subdirectory(test)
 
