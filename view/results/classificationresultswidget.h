@@ -32,7 +32,7 @@ signals:
     void
     sig_comparison_loadClassificationResultGraphics(ClassificationResultView *view, const QString &runNameToCompare);
 
-    void sig_normal_loadClassificationData(ClassificationResultView *view, ClassificationResult *result);
+    void sig_normal_loadClassificationResultData(ClassificationResultView *view, ClassificationResult *result);
 
     void sig_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver, ClassificationResult *result);
 };

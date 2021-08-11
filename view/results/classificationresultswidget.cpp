@@ -18,7 +18,7 @@ ClassificationResultView *ClassificationResultsWidget::createResultTab(const QSt
 
 void ClassificationResultsWidget::addClassificationResult(ClassificationResult *result) {
     auto tab = createResultTab(result->getIdentifier());
-    emit sig_normal_loadClassificationData(tab, result);
+    emit sig_normal_loadClassificationResultData(tab, result);
     emit sig_normal_generateClassificationResultGraphics(tab, result);
 }
 
