@@ -11,10 +11,10 @@ SettingsController::SettingsController(QObject *parent, DataManager *dataManager
 
 void SettingsController::slot_openSettings()
 {
+    mSettingsView->show();
     mSettingsView->setCurrentProjectDirectory(mDataManager->getProjectsDir());
     mSettingsView->setCurrentClassificationPluginDirectory(mDataManager->getClassificationPluginDir());
     mSettingsView->setCurrentImageLoaderPluginDirectory(mDataManager->getImageLoaderPluginDir());
-    mSettingsView->show();
 }
 
 void SettingsController:: slot_applySettings(int index)
