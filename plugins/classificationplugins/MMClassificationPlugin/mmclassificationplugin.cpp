@@ -7,6 +7,7 @@ MMClassificationPlugin::MMClassificationPlugin()
     dataAugmentationInput = new MMClassificiationDataAugmentationInput();
     inputOptions = new MMClassificationInputOptions();
     initBaseModels();
+    m_mmClassificationConfigFileBuilder.setPathToMMClassification(m_mmClassificationSettings.getMMClassificationPath());
     m_mmclassificiationdataaugmentationinput = qobject_cast<MMClassificiationDataAugmentationInput *>(dataAugmentationInput);
     m_mmClassificationInput = qobject_cast<MMClassificationInputOptions *>(inputOptions);
 }
@@ -96,14 +97,71 @@ QStringList MMClassificationPlugin::getAssociatedModels()
     return modelNames;
 }
 
-bool MMClassificationPlugin::createNewModel(QString modelName, QString baseModel)
+bool MMClassificationPlugin::createNewModel(QString modelName, QString baseModelName)
 {
+    m_mmClassificationConfigFileBuilder.setPathToMMClassification(m_mmClassificationSettings.getMMClassificationPath()); //added must be done before every action???
 
+    const QString modelConfigIdentifier = "_model";
+    const QString datasetConfigIdentifier = "_dataset";
+    const QString scheduleConfigIdentifier = "_schedule";
+    const QString mainConfigIdentifier = "_main";
+    bool validBaseModel = false;
+    QString baseModelPath;
+    QString checkpointFileName;
+    QList<BaseModel> baseModels = *m_baseModels;
+    foreach (BaseModel baseModel, baseModels) {
+        int compareResult = QString::compare(baseModel.getName(), baseModelName);
+        if (compareResult == 0) {
+            validBaseModel = true;
+            baseModelPath = baseModel.getRelConfigFilePath();
+            checkpointFileName = baseModel.getCheckpointFileName();
+            break;
+        }
+    }
+    if (validBaseModel) {
+        QString modelConfigPath = m_mmClassificationConfigFileBuilder.createModelConfigFile(modelName + modelConfigIdentifier, baseModelPath);
+        QString datasetConfigPath = m_mmClassificationConfigFileBuilder.createDatasetConfigFile(modelName + datasetConfigIdentifier);
+        QString scheduleConfigPath = m_mmClassificationConfigFileBuilder.createScheduleConfigFile(modelName + scheduleConfigIdentifier);
+        // default runtime is sufficient in most cases
+        QString defaultRuntimePath = m_mmClassificationConfigFileBuilder.getDefaultRuntimeConfigFilePath();
+        QString checkpointFilePath = m_mmClassificationSettings.getMMClassificationPath() + QDir::fromNativeSeparators(QDir::separator())
+                + m_subfolder_checkpoints + QDir::fromNativeSeparators(QDir::separator()) + checkpointFileName;
+
+
+        QString absoluteCheckpointFilePath =  QFileInfo(checkpointFilePath).absoluteFilePath();
+
+        QString mainConfigPath = m_mmClassificationConfigFileBuilder.createMainConfigFile(modelName + mainConfigIdentifier, modelConfigPath, datasetConfigPath,
+                                                                                          scheduleConfigPath, defaultRuntimePath, absoluteCheckpointFilePath);
+        Model newModel(modelName, baseModelName, mainConfigPath, modelConfigPath, datasetConfigPath, scheduleConfigPath, defaultRuntimePath);
+        saveModel(newModel);
+        return true;
+    }
+    return false;
 }
 
 bool MMClassificationPlugin::removeModel(QString modelName)
 {
-
+    Model existingModel = loadModel(modelName);
+    if (existingModel.isValid()) {
+        QString mainConfigPath = existingModel.getMainConfigPath();
+        QFile::remove(mainConfigPath);
+        QString modelConfigPath = existingModel.getModelConfigPath();
+        QFile::remove(modelConfigPath);
+        QString datasetConfigPath = existingModel.getDatasetConfigPath();
+        QFile::remove(datasetConfigPath);
+        QString scheduleConfigPath = existingModel.getScheduleConfigPath();
+        QFile::remove(scheduleConfigPath);
+        QString runtimeConfigPath = existingModel.getRuntimeConfigPath();
+        if (!runtimeConfigPath.endsWith(m_mmClassificationConfigFileBuilder.getDefaultRuntimeConfigFilePath())) {
+            QFile::remove(runtimeConfigPath);
+        }
+        m_models.beginGroup(modelName);
+        m_models.remove(""); //removes the group and all it keys
+        m_models.endGroup();
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool MMClassificationPlugin::getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount)
