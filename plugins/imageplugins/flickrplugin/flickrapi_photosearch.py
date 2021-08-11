@@ -3,9 +3,10 @@ from argparse import ArgumentParser
 import shutil
 import requests
 from pathlib import Path
-#C:/Python3/python.exe c:/RC/FlickrPlugin/plugin/flickrapi_test.py -p C:\RC\FlickrPlugin -c 10 -l house car -k 3391c68aa039902833f0c7bb1e0755ae -s 6acffd9f01ca35c8
-#C:/Python3/python.exe c:/RC/plugins/imageplugins/flickrplugin/flickrapi_photosearch.py -p C:\RC\FlickrPlugin -c 10 -l ["house","car"] -k 3391c68aa039902833f0c7bb1e0755ae -s 6acffd9f01ca35c8
+
 #C:/Python3/python.exe c:/RC/plugins/imageplugins/flickrplugin/flickrapi_photosearch.py -p C:\RC\FlickrPlugin -c 10 -l "house" "car" -k 3391c68aa039902833f0c7bb1e0755ae -s 6acffd9f01ca35c8
+#Licenses: https://www.flickr.com/creativecommons/
+#License Keys: https://www.flickr.com/services/api/flickr.photos.licenses.getInfo.html
 #ToDo: Mit Parametern der Suchanfrage rumspielen, damit Resultate besser werden
 #ToDo: Count übersetzen in page + per_page optional arguments (max per_page = 100)
 url_start = 'https://live.staticflickr.com/'
@@ -45,7 +46,7 @@ for label in args_dict['labels']:
     jointResponses = []
 
     while(count>0):
-        response = flickr.photos.search(text=label, per_page=args_dict['imagecount'], page=currPage)
+        response = flickr.photos.search(text=label, per_page=args_dict['imagecount'], page=currPage, license="4,5,6,7,9,10")
         jointResponses.extend(response['photos']['photo'][:min(count,500)])
         count-=min(count,500)
         currPage+=1
