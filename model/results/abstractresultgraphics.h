@@ -10,9 +10,9 @@
 class AbstractResultGraphics {
 
 private:
-    QString m_identifier;
-    QString m_extension;
-    QString m_fullName;
+    const QString m_identifier;
+    const QString m_extension;
+    const QString m_fullName;
 
     virtual void generateGraphicsInternal(const QString &fullFilePath) = 0;
 
@@ -23,11 +23,11 @@ public:
 
     void generateGraphics(AbstractGraphicsView *receiver);
 
-    QString getIdentifier();
+    [[nodiscard]] const QString &getIdentifier() const;
 
-    void updateIdentifier(const QString &identifier);
+    [[nodiscard]] const QString &getFullName() const;
 
-    void updateExtension(const QString &extension);
+    [[nodiscard]] const QString &getExtension() const;
 
 protected:
     static void launch_externalGraphicsGenerator(const QString &command, const QStringList &args);

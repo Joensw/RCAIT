@@ -29,20 +29,17 @@ const std::array<QRegularExpression, _COUNT2> RESULTTYPE2REGEX = {
 
 
 ResultsProcessor::ResultsProcessor() {
-    m_topAccuraciesGraphics = new TopAccuraciesGraphics();
+    m_topAccuraciesGraphics = new TopAccuraciesGraphics("comparison");
 }
 
 /**
  * Top Accuracies slots
  */
 void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(AbstractGraphicsView *receiver) {
-    m_topAccuraciesGraphics->updateIdentifier(Result::generateIdentifier());
     m_topAccuraciesGraphics->generateGraphics(receiver);
 }
 
 void ResultsProcessor::slot_comparison_loadAccuracyData(TopAccuraciesView *view, const QString &runNameToCompare) {
-    view->setSaved(true);
-
     auto fileName = QString("training_%1.json").arg(runNameToCompare);
     auto dirPath = ProjectManager::getInstance().getTrainingResultsDir();
     auto dir = QDir(dirPath);
@@ -81,12 +78,12 @@ void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationRe
         Q_ASSERT(accList.size() == labels.size());
         auto max = std::max_element(accList.begin(), accList.end());
 
-        //Calculate argmax(map), choose label with the highest accuracy
+        //Calculate argmax(map), choose label with the highest confidence
         auto index_max = std::distance(accList.begin(), max);
-        auto max_accuracy = QString::number(*max, 'f', 2);
+        auto max_confidence = QString::number(*max, 'f', 2);
         auto label = labels[index_max];
 
-        tableMap[rowNumber++] = {max_accuracy, label};
+        tableMap[rowNumber++] = {max_confidence, label};
     }
     view->setClassificationData(tableMap);
 }
@@ -115,7 +112,7 @@ void ResultsProcessor::slot_comparison_loadClassificationResultData(Classificati
     for (const auto &value : json_classification_data) {
         auto obj = value.toObject();
         auto imagePath = obj["image_path"].toString();
-        auto json_list = obj["accuracy"].toArray();
+        auto json_list = obj["confidence"].toArray();
 
         QList<double> list;
         for (const auto &item : json_list) {

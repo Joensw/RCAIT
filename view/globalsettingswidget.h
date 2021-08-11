@@ -107,7 +107,7 @@ signals:
 
 protected:
     void changeEvent(QEvent *event);
-   // void resizeEvent(QResizeEvent *event);
+
 private slots:
     //slots correspond with the identically named button in the UI
     void on_pushButton_project_clicked();

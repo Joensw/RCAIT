@@ -15,12 +15,12 @@ plt.ioff()
 def plot_acc_curve(accdata, file):
     np.set_printoptions(precision=2)
     np.set_printoptions(suppress=True)
-    # accdata is a (epochs) x 3 matrix
+    # accdata is a (iterations) x 3 matrix
     print('Accuracy Curve data')
     print(accdata)
 
     # Raw data
-    epochs = accdata[:, 0]  # 0th column
+    iterations = accdata[:, 0]  # 0th column
     train = accdata[:, 1]  # 1st column
     validation = accdata[:, 2]  # 2nd column
 
@@ -28,19 +28,19 @@ def plot_acc_curve(accdata, file):
     ax = plt.figure().gca()
 
     # Default ist k=3. If there are not enough points, choose a smaller k >= 0
-    k = max(0, min(len(epochs) - 1, 3))
-    model_train = make_interp_spline(epochs, train, k)
-    model_val = make_interp_spline(epochs, validation, k)
-    epochs_x = np.linspace(1, len(epochs), 500)
-    train_y = model_train(epochs_x)
-    validation_y = model_val(epochs_x)
+    k = max(0, min(len(iterations) - 1, 3))
+    model_train = make_interp_spline(iterations, train, k)
+    model_val = make_interp_spline(iterations, validation, k)
+    iterations_x = np.linspace(1, len(iterations), 500)
+    train_y = model_train(iterations_x)
+    validation_y = model_val(iterations_x)
 
     # Chart line configuration
-    plt.plot(epochs_x, train_y, label="Training", color='royalblue', linewidth=3)
-    plt.plot(epochs_x, validation_y, label="Validation", color='orange', linewidth=3)
+    plt.plot(iterations_x, train_y, label="Training", color='royalblue', linewidth=3)
+    plt.plot(iterations_x, validation_y, label="Validation", color='orange', linewidth=3)
 
     # Formatting
-    ax.set_xlim([1, len(epochs)])
+    ax.set_xlim([1, len(iterations)])
     ax.set_ylim([0, 100])
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     ax.yaxis.set_major_formatter(PercentFormatter(100))
@@ -51,8 +51,8 @@ def plot_acc_curve(accdata, file):
     ax.set_axisbelow(True)
 
     # Labels
-    plt.legend(loc="upper right")
-    plt.xlabel("Epoch")
+    plt.legend(loc="lower right")
+    plt.xlabel("Iteration")
     plt.ylabel("Accuracy")
     plt.tight_layout()
 

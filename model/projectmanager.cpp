@@ -6,18 +6,12 @@
 #include <QSettings>
 #include <QRegularExpression>
 
-
-//names of the subfolders in the project directory
-//These can be changed, however projects based on the old naming scheme become unreadable.
-//Make sure to choose names that are not disallowed in windows ar under linux!
-//TODO: could optimize this by reading everything from the project file
 const QString resultsDirectoryName = "results";
 const QString datasetDirectoryName = "data";
 const QString tempDirectoryName = "temp";
 const QString trainingsResultsDirectoryName = "training_results";
 const QString classificationResultsDirectoryName = "classification_results";
 
-//keys of the <String, String> pair in the project file
 const QString projectNameIdentifier = "projectName";
 const QString projectDatasetDirectoryIdentifier = "datasetDirName";
 const QString projectTempDirectoryIdentifier = "tempDirName";
@@ -102,7 +96,6 @@ void ProjectManager::loadProject(QString projectName) {
     mProjectTrainingResultsDir =  mProjectResultsDir + "/" + projectfile.value(projectTrainingsResultsDirectoryIdentifer).toString();
     mProjectClassificationResultsDir = mProjectResultsDir + "/" + projectfile.value(projectClassificationResultsDirectoryIdentifier).toString();
 }
-
 QString ProjectManager::getProjectPath() {
     return mProjectPath;
 }
@@ -133,9 +126,8 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
     if (mProjectPath.isEmpty()) {
         qDebug() << "should not have been called yet, no project has been opened";
     }
-    QString trainingResults = mProjectPath + "/" + resultsDirectoryName + "/" + trainingsResultsDirectoryName;
     if (!mProjectPath.isEmpty()){
-        QDir trainingResultsDir(trainingResults);
+        QDir trainingResultsDir(getTrainingResultsDir());
 
         QStringList filters;
         filters << "*.txt";
@@ -162,22 +154,24 @@ void ProjectManager::setProjectsDirectory(QString newDirectory)
 bool ProjectManager::verifyName(QString projectName, QString *error)
 {
     if (projectName.length() == 0){
-        error->append(QObject::tr("Name must contain at least 1 character") +"\n");
+        error->append(QObject::tr("Name must contain at least 1 character") + "\n");
+        return false;
+    }
+
+
+    QRegularExpression noSpacesEx("^[ ]+$");
+    QRegularExpressionMatch match = noSpacesEx.match(projectName);
+    if (match.hasMatch()){
+        error->append(QObject::tr("Name should contain more than only space (\" \") characters"));
         return false;
     }
 
     //the next step is easier if we filters these outs prematurely
     if (projectName.contains("/") || projectName.contains("\\")) {
-        error->append(QObject::tr("Name may not contain the  \"/\" or \"\\\" \" \" characters") + "\n");
+        error->append(QObject::tr("Name may not contain the  \"/\" or \"\\\" characters") + "\n");
         return false;
     }
 
-    //check if folders with this name can simply not be created
-    QDir tempDir(mProjectsDirectory + "/" + projectName );
-    if (!tempDir.mkpath(mProjectsDirectory + "/" + projectName )){
-        return false;
-    }
-    tempDir.removeRecursively();
 
     //check if name is already taken
     QDir projectsDir(mProjectsDirectory);
@@ -188,6 +182,18 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
         return false;
 
     }
+
+    //check if folders with this name can simply not be created
+    QDir tempDir(mProjectsDirectory + "/" + projectName);
+    tempDir.setFilter(QDir::NoDotAndDotDot);
+    if (!tempDir.mkpath(mProjectsDirectory + "/" + projectName )){
+        error->append(QObject::tr("The Operating system cannot support this name"));
+        return false;
+    }
+    tempDir.removeRecursively();
+
+
+
     return true;
 }
 

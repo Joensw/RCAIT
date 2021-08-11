@@ -66,7 +66,8 @@ def plot_classification_graphics(data, paths, category_names, file):
 
         # Add one legend for all bars
         fig.legend(handles, labels, loc='upper left', ncol=len(category_names), fontsize='30')
-        plt.savefig(file, format="svg", bbox_inches="tight")
+    # Save result
+    plt.savefig(file, format="svg", bbox_inches="tight")
 
 
 if __name__ == '__main__':
