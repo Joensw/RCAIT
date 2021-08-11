@@ -13,12 +13,13 @@ class ClassificationPlugin : public Plugin
 {
 public:
     virtual ~ClassificationPlugin() = default;
-    virtual QStringList getAssociatedModels(QString dataSet) = 0;
+    virtual QStringList getAssociatedModels() = 0;
     virtual bool createNewModel(QString modelName, QString baseModel) = 0;
-    virtual bool getAugmentationPreview(QString inputPath) = 0;
-    virtual bool removeModel(QString modelName) = 0;
-    virtual TrainingResult* train(QString modelName,QString dataSetPath, ProgressablePlugin* receiver) = 0;
-    virtual ClassificationResult* classify(QString inputImagePath, QString modelName,ProgressablePlugin* receiver) = 0;
+    virtual bool getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount) = 0;
+    virtual QWidget* getDataAugmentationInputWidget() = 0;
+    virtual bool removeModel(QString modelName)= 0;
+    virtual TrainingResult* train(QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver)= 0;
+    virtual ClassificationResult* classify(QString inputImageDirPath, QString trainDatasetPath, QString workingDirPath, QString modelName, ProgressablePlugin *receiver)= 0;
 
 };
 

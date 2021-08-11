@@ -17,21 +17,24 @@ class MMClassificationPlugin : public QObject, ClassificationPlugin
 
 public:
     MMClassificationPlugin();
-     ~MMClassificationPlugin();
+    ~MMClassificationPlugin();
+
     QString getName();
-    QWidget *getConfigurationWidget();
+    QWidget* getConfigurationWidget();
     void saveConfiguration();
-    QWidget *getInputWidget();
-    QStringList getAssociatedModels(QString dataSet);
+    QWidget* getInputWidget();
+
+    QStringList getAssociatedModels();
     bool createNewModel(QString modelName, QString baseModel);
-    bool getAugmentationPreview(QString inputPath);
     bool removeModel(QString modelName);
-    TrainingResult *train(QString modelName,QString dataSetPath, ProgressablePlugin* receiver);
-    ClassificationResult *classify(QString inputImagePath, QString modelName,ProgressablePlugin* receiver);
+    bool getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount) = 0;
+    TrainingResult* train(QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver);
+    ClassificationResult* classify(QString inputImageDirPath,QString trainDatasetPath, QString workingDirPath, QString modelName, ProgressablePlugin *receiver);
+
+    QWidget* getDataAugmentationInputWidget();
 
 private slots:
     void slot_readOutPut();
     void slot_pluginFinished();
-
 };
 #endif // MMCLASSIFICATIONPLUGIN_H

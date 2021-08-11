@@ -38,8 +38,8 @@ bool ClassificationPluginManager::createNewModel(QString modelName, QString plug
 }
 
 bool ClassificationPluginManager::getAugmentationPreview(QString pluginName, QString inputPath)
-{
-    return m_plugins.value(pluginName)->getAugmentationPreview(inputPath);
+{   // must be changed to new signature
+    //return m_plugins.value(pluginName)->getAugmentationPreview(inputPath);
 }
 
 bool ClassificationPluginManager::removeModel(QString modelName, QString pluginName)
@@ -49,12 +49,14 @@ bool ClassificationPluginManager::removeModel(QString modelName, QString pluginN
 
 TrainingResult *ClassificationPluginManager::train(QString pluginName, QString modelName, QString dataSetPath, ProgressablePlugin *receiver)
 {
-    return m_plugins.value(pluginName)->train(modelName, dataSetPath, receiver);
+    // must be changed to new signature
+    //return m_plugins.value(pluginName)->train(modelName, dataSetPath, receiver);
 }
 
 ClassificationResult *ClassificationPluginManager::classify(QString pluginName, QString inputImagePath, QString modelName, ProgressablePlugin *receiver)
 {
-    return m_plugins.value(pluginName)->classify(inputImagePath, modelName, receiver);
+    // must be changed to new signature
+    //return m_plugins.value(pluginName)->classify(inputImagePath, modelName, receiver);
 }
 
 QStringList ClassificationPluginManager::getClassificationPluginBases(QString plugin)

@@ -16,7 +16,7 @@ QString MMClassificationPlugin::getName()
 
 }
 
-QWidget *MMClassificationPlugin::getConfigurationWidget()
+QWidget* MMClassificationPlugin::getConfigurationWidget()
 {
 
 }
@@ -26,12 +26,12 @@ void MMClassificationPlugin::saveConfiguration()
 
 }
 
-QWidget *MMClassificationPlugin::getInputWidget()
+QWidget* MMClassificationPlugin::getInputWidget()
 {
 
 }
 
-QStringList MMClassificationPlugin::getAssociatedModels(QString dataSet)
+QStringList MMClassificationPlugin::getAssociatedModels()
 {
 
 }
@@ -41,25 +41,27 @@ bool MMClassificationPlugin::createNewModel(QString modelName, QString baseModel
 
 }
 
-bool MMClassificationPlugin::getAugmentationPreview(QString inputPath)
-{
-
-}
-
 bool MMClassificationPlugin::removeModel(QString modelName)
 {
 
 }
 
-TrainingResult *MMClassificationPlugin::train(QString modelName, QString dataSetPath, ProgressablePlugin *receiver)
+bool MMClassificationPlugin::getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount)
 {
 
 }
 
-ClassificationResult *MMClassificationPlugin::classify(QString inputImagePath, QString modelName, ProgressablePlugin *receiver)
+TrainingResult* MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver)
 {
 
 }
+
+ClassificationResult* MMClassificationPlugin::classify(QString inputImageDirPath,QString trainDatasetPath, QString workingDirPath, QString modelName, ProgressablePlugin *receiver)
+{
+
+}
+
+QWidget* MMClassificationPlugin::getDataAugmentationInputWidget()
 
 void MMClassificationPlugin::slot_readOutPut()
 {
