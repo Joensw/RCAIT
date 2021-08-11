@@ -18,7 +18,7 @@ find_package(Qt6 COMPONENTS Svg)
 find_package(Qt6 COMPONENTS SvgWidgets)
 
 add_library(mmclassificationplugin MODULE
-    mmclassificationplugin.cpp mmclassificationplugin.h mmclassificationsettings.cpp mmclassificationsettings.h mmclassificiationdataaugmentationinput.cpp mmclassificiationdataaugmentationinput.h mmclassificationinputoptions.cpp mmclassificationinputoptions.h basemodel.cpp basemodel.h model.cpp model.h mmclassificationconfigfilebuilder.cpp mmclassificationconfigfilebuilder.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressableplugin.cpp ../../../model/pluginusage/progressable.h ../../../model/pluginusage/progressable.cpp ../../results/trainingresult.h ../../results/trainingresult.cpp ../../results/classificationresult.h ../../results/classificationresult.cpp
+    mmclassificationplugin.cpp mmclassificationplugin.h mmclassificationsettings.cpp mmclassificationsettings.h mmclassificiationdataaugmentationinput.cpp mmclassificiationdataaugmentationinput.h mmclassificationinputoptions.cpp mmclassificationinputoptions.h basemodel.cpp basemodel.h model.cpp model.h mmclassificationconfigfilebuilder.cpp mmclassificationconfigfilebuilder.h mmclassificationjsonresultreader.cpp mmclassificationjsonresultreader.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressableplugin.cpp ../../../model/pluginusage/progressable.h ../../../model/pluginusage/progressable.cpp ../../results/trainingresult.h ../../results/trainingresult.cpp ../../results/classificationresult.h ../../results/classificationresult.cpp
 )
 
 set_target_properties(mmclassificationplugin PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../plugins)

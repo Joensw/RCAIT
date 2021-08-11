@@ -4,6 +4,13 @@
 #include <QObject>
 #include <QtPlugin>
 #include <QGraphicsSvgItem>
+
+#include <QSettings>
+#include <QLineEdit>
+#include <QProcess>
+#include <QProcessEnvironment>
+#include <QFileSystemModel>
+
 #include "trainingresult.h"
 #include "classificationresult.h"
 #include "progressableplugin.h"
@@ -14,6 +21,7 @@
 #include "basemodel.h"
 #include "model.h"
 #include "mmclassificationconfigfilebuilder.h"
+#include "mmclassificationjsonresultreader.h"
 
 class MMClassificationPlugin : public QObject, ClassificationPlugin
 {
@@ -32,24 +40,31 @@ private:
     const QString m_runtimeConfigPathKey = "runtimePath";
 
     const QString m_subfolder_checkpoints = "checkpoints";
+    const int m_numberOfMissClassifiedImages = 9;
+    const QString m_annotationFileName = "val.txt";
 
     QList<BaseModel>* m_baseModels;
     QSettings m_models = {"MMClassificationModels", QSettings::IniFormat};
-
 
     MMClassificationSettings m_mmClassificationSettings;
     MMClassificationConfigFileBuilder m_mmClassificationConfigFileBuilder;
     MMClassificiationDataAugmentationInput *m_mmclassificiationdataaugmentationinput;
     MMClassificationInputOptions *m_mmClassificationInput;
+    MMClassificationJsonResultReader m_jsonReader;
 
     QWidget *pluginSettings;
     QWidget *dataAugmentationInput;
     QWidget *inputOptions;
 
+    QProcess* m_process;
+    ProgressablePlugin* m_receiver;
+
     void initBaseModels();
     void deleteBaseModels();
     void saveModel(Model model);
     Model loadModel(QString name);
+
+    QStringList getLabels(QString datasetPath);
 public:
     MMClassificationPlugin();
     ~MMClassificationPlugin();

@@ -68,6 +68,20 @@ Model MMClassificationPlugin::loadModel(QString name)
     return Model(QString(), QString(), QString(), QString(), QString(), QString(), QString());
 }
 
+QStringList MMClassificationPlugin::getLabels(QString datasetPath)
+{
+    QString rootDir = datasetPath;
+    QDirIterator iter( rootDir, QDir::Dirs | QDir::NoDotAndDotDot);
+    QStringList labels;
+    while(iter.hasNext() )
+    {
+        QString path = iter.next();
+        QDir dir(path);
+        labels.append(dir.dirName());
+    }
+    return labels;
+}
+
 QString MMClassificationPlugin::getName()
 {
     return m_name;
@@ -166,17 +180,371 @@ bool MMClassificationPlugin::removeModel(QString modelName)
 
 bool MMClassificationPlugin::getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount)
 {
+    QDir targetDir(targetPath);
+    if (!targetDir.exists() || amount == 0 || inputPath.isEmpty() || targetPath.isEmpty()) {
+        return false;
+    }
+    QString targetAbsolutePath = targetDir.absolutePath();
 
+    // delete old Preview Pictures in the directory
+    targetDir.setNameFilters(QStringList() << "*.jpg" << "*.png");
+    targetDir.setFilter(QDir::Files);
+    foreach(QString dirFile, targetDir.entryList())
+    {
+        targetDir.remove(dirFile);
+    }
+
+    // find all subdirectories to distribute evenly between the different classes
+    QString rootDir = inputPath;
+    QDirIterator iter( rootDir, QDir::Dirs | QDir::NoDotAndDotDot);
+    QStringList subdirectories;
+    while(iter.hasNext() )
+    {
+        QString path = iter.next();
+        subdirectories.append(path);
+    }
+    int totalPictures = 0;
+    QMap<QString, int> numberPerSubdirectories = {};
+    QVector<QString> validExtensions = {".jpg", ".JPG", ".png", ".PNG"};
+    int count = 0;
+    for (int i = 0; i < subdirectories.size(); i++) {
+        QDir dir = subdirectories.at(i);
+        QFileInfoList list = dir.entryInfoList(QDir::AllEntries | QDir::NoDotAndDotDot);
+        count = 0;
+        foreach(QFileInfo file, list) {
+            if(file.isFile() && file.exists()) {
+                for (int j = 0; j < validExtensions.size(); j++) {
+                    if (file.absoluteFilePath().endsWith(validExtensions.at(j))) {
+                        count++;
+                    }
+                }
+            }
+        }
+        numberPerSubdirectories.insert(dir.path(), count);
+        totalPictures += count;
+    }
+    int remainingTotalAmount = amount;
+    QMap<QString, int> distribution = {};
+    QMap<QString, int> remainingAmountPerSubdirectiorie = {};
+    if (amount >= totalPictures) {
+        // If there are not enough picture, it will get all pictures
+        // The same is the case if we only have so many pictures in total
+        distribution = numberPerSubdirectories;
+    } else {
+        foreach (QString key, numberPerSubdirectories.keys()) {
+            remainingAmountPerSubdirectiorie.insert(key, numberPerSubdirectories.value(key));
+        }
+        foreach (QString key, numberPerSubdirectories.keys()) {
+            distribution.insert(key, 0);
+        }
+        while (remainingTotalAmount > 0) {
+            foreach(QString key, remainingAmountPerSubdirectiorie.keys()) {
+                amount = distribution.value(key);
+                if (amount < numberPerSubdirectories.value(key)) {
+                    amount++;
+                    distribution.insert(key, amount);
+                    remainingTotalAmount--;
+                } else {
+                    remainingAmountPerSubdirectiorie.remove(key);
+                }
+                if (remainingTotalAmount == 0) {
+                    break;
+                }
+            }
+        }
+    }
+    // get the config from the model
+    QString datasetConfigPath = loadModel(modelName).getDatasetConfigPath();
+
+    // Change config file according to input
+
+    m_mmclassificiationdataaugmentationinput->readDataAugmentationInput();
+
+    QString albuTransformType = m_mmclassificiationdataaugmentationinput->getAlbuTransformType();
+    int randomResizedCropSize = m_mmclassificiationdataaugmentationinput->getRandomResizedCropSize();
+    double randomFlipProb = m_mmclassificiationdataaugmentationinput->getRandomFlipProb();
+    QString randomFlipDirection = m_mmclassificiationdataaugmentationinput->getRandomFlipDirection();
+    bool randomErasing = m_mmclassificiationdataaugmentationinput->getRandomErasing();
+    int resize = m_mmclassificiationdataaugmentationinput->getResize();
+    int centerCropSize = m_mmclassificiationdataaugmentationinput->getCenterCropSize();
+    m_mmClassificationConfigFileBuilder.changeDataAugmentationOptions(datasetConfigPath, albuTransformType, randomResizedCropSize, randomFlipProb,
+                                                                      randomFlipDirection, randomErasing, resize, centerCropSize);
+
+    //QString command = m_mmClassificationSettings.getPythonPath();
+    QString command = "python";
+
+    QFileInfo pythonfile = QFileInfo("mmclassification_preview_pipeline.py");
+    QString scriptPath = pythonfile.absoluteFilePath();
+
+    QStringList fullCommands = {};
+    QString sourceDirectoryPath;
+    int partAmount;
+
+    foreach (QString key, distribution.keys()) {
+        sourceDirectoryPath = key;
+        partAmount = distribution.value(key);
+
+        fullCommands.append(command + " " + scriptPath + " " + datasetConfigPath + " " + sourceDirectoryPath + " " + targetAbsolutePath + " " + QString::number(partAmount));
+    }
+
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+
+    QProcessEnvironment envUpdate;
+
+    QString pathValue = env.value("PATH");
+
+    if (!m_mmClassificationSettings.getMMClsPath().isEmpty()) {
+        //  if (!pathValue.isEmpty()) {
+        //    pathValue += ";";
+        // }
+        pathValue.prepend(m_mmClassificationSettings.getMMClsPath() + ":");
+    }
+    if (!m_mmClassificationSettings.getPythonPath().isEmpty()) {
+        // if (!pathValue.isEmpty()) {
+        //     pathValue += ";";
+        //}
+        pathValue.prepend(m_mmClassificationSettings.getPythonPath() + ":");
+    }
+
+    envUpdate.insert("PATH", pathValue);
+
+    foreach (QString fullCommand, fullCommands) {
+        QProcess* process;
+        process = new QProcess();
+
+        process->setProcessEnvironment(envUpdate);
+
+        process->startCommand(fullCommand);
+
+        process->waitForFinished();
+        QString strTemp=QString::fromLocal8Bit(process->readAllStandardOutput());
+
+    }
+    return true;
 }
 
-TrainingResult* MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver)
+TrainingResult* MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectoryPath, ProgressablePlugin *receiver)
 {
+    const QString workDirConsoleArgument = "--work-dir";
+    m_receiver = receiver;
 
+    // get labels to calculate number of classes
+    QString modelConfigPath = loadModel(modelName).getModelConfigPath();
+
+    QStringList labels = getLabels(trainDatasetPath);
+
+    if (labels.size() == 0) {
+        qWarning() << "no labels found!!!";
+        // Test data must be replaced
+        QStringList labels = {"cats", "dogs"};
+        QList<int> values = {29, 33, 22, 11};
+        //ConfusionMatrix * confusionMatrix = new ConfusionMatrix("matrix1", labels, values);
+        QMap<int, QPair<double, double>> *accuracyCurveData = new QMap<int, QPair<double, double>>();
+        QStringList * mostMisclassifiedImages = new QStringList();
+        QStringList *additionalResults = new QStringList();
+        double top1Accuracy = 0.91;
+        double top5Accuracy = 0.98;
+        TrainingResult * trainingResult = new TrainingResult(*accuracyCurveData, labels, values, *mostMisclassifiedImages, top1Accuracy, top5Accuracy, *additionalResults);
+        return trainingResult;
+    }
+
+    m_mmClassificationConfigFileBuilder.changeModelNumberOfClasses(modelConfigPath, labels.size());
+
+    // get the config from the model
+    QString datasetConfigPath = loadModel(modelName).getDatasetConfigPath();
+
+   // not needed during an automation process, mode must set or signal/slot mechanics
+    m_mmclassificiationdataaugmentationinput->readDataAugmentationInput();
+
+    // Change config file according to input
+    QString albuTransformType = m_mmclassificiationdataaugmentationinput->getAlbuTransformType();
+    int randomResizedCropSize = m_mmclassificiationdataaugmentationinput->getRandomResizedCropSize();
+    double randomFlipProb = m_mmclassificiationdataaugmentationinput->getRandomFlipProb();
+    QString randomFlipDirection = m_mmclassificiationdataaugmentationinput->getRandomFlipDirection();
+    bool randomErasing = m_mmclassificiationdataaugmentationinput->getRandomErasing();
+    int resize = m_mmclassificiationdataaugmentationinput->getResize();
+    int centerCropSize = m_mmclassificiationdataaugmentationinput->getCenterCropSize();
+    m_mmClassificationConfigFileBuilder.changeDataAugmentationOptions(datasetConfigPath, albuTransformType, randomResizedCropSize, randomFlipProb,
+                                                                      randomFlipDirection, randomErasing, resize, centerCropSize);
+    m_mmClassificationConfigFileBuilder.changeDatasetPaths(datasetConfigPath, trainDatasetPath, validationDatasetPath, validationDatasetPath);
+
+    QString scheduleConfigPath = loadModel(modelName).getScheduleConfigPath();
+
+    m_mmClassificationInput->readInput();
+    int max_iters = m_mmClassificationInput->getMaxIters();
+
+    m_mmClassificationConfigFileBuilder.changeScheduleOptions(scheduleConfigPath, max_iters);
+
+    // copy and change runtime config if checkpoint creation and max_iters does not fit
+    // to do
+
+    QString mainConfigPath = loadModel(modelName).getMainConfigPath();
+
+    int cudaDeviceNumber = m_mmClassificationInput->getCudaDevice();
+
+    QString command = "python";
+
+    QFileInfo pythonTrainFile = QFileInfo("mmclassification_train.py");
+    QString trainScriptPath = pythonTrainFile.absoluteFilePath();
+
+    QString fullTrainCommand;
+
+    fullTrainCommand = command + " " + trainScriptPath + " " + mainConfigPath + " " + workDirConsoleArgument + " " + workingDirectoryPath;
+
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+
+    env.insert("CUDA_VISIBLE_DEVICES", QString::number(cudaDeviceNumber));
+
+    // QProcess* process;
+    m_process = new QProcess();
+
+    m_process->setProcessEnvironment(env);
+
+    m_process->setReadChannel(QProcess::StandardOutput);
+
+    m_process->startCommand(fullTrainCommand);
+
+    m_process->waitForStarted();
+    m_process->waitForFinished(-1);
+
+    QString strTemp=QString::fromLocal8Bit(m_process->readAllStandardOutput());  // Get the output
+    qDebug() << qPrintable(strTemp);
+    qDebug()<< QString::fromLocal8Bit(m_process->readAllStandardError());
+
+    qDebug() << QString::fromLocal8Bit(m_process->readAll());
+
+    // Get Results
+    const QString checkpointName = "latest.pth";
+    const QString metricConsoleArgumentName = "--metrics";
+    const QString outputConsoleArgumentName = "--out";
+
+    const QString metricAccuracy = "accuracy";
+    const QString metricSupport = "support";
+
+    const QString metricAccuracyOutputName = "resultAccuracy.json";
+    const QString metricSupportOutputName = "resultSupport.json";
+
+    const QString withoutMetricSpecifiedOutputName = "resultWithout.json";
+
+    const QString pathToAccuracyResultFile = workingDirectoryPath + "/" + metricAccuracyOutputName;
+    const QString pathToSupportResultFile = workingDirectoryPath + "/" + metricSupportOutputName;
+    const QString pathToWithoutMetricResultFile = workingDirectoryPath + "/" + withoutMetricSpecifiedOutputName;
+
+    qDebug() << "Start Generating Results:";
+
+    QStringList fullCommands = {};
+
+    QFileInfo testScriptFile = QFileInfo("mmclassification_test.py");
+    QString testScriptPath = testScriptFile.absoluteFilePath();
+
+    QString checkpointPath = workingDirectoryPath + "/" + checkpointName;
+
+    fullCommands.append(command + " " + testScriptPath + " " + mainConfigPath + " " + checkpointPath + " " + metricConsoleArgumentName
+    + "=" + metricAccuracy + " " + outputConsoleArgumentName + "=" + pathToAccuracyResultFile);
+    fullCommands.append(command + " " + testScriptPath + " " + mainConfigPath + " " + checkpointPath + " " + metricConsoleArgumentName
+    + "=" + metricSupport + " " + outputConsoleArgumentName + "=" + pathToSupportResultFile);
+    fullCommands.append(command + " " + testScriptPath + " " + mainConfigPath + " " + checkpointPath + " " + outputConsoleArgumentName + "=" + pathToWithoutMetricResultFile);
+
+    // execute test process to generate result files
+    foreach(QString fullCommand, fullCommands) {
+        QProcess* process;
+        process = new QProcess();
+        process->startCommand(fullCommand);
+        process->waitForStarted();
+        process->waitForFinished();
+        QString strTemp2=QString::fromLocal8Bit(process->readAllStandardOutput());  // Get the output
+        qDebug() << qPrintable(strTemp2);
+        qDebug()<< QString::fromLocal8Bit(process->readAllStandardError());
+    }
+    QPair<double, double> accuracies = m_jsonReader.readTopValuesFromJson(pathToAccuracyResultFile);
+    const QString confusionMatrixFileName = "data_confusion_matrix.json";
+    // QString pathToConfusionMatrix = m_mmClassificationSettings.getMMClassificationPath() + "/" + confusionMatrixFileName;
+    QString pathToConfusionMatrix = m_mmClassificationSettings.getMMClassificationPath() + "/" + confusionMatrixFileName;
+    QVector<int> confusionMatrixData = m_jsonReader.readConfusionMatrixFromJsonFile(pathToConfusionMatrix);
+
+    // Search for log file
+    QString pathToLogFile = "";
+
+    QDir workingDirectory(workingDirectoryPath);
+    workingDirectory.setNameFilters(QStringList() << "*.log.json");
+    workingDirectory.setFilter(QDir::Files);
+    foreach(QString dirFile, workingDirectory.entryList())
+    {
+        pathToLogFile = dirFile;
+    }
+
+    QMap<int, QPair<double, double>> accuracyCurveData = m_jsonReader.getAccuracyCurve(pathToLogFile);
+
+    QDir datasetDirectory(trainDatasetPath);
+    datasetDirectory.cdUp();
+    QString validationAnnotationFilePath = datasetDirectory.absoluteFilePath(m_annotationFileName);
+
+    QStringList mostMisclassifiedImages = m_jsonReader.generateMostMissclassifiedImages(m_numberOfMissClassifiedImages, validationAnnotationFilePath, pathToWithoutMetricResultFile);
+
+    const QStringList * additionalResults = new QStringList();
+
+    TrainingResult * trainingResult = new TrainingResult(accuracyCurveData, labels, confusionMatrixData, mostMisclassifiedImages, accuracies.first, accuracies.second, *additionalResults);
+
+    return trainingResult;
 }
 
 ClassificationResult* MMClassificationPlugin::classify(QString inputImageDirPath,QString trainDatasetPath, QString workingDirPath, QString modelName, ProgressablePlugin *receiver)
 {
+    const QString checkpointName = "latest.pth";
+    const QString outputConfidenceScoreConsoleArgumentName = "--confidenceScoresOut";
+    const QString outputConfidenceScoreResultName = "resultConfidenceScore.json";
+    const QString pathToConfidenceScoreResultFile = workingDirPath + "/" + outputConfidenceScoreResultName;
 
+    m_receiver = receiver;
+
+    QMap<QString, QList<double>> data = {};
+    QList<QString> labels = {};
+    QStringList additionalMetrics = {};
+
+    QString mainConfigPath = loadModel(modelName).getMainConfigPath();
+    // get train dataset path from dataset config file to extract the labels
+    QString datasetConfigPath = loadModel(modelName).getDatasetConfigPath();
+
+    m_mmClassificationConfigFileBuilder.changeTestPath(datasetConfigPath, inputImageDirPath);
+    labels = getLabels(trainDatasetPath);
+    QString checkpointPath = workingDirPath + "/" + checkpointName;
+    QFileInfo checkpointInfo(checkpointPath);
+
+    if (mainConfigPath.isEmpty() || !checkpointInfo.exists()) {
+        qWarning() << "mainConfigFile or checkpointFile does not exist";
+        return new ClassificationResult(data, labels, additionalMetrics);
+    }
+
+    QString command = "python";
+    QFileInfo pythonfile = QFileInfo("mmclassification_test.py");
+    QString scriptPath = pythonfile.absoluteFilePath();
+
+    QString fullCommand = command + " " + scriptPath + " " + mainConfigPath + " " + checkpointPath + " " + outputConfidenceScoreConsoleArgumentName + "=" + pathToConfidenceScoreResultFile;
+
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+
+    m_process = new QProcess();
+    m_process->startCommand(fullCommand);
+    m_process->waitForStarted();
+    m_process->waitForFinished();
+    QString strTemp=QString::fromLocal8Bit(m_process->readAllStandardOutput());  // Get the output
+    qDebug() << qPrintable(strTemp);
+    qDebug()<< QString::fromLocal8Bit(m_process->readAllStandardError());
+
+    // new json file with complete data
+    QStringList inputImageFilePaths = {};
+    QDir inputImageDirectory(inputImageDirPath);
+    inputImageDirectory.setNameFilters(QStringList() << "*.jpg" << "*.png");
+    inputImageDirectory.setFilter(QDir::Files);
+    foreach(QString imageFile, inputImageDirectory.entryList())
+    {
+        inputImageFilePaths.append(imageFile);
+    }
+    if (inputImageFilePaths.size() > 0) {
+        data = m_jsonReader.readConfidenceScores(pathToConfidenceScoreResultFile, inputImageFilePaths);
+        qDebug() << "content: " << data;
+    }
+    return new ClassificationResult(data, labels, additionalMetrics);
 }
 
 QWidget* MMClassificationPlugin::getDataAugmentationInputWidget()
