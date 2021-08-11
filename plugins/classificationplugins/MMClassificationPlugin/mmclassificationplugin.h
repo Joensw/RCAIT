@@ -8,13 +8,26 @@
 #include "classificationresult.h"
 #include "progressableplugin.h"
 #include "classificationplugin.h"
+#include "mmclassificationsettings.h"
+#include "mmclassificiationdataaugmentationinput.h"
+#include "mmclassificationinputoptions.h"
 
 class MMClassificationPlugin : public QObject, ClassificationPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.MMClassificationPlugin" FILE "MMClassificationPlugin.json")
     Q_INTERFACES(ClassificationPlugin)
+private:
 
+    const QString m_name = "MMClassification";
+
+    MMClassificationSettings m_mmClassificationSettings;
+    MMClassificiationDataAugmentationInput *m_mmclassificiationdataaugmentationinput;
+    MMClassificationInputOptions *m_mmClassificationInput;
+
+    QWidget *pluginSettings;
+    QWidget *dataAugmentationInput;
+    QWidget *inputOptions;
 public:
     MMClassificationPlugin();
     ~MMClassificationPlugin();

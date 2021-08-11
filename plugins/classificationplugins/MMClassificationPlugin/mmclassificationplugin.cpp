@@ -3,7 +3,7 @@
 
 MMClassificationPlugin::MMClassificationPlugin()
 {
-
+    pluginSettings = new MMClassificationSettings();
 }
 
 MMClassificationPlugin::~MMClassificationPlugin()
@@ -13,22 +13,22 @@ MMClassificationPlugin::~MMClassificationPlugin()
 
 QString MMClassificationPlugin::getName()
 {
-
+    return m_name;
 }
 
 QWidget* MMClassificationPlugin::getConfigurationWidget()
 {
-
+    return pluginSettings;
 }
 
 void MMClassificationPlugin::saveConfiguration()
 {
-
+    qobject_cast<MMClassificationSettings *>(pluginSettings)->saveSettings();
 }
 
 QWidget* MMClassificationPlugin::getInputWidget()
 {
-
+    return inputOptions;
 }
 
 QStringList MMClassificationPlugin::getAssociatedModels()
@@ -62,6 +62,9 @@ ClassificationResult* MMClassificationPlugin::classify(QString inputImageDirPath
 }
 
 QWidget* MMClassificationPlugin::getDataAugmentationInputWidget()
+{
+    return dataAugmentationInput;
+}
 
 void MMClassificationPlugin::slot_readOutPut()
 {
