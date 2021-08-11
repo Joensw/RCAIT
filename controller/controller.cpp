@@ -13,7 +13,7 @@ Controller::Controller(QObject *parent) : QObject(parent)
     mAiController = new AIController(mDataManger, mMainWindow->getInputImagesWidget(), mMainWindow->getAITrainingWidget());
     mAutomationController = new AutomationController(mDataManger, mMainWindow->getAutomationWidget());
     mResultsController = new ResultsController(mDataManger, mMainWindow->getResultsWidget());
-    mImageController = new ImageController(mMainWindow->getImageSectionWidget(),mMainWindow->getImportFilesWidget(),mDataManger);
+    mImageController = new ImageController(mMainWindow->getImageInspectionWidget(),mMainWindow->getImportFilesWidget(),mDataManger);
     mTabController = new TabController(mMainWindow->getTabWidget());
 
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_openProject, mTabController, &TabController::slot_openProject);

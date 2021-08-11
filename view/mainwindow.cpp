@@ -53,7 +53,7 @@ AutomationWidget *MainWindow::getAutomationWidget() {
     return ui->tab_automation;
 }
 
-ImageSection *MainWindow::getImageSectionWidget()
+ImageInspectionWidget *MainWindow::getImageInspectionWidget()
 {
     return ui->tab_image_inspection;
 }

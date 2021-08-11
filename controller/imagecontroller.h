@@ -4,22 +4,22 @@
 
 #include <Qt>
 #include "imageloader.h"
-#include "imageinspectionwidget.h"
 #include "importfileswidget.h"
+#include "imageinspectionwidget.h"
 #include "datamanager.h"
-#include "imagesection.h"
+#include "imageinspectionwidget.h"
 #include "imageinspectionmodel.h"
 
 class ImageController : public QObject{
     Q_OBJECT
 public:
-    ImageController(ImageSection* imageSection, ImportFilesWidget* importFilesWidget, DataManager* dataManager);
+    ImageController(ImageInspectionWidget* imageInspectionWidget, ImportFilesWidget* importFilesWidget, DataManager* dataManager);
 
 signals:
     void sig_imagesLoaded();
 private:
     ImageLoader* m_imageLoader;
-    ImageSection* m_imageSection;
+    ImageInspectionWidget* m_imageinspectionwidget;
     ImportFilesWidget* m_importFilesWidget;
     DataManager* m_dataManager;
     ImageInspectionModel m_imageInspectionModel;

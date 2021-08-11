@@ -55,7 +55,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -93,7 +93,7 @@
         <string>Import Files</string>
        </attribute>
       </widget>
-      <widget class="ImageSection" name="tab_image_inspection">
+      <widget class="ImageInspectionWidget" name="tab_image_inspection">
        <attribute name="icon">
         <iconset resource="UI_Icons.qrc">
          <normaloff>:/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</iconset>
@@ -149,7 +149,7 @@
      <x>0</x>
      <y>0</y>
      <width>1250</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
@@ -159,12 +159,6 @@
    <class>CustomTabWidget</class>
    <extends>QTabWidget</extends>
    <header>customtabwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ImageSection</class>
-   <extends>QWidget</extends>
-   <header>imagesection.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -201,6 +195,12 @@
    <class>AutomationWidget</class>
    <extends>QWidget</extends>
    <header>automationwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ImageInspectionWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">imageinspectionwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

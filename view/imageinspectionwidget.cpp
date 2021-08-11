@@ -1,23 +1,23 @@
-#include "imagesection.h"
-#include "ui_imagesection.h"
+#include "imageinspectionwidget.h"
+#include "ui_imageinspectionwidget.h"
 
 
 
-ImageSection::ImageSection(QWidget *parent) :
+ImageInspectionWidget::ImageInspectionWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::imagesection)
+    ui(new Ui::ImageInspectionWidget)
 {
     ui->setupUi(this);
 
 }
 
 
-ImageSection::~ImageSection()
+ImageInspectionWidget::~ImageInspectionWidget()
 {
     delete ui;
 }
 
-void ImageSection::on_pushButton_clicked()
+void ImageInspectionWidget::on_pushButton_clicked()
 {
 
    ui->datasetTrainImages->removeSelected();
@@ -26,48 +26,48 @@ void ImageSection::on_pushButton_clicked()
    ui->newTrainImages->removeSelected();
 }
 
-void ImageSection::setCurrentDataSetTrainImages(QMap<QString, QStringList> labelToPathsMap) {
+void ImageInspectionWidget::setCurrentDataSetTrainImages(QMap<QString, QStringList> labelToPathsMap) {
     ImageGalleryTree* newTree = new ImageGalleryTree(labelToPathsMap);
     newTree->setObjectName("datasetTrainImages");
     replaceGalleryTree(ui->datasetTrainImages, newTree);
     ui->datasetTrainImages = newTree;
 }
 
-void ImageSection::setCurrentDataSetValidationImages(QMap<QString, QStringList> labelToPathsMap) {
+void ImageInspectionWidget::setCurrentDataSetValidationImages(QMap<QString, QStringList> labelToPathsMap) {
     ImageGalleryTree* newTree = new ImageGalleryTree(labelToPathsMap);
     newTree->setObjectName("datasetValidationImages");
     replaceGalleryTree(ui->datasetValidationImages, newTree);
     ui->datasetValidationImages = newTree;
 }
 
-void ImageSection::setNewValidationImages(QMap<QString, QStringList> labelToPathsMap) {
+void ImageInspectionWidget::setNewValidationImages(QMap<QString, QStringList> labelToPathsMap) {
     ImageGalleryTree* newTree = new ImageGalleryTree(labelToPathsMap);
     newTree->setObjectName("newValidationImages");
     replaceGalleryTree(ui->newValidationImages, newTree);
     ui->newValidationImages = newTree;
 }
 
-void ImageSection::setNewTrainImages(QMap<QString, QStringList> labelToPathsMap) {
+void ImageInspectionWidget::setNewTrainImages(QMap<QString, QStringList> labelToPathsMap) {
     ImageGalleryTree* newTree = new ImageGalleryTree(labelToPathsMap);
     newTree->setObjectName("newTrainImages");
     replaceGalleryTree(ui->newTrainImages, newTree);
     ui->newTrainImages = newTree;
 }
 
-void ImageSection::replaceGalleryTree(ImageGalleryTree *oldGalleryTree, ImageGalleryTree *newGalleryTree) {
+void ImageInspectionWidget::replaceGalleryTree(ImageGalleryTree *oldGalleryTree, ImageGalleryTree *newGalleryTree) {
     ui->gridLayout->replaceWidget(oldGalleryTree,newGalleryTree);
     delete oldGalleryTree;
     ui->gridLayout->update();
 }
 
 
-void ImageSection::on_pushButton_commit_clicked()
+void ImageInspectionWidget::on_pushButton_commit_clicked()
 {
     emit sig_mergeDatasets();
 }
 
 
-void ImageSection::on_pushButton_removeImages_clicked()
+void ImageInspectionWidget::on_pushButton_removeImages_clicked()
 {
     //ui->datasetTrainImages->test();
     emit sig_removeImages(3,  ui->datasetTrainImages->removeSelected());
