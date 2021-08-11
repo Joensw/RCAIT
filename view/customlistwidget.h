@@ -10,8 +10,6 @@
 //Declarations
 extern const QString selectedIconPath;
 extern const QString unselectedIconPath;
-extern const QIcon selectedIcon;
-extern const QIcon unselectedIcon;
 
 /**
  * It is used in the UI for example for the project list and model list.

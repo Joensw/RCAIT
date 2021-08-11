@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
 
     //Set UI style and font
     QApplication::setStyle(QStyleFactory::create("fusion"));
+    QApplication::setPalette(QPalette());
     QFontDatabase::addApplicationFont(":/Resources/Fonts/Inter-Regular.otf");
     QFont sf_pro_text("Inter");
     sf_pro_text.setPixelSize(12);
