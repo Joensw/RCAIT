@@ -1,15 +1,6 @@
 #include "view/mainwindow.h"
-#include "view/removeprojectdialog.h"
-#include "view/newmodeldialog.h"
-#include "view/removemodeldialog.h"
-#include "view/newprojectdialog.h"
-#include "view/startwidget.h"
-
 #include <QApplication>
-#include <QLocale>
-#include <QTranslator>
 #include <QStyleFactory>
-#include <QFontDatabase>
 #include <controller.h>
 
 int main(int argc, char *argv[])
@@ -18,7 +9,11 @@ int main(int argc, char *argv[])
 
     //Set UI style and font
     QApplication::setStyle(QStyleFactory::create("fusion"));
-    QApplication::setPalette(QPalette());
+    QPalette palette = QApplication::palette();
+    //Base color
+    palette.setColor(QPalette::Highlight, QColor("royal blue"));
+    QApplication::setPalette(palette);
+
     QFontDatabase::addApplicationFont(":/Resources/Fonts/Inter-Regular.otf");
     QFont sf_pro_text("Inter");
     sf_pro_text.setPixelSize(12);
@@ -30,19 +25,5 @@ int main(int argc, char *argv[])
 
     Controller controller;
 
-
-    //auskommentiert, nur zum erstellen der Dialog GUI Screenshots
-    //RemoveProjectDialog r;
-    //r.show();
-
-    //NewModelDialog m;
-   // m.show();
-
-    //NewProjectDialog p;
-    //p.show();
-
-    //RemoveModelDialog t;
-    //t.show();
-
-    return a.exec();
+    return QApplication::exec();
 }
