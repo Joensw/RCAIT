@@ -26,19 +26,19 @@ public:
      * @brief setNewProjectPath sets the path to the directory where the applications manages its projects
      * @param path the absolute new path to use
      */
-    void setNewProjectPath(QString path);
+    void setNewProjectPath(const QString& path);
 
     /**
      * @brief setNewClassificationPluginPath set the path to the directory where the application looks for the external classification plugins
      * @param path the new absolute path to use
      */
-    void setNewClassificationPluginPath(QString path);
+    void setNewClassificationPluginPath(const QString& path);
 
     /**
      * @brief setNewImageLoaderPath set the path to the directory where the application looks for the external image loader plugins
      * @param path the new absolute path to use
      */
-    void setNewImageLoaderPath(QString path);
+    void setNewImageLoaderPath(const QString& path);
 
     /**
      * Called when temporary paths have been accepeted or denied
@@ -61,25 +61,25 @@ public:
      * @brief setError sets an Error message to be shown in the UI
      * @param error the error message to be shown
      */
-    void setError(QString error);
+    void setError(const QString& error);
 
     /**
      * @brief setCurrentProjectsDir set the current projects directory shown in the UI
      * @param path path to be shown
      */
-    void setCurrentProjectsDir(QString path);
+    void setCurrentProjectsDir(const QString& path);
 
     /**
      * @brief setCurrentClassificationDir set the current classification plugin directory shown in the UI
      * @param path path to be shown
      */
-    void setCurrentClassificationDir(QString path);
+    void setCurrentClassificationDir(const QString& path);
 
     /**
      * @brief setCurrentImageLoaderDir set the current classification plugin directory shown in the UI
      * @param path path to be shown
      */
-    void setCurrentImageLoaderDir(QString path);
+    void setCurrentImageLoaderDir(const QString& path);
 
 
 signals:

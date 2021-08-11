@@ -15,21 +15,21 @@ GlobalSettingsWidget::~GlobalSettingsWidget()
     delete ui;
 }
 
-void GlobalSettingsWidget::setNewProjectPath(QString path)
+void GlobalSettingsWidget::setNewProjectPath(const QString& path)
 {
     QFontMetrics metrics(ui->label_projectsDir_new->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
     ui->label_projectsDir_new->setText(text);
 }
 
-void GlobalSettingsWidget::setNewClassificationPluginPath(QString path)
+void GlobalSettingsWidget::setNewClassificationPluginPath(const QString& path)
 {
     QFontMetrics metrics(ui->label_classificationDir_new->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
     ui->label_classificationDir_new->setText(text);
 }
 
-void GlobalSettingsWidget::setNewImageLoaderPath(QString path)
+void GlobalSettingsWidget::setNewImageLoaderPath(const QString& path)
 {
     QFontMetrics metrics(ui->label_imageLoaderDir_new->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
@@ -38,47 +38,47 @@ void GlobalSettingsWidget::setNewImageLoaderPath(QString path)
 
 void GlobalSettingsWidget::clearNewPaths()
 {
-    ui->label_projectsDir_new->setText("-");
-    ui->label_classificationDir_new->setText("-");
-    ui->label_imageLoaderDir_new->setText("-");
+    ui->label_projectsDir_new->clear();
+    ui->label_classificationDir_new->clear();
+    ui->label_imageLoaderDir_new->clear();
 }
 
 void GlobalSettingsWidget::showUpdate(int amount)
 {
     ui->label_information->clear();
     ui->label_information->setStyleSheet("QLabel { color : green; }");
-    ui->label_information->setText(tr("Sucess. Updated ") + QString::number(amount) + tr(" path(s)"));
+    ui->label_information->setText(tr("Success. Updated ") + QString::number(amount) + tr(" path(s)"));
 }
 
 void GlobalSettingsWidget::showNonUpdate()
 {
     ui->label_information->clear();
     ui->label_information->setStyleSheet("QLabel { color : blue; }");
-    ui->label_information->setText(tr("no changes were made"));
+    ui->label_information->setText(tr("No changes were made"));
 }
 
-void GlobalSettingsWidget::setError(QString error)
+void GlobalSettingsWidget::setError(const QString& error)
 {
     ui->label_information->clear();
     ui->label_information->setStyleSheet("QLabel { color : red; }");
     ui->label_information->setText(error);
 }
 
-void GlobalSettingsWidget::setCurrentProjectsDir(QString path)
+void GlobalSettingsWidget::setCurrentProjectsDir(const QString& path)
 {
     QFontMetrics metrics(ui->label_projectsDir_current->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
     ui->label_projectsDir_current->setText(text);
 }
 
-void GlobalSettingsWidget::setCurrentClassificationDir(QString path)
+void GlobalSettingsWidget::setCurrentClassificationDir(const QString& path)
 {
     QFontMetrics metrics(ui->label_classificationDir_current->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
     ui->label_classificationDir_current->setText(text);
 }
 
-void GlobalSettingsWidget::setCurrentImageLoaderDir(QString path)
+void GlobalSettingsWidget::setCurrentImageLoaderDir(const QString& path)
 {
     QFontMetrics metrics(ui->label_imageLoaderDir_current->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
