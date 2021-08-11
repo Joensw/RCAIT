@@ -117,6 +117,11 @@ void SettingsView::on_saveButton_clicked()
     }
 }
 
+void SettingsView::on_closeButton_clicked()
+{
+    this->close();
+}
+
 
 //private slots for global settings widget
 void SettingsView::slot_setProjectDir()

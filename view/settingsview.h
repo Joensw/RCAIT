@@ -114,6 +114,8 @@ protected:
 private slots:
     void on_saveButton_clicked();
 
+    void on_closeButton_clicked();
+
     void slot_setProjectDir();
     void slot_setClassificationPluginsDir();
     void slot_setImageLoaderPluginsDir();
