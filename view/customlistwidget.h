@@ -6,14 +6,20 @@
 #include <QListWidget>
 #include <QScroller>
 
+
+//Declarations
+extern const QString selectedIconPath;
+extern const QString unselectedIconPath;
+extern const QIcon selectedIcon;
+extern const QIcon unselectedIcon;
+
 /**
  * It is used in the UI for example for the project list and model list.
- * The elements of the list widget have specialized depicitons to represent when and element has been selected / unselected.
+ * The elements of the list widget have specialized depictions to represent when and element has been selected / unselected.
  * @brief The CustomListWidget class is a specialized implementation of a QListWidget.
  */
-class CustomListWidget : public QListWidget
-{
-    Q_OBJECT
+class CustomListWidget : public QListWidget {
+Q_OBJECT
 public:
     /**
      * @brief CustomListWidget create a new CustomListWidget
@@ -34,6 +40,7 @@ public:
     void addItems(const QStringList &labels);
 
 private slots:
+
     static void updateSelectionIcon(QListWidgetItem *current, QListWidgetItem *previous);
 };
 

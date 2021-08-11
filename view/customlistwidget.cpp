@@ -1,9 +1,10 @@
 #include "customlistwidget.h"
 
-static const QString selectedIconPath = ":/Resources/UISymbols/ListItem_Selected.svg";
-static const QString unselectedIconPath = ":/Resources/UISymbols/ListItem_Unselected.svg";
-static const QIcon selectedIcon = QIcon(selectedIconPath);
-static const QIcon unselectedIcon = QIcon(unselectedIconPath);
+//Definitions
+const QString selectedIconPath = ":/Resources/UISymbols/ListItem_Selected.svg";
+const QString unselectedIconPath = ":/Resources/UISymbols/ListItem_Unselected.svg";
+const QIcon selectedIcon = QIcon(selectedIconPath);
+const QIcon unselectedIcon = QIcon(unselectedIconPath);
 
 CustomListWidget::CustomListWidget(QWidget *parent) : QListWidget(parent) {
     connect(this, &CustomListWidget::currentItemChanged, this, &CustomListWidget::updateSelectionIcon);
