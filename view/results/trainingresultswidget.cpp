@@ -3,7 +3,11 @@
 TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
         : GenericComparisonWidget(parent) {
 
+    //Top Accuracies Tab configuration
+    m_topAccuraciesGraphics = new TopAccuraciesGraphics("comparison");
     configure_topAccuraciesTab();
+    connect(m_topAccuraciesView, &TopAccuraciesView::sig_normal_requestTopAccuraciesGraphics, this,
+            &TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics);
 }
 
 void TrainingResultsWidget::addTrainingResult(TrainingResult *result) {
@@ -12,22 +16,18 @@ void TrainingResultsWidget::addTrainingResult(TrainingResult *result) {
     emit sig_normal_loadTrainingResultData(tab, result);
 }
 
-TopAccuraciesView *TrainingResultsWidget::getTopAccuraciesView() {
-    return m_topAccuraciesView;
-}
-
 void TrainingResultsWidget::addComparisonResult(const QString &runNameToCompare) {
     auto tab = createResultTab(runNameToCompare);
     //TODO move to slot
     tab->setSaved(true);
     emit sig_comparison_loadTrainingResultGraphics(tab, runNameToCompare);
-    emit sig_comparison_loadTrainingResultData(tab,runNameToCompare);
-    emit sig_comparison_loadAccuracyData(m_topAccuraciesView, runNameToCompare);
+    emit sig_comparison_loadTrainingResultData(tab, runNameToCompare);
+    emit sig_comparison_loadAccuracyData(m_topAccuraciesView, m_topAccuraciesGraphics, runNameToCompare);
 }
 
 void TrainingResultsWidget::removeComparisonResult(const QString &runNameToCompare) {
     deleteResultTab(runNameToCompare);
-    emit sig_comparison_unloadAccuracyData(m_topAccuraciesView, runNameToCompare);
+    emit sig_comparison_unloadAccuracyData(m_topAccuraciesView, m_topAccuraciesGraphics, runNameToCompare);
 }
 
 void TrainingResultsWidget::configure_topAccuraciesTab() {
@@ -45,4 +45,9 @@ TrainingResultView *TrainingResultsWidget::createResultTab(const QString &tabNam
     m_mapTabsByName[tabName] = tab;
 
     return tab;
+}
+
+void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver) {
+    //Forward signal
+    emit sig_normal_requestTopAccuraciesGraphics(receiver, m_topAccuraciesGraphics);
 }

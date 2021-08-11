@@ -7,6 +7,9 @@
 #include <resultswidget.h>
 #include <resultsprocessor.h>
 #include <datamanager.h>
+#include <resultimporter.h>
+#include <trainingresultswidget.h>
+#include <classificationresultswidget.h>
 
 class ResultsController : public QObject {
 
@@ -28,6 +31,7 @@ private:
     DataManager *m_dataManager;
     ResultsWidget *m_resultsWidget;
     ResultsProcessor *m_resultsProcessor;
+    ResultImporter *m_resultsImporter;
     //TODO ??
     QList<TrainingResult> m_unsavedTrainingResults;
     QList<ClassificationResult> m_unsavedClassificationResults;

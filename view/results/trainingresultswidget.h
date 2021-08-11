@@ -8,6 +8,7 @@
 #include <accuracycurve.h>
 #include <confusionmatrix.h>
 #include <projectmanager.h>
+#include <topaccuraciesgraphics.h>
 #include "topaccuraciesview.h"
 #include "trainingresultview.h"
 #include "genericcomparisonwidget.h"
@@ -18,14 +19,13 @@ Q_OBJECT
 public:
     explicit TrainingResultsWidget(QWidget *parent = nullptr);
 
-    ~TrainingResultsWidget() = default;
+    ~TrainingResultsWidget() override = default;
 
     void addTrainingResult(TrainingResult *result);
 
-    TopAccuraciesView *getTopAccuraciesView();
-
 private:
     TopAccuraciesView *m_topAccuraciesView;
+    TopAccuraciesGraphics *m_topAccuraciesGraphics;
 
     void addComparisonResult(const QString &runNameToCompare) override;
 
@@ -41,14 +41,21 @@ signals:
 
     void sig_comparison_loadTrainingResultGraphics(AbstractGraphicsView *receiver, const QString &runNameToCompare);
 
-    void sig_comparison_loadAccuracyData(TopAccuraciesView *view, const QString &runNameToCompare);
+    void sig_comparison_loadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+                                         const QString &runNameToCompare);
 
-    void sig_comparison_unloadAccuracyData(TopAccuraciesView *view, const QString &runNameToCompare);
+    void sig_comparison_unloadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+                                           const QString &runNameToCompare);
 
     void sig_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver, TrainingResult *result);
 
     void sig_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result);
 
+    void sig_normal_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver, TopAccuraciesGraphics *graphics);
+
+private slots:
+
+    void slot_normal_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver);
 };
 
 #endif // TRAININGRESULTSWIDGET_H
