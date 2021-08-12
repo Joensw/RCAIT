@@ -11,7 +11,7 @@
     <message>
         <location filename="../view/aitrainingwidget.ui" line="20"/>
         <source>Data Augmentation</source>
-        <translation>Расширение данных</translation>
+        <translation>Расширенные настройки</translation>
     </message>
     <message>
         <location filename="../view/aitrainingwidget.ui" line="28"/>
@@ -21,7 +21,7 @@
     <message>
         <location filename="../view/aitrainingwidget.ui" line="35"/>
         <source>Random Flip Direction</source>
-        <translation>Случайное направление переворота</translation>
+        <translation>Случайное направление поворота</translation>
     </message>
     <message>
         <location filename="../view/aitrainingwidget.ui" line="59"/>
@@ -76,17 +76,17 @@
     <message>
         <location filename="../view/aitrainingwidget.ui" line="179"/>
         <source>mean</source>
-        <translation>среднее</translation>
+        <translation>значение</translation>
     </message>
     <message>
         <location filename="../view/aitrainingwidget.ui" line="200"/>
         <source>Random Flip Probability</source>
-        <translation>Вероятность случайного перелистывания</translation>
+        <translation>Вероятность случайного поворота</translation>
     </message>
     <message>
         <location filename="../view/aitrainingwidget.ui" line="214"/>
         <source>horizontal</source>
-        <translation>горизонтальный</translation>
+        <translation>по горизонтали</translation>
     </message>
     <message>
         <location filename="../view/aitrainingwidget.ui" line="267"/>
@@ -155,12 +155,12 @@
     <message>
         <location filename="../configurationdialog.ui" line="17"/>
         <source>Configuration</source>
-        <translation>Конфигурация</translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <location filename="../configurationdialog.ui" line="25"/>
         <source>select project directory</source>
-        <translation>выберите каталог проекта</translation>
+        <translation>выберите папку проекта</translation>
     </message>
     <message>
         <location filename="../configurationdialog.ui" line="55"/>
@@ -172,12 +172,12 @@
     <message>
         <location filename="../configurationdialog.ui" line="73"/>
         <source>select classification plugin directory</source>
-        <translation>выберите каталог плагина классификации</translation>
+        <translation>выберите папку плагина классификации</translation>
     </message>
     <message>
         <location filename="../configurationdialog.ui" line="121"/>
         <source>select image loader plugin directory</source>
-        <translation>выберите каталог плагина загрузчика изображений</translation>
+        <translation>выберите папку плагина загрузки изображений</translation>
     </message>
     <message>
         <location filename="../configurationdialog.ui" line="170"/>
@@ -199,7 +199,7 @@
         <source>Are you sure you want to quit?
 The application will terminate</source>
         <translation>Вы уверены, что хотите выйти?
-Приложение будет завершено.</translation>
+Приложение будет закрыто.</translation>
     </message>
     <message>
         <location filename="../view/configurationdialog.cpp" line="50"/>
@@ -209,17 +209,17 @@ The application will terminate</source>
     <message>
         <location filename="../view/configurationdialog.cpp" line="64"/>
         <source>Select project directory</source>
-        <translation>Выберите директорию проекта</translation>
+        <translation>Выберите папку проекта</translation>
     </message>
     <message>
         <location filename="../view/configurationdialog.cpp" line="70"/>
         <source>Select classification plugin directory</source>
-        <translation>Выберите каталог плагина классификации</translation>
+        <translation>Выберите папку плагина классификации</translation>
     </message>
     <message>
         <location filename="../view/configurationdialog.cpp" line="76"/>
         <source>Select image-loader plugin directory</source>
-        <translation>Выберите каталог плагина загрузчика изображений</translation>
+        <translation>Выберите папку плагина загрузки изображений</translation>
     </message>
 </context>
 <context>
@@ -245,12 +245,12 @@ The application will terminate</source>
     <message>
         <location filename="../globalsettingswidget.ui" line="14"/>
         <source>Global settings</source>
-        <translation type="unfinished">Global settings</translation>
+        <translation>Общие настройки</translation>
     </message>
     <message>
         <location filename="../globalsettingswidget.ui" line="33"/>
         <source>Project Directory</source>
-        <translation>Каталог проекта</translation>
+        <translation>Папка проекта</translation>
     </message>
     <message>
         <location filename="../globalsettingswidget.ui" line="60"/>
@@ -269,12 +269,12 @@ The application will terminate</source>
     <message>
         <location filename="../globalsettingswidget.ui" line="141"/>
         <source>Classification Plugin Directory</source>
-        <translation>Каталог плагинов классификации</translation>
+        <translation>Папка плагинов классификации</translation>
     </message>
     <message>
         <location filename="../globalsettingswidget.ui" line="219"/>
         <source>Imageloader Plugin Directory</source>
-        <translation>Каталог плагинов Imageloader</translation>
+        <translation>Папка плагинов загрузки изображений</translation>
     </message>
     <message>
         <location filename="../view/globalsettingswidget.cpp" line="50"/>
@@ -284,7 +284,7 @@ The application will terminate</source>
     <message>
         <location filename="../view/globalsettingswidget.cpp" line="50"/>
         <source>Success. Updated </source>
-        <translation>Успех. Обновлено</translation>
+        <translation>Успешно обновлено</translation>
     </message>
     <message>
         <location filename="../view/globalsettingswidget.cpp" line="57"/>
@@ -312,7 +312,7 @@ The application will terminate</source>
     <message>
         <location filename="../importfileswidget.ui" line="64"/>
         <source>Collector Plugin</source>
-        <translation>Плагин коллектора</translation>
+        <translation>Плагин-сборищик</translation>
     </message>
     <message>
         <location filename="../importfileswidget.ui" line="87"/>
@@ -337,7 +337,7 @@ The application will terminate</source>
     <message>
         <location filename="../importfileswidget.ui" line="235"/>
         <source>Load Model</source>
-        <translation>Модель загрузки</translation>
+        <translation>Текущая загрузка</translation>
     </message>
     <message>
         <location filename="../importfileswidget.ui" line="274"/>
@@ -352,7 +352,7 @@ The application will terminate</source>
     <message>
         <location filename="../importfileswidget.ui" line="296"/>
         <source>Load</source>
-        <translation>Загрузить</translation>
+        <translation>Готово</translation>
     </message>
 </context>
 <context>
@@ -365,7 +365,7 @@ The application will terminate</source>
     <message>
         <location filename="../view/inputimageswidget.ui" line="22"/>
         <source>Select input folder...</source>
-        <translation>Выберите папку ввода...</translation>
+        <translation>Выберите папку...</translation>
     </message>
     <message>
         <location filename="../view/inputimageswidget.ui" line="32"/>
@@ -399,17 +399,17 @@ The application will terminate</source>
     <message>
         <location filename="../mainwindow.ui" line="20"/>
         <source>Rapid Classification AI Trainer</source>
-        <translation>Тренажер ИИ для быстрой классификации</translation>
+        <translation>Rapid Classification AI Trainer</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="102"/>
         <source>Image Inspection</source>
-        <translation>Проверка изображений</translation>
+        <translation>Редакция изображений</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="111"/>
         <source>AI Training</source>
-        <translation>Обучение ИИ</translation>
+        <translation>Обучение</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="129"/>
@@ -452,7 +452,7 @@ The application will terminate</source>
     <message>
         <location filename="../newmodeldialog.ui" line="45"/>
         <source>Pre-trained base</source>
-        <translation>Предварительно обученная база</translation>
+        <translation>База предварительного обучения</translation>
     </message>
     <message>
         <location filename="../newmodeldialog.ui" line="53"/>
