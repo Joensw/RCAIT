@@ -48,6 +48,9 @@ public:
      */
     void clearProjectList();
 
+public slots:
+    void slot_changedWindowState(Qt::WindowStates flags);
+
 private:
     Ui::StartWidget *ui;
 
@@ -66,6 +69,7 @@ private slots:
     void on_pushButton_removeProject_clicked();
     void on_pushButton_openProject_clicked();
     void on_comboBox_languageSelection_currentTextChanged(const QString &arg1);
+    void on_pushButton_toggleFullscreen_toggled(bool checked);
 
 signals:
     /**
@@ -84,6 +88,10 @@ signals:
      * @param projectName name of the project to be opened
      */
     void sig_openProject(QString projectName);
+
+    void sig_maximizeWindow();
+
+    void sig_normalizeWindow();
 };
 
 #endif // STARTWIDGET_H

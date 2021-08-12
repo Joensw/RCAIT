@@ -4,15 +4,13 @@
 #include <QDir>
 
 StartWidget::StartWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::StartWidget)
-{
+        QWidget(parent), ui(new Ui::StartWidget) {
+
     ui->setupUi(this);
     populateLanguageMenu(ui->comboBox_languageSelection);
 }
 
-StartWidget::~StartWidget()
-{
+StartWidget::~StartWidget() {
     delete ui;
 }
 
@@ -52,15 +50,15 @@ void StartWidget::on_pushButton_newProject_clicked() {
 
 void StartWidget::on_pushButton_removeProject_clicked() {
     //if there are no projects, or no current item, dont do anything
-    QListWidgetItem * item = ui->listWidget_projectsList->currentItem();
+    QListWidgetItem *item = ui->listWidget_projectsList->currentItem();
     if (item) {
         QString toRemove = item->text();
         emit sig_removeProject(toRemove);
     }
 }
 
-void StartWidget::on_pushButton_openProject_clicked(){
-    QListWidgetItem * item = ui->listWidget_projectsList->currentItem();
+void StartWidget::on_pushButton_openProject_clicked() {
+    QListWidgetItem *item = ui->listWidget_projectsList->currentItem();
     if (item) {
         QString toOpen = item->text();
         emit sig_openProject(toOpen);
@@ -68,18 +66,15 @@ void StartWidget::on_pushButton_openProject_clicked(){
 }
 
 
-void StartWidget::addProjects(QStringList projects)
-{
+void StartWidget::addProjects(QStringList projects) {
     ui->listWidget_projectsList->addItems(projects);
 }
 
-void StartWidget::addProject(QString project)
-{
+void StartWidget::addProject(QString project) {
     ui->listWidget_projectsList->addItem(project);
 }
 
-void StartWidget::clearProjectList()
-{
+void StartWidget::clearProjectList() {
     ui->listWidget_projectsList->clear();
 }
 
@@ -100,3 +95,22 @@ void StartWidget::switchTranslator(QTranslator &translator, const QString &filen
     }
 }
 
+
+void StartWidget::on_pushButton_toggleFullscreen_toggled(bool checked) {
+    if (checked)
+            emit sig_maximizeWindow();
+    else
+            emit sig_normalizeWindow();
+}
+
+void StartWidget::slot_changedWindowState(Qt::WindowStates flags) {
+    auto fullscreenButton = ui->pushButton_toggleFullscreen;
+    switch (flags) {
+        case Qt::WindowMaximized:
+            fullscreenButton->setChecked(true);
+            break;
+        case Qt::WindowNoState:
+            fullscreenButton->setChecked(false);
+            break;
+    }
+}

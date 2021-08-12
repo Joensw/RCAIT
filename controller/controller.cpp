@@ -20,6 +20,8 @@ Controller::Controller(QObject *parent) : QObject(parent)
     connect(mConfigurationController, &ConfigurationController::sig_configurationComplete, this, &Controller::slot_configurationComplete);
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_openProject, mImageController, &ImageController::slot_openProject);
     connect(mSettingsController, &SettingsController::sig_projectDirectoryChanged, mProjectController, &ProjectController::slot_projectDirectoryChanged);
+    connect(mMainWindow->getStartWidget(), &StartWidget::sig_maximizeWindow, mMainWindow, &MainWindow::slot_maximizeWindow);
+    connect(mMainWindow->getStartWidget(), &StartWidget::sig_normalizeWindow, mMainWindow, &MainWindow::slot_normalizeWindow);
 
     connect(mImageController, &ImageController::sig_imagesLoaded, mTabController, &TabController::slot_imagesLoaded);
     connect(mModelController, &ModelController::sig_modelLoaded, mTabController, &TabController::slot_modelLoaded);
@@ -31,6 +33,7 @@ Controller::Controller(QObject *parent) : QObject(parent)
 
 
     connect(mMainWindow, &MainWindow::sig_openSettings, mSettingsController, &SettingsController::slot_openSettings);
+    connect(mMainWindow, &MainWindow::sig_changedWindowState, mMainWindow->getStartWidget(), &StartWidget::slot_changedWindowState);
 }
 
 void Controller::slot_configurationComplete()

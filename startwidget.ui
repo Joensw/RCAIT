@@ -20,6 +20,36 @@
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_7">
      <item>
+      <widget class="QPushButton" name="pushButton_toggleFullscreen">
+       <property name="styleSheet">
+        <string notr="true">QPushButton:checked {background-color: none; border: none;}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="UI_Icons.qrc">
+         <normaloff>:/Resources/UISymbols/UI_Fullscreen_Icon.svg</normaloff>
+         <normalon>:/Resources/UISymbols/UI_Fullscreen_Exit_Icon.svg</normalon>:/Resources/UISymbols/UI_Fullscreen_Icon.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>

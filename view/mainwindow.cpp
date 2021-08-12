@@ -67,11 +67,22 @@ void MainWindow::slot_settingsButton_clicked() {
     emit sig_openSettings();
 }
 
+void MainWindow::slot_maximizeWindow() {
+    this->setWindowState(Qt::WindowMaximized);
+}
+
+void MainWindow::slot_normalizeWindow(){
+    this->setWindowState(Qt::WindowNoState);
+}
+
 
 void MainWindow::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         // this event is sent if a translator is loaded
         ui->retranslateUi(this);
+    }
+    if (event->type() == QEvent::WindowStateChange) {
+        emit sig_changedWindowState(windowState());
     }
     QMainWindow::changeEvent(event);
 }

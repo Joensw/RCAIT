@@ -27,13 +27,12 @@ QT_END_NAMESPACE
 /**
  * @brief The MainWindow class is the primary UI for the application and houses all critical features.
  */
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
+class MainWindow : public QMainWindow {
+Q_OBJECT
 
 protected:
     // this event is called, when a new translator is loaded or the system language is changed
-    void changeEvent(QEvent*) override;
+    void changeEvent(QEvent *) override;
 
 public:
     /**
@@ -41,30 +40,48 @@ public:
      * @param parent
      */
     explicit MainWindow(QWidget *parent = nullptr);
+
     ~MainWindow();
 
-    StartWidget * getStartWidget();
-    ImportFilesWidget * getImportFilesWidget();
+    StartWidget *getStartWidget();
+
+    ImportFilesWidget *getImportFilesWidget();
+
     AITrainingWidget *getAITrainingWidget();
+
     InputImagesWidget *getInputImagesWidget();
+
     ResultsWidget *getResultsWidget();
+
     AutomationWidget *getAutomationWidget();
-    ImageInspectionWidget* getImageInspectionWidget();
-    CustomTabWidget* getTabWidget();
+
+    ImageInspectionWidget *getImageInspectionWidget();
+
+    CustomTabWidget *getTabWidget();
 
 signals:
+
     /**
      * @brief sig_openSettings emitted when the settings UI is to be opened
      */
     void sig_openSettings();
 
+    void sig_changedWindowState(Qt::WindowStates flags);
+
+public slots:
+
+    void slot_normalizeWindow();
+
+    void slot_maximizeWindow();
+
 private slots:
+
     //slots correspond with the identically named button in the UI
     void slot_settingsButton_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QPushButton * pushButton_settings = new QPushButton(this);
+    QPushButton *pushButton_settings = new QPushButton(this);
 
     void placeSettingsButton();
 };
