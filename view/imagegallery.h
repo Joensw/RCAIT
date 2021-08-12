@@ -23,7 +23,7 @@ public:
     ImageGallery(QWidget *parent, int row, int collums);
 
 
-    ImageGallery(QWidget *parent, QStringList images);
+    ImageGallery(QWidget *parent, const QStringList& images);
 
     ~ImageGallery();
 
@@ -39,7 +39,7 @@ public:
      *
      * Adds images in a directory to the imagelist
      */
-    void addDir(const QStringList imageDir);
+    void addDir(const QStringList& imageDir);
 
     void addDir(QList<QImage> imageList);
 
@@ -49,9 +49,9 @@ public:
      *
      * Runs addDir(QDir) concurrently.
      */
-    void concurrentAddDir(const QString path);
+    void concurrentAddDir(const QString& path);
 
-    void addImage(QImage image);
+    void addImage(const QImage& image);
 
     /**
      * @brief setDragDropEnabled

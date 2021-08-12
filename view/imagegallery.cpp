@@ -27,15 +27,13 @@ ImageGallery::ImageGallery(QWidget *parent) :
 }
 
 
-
-
 ImageGallery::~ImageGallery() = default;
 
 
 QList<int> ImageGallery::removeselected() {
     QList<int> selected;
-    for(int i = 0; i < this->count(); i++){
-        if(this->item(i)->isSelected()){
+    for (int i = 0; i < this->count(); i++) {
+        if (this->item(i)->isSelected()) {
             selected.append(i);
             qDebug() << item(i) << "is selected";
         }
@@ -44,22 +42,19 @@ QList<int> ImageGallery::removeselected() {
     return selected;
 }
 
-void ImageGallery::addDir(const QStringList imageDirectory)
-{
+void ImageGallery::addDir(const QStringList &imageDirectory) {
             foreach(QString imageName, imageDirectory) {
-                addImage(QImage(imageName));
-            }
+            addImage(QImage(imageName));
+        }
 }
 
-void ImageGallery::addDir(QList<QImage> imageList)
-{
-    foreach(QImage image, imageList) {
-        addImage(image);
-    }
+void ImageGallery::addDir(QList<QImage> imageList) {
+            foreach(QImage image, imageList) {
+            addImage(image);
+        }
 }
 
-void ImageGallery::concurrentAddDir(const QString path)
-{
+void ImageGallery::concurrentAddDir(const QString &path) {
     class addDirTask : public QThread {
     public:
         addDirTask(ImageGallery *gallery, QDir pathDir) {
@@ -68,20 +63,20 @@ void ImageGallery::concurrentAddDir(const QString path)
             this->mPathDir = std::move(pathDir);
         }
 
-        ~addDirTask(){
+        ~addDirTask() override {
             delete mGallery;
         }
 
         void run() override {
             QStringList images = mPathDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
 
-            foreach(QString imageName, images) {
-                if (abort) {
-                    return;
+                    foreach(QString imageName, images) {
+                    if (abort) {
+                        return;
+                    }
+                    QString localPath = mPathDir.path() + "/" + imageName;
+                    mGallery->addImage(QImage(localPath));
                 }
-                QString localPath = mPathDir.path() + "/" + imageName;
-                mGallery->addImage(QImage(localPath));
-            }
         }
 
         void quit() {
@@ -102,38 +97,37 @@ void ImageGallery::concurrentAddDir(const QString path)
     connect(this, &ImageGallery::sig_stopLoading, running, &addDirTask::quit);
     connect(running, &QThread::finished, this, &ImageGallery::slot_isReady);
 
-    if(count() != 0) clear();
+    if (count() != 0) clear();
     running->start();
     mReady = false;
 }
 
-void ImageGallery::concurrentAddDir(const QList<QImage> imageList)
-{
-    QtConcurrent::run(static_cast<void(ImageGallery::*)(QList<QImage>)>(&ImageGallery::addDir), this, imageList);
+void ImageGallery::concurrentAddDir(const QList<QImage> imageList) {
+    auto task = QtConcurrent::run([this, &imageList] { this->addDir(imageList); });
+    Q_UNUSED(task)
 }
 
-void ImageGallery::concurrentAddDir(const QList<QString> imageList)
-{
-    QtConcurrent::run(static_cast<void(ImageGallery::*)(QList<QString>)>(&ImageGallery::addDir), this, imageList);
+void ImageGallery::concurrentAddDir(const QList<QString> imageList) {
+    auto task = QtConcurrent::run([this, &imageList] { this->addDir(imageList); });
+    Q_UNUSED(task)
 }
 
-void ImageGallery::slot_isReady()
-{
+void ImageGallery::slot_isReady() {
     mReady = true;
 }
 
 
-void ImageGallery::addImage(QImage image){
+void ImageGallery::addImage(const QImage &image) {
     int squareSize = image.height() < image.width() ? image.height() : image.width();
     int leftX = image.width() / 2 - squareSize / 2;
     int leftY = image.height() / 2 - squareSize / 2;
 
 
     QImage copy = image.copy(leftX, leftY, squareSize, squareSize);
-    if (mRows >= 1){
+    if (mRows >= 1) {
         mImageList.append(copy);
     }
-    QListWidgetItem *item = new QListWidgetItem();
+    auto *item = new QListWidgetItem();
     QPixmap tempImage = QPixmap::fromImage(copy);
     item->setData(Qt::DecorationRole, tempImage.scaled(200, 200, Qt::KeepAspectRatio));
 
@@ -141,35 +135,31 @@ void ImageGallery::addImage(QImage image){
     addItem(item);
 }
 
-void ImageGallery::setDragDropEnabled(bool var)
-{
+void ImageGallery::setDragDropEnabled(bool var) {
     setDragEnabled(var);
     setAcceptDrops(var);
 }
 
-QSize ImageGallery::minimumSizeHint() const
-{
+QSize ImageGallery::minimumSizeHint() const {
     QSize size(parentWidget()->size());
     size.setHeight(size.height() - 60);
     return size;
 }
 
-QSize ImageGallery::sizeHint() const
-{
+QSize ImageGallery::sizeHint() const {
     return minimumSizeHint();
 }
 
-void ImageGallery::clearAndStop()
-{
+void ImageGallery::clearAndStop() {
     emit sig_stopLoading();
-    while(!mReady){
+    while (!mReady) {
         QApplication::processEvents();
         QThread::sleep(1);
-    };
-    if(count() != 0) clear();
+    }
+    if (count() != 0) clear();
 }
 
-ImageGallery::ImageGallery(QWidget *parent, QStringList images) {
+ImageGallery::ImageGallery(QWidget *parent, const QStringList &images) {
 
     setMovement(QListView::Static);
     setParent(parent);
@@ -181,13 +171,12 @@ ImageGallery::ImageGallery(QWidget *parent, QStringList images) {
     setUniformItemSizes(true);
 
 
-
     setDragEnabled(true);
     setAcceptDrops(true);
     setDefaultDropAction(Qt::MoveAction);
 
-    QtConcurrent::run(static_cast<void(ImageGallery::*)(QList<QString>)>(&ImageGallery::addDir), this, images);
-
+    auto task = QtConcurrent::run([this, &images] { this->addDir(images); });
+    Q_UNUSED(task)
 }
 
 void ImageGallery::setQuadraticGrid(int rows) {
@@ -195,21 +184,21 @@ void ImageGallery::setQuadraticGrid(int rows) {
 }
 
 
-void ImageGallery::resizeEvent(QResizeEvent *e)
-{
-    if (mRows <= 0){
-        QWidget::resizeEvent(e);
+void ImageGallery::resizeEvent(QResizeEvent *e) {
+    if (mRows <= 0) {
+        QListView::resizeEvent(e);
         return;
     }
-    int squaresize = e->size().width() < e->size().height() ?   e->size().width() : e->size().height();
+    int squaresize = e->size().width() < e->size().height() ? e->size().width() : e->size().height();
     squaresize /= mRows;
-    QSize newSize = QSize(squaresize - 1 , squaresize - 1);
+    QSize newSize = QSize(squaresize - 1, squaresize - 1);
     setIconSize(newSize);
-    for(int i = 0; i < this->count(); i++){
-     item(i)->setData(Qt::DecorationRole, QPixmap::fromImage(mImageList.at(i)).scaled(squaresize, squaresize, Qt::KeepAspectRatio));
+    for (int i = 0; i < this->count(); i++) {
+        item(i)->setData(Qt::DecorationRole,
+                         QPixmap::fromImage(mImageList.at(i)).scaled(squaresize, squaresize, Qt::KeepAspectRatio));
     }
     setGridSize(newSize);
-    QWidget::resizeEvent(e);
+    QListView::resizeEvent(e);
 }
 
 
