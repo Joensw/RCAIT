@@ -19,7 +19,6 @@ public:
     void addClassificationResult(ClassificationResult *result);
 
 private:
-    ClassificationResultView *createResultTab(const QString &tabName) override;
 
     void addComparisonResult(const QString &runNameToCompare) override;
 

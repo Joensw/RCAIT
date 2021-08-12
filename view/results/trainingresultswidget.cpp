@@ -11,13 +11,13 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
 }
 
 void TrainingResultsWidget::addTrainingResult(TrainingResult *result) {
-    auto tab = createResultTab(result->getIdentifier());
+    auto tab = createResultTab<TrainingResultView>(result->getIdentifier());
     emit sig_normal_generateTrainingResultGraphics(tab, result);
     emit sig_normal_loadTrainingResultData(tab, result);
 }
 
 void TrainingResultsWidget::addComparisonResult(const QString &runNameToCompare) {
-    auto tab = createResultTab(runNameToCompare);
+    auto tab = createResultTab<TrainingResultView>(runNameToCompare);
     //TODO move to slot
     tab->setSaved(true);
     emit sig_comparison_loadTrainingResultGraphics(tab, runNameToCompare);
@@ -36,15 +36,6 @@ void TrainingResultsWidget::configure_topAccuraciesTab() {
     m_topAccuraciesView = new TopAccuraciesView(m_tabWidget);
 
     m_tabWidget->insertTab(0, m_topAccuraciesView, icon, tabName);
-}
-
-TrainingResultView *TrainingResultsWidget::createResultTab(const QString &tabName) {
-
-    auto *tab = new TrainingResultView(this);
-    m_tabWidget->addTab(tab, tabName);
-    m_mapTabsByName[tabName] = tab;
-
-    return tab;
 }
 
 void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver) {

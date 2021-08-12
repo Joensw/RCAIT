@@ -31,7 +31,23 @@ protected:
 
     void deleteResultTab(const QString &tabName);
 
-    virtual AbstractGraphicsView *createResultTab(const QString &tabName) = 0;
+    /**
+     * @brief C++ templates have to be defined in the header.
+     * There is no other way.
+     * Ugly, but that's the recommended way to do it.
+     * @tparam T extends AbstractGraphicsView, tab type to be created
+     * @param tabName name of the tab to be created
+     * @return created tab of type T
+     */
+    template<typename T, typename = std::enable_if<std::is_base_of_v<AbstractGraphicsView, T>>>
+            T *createResultTab(const QString &tabName){
+                auto *tab = new T(this);
+                m_tabWidget->addTab(tab, tabName);
+                m_mapTabsByName[tabName] = tab;
+
+                return tab;
+            };
+
 
 public:
     explicit GenericComparisonWidget(QWidget *parent = nullptr);

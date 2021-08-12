@@ -33,8 +33,6 @@ private:
 
     void configure_topAccuraciesTab();
 
-    TrainingResultView *createResultTab(const QString &tabName) override;
-
 signals:
 
     void sig_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare);
