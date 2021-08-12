@@ -200,7 +200,7 @@ void ResultImporter::loadGraphicsInView(AbstractGraphicsView *receiver, const QS
     }
 }
 
-QJsonObject ResultImporter::readJSON(const QString &filepath) const {
+QJsonObject ResultImporter::readJSON(const QString &filepath) {
     auto file = QFile(filepath);
     if (!file.open(QIODevice::ReadOnly)) {
         qWarning() << "Json file couldn't be opened/found";

@@ -38,7 +38,7 @@ private:
     static void
     loadGraphicsInView(AbstractGraphicsView *receiver, const QString &resultsFolder, const QString &baseDir);
 
-    [[nodiscard]] QJsonObject readJSON(const QString &filepath) const;
+    [[nodiscard]] static QJsonObject readJSON(const QString &filepath) ;
 
 signals:
 
