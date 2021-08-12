@@ -35,7 +35,7 @@ signals:
 
 private slots:
 
-    void slot_pushButton_updateGraphics_pressed();
+    void slot_pushButton_updateGraphics_clicked();
 
 private:
     Ui::TopAccuraciesView *ui;

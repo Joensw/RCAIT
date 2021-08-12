@@ -18,8 +18,8 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
     configure_updateGraphicsButton();
 
     //Internal signals/slots
-    connect(m_pushButton_updateGraphics, &QAbstractButton::pressed, this,
-            &TopAccuraciesView::slot_pushButton_updateGraphics_pressed);
+    connect(m_pushButton_updateGraphics, &QAbstractButton::clicked, this,
+            &TopAccuraciesView::slot_pushButton_updateGraphics_clicked);
 }
 
 void TopAccuraciesView::addTopAccuraciesEntry(const QString &identifier, double top1, double top5) {
@@ -61,7 +61,7 @@ void TopAccuraciesView::setTopAccuraciesGraphics(const QSharedPointer<QGraphicsI
     view->setScene(scene);
 }
 
-void TopAccuraciesView::slot_pushButton_updateGraphics_pressed() {
+void TopAccuraciesView::slot_pushButton_updateGraphics_clicked() {
     emit sig_normal_requestTopAccuraciesGraphics(this);
 }
 
