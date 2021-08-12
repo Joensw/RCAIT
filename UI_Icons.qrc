@@ -12,13 +12,6 @@
         <file>Resources/TabIcons/Filled/Tab_Results_Icon.svg</file>
         <file>Resources/TabIcons/Filled/Tab_Settings_Icon.svg</file>
         <file>Resources/TabIcons/Filled/Tab_Start_Icon.svg</file>
-        <file>Resources/TabIcons/Outline/Tab_AI_Settings_Icon.svg</file>
-        <file>Resources/TabIcons/Outline/Tab_Crawler_Icon.svg</file>
-        <file>Resources/TabIcons/Outline/Tab_Input_Images_Icon.svg</file>
-        <file>Resources/TabIcons/Outline/Tab_Result_Icon.svg</file>
-        <file>Resources/TabIcons/Outline/Tab_Result_Icon_2.svg</file>
-        <file>Resources/TabIcons/Outline/Tab_Settings_Icon.svg</file>
-        <file>Resources/TabIcons/Outline/Tab_Start_Icon.svg</file>
         <file>Resources/UISymbols/UI_Move_All_Left.svg</file>
         <file>Resources/UISymbols/UI_Move_All_Right.svg</file>
         <file>Resources/UISymbols/UI_Move_Left.svg</file>
@@ -48,5 +41,8 @@
         <file>Resources/UISymbols/UI_Backspace_Icon.svg</file>
         <file>Resources/UISymbols/UI_Start_Icon.svg</file>
         <file>Resources/UISymbols/UI_Pause_Icon.svg</file>
+        <file>Resources/UISymbols/UI_Cancel_Icon.svg</file>
+        <file>Resources/UISymbols/UI_Fullscreen_Exit_Icon.svg</file>
+        <file>Resources/UISymbols/UI_Fullscreen_Icon.svg</file>
     </qresource>
 </RCC>
