@@ -103,13 +103,13 @@ void ImageGallery::concurrentAddDir(const QString &path) {
 }
 
 void ImageGallery::concurrentAddDir(const QList<QImage> imageList) {
-    auto task = QtConcurrent::run([this, &imageList] { this->addDir(imageList); });
+    auto task = QtConcurrent::run([this, imageList] { this->addDir(imageList); });
     Q_UNUSED(task)
 }
 
 void ImageGallery::concurrentAddDir(const QList<QString> imageList) {
-    auto task = QtConcurrent::run([this, &imageList] { this->addDir(imageList); });
-    Q_UNUSED(task)
+    auto task = QtConcurrent::run([this, imageList] { this->addDir(imageList); });
+Q_UNUSED(task)
 }
 
 void ImageGallery::slot_isReady() {
@@ -175,7 +175,7 @@ ImageGallery::ImageGallery(QWidget *parent, const QStringList &images) {
     setAcceptDrops(true);
     setDefaultDropAction(Qt::MoveAction);
 
-    auto task = QtConcurrent::run([this, &images] { this->addDir(images); });
+    auto task = QtConcurrent::run([this, images] { this->addDir(images); });
     Q_UNUSED(task)
 }
 
