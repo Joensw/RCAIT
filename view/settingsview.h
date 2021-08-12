@@ -114,7 +114,7 @@ protected:
 private slots:
     void on_saveButton_clicked();
 
-    void on_closeButton_clicked();
+    void on_cancelButton_clicked();
 
     void slot_setProjectDir();
     void slot_setClassificationPluginsDir();

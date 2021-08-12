@@ -117,7 +117,7 @@ void SettingsView::on_saveButton_clicked()
     }
 }
 
-void SettingsView::on_closeButton_clicked()
+void SettingsView::on_cancelButton_clicked()
 {
     this->close();
 }
