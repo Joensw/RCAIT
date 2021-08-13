@@ -149,6 +149,16 @@
         <source>Form</source>
         <translation>Форма</translation>
     </message>
+    <message>
+        <location filename="../view/results/classificationresultview.cpp" line="75"/>
+        <source>Confidence</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/results/classificationresultview.cpp" line="75"/>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigurationDialog</name>
@@ -158,34 +168,50 @@
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../configurationdialog.ui" line="25"/>
         <source>select project directory</source>
-        <translation>выберите папку проекта</translation>
+        <translation type="vanished">выберите папку проекта</translation>
     </message>
     <message>
-        <location filename="../configurationdialog.ui" line="55"/>
-        <location filename="../configurationdialog.ui" line="103"/>
-        <location filename="../configurationdialog.ui" line="151"/>
         <source>path:</source>
-        <translation>путь:</translation>
+        <translation type="vanished">путь:</translation>
     </message>
     <message>
-        <location filename="../configurationdialog.ui" line="73"/>
         <source>select classification plugin directory</source>
-        <translation>выберите папку плагина классификации</translation>
+        <translation type="vanished">выберите папку плагина классификации</translation>
     </message>
     <message>
-        <location filename="../configurationdialog.ui" line="121"/>
         <source>select image loader plugin directory</source>
-        <translation>выберите папку плагина загрузки изображений</translation>
+        <translation type="vanished">выберите папку плагина загрузки изображений</translation>
     </message>
     <message>
-        <location filename="../configurationdialog.ui" line="170"/>
+        <location filename="../configurationdialog.ui" line="34"/>
+        <source>Project Directory</source>
+        <translation type="unfinished">Папка проекта</translation>
+    </message>
+    <message>
+        <location filename="../configurationdialog.ui" line="61"/>
+        <location filename="../configurationdialog.ui" line="112"/>
+        <location filename="../configurationdialog.ui" line="169"/>
+        <source>Selected path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../configurationdialog.ui" line="85"/>
+        <source>Classification Plugin Directory</source>
+        <translation type="unfinished">Папка плагинов классификации</translation>
+    </message>
+    <message>
+        <location filename="../configurationdialog.ui" line="136"/>
+        <source>Imageloader Plugin Directory</source>
+        <translation type="unfinished">Папка плагинов загрузки изображений</translation>
+    </message>
+    <message>
+        <location filename="../configurationdialog.ui" line="196"/>
         <source>&lt;error&gt;</source>
         <translation>&lt;ошибка&gt;</translation>
     </message>
     <message>
-        <location filename="../configurationdialog.ui" line="192"/>
+        <location filename="../configurationdialog.ui" line="218"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -435,32 +461,32 @@ The application will terminate</source>
         <translation>Новая модель</translation>
     </message>
     <message>
-        <location filename="../newmodeldialog.ui" line="24"/>
+        <location filename="../newmodeldialog.ui" line="33"/>
         <source>Plugin</source>
         <translation>Плагин</translation>
     </message>
     <message>
-        <location filename="../newmodeldialog.ui" line="32"/>
+        <location filename="../newmodeldialog.ui" line="41"/>
         <source>MMClassification Plugin</source>
         <translation>MMClassification Plugin</translation>
     </message>
     <message>
-        <location filename="../newmodeldialog.ui" line="37"/>
+        <location filename="../newmodeldialog.ui" line="46"/>
         <source>Tensorflow Plugin</source>
         <translation>Tensorflow Plugin</translation>
     </message>
     <message>
-        <location filename="../newmodeldialog.ui" line="45"/>
+        <location filename="../newmodeldialog.ui" line="54"/>
         <source>Pre-trained base</source>
         <translation>База предварительного обучения</translation>
     </message>
     <message>
-        <location filename="../newmodeldialog.ui" line="53"/>
+        <location filename="../newmodeldialog.ui" line="62"/>
         <source>VGG-11</source>
         <translation>VGG-11</translation>
     </message>
     <message>
-        <location filename="../newmodeldialog.ui" line="61"/>
+        <location filename="../newmodeldialog.ui" line="70"/>
         <source>Name</source>
         <translation>Название</translation>
     </message>
@@ -529,7 +555,7 @@ The application will terminate</source>
         <translation>Удаление модели</translation>
     </message>
     <message>
-        <location filename="../removemodeldialog.ui" line="53"/>
+        <location filename="../removemodeldialog.ui" line="64"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Вы уверены, что хотите удалить &amp;quot;&amp;lt;имя модели&amp;gt;&amp;quot;? &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Этот элемент будет удален немедленно. Вы не сможете отменить это действие.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.</translation>
     </message>
@@ -542,12 +568,12 @@ The application will terminate</source>
         <translation>Удаление проекта</translation>
     </message>
     <message>
-        <location filename="../removeprojectdialog.ui" line="60"/>
+        <location filename="../removeprojectdialog.ui" line="71"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Вы уверены, что хотите удалить &amp;quot;&amp;lt;название проекта&amp;gt;&amp;quot;? &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Этот элемент будет удален немедленно. Вы не сможете отменить это действие.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.</translation>
     </message>
     <message>
-        <location filename="../removeprojectdialog.ui" line="115"/>
+        <location filename="../removeprojectdialog.ui" line="126"/>
         <source>Remove associated Models</source>
         <translation>Удалить вместе со связанными моделями</translation>
     </message>
@@ -578,12 +604,16 @@ The application will terminate</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../view/settingsview.ui" line="72"/>
-        <source>Close</source>
-        <translation>Закрыть</translation>
+        <location filename="../view/settingsview.ui" line="79"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Отменить</translation>
     </message>
     <message>
-        <location filename="../view/settingsview.ui" line="88"/>
+        <source>Close</source>
+        <translation type="vanished">Закрыть</translation>
+    </message>
+    <message>
+        <location filename="../view/settingsview.ui" line="92"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
@@ -650,7 +680,17 @@ Select a project to get started</source>
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../view/results/topaccuraciesview.cpp" line="93"/>
+        <location filename="../view/results/topaccuraciesview.cpp" line="94"/>
+        <source>Top 1%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/results/topaccuraciesview.cpp" line="94"/>
+        <source>Top 5%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/results/topaccuraciesview.cpp" line="96"/>
         <source>Update graphics...</source>
         <translation>Обновить графики...</translation>
     </message>
@@ -676,6 +716,14 @@ Select a project to get started</source>
         <location filename="../view/results/trainingresultview.ui" line="80"/>
         <source>Confusion Matrix</source>
         <translation>Матрица ошибок</translation>
+    </message>
+</context>
+<context>
+    <name>TrainingResultsWidget</name>
+    <message>
+        <location filename="../view/results/trainingresultswidget.cpp" line="47"/>
+        <source>Top Accuracies</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

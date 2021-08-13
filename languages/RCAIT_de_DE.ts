@@ -151,24 +151,32 @@
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
+    <message>
+        <source>Confidence</source>
+        <translation>Konfidenz</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Kennzeichnung</translation>
+    </message>
 </context>
 <context>
     <name>ClassificationResultsWidget</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation type="obsolete">Form</translation>
     </message>
     <message>
         <source>Compare Classification Results</source>
-        <translation>Klassifizierungsergebnisse vergleichen</translation>
+        <translation type="vanished">Klassifizierungsergebnisse vergleichen</translation>
     </message>
     <message>
         <source>Save Results </source>
-        <translation>Ergebnisse speichern</translation>
+        <translation type="vanished">Ergebnisse speichern</translation>
     </message>
     <message>
         <source>Compare ...</source>
-        <translation type="unfinished">Vergleiche ...</translation>
+        <translation type="obsolete">Vergleiche ...</translation>
     </message>
 </context>
 <context>
@@ -186,19 +194,19 @@
     </message>
     <message>
         <source>select project directory</source>
-        <translation>Projektverzeichnis auswählen</translation>
+        <translation type="vanished">Projektverzeichnis auswählen</translation>
     </message>
     <message>
         <source>path:</source>
-        <translation>Pfad:</translation>
+        <translation type="vanished">Pfad:</translation>
     </message>
     <message>
         <source>select classification plugin directory</source>
-        <translation>Klassifizierungs-Plugin-Verzeichnis auswählen</translation>
+        <translation type="vanished">Klassifizierungs-Plugin-Verzeichnis auswählen</translation>
     </message>
     <message>
         <source>select image loader plugin directory</source>
-        <translation>Plugin-Verzeichnis für den Bildlader auswählen</translation>
+        <translation type="vanished">Plugin-Verzeichnis für den Bildlader auswählen</translation>
     </message>
     <message>
         <source>&lt;error&gt;</source>
@@ -233,6 +241,37 @@ The application will terminate</source>
         <source>Please specifiy all paths uniquely before proceeding.</source>
         <translation type="unfinished">Bitte geben Sie alle Pfade einmalig an, bevor Sie fortfahren.</translation>
     </message>
+    <message>
+        <source>Project Directory</source>
+        <translation>Projektverzeichnis</translation>
+    </message>
+    <message>
+        <source>Selected path:</source>
+        <translation>Ausgewählter Pfad:</translation>
+    </message>
+    <message>
+        <source>Classification Plugin Directory</source>
+        <translation>Klassifizierungspluginverzeichnis</translation>
+    </message>
+    <message>
+        <source>Imageloader Plugin Directory</source>
+        <translation>Bildladerpluginverzeichnis</translation>
+    </message>
+</context>
+<context>
+    <name>GenericComparisonWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Save Results </source>
+        <translation type="unfinished">Ergebnisse speichern</translation>
+    </message>
+    <message>
+        <source>Compare ...</source>
+        <translation type="unfinished">Vergleiche ...</translation>
+    </message>
 </context>
 <context>
     <name>GlobalSettingsWidget</name>
@@ -242,27 +281,27 @@ The application will terminate</source>
     </message>
     <message>
         <source>Choose project directory</source>
-        <translation type="unfinished">Projektverzeichnis wählen</translation>
+        <translation type="obsolete">Projektverzeichnis wählen</translation>
     </message>
     <message>
         <source>current path:</source>
-        <translation type="unfinished">aktueller Pfad:</translation>
+        <translation type="obsolete">aktueller Pfad:</translation>
     </message>
     <message>
         <source>new path:</source>
-        <translation type="unfinished">neuer Pfad:</translation>
+        <translation type="obsolete">neuer Pfad:</translation>
     </message>
     <message>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="vanished">-</translation>
     </message>
     <message>
         <source>Choose classification-plugin Directory</source>
-        <translation>Klassifizierungspluginverzeichnis wählen</translation>
+        <translation type="vanished">Klassifizierungspluginverzeichnis wählen</translation>
     </message>
     <message>
         <source>Choose imageloader-plugin directory</source>
-        <translation type="unfinished">Bildladerpluginverzeichnis wählen</translation>
+        <translation type="obsolete">Bildladerpluginverzeichnis wählen</translation>
     </message>
     <message>
         <source>Global settings</source>
@@ -270,7 +309,7 @@ The application will terminate</source>
     </message>
     <message>
         <source>Sucess. Updated </source>
-        <translation type="unfinished"> </translation>
+        <translation type="obsolete"> </translation>
     </message>
     <message>
         <source> path(s)</source>
@@ -278,7 +317,35 @@ The application will terminate</source>
     </message>
     <message>
         <source>no changes were made</source>
-        <translation type="unfinished">keine Ã„nderung vorgenommen</translation>
+        <translation type="obsolete">keine Ã„nderung vorgenommen</translation>
+    </message>
+    <message>
+        <source>Project Directory</source>
+        <translation>Projektverzeichnis</translation>
+    </message>
+    <message>
+        <source>Current path:</source>
+        <translation>Aktueller Pfad:</translation>
+    </message>
+    <message>
+        <source>New path:</source>
+        <translation>Neuer Pfad:</translation>
+    </message>
+    <message>
+        <source>Classification Plugin Directory</source>
+        <translation>Klassifizierungspluginverzeichnis</translation>
+    </message>
+    <message>
+        <source>Imageloader Plugin Directory</source>
+        <translation>Bildladerpluginverzeichnis</translation>
+    </message>
+    <message>
+        <source>Success. Updated </source>
+        <translation>Erfolgreich aktualisiert</translation>
+    </message>
+    <message>
+        <source>No changes were made</source>
+        <translation>Es wurden keine Änderungen vorgenommen</translation>
     </message>
 </context>
 <context>
@@ -333,15 +400,15 @@ The application will terminate</source>
     </message>
     <message>
         <source>Model 1</source>
-        <translation type="unfinished">Modell 1</translation>
+        <translation type="obsolete">Modell 1</translation>
     </message>
     <message>
         <source>Model 2</source>
-        <translation type="unfinished">Modell 2</translation>
+        <translation type="obsolete">Modell 2</translation>
     </message>
     <message>
         <source>Model 3</source>
-        <translation type="unfinished">Modell 3</translation>
+        <translation type="obsolete">Modell 3</translation>
     </message>
     <message>
         <source>Add</source>
@@ -592,11 +659,31 @@ The application will terminate</source>
     </message>
     <message>
         <source>Name may not contain special characters</source>
-        <translation type="unfinished">Der Name darf keine Sonderzeichen enthalten</translation>
+        <translation type="obsolete">Der Name darf keine Sonderzeichen enthalten</translation>
     </message>
     <message>
         <source>A project with this name aleady exists in the project directory</source>
         <translation type="unfinished">Dieser Projektname ist bereits vergeben</translation>
+    </message>
+    <message>
+        <source>Name should contain more than only space (" ") characters</source>
+        <translation>Der Name sollte mehr als nur Leerzeichen (" ") enthalten</translation>
+    </message>
+    <message>
+        <source>Name may not contain the  "/" or "\" characters</source>
+        <translation>Der Name darf die Zeichen "/" oder "\" nicht enthalten</translation>
+    </message>
+    <message>
+        <source>The Operating system cannot support this name</source>
+        <translation>Das Betriebssystem unterstützt diesen Namen nicht</translation>
+    </message>
+    <message>
+        <source>Settings have not been updated, there is a conflict.</source>
+        <translation>Die Einstellungen wurden nicht aktualisiert, es besteht ein Konflikt.</translation>
+    </message>
+    <message>
+        <source>Paths may not be identical and must exist, this includes new and unchanged paths.</source>
+        <translation>Pfade dürfen nicht identisch sein und müssen existieren, dies schließt neue und unveränderte Pfade ein.</translation>
     </message>
 </context>
 <context>
@@ -760,13 +847,17 @@ paths may not be identical and must exist, this includes new and unchanged paths
     </message>
     <message>
         <source>Select classification plugin directory</source>
-        <translatorcomment>kann man sicher eleganter ÃƒÂ¼bersetzen</translatorcomment>
+        <translatorcomment>kann man sicher eleganter ÃƒÆ’Ã‚Â¼bersetzen</translatorcomment>
         <translation>Klassifizierungspluginverzeichnis wählen</translation>
     </message>
     <message>
         <source>Select image loader plugin directory</source>
-        <translatorcomment>kann man sicher eleganter ÃƒÂ¼bersetzen</translatorcomment>
+        <translatorcomment>kann man sicher eleganter ÃƒÆ’Ã‚Â¼bersetzen</translatorcomment>
         <translation>Bildladerpluginverzeichnis wählen</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -820,6 +911,18 @@ Wähle ein Projekt aus, um loszulegen</translation>
         <source>Form</source>
         <translation type="unfinished">Form</translation>
     </message>
+    <message>
+        <source>Top 1%</source>
+        <translation>Top 1%</translation>
+    </message>
+    <message>
+        <source>Top 5%</source>
+        <translation>Top 5%</translation>
+    </message>
+    <message>
+        <source>Update graphics...</source>
+        <translation>Graphik aktualisieren...</translation>
+    </message>
 </context>
 <context>
     <name>TrainingResultView</name>
@@ -848,11 +951,11 @@ Wähle ein Projekt aus, um loszulegen</translation>
     <name>TrainingResultsWidget</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation type="obsolete">Form</translation>
     </message>
     <message>
         <source>Compare Training Results</source>
-        <translation>Trainingsergebnisse vergleichen</translation>
+        <translation type="vanished">Trainingsergebnisse vergleichen</translation>
     </message>
     <message>
         <source>Top Accuracies</source>
@@ -860,18 +963,18 @@ Wähle ein Projekt aus, um loszulegen</translation>
     </message>
     <message>
         <source>Save Results </source>
-        <translation>Ergebnisse speichern</translation>
+        <translation type="vanished">Ergebnisse speichern</translation>
     </message>
     <message>
         <source>Compare ...</source>
-        <translation type="unfinished">Vergleiche ...</translation>
+        <translation type="obsolete">Vergleiche ...</translation>
     </message>
 </context>
 <context>
     <name>imagesection</name>
     <message>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="vanished">Form</translation>
     </message>
     <message>
         <source>Validation images</source>
@@ -883,27 +986,27 @@ Wähle ein Projekt aus, um loszulegen</translation>
     </message>
     <message>
         <source>Remove selected images</source>
-        <translation>Entferne ausgewählte Bilder</translation>
+        <translation type="vanished">Entferne ausgewählte Bilder</translation>
     </message>
     <message>
         <source>Current dataset training images</source>
-        <translation>Aktuelle Trainingsbilder aus dem Datensatz</translation>
+        <translation type="vanished">Aktuelle Trainingsbilder aus dem Datensatz</translation>
     </message>
     <message>
         <source>New training images</source>
-        <translation>Neue Trainingsbilder</translation>
+        <translation type="vanished">Neue Trainingsbilder</translation>
     </message>
     <message>
         <source>Current dataset validation images</source>
-        <translation>Aktueller Datensatz Validierungsbilder</translation>
+        <translation type="vanished">Aktueller Datensatz Validierungsbilder</translation>
     </message>
     <message>
         <source>New validation images</source>
-        <translation>Neue Validierungsbilder</translation>
+        <translation type="vanished">Neue Validierungsbilder</translation>
     </message>
     <message>
         <source>Merge into dataset</source>
-        <translation>In Datensatz zusammenführen</translation>
+        <translation type="vanished">In Datensatz zusammenführen</translation>
     </message>
 </context>
 </TS>
