@@ -1,9 +1,8 @@
 #include <QFileInfo>
 #include "topaccuraciesgraphics.h"
 
-TopAccuraciesGraphics::TopAccuraciesGraphics(const QString &identifier,
-                                             const QList<QPair<QString, QList<double>>> &data)
-        : AbstractResultGraphics("topaccuracies_" + identifier, "svg") {
+TopAccuraciesGraphics::TopAccuraciesGraphics(const QList<QPair<QString, QList<double>>> &data)
+        : AbstractResultGraphics("topaccuracies", "svg") {
 
     m_data = data;
 }

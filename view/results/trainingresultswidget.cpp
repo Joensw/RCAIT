@@ -4,7 +4,7 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
         : GenericComparisonWidget(parent) {
 
     //Top Accuracies Tab configuration
-    m_topAccuraciesGraphics = new TopAccuraciesGraphics("comparison");
+    m_topAccuraciesGraphics = new TopAccuraciesGraphics();
     configure_topAccuraciesTab();
     connect(m_topAccuraciesView, &TopAccuraciesView::sig_normal_requestTopAccuraciesGraphics, this,
             &TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics);
