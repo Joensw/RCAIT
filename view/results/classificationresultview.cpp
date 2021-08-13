@@ -5,7 +5,7 @@
 #include "ui_classificationresultview.h"
 
 ClassificationResultView::ClassificationResultView(QWidget *parent) :
-        QWidget(parent),
+        AbstractGraphicsView(parent),
         ui(new Ui::ClassificationResultView) {
     ui->setupUi(this);
 
@@ -56,7 +56,7 @@ void ClassificationResultView::setClassificationGraphics(
     view->verticalScrollBar()->setValue(1);
 }
 
-const QSharedPointer<QGraphicsItem> &ClassificationResultView::getClassificationGraphics() const {
+[[maybe_unused]] const QSharedPointer<QGraphicsItem> &ClassificationResultView::getClassificationGraphics() const {
     return m_classificationGraphics;
 }
 

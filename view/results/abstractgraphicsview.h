@@ -2,9 +2,14 @@
 #define ABSTRACTGRAPHICSVIEW_H
 
 #include <QGraphicsItem>
+#include <QWidget>
 
-class AbstractGraphicsView {
+class AbstractGraphicsView : public QWidget {
+Q_OBJECT
+
 public:
+    explicit AbstractGraphicsView(QWidget *parent = nullptr) : QWidget(parent) {}
+
     virtual void setAccuracyCurve(const QSharedPointer<QGraphicsItem> &accuracyCurveImage) {};
 
     virtual void setConfusionMatrix(const QSharedPointer<QGraphicsItem> &matrixImage) {};

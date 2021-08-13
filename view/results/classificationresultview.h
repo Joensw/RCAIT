@@ -12,7 +12,7 @@ namespace Ui {
     class ClassificationResultView;
 }
 
-class ClassificationResultView : public QWidget, public AbstractGraphicsView {
+class ClassificationResultView : public AbstractGraphicsView {
 Q_OBJECT
 
 protected:

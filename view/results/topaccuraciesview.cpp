@@ -2,7 +2,7 @@
 #include "ui_topaccuraciesview.h"
 
 TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
-        QWidget(parent),
+        AbstractGraphicsView(parent),
         ui(new Ui::TopAccuraciesView) {
     ui->setupUi(this);
 

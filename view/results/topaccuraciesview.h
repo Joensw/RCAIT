@@ -11,7 +11,7 @@ namespace Ui {
     class TopAccuraciesView;
 }
 
-class TopAccuraciesView : public QWidget, public AbstractGraphicsView {
+class TopAccuraciesView : public AbstractGraphicsView {
 Q_OBJECT
 
 protected:

@@ -10,7 +10,7 @@ namespace Ui {
     class TrainingResultView;
 }
 
-class TrainingResultView : public AbstractGraphicsView, public QWidget {
+class TrainingResultView : public AbstractGraphicsView {
 
 protected:
     // this event is called, when a new translator is loaded or the system language is changed
