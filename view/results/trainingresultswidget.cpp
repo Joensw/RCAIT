@@ -19,8 +19,6 @@ void TrainingResultsWidget::addTrainingResult(TrainingResult *result) {
 
 void TrainingResultsWidget::addComparisonResult(const QString &runNameToCompare) {
     auto tab = createResultTab<TrainingResultView>(runNameToCompare);
-    //TODO move to slot
-    tab->setSaved(true);
     emit sig_comparison_loadTrainingResultGraphics(tab, runNameToCompare);
     emit sig_comparison_loadTrainingResultData(tab, runNameToCompare);
     emit sig_comparison_loadAccuracyData(m_topAccuraciesView, m_topAccuraciesGraphics, runNameToCompare);

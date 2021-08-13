@@ -81,11 +81,6 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
     connect(classificationResultsWidget, &ClassificationResultsWidget::sig_save_ClassificationResult,
             m_resultsExporter,
             &ResultsExporter::slot_save_ClassificationResult);
-
-    //TODO: Remove
-    //Connect ResultsWidget to ResultsController
-    connect(m_resultsWidget, &ResultsWidget::sig_saveResults, this, &ResultsController::slot_saveResult);
-
 }
 
 void ResultsController::addTrainingResult(TrainingResult *result) {
@@ -94,14 +89,6 @@ void ResultsController::addTrainingResult(TrainingResult *result) {
 
 void ResultsController::addClassificationResult(ClassificationResult *result) {
     m_resultsWidget->addClassificationResult(result);
-}
-
-void ResultsController::updateComparisonResultOverview(TrainingResult *result) {
-//TODO Useless
-}
-
-void ResultsController::slot_saveResult() {
-//TODO Move
 }
 
 void ResultsController::slot_projectPathUpdated() {
