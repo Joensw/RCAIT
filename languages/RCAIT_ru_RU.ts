@@ -193,7 +193,7 @@
         <location filename="../configurationdialog.ui" line="112"/>
         <location filename="../configurationdialog.ui" line="169"/>
         <source>Selected path:</source>
-        <translation></translation>
+        <translation>путь:</translation>
     </message>
     <message>
         <location filename="../configurationdialog.ui" line="85"/>
