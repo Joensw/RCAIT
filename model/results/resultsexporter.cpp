@@ -1,17 +1,17 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <projectmanager.h>
-#include "resultexporter.h"
+#include "resultsexporter.h"
 
 
-void ResultExporter::updateResultFolderPaths() {
+void ResultsExporter::updateResultFolderPaths() {
     auto &pm = ProjectManager::getInstance();
     m_resultsDir = pm.getResultsDir();
     m_trainingResultsDir = pm.getTrainingResultsDir();
     m_classificationResultsDir = pm.getClassificationResultsDir();
 }
 
-void ResultExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics) {
+void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics) {
     const auto &fileName = graphics->getFullName();
     const auto &identifier = graphics->getIdentifier();
     const auto &extension = graphics->getExtension();
@@ -25,15 +25,15 @@ void ResultExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics) {
     QFile::copy(oldFilePath, newFilePath);
 }
 
-void ResultExporter::slot_save_TrainingResult(TrainingResult *result) {
+void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
 
 }
 
-void ResultExporter::slot_save_ClassificationResult(ClassificationResult *result) {
+void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *result) {
 
 }
 
-void ResultExporter::writeJSON(const QJsonObject &jsonObject, const QString &filepath) {
+void ResultsExporter::writeJSON(const QJsonObject &jsonObject, const QString &filepath) {
     QJsonDocument json_doc(jsonObject);
     auto rawData = json_doc.toJson();
 

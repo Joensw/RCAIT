@@ -10,7 +10,7 @@
 #include <classificationresultview.h>
 #include "topaccuraciesgraphics.h"
 
-class ResultImporter : public QObject {
+class ResultsImporter : public QObject {
 Q_OBJECT
 public slots:
 

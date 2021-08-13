@@ -7,8 +7,8 @@
 #include <resultswidget.h>
 #include <resultsprocessor.h>
 #include <datamanager.h>
-#include <resultimporter.h>
-#include <resultexporter.h>
+#include <resultsimporter.h>
+#include <resultsexporter.h>
 #include <trainingresultswidget.h>
 #include <classificationresultswidget.h>
 
@@ -32,8 +32,8 @@ private:
     DataManager *m_dataManager;
     ResultsWidget *m_resultsWidget;
     ResultsProcessor *m_resultsProcessor;
-    ResultImporter *m_resultsImporter;
-    ResultExporter *m_resultsExporter;
+    ResultsImporter *m_resultsImporter;
+    ResultsExporter *m_resultsExporter;
 
     //TODO ??
     QList<TrainingResult> m_unsavedTrainingResults;

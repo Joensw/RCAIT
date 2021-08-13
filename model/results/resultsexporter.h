@@ -7,7 +7,7 @@
 #include <classificationresult.h>
 #include "topaccuraciesgraphics.h"
 
-class ResultExporter : public QObject {
+class ResultsExporter : public QObject {
 Q_OBJECT
 
 public slots:

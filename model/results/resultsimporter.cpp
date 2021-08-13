@@ -1,4 +1,4 @@
-#include "resultimporter.h"
+#include "resultsimporter.h"
 
 enum GraphicsType {
     CLASSIFICATION,
@@ -17,8 +17,8 @@ const std::array<QRegularExpression, _COUNT> GRAPHICSTYPE2REGEX = {
 /**
  * Top Accuracies slots
  */
-void ResultImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
-                                                      const QString &runNameToCompare) {
+void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+                                                       const QString &runNameToCompare) {
     auto fileName = QString("training_%1.json").arg(runNameToCompare);
     auto dirPath = ProjectManager::getInstance().getTrainingResultsDir();
     auto dir = QDir(dirPath);
@@ -33,8 +33,8 @@ void ResultImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view, T
     view->addTopAccuraciesEntry(runNameToCompare, top1, top5);
 }
 
-void ResultImporter::slot_comparison_unloadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
-                                                        const QString &runNameToCompare) {
+void ResultsImporter::slot_comparison_unloadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+                                                         const QString &runNameToCompare) {
     graphics->removeDataRow(runNameToCompare);
     view->removeTopAccuraciesEntry(runNameToCompare);
 }
@@ -42,8 +42,8 @@ void ResultImporter::slot_comparison_unloadAccuracyData(TopAccuraciesView *view,
 /**
  * Classification result slots
  */
-void ResultImporter::slot_comparison_loadClassificationResultData(ClassificationResultView *view,
-                                                                  const QString &runNameToCompare) {
+void ResultsImporter::slot_comparison_loadClassificationResultData(ClassificationResultView *view,
+                                                                   const QString &runNameToCompare) {
     view->setSaved(true);
 
     auto fileName = QString("classification_%1.json").arg(runNameToCompare);
@@ -84,8 +84,8 @@ void ResultImporter::slot_comparison_loadClassificationResultData(Classification
     emit sig_normal_loadClassificationResultData(view, result);
 }
 
-void ResultImporter::slot_comparison_loadClassificationResultGraphics(AbstractGraphicsView *receiver,
-                                                                      const QString &runNameToCompare) {
+void ResultsImporter::slot_comparison_loadClassificationResultGraphics(AbstractGraphicsView *receiver,
+                                                                       const QString &runNameToCompare) {
     auto dirPath = ProjectManager::getInstance().getClassificationResultsDir();
     loadGraphicsInView(receiver, runNameToCompare, dirPath);
 }
@@ -94,7 +94,7 @@ void ResultImporter::slot_comparison_loadClassificationResultGraphics(AbstractGr
  * Training result slots
  */
 void
-ResultImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare) {
+ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare) {
     view->setSaved(true);
 
     auto fileName = QString("training_%1.json").arg(runNameToCompare);
@@ -147,14 +147,14 @@ ResultImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view,
     emit sig_normal_loadTrainingResultData(view, result);
 }
 
-void ResultImporter::slot_comparison_loadTrainingResultGraphics(AbstractGraphicsView *receiver,
-                                                                const QString &runNameToCompare) {
+void ResultsImporter::slot_comparison_loadTrainingResultGraphics(AbstractGraphicsView *receiver,
+                                                                 const QString &runNameToCompare) {
     auto dirPath = ProjectManager::getInstance().getTrainingResultsDir();
     loadGraphicsInView(receiver, runNameToCompare, dirPath);
 }
 
-void ResultImporter::loadGraphicsInView(AbstractGraphicsView *receiver, const QString &resultsFolder,
-                                        const QString &baseDir) {
+void ResultsImporter::loadGraphicsInView(AbstractGraphicsView *receiver, const QString &resultsFolder,
+                                         const QString &baseDir) {
     auto dir = QDir(baseDir);
     dir.cd(resultsFolder);
 
@@ -200,7 +200,7 @@ void ResultImporter::loadGraphicsInView(AbstractGraphicsView *receiver, const QS
     }
 }
 
-QJsonObject ResultImporter::readJSON(const QString &filepath) {
+QJsonObject ResultsImporter::readJSON(const QString &filepath) {
     auto file = QFile(filepath);
     if (!file.open(QIODevice::ReadOnly)) {
         qWarning() << "Json file couldn't be opened/found";
