@@ -31,14 +31,21 @@ void TrainingResultsWidget::removeComparisonResult(const QString &runNameToCompa
 }
 
 void TrainingResultsWidget::configure_topAccuraciesTab() {
-    const QString tabName = "Top Accuracies";
     const auto icon = QIcon(":/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
     m_topAccuraciesView = new TopAccuraciesView(m_tabWidget);
 
-    m_tabWidget->insertTab(0, m_topAccuraciesView, icon, tabName);
+    m_tabWidget->insertTab(0, m_topAccuraciesView, icon, QString());
 }
 
 void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver) {
     //Forward signal
     emit sig_normal_requestTopAccuraciesGraphics(receiver, m_topAccuraciesGraphics);
 }
+
+void TrainingResultsWidget::retranslateUi() {
+    int index = m_tabWidget->indexOf(m_topAccuraciesView);
+    m_tabWidget->setTabText(index, tr("Top Accuracies"));
+
+    GenericComparisonWidget::retranslateUi();
+}
+

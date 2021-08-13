@@ -10,6 +10,7 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
     ui->setupUi(this);
 
     auto *table = ui->tableWidget_classificationresult;
+    table->setColumnCount(2);
 
     // Add full touch compliance
     QScroller::grabGesture(ui->graphicsView_classificationresult, QScroller::TouchGesture);
@@ -21,8 +22,9 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
     h_header->setStretchLastSection(true);
     v_header->setSectionResizeMode(QHeaderView::Fixed);
 
-    table->setColumnCount(2);
     table->setCornerButtonEnabled(false);
+
+    retranslateUi();
 }
 
 void ClassificationResultView::setClassificationData(const QMap<int, QStringList> &data) {

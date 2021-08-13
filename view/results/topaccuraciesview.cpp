@@ -7,7 +7,6 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
     ui->setupUi(this);
 
     QTableWidget *table = ui->tableWidget_topAccuracies;
-
     table->setColumnCount(2);
 
     //Stretch table headers to fill the space available
@@ -20,6 +19,7 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
     //Internal signals/slots
     connect(m_pushButton_updateGraphics, &QAbstractButton::clicked, this,
             &TopAccuraciesView::slot_pushButton_updateGraphics_clicked);
+    retranslateUi();
 }
 
 void TopAccuraciesView::addTopAccuraciesEntry(const QString &identifier, double top1, double top5) {
@@ -91,7 +91,7 @@ void TopAccuraciesView::changeEvent(QEvent *event) {
 void TopAccuraciesView::retranslateUi() {
 
     auto *table = ui->tableWidget_topAccuracies;
-    table->setHorizontalHeaderLabels({tr("Top 1%"), tr("Top5%")});
+    table->setHorizontalHeaderLabels({tr("Top 1%"), tr("Top 5%")});
     if (m_pushButton_updateGraphics) {
         m_pushButton_updateGraphics->setToolTip(tr("Update graphics..."));
     }

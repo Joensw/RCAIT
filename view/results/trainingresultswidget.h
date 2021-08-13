@@ -33,6 +33,8 @@ private:
 
     void configure_topAccuraciesTab();
 
+    void retranslateUi() override;
+
 signals:
 
     void sig_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare);
@@ -54,6 +56,7 @@ signals:
 private slots:
 
     void slot_normal_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver);
+
 };
 
 #endif // TRAININGRESULTSWIDGET_H
