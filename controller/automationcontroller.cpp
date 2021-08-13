@@ -24,8 +24,8 @@ AutomationController::AutomationController(DataManager *dataManager, AutomationW
 
 void AutomationController::slot_start()
 {
-
-    QtConcurrent::run(&Automator::performTasks, mAutomator);
+    auto task = QtConcurrent::run(&Automator::performTasks, mAutomator);
+    Q_UNUSED(task)
 }
 
 void AutomationController::slot_stop()
