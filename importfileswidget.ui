@@ -292,6 +292,9 @@ selection-background-color: rgb(255, 255, 255);</string>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_loadModel">
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
             <property name="text">
              <string>Load</string>
             </property>
@@ -336,7 +339,6 @@ selection-background-color: rgb(255, 255, 255);</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="UI_Icons.qrc"/>
   <include location="UI_Icons.qrc"/>
  </resources>
  <connections/>
