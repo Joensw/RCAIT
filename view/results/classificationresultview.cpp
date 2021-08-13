@@ -56,6 +56,14 @@ void ClassificationResultView::setClassificationGraphics(
     view->verticalScrollBar()->setValue(1);
 }
 
+const QSharedPointer<QGraphicsItem> &ClassificationResultView::getClassificationGraphics() const {
+    return m_classificationGraphics;
+}
+
+ClassificationResultView::~ClassificationResultView() {
+    delete ui;
+}
+
 void ClassificationResultView::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         retranslateUi();
@@ -73,8 +81,4 @@ void ClassificationResultView::changeEvent(QEvent *event) {
 void ClassificationResultView::retranslateUi() {
     auto *table = ui->tableWidget_classificationresult;
     table->setHorizontalHeaderLabels({tr("Confidence"), tr("Label")});
-}
-
-ClassificationResultView::~ClassificationResultView() {
-    delete ui;
 }

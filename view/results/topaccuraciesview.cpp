@@ -73,6 +73,10 @@ void TopAccuraciesView::configure_updateGraphicsButton() {
     }
 }
 
+const QSharedPointer<QGraphicsItem> &TopAccuraciesView::getTopAccuraciesImage() const {
+    return m_topAccuraciesImage;
+}
+
 
 void TopAccuraciesView::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {

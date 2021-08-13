@@ -54,6 +54,14 @@ TrainingResultView::~TrainingResultView() {
     delete ui;
 }
 
+const QSharedPointer<QGraphicsItem> &TrainingResultView::getAccuracyCurveImage() const {
+    return m_accuracyCurveImage;
+}
+
+const QSharedPointer<QGraphicsItem> &TrainingResultView::getConfusionMatrixImage() const {
+    return m_confusionMatrixImage;
+}
+
 void TrainingResultView::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         // this event is sent if a translator is loaded
