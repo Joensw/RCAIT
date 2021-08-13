@@ -40,13 +40,13 @@ protected:
      * @return created tab of type T
      */
     template<typename T, typename = std::enable_if<std::is_base_of_v<AbstractGraphicsView, T>>>
-            T *createResultTab(const QString &tabName){
-                auto *tab = new T(this);
-                m_tabWidget->addTab(tab, tabName);
-                m_mapTabsByName[tabName] = tab;
+    T *createResultTab(const QString &tabName) {
+        auto *tab = new T(this);
+        m_tabWidget->addTab(tab, tabName);
+        m_mapTabsByName[tabName] = tab;
 
-                return tab;
-            };
+        return tab;
+    }
 
 
     virtual void retranslateUi();
@@ -74,11 +74,16 @@ private:
 
     virtual void removeComparisonResult(const QString &runNameToCompare) = 0;
 
+    virtual void saveResult(AbstractGraphicsView *view) = 0;
+
 private slots:
 
     void slot_comparisonMenu_triggered(QAction *action);
 
     void slot_updateSaveButton(int index);
+
+    void on_pushButton_saveCurrentTab_clicked();
+
 };
 
 #endif // GENERICCOMPARISONWIDGET_H

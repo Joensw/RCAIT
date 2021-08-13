@@ -26,10 +26,13 @@ public:
 private:
     TopAccuraciesView *m_topAccuraciesView;
     TopAccuraciesGraphics *m_topAccuraciesGraphics;
+    QMap<AbstractGraphicsView *, TrainingResult *> m_mapResultsByTab;
 
     void addComparisonResult(const QString &runNameToCompare) override;
 
     void removeComparisonResult(const QString &runNameToCompare) override;
+
+    void saveResult(AbstractGraphicsView *view) override;
 
     void configure_topAccuraciesTab();
 
@@ -52,6 +55,10 @@ signals:
     void sig_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result);
 
     void sig_normal_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver, TopAccuraciesGraphics *graphics);
+
+    void sig_save_TopAccuracies(TopAccuraciesGraphics *graphics);
+
+    void sig_save_TrainingResult(TrainingResult *result);
 
 private slots:
 

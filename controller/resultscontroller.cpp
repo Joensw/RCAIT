@@ -1,3 +1,4 @@
+#include <resultexporter.h>
 #include "resultscontroller.h"
 
 ResultsController::ResultsController(DataManager *manager, ResultsWidget *resultsWidget) {
@@ -5,6 +6,7 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
     m_resultsWidget = resultsWidget;
     m_resultsProcessor = new ResultsProcessor();
     m_resultsImporter = new ResultImporter();
+    m_resultsExporter = new ResultExporter();
 
     /*
      * Training Results
@@ -15,6 +17,11 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_normal_requestTopAccuraciesGraphics,
             m_resultsProcessor,
             &ResultsProcessor::slot_normal_generateTopAccuraciesGraphics);
+
+    //Connect signals/slots related to saving top accuracies
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_save_TopAccuracies,
+            m_resultsExporter,
+            &ResultExporter::slot_save_TopAccuracies);
 
     //Connect 'Compare Run' related signals/slots
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_comparison_loadTrainingResultData,
@@ -41,6 +48,11 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
             m_resultsProcessor,
             &ResultsProcessor::slot_normal_loadTrainingResultData);
 
+    //Connect signals/slots related to saving training results
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_save_TrainingResult,
+            m_resultsExporter,
+            &ResultExporter::slot_save_TrainingResult);
+
 /*
  * Classification Results
  */
@@ -65,6 +77,12 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
             m_resultsProcessor,
             &ResultsProcessor::slot_normal_generateClassificationResultGraphics);
 
+    //Connect signals/slots related to saving classification results
+    connect(classificationResultsWidget, &ClassificationResultsWidget::sig_save_ClassificationResult,
+            m_resultsExporter,
+            &ResultExporter::slot_save_ClassificationResult);
+
+    //TODO: Remove
     //Connect ResultsWidget to ResultsController
     connect(m_resultsWidget, &ResultsWidget::sig_saveResults, this, &ResultsController::slot_saveResult);
 
@@ -88,4 +106,5 @@ void ResultsController::slot_saveResult() {
 
 void ResultsController::slot_projectPathUpdated() {
     m_resultsWidget->updateResultFolderPaths();
+    m_resultsExporter->updateResultFolderPaths();
 }

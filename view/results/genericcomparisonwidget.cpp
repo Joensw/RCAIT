@@ -73,6 +73,12 @@ void GenericComparisonWidget::slot_updateSaveButton(int index) {
     m_pushButton_saveCurrentTab->setEnabled(!tab->isSaved());
 }
 
+void GenericComparisonWidget::on_pushButton_saveCurrentTab_clicked() {
+    auto widget = m_tabWidget->currentWidget();
+    auto resultTab = dynamic_cast<AbstractGraphicsView *>(widget);
+    saveResult(resultTab);
+}
+
 void GenericComparisonWidget::updateResultFolderPath(const QString &newDirPath) {
     cleanup_comparisonMenu();
     configure_comparisonMenu(newDirPath);

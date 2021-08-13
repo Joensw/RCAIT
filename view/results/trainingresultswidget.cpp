@@ -12,6 +12,7 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
 
 void TrainingResultsWidget::addTrainingResult(TrainingResult *result) {
     auto tab = createResultTab<TrainingResultView>(result->getIdentifier());
+    m_mapResultsByTab[tab] = result;
     emit sig_normal_generateTrainingResultGraphics(tab, result);
     emit sig_normal_loadTrainingResultData(tab, result);
 }
@@ -47,5 +48,12 @@ void TrainingResultsWidget::retranslateUi() {
     m_tabWidget->setTabText(index, tr("Top Accuracies"));
 
     GenericComparisonWidget::retranslateUi();
+}
+
+void TrainingResultsWidget::saveResult(AbstractGraphicsView *view) {
+    if (view == m_topAccuraciesView)
+        emit sig_save_TopAccuracies(m_topAccuraciesGraphics);
+    else
+        emit sig_save_TrainingResult(m_mapResultsByTab[view]);
 }
 

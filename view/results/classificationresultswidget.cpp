@@ -10,8 +10,13 @@ ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
 
 void ClassificationResultsWidget::addClassificationResult(ClassificationResult *result) {
     auto tab = createResultTab<ClassificationResultView>(result->getIdentifier());
+    m_mapResultsByTab[tab] = result;
     emit sig_normal_loadClassificationResultData(tab, result);
     emit sig_normal_generateClassificationResultGraphics(tab, result);
+}
+
+void ClassificationResultsWidget::saveResult(AbstractGraphicsView *view) {
+    emit sig_save_ClassificationResult(m_mapResultsByTab[view]);
 }
 
 void ClassificationResultsWidget::addComparisonResult(const QString &runNameToCompare) {
