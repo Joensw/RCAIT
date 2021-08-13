@@ -19,13 +19,13 @@ protected:
 public:
     explicit TrainingResultView(QWidget *parent = nullptr);
 
-    ~TrainingResultView();
-
     void setAccuracyCurve(const QSharedPointer<QGraphicsItem> &accuracyCurveImage) override;
 
     void setConfusionMatrix(const QSharedPointer<QGraphicsItem> &matrixImage) override;
 
     void setMostMisclassifiedImages(const QStringList& images);
+
+    ~TrainingResultView() override;
 
 private:
     Ui::TrainingResultView *ui;

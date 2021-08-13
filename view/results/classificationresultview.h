@@ -26,7 +26,7 @@ public:
 
     void setClassificationData(const QMap<int, QStringList> &data);
 
-    ~ClassificationResultView();
+    ~ClassificationResultView() override;
 
 private:
     Ui::ClassificationResultView *ui;

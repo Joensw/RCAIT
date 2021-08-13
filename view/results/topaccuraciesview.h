@@ -27,7 +27,7 @@ public:
 
     void setTopAccuraciesGraphics(const QSharedPointer<QGraphicsItem> &topAccuraciesImage) override;
 
-    ~TopAccuraciesView();
+    ~TopAccuraciesView() override;
 
 signals:
 

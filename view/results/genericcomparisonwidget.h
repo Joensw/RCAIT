@@ -54,7 +54,7 @@ protected:
 public:
     explicit GenericComparisonWidget(QWidget *parent = nullptr);
 
-    ~GenericComparisonWidget();
+    ~GenericComparisonWidget() override;
 
     void updateResultFolderPath(const QString &newDirPath);
 
