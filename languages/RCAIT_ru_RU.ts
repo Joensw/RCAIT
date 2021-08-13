@@ -152,12 +152,12 @@
     <message>
         <location filename="../view/results/classificationresultview.cpp" line="75"/>
         <source>Confidence</source>
-        <translation type="unfinished"></translation>
+        <translation>Точность</translation>
     </message>
     <message>
         <location filename="../view/results/classificationresultview.cpp" line="75"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Метка</translation>
     </message>
 </context>
 <context>
@@ -186,24 +186,24 @@
     <message>
         <location filename="../configurationdialog.ui" line="34"/>
         <source>Project Directory</source>
-        <translation type="unfinished">Папка проекта</translation>
+        <translation>Папка проекта</translation>
     </message>
     <message>
         <location filename="../configurationdialog.ui" line="61"/>
         <location filename="../configurationdialog.ui" line="112"/>
         <location filename="../configurationdialog.ui" line="169"/>
         <source>Selected path:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../configurationdialog.ui" line="85"/>
         <source>Classification Plugin Directory</source>
-        <translation type="unfinished">Папка плагинов классификации</translation>
+        <translation>Папка плагинов классификации</translation>
     </message>
     <message>
         <location filename="../configurationdialog.ui" line="136"/>
         <source>Imageloader Plugin Directory</source>
-        <translation type="unfinished">Папка плагинов загрузки изображений</translation>
+        <translation>Папка плагинов загрузки изображений</translation>
     </message>
     <message>
         <location filename="../configurationdialog.ui" line="196"/>
@@ -225,7 +225,7 @@
         <source>Are you sure you want to quit?
 The application will terminate</source>
         <translation>Вы уверены, что хотите выйти?
-Приложение будет закрыто.</translation>
+Приложение будет закрыто</translation>
     </message>
     <message>
         <location filename="../view/configurationdialog.cpp" line="50"/>
@@ -430,7 +430,7 @@ The application will terminate</source>
     <message>
         <location filename="../mainwindow.ui" line="102"/>
         <source>Image Inspection</source>
-        <translation>Выборка изображений</translation>
+        <translation>Редакция изображений</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="111"/>
@@ -606,7 +606,7 @@ The application will terminate</source>
     <message>
         <location filename="../view/settingsview.ui" line="79"/>
         <source>Cancel</source>
-        <translation type="unfinished">Отменить</translation>
+        <translation>Отменить</translation>
     </message>
     <message>
         <source>Close</source>
@@ -682,12 +682,12 @@ Select a project to get started</source>
     <message>
         <location filename="../view/results/topaccuraciesview.cpp" line="94"/>
         <source>Top 1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Топ 1%</translation>
     </message>
     <message>
         <location filename="../view/results/topaccuraciesview.cpp" line="94"/>
         <source>Top 5%</source>
-        <translation type="unfinished"></translation>
+        <translation>Топ 5%</translation>
     </message>
     <message>
         <location filename="../view/results/topaccuraciesview.cpp" line="96"/>
@@ -723,7 +723,7 @@ Select a project to get started</source>
     <message>
         <location filename="../view/results/trainingresultswidget.cpp" line="47"/>
         <source>Top Accuracies</source>
-        <translation type="unfinished"></translation>
+        <translation>Топ-Точности</translation>
     </message>
 </context>
 </TS>
