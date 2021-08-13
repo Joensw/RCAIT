@@ -13,11 +13,11 @@ void ResultsExporter::updateResultFolderPaths() {
 
 void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics) {
     const auto &fileName = graphics->getFullName();
-    const auto &identifier = graphics->getIdentifier();
+    const auto &baseName = graphics->getBaseName();
     const auto &extension = graphics->getExtension();
     const auto &timestamp = Result::generateExtendedTimestamp();
 
-    auto targetName = QString("%1_%2.%3").arg(identifier, timestamp, extension);
+    auto targetName = QString("%1_%2.%3").arg(baseName, timestamp, extension);
 
     auto oldFilePath = QFileInfo(fileName).absoluteFilePath();
     auto newFilePath = QDir(m_trainingResultsDir).absoluteFilePath(targetName);

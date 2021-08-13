@@ -10,7 +10,7 @@
 class AbstractResultGraphics {
 
 private:
-    const QString m_identifier;
+    const QString m_baseName;
     const QString m_extension;
     const QString m_fullName;
 
@@ -19,11 +19,11 @@ private:
     virtual void passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) = 0;
 
 public:
-    AbstractResultGraphics(QString identifier, QString extension);
+    AbstractResultGraphics(QString baseName, QString extension);
 
     void generateGraphics(AbstractGraphicsView *receiver);
 
-    [[nodiscard]] const QString &getIdentifier() const;
+    [[nodiscard]] const QString &getBaseName() const;
 
     [[nodiscard]] const QString &getFullName() const;
 

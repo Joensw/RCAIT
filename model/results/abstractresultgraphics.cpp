@@ -6,10 +6,10 @@
 #include <QtConcurrent/QtConcurrentRun>
 #include "abstractresultgraphics.h"
 
-AbstractResultGraphics::AbstractResultGraphics(QString identifier, QString extension)
-        : m_identifier(std::move(identifier)),
+AbstractResultGraphics::AbstractResultGraphics(QString baseName, QString extension)
+        : m_baseName(std::move(baseName)),
           m_extension(std::move(extension)),
-          m_fullName(m_identifier + '.' + m_extension) {
+          m_fullName(m_baseName + '.' + m_extension) {
 
 }
 
@@ -21,8 +21,8 @@ void AbstractResultGraphics::generateGraphics(AbstractGraphicsView *receiver) {
     Q_UNUSED(generateGraphicsTask);
 }
 
-const QString &AbstractResultGraphics::getIdentifier() const {
-    return m_identifier;
+const QString &AbstractResultGraphics::getBaseName() const {
+    return m_baseName;
 }
 
 const QString &AbstractResultGraphics::getExtension() const {
