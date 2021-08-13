@@ -7,7 +7,8 @@ private:
     QString m_identifier;
 
 public:
-    explicit Result(QStringList  additionalResults = QStringList());
+    explicit Result(QStringList additionalResults = {});
+
     [[nodiscard]] QStringList getAdditionalResults() const;
 
     [[nodiscard]] QString getIdentifier() const;
@@ -15,6 +16,8 @@ public:
     static QString generateTimestamp();
 
     static QString generateExtendedTimestamp();
+
+    virtual ~Result() = default;
 };
 
 
