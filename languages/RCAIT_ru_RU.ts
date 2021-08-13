@@ -26,7 +26,7 @@
     <message>
         <location filename="../view/aitrainingwidget.ui" line="59"/>
         <source>Random Resized Crop Size</source>
-        <translation>Случайное изменение размера обрезки</translation>
+        <translation>Случайное изменение обрезки</translation>
     </message>
     <message>
         <location filename="../view/aitrainingwidget.ui" line="92"/>
@@ -91,12 +91,12 @@
     <message>
         <location filename="../view/aitrainingwidget.ui" line="267"/>
         <source>Show Preview</source>
-        <translation>Показать предварительный просмотр</translation>
+        <translation>Предварительный просмотр</translation>
     </message>
     <message>
         <location filename="../view/aitrainingwidget.ui" line="279"/>
         <source>Run Configuration</source>
-        <translation>Запустить конфигурацию</translation>
+        <translation>Настройки запуска</translation>
     </message>
     <message>
         <location filename="../view/aitrainingwidget.ui" line="287"/>
@@ -139,7 +139,7 @@
     <message>
         <location filename="../view/automationwidget.ui" line="26"/>
         <source>Import New Tasks</source>
-        <translation>Импорт новых задач</translation>
+        <translation>Импортировать новые задачи</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@ The application will terminate</source>
     <message>
         <location filename="../view/results/genericcomparisonwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Сформировать</translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../view/results/genericcomparisonwidget.ui" line="75"/>
@@ -404,7 +404,7 @@ The application will terminate</source>
     <message>
         <location filename="../mainwindow.ui" line="102"/>
         <source>Image Inspection</source>
-        <translation>Редакция изображений</translation>
+        <translation>Выборка изображений</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="111"/>
@@ -475,7 +475,7 @@ The application will terminate</source>
     <message>
         <location filename="../newprojectdialog.ui" line="36"/>
         <source>Project name</source>
-        <translation>Имя проекта</translation>
+        <translation>Название проекта</translation>
     </message>
     <message>
         <location filename="../newprojectdialog.ui" line="51"/>
@@ -493,32 +493,32 @@ The application will terminate</source>
     <message>
         <location filename="../model/projectmanager.cpp" line="165"/>
         <source>Name should contain more than only space (&quot; &quot;) characters</source>
-        <translation>Имя должно содержать более одного символа пробела (&quot; &quot;)</translation>
+        <translation>Имя должно содержать символы помимо пробела (&quot; &quot;)</translation>
     </message>
     <message>
         <location filename="../model/projectmanager.cpp" line="171"/>
         <source>Name may not contain the  &quot;/&quot; or &quot;\&quot; characters</source>
-        <translation>Имя не должно содержать символы &quot;/&quot; или &quot;\&quot;.</translation>
+        <translation>Имя не должно содержать символы &quot;/&quot; и &quot;\&quot;.</translation>
     </message>
     <message>
         <location filename="../model/projectmanager.cpp" line="190"/>
         <source>The Operating system cannot support this name</source>
-        <translation>Операционная система не может поддерживать это имя</translation>
+        <translation>Это имя не поддерживается операционной системой.</translation>
     </message>
     <message>
         <location filename="../model/projectmanager.cpp" line="181"/>
         <source>A project with this name aleady exists in the project directory</source>
-        <translation>Проект с таким именем уже существует в директории проекта</translation>
+        <translation>Проект с таким именем уже существует</translation>
     </message>
     <message>
         <location filename="../model/settingsmanager.cpp" line="163"/>
         <source>Settings have not been updated, there is a conflict.</source>
-        <translation>Настройки не были обновлены, существует конфликт.</translation>
+        <translation>Не удалось обновить настройки ввиду конфликта.</translation>
     </message>
     <message>
         <location filename="../model/settingsmanager.cpp" line="164"/>
         <source>Paths may not be identical and must exist, this includes new and unchanged paths.</source>
-        <translation>Пути не могут быть идентичными и должны существовать, это включает новые и неизмененные пути.</translation>
+        <translation>Пути не могут быть идентичными и должны существовать, это косается новых и неизмененных путей.</translation>
     </message>
 </context>
 <context>
@@ -526,12 +526,12 @@ The application will terminate</source>
     <message>
         <location filename="../removemodeldialog.ui" line="14"/>
         <source>Remove Model</source>
-        <translation>Удалить модель</translation>
+        <translation>Удаление модели</translation>
     </message>
     <message>
         <location filename="../removemodeldialog.ui" line="53"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Вы уверены, что хотите удалить &amp;quot;&amp;lt;name&amp;gt;&amp;quot;? &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Этот элемент будет удален немедленно. Вы не сможете отменить это действие.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Вы уверены, что хотите удалить &amp;quot;&amp;lt;имя модели&amp;gt;&amp;quot;? &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Этот элемент будет удален немедленно. Вы не сможете отменить это действие.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.</translation>
     </message>
 </context>
 <context>
@@ -544,12 +544,12 @@ The application will terminate</source>
     <message>
         <location filename="../removeprojectdialog.ui" line="60"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Вы уверены, что хотите удалить &amp;quot;&amp;lt;название&amp;gt;&amp;quot;? &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Этот элемент будет удален немедленно. Вы не сможете отменить это действие.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Вы уверены, что хотите удалить &amp;quot;&amp;lt;название проекта&amp;gt;&amp;quot;? &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Этот элемент будет удален немедленно. Вы не сможете отменить это действие.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.</translation>
     </message>
     <message>
         <location filename="../removeprojectdialog.ui" line="115"/>
         <source>Remove associated Models</source>
-        <translation>Удаление связанных моделей</translation>
+        <translation>Удалить вместе со связанными моделями</translation>
     </message>
 </context>
 <context>
@@ -590,17 +590,17 @@ The application will terminate</source>
     <message>
         <location filename="../view/settingsview.cpp" line="129"/>
         <source>Select project directory</source>
-        <translation>Выберите директорию проекта</translation>
+        <translation>Выберите папку проекта</translation>
     </message>
     <message>
         <location filename="../view/settingsview.cpp" line="139"/>
         <source>Select classification plugin directory</source>
-        <translation>Выберите каталог плагина классификации</translation>
+        <translation>Выберите папку плагина классификации</translation>
     </message>
     <message>
         <location filename="../view/settingsview.cpp" line="149"/>
         <source>Select image loader plugin directory</source>
-        <translation>Выберите каталог плагина загрузчика изображений</translation>
+        <translation>Выберите папку плагина загрузки изображений</translation>
     </message>
 </context>
 <context>
@@ -652,7 +652,7 @@ Select a project to get started</source>
     <message>
         <location filename="../view/results/topaccuraciesview.cpp" line="93"/>
         <source>Update graphics...</source>
-        <translation>Обновить графику...</translation>
+        <translation>Обновить графики...</translation>
     </message>
 </context>
 <context>
@@ -670,12 +670,12 @@ Select a project to get started</source>
     <message>
         <location filename="../view/results/trainingresultview.ui" line="62"/>
         <source>Most Misclassified Images</source>
-        <translation>Наиболее неправильно классифицированные изображения</translation>
+        <translation>Худшим образом классифицированные изображения</translation>
     </message>
     <message>
         <location filename="../view/results/trainingresultview.ui" line="80"/>
         <source>Confusion Matrix</source>
-        <translation>Матрица путаницы</translation>
+        <translation>Матрица ошибок</translation>
     </message>
 </context>
 </TS>
