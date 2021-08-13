@@ -75,8 +75,15 @@
      </item>
      <item>
       <widget class="QPushButton" name="closeButton">
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
        <property name="text">
         <string>Cancel</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../UI_Icons.qrc">
+         <normaloff>:/Resources/UISymbols/UI_Cancel_Icon.svg</normaloff>:/Resources/UISymbols/UI_Cancel_Icon.svg</iconset>
        </property>
       </widget>
      </item>
@@ -88,8 +95,15 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
        <property name="text">
-        <string>Save</string>
+        <string>Save </string>
+       </property>
+       <property name="icon">
+        <iconset resource="../UI_Icons.qrc">
+         <normaloff>:/Resources/UISymbols/UI_Save_Icon.svg</normaloff>:/Resources/UISymbols/UI_Save_Icon.svg</iconset>
        </property>
       </widget>
      </item>
@@ -97,7 +111,10 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../UI_Icons.qrc"/>
+  <include location="../UI_Icons.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>pluginList</sender>
