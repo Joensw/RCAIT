@@ -9,7 +9,7 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
     QTableWidget *table = ui->tableWidget_topAccuracies;
 
     table->setColumnCount(2);
-    table->setHorizontalHeaderLabels({"Top 1%", "Top5%"});
+
     //Stretch table headers to fill the space available
     QHeaderView *h_header = table->horizontalHeader();
     QHeaderView *v_header = table->verticalHeader();
@@ -30,8 +30,8 @@ void TopAccuraciesView::addTopAccuraciesEntry(const QString &identifier, double 
     int row = table->addTableRow(identifier, {top1Str, top5Str});
 
     //Set colors matching the graphical result
-    table->at(row,0)->setBackground(QBrush("royal blue"));
-    table->at(row,1)->setBackground(QBrush("orange"));
+    table->at(row, 0)->setBackground(QBrush("royal blue"));
+    table->at(row, 1)->setBackground(QBrush("orange"));
 }
 
 void TopAccuraciesView::removeTopAccuraciesEntry(const QString &identifier) {
@@ -89,6 +89,10 @@ void TopAccuraciesView::changeEvent(QEvent *event) {
  * were not created in the UI builder
  */
 void TopAccuraciesView::retranslateUi() {
-    if (m_pushButton_updateGraphics)
+
+    auto *table = ui->tableWidget_topAccuracies;
+    table->setHorizontalHeaderLabels({tr("Top 1%"), tr("Top5%")});
+    if (m_pushButton_updateGraphics) {
         m_pushButton_updateGraphics->setToolTip(tr("Update graphics..."));
+    }
 }

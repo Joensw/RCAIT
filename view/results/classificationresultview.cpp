@@ -22,7 +22,6 @@ ClassificationResultView::ClassificationResultView(QWidget *parent) :
     v_header->setSectionResizeMode(QHeaderView::Fixed);
 
     table->setColumnCount(2);
-    table->setHorizontalHeaderLabels({"Confidence", "Label"});
     table->setCornerButtonEnabled(false);
 }
 
@@ -57,11 +56,21 @@ void ClassificationResultView::setClassificationGraphics(
 
 void ClassificationResultView::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
+        retranslateUi();
         // this event is sent if a translator is loaded
         ui->retranslateUi(this);
     }
     //Call to parent class
     QWidget::changeEvent(event);
+}
+
+/**
+ * Translate and set all the strings which
+ * were not created in the UI builder
+ */
+void ClassificationResultView::retranslateUi() {
+    auto *table = ui->tableWidget_classificationresult;
+    table->setHorizontalHeaderLabels({tr("Confidence"), tr("Label")});
 }
 
 ClassificationResultView::~ClassificationResultView() {
