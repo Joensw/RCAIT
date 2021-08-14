@@ -1,6 +1,8 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <projectmanager.h>
+#include <mapadapt.h>
+#include <QJsonArray>
 #include "resultsexporter.h"
 
 
@@ -26,6 +28,79 @@ void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics) {
 }
 
 void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
+    auto resultsFolder = QDir(m_trainingResultsDir);
+    const QString &identifier = result->getIdentifier();
+    auto success = resultsFolder.mkdir(identifier);
+
+    if (!success) {
+        qWarning() << "Error creating results dir " << identifier;
+        return;
+    }
+    resultsFolder.cd(identifier);
+
+    //Extract relevant data from result
+    const auto &accuracy_data = result->getAccuracyCurveData();
+    const auto &class_labels = result->getClassLabels();
+    const auto &confusionmatrix = result->getConfusionMatrixValues();
+    auto most_misclassified_images = result->getMostMisclassifiedImages();
+    auto top1 = result->getTop1Accuracy();
+    auto top5 = result->getTop5Accuracy();
+    auto additionalResults = result->getAdditionalResults();
+
+    //Create JSON Objects
+    QJsonObject JSON;
+    QJsonArray json_accuracy_data;
+    for (const auto &[iteration, pair] : MapAdapt(accuracy_data)) {
+        QJsonObject sub;
+        auto &[train, validation] = pair;
+        sub["iteration"] = iteration;
+        sub["train"] = train;
+        sub["validation"] = validation;
+
+        json_accuracy_data << sub;
+    }
+    JSON["accuracy_data"] = json_accuracy_data;
+
+    QJsonArray json_class_labels;
+    QJsonArray::fromStringList(class_labels);
+    JSON["class_labels"] = json_class_labels;
+
+    QJsonArray json_confusionmatrix;
+    for (const auto &value : confusionmatrix) {
+        json_confusionmatrix << value;
+    }
+    JSON["confusionmatrix"] = json_confusionmatrix;
+
+    QJsonArray json_most_misclassified_images;
+    for (const auto &imagePath : most_misclassified_images) {
+        json_most_misclassified_images << imagePath;
+    }
+    JSON["most_misclassified_images"] = json_most_misclassified_images;
+
+    JSON["top1"] = top1;
+    JSON["top5"] = top5;
+
+    QJsonArray json_additionalResults;
+    for (const auto &resultPath : additionalResults) {
+        json_additionalResults << resultPath;
+    }
+    JSON["additionalResults"] = json_additionalResults;
+
+    //JSON object is prepared now, so save it
+    auto fileName = QString("training_%1.json").arg(identifier);
+    auto savePath = resultsFolder.absoluteFilePath(fileName);
+    writeJSON(JSON, savePath);
+
+    //Save images
+    //TODO prepare for saving images in temp dir
+    auto accCurveFilename = result->getAccuracyCurve()->getFullName();
+    auto matrixFileName = result->getConfusionMatrix()->getFullName();
+    auto old_accCurvePath = result->getAccuracyCurve()->getFullName();
+    auto old_matrixPath = result->getConfusionMatrix()->getFullName();
+
+    //Copy to result folder
+    QFile::copy(old_accCurvePath, resultsFolder.absoluteFilePath(accCurveFilename));
+    QFile::copy(old_matrixPath, resultsFolder.absoluteFilePath(matrixFileName));
 
 }
 
