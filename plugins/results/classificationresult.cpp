@@ -10,14 +10,14 @@ ClassificationResult::ClassificationResult(const QMap<QString, QList<double>> &c
     m_labels = std::move(labels);
 }
 
-QMap<QString, QList<double>> ClassificationResult::getClassificationData() const {
+ClassificationGraphics *ClassificationResult::getClassificationGraphics() const {
+    return m_classificationGraphics;
+}
+
+const QMap<QString, QList<double>> &ClassificationResult::getClassificationData() const {
     return m_classificationData;
 }
 
-QList<QString> ClassificationResult::getLabels() const {
+const QList<QString> &ClassificationResult::getLabels() const {
     return m_labels;
-}
-
-ClassificationGraphics *ClassificationResult::getClassificationGraphics() const {
-    return m_classificationGraphics;
 }
