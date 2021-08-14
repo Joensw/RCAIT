@@ -71,7 +71,6 @@ QString DataManager::getCurrentClassificationPlugin(){
 }
 
 
-
 QStringList DataManager::getPluginNames(){
     return mSettingsManager->getPluginNames();
 }
@@ -90,22 +89,22 @@ QList<QWidget*> DataManager::getPluginSettings(){
 void DataManager::savePluginSettings(int index){
     mSettingsManager->savePluginSettings(index);
 }
-void DataManager::saveProjectsDir(QString value){
-    qDebug() << value;
-    mSettingsManager->saveProjectsDir(value);
-    mProjectManager->setProjectsDirectory(value);
+void DataManager::saveProjectsDir(QString dir){
+    qDebug() << dir;
+    mSettingsManager->saveProjectsDir(dir);
+    mProjectManager->setProjectsDirectory(dir);
 }
 QString DataManager::getProjectsDir(){
     return mSettingsManager->getProjectsDir();
 }
-void DataManager::saveClassificationPluginDir(QString value){
-    mSettingsManager->saveClassificationPluginDir(value);
+void DataManager::saveClassificationPluginDir(QString dir){
+    mSettingsManager->saveClassificationPluginDir(dir);
 }
 QString DataManager::getClassificationPluginDir(){
     return mSettingsManager->getClassificationPluginDir();
 }
-void DataManager::saveImageLoaderPluginDir(QString value){
-    mSettingsManager->saveImageLoaderPluginDir(value);
+void DataManager::saveImageLoaderPluginDir(QString dir){
+    mSettingsManager->saveImageLoaderPluginDir(dir);
 }
 QString DataManager::getImageLoaderPluginDir(){
     return mSettingsManager->getImageLoaderPluginDir();
@@ -117,9 +116,10 @@ void DataManager::saveClassificationResult(ClassificationResult result){
 void DataManager::saveTrainingsResult(TrainingResult result){
 
 }
-TrainingResult DataManager::getTrainingsResult(QString modelResultName){
+TrainingResult DataManager::getTrainingsResult(const QString &modelResultName){
 
 }
+
 QStringList DataManager::getNamesOfSavedTrainingResults(){
     return mProjectManager->getNamesOfSavedTrainingResults();
 }

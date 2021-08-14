@@ -37,7 +37,7 @@ public:
      * @param pluginNames list of plugins.
      * @param pluginConfigurationWidgets list of settings widgets provided by plugins.
      */
-    SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidget*> pluginConfigurationWidgets);
+    SettingsView(QWidget *parent, const QStringList &pluginNames, const QList<QWidget*> &pluginConfigurationWidgets);
 
     /**
      * @brief pathsUpdated shows according text based on amount parameter.

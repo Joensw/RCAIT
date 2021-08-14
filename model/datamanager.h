@@ -223,7 +223,7 @@ public:
      * @param modelResultName name of the file the object is to be built from
      * @return the rebuilt object
      */
-    TrainingResult getTrainingsResult(QString modelResultName);
+    TrainingResult getTrainingsResult(const QString &modelResultName);
 
     /** Only .txt files are returns and within the list they have no file ending
      * @brief getNamesOfSavedTrainingResults returns the names of all the files in the trainings results folder

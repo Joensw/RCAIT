@@ -19,6 +19,8 @@ const QString projectResultsDirectoryIdentifier = "resultsDirName";
 const QString projectTrainingsResultsDirectoryIdentifer = "trainingResultsDirName";
 const QString projectClassificationResultsDirectoryIdentifier = "classificationResultsDirName";
 
+const QString projectFileType = ".ini";
+
 //on creation, meaning program startup, there will be no project selected. all the strings will be null/empty
 ProjectManager::ProjectManager() {
 
@@ -26,7 +28,7 @@ ProjectManager::ProjectManager() {
 
 void ProjectManager::createNewProject(QString projectName)
 {
-    QString newProjectPath = mProjectsDirectory + "/" + projectName + "/" + projectName + ".ini";
+    QString newProjectPath = mProjectsDirectory + "/" + projectName + "/" + projectName + projectFileType;
 
     /*goes into the projects folder, then into the specific project folder
     * there it creates a new ini file, which can be seen as the "project file"
@@ -55,7 +57,6 @@ void ProjectManager::createNewProject(QString projectName)
     dir.mkpath(absolute + "/" +  resultsDirectoryName);
 
     //make subdirectories for results
-
     dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + trainingsResultsDirectoryName);
     dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + classificationResultsDirectoryName);
 }
@@ -70,7 +71,7 @@ QStringList ProjectManager::getProjects() {
     return empty;
 }
 
-bool ProjectManager::createNewProject(QString projectName, QString * error) {
+bool ProjectManager::createNewProject(const QString &projectName, QString * error) {
     if (!verifyName(projectName, error)){
         return false;
     }
@@ -78,12 +79,12 @@ bool ProjectManager::createNewProject(QString projectName, QString * error) {
     return true;
 }
 
-void ProjectManager::removeProject(QString projectName) {
+void ProjectManager::removeProject(const QString &projectName) {
     QDir targetDir(mProjectsDirectory + "/" + projectName);
     targetDir.removeRecursively();
 }
 
-void ProjectManager::loadProject(QString projectName) {
+void ProjectManager::loadProject(const QString &projectName) {
     QString loadProjectPath = mProjectsDirectory + "/" + projectName + "/" + projectName + ".ini";
 
     QSettings projectfile(loadProjectPath, QSettings::IniFormat);
@@ -146,7 +147,7 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
     return empty;
 }
 
-void ProjectManager::setProjectsDirectory(QString newDirectory)
+void ProjectManager::setProjectsDirectory(const QString &newDirectory)
 {
     mProjectsDirectory = newDirectory;
 }
@@ -157,7 +158,6 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
         error->append(QObject::tr("Name must contain at least 1 character") + "\n");
         return false;
     }
-
 
     QRegularExpression noSpacesEx("^[ ]+$");
     QRegularExpressionMatch match = noSpacesEx.match(projectName);
@@ -171,7 +171,6 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
         error->append(QObject::tr("Name may not contain the  \"/\" or \"\\\" characters") + "\n");
         return false;
     }
-
 
     //check if name is already taken
     QDir projectsDir(mProjectsDirectory);

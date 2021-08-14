@@ -48,7 +48,7 @@ public slots:
      * @param classificationPluginDir selected classification plugin directory.
      * @param imageLoaderPluginsDir selected imageloader plugin directory.
      */
-    void slot_applyGlobalSettings(QString projectDir, QString classificationPluginDir, QString imageLoaderPluginsDir);
+    void slot_applyGlobalSettings(QString projectDir, QString classificationPluginDir, QString imageLoaderPluginDir);
 
 signals:
 
