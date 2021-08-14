@@ -35,15 +35,11 @@ public:
 
     [[nodiscard]] QStringList getMostMisclassifiedImages() const;
 
-    const QMap<int, QPair<double, double>> &getAccuracyCurveData() const;
+    [[nodiscard]] const QMap<int, QPair<double, double>> &getAccuracyCurveData() const;
 
-    const QStringList &getMClassLabels() const;
+    [[nodiscard]] const QStringList &getClassLabels() const;
 
-    const QList<int> &getMConfusionMatrixValues() const;
-
-    const QStringList &getClassLabels() const;
-
-    const QList<int> &getConfusionMatrixValues() const;
+    [[nodiscard]] const QList<int> &getConfusionMatrixValues() const;
 
 };
 
