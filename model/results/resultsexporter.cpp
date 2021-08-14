@@ -96,7 +96,55 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
 }
 
 void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *result) {
+    auto resultsFolder = QDir(m_classificationResultsDir);
+    const QString &identifier = result->getIdentifier();
+    auto success = resultsFolder.mkdir(identifier);
 
+    if (!success) {
+        qWarning() << "Error creating results dir " << identifier;
+        return;
+    }
+    resultsFolder.cd(identifier);
+
+    //Extract relevant data from result
+    const auto& classification_data = result->getClassificationData();
+    const auto& labels = result->getLabels();
+    auto additionalResults = result->getAdditionalResults();
+
+    //Create JSON Objects
+    QJsonObject JSON;
+    QJsonArray json_classification_data;
+    for (const auto &[image_path, confidences] : MapAdapt(classification_data)) {
+
+        QJsonObject sub;
+        QJsonArray confidenceArray;
+        for (const auto &value : confidences){
+            confidenceArray << value;
+        }
+
+        sub["image_path"] = image_path;
+        sub["confidence"] = confidenceArray;
+
+        json_classification_data << sub;
+    }
+    JSON["classification_data"] = json_classification_data;
+
+    JSON["labels"] = QJsonArray::fromStringList(labels);
+
+    JSON["additionalResults"] = QJsonArray::fromStringList(additionalResults);
+
+    //JSON object is prepared now, so save it
+    auto fileName = QString("classification_%1.json").arg(identifier);
+    auto savePath = resultsFolder.absoluteFilePath(fileName);
+    writeJSON(JSON, savePath);
+
+    //Save images
+    //TODO prepare for saving images in temp dir
+    auto graphicsFilename = result->getClassificationGraphics()->getFullName();
+    auto old_graphicsPath = result->getClassificationGraphics()->getFullName();
+
+    //Copy to result folder
+    QFile::copy(old_graphicsPath, resultsFolder.absoluteFilePath(graphicsFilename));
 }
 
 void ResultsExporter::writeJSON(const QJsonObject &jsonObject, const QString &filepath) {
