@@ -51,8 +51,9 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
     QJsonObject JSON;
     QJsonArray json_accuracy_data;
     for (const auto &[iteration, pair] : MapAdapt(accuracy_data)) {
-        QJsonObject sub;
         auto &[train, validation] = pair;
+
+        QJsonObject sub;
         sub["iteration"] = iteration;
         sub["train"] = train;
         sub["validation"] = validation;
@@ -61,9 +62,7 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
     }
     JSON["accuracy_data"] = json_accuracy_data;
 
-    QJsonArray json_class_labels;
-    QJsonArray::fromStringList(class_labels);
-    JSON["class_labels"] = json_class_labels;
+    JSON["class_labels"] = QJsonArray::fromStringList(class_labels);
 
     QJsonArray json_confusionmatrix;
     for (const auto &value : confusionmatrix) {
@@ -71,20 +70,12 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
     }
     JSON["confusionmatrix"] = json_confusionmatrix;
 
-    QJsonArray json_most_misclassified_images;
-    for (const auto &imagePath : most_misclassified_images) {
-        json_most_misclassified_images << imagePath;
-    }
-    JSON["most_misclassified_images"] = json_most_misclassified_images;
+    JSON["most_misclassified_images"] = QJsonArray::fromStringList(most_misclassified_images);
 
     JSON["top1"] = top1;
     JSON["top5"] = top5;
 
-    QJsonArray json_additionalResults;
-    for (const auto &resultPath : additionalResults) {
-        json_additionalResults << resultPath;
-    }
-    JSON["additionalResults"] = json_additionalResults;
+    JSON["additionalResults"] = QJsonArray::fromStringList(additionalResults);
 
     //JSON object is prepared now, so save it
     auto fileName = QString("training_%1.json").arg(identifier);
