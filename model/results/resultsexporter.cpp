@@ -8,9 +8,20 @@
 
 void ResultsExporter::updateResultFolderPaths() {
     auto &pm = ProjectManager::getInstance();
-    m_resultsDir = pm.getResultsDir();
     m_trainingResultsDir = pm.getTrainingResultsDir();
     m_classificationResultsDir = pm.getClassificationResultsDir();
+}
+
+QDir ResultsExporter::createResultDir(const QString &baseDir, const QString &identifier) {
+    auto resultFolder = QDir(baseDir);
+    auto success = resultFolder.mkdir(identifier);
+
+    if (!success) {
+        qWarning() << "Error creating results dir " << identifier;
+        return {};
+    }
+    resultFolder.cd(identifier);
+    return resultFolder;
 }
 
 void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics) {
@@ -28,15 +39,8 @@ void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics) {
 }
 
 void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
-    auto resultsFolder = QDir(m_trainingResultsDir);
     const QString &identifier = result->getIdentifier();
-    auto success = resultsFolder.mkdir(identifier);
-
-    if (!success) {
-        qWarning() << "Error creating results dir " << identifier;
-        return;
-    }
-    resultsFolder.cd(identifier);
+    auto resultFolder = createResultDir(m_trainingResultsDir, identifier);
 
     //Extract relevant data from result
     const auto &accuracy_data = result->getAccuracyCurveData();
@@ -79,7 +83,7 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
 
     //JSON object is prepared now, so save it
     auto fileName = QString("training_%1.json").arg(identifier);
-    auto savePath = resultsFolder.absoluteFilePath(fileName);
+    auto savePath = resultFolder.absoluteFilePath(fileName);
     writeJSON(JSON, savePath);
 
     //Save images
@@ -90,25 +94,18 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
     auto old_matrixPath = result->getConfusionMatrix()->getFullName();
 
     //Copy to result folder
-    QFile::copy(old_accCurvePath, resultsFolder.absoluteFilePath(accCurveFilename));
-    QFile::copy(old_matrixPath, resultsFolder.absoluteFilePath(matrixFileName));
+    QFile::copy(old_accCurvePath, resultFolder.absoluteFilePath(accCurveFilename));
+    QFile::copy(old_matrixPath, resultFolder.absoluteFilePath(matrixFileName));
 
 }
 
 void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *result) {
-    auto resultsFolder = QDir(m_classificationResultsDir);
     const QString &identifier = result->getIdentifier();
-    auto success = resultsFolder.mkdir(identifier);
-
-    if (!success) {
-        qWarning() << "Error creating results dir " << identifier;
-        return;
-    }
-    resultsFolder.cd(identifier);
+    auto resultFolder = createResultDir(m_classificationResultsDir, identifier);
 
     //Extract relevant data from result
-    const auto& classification_data = result->getClassificationData();
-    const auto& labels = result->getLabels();
+    const auto &classification_data = result->getClassificationData();
+    const auto &labels = result->getLabels();
     auto additionalResults = result->getAdditionalResults();
 
     //Create JSON Objects
@@ -118,7 +115,7 @@ void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *resul
 
         QJsonObject sub;
         QJsonArray confidenceArray;
-        for (const auto &value : confidences){
+        for (const auto &value : confidences) {
             confidenceArray << value;
         }
 
@@ -135,7 +132,7 @@ void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *resul
 
     //JSON object is prepared now, so save it
     auto fileName = QString("classification_%1.json").arg(identifier);
-    auto savePath = resultsFolder.absoluteFilePath(fileName);
+    auto savePath = resultFolder.absoluteFilePath(fileName);
     writeJSON(JSON, savePath);
 
     //Save images
@@ -144,7 +141,7 @@ void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *resul
     auto old_graphicsPath = result->getClassificationGraphics()->getFullName();
 
     //Copy to result folder
-    QFile::copy(old_graphicsPath, resultsFolder.absoluteFilePath(graphicsFilename));
+    QFile::copy(old_graphicsPath, resultFolder.absoluteFilePath(graphicsFilename));
 }
 
 void ResultsExporter::writeJSON(const QJsonObject &jsonObject, const QString &filepath) {

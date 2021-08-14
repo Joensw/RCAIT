@@ -10,6 +10,9 @@
 class ResultsExporter : public QObject {
 Q_OBJECT
 
+public:
+    void updateResultFolderPaths();
+
 public slots:
 
     void slot_save_TopAccuracies(TopAccuraciesGraphics *graphics);
@@ -18,17 +21,13 @@ public slots:
 
     void slot_save_ClassificationResult(ClassificationResult *result);
 
-
-    void updateResultFolderPaths();
-
 private:
-    QString m_resultsDir;
     QString m_trainingResultsDir;
     QString m_classificationResultsDir;
 
+    static QDir createResultDir(const QString &baseDir, const QString &identifier);
+
     static void writeJSON(const QJsonObject &jsonObject, const QString &filepath);
-
-
 };
 
 #endif // RESULTEXPORTER_H
