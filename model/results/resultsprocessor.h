@@ -12,10 +12,13 @@
 #include "trainingresult.h"
 #include "classificationresult.h"
 
+extern const QString TRAINING_JSON;
+extern const QString CLASSIFICATION_JSON;
+
 class ResultsProcessor : public QObject{
     Q_OBJECT
 public:
-    ResultsProcessor();
+    ResultsProcessor() = default;
 
 public slots:
     //Top Accuracies slots
