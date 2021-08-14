@@ -93,6 +93,7 @@ void ResultsController::addClassificationResult(ClassificationResult *result) {
 
 void ResultsController::slot_projectPathUpdated() {
     m_resultsWidget->updateResultFolderPaths();
+    m_resultsImporter->updateResultFolderPaths();
     m_resultsExporter->updateResultFolderPaths();
 }
 

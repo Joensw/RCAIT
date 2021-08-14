@@ -9,9 +9,14 @@
 #include <trainingresultview.h>
 #include <classificationresultview.h>
 #include "topaccuraciesgraphics.h"
+#include "resultsprocessor.h"
 
 class ResultsImporter : public QObject {
 Q_OBJECT
+
+public:
+    void updateResultFolderPaths();
+
 public slots:
 
     //Top Accuracies slots
@@ -34,11 +39,16 @@ public slots:
     void slot_comparison_loadTrainingResultGraphics(AbstractGraphicsView *receiver, const QString &runNameToCompare);
 
 private:
+    QString m_trainingResultsDir;
+    QString m_classificationResultsDir;
+
+    static QString getResultDataPath(const QString &resultNameTemplate, const QString &baseDir,
+                                     const QString &identifier);
 
     static void
     loadGraphicsInView(AbstractGraphicsView *receiver, const QString &resultsFolder, const QString &baseDir);
 
-    [[nodiscard]] static QJsonObject readJSON(const QString &filepath) ;
+    [[nodiscard]] static QJsonObject readJSON(const QString &filepath);
 
 signals:
 
