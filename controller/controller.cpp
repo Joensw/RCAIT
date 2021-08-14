@@ -39,7 +39,7 @@ void Controller::slot_configurationComplete()
 {
     delete mConfigurationController;
     mProjectController->refresh();
+    mDataManger->setUp();
     mMainWindow->show();
-
 }
 

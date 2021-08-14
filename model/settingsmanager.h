@@ -23,6 +23,12 @@ public:
      * @brief SettingsManager create a new SettingsManager
      */
     SettingsManager(); //might also become a singleton? TODO
+
+    /**
+     * @brief do any loading that can only be done when paths are set
+     */
+
+    void setUp();
     /**
      * @return a list of the names of all the plugins that were loaded
      */
