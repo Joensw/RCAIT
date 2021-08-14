@@ -17,11 +17,11 @@ public:
     ClassificationResult(const QMap<QString, QList<double>> &classificationData,
                          QList<QString> labels, const QStringList& additionalResults = {});
 
-    QMap<QString, QList<double>> getClassificationData() const;
+    [[nodiscard]] const QMap<QString, QList<double>> &getClassificationData() const;
 
-    QList<QString> getLabels() const;
+    [[nodiscard]] const QList<QString> &getLabels() const;
 
-    ClassificationGraphics *getClassificationGraphics() const;
+    [[nodiscard]] ClassificationGraphics *getClassificationGraphics() const;
 };
 
 

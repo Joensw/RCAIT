@@ -7,8 +7,8 @@ Controller::Controller(QObject *parent) : QObject(parent)
     mMainWindow = new MainWindow;
 
     mConfigurationController = new  ConfigurationController(this, mDataManger);
-    connect(mConfigurationController, &ConfigurationController::sig_configurationComplete, this, &Controller::slot_configurationComplete);
-    mConfigurationController->verify();
+
+
 
     mSettingsController = new SettingsController(this, mDataManger);
     mProjectController = new ProjectController(this, mDataManger, mMainWindow->getStartWidget());
@@ -24,12 +24,14 @@ Controller::Controller(QObject *parent) : QObject(parent)
     connect(mSettingsController, &SettingsController::sig_projectDirectoryChanged, mProjectController, &ProjectController::slot_projectDirectoryChanged);
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_maximizeWindow, mMainWindow, &MainWindow::slot_maximizeWindow);
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_normalizeWindow, mMainWindow, &MainWindow::slot_normalizeWindow);
-
+    connect(mConfigurationController, &ConfigurationController::sig_configurationComplete, this, &Controller::slot_configurationComplete);
     connect(mImageController, &ImageController::sig_imagesLoaded, mTabController, &TabController::slot_imagesLoaded);
     connect(mModelController, &ModelController::sig_modelLoaded, mTabController, &TabController::slot_modelLoaded);
 
     connect(mSettingsController, &SettingsController::sig_imagePluginsDirectoryChanged, mImageController, &ImageController::slot_imagePluginDirectoryChanged);
     connect(mProjectController, &ProjectController::sig_projectPathUpdated, mResultsController, &ResultsController::slot_projectPathUpdated);
+
+    mConfigurationController->verify();
 
     connect(mMainWindow, &MainWindow::sig_openSettings, mSettingsController, &SettingsController::slot_openSettings);
     connect(mMainWindow, &MainWindow::sig_changedWindowState, mMainWindow->getStartWidget(), &StartWidget::slot_changedWindowState);
