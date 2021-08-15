@@ -5,7 +5,7 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
 
     //Top Accuracies Tab configuration
     configure_topAccuraciesTab();
-    connect(m_topAccuraciesView, &TopAccuraciesView::sig_normal_requestTopAccuraciesGraphics, this,
+    connect(m_topAccuraciesView.get(), &TopAccuraciesView::sig_normal_requestTopAccuraciesGraphics, this,
             &TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics);
 }
 
@@ -20,36 +20,39 @@ void TrainingResultsWidget::addComparisonResult(const QString &runNameToCompare)
     auto tab = createResultTab<TrainingResultView>(runNameToCompare);
     emit sig_comparison_loadTrainingResultGraphics(tab, runNameToCompare);
     emit sig_comparison_loadTrainingResultData(tab, runNameToCompare);
-    emit sig_comparison_loadAccuracyData(m_topAccuraciesView, m_topAccuraciesGraphics, runNameToCompare);
+    emit sig_comparison_loadAccuracyData(m_topAccuraciesView.get(), m_topAccuraciesGraphics.get(), runNameToCompare);
 }
 
 void TrainingResultsWidget::removeComparisonResult(const QString &runNameToCompare) {
     deleteResultTab(runNameToCompare);
-    emit sig_comparison_unloadAccuracyData(m_topAccuraciesView, m_topAccuraciesGraphics, runNameToCompare);
+    emit sig_comparison_unloadAccuracyData(m_topAccuraciesView.get(), m_topAccuraciesGraphics.get(), runNameToCompare);
 }
 
 void TrainingResultsWidget::configure_topAccuraciesTab() {
     const auto icon = QIcon(":/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
-    m_topAccuraciesView = new TopAccuraciesView(m_tabWidget);
 
-    m_tabWidget->insertTab(0, m_topAccuraciesView, icon, QString());
+    //Old pointer will go out of scope after leaving this method and gets auto-deleted
+    auto newView = QScopedPointer<TopAccuraciesView>(new TopAccuraciesView(m_tabWidget));
+    m_topAccuraciesView.swap(newView);
+
+    m_tabWidget->insertTab(0, m_topAccuraciesView.get(), icon, QString());
 }
 
 void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver) {
     //Forward signal
-    emit sig_normal_requestTopAccuraciesGraphics(receiver, m_topAccuraciesGraphics);
+    emit sig_normal_requestTopAccuraciesGraphics(receiver, m_topAccuraciesGraphics.get());
 }
 
 void TrainingResultsWidget::retranslateUi() {
-    int index = m_tabWidget->indexOf(m_topAccuraciesView);
+    int index = m_tabWidget->indexOf(m_topAccuraciesView.get());
     m_tabWidget->setTabText(index, tr("Top Accuracies"));
 
     GenericComparisonWidget::retranslateUi();
 }
 
 void TrainingResultsWidget::saveResult(AbstractGraphicsView *view) {
-    if (view == m_topAccuraciesView)
-            emit sig_save_TopAccuracies(m_topAccuraciesGraphics);
+    if (view == m_topAccuraciesView.get())
+            emit sig_save_TopAccuracies(m_topAccuraciesGraphics.get());
     else
             emit sig_save_TrainingResult(m_mapResultsByTab[view]);
 }
@@ -58,7 +61,8 @@ void TrainingResultsWidget::updateResultFolderPath(const QString &newDirPath) {
     GenericComparisonWidget::updateResultFolderPath(newDirPath);
 
     auto& pm = ProjectManager::getInstance();
-    delete m_topAccuraciesGraphics;
-    m_topAccuraciesGraphics = new TopAccuraciesGraphics(pm.getProjectTempDir());
+    //Old pointer will go out of scope after leaving this method and gets auto-deleted
+    auto newGraphics = QScopedPointer<TopAccuraciesGraphics>(new TopAccuraciesGraphics(pm.getProjectTempDir()));
+    m_topAccuraciesGraphics.swap(newGraphics);
 }
 

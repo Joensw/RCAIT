@@ -26,8 +26,8 @@ public:
     void updateResultFolderPath(const QString &newDirPath) override;
 
 private:
-    TopAccuraciesView *m_topAccuraciesView;
-    TopAccuraciesGraphics *m_topAccuraciesGraphics;
+    QScopedPointer<TopAccuraciesView> m_topAccuraciesView;
+    QScopedPointer<TopAccuraciesGraphics> m_topAccuraciesGraphics;
     QMap<AbstractGraphicsView *, TrainingResult *> m_mapResultsByTab;
 
     void addComparisonResult(const QString &runNameToCompare) override;
