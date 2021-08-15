@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     palette.setColor(QPalette::Highlight, QColor("royal blue"));
     QApplication::setPalette(palette);
 
-    QFont inter("Inter", 12);
+    QFont inter("Inter", 9);
     inter.setHintingPreference(QFont::HintingPreference::PreferNoHinting);
     QApplication::setFont(inter);
 
