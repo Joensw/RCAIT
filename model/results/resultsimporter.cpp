@@ -23,11 +23,12 @@ void ResultsImporter::updateResultFolderPaths() {
 QString ResultsImporter::getResultDataPath(const QString &resultNameTemplate, const QString &baseDir,
                                            const QString &identifier) {
 
-    auto fullName = resultNameTemplate.arg(identifier);
+    auto folderIdentifier = Result::saveableRepresentation(identifier);
+    auto fullName = resultNameTemplate.arg(folderIdentifier);
     auto dir = QDir(baseDir);
 
-    if (!dir.cd(identifier)) {
-        qWarning() << "Error finding result dir " << identifier;
+    if (!dir.cd(folderIdentifier)) {
+        qWarning() << "Error finding result dir " << folderIdentifier;
     }
     if (!dir.exists(fullName)) {
         qWarning() << "Error finding target file " << fullName;
@@ -164,7 +165,8 @@ void ResultsImporter::slot_comparison_loadTrainingResultGraphics(AbstractGraphic
 void ResultsImporter::loadGraphicsInView(AbstractGraphicsView *receiver, const QString &resultsFolder,
                                          const QString &baseDir) {
     auto dir = QDir(baseDir);
-    dir.cd(resultsFolder);
+    auto folderIdentifier = Result::saveableRepresentation(resultsFolder);
+    dir.cd(folderIdentifier);
 
     for (const auto &file : dir.entryInfoList(QDir::Files, QDir::Time)) {
         for (int type = 0; type < _COUNT; type++) {
@@ -173,13 +175,13 @@ void ResultsImporter::loadGraphicsInView(AbstractGraphicsView *receiver, const Q
 
             if (!match.hasMatch()) continue;
 
-            auto identifier = match.captured(1);
-            auto extension = match.captured(2);
+            auto fileIdentifier = match.captured(1);
+            auto fileExtension = match.captured(2);
 
-            if (resultsFolder != identifier) continue;
+            if (folderIdentifier != fileIdentifier) continue;
 
             QGraphicsItem *graphics;
-            if (extension == "svg")
+            if (fileExtension == "svg")
                 graphics = new QGraphicsSvgItem(file.absoluteFilePath());
             else
                 graphics = new QGraphicsPixmapItem(file.absoluteFilePath());

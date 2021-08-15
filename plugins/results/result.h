@@ -13,11 +13,18 @@ public:
 
     [[nodiscard]] QString getIdentifier() const;
 
+    [[nodiscard]] QString getSaveableIdentifier() const;
+
     static QString generateTimestamp();
 
     static QString generateExtendedTimestamp();
 
     virtual ~Result() = default;
+
+    static QString saveableRepresentation(QString date);
+
+    static QString niceRepresentation(QString date);
+
 };
 
 

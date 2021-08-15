@@ -42,11 +42,12 @@ void GenericComparisonWidget::configure_comparisonMenu(const QString &targetDir)
     auto entryList = dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
 
     for (const auto &item : entryList) {
+        auto niceItem = Result::niceRepresentation(item);
         //Leave already contained entries in the menu
-        if (oldMenuEntries.contains(item)) continue;
+        if (oldMenuEntries.contains(niceItem)) continue;
 
         //New directory detected, add it to the menu
-        auto *action = new QAction(item, m_menu_addComparison);
+        auto *action = new QAction(niceItem, m_menu_addComparison);
         action->setCheckable(true);
         m_menu_addComparison->addAction(action);
     }

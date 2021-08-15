@@ -16,10 +16,28 @@ QString Result::generateExtendedTimestamp() {
     return date.toString("dd_MM_yy#hh-mm-ss");
 }
 
+QString Result::niceRepresentation(QString date){
+    date.replace("_",".");
+    date.replace("#"," ");
+    date.replace("-",":");
+    return date;
+}
+
+QString Result::saveableRepresentation(QString date){
+    date.replace(".","_");
+    date.replace(" ","#");
+    date.replace(":","-");
+    return date;
+}
+
 QStringList Result::getAdditionalResults() const {
     return m_additionalResults;
 }
 
 QString Result::getIdentifier() const{
-    return m_identifier;
+    return Result::niceRepresentation(m_identifier);
+}
+
+QString Result::getSaveableIdentifier() const{
+    return Result::saveableRepresentation(m_identifier);
 }
