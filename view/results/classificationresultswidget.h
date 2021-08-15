@@ -19,13 +19,15 @@ public:
     void addClassificationResult(ClassificationResult *result);
 
 private:
-    QMap<AbstractGraphicsView *, ClassificationResult *> m_mapResultsByTab;
+    QMap<GenericGraphicsView *, ClassificationResult *> m_mapResultsByTab;
 
     void addComparisonResult(const QString &runNameToCompare) override;
 
     void removeComparisonResult(const QString &runNameToCompare) override;
 
-    void saveResult(AbstractGraphicsView *view) override;
+    void saveResult(GenericGraphicsView *view) override;
+
+    void configure_placeholderTab();
 
 signals:
 
@@ -36,7 +38,7 @@ signals:
 
     void sig_normal_loadClassificationResultData(ClassificationResultView *view, ClassificationResult *result);
 
-    void sig_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver, ClassificationResult *result);
+    void sig_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver, ClassificationResult *result);
 
     void sig_save_ClassificationResult(ClassificationResult *result);
 

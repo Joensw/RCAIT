@@ -1,11 +1,19 @@
 #include <projectmanager.h>
+#include <QProxyStyle>
 #include "classificationresultswidget.h"
 
 ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
         GenericComparisonWidget(parent) {
 
-    //TODO Replace dummy (without it, comparison menu won't appear)
-    createResultTab<ClassificationResultView>("DUMMY");
+    //Placeholder for symmetry to 'Top Accuracies' Tab in TrainingResultsWidget
+    configure_placeholderTab();
+}
+
+void ClassificationResultsWidget::configure_placeholderTab() {
+    const auto icon = QIcon(":/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
+    auto placeholder = new GenericGraphicsView(this);
+    m_tabWidget->insertTab(0, placeholder, icon, QString());
+    m_tabWidget->setTabEnabled(0, false);
 }
 
 void ClassificationResultsWidget::addClassificationResult(ClassificationResult *result) {
@@ -15,7 +23,7 @@ void ClassificationResultsWidget::addClassificationResult(ClassificationResult *
     emit sig_normal_generateClassificationResultGraphics(tab, result);
 }
 
-void ClassificationResultsWidget::saveResult(AbstractGraphicsView *view) {
+void ClassificationResultsWidget::saveResult(GenericGraphicsView *view) {
     emit sig_save_ClassificationResult(m_mapResultsByTab[view]);
 }
 
