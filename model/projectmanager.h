@@ -18,10 +18,18 @@ extern const QString classificationResultsDirectoryName;
 //keys of the <String, String> pair in the project file
 extern const QString projectNameIdentifier;
 extern const QString projectDatasetDirectoryIdentifier;
+extern const QString projectValidationDatasetIdentifier;
+extern const QString projectTrainingDatasetIdentifier;
 extern const QString projectTempDirectoryIdentifier;
 extern const QString projectResultsDirectoryIdentifier;
 extern const QString projectTrainingsResultsDirectoryIdentifer;
 extern const QString projectClassificationResultsDirectoryIdentifier;
+extern const QString projectWorkingDirIdentifier;
+
+extern const QString validiationDatasetDirectoryName;
+extern const QString trainingDatasetDirectoryName;
+
+extern const QString workingDirectoryName;
 
 //filetype the project file has
 extern const QString projectFileType;
@@ -121,6 +129,25 @@ public:
     QStringList getNamesOfSavedTrainingResults();
 
     /**
+     * @return the absolute path to the validation images subfolder of the data set
+     */
+    QString getValidationDir();
+
+    /**
+     * @return the absolute path to the training images subfolder of the data set
+     */
+
+    QString getTrainingsDir();
+
+    /**
+     * No verification is done at this stage, it is assumed the name will not be in conflict with any other existing folders
+     * @brief createWorkDirSubfolder creates a new subfolder in the working directory
+     * @param name string argument, name of the folder
+     * @return absolute path to the folder
+     */
+    QString createWorkDirSubfolder(const QString &name);
+
+    /**
      * @brief setProjectsDirectory sets the  projects directory, ie. the directory projects are to be created, deleted and loaded from
      * @param newDirectory the new projects directory
      */
@@ -132,10 +159,13 @@ private:
     QString mProjectPath;
     QString mProjectTempDir;
     QString mProjectDataSetDir;
+    QString mValidationDataSetDir;
+    QString mTrainingsDataSetDir;
     QString mProjectResultsDir;
     QString mProjectTrainingResultsDir;
     QString mProjectClassificationResultsDir;
     QString mProjectName;
+    QString mProjectWorkingDir;
 
     QString mProjectsDirectory;
 

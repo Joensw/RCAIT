@@ -14,12 +14,20 @@ const QString classificationResultsDirectoryName = "classification_results";
 
 const QString projectNameIdentifier = "projectName";
 const QString projectDatasetDirectoryIdentifier = "datasetDirName";
+const QString projectValidationDatasetIdentifier = "validationDatasetDirName";
+const QString projectTrainingDatasetIdentifier = "trainingDatasetDirName";
 const QString projectTempDirectoryIdentifier = "tempDirName";
 const QString projectResultsDirectoryIdentifier = "resultsDirName";
 const QString projectTrainingsResultsDirectoryIdentifer = "trainingResultsDirName";
 const QString projectClassificationResultsDirectoryIdentifier = "classificationResultsDirName";
+const QString projectWorkingDirIdentifier = "workingDirName";
 
 const QString projectFileType = ".ini";
+
+const QString  validiationDatasetDirectoryName = "validation";
+const QString  trainingDatasetDirectoryName = "training";
+
+const QString workingDirectoryName = "working_directory";
 
 //on creation, meaning program startup, there will be no project selected. all the strings will be null/empty
 ProjectManager::ProjectManager() {
@@ -43,22 +51,33 @@ void ProjectManager::createNewProject(QString projectName)
     QString absolute = projectDir.absolutePath();
 
     newProjectfile.setValue(projectNameIdentifier, projectName);
-    newProjectfile.setValue(projectDatasetDirectoryIdentifier, datasetDirectoryName);
     newProjectfile.setValue(projectTempDirectoryIdentifier, tempDirectoryName);
+
+    newProjectfile.setValue(projectDatasetDirectoryIdentifier, datasetDirectoryName);
+    newProjectfile.setValue(projectValidationDatasetIdentifier, validiationDatasetDirectoryName);
+    newProjectfile.setValue(projectTrainingDatasetIdentifier, trainingDatasetDirectoryName);
 
     newProjectfile.setValue(projectResultsDirectoryIdentifier, resultsDirectoryName);
     newProjectfile.setValue(projectTrainingsResultsDirectoryIdentifer, trainingsResultsDirectoryName);
     newProjectfile.setValue(projectClassificationResultsDirectoryIdentifier, classificationResultsDirectoryName);
+
+    newProjectfile.setValue(projectWorkingDirIdentifier, workingDirectoryName);
 
     //make temp, results and data subdirectories
     QDir dir;
     dir.mkpath(absolute + "/" +  datasetDirectoryName);
     dir.mkpath(absolute + "/" + tempDirectoryName);
     dir.mkpath(absolute + "/" +  resultsDirectoryName);
+    dir.mkpath(absolute + "/" + workingDirectoryName);
 
     //make subdirectories for results
     dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + trainingsResultsDirectoryName);
     dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + classificationResultsDirectoryName);
+
+    //make subdirectories for dataset
+
+    dir.mkpath(absolute + "/" + datasetDirectoryName + "/" + validiationDatasetDirectoryName);
+    dir.mkpath(absolute + "/" + datasetDirectoryName + "/" + trainingDatasetDirectoryName);
 }
 
 QStringList ProjectManager::getProjects() {
@@ -92,10 +111,21 @@ void ProjectManager::loadProject(const QString &projectName) {
     mProjectName = projectfile.value(projectNameIdentifier).toString();
     mProjectPath = mProjectsDirectory + "/" + projectName;
     mProjectDataSetDir = mProjectPath + "/" + projectfile.value(projectDatasetDirectoryIdentifier).toString();
+    mValidationDataSetDir =  mProjectDataSetDir + "/" + projectfile.value(projectValidationDatasetIdentifier).toString();
+    mTrainingsDataSetDir = mProjectDataSetDir + "/" + projectfile.value(projectTrainingDatasetIdentifier).toString();
+
     mProjectTempDir = mProjectPath + "/" + projectfile.value(projectTempDirectoryIdentifier).toString();
+
     mProjectResultsDir = mProjectPath + "/" + projectfile.value(projectResultsDirectoryIdentifier).toString();
     mProjectTrainingResultsDir =  mProjectResultsDir + "/" + projectfile.value(projectTrainingsResultsDirectoryIdentifer).toString();
     mProjectClassificationResultsDir = mProjectResultsDir + "/" + projectfile.value(projectClassificationResultsDirectoryIdentifier).toString();
+
+    mProjectWorkingDir = mProjectPath + "/" + projectfile.value(projectWorkingDirIdentifier).toString();
+
+    qDebug() << mProjectWorkingDir;
+    qDebug() << mValidationDataSetDir;
+    qDebug() << mTrainingsDataSetDir;
+    qDebug() << createWorkDirSubfolder("testestest");
 }
 QString ProjectManager::getProjectPath() {
     return mProjectPath;
@@ -145,6 +175,21 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
     }
     QStringList empty;
     return empty;
+}
+
+QString ProjectManager::getValidationDir(){
+    return mValidationDataSetDir;
+}
+
+QString ProjectManager::getTrainingsDir(){
+    return mTrainingsDataSetDir;
+}
+
+QString ProjectManager::createWorkDirSubfolder(const QString &name){
+    QDir dir;
+    QString path = mProjectWorkingDir + "/" + name;
+    dir.mkpath(path);
+    return path;
 }
 
 void ProjectManager::setProjectsDirectory(const QString &newDirectory)
