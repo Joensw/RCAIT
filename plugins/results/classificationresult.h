@@ -7,6 +7,7 @@
 #include <QImage>
 #include "result.h"
 #include <classificationgraphics.h>
+#include <projectmanager.h>
 
 class ClassificationResult : public Result {
 private:

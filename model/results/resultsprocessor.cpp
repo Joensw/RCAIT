@@ -3,7 +3,8 @@
 #include "resultsprocessor.h"
 #include "mapadapt.h"
 
-ResultsProcessor::ResultsProcessor() = default;
+const QString TRAINING_JSON = QString("training_%1.json");
+const QString CLASSIFICATION_JSON = QString("classification_%1.json");
 
 /**
  * Top Accuracies slots

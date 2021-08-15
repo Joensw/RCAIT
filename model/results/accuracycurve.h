@@ -8,8 +8,8 @@
 
 class AccuracyCurve : public AbstractResultGraphics{
 public:
-    AccuracyCurve(const QString &identifier, const QMap<int, QPair<double, double>> &data);
-    QString valuesToPyText();
+    AccuracyCurve(const QString &directory, const QString &identifier,
+                  const QMap<int, QPair<double, double>> &data);
 
     QPair<double,double> operator[](int epoch) const;
     bool operator==(const AccuracyCurve& other) const;
@@ -21,6 +21,7 @@ private:
     QMap<int, QPair<double, double>> m_data;
     void generateGraphicsInternal(const QString& fullFilePath) override;
     void passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) override;
+    QString valuesToPyText();
 };
 
 #endif // ACCURACYCURVE_H

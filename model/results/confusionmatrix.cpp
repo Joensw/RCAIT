@@ -1,9 +1,12 @@
 #include "confusionmatrix.h"
 
 
-ConfusionMatrix::ConfusionMatrix(const QString &identifier, const QStringList &classLabels,
+ConfusionMatrix::ConfusionMatrix(const QString &directory,
+                                 const QString &identifier,
+                                 const QStringList &classLabels,
                                  const QList<int> &values)
-        : AbstractResultGraphics("confusionmatrix_" + identifier, "svg"), m_size(classLabels.size()) {
+        : AbstractResultGraphics(directory, "confusionmatrix_" + identifier, "svg"),
+          m_size(classLabels.size()) {
 
     Q_ASSERT(!classLabels.isEmpty());
     Q_ASSERT(!values.isEmpty());
@@ -75,13 +78,11 @@ bool ConfusionMatrix::operator!=(const ConfusionMatrix other) const {
     return !(*this == other);
 }
 
-QStringList ConfusionMatrix::getClassLabels()
-{
+QStringList ConfusionMatrix::getClassLabels() {
     return m_classLabels;
 }
 
-QList<int> ConfusionMatrix::getValues()
-{
+QList<int> ConfusionMatrix::getValues() {
     return m_values;
 }
 

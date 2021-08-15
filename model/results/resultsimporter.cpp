@@ -14,16 +14,34 @@ const std::array<QRegularExpression, _COUNT> GRAPHICSTYPE2REGEX = {
         QRegularExpression("topaccuracies_(.*)\\.(svg|png)$")
 };
 
+void ResultsImporter::updateResultFolderPaths() {
+    auto &pm = ProjectManager::getInstance();
+    m_trainingResultsDir = pm.getTrainingResultsDir();
+    m_classificationResultsDir = pm.getClassificationResultsDir();
+}
+
+QString ResultsImporter::getResultDataPath(const QString &resultNameTemplate, const QString &baseDir,
+                                           const QString &identifier) {
+
+    auto fullName = resultNameTemplate.arg(identifier);
+    auto dir = QDir(baseDir);
+
+    if (!dir.cd(identifier)) {
+        qWarning() << "Error finding result dir " << identifier;
+    }
+    if (!dir.exists(fullName)) {
+        qWarning() << "Error finding target file " << fullName;
+    }
+    return dir.absoluteFilePath(fullName);
+}
+
 /**
  * Top Accuracies slots
  */
 void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
                                                        const QString &runNameToCompare) {
-    auto fileName = QString("training_%1.json").arg(runNameToCompare);
-    auto dirPath = ProjectManager::getInstance().getTrainingResultsDir();
-    auto dir = QDir(dirPath);
-    dir.cd(runNameToCompare);
-    auto filepath = dir.absoluteFilePath(fileName);
+
+    auto filepath = getResultDataPath(TRAINING_JSON, m_trainingResultsDir, runNameToCompare);
     auto jsonObject = readJSON(filepath);
 
     auto top1 = jsonObject["top1"].toDouble();
@@ -46,11 +64,7 @@ void ResultsImporter::slot_comparison_loadClassificationResultData(Classificatio
                                                                    const QString &runNameToCompare) {
     view->setSaved(true);
 
-    auto fileName = QString("classification_%1.json").arg(runNameToCompare);
-    auto dirPath = ProjectManager::getInstance().getClassificationResultsDir();
-    auto dir = QDir(dirPath);
-    dir.cd(runNameToCompare);
-    auto filepath = dir.absoluteFilePath(fileName);
+    auto filepath = getResultDataPath(CLASSIFICATION_JSON, m_classificationResultsDir, runNameToCompare);
     auto jsonObject = readJSON(filepath);
 
     auto json_classification_data = jsonObject["classification_data"].toArray();
@@ -97,11 +111,7 @@ void
 ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare) {
     view->setSaved(true);
 
-    auto fileName = QString("training_%1.json").arg(runNameToCompare);
-    auto dirPath = ProjectManager::getInstance().getTrainingResultsDir();
-    auto dir = QDir(dirPath);
-    dir.cd(runNameToCompare);
-    auto filepath = dir.absoluteFilePath(fileName);
+    auto filepath = getResultDataPath(TRAINING_JSON, m_trainingResultsDir, runNameToCompare);
     auto jsonObject = readJSON(filepath);
 
     auto json_accuracy_data = jsonObject["accuracy_data"].toArray();

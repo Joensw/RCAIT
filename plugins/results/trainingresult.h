@@ -6,6 +6,7 @@
 #include <QAbstractTableModel>
 #include <confusionmatrix.h>
 #include <accuracycurve.h>
+#include <projectmanager.h>
 #include "result.h"
 
 class TrainingResult : public Result {

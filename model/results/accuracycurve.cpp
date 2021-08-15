@@ -4,8 +4,9 @@
 #include <mapadapt.h>
 #include "accuracycurve.h"
 
-AccuracyCurve::AccuracyCurve(const QString &identifier, const QMap<int, QPair<double, double>> &data)
-        : AbstractResultGraphics("accuracycurve_" + identifier, "svg") {
+AccuracyCurve::AccuracyCurve(const QString &directory, const QString &identifier,
+                             const QMap<int, QPair<double, double>> &data)
+        : AbstractResultGraphics(directory, "accuracycurve_" + identifier, "svg") {
     m_data = data;
 }
 

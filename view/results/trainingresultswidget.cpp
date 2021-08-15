@@ -4,7 +4,6 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
         : GenericComparisonWidget(parent) {
 
     //Top Accuracies Tab configuration
-    m_topAccuraciesGraphics = new TopAccuraciesGraphics();
     configure_topAccuraciesTab();
     connect(m_topAccuraciesView, &TopAccuraciesView::sig_normal_requestTopAccuraciesGraphics, this,
             &TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics);
@@ -50,8 +49,16 @@ void TrainingResultsWidget::retranslateUi() {
 
 void TrainingResultsWidget::saveResult(AbstractGraphicsView *view) {
     if (view == m_topAccuraciesView)
-        emit sig_save_TopAccuracies(m_topAccuraciesGraphics);
+            emit sig_save_TopAccuracies(m_topAccuraciesGraphics);
     else
-        emit sig_save_TrainingResult(m_mapResultsByTab[view]);
+            emit sig_save_TrainingResult(m_mapResultsByTab[view]);
+}
+
+void TrainingResultsWidget::updateResultFolderPath(const QString &newDirPath) {
+    GenericComparisonWidget::updateResultFolderPath(newDirPath);
+
+    auto& pm = ProjectManager::getInstance();
+    delete m_topAccuraciesGraphics;
+    m_topAccuraciesGraphics = new TopAccuraciesGraphics(pm.getProjectTempDir());
 }
 
