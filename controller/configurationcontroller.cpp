@@ -2,21 +2,19 @@
 
 
 
-ConfigurationController::ConfigurationController(QObject *parent, DataManager *dataManager) : QObject(parent)
+ConfigurationController::ConfigurationController(QObject *parent) : QObject(parent)
 {
-    this->mDataManager = dataManager;
     mConfigurationDialog = new ConfigurationDialog();
     mConfigurationDialog->setAttribute(Qt::WA_DeleteOnClose, true);
     mConfigurationDialog->setModal(true);
     connect(mConfigurationDialog, &ConfigurationDialog::sig_directoriesSpecified, this, &ConfigurationController::slot_directoriesSpecified);
+    mSettingsManager = new SettingsManager(true);
 }
 
 void ConfigurationController::slot_directoriesSpecified(QString projectDir, QString classificationPluginDir, QString imageLoaderPluginsDir)
 {
-    if(mDataManager->verifyPaths(projectDir, classificationPluginDir, imageLoaderPluginsDir)){
-        mDataManager->saveProjectsDir(projectDir);
-        mDataManager->saveClassificationPluginDir(classificationPluginDir);
-        mDataManager->saveImageLoaderPluginDir(imageLoaderPluginsDir);
+    if(mSettingsManager->verifyPaths(projectDir, classificationPluginDir, imageLoaderPluginsDir)){
+        mSettingsManager->configureSettingsFile(projectDir, classificationPluginDir, imageLoaderPluginsDir);
         mConfigurationDialog->confirm();
         emit sig_configurationComplete();
         return;
@@ -25,7 +23,7 @@ void ConfigurationController::slot_directoriesSpecified(QString projectDir, QStr
 }
 
 void  ConfigurationController::verify(){
-    if (!mDataManager->verifyDirectories()) {
+    if (!mSettingsManager->verifyDirectories()) {
         mConfigurationDialog->open();
         return;
     }

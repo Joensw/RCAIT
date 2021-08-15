@@ -113,22 +113,6 @@ QStringList DataManager::getNamesOfSavedTrainingResults(){
     return mProjectManager->getNamesOfSavedTrainingResults();
 }
 
-void DataManager::saveClassificationResult(ClassificationResult result)
-{
-
-}
-
-void DataManager::saveTrainingsResult(TrainingResult result)
-{
-
-}
-
-
-void DataManager::setUp()
-{
-    mSettingsManager->setUp();
-}
-
 QStringList DataManager::getImageLoaderPluginNames() {
     return mSettingsManager->getImageLoaderPluginNames();
 }

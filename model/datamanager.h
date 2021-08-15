@@ -206,15 +206,6 @@ public:
      * @return return list of the training results that have been saved
      */
     QStringList getNamesOfSavedTrainingResults();
-
-    void saveClassificationResult(ClassificationResult result);
-    void saveTrainingsResult(TrainingResult result);
-
-    /** Called when all directories have been verified, as only then are all paths set correctly and the program can perform any loading calls depending on the directories
-     * @brief setUp refresh any contents that are dyamically loaded after program startup
-     */
-    void setUp();
-
 private:
     //TODO: Singleton adaption
     ProjectManager* mProjectManager;

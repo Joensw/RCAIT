@@ -2,6 +2,7 @@
 #include "confusionmatrix.h"
 #include "accuracycurve.h"
 
+#include <QStringList>
 #include <QDir>
 #include <QSettings>
 #include <QRegularExpression>
@@ -14,12 +15,20 @@ const QString classificationResultsDirectoryName = "classification_results";
 
 const QString projectNameIdentifier = "projectName";
 const QString projectDatasetDirectoryIdentifier = "datasetDirName";
+const QString projectValidationDatasetIdentifier = "validationDatasetDirName";
+const QString projectTrainingDatasetIdentifier = "trainingDatasetDirName";
 const QString projectTempDirectoryIdentifier = "tempDirName";
 const QString projectResultsDirectoryIdentifier = "resultsDirName";
 const QString projectTrainingsResultsDirectoryIdentifer = "trainingResultsDirName";
 const QString projectClassificationResultsDirectoryIdentifier = "classificationResultsDirName";
+const QString projectWorkingDirIdentifier = "workingDirName";
 
 const QString projectFileType = ".ini";
+
+const QString  validiationDatasetDirectoryName = "validation";
+const QString  trainingDatasetDirectoryName = "training";
+
+const QString workingDirectoryName = "working_directory";
 
 //on creation, meaning program startup, there will be no project selected. all the strings will be null/empty
 ProjectManager::ProjectManager() {
@@ -43,22 +52,33 @@ void ProjectManager::createNewProject(QString projectName)
     QString absolute = projectDir.absolutePath();
 
     newProjectfile.setValue(projectNameIdentifier, projectName);
-    newProjectfile.setValue(projectDatasetDirectoryIdentifier, datasetDirectoryName);
     newProjectfile.setValue(projectTempDirectoryIdentifier, tempDirectoryName);
+
+    newProjectfile.setValue(projectDatasetDirectoryIdentifier, datasetDirectoryName);
+    newProjectfile.setValue(projectValidationDatasetIdentifier, validiationDatasetDirectoryName);
+    newProjectfile.setValue(projectTrainingDatasetIdentifier, trainingDatasetDirectoryName);
 
     newProjectfile.setValue(projectResultsDirectoryIdentifier, resultsDirectoryName);
     newProjectfile.setValue(projectTrainingsResultsDirectoryIdentifer, trainingsResultsDirectoryName);
     newProjectfile.setValue(projectClassificationResultsDirectoryIdentifier, classificationResultsDirectoryName);
+
+    newProjectfile.setValue(projectWorkingDirIdentifier, workingDirectoryName);
 
     //make temp, results and data subdirectories
     QDir dir;
     dir.mkpath(absolute + "/" +  datasetDirectoryName);
     dir.mkpath(absolute + "/" + tempDirectoryName);
     dir.mkpath(absolute + "/" +  resultsDirectoryName);
+    dir.mkpath(absolute + "/" + workingDirectoryName);
 
     //make subdirectories for results
     dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + trainingsResultsDirectoryName);
     dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + classificationResultsDirectoryName);
+
+    //make subdirectories for dataset
+
+    dir.mkpath(absolute + "/" + datasetDirectoryName + "/" + validiationDatasetDirectoryName);
+    dir.mkpath(absolute + "/" + datasetDirectoryName + "/" + trainingDatasetDirectoryName);
 }
 
 QStringList ProjectManager::getProjects() {
@@ -92,10 +112,16 @@ void ProjectManager::loadProject(const QString &projectName) {
     mProjectName = projectfile.value(projectNameIdentifier).toString();
     mProjectPath = mProjectsDirectory + "/" + projectName;
     mProjectDataSetDir = mProjectPath + "/" + projectfile.value(projectDatasetDirectoryIdentifier).toString();
+    mValidationDataSetDir =  mProjectDataSetDir + "/" + projectfile.value(projectValidationDatasetIdentifier).toString();
+    mTrainingsDataSetDir = mProjectDataSetDir + "/" + projectfile.value(projectTrainingDatasetIdentifier).toString();
+
     mProjectTempDir = mProjectPath + "/" + projectfile.value(projectTempDirectoryIdentifier).toString();
+
     mProjectResultsDir = mProjectPath + "/" + projectfile.value(projectResultsDirectoryIdentifier).toString();
     mProjectTrainingResultsDir =  mProjectResultsDir + "/" + projectfile.value(projectTrainingsResultsDirectoryIdentifer).toString();
     mProjectClassificationResultsDir = mProjectResultsDir + "/" + projectfile.value(projectClassificationResultsDirectoryIdentifier).toString();
+
+    mProjectWorkingDir = mProjectPath + "/" + projectfile.value(projectWorkingDirIdentifier).toString();
 }
 QString ProjectManager::getProjectPath() {
     return mProjectPath;
@@ -147,6 +173,30 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
     return empty;
 }
 
+QString ProjectManager::getValidationDir(){
+    return mValidationDataSetDir;
+}
+
+QString ProjectManager::getTrainingsDir(){
+    return mTrainingsDataSetDir;
+}
+
+QString ProjectManager::createWorkDirSubfolder(const QString &name){
+    int identifier = 1;
+    QDir dir(mProjectWorkingDir);
+    dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
+    QString alteredName = name + "_" + QString::number(identifier);
+    QStringList entries = dir.entryList();
+
+    while (entries.contains(alteredName)) {
+        identifier++;
+        alteredName = name + "_" + QString::number(identifier);
+    }
+    QString path = mProjectWorkingDir + "/" + alteredName;
+    dir.mkpath(path);
+    return path;
+}
+
 void ProjectManager::setProjectsDirectory(const QString &newDirectory)
 {
     mProjectsDirectory = newDirectory;
@@ -168,7 +218,7 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
 
     //the next step is easier if we filters these outs prematurely
     if (projectName.contains("/") || projectName.contains("\\")) {
-        error->append(QObject::tr("Name may not contain the  \"/\" or \"\\\" characters") + "\n");
+        error->append(QObject::tr("Name may not contain the  \"/\" or \"\\\" characters"));
         return false;
     }
 
