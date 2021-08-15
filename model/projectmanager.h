@@ -122,9 +122,8 @@ public:
      */
     QString getClassificationResultsDir();
 
-    /** Only .txt files are returned and within the list they have no file ending
-     * @brief getNamesOfSavedTrainingResults returns the names of all the files in the trainings results folder
-     * @return
+    /** Only .txt files are returned and within the list they have no file ending, if no project is opened an empty list is returned
+     * @return getNamesOfSavedTrainingResults returns the names of all the files in the trainings results folder
      */
     QStringList getNamesOfSavedTrainingResults();
 
@@ -140,7 +139,7 @@ public:
     QString getTrainingsDir();
 
     /**
-     * No verification is done at this stage, it is assumed the name will not be in conflict with any other existing folders
+     * The names receive the suffix _1, if this name is already taken, the suffix is incremented till it is available
      * @brief createWorkDirSubfolder creates a new subfolder in the working directory
      * @param name string argument, name of the folder
      * @return absolute path to the folder

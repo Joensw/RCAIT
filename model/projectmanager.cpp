@@ -2,6 +2,7 @@
 #include "confusionmatrix.h"
 #include "accuracycurve.h"
 
+#include <QStringList>
 #include <QDir>
 #include <QSettings>
 #include <QRegularExpression>
@@ -121,11 +122,6 @@ void ProjectManager::loadProject(const QString &projectName) {
     mProjectClassificationResultsDir = mProjectResultsDir + "/" + projectfile.value(projectClassificationResultsDirectoryIdentifier).toString();
 
     mProjectWorkingDir = mProjectPath + "/" + projectfile.value(projectWorkingDirIdentifier).toString();
-
-    qDebug() << mProjectWorkingDir;
-    qDebug() << mValidationDataSetDir;
-    qDebug() << mTrainingsDataSetDir;
-    qDebug() << createWorkDirSubfolder("testestest");
 }
 QString ProjectManager::getProjectPath() {
     return mProjectPath;
@@ -186,8 +182,17 @@ QString ProjectManager::getTrainingsDir(){
 }
 
 QString ProjectManager::createWorkDirSubfolder(const QString &name){
-    QDir dir;
-    QString path = mProjectWorkingDir + "/" + name;
+    int identifier = 1;
+    QDir dir(mProjectWorkingDir);
+    dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
+    QString alteredName = name + "_" + QString::number(identifier);
+    QStringList entries = dir.entryList();
+
+    while (entries.contains(alteredName)) {
+        identifier++;
+        alteredName = name + "_" + QString::number(identifier);
+    }
+    QString path = mProjectWorkingDir + "/" + alteredName;
     dir.mkpath(path);
     return path;
 }
@@ -213,7 +218,7 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
 
     //the next step is easier if we filters these outs prematurely
     if (projectName.contains("/") || projectName.contains("\\")) {
-        error->append(QObject::tr("Name may not contain the  \"/\" or \"\\\" characters") + "\n");
+        error->append(QObject::tr("Name may not contain the  \"/\" or \"\\\" characters"));
         return false;
     }
 
