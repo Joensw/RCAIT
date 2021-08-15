@@ -10,6 +10,7 @@ ClassificationPluginManager::ClassificationPluginManager()
 void ClassificationPluginManager::loadPlugins(QString pluginDir)
 {
     m_plugins.clear();
+    m_pluginConfigurationWidgets.clear();
 
 
     QDir pluginsDir(pluginDir);
@@ -21,13 +22,15 @@ void ClassificationPluginManager::loadPlugins(QString pluginDir)
         if (plugin) {
             ClassificationPlugin* classificationPlugin = qobject_cast<ClassificationPlugin *>(plugin);
             if (classificationPlugin){
-
+                m_pluginConfigurationWidgets.append(classificationPlugin->getConfigurationWidget());
                 m_plugins.insert( classificationPlugin->getName(), classificationPlugin);
 
             }
             //pluginLoader.unload(); //ToDo: Maybe use this
         }
     }
+
+
 }
 
 
@@ -75,6 +78,11 @@ TrainingResult *ClassificationPluginManager::train(QString pluginName, QString m
 ClassificationResult *ClassificationPluginManager::classify(QString pluginName, QString inputImageDirPath, QString trainDatasetPath, QString workingDirectory, QString modelName, ProgressablePlugin * receiver)
 {
     return m_plugins.value(pluginName)->classify(inputImageDirPath, trainDatasetPath, workingDirectory, modelName, receiver);
+}
+
+QList<QWidget *> ClassificationPluginManager::getConfigurationWidgets()
+{
+    return m_pluginConfigurationWidgets;
 }
 
 QStringList ClassificationPluginManager::getClassificationPluginBases(QString plugin)
