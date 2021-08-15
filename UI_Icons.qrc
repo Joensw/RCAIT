@@ -44,5 +44,6 @@
         <file>Resources/UISymbols/UI_Cancel_Icon.svg</file>
         <file>Resources/UISymbols/UI_Fullscreen_Exit_Icon.svg</file>
         <file>Resources/UISymbols/UI_Fullscreen_Icon.svg</file>
+        <file>Resources/Fonts/InterMonospace-Medium.otf</file>
     </qresource>
 </RCC>

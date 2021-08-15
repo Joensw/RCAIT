@@ -3,9 +3,12 @@
 #include <QStyleFactory>
 #include <controller.h>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
+
+    //Load fonts
+    QFontDatabase::addApplicationFont(":/Resources/Fonts/Inter-Regular.otf");
+    QFontDatabase::addApplicationFont(":/Resources/Fonts/InterMonospace-Medium.otf");
 
     //Set UI style and font
     QApplication::setStyle(QStyleFactory::create("fusion"));
@@ -14,11 +17,9 @@ int main(int argc, char *argv[])
     palette.setColor(QPalette::Highlight, QColor("royal blue"));
     QApplication::setPalette(palette);
 
-    QFontDatabase::addApplicationFont(":/Resources/Fonts/Inter-Regular.otf");
-    QFont sf_pro_text("Inter");
-    sf_pro_text.setPixelSize(12);
-    sf_pro_text.setHintingPreference(QFont::HintingPreference::PreferNoHinting); //This line did the trick
-    QApplication::setFont(sf_pro_text);
+    QFont inter("Inter", 12);
+    inter.setHintingPreference(QFont::HintingPreference::PreferNoHinting);
+    QApplication::setFont(inter);
 
     QCoreApplication::setOrganizationName("PSE_SS21");
     QCoreApplication::setApplicationName("RCAIT");

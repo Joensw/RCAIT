@@ -33,6 +33,10 @@ void GenericComparisonWidget::configure_comparisonButton() {
 }
 
 void GenericComparisonWidget::configure_comparisonMenu(const QString &targetDir) {
+
+    QFont inter("Inter Monospace", 9);
+    m_menu_addComparison->setFont(inter);
+
     auto oldMenuEntries = QStringList();
     for (const auto &item : m_menu_addComparison->actions()) {
         oldMenuEntries << item->text();
