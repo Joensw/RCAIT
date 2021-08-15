@@ -41,5 +41,5 @@ void ClassificationCommand::slot_saveResult()
         //emit sig_failed() or something
         return;
     }
-    emit sig_saveResult(*result);
+    emit sig_saveResult(result);
 }

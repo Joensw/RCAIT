@@ -22,11 +22,11 @@ void SettingsController:: slot_applySettings(int index)
     mDataManager->savePluginSettings(index);
 }
 
-void SettingsController::slot_applyGlobalSettings(QString projectsDir, QString classificationPluginsDir, QString imageLoaderPluginsDir)
+void SettingsController::slot_applyGlobalSettings(QString projectDir, QString classificationPluginDir, QString imageLoaderPluginDir)
 {
     QString errorMessage;
     int sucessfulUpdates = 0;
-    if (mDataManager->applyGlobalSettings(projectsDir, classificationPluginsDir, imageLoaderPluginsDir, &errorMessage, &sucessfulUpdates)){
+    if (mDataManager->applyGlobalSettings(projectDir, classificationPluginDir, imageLoaderPluginDir, &errorMessage, &sucessfulUpdates)){
         mSettingsView->setCurrentProjectDirectory(mDataManager->getProjectsDir());
         mSettingsView->setCurrentClassificationPluginDirectory(mDataManager->getClassificationPluginDir());
         mSettingsView->setCurrentImageLoaderPluginDirectory(mDataManager->getImageLoaderPluginDir());

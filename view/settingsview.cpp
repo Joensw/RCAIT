@@ -9,7 +9,7 @@ SettingsView::SettingsView(QWidget *parent) :
     ui->setupUi(this);
 }
 
-SettingsView::SettingsView(QWidget *parent, QStringList pluginNames, QList<QWidget *> pluginConfigurationWidgets) :
+SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames, const QList<QWidget *> &pluginConfigurationWidgets) :
     QWidget(parent),
     ui(new Ui::SettingsView)
 {

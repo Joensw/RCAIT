@@ -8,7 +8,7 @@
 #include "classificationpluginmanager.h"
 #include "imageloaderpluginmanager.h"
 
-extern const QString projectDirectoryIdentifier_settingsFile;
+extern const QString projectDirectoryIdentifier;
 extern const QString classificationPluginDirectoryIdentifier;
 extern const QString imageLoaderPluginDirectoryIdentifier;
 
@@ -23,6 +23,12 @@ public:
      * @brief SettingsManager create a new SettingsManager
      */
     SettingsManager(); //might also become a singleton? TODO
+
+    /**
+     * @brief do any loading that can only be done when paths are set
+     */
+
+    void setUp();
     /**
      * @return a list of the names of all the plugins that were loaded
      */
@@ -98,7 +104,7 @@ public:
      * @param basesOf the classification plugin
      * @return list of the bases of a particular classification plugin
      */
-    QStringList getClassificationPluginBase(QString basesOf);
+    QStringList getClassificationPluginBase(QString plugin);
 
     /**
      * The paths are valid, when they are not empty ie. "" or the nullstring, when they are not identical, and actually exist.

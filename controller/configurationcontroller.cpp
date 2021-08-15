@@ -11,11 +11,11 @@ ConfigurationController::ConfigurationController(QObject *parent, DataManager *d
     connect(mConfigurationDialog, &ConfigurationDialog::sig_directoriesSpecified, this, &ConfigurationController::slot_directoriesSpecified);
 }
 
-void ConfigurationController::slot_directoriesSpecified(QString projectsDir, QString classificationPluginsDir, QString imageLoaderPluginsDir)
+void ConfigurationController::slot_directoriesSpecified(QString projectDir, QString classificationPluginDir, QString imageLoaderPluginsDir)
 {
-    if(mDataManager->verifyPaths(projectsDir, classificationPluginsDir, imageLoaderPluginsDir)){
-        mDataManager->saveProjectsDir(projectsDir);
-        mDataManager->saveClassificationPluginDir(classificationPluginsDir);
+    if(mDataManager->verifyPaths(projectDir, classificationPluginDir, imageLoaderPluginsDir)){
+        mDataManager->saveProjectsDir(projectDir);
+        mDataManager->saveClassificationPluginDir(classificationPluginDir);
         mDataManager->saveImageLoaderPluginDir(imageLoaderPluginsDir);
         mConfigurationDialog->confirm();
         emit sig_configurationComplete();

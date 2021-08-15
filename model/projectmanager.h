@@ -23,6 +23,9 @@ extern const QString projectResultsDirectoryIdentifier;
 extern const QString projectTrainingsResultsDirectoryIdentifer;
 extern const QString projectClassificationResultsDirectoryIdentifier;
 
+//filetype the project file has
+extern const QString projectFileType;
+
 /**
  * @brief The ProjectManager class contains the logic for manipulating the projects of the application
  */
@@ -55,19 +58,19 @@ public:
      * @param error pointer to where error messages can be written
      * @return true if a new project was created, false if there was an error
      */
-    bool createNewProject(QString projectName, QString * error);
+    bool createNewProject(const QString &projectName, QString * error);
 
     /**
      * @brief removeProject deleted the project sub directory from the current projects directory.
      * @param projectName name of the project
      */
-    void removeProject(QString projectName);
+    void removeProject(const QString &projectName);
 
     /**
      * @brief loadProject loads the information of a project with a given name into the class so it can be accessed later.
      * @param projectName name of the project
      */
-    void loadProject(QString projectName);
+    void loadProject(const QString &projectName);
 
     /**
      * @return list of all directories in the projects directory
@@ -121,7 +124,7 @@ public:
      * @brief setProjectsDirectory sets the  projects directory, ie. the directory projects are to be created, deleted and loaded from
      * @param newDirectory the new projects directory
      */
-    void setProjectsDirectory(QString newDirectory);
+    void setProjectsDirectory(const QString &newDirectory);
 
 private:
     bool verifyName(QString projectName, QString * error);

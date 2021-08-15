@@ -52,19 +52,19 @@ public:
      * @brief getProjectPath will return null string if no project is opened
      * @return absolute path to the currently opened project's subdirectory
      */
-    QString getProjectPath(); //maybe give these the prefix openProject to avoid confusion with the getters for the directories
+    QString getProjectPath();
 
     /**
      * @brief getProjectTempDir will return null string if no project is opened
      * @return absolute path to the temporary directory of the currently opened project
      */
-    QString getProjectTempDir(); //
+    QString getProjectTempDir();
 
     /**
      * @brief getProjectDataSetDir will return null string if no project is opened
      * @return absoulute path to the data set directory of the currently opened project
      */
-    QString getProjectDataSetDir(); //
+    QString getProjectDataSetDir();
 
     /**
      * The paths are valid, when they are not empty ie. "" or the nullstring, when they are not identical, and actually exist.
@@ -202,34 +202,18 @@ public:
      */
     bool applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
                              QString * error = nullptr, int * pathsChanged = nullptr);
-
-
-    /** Serialises the object in a binary format, it is not readable to a human.
-     *  The object is saved to the classifcation result sub directory
-     * @brief saveClassificationResult serialises and saves a classification results object
-     * @param result
-     */
-    void saveClassificationResult(ClassificationResult result);
-
-    /** Serialises the object in a binary format, it is not readable to a human.
-     *  The object is saved to the training result sub directory
-     * @brief saveTrainingsResult serialises and saves a training result object.
-     * @param result
-     */
-    void saveTrainingsResult(TrainingResult result);
-
     /**
-     * @brief getTrainingsResult rebuilds a TrainingResult object
-     * @param modelResultName name of the file the object is to be built from
-     * @return the rebuilt object
-     */
-    TrainingResult getTrainingsResult(QString modelResultName);
-
-    /** Only .txt files are returns and within the list they have no file ending
-     * @brief getNamesOfSavedTrainingResults returns the names of all the files in the trainings results folder
-     * @return
+     * @return return list of the training results that have been saved
      */
     QStringList getNamesOfSavedTrainingResults();
+
+    void saveClassificationResult(ClassificationResult result);
+    void saveTrainingsResult(TrainingResult result);
+
+    /** Called when all directories have been verified, as only then are all paths set correctly and the program can perform any loading calls depending on the directories
+     * @brief setUp refresh any contents that are dyamically loaded after program startup
+     */
+    void setUp();
 
 private:
     //TODO: Singleton adaption

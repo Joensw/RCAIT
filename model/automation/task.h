@@ -6,6 +6,7 @@
 #include <pluginusage/progressable.h>
 
 #include <datamanager.h>
+#include "resultsexporter.h"
 
 enum TaskState
 {
@@ -79,14 +80,14 @@ public slots:
      *
      * @param result training result.
      */
-    void slot_saveTrainingResult(TrainingResult result);
+    void slot_saveTrainingResult(TrainingResult *result);
 
     /**
      * @brief slot_saveClassificationResult saves classification result.
      *
      * @param result classification result.
      */
-    void slot_saveClassificationResult(ClassificationResult result);
+    void slot_saveClassificationResult(ClassificationResult *result);
 
 
 signals:
@@ -115,6 +116,7 @@ private:
     QString mProjectPath;
     DataManager *mDataManager;
     QList<Command*> mCommandList;
+    ResultsExporter* mExporter;
 
     bool valid = true;
     int commandsDone = 0;

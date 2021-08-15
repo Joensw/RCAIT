@@ -35,7 +35,7 @@ signals:
      * @brief sig_saveResult emitted when training results are ready.
      * @param result training result.
      */
-    void sig_saveResult(TrainingResult result);
+    void sig_saveResult(TrainingResult *result);
 
 private slots:
     void slot_saveResult();

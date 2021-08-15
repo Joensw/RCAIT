@@ -26,7 +26,7 @@ void NewModelDialog::on_buttonBox_rejected(){
     this->reject();
 }
 
-void NewModelDialog::slot_classifactionPlugin_currentTextChanged(QString text)
+void NewModelDialog::slot_classifactionPlugin_currentTextChanged(const QString &text)
 {
     emit sig_pluginSelected(text);
 }

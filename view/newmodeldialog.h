@@ -31,7 +31,7 @@ public slots:
      * @brief slot_classifactionPlugin_currentTextChanged called when the selected classification plugin changes
      * @param text the current classification plugin seleceted in the drop down
      */
-    void slot_classifactionPlugin_currentTextChanged(QString text);
+    void slot_classifactionPlugin_currentTextChanged(const QString &text);
 
 signals:
     /**

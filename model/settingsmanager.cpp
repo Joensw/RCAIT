@@ -1,7 +1,7 @@
 #include "settingsmanager.h"
 
 
-const QString projectDirectoryIdentifier_settingsFile = "ProjectDirectory";
+const QString projectDirectoryIdentifier = "ProjectDirectory";
 const QString classificationPluginDirectoryIdentifier = "ClassificationPluginPath";
 const QString imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
 
@@ -10,13 +10,16 @@ SettingsManager::SettingsManager()
     mGlobalSettings = new QSettings();
     mClassificationPluginManager = &ClassificationPluginManager::getInstance();
     mImageLoaderPluginManager = &ImageLoaderPluginManager::getInstance();
-    mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
+}
 
+void SettingsManager::setUp()
+{
+    mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 }
 QStringList SettingsManager::getPluginNames(){
     QStringList loaderPlugins = mImageLoaderPluginManager->getNamesOfPlugins();
-    QStringList classifierPlugins;
-    //loaderPlugins.append(classifierPlugins);
+    QStringList classifierPlugins = mClassificationPluginManager->getNamesOfPlugins();
+    loaderPlugins.append(classifierPlugins);
     return loaderPlugins;
 }
 
@@ -32,19 +35,19 @@ QStringList SettingsManager::getClassificationPluginBase(QString plugin)
 
 bool SettingsManager::verifyDirectories()
 {
-    if (mGlobalSettings->contains(projectDirectoryIdentifier_settingsFile)
-            && mGlobalSettings->contains(classificationPluginDirectoryIdentifier)
-            && mGlobalSettings->contains(imageLoaderPluginDirectoryIdentifier)) {
-        //all keys exist and have values
+    if (mGlobalSettings->contains(projectDirectoryIdentifier)
+        && mGlobalSettings->contains(classificationPluginDirectoryIdentifier)
+        && mGlobalSettings->contains(imageLoaderPluginDirectoryIdentifier)) {
+        //All keys exist and have values
 
-        //extract values
-        QString projectPath = mGlobalSettings->value(projectDirectoryIdentifier_settingsFile).toString();
+        QString projectPath = mGlobalSettings->value(projectDirectoryIdentifier).toString();
         QString classificationPath = mGlobalSettings->value(classificationPluginDirectoryIdentifier).toString();
         QString imageLoaderPath = mGlobalSettings->value(imageLoaderPluginDirectoryIdentifier).toString();
 
         return verifyPaths(projectPath, classificationPath, imageLoaderPath);
     }
-    return false; //settings file wasnt complete
+    //Settings file wasnt complete
+    return false;
 }
 
 bool SettingsManager::verifyPaths(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory)
@@ -55,13 +58,11 @@ bool SettingsManager::verifyPaths(QString projectsDirectory, QString classificat
         return false;
     }
 
-    //this is necessary, QDir treats the "" directory as "." and will always return true on .exists();
+    //QDir treats the "" directory as "." and will always return true on .exists();
     if (projectsDirectory.isEmpty() || classificationPluginDirectory.isEmpty() || imageLoaderDirectory.isEmpty()){
         return false;
     }
 
-    //make dirs from the values, check if they exist
-    //if they dont they the programm cannot operate
     QDir projectDir = QDir(projectsDirectory);
     QDir classificationDir = QDir(classificationPluginDirectory);
     QDir imageLoaderDir = QDir(imageLoaderDirectory);
@@ -69,12 +70,13 @@ bool SettingsManager::verifyPaths(QString projectsDirectory, QString classificat
     if (projectDir.exists() && classificationDir.exists() && imageLoaderDir.exists()) {
         return  true;
     }
-    return false; //one of the specified paths couldnt be found
+    return false;
 }
 
 bool SettingsManager::verifyPath(QString path)
 {
-    if (path.isEmpty()){ // null and empty string are not valid paths
+    //Null and empty string are not valid paths
+    if (path.isEmpty()){
         return false;
     }
     QDir directory = QDir(path);
@@ -101,23 +103,23 @@ void SettingsManager::savePluginSettings(int index){
     //mClassificationPluginManager.saveConfiguration(name)
 }
 
-void SettingsManager::saveProjectsDir(QString value){
-    mGlobalSettings->setValue(projectDirectoryIdentifier_settingsFile, value);
+void SettingsManager::saveProjectsDir(QString dir){
+    mGlobalSettings->setValue(projectDirectoryIdentifier, dir);
 }
 
 QString SettingsManager::getProjectsDir(){
-    return mGlobalSettings->value(projectDirectoryIdentifier_settingsFile).toString();
+    return mGlobalSettings->value(projectDirectoryIdentifier).toString();
 }
 
-void SettingsManager::saveClassificationPluginDir(QString value){
-    mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, value);
+void SettingsManager::saveClassificationPluginDir(QString dir){
+    mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, dir);
 }
 QString SettingsManager::getClassificationPluginDir(){
     return mGlobalSettings->value(classificationPluginDirectoryIdentifier).toString();
 }
-void SettingsManager::saveImageLoaderPluginDir(QString value){
-    mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, value);
-    mImageLoaderPluginManager->loadPlugins(value);
+void SettingsManager::saveImageLoaderPluginDir(QString dir){
+    mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, dir);
+    mImageLoaderPluginManager->loadPlugins(dir);
 }
 QString SettingsManager::getImageLoaderPluginDir(){
     return mGlobalSettings->value(imageLoaderPluginDirectoryIdentifier).toString();
@@ -155,13 +157,11 @@ bool SettingsManager::applyGlobalSettings(QString projectsDir, QString classific
         if (pathsChanged != nullptr){
             *pathsChanged = pathsChangedTemp;
         }
-
         return true;
 
     }
     if (error != nullptr){
-        *error = QObject::tr("Settings have not been updated, there is a conflict.") + "\n" +
-             QObject::tr("Paths may not be identical and must exist, this includes new and unchanged paths.");
+        *error = QObject::tr("Settings have not been updated, there is a conflict. \n Paths may not be identical and must exist, this includes new and unchanged paths.");
     }
     if (pathsChanged != nullptr){
         *pathsChanged = 0;

@@ -9,7 +9,7 @@
 
 Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
 {
-
+    mExporter = new ResultsExporter();
 
     mDataManager = dataManager;
     mName = map.value("taskName").toString();
@@ -119,12 +119,12 @@ void Task::slot_makeProgress(int progress)
     emit sig_progress(localProgress);
 }
 
-void Task::slot_saveTrainingResult(TrainingResult result)
+void Task::slot_saveTrainingResult(TrainingResult *result)
 {
-    mDataManager->saveTrainingsResult(result);
+    mExporter->slot_save_TrainingResult(result);
 }
 
-void Task::slot_saveClassificationResult(ClassificationResult result)
+void Task::slot_saveClassificationResult(ClassificationResult *result)
 {
-    mDataManager->saveClassificationResult(result);
+    mExporter->slot_save_ClassificationResult(result);
 }

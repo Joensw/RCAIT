@@ -67,6 +67,8 @@ set(Sources
         ../plugins/imageplugins/imageloaderpluginmanager.cpp
         ../model/pluginusage/progressableplugin.h
         ../model/pluginusage/progressableplugin.cpp
+        ../model/results/resultsexporter.h
+        ../model/results/resultsexporter.cpp
 
 
 

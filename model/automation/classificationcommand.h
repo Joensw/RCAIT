@@ -35,7 +35,7 @@ signals:
      * @brief sig_saveResult emitted when classification results are ready.
      * @param result classification result.
      */
-    void sig_saveResult(ClassificationResult result);
+    void sig_saveResult(ClassificationResult *result);
 
 private slots:
      void slot_saveResult();
