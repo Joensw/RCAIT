@@ -31,16 +31,18 @@ public:
     void saveConfiguration(QString pluginName) override;
     QWidget * getInputWidget(QString pluginName) override;
     QStringList getNamesOfPlugins() override;
-    QMap<QString, QString> getModelNames(QString projectPath);
+    QStringList getModelNames(QString pluginName);
     bool createNewModel(QString modelName, QString pluginName, QString baseModel);
-    bool getAugmentationPreview(QString pluginName, QString inputPath);
+    bool getAugmentationPreview(QString pluginName, QString modelName, QString inputPath, QString targetPath, int amount);
     bool removeModel(QString modelName, QString pluginName);
-    TrainingResult * train (QString pluginName, QString modelName, QString dataSetPath, ProgressablePlugin * receiver);
-    ClassificationResult * classify(QString pluginName, QString inputImagePath, QString modelName, ProgressablePlugin * receiver);
+    TrainingResult * train (QString pluginName, QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin * receiver);
+    ClassificationResult * classify(QString pluginName, QString inputImageDirPath, QString trainDatasetPath, QString workingDirectory, QString modelName, ProgressablePlugin * receiver);
 
     QStringList getClassificationPluginBases(QString plugin);
 private:
     ClassificationPluginManager * instance;
+    const QString TRAIN_DIR = "/Train";
+    const QString VALIDATION_DIR = "/Validate";
 };
 
 #endif // CLASSIFICATIONPLUGINMANAGER_H

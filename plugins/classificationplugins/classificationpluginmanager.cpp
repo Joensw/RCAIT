@@ -1,5 +1,7 @@
 #include "classificationpluginmanager.h"
 
+#include <QPluginLoader>
+
 ClassificationPluginManager::ClassificationPluginManager()
 {
 
@@ -7,7 +9,25 @@ ClassificationPluginManager::ClassificationPluginManager()
 
 void ClassificationPluginManager::loadPlugins(QString pluginDir)
 {
+    m_plugins.clear();
 
+
+    QDir pluginsDir(pluginDir);
+    const QStringList entries = pluginsDir.entryList(QDir::Files);
+
+    for (const QString &fileName : entries) {
+        QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
+        QObject *plugin = pluginLoader.instance();
+        if (plugin) {
+            ClassificationPlugin* classificationPlugin = qobject_cast<ClassificationPlugin *>(plugin);
+            if (classificationPlugin){
+
+                m_plugins.insert( classificationPlugin->getName(), classificationPlugin);
+
+            }
+            //pluginLoader.unload(); //ToDo: Maybe use this
+        }
+    }
 }
 
 
@@ -24,12 +44,12 @@ void ClassificationPluginManager::saveConfiguration(QString pluginName)
 QWidget *ClassificationPluginManager::getInputWidget(QString pluginName)
 {
     if(m_plugins.isEmpty()) return new QWidget();
-    return m_plugins.value(pluginName)->getConfigurationWidget();
+    return m_plugins.value(pluginName)->getDataAugmentationInputWidget();
 }
 
-QMap<QString, QString> ClassificationPluginManager::getModelNames(QString projectPath)
+QStringList ClassificationPluginManager::getModelNames(QString pluginName)
 {
-
+    return m_plugins.value(pluginName)->getAssociatedModels();
 }
 
 bool ClassificationPluginManager::createNewModel(QString modelName, QString pluginName, QString baseModel)
@@ -37,9 +57,9 @@ bool ClassificationPluginManager::createNewModel(QString modelName, QString plug
     return m_plugins.value(pluginName)->createNewModel(modelName,baseModel);
 }
 
-bool ClassificationPluginManager::getAugmentationPreview(QString pluginName, QString inputPath)
-{   // must be changed to new signature
-    //return m_plugins.value(pluginName)->getAugmentationPreview(inputPath);
+bool ClassificationPluginManager::getAugmentationPreview(QString pluginName, QString modelName, QString inputPath, QString targetPath, int amount)
+{
+    return m_plugins.value(pluginName)->getAugmentationPreview(modelName, inputPath, targetPath, amount);
 }
 
 bool ClassificationPluginManager::removeModel(QString modelName, QString pluginName)
@@ -47,16 +67,14 @@ bool ClassificationPluginManager::removeModel(QString modelName, QString pluginN
     return m_plugins.value(pluginName)->removeModel(modelName);
 }
 
-TrainingResult *ClassificationPluginManager::train(QString pluginName, QString modelName, QString dataSetPath, ProgressablePlugin *receiver)
+TrainingResult *ClassificationPluginManager::train(QString pluginName, QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin * receiver)
 {
-    // must be changed to new signature
-    //return m_plugins.value(pluginName)->train(modelName, dataSetPath, receiver);
+    return m_plugins.value(pluginName)->train(modelName, trainDatasetPath, validationDatasetPath, workingDirectory, receiver);
 }
 
-ClassificationResult *ClassificationPluginManager::classify(QString pluginName, QString inputImagePath, QString modelName, ProgressablePlugin *receiver)
+ClassificationResult *ClassificationPluginManager::classify(QString pluginName, QString inputImageDirPath, QString trainDatasetPath, QString workingDirectory, QString modelName, ProgressablePlugin * receiver)
 {
-    // must be changed to new signature
-    //return m_plugins.value(pluginName)->classify(inputImagePath, modelName, receiver);
+    return m_plugins.value(pluginName)->classify(inputImageDirPath, trainDatasetPath, workingDirectory, modelName, receiver);
 }
 
 QStringList ClassificationPluginManager::getClassificationPluginBases(QString plugin)
