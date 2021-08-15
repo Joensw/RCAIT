@@ -6,19 +6,21 @@
 #include <QtConcurrent/QtConcurrentRun>
 #include "abstractresultgraphics.h"
 
-AbstractResultGraphics::AbstractResultGraphics(QString baseName, QString extension)
+AbstractResultGraphics::AbstractResultGraphics(const QString& directory, QString baseName, QString extension)
         : m_baseName(std::move(baseName)),
           m_extension(std::move(extension)),
-          m_fullName(m_baseName + '.' + m_extension) {
+          m_fullName(m_baseName + '.' + m_extension),
+          m_directory(directory),
+          m_fullPath(directory + '/' + m_fullName){
 
 }
 
 void AbstractResultGraphics::generateGraphics(AbstractGraphicsView *receiver) {
     auto generateGraphicsTask = QtConcurrent::run([this,receiver] {
-        this->generateGraphicsInternal(m_fullName);
-        this->passResultGraphics(m_fullName, receiver);
+        this->generateGraphicsInternal(m_fullPath);
+        this->passResultGraphics(m_fullPath, receiver);
     });
-    Q_UNUSED(generateGraphicsTask);
+    Q_UNUSED(generateGraphicsTask)
 }
 
 const QString &AbstractResultGraphics::getBaseName() const {
@@ -31,6 +33,14 @@ const QString &AbstractResultGraphics::getExtension() const {
 
 const QString &AbstractResultGraphics::getFullName() const {
     return m_fullName;
+}
+
+const QString &AbstractResultGraphics::getDirectory() const {
+    return m_directory;
+}
+
+const QString &AbstractResultGraphics::getFullPath() const {
+    return m_fullPath;
 }
 
 void AbstractResultGraphics::launch_externalGraphicsGenerator(const QString &command, const QStringList &args) {

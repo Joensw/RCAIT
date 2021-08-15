@@ -12,10 +12,9 @@
 class ConfusionMatrix : public AbstractResultGraphics {
 public:
 
-    ConfusionMatrix(const QString &identifier, const QStringList &classLabels,
-                    const QList<int> &values);
-    QString valuesToPyText();
-    QString labelsToPyText();
+    ConfusionMatrix(const QString &directory, const QString &identifier,
+                    const QStringList &classLabels, const QList<int> &values);
+
     double operator()(int row, int column) const;
     bool operator==(ConfusionMatrix other) const;
     bool operator!=(ConfusionMatrix other) const;
@@ -29,6 +28,9 @@ private:
     QList<int> m_values;
     void generateGraphicsInternal(const QString& fullFilePath) override;
     void passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) override;
+
+    QString valuesToPyText();
+    QString labelsToPyText();
 };
 
 #endif // CONFUSIONMATRIX_H

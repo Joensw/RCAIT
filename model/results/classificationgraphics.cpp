@@ -3,9 +3,9 @@
 #include <mapadapt.h>
 #include "classificationgraphics.h"
 
-ClassificationGraphics::ClassificationGraphics(const QString &identifier,
+ClassificationGraphics::ClassificationGraphics(const QString &directory, const QString &identifier,
                                                const QMap<QString, QList<double>> &data)
-        : AbstractResultGraphics("classification_" + identifier, "svg") {
+        : AbstractResultGraphics(directory, "classification_" + identifier, "svg") {
 
     m_data = data;
 }

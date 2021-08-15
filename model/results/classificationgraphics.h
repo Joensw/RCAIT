@@ -9,9 +9,8 @@
 class ClassificationGraphics : public AbstractResultGraphics {
 
 public:
-    ClassificationGraphics(
-            const QString &identifier,
-            const QMap<QString, QList<double>> &data = QMap<QString, QList<double>>());
+    ClassificationGraphics(const QString &directory, const QString &identifier,
+                           const QMap<QString, QList<double>> &data = {});
 
     void addDataRow(const QString &identifier, QList<double> &data);
 

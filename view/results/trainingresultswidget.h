@@ -23,6 +23,8 @@ public:
 
     void addTrainingResult(TrainingResult *result);
 
+    void updateResultFolderPath(const QString &newDirPath) override;
+
 private:
     TopAccuraciesView *m_topAccuraciesView;
     TopAccuraciesGraphics *m_topAccuraciesGraphics;

@@ -56,7 +56,7 @@ public:
 
     ~GenericComparisonWidget() override;
 
-    void updateResultFolderPath(const QString &newDirPath);
+    virtual void updateResultFolderPath(const QString &newDirPath);
 
 private:
     Ui::GenericComparisonWidget *ui;

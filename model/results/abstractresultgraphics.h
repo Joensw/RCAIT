@@ -13,13 +13,15 @@ private:
     const QString m_baseName;
     const QString m_extension;
     const QString m_fullName;
+    const QString m_directory;
+    const QString m_fullPath;
 
     virtual void generateGraphicsInternal(const QString &fullFilePath) = 0;
 
     virtual void passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) = 0;
 
 public:
-    AbstractResultGraphics(QString baseName, QString extension);
+    AbstractResultGraphics(const QString& directory, QString baseName, QString extension);
 
     void generateGraphics(AbstractGraphicsView *receiver);
 
@@ -28,6 +30,10 @@ public:
     [[nodiscard]] const QString &getFullName() const;
 
     [[nodiscard]] const QString &getExtension() const;
+
+    [[nodiscard]] const QString &getDirectory() const;
+
+    [[nodiscard]] const QString &getFullPath() const;
 
 protected:
     static void launch_externalGraphicsGenerator(const QString &command, const QStringList &args);

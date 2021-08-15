@@ -8,7 +8,8 @@
 
 class TopAccuraciesGraphics : public AbstractResultGraphics {
 public:
-    explicit TopAccuraciesGraphics(const QList<QPair<QString, QList<double>>> &data = {});
+    explicit TopAccuraciesGraphics(const QString &directory,
+                                   const QList<QPair<QString, QList<double>>> &data = {});
 
     void addDataRow(const QString &identifier, const QList<double> &data);
 
