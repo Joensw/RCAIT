@@ -11,6 +11,9 @@ ResultsWidget::ResultsWidget(QWidget *parent) :
     //Setup widget variables
     m_trainingResultsWidget = ui->tab_trainingResults;
     m_classificationResultsWidget = ui->tab_classificationResults;
+
+    //Start at first tab
+    ui->tabWidget_mode->setCurrentIndex(0);
 }
 
 void ResultsWidget::addTrainingResult(TrainingResult *result) {
