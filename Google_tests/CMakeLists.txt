@@ -90,6 +90,28 @@ set(Sources
         ../model/results/abstractresultgraphics.h
         ../model/results/classificationgraphics.h
         ../model/results/classificationgraphics.cpp
+
+        ../model/results/resultsprocessor.h
+        ../model/results/resultsprocessor.cpp
+
+        ../view/results/trainingresultview.h
+        ../view/results/trainingresultview.cpp
+
+        ../view/results/classificationresultview.h
+        ../view/results/classificationresultview.cpp
+
+
+        ../view/results/abstractgraphicsview.h
+
+
+        ../view/results/canvas.h
+        ../view/results/canvas.cpp
+
+        ../view/imagegallery.h
+        ../view/imagegallery.cpp
+
+        ../view/customtablewidget.h
+        ../view/customtablewidget.cpp
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
