@@ -65,6 +65,13 @@ signals:
      */
     void sig_imagePluginsDirectoryChanged(const QString& newDirectory);
 
+
+    /**
+     * @brief sig_classificationDirectoryChanged emmitted when classification plugin directory is changed.
+     * @param newDirectory
+     */
+    void sig_classificationDirectoryChanged(const QString& newDirectory);
+
 private:
     SettingsView *mSettingsView;
 

@@ -9,6 +9,7 @@ SettingsManager::SettingsManager()
 {
     mGlobalSettings = new QSettings();
     mClassificationPluginManager = &ClassificationPluginManager::getInstance();
+    mClassificationPluginManager->loadPlugins(getClassificationPluginDir());
     mImageLoaderPluginManager = &ImageLoaderPluginManager::getInstance();
     mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 }
@@ -103,7 +104,7 @@ void SettingsManager::configureSettingsFile(QString projectsDirectory, QString c
 
 QList<QWidget *> SettingsManager::getPluginSettings(){
     QList<QWidget *> loaderPluginsWidgets = mImageLoaderPluginManager->getConfigurationWidgets();
-    QList<QWidget *> classifierPluginsWidgets;
+    QList<QWidget *> classifierPluginsWidgets = mClassificationPluginManager->getConfigurationWidgets();
     loaderPluginsWidgets.append(classifierPluginsWidgets);
     return loaderPluginsWidgets;
 }
@@ -127,6 +128,7 @@ QString SettingsManager::getProjectsDir(){
 
 void SettingsManager::saveClassificationPluginDir(QString dir){
     mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, dir);
+    mClassificationPluginManager->loadPlugins(dir);
 }
 QString SettingsManager::getClassificationPluginDir(){
     return mGlobalSettings->value(classificationPluginDirectoryIdentifier).toString();

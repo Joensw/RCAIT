@@ -37,12 +37,13 @@ public:
     bool removeModel(QString modelName, QString pluginName);
     TrainingResult * train (QString pluginName, QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin * receiver);
     ClassificationResult * classify(QString pluginName, QString inputImageDirPath, QString trainDatasetPath, QString workingDirectory, QString modelName, ProgressablePlugin * receiver);
+    QList<QWidget*> getConfigurationWidgets();
 
     QStringList getClassificationPluginBases(QString plugin);
 private:
     ClassificationPluginManager * instance;
-    const QString TRAIN_DIR = "/Train";
-    const QString VALIDATION_DIR = "/Validate";
+    QList<QWidget*> m_pluginConfigurationWidgets;
+
 };
 
 #endif // CLASSIFICATIONPLUGINMANAGER_H
