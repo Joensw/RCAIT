@@ -100,8 +100,7 @@ void ResultsImporter::slot_comparison_loadClassificationResultData(Classificatio
 
 void ResultsImporter::slot_comparison_loadClassificationResultGraphics(AbstractGraphicsView *receiver,
                                                                        const QString &runNameToCompare) {
-    auto dirPath = ProjectManager::getInstance().getClassificationResultsDir();
-    loadGraphicsInView(receiver, runNameToCompare, dirPath);
+    loadGraphicsInView(receiver, runNameToCompare, m_classificationResultsDir);
 }
 
 /**
@@ -159,8 +158,7 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
 
 void ResultsImporter::slot_comparison_loadTrainingResultGraphics(AbstractGraphicsView *receiver,
                                                                  const QString &runNameToCompare) {
-    auto dirPath = ProjectManager::getInstance().getTrainingResultsDir();
-    loadGraphicsInView(receiver, runNameToCompare, dirPath);
+    loadGraphicsInView(receiver, runNameToCompare, m_trainingResultsDir);
 }
 
 void ResultsImporter::loadGraphicsInView(AbstractGraphicsView *receiver, const QString &resultsFolder,
