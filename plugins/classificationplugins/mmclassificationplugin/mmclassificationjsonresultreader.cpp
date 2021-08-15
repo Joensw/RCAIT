@@ -34,6 +34,8 @@ QVector<int> MMClassificationJsonResultReader::readConfusionMatrixFromJsonFile(c
                 listValues.append(row[j].toInteger());
             }
         }
+    } else {
+        qWarning() << "Parse failed";
     }
     return listValues;
 }
@@ -59,7 +61,9 @@ QMap<int, QPair<double, double>> MMClassificationJsonResultReader::getAccuracyCu
     for (int j = 1; j < data.size(); j++) { // first line contains only information about the environment
         QJsonParseError errorPtr;
         QJsonDocument doc = QJsonDocument::fromJson(data[j].toUtf8(), &errorPtr);
-
+        if (doc.isNull()) {
+            qWarning() << "Parse failed";
+        }
         QJsonObject rootObj = doc.object();
         if (rootObj.contains("accuracy_top-1")) {
             double accuracy_top_1_value_training = rootObj.value("top-1").toDouble(); // top 1 accuracy of the training
@@ -93,6 +97,8 @@ QPair<double, double> MMClassificationJsonResultReader::readTopValuesFromJson(QS
         if (rootObj.contains("accuracy_top-5")) {
             topValues.second = rootObj.value("accuracy_top-5").toDouble();
         }
+    } else {
+        qWarning() << "Parse failed";
     }
     return topValues;
 }
@@ -166,6 +172,8 @@ QStringList MMClassificationJsonResultReader::generateMostMissclassifiedImages(c
                 outputValidationFiles.append(validiationFiles[selectedMissclassifiedImageIndices[n]]);
             }
         }
+    } else {
+        qWarning() << "Parse failed";
     }
     return outputValidationFiles;
 }
@@ -183,13 +191,10 @@ QMap<QString, QList<double>> MMClassificationJsonResultReader::readConfidenceSco
     QJsonParseError errorPtr;
     QJsonDocument doc = QJsonDocument::fromJson(data, &errorPtr);
     if (doc.isNull()) {
-        qDebug() << "Parse failed";
+        qWarning() << "Parse failed";
     }
-
     QJsonArray rows = doc.array();
     QVector<double> valuesPerClass = {};
-
-    qDebug() << "There are " << rows.size() << "rows in the json file";
 
     for (int i = 0; i < rows.size(); i++) {
         // read each row
@@ -198,11 +203,11 @@ QMap<QString, QList<double>> MMClassificationJsonResultReader::readConfidenceSco
         QJsonArray row = rows.at(i).toArray();
 
         for (int j = 0; j < row.size(); j++) {
-            qDebug() << row[j] << " ";
             valuesPerClass.append(row[j].toDouble());
         }
 
         confidenceScorePerImage.insert(imageFilePath, valuesPerClass);
         valuesPerClass.clear();
     }
+    return confidenceScorePerImage;
 }
