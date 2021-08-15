@@ -10,12 +10,19 @@ SettingsManager::SettingsManager()
     mGlobalSettings = new QSettings();
     mClassificationPluginManager = &ClassificationPluginManager::getInstance();
     mImageLoaderPluginManager = &ImageLoaderPluginManager::getInstance();
-}
-
-void SettingsManager::setUp()
-{
     mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 }
+
+SettingsManager::SettingsManager(bool verifying)
+{
+    if (verifying == false) {
+        qFatal("Only use this constructor for verifying paths, other functionality will not work and will cause the program to crash!");
+    }
+    mGlobalSettings = new QSettings();
+    mClassificationPluginManager = nullptr;
+    mImageLoaderPluginManager = nullptr;
+}
+
 QStringList SettingsManager::getPluginNames(){
     QStringList loaderPlugins = mImageLoaderPluginManager->getNamesOfPlugins();
     QStringList classifierPlugins = mClassificationPluginManager->getNamesOfPlugins();
@@ -85,6 +92,13 @@ bool SettingsManager::verifyPath(QString path)
         return true;
     }
     return false;
+}
+
+void SettingsManager::configureSettingsFile(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory)
+{
+    mGlobalSettings->setValue(projectDirectoryIdentifier, projectsDirectory);
+    mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, classificationPluginDirectory);
+    mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, imageLoaderDirectory);
 }
 
 QList<QWidget *> SettingsManager::getPluginSettings(){

@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include "datamanager.h"
 #include "configurationdialog.h"
+#include "settingsmanager.h"
 
 /**
  * @brief The ConfigurationController class mediates between the configuration UI and the configuration logic
@@ -16,9 +17,8 @@ public:
     /**
      * @brief ConfigurationController constructs a ConfigurationController with the given parameters
      * @param parent optional parent object
-     * @param dataManager source of general information
      */
-    explicit ConfigurationController(QObject *parent = nullptr, DataManager *dataManager = nullptr);
+    explicit ConfigurationController(QObject *parent = nullptr);
 
     /**
      * If the paths are not resolvable the configuration UI will open, otherwise a signal to symbolize a successful configuration will be emitted
@@ -40,6 +40,8 @@ signals:
     void sig_configurationComplete();
 private:
     ConfigurationDialog *mConfigurationDialog;
+
+    SettingsManager *mSettingsManager;
 
     DataManager *mDataManager;
 };

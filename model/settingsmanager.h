@@ -25,10 +25,10 @@ public:
     SettingsManager(); //might also become a singleton? TODO
 
     /**
-     * @brief do any loading that can only be done when paths are set
+     * @brief SettingsManager creates a new minimal settingsManagers
      */
+    SettingsManager(bool verifying);
 
-    void setUp();
     /**
      * @return a list of the names of all the plugins that were loaded
      */
@@ -133,6 +133,14 @@ public:
      * @return true if valid, false otherwise
      */
     bool verifyPath(QString path);
+
+    /** Used by the configuration controller, to set paths for further program use
+     * @brief configureSettingsFile set the paths in the settings file
+     * @param projectsDirectory absolute path to the projects directory
+     * @param classificationPluginDirectory absolute path the the classification plugin directory
+     * @param imageLoaderDirectory absolute path to the image loader plugin directory
+     */
+    void configureSettingsFile(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory);
 
 private:
     ClassificationPluginManager * mClassificationPluginManager;
