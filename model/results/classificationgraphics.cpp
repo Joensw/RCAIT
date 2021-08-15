@@ -63,7 +63,7 @@ void ClassificationGraphics::generateGraphicsInternal(const QString &fullFilePat
     AbstractResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 
-void ClassificationGraphics::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
+void ClassificationGraphics::passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
     auto ptr = QSharedPointer<QGraphicsItem>(graphics);
     receiver->setClassificationGraphics(ptr);

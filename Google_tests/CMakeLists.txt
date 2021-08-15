@@ -101,7 +101,7 @@ set(Sources
         ../view/results/classificationresultview.cpp
 
 
-        ../view/results/abstractgraphicsview.h
+        ../view/results/genericgraphicsview.h
 
 
         ../view/results/canvas.h

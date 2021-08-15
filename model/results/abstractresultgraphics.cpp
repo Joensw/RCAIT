@@ -15,7 +15,7 @@ AbstractResultGraphics::AbstractResultGraphics(const QString& directory, QString
 
 }
 
-void AbstractResultGraphics::generateGraphics(AbstractGraphicsView *receiver) {
+void AbstractResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
     auto generateGraphicsTask = QtConcurrent::run([this,receiver] {
         this->generateGraphicsInternal(m_fullPath);
         this->passResultGraphics(m_fullPath, receiver);

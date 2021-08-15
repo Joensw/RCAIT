@@ -27,7 +27,7 @@ private:
     qsizetype m_size;
     QList<int> m_values;
     void generateGraphicsInternal(const QString& fullFilePath) override;
-    void passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) override;
+    void passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) override;
 
     QString valuesToPyText();
     QString labelsToPyText();

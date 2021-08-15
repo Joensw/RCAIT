@@ -5,14 +5,14 @@
 #include <QMap>
 #include <QTableWidgetItem>
 #include <QPushButton>
-#include "abstractgraphicsview.h"
+#include "genericgraphicsview.h"
 #include "customtablewidget.h"
 
 namespace Ui {
     class ClassificationResultView;
 }
 
-class ClassificationResultView : public AbstractGraphicsView {
+class ClassificationResultView : public GenericGraphicsView {
 Q_OBJECT
 
 protected:

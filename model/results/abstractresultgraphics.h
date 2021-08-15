@@ -18,12 +18,12 @@ private:
 
     virtual void generateGraphicsInternal(const QString &fullFilePath) = 0;
 
-    virtual void passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) = 0;
+    virtual void passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) = 0;
 
 public:
     AbstractResultGraphics(const QString& directory, QString baseName, QString extension);
 
-    void generateGraphics(AbstractGraphicsView *receiver);
+    void generateGraphics(GenericGraphicsView *receiver);
 
     [[nodiscard]] const QString &getBaseName() const;
 

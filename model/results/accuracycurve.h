@@ -20,7 +20,7 @@ public:
 private:
     QMap<int, QPair<double, double>> m_data;
     void generateGraphicsInternal(const QString& fullFilePath) override;
-    void passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) override;
+    void passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) override;
     QString valuesToPyText();
 };
 

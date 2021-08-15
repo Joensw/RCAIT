@@ -1,14 +1,14 @@
-#ifndef ABSTRACTGRAPHICSVIEW_H
-#define ABSTRACTGRAPHICSVIEW_H
+#ifndef GENERICGRAPHICSVIEW_H
+#define GENERICGRAPHICSVIEW_H
 
 #include <QGraphicsItem>
 #include <QWidget>
 
-class AbstractGraphicsView : public QWidget {
+class GenericGraphicsView : public QWidget {
 Q_OBJECT
 
 public:
-    explicit AbstractGraphicsView(QWidget *parent = nullptr) : QWidget(parent) {}
+    explicit GenericGraphicsView(QWidget *parent = nullptr) : QWidget(parent) {}
 
     virtual void setAccuracyCurve(const QSharedPointer<QGraphicsItem> &accuracyCurveImage) {};
 
@@ -26,4 +26,4 @@ private:
     bool m_isSaved = false;
 };
 
-#endif // ABSTRACTGRAPHICSVIEW_H
+#endif // GENERICGRAPHICSVIEW_H

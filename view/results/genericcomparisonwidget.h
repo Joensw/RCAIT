@@ -10,7 +10,7 @@
 #include <QEvent>
 #include <type_traits>
 #include "result.h"
-#include "abstractgraphicsview.h"
+#include "genericgraphicsview.h"
 #include "popupmenu.h"
 
 using namespace std;
@@ -35,11 +35,11 @@ protected:
      * @brief C++ templates have to be defined in the header.
      * There is no other way.
      * Ugly, but that's the recommended way to do it.
-     * @tparam T extends AbstractGraphicsView, tab type to be created
+     * @tparam T extends GenericGraphicsView, tab type to be created
      * @param tabName name of the tab to be created
      * @return created tab of type T
      */
-    template<typename T, typename = std::enable_if<std::is_base_of_v<AbstractGraphicsView, T>>>
+    template<typename T, typename = std::enable_if<std::is_base_of_v<GenericGraphicsView, T>>>
     T *createResultTab(const QString &tabName) {
         auto *tab = new T(this);
         m_tabWidget->addTab(tab, tabName);
@@ -74,7 +74,7 @@ private:
 
     virtual void removeComparisonResult(const QString &runNameToCompare) = 0;
 
-    virtual void saveResult(AbstractGraphicsView *view) = 0;
+    virtual void saveResult(GenericGraphicsView *view) = 0;
 
 private slots:
 

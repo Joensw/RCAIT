@@ -9,7 +9,7 @@ const QString CLASSIFICATION_JSON = QString("classification_%1.json");
 /**
  * Top Accuracies slots
  */
-void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(AbstractGraphicsView *receiver,
+void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(GenericGraphicsView *receiver,
                                                                  TopAccuraciesGraphics *graphics) {
     graphics->generateGraphics(receiver);
 }
@@ -42,7 +42,7 @@ void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationRe
     view->setClassificationData(tableMap);
 }
 
-void ResultsProcessor::slot_normal_generateClassificationResultGraphics(AbstractGraphicsView *receiver,
+void ResultsProcessor::slot_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver,
                                                                         ClassificationResult *result) {
     auto graphics = result->getClassificationGraphics();
     graphics->generateGraphics(receiver);
@@ -56,7 +56,7 @@ void ResultsProcessor::slot_normal_loadTrainingResultData(TrainingResultView *vi
     view->setMostMisclassifiedImages(mostMisclassifiedImages);
 }
 
-void ResultsProcessor::slot_normal_generateTrainingResultGraphics(AbstractGraphicsView *receiver,
+void ResultsProcessor::slot_normal_generateTrainingResultGraphics(GenericGraphicsView *receiver,
                                                                   TrainingResult *result) {
     auto accCurve = result->getAccuracyCurve();
     auto confusionMatrix = result->getConfusionMatrix();

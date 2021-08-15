@@ -5,7 +5,7 @@
 #include "ui_classificationresultview.h"
 
 ClassificationResultView::ClassificationResultView(QWidget *parent) :
-        AbstractGraphicsView(parent),
+        GenericGraphicsView(parent),
         ui(new Ui::ClassificationResultView) {
     ui->setupUi(this);
 

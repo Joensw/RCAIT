@@ -30,13 +30,13 @@ public slots:
     void slot_comparison_loadClassificationResultData(ClassificationResultView *view,
                                                       const QString &runNameToCompare);
 
-    void slot_comparison_loadClassificationResultGraphics(AbstractGraphicsView *receiver,
+    void slot_comparison_loadClassificationResultGraphics(GenericGraphicsView *receiver,
                                                           const QString &runNameToCompare);
 
     //Training result slots
     void slot_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare);
 
-    void slot_comparison_loadTrainingResultGraphics(AbstractGraphicsView *receiver, const QString &runNameToCompare);
+    void slot_comparison_loadTrainingResultGraphics(GenericGraphicsView *receiver, const QString &runNameToCompare);
 
 private:
     QString m_trainingResultsDir;
@@ -46,7 +46,7 @@ private:
                                      const QString &identifier);
 
     static void
-    loadGraphicsInView(AbstractGraphicsView *receiver, const QString &resultsFolder, const QString &baseDir);
+    loadGraphicsInView(GenericGraphicsView *receiver, const QString &resultsFolder, const QString &baseDir);
 
     [[nodiscard]] static QJsonObject readJSON(const QString &filepath);
 

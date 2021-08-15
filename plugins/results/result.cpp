@@ -18,14 +18,14 @@ QString Result::generateExtendedTimestamp() {
 
 QString Result::niceRepresentation(QString date){
     date.replace("_",".");
-    date.replace("#"," ");
+    date.replace("#"," — ");
     date.replace("-",":");
     return date;
 }
 
 QString Result::saveableRepresentation(QString date){
     date.replace(".","_");
-    date.replace(" ","#");
+    date.replace(" — ","#");
     date.replace(":","-");
     return date;
 }

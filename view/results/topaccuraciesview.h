@@ -5,13 +5,13 @@
 #include <QMap>
 #include <QTableWidgetItem>
 #include <QPushButton>
-#include "abstractgraphicsview.h"
+#include "genericgraphicsview.h"
 
 namespace Ui {
     class TopAccuraciesView;
 }
 
-class TopAccuraciesView : public AbstractGraphicsView {
+class TopAccuraciesView : public GenericGraphicsView {
 Q_OBJECT
 
 protected:
@@ -33,7 +33,7 @@ public:
 
 signals:
 
-    void sig_normal_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver);
+    void sig_normal_requestTopAccuraciesGraphics(GenericGraphicsView *receiver);
 
 private slots:
 

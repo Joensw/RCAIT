@@ -3,7 +3,7 @@
 
 #include <QMap>
 #include <QGraphicsSvgItem>
-#include <abstractgraphicsview.h>
+#include <genericgraphicsview.h>
 #include "abstractresultgraphics.h"
 
 class TopAccuraciesGraphics : public AbstractResultGraphics {
@@ -28,7 +28,7 @@ private:
 
     void generateGraphicsInternal(const QString &fullFilePath) override;
 
-    void passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) override;
+    void passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) override;
 
     QString labelsToPyText();
 

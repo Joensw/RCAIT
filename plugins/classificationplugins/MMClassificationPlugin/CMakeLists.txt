@@ -26,7 +26,7 @@ add_library(mmclassificationplugin MODULE
 
     ../../../view/results/trainingresultview.h ../../../view/results/trainingresultview.cpp
 
-    ../../../view/results/abstractgraphicsview.h
+        ../../../view/results/genericgraphicsview.h
 
     ../../../view/results/classificationresultview.h ../../../view/results/classificationresultview.cpp
 

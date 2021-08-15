@@ -99,7 +99,7 @@ void ResultsImporter::slot_comparison_loadClassificationResultData(Classificatio
     emit sig_normal_loadClassificationResultData(view, result);
 }
 
-void ResultsImporter::slot_comparison_loadClassificationResultGraphics(AbstractGraphicsView *receiver,
+void ResultsImporter::slot_comparison_loadClassificationResultGraphics(GenericGraphicsView *receiver,
                                                                        const QString &runNameToCompare) {
     loadGraphicsInView(receiver, runNameToCompare, m_classificationResultsDir);
 }
@@ -157,12 +157,12 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
     emit sig_normal_loadTrainingResultData(view, result);
 }
 
-void ResultsImporter::slot_comparison_loadTrainingResultGraphics(AbstractGraphicsView *receiver,
+void ResultsImporter::slot_comparison_loadTrainingResultGraphics(GenericGraphicsView *receiver,
                                                                  const QString &runNameToCompare) {
     loadGraphicsInView(receiver, runNameToCompare, m_trainingResultsDir);
 }
 
-void ResultsImporter::loadGraphicsInView(AbstractGraphicsView *receiver, const QString &resultsFolder,
+void ResultsImporter::loadGraphicsInView(GenericGraphicsView *receiver, const QString &resultsFolder,
                                          const QString &baseDir) {
     auto dir = QDir(baseDir);
     auto folderIdentifier = Result::saveableRepresentation(resultsFolder);

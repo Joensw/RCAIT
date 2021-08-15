@@ -86,7 +86,7 @@ QList<int> ConfusionMatrix::getValues() {
     return m_values;
 }
 
-void ConfusionMatrix::passResultGraphics(const QString &fullFilePath, AbstractGraphicsView *receiver) {
+void ConfusionMatrix::passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
     auto ptr = QSharedPointer<QGraphicsItem>(graphics);
     receiver->setConfusionMatrix(ptr);

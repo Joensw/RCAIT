@@ -4,13 +4,13 @@
 #include <QWidget>
 #include <QGraphicsItem>
 #include <QGraphicsScene>
-#include "abstractgraphicsview.h"
+#include "genericgraphicsview.h"
 
 namespace Ui {
     class TrainingResultView;
 }
 
-class TrainingResultView : public AbstractGraphicsView {
+class TrainingResultView : public GenericGraphicsView {
 
 protected:
     // this event is called, when a new translator is loaded or the system language is changed

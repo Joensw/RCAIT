@@ -38,7 +38,7 @@ void TrainingResultsWidget::configure_topAccuraciesTab() {
     m_tabWidget->insertTab(0, m_topAccuraciesView.get(), icon, QString());
 }
 
-void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(AbstractGraphicsView *receiver) {
+void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(GenericGraphicsView *receiver) {
     //Forward signal
     emit sig_normal_requestTopAccuraciesGraphics(receiver, m_topAccuraciesGraphics.get());
 }
@@ -50,7 +50,7 @@ void TrainingResultsWidget::retranslateUi() {
     GenericComparisonWidget::retranslateUi();
 }
 
-void TrainingResultsWidget::saveResult(AbstractGraphicsView *view) {
+void TrainingResultsWidget::saveResult(GenericGraphicsView *view) {
     if (view == m_topAccuraciesView.get())
             emit sig_save_TopAccuracies(m_topAccuraciesGraphics.get());
     else
