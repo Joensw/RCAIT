@@ -22,11 +22,9 @@ public:
 
     void addClassificationResult(ClassificationResult *result);
 
-    void slot_projectPathUpdated();
-
 public slots:
 
-    void slot_saveResult();
+    void slot_projectPathUpdated();
 
 private:
     DataManager *m_dataManager;
@@ -34,12 +32,6 @@ private:
     ResultsProcessor *m_resultsProcessor;
     ResultsImporter *m_resultsImporter;
     ResultsExporter *m_resultsExporter;
-
-    //TODO ??
-    QList<TrainingResult> m_unsavedTrainingResults;
-    QList<ClassificationResult> m_unsavedClassificationResults;
-
-    void updateComparisonResultOverview(TrainingResult *result);
 };
 
 

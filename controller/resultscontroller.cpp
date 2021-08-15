@@ -96,7 +96,3 @@ void ResultsController::slot_projectPathUpdated() {
     m_resultsImporter->updateResultFolderPaths();
     m_resultsExporter->updateResultFolderPaths();
 }
-
-void ResultsController::slot_saveResult() {
-    //TODO Deprecated, don't use
-}
