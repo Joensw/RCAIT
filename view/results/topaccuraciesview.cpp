@@ -16,6 +16,10 @@ TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
     v_header->setSectionResizeMode(QHeaderView::Fixed);
     configure_updateGraphicsButton();
 
+    //Configure font
+    QFont inter("Inter Monospace", 8);
+    v_header->setFont(inter);
+
     //Internal signals/slots
     connect(m_pushButton_updateGraphics, &QAbstractButton::clicked, this,
             &TopAccuraciesView::slot_pushButton_updateGraphics_clicked);
