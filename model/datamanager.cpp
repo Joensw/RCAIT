@@ -55,7 +55,7 @@ bool DataManager::verifyPath(QString path)
 }
 
 void DataManager::createNewModel(QString modelName, QString pluginName, QString baseModel){
-    mModelManager->createNewModel(modelName, pluginName, baseModel);
+    mModelManager->createNewModel(this->getProjectsDir(), modelName, pluginName, baseModel);
 }
 void DataManager::removeModel(QString modelName, QString pluginName){
     mModelManager->removeModel(modelName, pluginName);
