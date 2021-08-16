@@ -3,7 +3,9 @@
 
 #include "command.h"
 
+#include <classificationpluginmanager.h>
 #include <classificationthread.h>
+#include <progressableplugin.h>
 
 /**
  * @brief The ClassificationCommand class starts a classification with information derived from a map.
@@ -20,7 +22,7 @@ public:
      * @param map contains necessary information for command.
      * @param receiver object to receive progress.
      */
-    ClassificationCommand(QVariantMap map, Progressable* receiver);
+    ClassificationCommand(QVariantMap map, QString trainDataSetPath, QString workingDir, ProgressablePlugin* receiver);
 
     /**
      * @brief execute executes the command.
@@ -41,8 +43,16 @@ private slots:
      void slot_saveResult();
 
 private:
-   ClassificationThread *mClassifier;
+   ClassificationPluginManager& mPluginManager =  ClassificationPluginManager::getInstance();
+   ClassificationResult* mResult;
+   ProgressablePlugin* mReceiver;
    bool parsingFailed = false;
+
+   QString mImagePath;
+   QString mModelName;
+   QString mAiPluginName;
+   QString mTrainDataSetPath;
+   QString mWorkingDir;
 
 
 

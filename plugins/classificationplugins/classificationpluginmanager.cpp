@@ -57,6 +57,11 @@ QWidget *ClassificationPluginManager::getDataAugmentationInputWidget(QString plu
     return m_plugins.value(pluginName)->getDataAugmentationInputWidget();
 }
 
+QWidget *ClassificationPluginManager::getDataAugmentationInputWidget(QString pluginName)
+{
+    return m_plugins.value(pluginName)->getDataAugmentationInputWidget();
+}
+
 QStringList ClassificationPluginManager::getModelNames(QString pluginName)
 {
     // return m_plugins.value(pluginName)->getAssociatedModels();
