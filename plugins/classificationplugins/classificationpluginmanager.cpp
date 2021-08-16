@@ -22,6 +22,7 @@ void ClassificationPluginManager::loadPlugins(QString pluginDir)
         if (plugin) {
             ClassificationPlugin* classificationPlugin = qobject_cast<ClassificationPlugin *>(plugin);
             if (classificationPlugin){
+                classificationPlugin->init();
                 m_pluginConfigurationWidgets.append(classificationPlugin->getConfigurationWidget());
                 m_plugins.insert( classificationPlugin->getName(), classificationPlugin);
 

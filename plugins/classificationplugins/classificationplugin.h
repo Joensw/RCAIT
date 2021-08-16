@@ -20,7 +20,7 @@ public:
     virtual bool removeModel(QString modelName)= 0;
     virtual TrainingResult* train(QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver)= 0;
     virtual ClassificationResult* classify(QString inputImageDirPath, QString trainDatasetPath, QString workingDirPath, QString modelName, ProgressablePlugin *receiver)= 0;
-
+    virtual void init() = 0;
 };
 
 QT_BEGIN_NAMESPACE

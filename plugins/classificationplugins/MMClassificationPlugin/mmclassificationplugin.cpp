@@ -102,6 +102,7 @@ QWidget* MMClassificationPlugin::getInputWidget()
     return inputOptions;
 }
 
+void MMClassificationPlugin::init()
 QStringList MMClassificationPlugin::getAssociatedModels()
 {
     QStringList modelNames = {};

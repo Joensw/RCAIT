@@ -73,6 +73,7 @@ public:
     QWidget* getConfigurationWidget();
     void saveConfiguration();
     QWidget* getInputWidget();
+    void init() override;
 
     QStringList getAssociatedModels();
     bool createNewModel(QString modelName, QString baseModel);
