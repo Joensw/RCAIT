@@ -65,6 +65,8 @@ private:
     Model loadModel(QString name);
 
     QStringList getLabels(QString datasetPath);
+
+    bool checkTrainMethodInput(QStringList labels, QString mainConfigPath, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectoryPath);
 public:
     MMClassificationPlugin();
     ~MMClassificationPlugin();

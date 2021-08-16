@@ -82,6 +82,15 @@ QStringList MMClassificationPlugin::getLabels(QString datasetPath)
     return labels;
 }
 
+bool MMClassificationPlugin::checkTrainMethodInput(QStringList labels, QString mainConfigPath, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectoryPath)
+{
+    QFileInfo mainConfigInfo(mainConfigPath);
+    QFileInfo trainDatasetInfo(trainDatasetPath);
+    QFileInfo validationDatasetInfo(validationDatasetPath);
+    QFileInfo workingDirectoryInfo(workingDirectoryPath);
+    return !labels.isEmpty() && mainConfigInfo.exists() && trainDatasetInfo.exists() && validationDatasetInfo.exists() && workingDirectoryInfo.exists();
+}
+
 QString MMClassificationPlugin::getName()
 {
     return m_name;
@@ -344,19 +353,19 @@ TrainingResult* MMClassificationPlugin::train(QString modelName, QString trainDa
 
     QStringList labels = getLabels(trainDatasetPath);
 
-    if (labels.size() == 0) {
-        qWarning() << "no labels found!!!";
-        // Test data must be replaced
-        QStringList labels = {"cats", "dogs"};
-        QList<int> values = {29, 33, 22, 11};
-        //ConfusionMatrix * confusionMatrix = new ConfusionMatrix("matrix1", labels, values);
+    QString mainConfigPath = loadModel(modelName).getMainConfigPath();
+
+    if (!checkTrainMethodInput(labels, mainConfigPath, trainDatasetPath, validationDatasetPath, workingDirectoryPath)) {
+        qWarning() << "Invalid input parameters, empty TrainingResult object will be returned";
+        QStringList emptylabels = {};
+        QList<int> noValues = {};
         QMap<int, QPair<double, double>> *accuracyCurveData = new QMap<int, QPair<double, double>>();
         QStringList * mostMisclassifiedImages = new QStringList();
         QStringList *additionalResults = new QStringList();
-        double top1Accuracy = 0.91;
-        double top5Accuracy = 0.98;
-        TrainingResult * trainingResult = new TrainingResult(*accuracyCurveData, labels, values, *mostMisclassifiedImages, top1Accuracy, top5Accuracy, *additionalResults);
-        return trainingResult;
+        double top1Accuracy = 0.0;
+        double top5Accuracy = 0.0;
+        TrainingResult * emptyTrainingResult = new TrainingResult(*accuracyCurveData, labels, noValues, *mostMisclassifiedImages, top1Accuracy, top5Accuracy, *additionalResults);
+        return emptyTrainingResult;
     }
 
     m_mmClassificationConfigFileBuilder.changeModelNumberOfClasses(modelConfigPath, labels.size());
@@ -388,8 +397,6 @@ TrainingResult* MMClassificationPlugin::train(QString modelName, QString trainDa
 
     // copy and change runtime config if checkpoint creation and max_iters does not fit
     // to do
-
-    QString mainConfigPath = loadModel(modelName).getMainConfigPath();
 
     int cudaDeviceNumber = m_mmClassificationInput->getCudaDevice();
 
