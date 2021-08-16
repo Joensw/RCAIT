@@ -14,8 +14,6 @@ SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames, cons
     ui(new Ui::SettingsView)
 {
     ui->setupUi(this);
-    mPluginNames = pluginNames;
-    mConfigurationWidgets = pluginConfigurationWidgets;
     mGlobalSettingsWidget = new GlobalSettingsWidget(this);
 
     ui->pluginList->addItem(mGlobalSettingsWidget->windowTitle());
@@ -29,12 +27,12 @@ SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames, cons
     ui->pluginWidget->addWidget(mGlobalSettingsWidget);
 
 
-    assert(mPluginNames.size() == mConfigurationWidgets.size());
+    assert(pluginNames.size() == pluginConfigurationWidgets.size());
 
    int i = 0;
-    for(QString name : mPluginNames){
+    for(QString name : pluginNames){
         ui->pluginList->addItem(name);
-        ui->pluginWidget->addWidget(mConfigurationWidgets.at(i));
+        ui->pluginWidget->addWidget(pluginConfigurationWidgets.at(i));
         i++;
     }
 
