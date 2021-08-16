@@ -59,7 +59,11 @@ QWidget *ClassificationPluginManager::getDataAugmentationInputWidget(QString plu
 
 QStringList ClassificationPluginManager::getModelNames(QString pluginName)
 {
-    return m_plugins.value(pluginName)->getAssociatedModels();
+    // return m_plugins.value(pluginName)->getAssociatedModels();
+    // the user created models to show depends on the chosen project and not on the chosen classification plugin
+    // but user created models known to the main application must be removed,
+    // if the plugin containing its corresponding base models isn't present
+    // this task will be implemented in the model manager
 }
 
 bool ClassificationPluginManager::createNewModel(QString modelName, QString pluginName, QString baseModel)
@@ -92,12 +96,14 @@ QList<QWidget *> ClassificationPluginManager::getConfigurationWidgets()
     return m_pluginConfigurationWidgets;
 }
 
-QStringList ClassificationPluginManager::getClassificationPluginBases(QString plugin)
+QStringList ClassificationPluginManager::getClassificationPluginBases(QString pluginName)
 {
-    QStringList test = QStringList();
-    test.append("base#1");
-    test.append("base#2");
-    return test;
+    QStringList emptyList = QStringList();
+    if(!m_plugins.contains(pluginName)) {
+        qWarning() << "No Classification Plugin with the name " + pluginName + " found!";
+        return emptyList;
+    }
+    return m_plugins.value(pluginName)->getAssociatedModels();
 }
 
 QStringList ClassificationPluginManager::getNamesOfPlugins() {
