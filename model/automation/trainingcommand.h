@@ -5,6 +5,9 @@
 
 #include <pluginusage/trainingsthread.h>
 
+#include <classificationpluginmanager.h>
+#include <progressableplugin.h>
+
 
 /**
  * @brief The TrainingCommand class starts a training with information derived from a map.
@@ -20,7 +23,7 @@ public:
      * @param map contains necessary information for command.
      * @param receiver object to receive progress.
      */
-    TrainingCommand(QVariantMap map, Progressable* receiver);
+    TrainingCommand(QVariantMap map, QString trainDataSetPath, QString validationDataSetPath, QString workingDir, ProgressablePlugin* receiver);
 
     /**
      * @brief execute executes the command.
@@ -41,8 +44,21 @@ private slots:
     void slot_saveResult();
 
 private:
-    TrainingsThread *mTrainer;
+    ClassificationPluginManager& mPluginManager =  ClassificationPluginManager::getInstance();
+    TrainingResult* mResult;
+    ProgressablePlugin* mReceiver;
     bool parsingFailed = false;
+
+    QString mImagePath;
+    QString mModelName;
+    QString mAiPluginName;
+    QString mTrainDataSetPath;
+    QString mValidationDataSetPath;
+    QString mClassificationDataSetPath;
+    QString mWorkingDir;
+
+
+
 
 
 };

@@ -3,45 +3,50 @@
 #include <classificationpluginmanager.h>
 
 
-TrainingCommand::TrainingCommand(QVariantMap map, Progressable* receiver)
+TrainingCommand::TrainingCommand(QVariantMap map, QString trainDataSetPath, QString validationDataSetPath, QString workingDir, ProgressablePlugin* receiver)
 {
-    QString imagePath = map.value("trainingImagePath").toString();
-    QString modelName = map.value("modelName").toString();
-    QString aiPluginName = map.value("aiPluginName").toString();
+    mAiPluginName = map.value("aiPluginName").toString();
+    mModelName = map.value("modelName").toString();
+    mTrainDataSetPath = trainDataSetPath;
+    mValidationDataSetPath = validationDataSetPath;
+    mWorkingDir = workingDir;
+    mReceiver = receiver;
 
-    if (imagePath.isNull() || modelName.isNull() || aiPluginName.isNull()){
+    if (mModelName.isNull() || mAiPluginName.isNull()){
         parsingFailed = true;
         return;
     }
 
-    QWidget* inputWidget = ClassificationPluginManager::getInstance().getInputWidget(aiPluginName);
-
+    QWidget* inputWidget = mPluginManager.getInputWidget(mAiPluginName);
     auto end = map.end();
     for(auto it = map.begin(); it != end; ++it){
         const char* charstring = it.key().toUtf8().data();
         inputWidget->setProperty(charstring, it.value());
     }
 
+    QWidget* automationWidget = mPluginManager.getDataAugmentationInputWidget(mAiPluginName);
+    for(auto it = map.begin(); it != end; ++it){
+        const char* charstring = it.key().toUtf8().data();
+        automationWidget->setProperty(charstring, it.value());
+    }
 
-    mTrainer = new TrainingsThread(receiver, imagePath, modelName, aiPluginName);
-    connect(mTrainer, &TrainingsThread::finished, this, &TrainingCommand::slot_saveResult);
-
+    mPluginManager.saveConfiguration(mAiPluginName);
 }
 
 bool TrainingCommand::execute()
 {
     if(parsingFailed) return false;
-    mTrainer->start();
+    mResult = mPluginManager.train(mAiPluginName, mModelName, mTrainDataSetPath, mValidationDataSetPath, mWorkingDir, mReceiver);
+    slot_saveResult();
     return true;
 }
 
 void TrainingCommand::slot_saveResult()
 {
-    TrainingResult* result = mTrainer->getResult();
-    if (result == nullptr){
+    if (mResult == nullptr){
         //emit sig_failed() or something
         return;
     }
-    emit sig_saveResult(result);
+    emit sig_saveResult(mResult);
 }
 

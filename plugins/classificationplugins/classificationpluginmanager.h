@@ -30,6 +30,7 @@ public:
     QWidget * getConfigurationWidget(QString pluginName) override;
     void saveConfiguration(QString pluginName) override;
     QWidget * getInputWidget(QString pluginName) override;
+    QWidget * getDataAugmentationInputWidget(QString pluginName);
     QStringList getNamesOfPlugins() override;
     QStringList getModelNames(QString pluginName);
     bool createNewModel(QString modelName, QString pluginName, QString baseModel);

@@ -44,15 +44,17 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
     }
 
     if (commands.contains("training")) {
-        TrainingCommand* command = new TrainingCommand(map, this);
-        mCommandList.append(command);
-        connect(command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
+        //TODO add arguments once DataManager has according get functions
+//        TrainingCommand* command = new TrainingCommand(map, this);
+//        mCommandList.append(command);
+//        connect(command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
     }
 
     if (commands.contains("classification")) {
-        ClassificationCommand* command = new ClassificationCommand(map, this);
-        mCommandList.append(command);
-        connect(command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
+        //TODO add arguments once DataManager has according get functions
+//        ClassificationCommand* command = new ClassificationCommand(map, this);
+//        mCommandList.append(command);
+//        connect(command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
     }
 
 }

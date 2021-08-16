@@ -3,43 +3,46 @@
 #include <classificationpluginmanager.h>
 
 
-ClassificationCommand::ClassificationCommand(QVariantMap map, Progressable* receiver)
+ClassificationCommand::ClassificationCommand(QVariantMap map, QString trainDataSetPath, QString workingDir, ProgressablePlugin* receiver)
 {
-    QString imagePath = map.value("classificationImagePath").toString();
-    QString modelName = map.value("modelName").toString();
-    QString aiPluginName = map.value("aiPluginName").toString();
+    mImagePath = map.value("classificationImagePath").toString();
+    mModelName = map.value("modelName").toString();
+    mAiPluginName = map.value("aiPluginName").toString();
+    mTrainDataSetPath = trainDataSetPath;
+    mWorkingDir = workingDir;
+    mReceiver = receiver;
 
-    if (imagePath.isNull() || modelName.isNull() || aiPluginName.isNull()){
+
+
+
+    if (mImagePath.isNull() || mModelName.isNull() || mAiPluginName.isNull()){
         parsingFailed = true;
         return;
     }
 
-    QWidget* inputWidget = ClassificationPluginManager::getInstance().getInputWidget(aiPluginName);
+    QWidget* inputWidget = mPluginManager.getInputWidget(mAiPluginName);
 
     auto end = map.end();
     for(auto it = map.begin(); it != end; ++it){
         const char* charstring = it.key().toUtf8().data();
         inputWidget->setProperty(charstring, it.value());
     }
-
-    mClassifier = new ClassificationThread(receiver, imagePath, modelName, aiPluginName);
-    connect(mClassifier, &ClassificationThread::finished, this, &ClassificationCommand::slot_saveResult);
-
+    mPluginManager.saveConfiguration(mAiPluginName);
 }
 
 bool ClassificationCommand::execute()
 {
     if(parsingFailed) return false;
-    mClassifier->start();
+    mResult = mPluginManager.classify(mAiPluginName, mImagePath, mTrainDataSetPath, mWorkingDir, mModelName, mReceiver);
+    slot_saveResult();
     return true;
 }
 
 void ClassificationCommand::slot_saveResult()
 {
-    ClassificationResult* result = mClassifier->getResult();
-    if (result == nullptr){
+    if (mResult == nullptr){
         //emit sig_failed() or something
         return;
     }
-    emit sig_saveResult(result);
+    emit sig_saveResult(mResult);
 }
