@@ -25,11 +25,6 @@ public:
     ~MMClassificationInputOptions();
 
     /**
-     * @brief readInput reads the user input from the widget and saves it in the appropriate variables
-     */
-    void readInput();
-
-    /**
      * @brief getMaxIters returns the maximum number of iterations
      * @return the maximum number of iterations beeing a positve integer value
      */
@@ -55,8 +50,12 @@ public:
 
 private:
     Ui::MMClassificationInputOptions *ui;
-    int m_max_iters;
-    int m_cuda_device;
+    int m_max_iters = 10000;
+    int m_cuda_device = 0;
+
+private slots:
+    void slot_maxItersChanged(int newAmount);
+    void slot_cudaDeviceChanged(int newNumber);
 };
 
 #endif // MMCLASSIFICATIONINPUTOPTIONS_H

@@ -390,7 +390,6 @@ TrainingResult* MMClassificationPlugin::train(QString modelName, QString trainDa
 
     QString scheduleConfigPath = loadModel(modelName).getScheduleConfigPath();
 
-    m_mmClassificationInput->readInput();
     int max_iters = m_mmClassificationInput->getMaxIters();
 
     m_mmClassificationConfigFileBuilder.changeScheduleOptions(scheduleConfigPath, max_iters);
