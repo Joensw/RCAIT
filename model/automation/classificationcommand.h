@@ -20,6 +20,8 @@ public:
      * @brief ClassificationCommand constructs a ClassificationCommand by parsing from a map.
      *
      * @param map contains necessary information for command.
+     * @param trainDataSetPath path of training images
+     * @param workingDir working directory path
      * @param receiver object to receive progress.
      */
     ClassificationCommand(QVariantMap map, QString trainDataSetPath, QString workingDir, ProgressablePlugin* receiver);
@@ -39,8 +41,6 @@ signals:
      */
     void sig_saveResult(ClassificationResult *result);
 
-private slots:
-     void slot_saveResult();
 
 private:
    ClassificationPluginManager& mPluginManager =  ClassificationPluginManager::getInstance();
