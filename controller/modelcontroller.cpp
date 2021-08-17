@@ -26,6 +26,7 @@ void ModelController::slot_newModel()
 void ModelController::slot_newModelConfirm(QString modelName, QString pluginName, QString baseModel)
 {
     mDataManager->createNewModel(modelName, pluginName, baseModel);
+    mImportFilesWidget->addNewModel(modelName);
     mNewModelDialog->close();
 }
 
@@ -40,8 +41,8 @@ void ModelController::slot_removeModel(QString modelName)
 
 void ModelController::slot_removeModelConfirm()
 {
-    QString name = mRemoveModelDialog->getModelName();
-    mDataManager->removeModel(name, "PLACEHOLDER");
+    QString modelName = mRemoveModelDialog->getModelName();
+    mDataManager->removeModel(modelName);
     mRemoveModelDialog->close();
 }
 

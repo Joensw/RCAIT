@@ -94,6 +94,12 @@ public:
     QString getProjectPath();
 
     /**
+     * @brief getProjectName will return null string if no project is opened
+     * @return name of the currently opened project
+     */
+    QString getProjectName();
+
+    /**
      * @brief getProjectDataSetDir will return null string if no project is opened
      * @return absoulute path to the data set directory of the currently opened project
      */

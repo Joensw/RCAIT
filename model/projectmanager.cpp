@@ -145,6 +145,10 @@ QString ProjectManager::getProjectPath() {
     return mProjectPath;
 }
 
+QString ProjectManager::getProjectName() {
+    return mProjectName;
+}
+
 QString ProjectManager::getProjectDataSetDir() {
     return mProjectDataSetDir;
 }

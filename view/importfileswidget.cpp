@@ -38,6 +38,17 @@ void ImportFilesWidget::retranslateUi() {
 
 }
 
+void ImportFilesWidget::addModels(QStringList modelNames) {
+    ui->listWidget_modelNames->addItems(modelNames);
+}
+
+void ImportFilesWidget::addNewModel(QString modelName) {
+    ui->listWidget_modelNames->addItem(modelName);
+}
+
+void ImportFilesWidget::clearModelList() {
+    ui->listWidget_modelNames->clear();
+}
 
 void ImportFilesWidget::on_pushButton_clearTags_clicked() {
     std::vector<QString> tags;

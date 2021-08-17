@@ -11,14 +11,21 @@ void ModelManager::createNewModel(QString projectName, QString modelName, QStrin
     if(mClassificationPluginManager->createNewModel(modelName, pluginName, baseModel)) {
         // add the new model to the saved user models
         m_userModelNamesPerProject.beginGroup(projectName);
-        m_userModelNamesPerProject.setValue(modelName, modelName);
+        m_userModelNamesPerProject.setValue(modelName, pluginName);
         m_userModelNamesPerProject.endGroup();
     } else {
         qWarning() << "The new model could not be created";
     }
 }
-void ModelManager::removeModel(QString modelName, QString pluginName){
-    mClassificationPluginManager->removeModel(std::move(modelName), std::move(pluginName));
+void ModelManager::removeModel(QString projectName, QString modelName){
+    m_userModelNamesPerProject.beginGroup(projectName);
+        QString pluginName = m_userModelNamesPerProject.value(modelName).toString();
+        m_userModelNamesPerProject.endGroup();
+        if (!pluginName.isEmpty()) {
+            mClassificationPluginManager->removeModel(std::move(modelName), std::move(pluginName));
+        } else {
+            qWarning() << "The model " + modelName + " could not be deleted";
+        }
 }
 
 void ModelManager::loadModel(QString modelName, QString pluginName){
@@ -31,6 +38,14 @@ QString ModelManager::getCurrentPlugin(){
 }
 QString ModelManager::getCurrentModel(){
     return mCurrentModel;
+}
+
+QStringList ModelManager::getModelNamesOfProject(QString projectName)
+{
+    m_userModelNamesPerProject.beginGroup(projectName);
+    QStringList modelNames = m_userModelNamesPerProject.childKeys();
+    m_userModelNamesPerProject.endGroup();
+    return modelNames;
 }
 QWidget * ModelManager::getInputWidget(){
     return mClassificationPluginManager->getInputWidget(mCurrentModel);

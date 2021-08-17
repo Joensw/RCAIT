@@ -45,6 +45,23 @@ public:
      */
     void updateStatusText(QString status);
 
+    /**
+     * @brief addModels adds a list of model names to the corresponding view element
+     * @param modelNames a list of model names
+     */
+    void addModels(QStringList modelNames);
+
+    /**
+     * @brief addNewModel adds a new model to the corresponding view element
+     * @param modelName the name of the model to identify it
+     */
+    void addNewModel(QString modelName);
+
+    /**
+     * @brief deletes the current list of model names
+     */
+    void clearModelList();
+
 private:
     Ui::ImportFilesWidget *ui;
 

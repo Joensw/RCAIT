@@ -55,6 +55,12 @@ public:
     QString getProjectPath();
 
     /**
+     * @brief getProjectName will return null string if no project is opened
+     * @return name of the currently opened project
+     */
+    QString getProjectName();
+
+    /**
      * @brief getProjectDataSetDir will return null string if no project is opened
      * @return absoulute path to the data set directory of the currently opened project
      */
@@ -134,9 +140,8 @@ public:
     /**
      * @brief removeModel removes a model according to the specified parameters
      * @param modelName name the model
-     * @param pluginName name of the plugin the model is from
      */
-    void removeModel(QString modelName, QString pluginName);
+    void removeModel(QString modelName);
 
     /**
      * @brief loadModel loads a model into the application for further use
@@ -144,6 +149,11 @@ public:
      * @param pluginName name of the plugin the model is from
      */
     void loadModel(QString modelName, QString pluginName);
+
+    /**
+     * @return a list of all modelNames of the current project
+     */
+    QStringList getModelNamesOfCurrentProject();
 
     /**
      * @return the classification plugin the current model is from

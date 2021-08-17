@@ -35,6 +35,11 @@ QString DataManager::getProjectDataSetDir(){
     return mProjectManager->getProjectDataSetDir();
 }
 
+QString DataManager::getProjectName()
+{
+    return mProjectManager->getProjectName();
+}
+
 QString DataManager::getProjectAugTempDir()
 {
     return mProjectManager->getProjectAugTempDir();
@@ -76,13 +81,16 @@ bool DataManager::verifyPath(QString path)
 }
 
 void DataManager::createNewModel(QString modelName, QString pluginName, QString baseModel){
-    mModelManager->createNewModel(this->getProjectsDir(), modelName, pluginName, baseModel);
+    mModelManager->createNewModel(getProjectName(), modelName, pluginName, baseModel);
 }
-void DataManager::removeModel(QString modelName, QString pluginName){
-    mModelManager->removeModel(modelName, pluginName);
+void DataManager::removeModel(QString modelName){
+    mModelManager->removeModel(getProjectName(), modelName);
 }
 void DataManager::loadModel(QString modelName, QString pluginName){
     mModelManager->loadModel(modelName, pluginName);
+}
+QStringList DataManager::getModelNamesOfCurrentProject() {
+    return mModelManager->getModelNamesOfProject(getProjectName());
 }
 QString DataManager::getCurrentModel(){
     return mModelManager->getCurrentModel();
