@@ -17,12 +17,17 @@ void ModelManager::createNewModel(QString projectName, QString modelName, QStrin
         qWarning() << "The new model could not be created";
     }
 }
+
 void ModelManager::removeModel(QString projectName, QString modelName){
     m_userModelNamesPerProject.beginGroup(projectName);
         QString pluginName = m_userModelNamesPerProject.value(modelName).toString();
         m_userModelNamesPerProject.endGroup();
         if (!pluginName.isEmpty()) {
-            mClassificationPluginManager->removeModel(std::move(modelName), std::move(pluginName));
+            if (mClassificationPluginManager->removeModel(modelName, pluginName)) {
+                m_userModelNamesPerProject.beginGroup(projectName);
+                m_userModelNamesPerProject.remove(modelName);
+                m_userModelNamesPerProject.endGroup();
+            }
         } else {
             qWarning() << "The model " + modelName + " could not be deleted";
         }

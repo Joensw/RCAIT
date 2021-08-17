@@ -43,6 +43,8 @@ void ModelController::slot_removeModelConfirm()
 {
     QString modelName = mRemoveModelDialog->getModelName();
     mDataManager->removeModel(modelName);
+    mImportFilesWidget->clearModelList();
+    mImportFilesWidget->addModels(mDataManager->getModelNamesOfCurrentProject());
     mRemoveModelDialog->close();
 }
 
