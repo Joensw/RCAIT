@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QWidget>
+#include <QSettings>
 
 #include "classificationpluginmanager.h"
 
@@ -22,7 +23,7 @@ public:
      * @param pluginName name of the plugin the model is from
      * @param baseModel name of the base model to be used
      */
-    void createNewModel(QString modelName, QString pluginName, QString baseModel);
+    void createNewModel(QString projectName, QString modelName, QString pluginName, QString baseModel);
 
     /**
      * @brief removeModel removes a model according to the specified parameters
@@ -61,6 +62,7 @@ private:
     QString mCurrentModel;
     QString mCurrentPlugin;
 
+    QSettings m_userModelNamesPerProject = {"UserModelNamesPerProject", QSettings::IniFormat};
 
 };
 

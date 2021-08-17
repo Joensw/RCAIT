@@ -32,7 +32,7 @@ QStringList SettingsManager::getPluginNames(){
 }
 
 QStringList SettingsManager::getClassificationPluginNames(){
-    QStringList classifierPlugins;
+    QStringList classifierPlugins = mClassificationPluginManager->getNamesOfPlugins();
     return classifierPlugins;
 }
 

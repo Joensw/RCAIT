@@ -8,9 +8,15 @@ ConfusionMatrix::ConfusionMatrix(const QString &directory,
         : AbstractResultGraphics(directory, "confusionmatrix_" + identifier, "svg"),
           m_size(classLabels.size()) {
 
-    Q_ASSERT(!classLabels.isEmpty());
-    Q_ASSERT(!values.isEmpty());
-    Q_ASSERT(classLabels.size() * classLabels.size() == values.size());
+    if (classLabels.isEmpty()) {
+        qWarning() << "Confusion Matrix has no labels";
+    }
+    if (values.isEmpty()) {
+        qWarning() << "Confusion Matrix has no values";
+    }
+    if (!(classLabels.size() * classLabels.size() == values.size())) {
+        qWarning() << "Confusion Matrix must be a square Matrix of dimension: number of labels x number of labels";
+    }
     m_classLabels = classLabels;
     m_values = values;
 }
