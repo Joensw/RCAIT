@@ -30,7 +30,7 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
     }
 
     if (commands.contains("imageLoad")) {
-        ImageLoadCommand* command = new ImageLoadCommand(map, mDataManager->getProjectTempDir(), this);
+        ImageLoadCommand* command = new ImageLoadCommand(map, mDataManager->getProjectImageTempDir(), this);
         mCommandList.append(command);
     }
 
@@ -39,7 +39,7 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
         int split = map.value("split").toInt(&ok);
         if(!ok) split = DEFAULT_SPLIT;
 
-        SplitCommand* command = new SplitCommand(mDataManager->getProjectTempDir(),mDataManager->getProjectDataSetDir(), split, this);
+        SplitCommand* command = new SplitCommand(mDataManager->getProjectImageTempDir(),mDataManager->getProjectDataSetDir(), split, this);
         mCommandList.append(command);
     }
 

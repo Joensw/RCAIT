@@ -11,7 +11,8 @@
 //Make sure to choose names that are not disallowed in windows ar under linux!
 extern const QString resultsDirectoryName;
 extern const QString datasetDirectoryName;
-extern const QString tempDirectoryName;
+extern const QString tempImagesDirectoryName;
+extern const QString tempDataAugDirectoryName;
 extern const QString trainingsResultsDirectoryName;
 extern const QString classificationResultsDirectoryName;
 
@@ -20,7 +21,8 @@ extern const QString projectNameIdentifier;
 extern const QString projectDatasetDirectoryIdentifier;
 extern const QString projectValidationDatasetIdentifier;
 extern const QString projectTrainingDatasetIdentifier;
-extern const QString projectTempDirectoryIdentifier;
+extern const QString projectTempImagesDirectoryIdentifier;
+extern const QString projectTempDataAugDirectoryIdentifier;
 extern const QString projectResultsDirectoryIdentifier;
 extern const QString projectTrainingsResultsDirectoryIdentifer;
 extern const QString projectClassificationResultsDirectoryIdentifier;
@@ -92,23 +94,42 @@ public:
     QString getProjectPath();
 
     /**
-     * @brief getProjectTempDir will return null string if no project is opened
-     * @return absolute path to the temporary directory of the currently opened project
-     */
-    QString getProjectTempDir();
-
-    /**
      * @brief getProjectDataSetDir will return null string if no project is opened
      * @return absoulute path to the data set directory of the currently opened project
      */
     QString getProjectDataSetDir();
 
     /**
+     * @return the absolute path to the validation images subfolder of the data set
+     */
+    QString getProjectDataSetValSubdir();
+
+    /**
+     * @return the absolute path to the training images subfolder of the data set
+     */
+
+    QString getProjectDataSetTrainSubdir();
+
+
+    /**
+     * @brief getProjectImageTempDir will return null string if no project is opened
+     * @return the absolute path to the image temporary directory of the current project
+     */
+
+    QString getProjectImageTempDir();
+
+    /**
+     * @brief getProjectAugTempDir will return null string if no project is opened
+     * @return the absolute path to the data augmentation temporary directory of the current project
+     */
+
+    QString getProjectAugTempDir();
+
+    /**
      * @brief getResultsDir will return null string if no project is opened
      * @return absolute path to the results directroy of the currently opened project
      */
     QString getResultsDir();
-
 
     /**
      * @brief getTrainingResultsDir will return null string if no project is opened
@@ -128,17 +149,6 @@ public:
     QStringList getNamesOfSavedTrainingResults();
 
     /**
-     * @return the absolute path to the validation images subfolder of the data set
-     */
-    QString getValidationDir();
-
-    /**
-     * @return the absolute path to the training images subfolder of the data set
-     */
-
-    QString getTrainingsDir();
-
-    /**
      * The names receive the suffix _1, if this name is already taken, the suffix is incremented till it is available
      * @brief createWorkDirSubfolder creates a new subfolder in the working directory
      * @param name string argument, name of the folder
@@ -156,10 +166,11 @@ private:
     bool verifyName(QString projectName, QString * error);
 
     QString mProjectPath;
-    QString mProjectTempDir;
+    QString mProjectImagesTempDir;
+    QString mProjectAugTempDir;
     QString mProjectDataSetDir;
-    QString mValidationDataSetDir;
-    QString mTrainingsDataSetDir;
+    QString mProjectDataSetValSubdir;
+    QString mProjectDataSetTrainSubdir;
     QString mProjectResultsDir;
     QString mProjectTrainingResultsDir;
     QString mProjectClassificationResultsDir;

@@ -26,7 +26,7 @@ void ImageController::slot_loadInputImages(QString pluginName, int count, QStrin
     m_importFilesWidget->updateStatusText("");
     m_split = split;
 
-    QString tempDir = m_dataManager->getProjectTempDir();
+    QString tempDir = m_dataManager->getProjectImageTempDir();
     m_imageLoader = new ImageLoader();
     m_imageLoader->loadInputImages(count,labels,pluginName,tempDir);
     connect(m_imageLoader, &ImageLoader::sig_progress, this, &ImageController::slot_handelImageLoadProgress);
@@ -84,7 +84,7 @@ void ImageController::updateDatasetDisplay() {
 }
 
 void ImageController::updateNewDatasetDisplay() {
-    m_imageInspectionModel.loadNewData(m_dataManager->getProjectTempDir(), m_split);
+    m_imageInspectionModel.loadNewData(m_dataManager->getProjectImageTempDir(), m_split);
     m_imageinspectionwidget->setNewTrainImages(m_imageInspectionModel.getTrainNewData());
     m_imageinspectionwidget->setNewValidationImages(m_imageInspectionModel.getValidationNewData());
 }

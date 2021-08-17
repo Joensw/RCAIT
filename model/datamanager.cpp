@@ -30,13 +30,34 @@ QString DataManager::getProjectPath(){
     return mProjectManager->getProjectPath();
 }
 
-QString DataManager::getProjectTempDir(){
-    return mProjectManager->getProjectTempDir();
-}
-
 QString DataManager::getProjectDataSetDir(){
 
-   return mProjectManager->getProjectDataSetDir();
+    return mProjectManager->getProjectDataSetDir();
+}
+
+QString DataManager::getProjectAugTempDir()
+{
+    return mProjectManager->getProjectAugTempDir();
+}
+
+QString DataManager::getProjectImageTempDir()
+{
+    return mProjectManager->getProjectImageTempDir();
+}
+
+QString DataManager::createNewWorkSubDir(const QString &name)
+{
+    return  mProjectManager->createWorkDirSubfolder(name);
+}
+
+QString DataManager::getProjectDataSetValSubdir()
+{
+    return mProjectManager->getProjectDataSetValSubdir();
+}
+
+QString DataManager::getProjectDataSetTrainSubdir()
+{
+    return mProjectManager->getProjectDataSetTrainSubdir();
 }
 
 bool DataManager::verifyDirectories()
@@ -117,11 +138,13 @@ QStringList DataManager::getImageLoaderPluginNames() {
     return mSettingsManager->getImageLoaderPluginNames();
 }
 
+
+
 bool DataManager::applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir, QString *error, int *pathsChanged)
 {
     if(mSettingsManager->applyGlobalSettings(projectsDir, classificationPluginDir, imageLoaderPluginDir, error, pathsChanged)){
-            mProjectManager->setProjectsDirectory(getProjectsDir());
-            return true;
+        mProjectManager->setProjectsDirectory(getProjectsDir());
+        return true;
     }
     return false;
 

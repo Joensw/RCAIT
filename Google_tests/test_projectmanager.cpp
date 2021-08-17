@@ -20,7 +20,7 @@ TEST(ProjectManagerTest, createValidProject){
     EXPECT_TRUE(out);
 
     QDir testDataDir(pm->getProjectDataSetDir() );
-    QDir testTempDir(pm->getProjectTempDir());
+    QDir testTempDir(pm->getProjectImageTempDir());
     QDir testResultsDir(pm->getResultsDir());
     EXPECT_TRUE(testDataDir.exists());
     EXPECT_TRUE(testTempDir.exists());

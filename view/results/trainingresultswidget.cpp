@@ -62,7 +62,7 @@ void TrainingResultsWidget::updateResultFolderPath(const QString &newDirPath) {
 
     auto& pm = ProjectManager::getInstance();
     //Old pointer will go out of scope after leaving this method and gets auto-deleted
-    auto newGraphics = QScopedPointer<TopAccuraciesGraphics>(new TopAccuraciesGraphics(pm.getProjectTempDir()));
+    auto newGraphics = QScopedPointer<TopAccuraciesGraphics>(new TopAccuraciesGraphics(pm.getProjectImageTempDir()));
     m_topAccuraciesGraphics.swap(newGraphics);
 }
 

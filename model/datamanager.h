@@ -55,16 +55,44 @@ public:
     QString getProjectPath();
 
     /**
-     * @brief getProjectTempDir will return null string if no project is opened
-     * @return absolute path to the temporary directory of the currently opened project
-     */
-    QString getProjectTempDir();
-
-    /**
      * @brief getProjectDataSetDir will return null string if no project is opened
      * @return absoulute path to the data set directory of the currently opened project
      */
     QString getProjectDataSetDir();
+
+    /**
+     * @return the absolute path to the validation images subfolder of the data set
+     */
+    QString getProjectDataSetValSubdir();
+
+    /**
+     * @return the absolute path to the training images subfolder of the data set
+     */
+
+    QString getProjectDataSetTrainSubdir();
+
+    /**
+     * @return the absolute path to the data augmentation temporary directory of the current project
+     */
+
+    QString getProjectAugTempDir();
+
+    /**
+     * @return the absolute path to the image temporary directory of the current project
+     */
+
+    QString getProjectImageTempDir();
+
+    /**
+     * The names receive the suffix _1, if this name is already taken, the suffix is incremented till it is available
+     * @brief createWorkDirSubfolder creates a new subfolder in the working directory
+     * @param name string argument, name of the folder
+     * @return absolute path to the folder
+     */
+
+    QString createNewWorkSubDir(const QString &name);
+
+
 
     /**
      * The paths are valid, when they are not empty ie. "" or the nullstring, when they are not identical, and actually exist.
@@ -73,6 +101,7 @@ public:
      * @brief verifyDirectories check if the current set directories are valid
      * @return true if they are, false otherwise
      */
+
     bool verifyDirectories();
 
     /**

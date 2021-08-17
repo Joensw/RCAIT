@@ -14,8 +14,8 @@ TrainingResult::TrainingResult(const QMap<int, QPair<double, double>> &accuracyC
           m_top5Accuracy(top5Accuracy) {
 
     auto& pm = ProjectManager::getInstance();
-    m_accCurve = new AccuracyCurve(pm.getProjectTempDir(), this->getIdentifier(), accuracyCurveData);
-    m_confusionMatrix = new ConfusionMatrix(pm.getProjectTempDir(), this->getIdentifier(), classLabels, confusionMatrixValues);
+    m_accCurve = new AccuracyCurve(pm.getProjectImageTempDir(), this->getIdentifier(), accuracyCurveData);
+    m_confusionMatrix = new ConfusionMatrix(pm.getProjectImageTempDir(), this->getIdentifier(), classLabels, confusionMatrixValues);
     m_mostMisclassifiedImages = std::move(mostMisclassifiedImages);
 }
 
