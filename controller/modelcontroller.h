@@ -51,6 +51,8 @@ public slots:
      * @param pluginName
      */
     void slot_pluginSelected(QString pluginName);
+
+    void slot_projectPathUpdated();
 signals:
     void sig_modelLoaded();
 private:

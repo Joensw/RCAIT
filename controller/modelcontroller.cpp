@@ -61,3 +61,9 @@ void ModelController::slot_pluginSelected(QString pluginName)
     mNewModelDialog->setAvailableBases(test);
 
 }
+
+void ModelController::slot_projectPathUpdated()
+{
+    mImportFilesWidget->clearModelList();
+    mImportFilesWidget->addModels(mDataManager->getModelNamesOfCurrentProject());
+}

@@ -37,6 +37,8 @@ void Controller::slot_configurationComplete()
     connect(mSettingsController, &SettingsController::sig_imagePluginsDirectoryChanged, mImageController, &ImageController::slot_imagePluginDirectoryChanged);
     connect(mProjectController, &ProjectController::sig_projectPathUpdated, mResultsController, &ResultsController::slot_projectPathUpdated);
 
+    connect(mProjectController, &ProjectController::sig_projectPathUpdated, mModelController, &ModelController::slot_projectPathUpdated);
+
     connect(mMainWindow, &MainWindow::sig_openSettings, mSettingsController, &SettingsController::slot_openSettings);
     connect(mMainWindow, &MainWindow::sig_changedWindowState, mMainWindow->getStartWidget(), &StartWidget::slot_changedWindowState);
 
