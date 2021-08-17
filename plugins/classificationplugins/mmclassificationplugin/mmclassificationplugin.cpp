@@ -20,15 +20,15 @@ MMClassificationPlugin::~MMClassificationPlugin()
 void MMClassificationPlugin::initBaseModels()
 {
     m_baseModels = new QList<BaseModel>;
-    BaseModel* resnet50 = new BaseModel("Resnet50", "/resnet50.py", "resnet50_batch256_imagenet_20200708-cfb998bf.pth");
+    BaseModel* resnet50 = new BaseModel("ResNet-50", "resnet50.py", "resnet50_batch256_imagenet_20200708-cfb998bf.pth");
     m_baseModels->append(*resnet50);
-    BaseModel* resnet101 = new BaseModel("ResNet-101", "/resnet101.py", "resnet101_batch256_imagenet_20200708-753f3608.pth");
+    BaseModel* resnet101 = new BaseModel("ResNet-101", "resnet101.py", "resnet101_batch256_imagenet_20200708-753f3608.pth");
     m_baseModels->append(*resnet101);
-    BaseModel* resNeXt32x8d101 = new BaseModel("ResNeXt-32x8d-101", "/resnext101_32x8d.py", "resnext101_32x8d_b32x8_imagenet_20210506-23a247d5.pth");
+    BaseModel* resNeXt32x8d101 = new BaseModel("ResNeXt-32x8d-101", "resnext101_32x8d.py", "resnext101_32x8d_b32x8_imagenet_20210506-23a247d5.pth");
     m_baseModels->append(*resNeXt32x8d101);
-    BaseModel* sEResNet50 = new BaseModel("SE-ResNet-50", "/seresnet50.py", "se-resnet50_batch256_imagenet_20200804-ae206104.pth");
+    BaseModel* sEResNet50 = new BaseModel("SE-ResNet-50", "seresnet50.py", "se-resnet50_batch256_imagenet_20200804-ae206104.pth");
     m_baseModels->append(*sEResNet50);
-    BaseModel* mobileNetV3Large = new BaseModel("MobileNetV3 Large", "/mobilenet_v3_large_imagenet.py", "mobilenet_v3_large-3ea3c186.pth");
+    BaseModel* mobileNetV3Large = new BaseModel("MobileNetV3 Large", "mobilenet_v3_large_imagenet.py", "mobilenet_v3_large-3ea3c186.pth");
     m_baseModels->append(*mobileNetV3Large);
 }
 
