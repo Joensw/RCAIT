@@ -278,8 +278,6 @@ bool MMClassificationPlugin::getAugmentationPreview(QString modelName, QString i
 
     // Change config file according to input
 
-    m_mmclassificiationdataaugmentationinput->readDataAugmentationInput();
-
     QString albuTransformType = m_mmclassificiationdataaugmentationinput->getAlbuTransformType();
     int randomResizedCropSize = m_mmclassificiationdataaugmentationinput->getRandomResizedCropSize();
     double randomFlipProb = m_mmclassificiationdataaugmentationinput->getRandomFlipProb();
@@ -372,9 +370,6 @@ TrainingResult* MMClassificationPlugin::train(QString modelName, QString trainDa
 
     // get the config from the model
     QString datasetConfigPath = loadModel(modelName).getDatasetConfigPath();
-
-   // not needed during an automation process, mode must set or signal/slot mechanics
-    m_mmclassificiationdataaugmentationinput->readDataAugmentationInput();
 
     // Change config file according to input
     QString albuTransformType = m_mmclassificiationdataaugmentationinput->getAlbuTransformType();

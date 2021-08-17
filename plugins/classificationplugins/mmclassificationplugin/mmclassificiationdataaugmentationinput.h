@@ -21,7 +21,6 @@ class MMClassificiationDataAugmentationInput : public QWidget
 public:
     explicit MMClassificiationDataAugmentationInput(QWidget *parent = nullptr);
     ~MMClassificiationDataAugmentationInput();
-    void readDataAugmentationInput();
 
     QString getAlbuTransformType();
     void setAlbuTransformType(QString type);
@@ -40,15 +39,33 @@ public:
 
 
 private:
+    void connectCheckboxes();
+    void connectInputElements();
+
     Ui::MMClassificiationDataAugmentationInput *ui;
 
-    QString m_albu_transform_type;
-    int m_random_resized_crop_size;
-    double m_random_flip_prob;
-    QString m_random_flip_direction;
-    bool m_randomErasing;
-    int m_resize;
-    int m_center_crop_size;
+    QString m_albu_transform_type = "ColorJitter";
+    int m_random_resized_crop_size = 224;
+    double m_random_flip_prob = 0.5;
+    QString m_random_flip_direction = "horizontal";
+    bool m_randomErasing = true;
+    int m_resize = 256;
+    int m_center_crop_size = 224;
+
+private slots:
+    void slot_albuTransformChecked(bool isChecked);
+    void slot_randomResizedCropSizeChecked(bool isChecked);
+    void slot_randomFlipProbAndDirectionChecked(bool isChecked);
+    void slot_randomErasingChecked(bool isChecked);
+    void slot_resizeChecked(bool isChecked);
+    void slot_centerCropSizeChecked(bool isChecked);
+
+    void slot_albuTransformChanged(QString type);
+    void slot_randomResizedCropSizeChanged(int size);
+    void slot_randomFlipProbChanged(double probability);
+    void slot_randomFlipDirectionChanged(QString direction);
+    void slot_resizeChanged(int size);
+    void slot_centerCropSizeChanged(int size);
 };
 
 #endif // MMCLASSIFICIATIONDATAAUGMENTATIONINPUT_H
