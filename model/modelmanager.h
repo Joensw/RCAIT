@@ -63,7 +63,11 @@ public:
      */
     QStringList getModelNamesOfProject(QString projectName);
 
-
+    /**
+     * @brief removeAllModelsOfProject deletes every user created model from the given project
+     * @param projectName the name of the project whose models are to be removed
+     */
+    void removeAllModelsOfProject(QString projectName);
 
 private:
     ClassificationPluginManager * mClassificationPluginManager;

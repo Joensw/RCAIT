@@ -20,17 +20,17 @@ void ModelManager::createNewModel(QString projectName, QString modelName, QStrin
 
 void ModelManager::removeModel(QString projectName, QString modelName){
     m_userModelNamesPerProject.beginGroup(projectName);
-        QString pluginName = m_userModelNamesPerProject.value(modelName).toString();
-        m_userModelNamesPerProject.endGroup();
-        if (!pluginName.isEmpty()) {
-            if (mClassificationPluginManager->removeModel(modelName, pluginName)) {
-                m_userModelNamesPerProject.beginGroup(projectName);
-                m_userModelNamesPerProject.remove(modelName);
-                m_userModelNamesPerProject.endGroup();
-            }
-        } else {
-            qWarning() << "The model " + modelName + " could not be deleted";
+    QString pluginName = m_userModelNamesPerProject.value(modelName).toString();
+    m_userModelNamesPerProject.endGroup();
+    if (!pluginName.isEmpty()) {
+        if (mClassificationPluginManager->removeModel(modelName, pluginName)) {
+            m_userModelNamesPerProject.beginGroup(projectName);
+            m_userModelNamesPerProject.remove(modelName);
+            m_userModelNamesPerProject.endGroup();
         }
+    } else {
+        qWarning() << "The model " + modelName + " could not be deleted";
+    }
 }
 
 void ModelManager::loadModel(QString modelName, QString pluginName){
@@ -51,6 +51,14 @@ QStringList ModelManager::getModelNamesOfProject(QString projectName)
     QStringList modelNames = m_userModelNamesPerProject.childKeys();
     m_userModelNamesPerProject.endGroup();
     return modelNames;
+}
+
+void ModelManager::removeAllModelsOfProject(QString projectName)
+{
+    QStringList modelsToRemove = getModelNamesOfProject(projectName);
+    foreach (QString modelName, modelsToRemove) {
+        removeModel(projectName, modelName);
+    }
 }
 QWidget * ModelManager::getInputWidget(){
     return mClassificationPluginManager->getInputWidget(mCurrentModel);

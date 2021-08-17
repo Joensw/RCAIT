@@ -20,6 +20,7 @@ bool DataManager::createNewProject(QString projectName, QString * error){
 
 void DataManager::removeProject(QString projectName){
     mProjectManager->removeProject(projectName);
+    mModelManager->removeAllModelsOfProject(projectName);
 }
 
 void DataManager::loadProject(QString projectName){
