@@ -5,8 +5,9 @@
 #include <aitrainingwidget.h>
 #include <datamanager.h>
 #include <inputimageswidget.h>
+#include "classifier.h"
+#include "trainer.h"
 
-#include <model/pluginusage/classifiertrainer.h>
 
 
 /**
@@ -73,8 +74,8 @@ private:
     DataManager *mDataManager;
     InputImagesWidget *mInputImagesWidget;
     AITrainingWidget *mAiTrainingWidget;
-    ClassifierTrainer* mClassifierTrainer;
-
+    Trainer* mTrainer;
+    Classifier* mClassifier;
     QString mTrainingPath;
     QString mClassificationPath;
 

@@ -29,7 +29,7 @@ private:
         int m_count;
         QStringList m_labels;
         volatile bool* stopped;
-        ImageLoaderPluginManager& m_imageLoaderPluginManager = ImageLoaderPluginManager::getInstance();;
+        ImageLoaderPluginManager& m_imageLoaderPluginManager = ImageLoaderPluginManager::getInstance();
 
 };
 

@@ -30,6 +30,5 @@ void ImageLoader::handleResults() {
     emit sig_imagesReady();
     qDebug() << "Plugin finished and thread deleted";
     //if this object is not deleted threads never die and the signal operate starts all created threads
-    delete this; //ToDo: comment in again so there are no errors
+    delete this;
 }
-
