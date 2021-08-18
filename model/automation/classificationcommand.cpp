@@ -27,22 +27,15 @@ ClassificationCommand::ClassificationCommand(QVariantMap map, QString trainDataS
         const char* charstring = it.key().toUtf8().data();
         inputWidget->setProperty(charstring, it.value());
     }
-    mPluginManager.saveConfiguration(mAiPluginName);
 }
 
 bool ClassificationCommand::execute()
 {
     if(parsingFailed) return false;
     mResult = mPluginManager.classify(mAiPluginName, mImagePath, mTrainDataSetPath, mWorkingDir, mModelName, mReceiver);
-    slot_saveResult();
-    return true;
-}
-
-void ClassificationCommand::slot_saveResult()
-{
     if (mResult == nullptr){
-        //emit sig_failed() or something
-        return;
+        return false;
     }
     emit sig_saveResult(mResult);
+    return true;
 }

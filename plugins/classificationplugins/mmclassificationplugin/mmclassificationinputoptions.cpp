@@ -6,6 +6,8 @@ MMClassificationInputOptions::MMClassificationInputOptions(QWidget *parent) :
     ui(new Ui::MMClassificationInputOptions)
 {
     ui->setupUi(this);
+    connect(ui->spinBox_cudaGpuDevice, QOverload<int>::of(&QSpinBox::valueChanged), this, &MMClassificationInputOptions::slot_maxItersChanged);
+    connect(ui->spinBox_numberIterations, QOverload<int>::of(&QSpinBox::valueChanged), this, &MMClassificationInputOptions::slot_cudaDeviceChanged);
 }
 
 MMClassificationInputOptions::~MMClassificationInputOptions()
@@ -33,10 +35,12 @@ void MMClassificationInputOptions::setCudaDevice(int deviceNumber)
     m_cuda_device = deviceNumber;
 }
 
-void MMClassificationInputOptions::readInput()
+void MMClassificationInputOptions::slot_maxItersChanged(int newAmount)
 {
-    setCudaDevice(ui->spinBox_cudaGpuDevice->value());
-    setMaxIters(ui->spinBox_numberIterations->value());
-    qDebug() << "read max iters input: " << ui->spinBox_numberIterations->value();
-    //qDebug() << "iterations??: " << ui->spinBox_numberIterations->value();
+    setMaxIters(newAmount);
+}
+
+void MMClassificationInputOptions::slot_cudaDeviceChanged(int newNumber)
+{
+    setCudaDevice(newNumber);
 }

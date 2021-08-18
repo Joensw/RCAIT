@@ -29,24 +29,16 @@ TrainingCommand::TrainingCommand(QVariantMap map, QString trainDataSetPath, QStr
         const char* charstring = it.key().toUtf8().data();
         automationWidget->setProperty(charstring, it.value());
     }
-
-    mPluginManager.saveConfiguration(mAiPluginName);
 }
 
 bool TrainingCommand::execute()
 {
     if(parsingFailed) return false;
     mResult = mPluginManager.train(mAiPluginName, mModelName, mTrainDataSetPath, mValidationDataSetPath, mWorkingDir, mReceiver);
-    slot_saveResult();
-    return true;
-}
-
-void TrainingCommand::slot_saveResult()
-{
     if (mResult == nullptr){
-        //emit sig_failed() or something
-        return;
+        return false;
     }
     emit sig_saveResult(mResult);
+    return true;
 }
 

@@ -1,13 +1,18 @@
-image: docker:latest
+image: rabits/qt:5.15-desktop
 
-services:
-   - docker:dind
-before_script:
-   - docker info
+ 
 
+build:
+  stage: build
+  script:
+    - mkdir build && cd build
+    - cmake ../
+    - make -j4
 
-Build image:
-   script:
-      - docker build . -t rcait
-      - docker images
-      - docker run rcait
+ 
+
+test:
+  stage: test
+  script:
+    - cd build
+    - ./tests

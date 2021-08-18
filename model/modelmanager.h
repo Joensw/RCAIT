@@ -63,9 +63,33 @@ public:
      */
     QStringList getModelNamesOfProject(QString projectName);
 
+    /**
+     * @brief removeAllModelsOfProject deletes every user created model from the given project
+     * @param projectName the name of the project whose models are to be removed
+     */
+    void removeAllModelsOfProject(QString projectName);
 
+    /**
+     * @brief setLastWorkingDirectoryOfModel saves the given working directory to the model data
+     * @param projectName the project name of the given model
+     * @param modelName the name of the model to which the working directory belongs
+     * @param workingDirectory the working directory to save
+     */
+    void saveLastWorkingDirectoryOfModel(QString projectName, QString modelName, QString workingDirectory);
+
+    /**
+     * @brief recallLastWorkingDirectoryOfModel returns the saved working directory of the given model
+     * @param projectName the project name of the given model
+     * @param modelName the name of model to which the working directory belongs
+     * @return the saved working directory of the given model, if it exists, an empty QString otherwise
+     */
+    QString recallLastWorkingDirectoryOfModel(QString projectName, QString modelName);
 
 private:
+    const int pluginNamePosition = 0;
+    const int lastWorkingDirectoryPosition = 1;
+    const int numberOfEntries = 2;
+
     ClassificationPluginManager * mClassificationPluginManager;
 
     QString mCurrentModel;

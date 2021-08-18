@@ -20,6 +20,7 @@ bool DataManager::createNewProject(QString projectName, QString * error){
 
 void DataManager::removeProject(QString projectName){
     mProjectManager->removeProject(projectName);
+    mModelManager->removeAllModelsOfProject(projectName);
 }
 
 void DataManager::loadProject(QString projectName){
@@ -95,6 +96,17 @@ QStringList DataManager::getModelNamesOfCurrentProject() {
 QString DataManager::getCurrentModel(){
     return mModelManager->getCurrentModel();
 }
+
+void DataManager::saveLastWorkingDirectoryOfModel(QString projectName, QString modelName, QString workingDirectory)
+{
+    mModelManager->saveLastWorkingDirectoryOfModel(projectName, modelName, workingDirectory);
+}
+
+QString DataManager::recallLastWorkingDirectoryOfModel(QString projectName, QString modelName)
+{
+    return mModelManager->recallLastWorkingDirectoryOfModel(projectName, modelName);
+}
+
 QString DataManager::getCurrentClassificationPlugin(){
     return mModelManager->getCurrentPlugin();
 }

@@ -6,49 +6,33 @@ MMClassificiationDataAugmentationInput::MMClassificiationDataAugmentationInput(Q
     ui(new Ui::MMClassificiationDataAugmentationInput)
 {
     ui->setupUi(this);
+    connectCheckboxes();
+    connectInputElements();
+}
+
+void MMClassificiationDataAugmentationInput::connectCheckboxes()
+{
+    connect(ui->checkBox_albuTransformType, &QCheckBox::clicked, this, &MMClassificiationDataAugmentationInput::slot_albuTransformChecked);
+    connect(ui->checkBox_albuTransformType, &QCheckBox::clicked, this, &MMClassificiationDataAugmentationInput::slot_randomResizedCropSizeChecked);
+    connect(ui->checkBox_albuTransformType, &QCheckBox::clicked, this, &MMClassificiationDataAugmentationInput::slot_randomFlipProbAndDirectionChecked);
+    connect(ui->checkBox_albuTransformType, &QCheckBox::clicked, this, &MMClassificiationDataAugmentationInput::slot_randomErasingChecked);
+    connect(ui->checkBox_albuTransformType, &QCheckBox::clicked, this, &MMClassificiationDataAugmentationInput::slot_resizeChecked);
+    connect(ui->checkBox_albuTransformType, &QCheckBox::clicked, this, &MMClassificiationDataAugmentationInput::slot_centerCropSizeChecked);
+}
+
+void MMClassificiationDataAugmentationInput::connectInputElements()
+{
+    connect(ui->comboBox_albuTransformType, &QComboBox::currentTextChanged, this, &MMClassificiationDataAugmentationInput::slot_albuTransformChanged);
+    connect(ui->spinBox_resizedCropSize, QOverload<int>::of(&QSpinBox::valueChanged), this, &MMClassificiationDataAugmentationInput::slot_randomResizedCropSizeChanged);
+    connect(ui->doubleSpinBox_randomFlipProbability, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MMClassificiationDataAugmentationInput::slot_randomFlipProbChanged);
+    connect(ui->comboBox_randomFlipDirection, &QComboBox::currentTextChanged, this, &MMClassificiationDataAugmentationInput::slot_randomFlipDirectionChanged);
+    connect(ui->spinBox_resize, QOverload<int>::of(&QSpinBox::valueChanged), this, &MMClassificiationDataAugmentationInput::slot_resizeChanged);
+    connect(ui->spinBox_centerCropSize, QOverload<int>::of(&QSpinBox::valueChanged), this, &MMClassificiationDataAugmentationInput::slot_centerCropSizeChanged);
 }
 
 MMClassificiationDataAugmentationInput::~MMClassificiationDataAugmentationInput()
 {
     delete ui;
-}
-
-void MMClassificiationDataAugmentationInput::readDataAugmentationInput() {
-    qDebug() << "haken: " << ui->checkBox_albuTransformType->isChecked();
-
-
-    if (ui->checkBox_albuTransformType->isChecked()) {
-        setAlbuTransformType(ui->comboBox_albuTransformType->currentText());
-    } else {
-        setAlbuTransformType("");
-    }
-    if (ui->checkBox_randomResizedCropSize->isChecked()) {
-        setRandomResizedCropSize(ui->spinBox_resizedCropSize->value());
-    } else {
-        setRandomResizedCropSize(0);
-    }
-    if (ui->checkBox_randomFlipProbabilityAndDirection->isChecked()) {
-        setRandomFlipProb(ui->doubleSpinBox_randomFlipProbability->value());
-        setRandomFlipDirection(ui->comboBox_randomFlipDirection->currentText());
-    } else {
-        setRandomFlipProb(0);
-        setRandomFlipDirection("");
-    }
-    if (ui->checkBox_randomErasing->isChecked()) {
-        setRandomErasing(true);
-    } else {
-        setRandomErasing(false);
-    }
-    if (ui->checkBox_resize->isChecked()) {
-        setResize(ui->spinBox_resize->value());
-    } else {
-        setResize(0);
-    }
-    if (ui->checkBox_centerCropSize->isChecked()) {
-        setCenterCropSize(ui->spinBox_centerCropSize->value());
-    } else {
-        setCenterCropSize(0);
-    }
 }
 
 QString MMClassificiationDataAugmentationInput::getAlbuTransformType()
@@ -119,4 +103,90 @@ int MMClassificiationDataAugmentationInput::getCenterCropSize()
 void MMClassificiationDataAugmentationInput::setCenterCropSize(int size)
 {
     m_center_crop_size = size;
+}
+
+void MMClassificiationDataAugmentationInput::slot_albuTransformChecked(bool isChecked)
+{
+    if (isChecked) {
+        setAlbuTransformType(ui->comboBox_albuTransformType->currentText());
+    } else {
+        setAlbuTransformType("");
+    }
+}
+
+void MMClassificiationDataAugmentationInput::slot_randomResizedCropSizeChecked(bool isChecked)
+{
+    if (isChecked) {
+        setRandomResizedCropSize(ui->spinBox_resizedCropSize->value());
+    } else {
+        setRandomResizedCropSize(0);
+    }
+}
+
+void MMClassificiationDataAugmentationInput::slot_randomFlipProbAndDirectionChecked(bool isChecked)
+{
+    if (isChecked) {
+        setRandomFlipProb(ui->doubleSpinBox_randomFlipProbability->value());
+        setRandomFlipDirection(ui->comboBox_randomFlipDirection->currentText());
+    } else {
+        setRandomFlipProb(0);
+        setRandomFlipDirection("");
+    }
+}
+
+void MMClassificiationDataAugmentationInput::slot_randomErasingChecked(bool isChecked)
+{
+    if (isChecked) {
+        setRandomErasing(true);
+    } else {
+        setRandomErasing(false);
+    }
+}
+
+void MMClassificiationDataAugmentationInput::slot_resizeChecked(bool isChecked)
+{
+    if (isChecked) {
+        setResize(ui->spinBox_resize->value());
+    } else {
+        setResize(0);
+    }
+}
+
+void MMClassificiationDataAugmentationInput::slot_centerCropSizeChecked(bool isChecked)
+{
+    if (isChecked) {
+        setCenterCropSize(ui->spinBox_centerCropSize->value());
+    } else {
+        setCenterCropSize(0);
+    }
+}
+
+void MMClassificiationDataAugmentationInput::slot_albuTransformChanged(QString type)
+{
+    setAlbuTransformType(type);
+}
+
+void MMClassificiationDataAugmentationInput::slot_randomResizedCropSizeChanged(int size)
+{
+    setRandomResizedCropSize(size);
+}
+
+void MMClassificiationDataAugmentationInput::slot_randomFlipProbChanged(double probability)
+{
+    setRandomFlipProb(probability);
+}
+
+void MMClassificiationDataAugmentationInput::slot_randomFlipDirectionChanged(QString direction)
+{
+    setRandomFlipDirection(direction);
+}
+
+void MMClassificiationDataAugmentationInput::slot_resizeChanged(int size)
+{
+    setResize(size);
+}
+
+void MMClassificiationDataAugmentationInput::slot_centerCropSizeChanged(int size)
+{
+    setCenterCropSize(size);
 }

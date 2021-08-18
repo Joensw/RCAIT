@@ -13,7 +13,6 @@ Automator::Automator(DataManager *dataManager)
 void Automator::performTasks()
 {
     stop = false;
- // QList<Task*>::iterator i;
     tasksCompleted = 0;
 
     for (mRunningTask = mQueuedTasks.begin(); mRunningTask != mQueuedTasks.end() && !stop; ++mRunningTask){

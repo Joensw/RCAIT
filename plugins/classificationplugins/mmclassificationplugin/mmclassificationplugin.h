@@ -23,6 +23,10 @@
 #include "mmclassificationconfigfilebuilder.h"
 #include "mmclassificationjsonresultreader.h"
 
+/**
+ * @brief The MMClassificationPlugin class contains the actual ClassificationPlugin functions to use MMClassification and
+ *        uses the other MMClassification classes to do this.
+ */
 class MMClassificationPlugin : public QObject, ClassificationPlugin
 {
     Q_OBJECT
@@ -68,23 +72,97 @@ private:
 
     bool checkTrainMethodInput(QStringList labels, QString mainConfigPath, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectoryPath);
 public:
-    MMClassificationPlugin();
+
     ~MMClassificationPlugin();
 
-    QString getName();
-    QWidget* getConfigurationWidget();
-    void saveConfiguration();
-    QWidget* getInputWidget();
+    /**
+     * @brief getName returns the name of this plugin
+     * @return the name of this Classification Plugin
+     */
+    QString getName() override;
+
+    /**
+     * @brief getConfigurationWidget returns a widget to make configurations of this plugin accessible
+     * @return a widget to make plugin specfific configurations
+     */
+    QWidget* getConfigurationWidget() override;
+
+    /**
+     * @brief saveConfiguration saves the changes made in the configuration widget
+     */
+    void saveConfiguration() override;
+
+    /**
+     * @brief getInputWidget returns a widget to specify additional, plugin specific input for the train method
+     * @return a widget to specify plugin specific input, which is not data augmentation input
+     */
+    QWidget* getInputWidget() override;
+
+    /**
+     * @brief init initialize the needed classes and settings of this plugin, must be called once before using this plugin
+     */
     void init() override;
 
-    QStringList getAssociatedModels();
-    bool createNewModel(QString modelName, QString baseModel);
-    bool removeModel(QString modelName);
-    bool getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount);
-    TrainingResult* train(QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver);
-    ClassificationResult* classify(QString inputImageDirPath,QString trainDatasetPath, QString workingDirPath, QString modelName, ProgressablePlugin *receiver);
+    /**
+     * @brief getAssociatedModels returns the names of the models associated with this plugin (base models)
+     * @return the base model names
+     */
+    QStringList getAssociatedModels() override;
 
-    QWidget* getDataAugmentationInputWidget();
+    /**
+     * @brief createNewModel creates a new model with the given specification
+     * @param modelName the name of the model to be created
+     * @param baseModel the name of a base model of this plugin
+     * @return false on error, true otherwise
+     */
+    bool createNewModel(QString modelName, QString baseModel) override;
+
+    /**
+     * @brief removeModel removes the given model with all its files
+     * @param modelName the name of a model created with this plugin
+     * @return false on error, true otherwise
+     */
+    bool removeModel(QString modelName) override;
+
+    /**
+     * @brief getAugmentationPreview carries out data augmentation with the parameters specified in the data augmentation input widget
+     *        and given parameters
+     * @param modelName the name of the model, which data augmentation options should be changed
+     * @param inputPath a path with input pictures for the data augmentation, should have amount many pictures in it,
+     *        otherwise less pictures as specified will be generated
+     * @param targetPath a path to save the newly created pictures
+     * @param amount the number of pictures to generate
+     * @return false on error, true otherwise
+     */
+    bool getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount) override;
+
+    /**
+     * @brief train trains a model, reports the process while doing so and extracts the relevant results in a TrainingResult object
+     * @param modelName the name of a model created with this plugin
+     * @param trainDatasetPath a path to the dataset to use for this training
+     * @param validationDatasetPath a path to the dataset to use for validation
+     * @param workingDirectory a path the working directory to save the logs, checkpoints and result files
+     * @param receiver a Progressable plugin to report the progress to the main application
+     * @return a pointer to a TrainingResult object with the relevant data
+     */
+    TrainingResult* train(QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver) override;
+
+    /**
+     * @brief classify classifies the given images with the given model and extracts the relevant results in a ClassificationResult object
+     * @param inputImageDirPath the input path with the images to classify
+     * @param trainDatasetPath the path to the dataset used by train with the given model to get the labels
+     * @param workingDirPath the path to the working directory, where the checkpoint file for the given model is located
+     * @param modelName the name of the model, which should be used for this classification
+     * @param receiver a Progressable plugin to report the progress to the main application
+     * @return a pointer to a ClassificationResult object with the relevant data
+     */
+    ClassificationResult* classify(QString inputImageDirPath,QString trainDatasetPath, QString workingDirPath, QString modelName, ProgressablePlugin *receiver) override;
+
+    /**
+     * @brief getDataAugmentationInputWidget returns a widget to specify additional, plugin specific data augmentation input for the getAugmentationPreview and the train method
+     * @return a widget to specify plugin specific data augmentation input
+     */
+    QWidget* getDataAugmentationInputWidget() override;
 
 private slots:
     void slot_readOutPut();

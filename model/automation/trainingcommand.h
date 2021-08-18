@@ -21,6 +21,9 @@ public:
      * @brief TrainingCommand constructs a TrainingCommand by parsing from a map.
      *
      * @param map contains necessary information for command.
+     * @param trainDataSetPath
+     * @param validationDataSetPath
+     * @param workingDir working dir path
      * @param receiver object to receive progress.
      */
     TrainingCommand(QVariantMap map, QString trainDataSetPath, QString validationDataSetPath, QString workingDir, ProgressablePlugin* receiver);
@@ -40,9 +43,6 @@ signals:
      */
     void sig_saveResult(TrainingResult *result);
 
-private slots:
-    void slot_saveResult();
-
 private:
     ClassificationPluginManager& mPluginManager =  ClassificationPluginManager::getInstance();
     TrainingResult* mResult;
@@ -56,11 +56,6 @@ private:
     QString mValidationDataSetPath;
     QString mClassificationDataSetPath;
     QString mWorkingDir;
-
-
-
-
-
 };
 
 #endif // TRAININGTASK_H

@@ -9,24 +9,56 @@ namespace Ui {
 class MMClassificationSettings;
 }
 
+/**
+ * @brief The MMClassificationSettings class manages the settings of the MMClassificationPlugin
+ */
 class MMClassificationSettings : public QWidget
 {
     Q_OBJECT
 
 public:
+    /**
+     * @brief MMClassificationSettings creates a new instance of this class
+     * @param parent the parent widget of this widget
+     */
     explicit MMClassificationSettings(QWidget *parent = nullptr);
+
     ~MMClassificationSettings();
+
+    /**
+     * @brief saveSettings saves the settings made in the configuration widget
+     */
     void saveSettings();
+
+    /**
+     * @brief loadSettings loads the saved settings
+     */
     void loadSettings();
+
+    /**
+     * @brief getMMClassificationPath returns the saved path to the mmclassification directory,
+     *        where configs and imagenet checkpoint files are located
+     * @return the previously saved path to the mmclassification directory, an empty QString otherwise
+     */
     QString getMMClassificationPath();
+
+    /**
+     * @brief getMMClsPath returns the saved path to the mmcls module (MMClassification from Open MMLab)
+     * @return the previously saved path to the mmcls module, an empty QString otherwise
+     */
     QString getMMClsPath();
+
+    /**
+     * @brief getPythonPath returns the saved path to the directory, where python is located
+     * @return the previously saved python path, an empty QString otherwise
+     */
     QString getPythonPath();
-
-
-    QSettings m_settings = {"MMClassification Plugin", QSettings::IniFormat};
 
 private:
     Ui::MMClassificationSettings *ui;
+
+    QSettings m_settings = {"MMClassification Plugin", QSettings::IniFormat};
+
     QString m_mmclassificationPath = "mmclassification path";
     QString m_mmclsPath = "mmcls path";
     QString m_pythonPath = "Python Path";

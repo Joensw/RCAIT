@@ -1,17 +1,5 @@
 #include "mmclassificationplugin.h"
 
-
-MMClassificationPlugin::MMClassificationPlugin()
-{
-    pluginSettings = new MMClassificationSettings();
-    dataAugmentationInput = new MMClassificiationDataAugmentationInput();
-    inputOptions = new MMClassificationInputOptions();
-    initBaseModels();
-    m_mmClassificationConfigFileBuilder.setPathToMMClassification(m_mmClassificationSettings.getMMClassificationPath());
-    m_mmclassificiationdataaugmentationinput = qobject_cast<MMClassificiationDataAugmentationInput *>(dataAugmentationInput);
-    m_mmClassificationInput = qobject_cast<MMClassificationInputOptions *>(inputOptions);
-}
-
 MMClassificationPlugin::~MMClassificationPlugin()
 {
     delete m_baseModels;
@@ -20,15 +8,15 @@ MMClassificationPlugin::~MMClassificationPlugin()
 void MMClassificationPlugin::initBaseModels()
 {
     m_baseModels = new QList<BaseModel>;
-    BaseModel* resnet50 = new BaseModel("Resnet50", "/resnet50.py", "resnet50_batch256_imagenet_20200708-cfb998bf.pth");
+    BaseModel* resnet50 = new BaseModel("ResNet-50", "resnet50.py", "resnet50_batch256_imagenet_20200708-cfb998bf.pth");
     m_baseModels->append(*resnet50);
-    BaseModel* resnet101 = new BaseModel("ResNet-101", "/resnet101.py", "resnet101_batch256_imagenet_20200708-753f3608.pth");
+    BaseModel* resnet101 = new BaseModel("ResNet-101", "resnet101.py", "resnet101_batch256_imagenet_20200708-753f3608.pth");
     m_baseModels->append(*resnet101);
-    BaseModel* resNeXt32x8d101 = new BaseModel("ResNeXt-32x8d-101", "/resnext101_32x8d.py", "resnext101_32x8d_b32x8_imagenet_20210506-23a247d5.pth");
+    BaseModel* resNeXt32x8d101 = new BaseModel("ResNeXt-32x8d-101", "resnext101_32x8d.py", "resnext101_32x8d_b32x8_imagenet_20210506-23a247d5.pth");
     m_baseModels->append(*resNeXt32x8d101);
-    BaseModel* sEResNet50 = new BaseModel("SE-ResNet-50", "/seresnet50.py", "se-resnet50_batch256_imagenet_20200804-ae206104.pth");
+    BaseModel* sEResNet50 = new BaseModel("SE-ResNet-50", "seresnet50.py", "se-resnet50_batch256_imagenet_20200804-ae206104.pth");
     m_baseModels->append(*sEResNet50);
-    BaseModel* mobileNetV3Large = new BaseModel("MobileNetV3 Large", "/mobilenet_v3_large_imagenet.py", "mobilenet_v3_large-3ea3c186.pth");
+    BaseModel* mobileNetV3Large = new BaseModel("MobileNetV3 Large", "mobilenet_v3_large_imagenet.py", "mobilenet_v3_large-3ea3c186.pth");
     m_baseModels->append(*mobileNetV3Large);
 }
 
@@ -278,8 +266,6 @@ bool MMClassificationPlugin::getAugmentationPreview(QString modelName, QString i
 
     // Change config file according to input
 
-    m_mmclassificiationdataaugmentationinput->readDataAugmentationInput();
-
     QString albuTransformType = m_mmclassificiationdataaugmentationinput->getAlbuTransformType();
     int randomResizedCropSize = m_mmclassificiationdataaugmentationinput->getRandomResizedCropSize();
     double randomFlipProb = m_mmclassificiationdataaugmentationinput->getRandomFlipProb();
@@ -373,9 +359,6 @@ TrainingResult* MMClassificationPlugin::train(QString modelName, QString trainDa
     // get the config from the model
     QString datasetConfigPath = loadModel(modelName).getDatasetConfigPath();
 
-   // not needed during an automation process, mode must set or signal/slot mechanics
-    m_mmclassificiationdataaugmentationinput->readDataAugmentationInput();
-
     // Change config file according to input
     QString albuTransformType = m_mmclassificiationdataaugmentationinput->getAlbuTransformType();
     int randomResizedCropSize = m_mmclassificiationdataaugmentationinput->getRandomResizedCropSize();
@@ -390,7 +373,6 @@ TrainingResult* MMClassificationPlugin::train(QString modelName, QString trainDa
 
     QString scheduleConfigPath = loadModel(modelName).getScheduleConfigPath();
 
-    m_mmClassificationInput->readInput();
     int max_iters = m_mmClassificationInput->getMaxIters();
 
     m_mmClassificationConfigFileBuilder.changeScheduleOptions(scheduleConfigPath, max_iters);

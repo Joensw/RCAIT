@@ -10,8 +10,10 @@ ModelManager::ModelManager(){
 void ModelManager::createNewModel(QString projectName, QString modelName, QString pluginName, QString baseModel){
     if(mClassificationPluginManager->createNewModel(modelName, pluginName, baseModel)) {
         // add the new model to the saved user models
+        QStringList modelSpecificData = {QString(), QString()};
+        modelSpecificData[pluginNamePosition] = pluginName;
         m_userModelNamesPerProject.beginGroup(projectName);
-        m_userModelNamesPerProject.setValue(modelName, pluginName);
+        m_userModelNamesPerProject.setValue(modelName, modelSpecificData);
         m_userModelNamesPerProject.endGroup();
     } else {
         qWarning() << "The new model could not be created";
@@ -20,17 +22,18 @@ void ModelManager::createNewModel(QString projectName, QString modelName, QStrin
 
 void ModelManager::removeModel(QString projectName, QString modelName){
     m_userModelNamesPerProject.beginGroup(projectName);
-        QString pluginName = m_userModelNamesPerProject.value(modelName).toString();
-        m_userModelNamesPerProject.endGroup();
-        if (!pluginName.isEmpty()) {
-            if (mClassificationPluginManager->removeModel(modelName, pluginName)) {
-                m_userModelNamesPerProject.beginGroup(projectName);
-                m_userModelNamesPerProject.remove(modelName);
-                m_userModelNamesPerProject.endGroup();
-            }
-        } else {
-            qWarning() << "The model " + modelName + " could not be deleted";
+    QStringList modelSpecificData = m_userModelNamesPerProject.value(modelName).toStringList();
+    QString pluginName = modelSpecificData.at(pluginNamePosition);
+    m_userModelNamesPerProject.endGroup();
+    if (!pluginName.isEmpty()) {
+        if (mClassificationPluginManager->removeModel(modelName, pluginName)) {
+            m_userModelNamesPerProject.beginGroup(projectName);
+            m_userModelNamesPerProject.remove(modelName);
+            m_userModelNamesPerProject.endGroup();
         }
+    } else {
+        qWarning() << "The model " + modelName + " could not be deleted";
+    }
 }
 
 void ModelManager::loadModel(QString modelName, QString pluginName){
@@ -52,6 +55,41 @@ QStringList ModelManager::getModelNamesOfProject(QString projectName)
     m_userModelNamesPerProject.endGroup();
     return modelNames;
 }
+
+void ModelManager::removeAllModelsOfProject(QString projectName)
+{
+    QStringList modelsToRemove = getModelNamesOfProject(projectName);
+    foreach (QString modelName, modelsToRemove) {
+        removeModel(projectName, modelName);
+    }
+}
+
+void ModelManager::saveLastWorkingDirectoryOfModel(QString projectName, QString modelName, QString workingDirectory)
+{
+    QStringList modelSpecificData;
+    m_userModelNamesPerProject.beginGroup(projectName);
+    modelSpecificData = m_userModelNamesPerProject.value(modelName).toStringList();
+    if (modelSpecificData.size() == numberOfEntries) {
+        modelSpecificData[lastWorkingDirectoryPosition] = workingDirectory;
+        m_userModelNamesPerProject.setValue(modelName, modelSpecificData);
+    }
+    m_userModelNamesPerProject.endGroup();
+}
+
+QString ModelManager::recallLastWorkingDirectoryOfModel(QString projectName, QString modelName)
+{
+    QStringList modelSpecificData;
+    m_userModelNamesPerProject.beginGroup(projectName);
+    modelSpecificData = m_userModelNamesPerProject.value(modelName).toStringList();
+    m_userModelNamesPerProject.endGroup();
+
+    if (modelSpecificData.size() == 2) {
+        return modelSpecificData.at(lastWorkingDirectoryPosition);
+    } else {
+        return QString();
+    }
+}
+
 QWidget * ModelManager::getInputWidget(){
     return mClassificationPluginManager->getInputWidget(mCurrentModel);
 }
