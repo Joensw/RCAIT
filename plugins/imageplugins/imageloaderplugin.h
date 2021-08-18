@@ -5,10 +5,29 @@
 #include <pluginusage/progressableplugin.h>
 #include "plugin.h"
 
-//Todo: Extend Plugin class
+/**
+ * @brief The ImageLoaderPlugin class is an interface for all image loader plugins.
+ *
+ */
 class ImageLoaderPlugin : public Plugin{
+
 public:
+
+    /**
+     * @brief init initializes plugin.
+     *
+     */
     virtual void init() = 0;
+
+    /**
+     * @brief loadImages starts loading images.
+     *
+     * @param path directory to load images to
+     * @param receiver receives progress of image loading
+     * @param count number of images loaded per label
+     * @param labels list of image labels
+     * @return true if loading was successful, false otherwise
+     */
     virtual bool loadImages(QString path, ProgressablePlugin* receiver, int count, QStringList labels) = 0;
 };
 
