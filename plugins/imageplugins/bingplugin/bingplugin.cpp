@@ -91,7 +91,7 @@ void BingPlugin::slot_readOutPut()
        int progress = parsedProgress.toInt(&ok,10);
        if(ok){
 
-           emit m_receiver->sig_progress(progress);
+           m_receiver->slot_makeProgress(progress);
        }
     }
 }

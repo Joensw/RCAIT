@@ -24,6 +24,8 @@ private:
 
 public slots:
     void handleResults();
+    void slot_makeProgress(int progress) override;
+
 signals:
     void operate();
     void sig_imagesReady();

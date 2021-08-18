@@ -5,7 +5,8 @@
 #include <QWidget>
 
 /**
- * @brief The Plugin class is an interface for all plugins
+ * @brief The Plugin class is an interface for all plugins.
+ *
  */
 class Plugin {
 

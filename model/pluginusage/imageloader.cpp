@@ -32,3 +32,8 @@ void ImageLoader::handleResults() {
     //if this object is not deleted threads never die and the signal operate starts all created threads
     delete this;
 }
+
+void ImageLoader::slot_makeProgress(int progress)
+{
+     emit sig_progress(progress);
+}
