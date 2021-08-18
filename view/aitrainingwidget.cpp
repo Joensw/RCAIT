@@ -1,8 +1,6 @@
 #include "aitrainingwidget.h"
 #include "ui_aitrainingwidget.h"
 
-#include <QDoubleValidator>
-#include <QPair>
 
 AITrainingWidget::AITrainingWidget(QWidget *parent) :
     QWidget(parent),
@@ -46,37 +44,19 @@ void AITrainingWidget::on_resultsButton_clicked()
     emit sig_results();
 }
 
-int AITrainingWidget::getCropSize()
+void AITrainingWidget::setDataAugWidget(QWidget *replacement)
 {
-    return ui->resizedCropSize->value();
+    ui->gridLayout_dataAug->replaceWidget(ui->dataAugWidget, replacement);
 }
 
-QString AITrainingWidget::getFlipDirection()
+void AITrainingWidget::setAIConfigWidget(QWidget *replacement)
 {
-    return ui->flipDirection->text();
-}
-
-double AITrainingWidget::getFlipProbability()
-{
-    return ui->flipProbability->value();
-}
-
-QVector<QPair<double, double>> AITrainingWidget::getNormalizationTable()
-{
-    QVector<QPair<double, double>> normalizationTable(3, QPair<double, double>(ui->red_mean->value(), ui->red_std->value()));
-    normalizationTable.append(QPair<double, double>(ui->green_mean->value(), ui->green_std->value()));
-    normalizationTable.append(QPair<double, double>(ui->blue_mean->value(), ui->blue_std->value()));
-    return normalizationTable;
-}
-
-int AITrainingWidget::getResizeValue()
-{
-    return ui->resize->value();
+    ui->gridLayout_AIconfig->replaceWidget(ui->AIConfigWidget, replacement);
 }
 
 void AITrainingWidget::on_previewButton_clicked()
 {
-    emit sig_showAugmentationPreview();
+    emit sig_showAugmentationPreview(ui->spinBox_amount->value());
 }
 
 void AITrainingWidget::changeEvent(QEvent *event) {

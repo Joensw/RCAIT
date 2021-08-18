@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>717</width>
-    <height>445</height>
+    <width>943</width>
+    <height>626</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>
     <widget class="QGroupBox" name="groupDataAugmentation">
      <property name="title">
@@ -21,233 +21,51 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_7">
       <item>
-       <layout class="QGridLayout" name="gridLayout_13" rowstretch="1,0,0,0,0,0,0">
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>Normalize</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_9">
-          <property name="text">
-           <string>Random Flip Direction</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="2">
-         <layout class="QHBoxLayout" name="horizontalLayout_21">
-          <item>
-           <spacer name="horizontalSpacer_11">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
+       <layout class="QGridLayout" name="gridLayout_dataAug">
         <item row="0" column="0">
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>Random Resized Crop Size</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
-         <layout class="QHBoxLayout" name="horizontalLayout_20">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
-          </property>
-          <item>
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <layout class="QGridLayout" name="gridLayout_14">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetFixedSize</enum>
-            </property>
-            <property name="verticalSpacing">
-             <number>6</number>
-            </property>
-            <item row="0" column="2">
-             <widget class="QLabel" name="label_15">
-              <property name="text">
-               <string>std</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="1">
-             <widget class="QDoubleSpinBox" name="green_mean">
-              <property name="text" stdset="0">
-               <string>0,00</string>
-              </property>
-              <property name="maximum">
-               <double>255.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_12">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>red</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="2">
-             <widget class="QDoubleSpinBox" name="red_std">
-              <property name="text" stdset="0">
-               <string>0,00</string>
-              </property>
-              <property name="maximum">
-               <double>255.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="2">
-             <widget class="QDoubleSpinBox" name="blue_std">
-              <property name="text" stdset="0">
-               <string>0,00</string>
-              </property>
-              <property name="maximum">
-               <double>255.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="2">
-             <widget class="QDoubleSpinBox" name="green_std">
-              <property name="text" stdset="0">
-               <string>0,00</string>
-              </property>
-              <property name="maximum">
-               <double>255.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QDoubleSpinBox" name="red_mean">
-              <property name="text" stdset="0">
-               <string>0,000</string>
-              </property>
-              <property name="decimals">
-               <number>3</number>
-              </property>
-              <property name="maximum">
-               <double>255.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="QLabel" name="label_14">
-              <property name="text">
-               <string>blue</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QLabel" name="label_13">
-              <property name="text">
-               <string>green</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="label_16">
-              <property name="text">
-               <string>mean</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="1">
-             <widget class="QDoubleSpinBox" name="blue_mean">
-              <property name="text" stdset="0">
-               <string>0,00</string>
-              </property>
-              <property name="maximum">
-               <double>255.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_11">
-          <property name="text">
-           <string>Random Flip Probability</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QSpinBox" name="resizedCropSize">
-          <property name="text" stdset="0">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QLineEdit" name="flipDirection">
-          <property name="text">
-           <string>horizontal</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QDoubleSpinBox" name="flipProbability">
-          <property name="text" stdset="0">
-           <string>0,0000</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>1.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.050000000000000</double>
-          </property>
+         <widget class="QWidget" name="dataAugWidget" native="true">
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>123</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
       </item>
       <item>
-       <spacer name="verticalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_18">
+        <item>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_amount">
+            <property name="text">
+             <string>Amount</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QSpinBox" name="spinBox_amount">
+            <property name="text" stdset="0">
+             <string>0</string>
+            </property>
+            <property name="maximum">
+             <number>1000000000</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
         <item>
          <spacer name="horizontalSpacer_13">
           <property name="orientation">
@@ -274,28 +92,30 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupRunConfiguration">
+    <widget class="QGroupBox" name="groupConfiguration">
      <property name="title">
-      <string>Run Configuration</string>
+      <string>Configuration</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <layout class="QGridLayout" name="gridLayout_5">
+       <layout class="QGridLayout" name="gridLayout_AIconfig">
         <item row="0" column="0">
-         <widget class="QLabel" name="label_19">
-          <property name="text">
-           <string>Resize</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="resize">
-          <property name="text" stdset="0">
-           <string>0</string>
-          </property>
-          <property name="maximum">
-           <number>1000000000</number>
-          </property>
+         <widget class="QWidget" name="AIConfigWidget" native="true">
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>151</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>

@@ -23,34 +23,16 @@ public:
     ~AITrainingWidget();
 
     /**
-     * @brief getCropSize returns the crop size for data augmentation from the UI
-     * @return int value the crop size entered in the UI
+     * @brief setDataAugWidget replace the current widget in the Data augmentation group with the one given
      */
-    int getCropSize();
+
+    void setDataAugWidget(QWidget * replacement);
 
     /**
-     * @brief getFlipDirection returns the flip direction for the data augmentation from the UI
-     * @return  String valuerepresenting flip direction entered in the UI
+     * @brief setAIConfigWidget replace the current widget in the configuration group with the one given
      */
-    QString getFlipDirection();
 
-    /**
-     * @brief getNormalizationTable returns the normalization Table for the data augmentation from the UI
-     * @return normalization table specified in the UI
-     */
-    QVector<QPair<double, double>> getNormalizationTable();
-
-    /**
-     * @brief getFlipProbability returns the flip probability for the data augmentation from the UI
-     * @return double value representing flip probability entered in the UI
-     */
-    double getFlipProbability();
-
-    /**
-     * @brief getResizeValue returns the resize value for the data augmentation from the UI
-     * @return int value representating the resize value entered in the UI
-     */
-    int getResizeValue();
+    void setAIConfigWidget(QWidget * replacement);
 
 
 public slots:
@@ -64,7 +46,7 @@ signals:
     /**
      * @brief sig_showAugmentationPreview emitted when a preview of the data augmentation is to be shown in the UI
      */
-    void sig_showAugmentationPreview();
+    void sig_showAugmentationPreview(int amount);
 
     /**
      * @brief sig_startTraining emitted when the training is to be started
@@ -80,6 +62,8 @@ signals:
      * @brief sig_results emitted when the results are to be shown
      */
     void sig_results();
+
+
 
 protected:
     void changeEvent(QEvent *event);
