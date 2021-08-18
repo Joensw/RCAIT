@@ -12,7 +12,6 @@ public:
     ClassificationResult* getResult();
 
 public slots:
-    void slot_makeProgress(int progress);
     void slot_startClassification();
 
 private:

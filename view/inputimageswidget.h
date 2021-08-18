@@ -59,6 +59,7 @@ private slots:
     
     void on_cancelButton_clicked();
 
+
 private:
     Ui::InputImagesWidget *ui;
     QString path;

@@ -78,10 +78,6 @@ private:
     Classifier* mClassifier;
     QString mTrainingPath;
     QString mClassificationPath;
-
-
-    void train();
-    void classify();
 };
 
 #endif // AICONTROLLER_H

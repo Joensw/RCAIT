@@ -13,6 +13,7 @@ void Trainer::train(QString pluginName, QString modelName, QString trainDatasetP
         connect(&trainThread, &QThread::finished, this, &Trainer::slot_handleTrainingsResult);
         connect(this, &Trainer::sig_startTraining, m_trainWorker, &TrainingsThread::slot_startTraining);
         connect(this, &Trainer::sig_pluginFinished, this, &Trainer::slot_handleTrainingsResult);
+        emit sig_progress(0);
         trainThread.start();
 }
 
@@ -28,6 +29,7 @@ bool Trainer::getAugmentationPreview(QString pluginName, QString inputPath)
 
 void Trainer::slot_handleTrainingsResult(){
     m_trainingResults = m_trainWorker->getResult();
+    emit sig_progress(100);
     trainThread.quit();
     trainThread.wait();
 }

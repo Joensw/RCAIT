@@ -14,16 +14,20 @@ void Classifier::classify(QString pluginName, QString inputImageDirPath, QString
     connect(&classifyThread, &QThread::finished, this, &Classifier::slot_handleClassificationResult);
     connect(this, &Classifier::sig_startClassification, m_classificationWorker, &ClassificationThread::slot_startClassification);
     connect(this, &Classifier::sig_pluginFinished, this, &Classifier::slot_handleClassificationResult);
+    emit sig_progress(0);
     classifyThread.start();
-    m_classificationWorker = new ClassificationThread(pluginName, inputImageDirPath, trainDatasetPath, workingDirectory, modelName, this);
 
 }
 
 void Classifier::slot_handleClassificationResult(){
+    m_classificationResults = m_classificationWorker->getResult();
+    emit sig_progress(100);
+    classifyThread.quit();
+    classifyThread.wait();
 
 }
 
 ClassificationResult *Classifier::getLastClassificationResult()
 {
-    return nullptr;
+    return m_classificationResults;
 }

@@ -13,16 +13,14 @@ ClassificationThread::ClassificationThread(QString pluginName, QString inputImag
 
 ClassificationResult *ClassificationThread::getResult()
 {
-
+    return m_classificationResult;
 }
 
 void ClassificationThread::slot_startClassification()
 {
-    m_classificationResult = m_classificationPluginManager.classify(m_pluginName, m_inputImageDirPath, m_trainDatasetPath, m_workingDirectory, m_modelName, m_receiver);
-    qDebug() << "Classification started";
+    //m_classificationResult = m_classificationPluginManager.classify(m_pluginName, m_inputImageDirPath, m_trainDatasetPath, m_workingDirectory, m_modelName, m_receiver);
+    qDebug() << "Classification started: Comment in the actual call to the plugin in ClassifiactionThread and move sig pluginfinished to plugin";
+    emit m_receiver->sig_pluginFinished();
 }
 
-void ClassificationThread::slot_makeProgress(int progress)
-{
 
-}
