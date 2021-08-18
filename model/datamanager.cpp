@@ -96,6 +96,17 @@ QStringList DataManager::getModelNamesOfCurrentProject() {
 QString DataManager::getCurrentModel(){
     return mModelManager->getCurrentModel();
 }
+
+void DataManager::saveLastWorkingDirectoryOfModel(QString projectName, QString modelName, QString workingDirectory)
+{
+    mModelManager->saveLastWorkingDirectoryOfModel(projectName, modelName, workingDirectory);
+}
+
+QString DataManager::recallLastWorkingDirectoryOfModel(QString projectName, QString modelName)
+{
+    return mModelManager->recallLastWorkingDirectoryOfModel(projectName, modelName);
+}
+
 QString DataManager::getCurrentClassificationPlugin(){
     return mModelManager->getCurrentPlugin();
 }
