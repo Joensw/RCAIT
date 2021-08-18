@@ -44,17 +44,18 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
     }
 
     if (commands.contains("training")) {
-        //TODO add arguments once DataManager has according get functions
-//        TrainingCommand* command = new TrainingCommand(map, this);
-//        mCommandList.append(command);
-//        connect(command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
+        QString workingDir = mDataManager->createNewWorkSubDir("working_dir");
+        mDataManager->saveLastWorkingDirectoryOfModel(map.value("projectName").toString(), map.value("modelName").toString(), workingDir);
+        TrainingCommand* command = new TrainingCommand(map, mDataManager->getProjectDataSetTrainSubdir(), mDataManager->getProjectDataSetValSubdir(), workingDir, this);
+        mCommandList.append(command);
+        connect(command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
     }
 
     if (commands.contains("classification")) {
-        //TODO add arguments once DataManager has according get functions
-//        ClassificationCommand* command = new ClassificationCommand(map, this);
-//        mCommandList.append(command);
-//        connect(command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
+        QString workingDir =  mDataManager->recallLastWorkingDirectoryOfModel(map.value("projectName").toString(), map.value("modelName").toString());
+        ClassificationCommand* command = new ClassificationCommand(map, mDataManager->getProjectDataSetTrainSubdir(), workingDir, this);
+        mCommandList.append(command);
+        connect(command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
     }
 
 }
