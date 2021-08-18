@@ -9,10 +9,6 @@
 class MMClassificationJsonResultReader
 {
 public:
-    /**
-     * @brief MMClassificationJsonResultReader creates a new instance of this class
-     */
-    MMClassificationJsonResultReader();
 
     /**
      * @brief readConfusionMatrixFromJsonFile reads a json file containing a confusion matrix

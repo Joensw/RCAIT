@@ -7,12 +7,6 @@
 #include <QJsonValue>
 #include <QFileInfo>
 
-
-MMClassificationJsonResultReader::MMClassificationJsonResultReader()
-{
-
-}
-
 QVector<int> MMClassificationJsonResultReader::readConfusionMatrixFromJsonFile(const QString filePath) {
     QFileInfo jsonFile = QFileInfo(filePath);
     QFile inFile(jsonFile.absoluteFilePath());

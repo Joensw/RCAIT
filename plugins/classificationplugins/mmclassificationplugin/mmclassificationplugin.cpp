@@ -1,17 +1,5 @@
 #include "mmclassificationplugin.h"
 
-
-MMClassificationPlugin::MMClassificationPlugin()
-{
-    pluginSettings = new MMClassificationSettings();
-    dataAugmentationInput = new MMClassificiationDataAugmentationInput();
-    inputOptions = new MMClassificationInputOptions();
-    initBaseModels();
-    m_mmClassificationConfigFileBuilder.setPathToMMClassification(m_mmClassificationSettings.getMMClassificationPath());
-    m_mmclassificiationdataaugmentationinput = qobject_cast<MMClassificiationDataAugmentationInput *>(dataAugmentationInput);
-    m_mmClassificationInput = qobject_cast<MMClassificationInputOptions *>(inputOptions);
-}
-
 MMClassificationPlugin::~MMClassificationPlugin()
 {
     delete m_baseModels;
