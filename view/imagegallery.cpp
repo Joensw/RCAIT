@@ -89,8 +89,9 @@ void ImageGallery::concurrentAddDir(const QString &path) {
         volatile bool abort;
     };
 
-    delete running;
-
+    if (running != nullptr){
+        delete running;
+    }
 
     auto running = new addDirTask(this, QDir(path));
 
