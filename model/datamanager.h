@@ -261,6 +261,11 @@ public:
      * @return return list of the training results that have been saved
      */
     QStringList getNamesOfSavedTrainingResults();
+
+    /**
+     * @return the input UI of the current classification plugin that is to be shown
+     */
+    QWidget *getInputWidget();
 private:
     //TODO: Singleton adaption
     ProjectManager* mProjectManager;

@@ -70,6 +70,12 @@ public slots:
      */
     void slot_showAugmentationPreview();
 
+
+    /**
+     * @brief slot_modelLoaded called when a model is loaded and UI elements have to update accordingly
+     */
+    void slot_modelLoaded();
+
 private:
     DataManager *mDataManager;
     InputImagesWidget *mInputImagesWidget;

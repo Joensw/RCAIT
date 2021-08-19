@@ -154,6 +154,11 @@ QStringList DataManager::getNamesOfSavedTrainingResults(){
     return mProjectManager->getNamesOfSavedTrainingResults();
 }
 
+QWidget *DataManager::getInputWidget()
+{
+    return mModelManager->getInputWidget();
+}
+
 QStringList DataManager::getImageLoaderPluginNames() {
     return mSettingsManager->getImageLoaderPluginNames();
 }
