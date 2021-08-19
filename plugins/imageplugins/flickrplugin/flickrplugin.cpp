@@ -12,7 +12,9 @@ bool FlickrPlugin::loadImages(QString path,ProgressablePlugin* receiver,  int im
     connect(m_process,&QProcess::finished,this,&FlickrPlugin::slot_pluginFinished);
 
     m_process->startCommand(fullCommand);
-
+    m_process->waitForStarted();
+    m_process->waitForFinished(-1);
+    return m_success;
 }
 
 

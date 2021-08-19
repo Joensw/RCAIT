@@ -12,6 +12,9 @@ bool BingPlugin::loadImages(QString path,ProgressablePlugin* receiver,  int imag
     connect(m_process,&QProcess::finished,this,&BingPlugin::slot_pluginFinished);
 
     m_process->startCommand(fullCommand);
+    m_process->waitForStarted();
+    m_process->waitForFinished(-1);
+    return m_success;
 }
 
 
