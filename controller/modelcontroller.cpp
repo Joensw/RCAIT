@@ -20,6 +20,9 @@ void ModelController::slot_newModel()
     mNewModelDialog->setModal(true);
     connect(mNewModelDialog, &NewModelDialog::sig_newModelConfirm, this, &ModelController::slot_newModelConfirm);
     connect(mNewModelDialog, &NewModelDialog::sig_pluginSelected, this, &ModelController::slot_pluginSelected);
+
+    slot_pluginSelected(mNewModelDialog->getCurrentSelectedPlugin());
+
     mNewModelDialog->show();
 }
 
@@ -59,7 +62,6 @@ void ModelController::slot_pluginSelected(QString pluginName)
     //get bases of the plugin with that name and set the second dropdown in the dialog
     QStringList test = mDataManager->getPluginBases(pluginName);
     mNewModelDialog->setAvailableBases(test);
-
 }
 
 void ModelController::slot_projectPathUpdated()

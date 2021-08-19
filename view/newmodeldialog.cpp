@@ -22,6 +22,11 @@ void NewModelDialog::setAvailableBases(QStringList bases)
     ui->pluginProfileComboBox->addItems(bases);
 }
 
+QString NewModelDialog::getCurrentSelectedPlugin()
+{
+    return ui->classificationPluginComboBox->currentText();
+}
+
 void NewModelDialog::on_buttonBox_rejected(){
     this->reject();
 }

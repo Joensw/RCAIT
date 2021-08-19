@@ -23,9 +23,16 @@ public:
     ~NewModelDialog();
 
     /**
+     * @brief populates the dropdown for the plugin bases with entries
      * @param bases names of the bases to be shown in the bases drop down
      */
     void setAvailableBases(QStringList bases);
+
+    /**
+     * @return returns the currently selected  plugin in the plugin dropdow, or nullstring if it is empty
+     */
+    QString getCurrentSelectedPlugin();
+
 public slots:
     /**
      * @brief slot_classifactionPlugin_currentTextChanged called when the selected classification plugin changes
