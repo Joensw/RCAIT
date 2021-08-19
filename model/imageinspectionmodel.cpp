@@ -1,37 +1,36 @@
 #include "imageinspectionmodel.h"
 
-void ImageInspectionModel::loadDataSet(QString path) {
+void ImageInspectionModel::loadDataSet(QString trainingPath, QString validationPath) {
     //reset maps
-    m_DataPath = path;
     m_trainDataset.clear();
     m_validationDataset.clear();
 
     //add items
-    insertLabeledImagePaths(&m_trainDataset,path + "/" + TRAIN_FOLDER);
-    insertLabeledImagePaths(&m_validationDataset,path + "/" + VALIDATION_FOLDER);
+    insertLabeledImagePaths(&m_trainDataset, trainingPath);
+    insertLabeledImagePaths(&m_validationDataset, validationPath);
 
 }
 
-void ImageInspectionModel::mergeDataSets() {
+void ImageInspectionModel::mergeDataSets(QString trainPath, QString validationPath) {
     mergeMap(&m_trainDataset, m_trainNewData);
     mergeMap(&m_validationDataset,m_validationNewData);
     //move files since we can do it here for free before cleaning up the data structures
     foreach(QString label, m_trainNewData.keys()){
-        QStringList dataPaths = QStringList() << m_DataPath  + "/" + TRAIN_FOLDER + "/" + label << m_DataPath  + "/" + VALIDATION_FOLDER + "/" + label;
+        QStringList dataPaths = QStringList() << trainPath + "/" + label << validationPath + "/" + label;
         int fileNumber = getFreeImageNumber(dataPaths,label);
 
         for(QString& imagePath : m_trainNewData.value(label)){
-            moveFile(imagePath, label, TRAIN_FOLDER, fileNumber);
+            moveFile(imagePath, label, trainPath, fileNumber);
             fileNumber++;
         }
     }
 
     foreach(QString label, m_validationNewData.keys()){
-        QStringList dataPaths = QStringList() << m_DataPath  + "/" + TRAIN_FOLDER + "/" + label << m_DataPath  + "/" + VALIDATION_FOLDER + "/" + label;
+        QStringList dataPaths = QStringList() << trainPath + "/" + label << validationPath + "/" + label;
         int fileNumber = getFreeImageNumber(dataPaths,label);
 
         for(QString& imagePath : m_validationNewData.value(label)){
-            moveFile(imagePath, label, VALIDATION_FOLDER, fileNumber);
+            moveFile(imagePath, label, validationPath, fileNumber);
             fileNumber++;
         }
     }
@@ -62,7 +61,6 @@ void ImageInspectionModel::removeImage(int selectionIndex, QMap<QString, QList<i
 }
 
 void ImageInspectionModel::loadNewData(QString path, int split) {
-    m_newDataPath = path;
     //reset maps because new data is coming
     m_trainNewData.clear();
     m_validationNewData.clear();
@@ -164,7 +162,7 @@ void ImageInspectionModel::moveFile(QString imagePath, QString label, QString tr
     QString suffix = fileInfo.completeSuffix();
     QDir folder(fileInfo.absoluteDir());
     QString filename(fileInfo.fileName());
-    QString newPath = m_DataPath  + "/" + trainOrValidate + "/" + label;
+    QString newPath = trainOrValidate + "/" + label;
     if(!QDir(newPath).exists()) {
         QDir().mkdir(newPath);
     }
@@ -176,7 +174,6 @@ void ImageInspectionModel::moveFile(QString imagePath, QString label, QString tr
     if(!file.rename(newFileName)){
         qDebug() << "Error renaming file";
     }
-    imagePath = newFileName;
     if(folder.isEmpty()){
         folder.removeRecursively();
     }

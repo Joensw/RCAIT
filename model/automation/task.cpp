@@ -39,7 +39,7 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
         int split = map.value("split").toInt(&ok);
         if(!ok) split = DEFAULT_SPLIT;
 
-        SplitCommand* command = new SplitCommand(mDataManager->getProjectImageTempDir(),mDataManager->getProjectDataSetDir(), split, this);
+        SplitCommand* command = new SplitCommand(mDataManager->getProjectImageTempDir(),mDataManager->getProjectDataSetTrainSubdir(), mDataManager->getProjectDataSetValSubdir(), split, this);
         mCommandList.append(command);
     }
 

@@ -20,7 +20,7 @@ public:
      * @param dataSetPath path of dataset.
      * @param receiver object to receive progress.
      */
-    SplitCommand(QString path, QString dataSetPath, int split, ProgressablePlugin* receiver);
+    SplitCommand(QString path, QString trainPath, QString validationPath, int split, ProgressablePlugin* receiver);
 
 
     /**
@@ -36,7 +36,8 @@ signals:
 private:
     int mSplit;
     QString mTempPath;
-    QString mDataSetPath;
+    QString mTrainPath;
+    QString mValidationPath;
     ImageInspectionModel* mImageModel;
 };
 

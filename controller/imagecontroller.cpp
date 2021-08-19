@@ -60,7 +60,7 @@ void ImageController::slot_openProject()
 }
 
 void ImageController::slot_mergeDatasets() {
-    m_imageInspectionModel.mergeDataSets();
+    m_imageInspectionModel.mergeDataSets(m_dataManager->getProjectDataSetTrainSubdir(), m_dataManager->getProjectDataSetValSubdir());
     updateNewDatasetDisplay();
     updateDatasetDisplay();
 
@@ -78,7 +78,7 @@ void ImageController::slot_imagePluginDirectoryChanged(const QString& newDirecto
 }
 
 void ImageController::updateDatasetDisplay() {
-    m_imageInspectionModel.loadDataSet(m_dataManager->getProjectDataSetDir());
+    m_imageInspectionModel.loadDataSet(m_dataManager->getProjectDataSetTrainSubdir(), m_dataManager->getProjectDataSetValSubdir());
     m_imageinspectionwidget->setCurrentDataSetTrainImages(m_imageInspectionModel.getTrainDataset());
     m_imageinspectionwidget->setCurrentDataSetValidationImages(m_imageInspectionModel.getValidationDataset());
 }
