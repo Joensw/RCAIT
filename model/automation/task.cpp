@@ -62,33 +62,25 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
 
 void Task::run()
 {
-    if (commandsDone == 0){
-        mState = PERFORMING;
-        emit sig_stateChanged(mName, mState);
-    }
-    if (commandsDone == mCommandList.count()){
-        mState = COMPLETED;
-        emit sig_stateChanged(mName, mState);
-        return;
-    }
-    if (commandsDone > mCommandList.count()){
-        mState = FAILED;
-        emit sig_stateChanged(mName, mState);
-        commandsDone = 0;
-        return;
-    }
-    int tempCommandsDone = commandsDone;
-    if (!mCommandList.at(commandsDone)->execute()) {
-        mState = FAILED;
-        emit sig_stateChanged(mName, mState);
-        return;
+    mState = PERFORMING;
+    emit sig_stateChanged(mName, mState);
+    for (commandsDone = 0; commandsDone < mCommandList.count(); commandsDone++){
+        emit sig_progress((commandsDone * 100) / (mCommandList.size()));
+        if (mAbort){
+            mState = FAILED;
+            emit sig_stateChanged(mName, mState);
+            return;
+        }
+        if (!mCommandList.at(commandsDone)->execute()) {
+            mState = FAILED;
+            emit sig_stateChanged(mName, mState);
+            return;
+        }
     }
 
-    while(tempCommandsDone == commandsDone){
-        QApplication::processEvents();
-        QThread::sleep(4);
-    }
-    run();
+    mState = COMPLETED;
+    emit sig_stateChanged(mName, mState);
+    emit sig_progress(100);
 }
 
 
@@ -110,7 +102,7 @@ bool Task::isValid()
 
 void Task::abort()
 {
-    commandsDone = mCommandList.size() + 1;
+    mAbort = true;
     emit sig_pluginAborted();
     emit sig_progress(100);
 }
@@ -118,7 +110,6 @@ void Task::abort()
 void Task::slot_makeProgress(int progress)
 {
     int localProgress = (commandsDone * 100 + progress) / (mCommandList.size());
-    if(progress == 100) commandsDone++;
     emit sig_progress(localProgress);
 }
 

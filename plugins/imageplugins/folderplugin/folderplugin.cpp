@@ -25,8 +25,10 @@ bool FolderPlugin::loadImages(const QString path, ProgressablePlugin* receiver, 
                     if (!addLabel(imagelist, folder, output)){
                         receiver->slot_makeProgress(100);
                         return false;
-                    }
+                    }                   
                 }
+                receiver->slot_makeProgress((i * 100 + 100) / imagefolders.count());
+                i++;
                 folder.cdUp();
             }
             receiver->slot_makeProgress(100);

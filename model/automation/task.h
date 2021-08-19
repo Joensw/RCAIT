@@ -119,6 +119,7 @@ private:
     ResultsExporter* mExporter;
 
     bool valid = true;
+    bool mAbort = false;
     int commandsDone = 0;
 };
 
