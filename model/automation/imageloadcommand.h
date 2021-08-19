@@ -3,8 +3,7 @@
 
 #include "command.h"
 
-#include <imagesearchthread.h>
-#include <imageloader.h>
+#include <imageloaderpluginmanager.h>
 
 
 /**
@@ -32,7 +31,8 @@ public:
     bool execute() override;
 
 private:
-    ImageSearchThread* mImageSearcher;
+    ImageLoaderPluginManager& mPluginManager =  ImageLoaderPluginManager::getInstance();
+    ProgressablePlugin* mReceiver;
     bool parsingFailed = false;
     int mCount;
     QStringList mLabels;

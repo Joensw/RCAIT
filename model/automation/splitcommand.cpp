@@ -12,7 +12,6 @@ SplitCommand::SplitCommand(QString tempPath, QString trainPath, QString validati
 
 bool SplitCommand::execute()
 {
-    mImageModel->loadDataSet(mTrainPath, mValidationPath);
     mImageModel->loadNewData(mTempPath, mSplit);
     mImageModel->mergeDataSets(mTrainPath, mValidationPath);
     delete mImageModel;

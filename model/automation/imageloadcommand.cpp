@@ -5,16 +5,18 @@
 ImageLoadCommand::ImageLoadCommand(QVariantMap map, QString imagePath, ProgressablePlugin* receiver)
 {   bool ok;
 
-    QString imagePluginName = map.value("imagePluginName").toString();
-    int count = map.value("count").toInt(&ok);
-    QStringList labels = map.value("labels").toStringList();
+    mPluginName = map.value("imagePluginName").toString();
+    mCount  = map.value("count").toInt(&ok);
+    mLabels = map.value("labels").toStringList();
+    mPath = imagePath;
+    mReceiver = receiver;
 
-    if (imagePath.isNull() || imagePluginName.isNull() || !ok || labels.isEmpty()){
+    if (imagePath.isNull() || mPluginName.isNull() || !ok || mLabels.isEmpty()){
         parsingFailed = true;
         return;
     }
 
-    QWidget* inputWidget = ImageLoaderPluginManager::getInstance().getConfigurationWidget(imagePluginName);
+    QWidget* inputWidget = mPluginManager.getConfigurationWidget(mPluginName);
 
     auto end = map.end();
     for(auto it = map.begin(); it != end; ++it){
@@ -22,22 +24,10 @@ ImageLoadCommand::ImageLoadCommand(QVariantMap map, QString imagePath, Progressa
         inputWidget->setProperty(charstring, it.value());
     }
 
-    ImageLoaderPluginManager::getInstance().saveConfiguration(imagePluginName);
-
-    mCount = count;
-    mLabels = labels;
-    mPluginName = imagePluginName;
-    mPath = imagePath;
-
-
-   mImageSearcher = new ImageSearchThread(receiver, imagePath, mPluginName, count, labels);
-//   connect(mImageSearcher, &ImageLoader::sig_progress, receiver, &Progressable::slot_makeProgress);
-
+    mPluginManager.saveConfiguration(mPluginName);
 }
 
 bool ImageLoadCommand::execute(){
     if(parsingFailed) return false;
-    mImageSearcher->loadImages();
-    qDebug() << "execute started";
-    return true;
+    return mPluginManager.loadImages(mPath, mReceiver, mPluginName, mCount, mLabels);
 }
