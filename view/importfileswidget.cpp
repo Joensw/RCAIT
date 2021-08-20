@@ -120,3 +120,9 @@ void ImportFilesWidget::on_horizontalSlider_sliderMoved(int position)
 }
 
 
+
+void ImportFilesWidget::on_pushButton_loadLabelsFromFile_clicked()
+{
+
+}
+

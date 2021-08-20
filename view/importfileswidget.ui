@@ -183,6 +183,20 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_loadLabelsFromFile">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../UI_Icons.qrc">
+              <normaloff>:/Resources/UISymbols/UI_Folder_Icon.svg</normaloff>:/Resources/UISymbols/UI_Folder_Icon.svg</iconset>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item row="8" column="1">
@@ -218,15 +232,7 @@
          </spacer>
         </item>
         <item row="1" column="1">
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QPushButton" name="pushButton_loadLabelFromFile">
-            <property name="text">
-             <string>Load from .txt file</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <layout class="QHBoxLayout" name="horizontalLayout_2"/>
         </item>
        </layout>
       </item>
