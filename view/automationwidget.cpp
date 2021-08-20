@@ -108,8 +108,8 @@ void AutomationWidget::on_queueAllButton_clicked()
 {
     int size = ui->idleTasks->count();
 
-    for (int i = size - 1; i >= 0; i--){
-        ui->queuedTasks->addItem(ui->idleTasks->takeItem(i));
+    for (int i = 0; i < size; i++){
+        ui->queuedTasks->addItem(ui->idleTasks->takeItem(0));
     }
     emit sig_queueAll();
 }
@@ -119,8 +119,8 @@ void AutomationWidget::on_unqueueAllButton_clicked()
 {
     int size = ui->queuedTasks->count();
 
-    for (int i = size - 1; i >= 0; i--){
-        ui->idleTasks->addItem(ui->queuedTasks->takeItem(i));
+    for (int i = 0; i < size; i++){
+        ui->idleTasks->addItem(ui->queuedTasks->takeItem(0));
     }
     emit sig_unqueueAll();
 }

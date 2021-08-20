@@ -46,8 +46,8 @@ void AutomationController::slot_import(QString path)
 void AutomationController::slot_queueAll()
 {
     int size = mAutomator->getUnqueuedSize();
-    for (int i = size - 1; i >= 0; i--){
-        mAutomator->queue(i);
+    for (int i = 0; i < size; ++i){
+        mAutomator->queue(0);
     }
 }
 
@@ -59,8 +59,8 @@ void AutomationController::slot_queueSelected(int index)
 void AutomationController::slot_unqueueAll()
 {
     int size = mAutomator->getQueuedSize();
-    for (int i = size - 1; i >= 0; i--){
-        mAutomator->unqueue(i);
+    for (int i = 0; i < size; ++i){
+        mAutomator->unqueue(0);
     }
 }
 
