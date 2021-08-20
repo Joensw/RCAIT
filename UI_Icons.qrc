@@ -25,7 +25,6 @@
         <file>Resources/UISymbols/UI_Stop_Icon.svg</file>
         <file>Resources/UISymbols/UI_Add_Task.svg</file>
         <file>Resources/UISymbols/UI_Folder_Icon.svg</file>
-        <file>Resources/UISymbols/UI_Model_File.svg</file>
         <file>Resources/UISymbols/UI_Add_Icon.svg</file>
         <file>Resources/TabIcons/Filled/collections_black_24dp.svg</file>
         <file>Resources/TabIcons/Filled/batch_prediction_black_24dp.svg</file>
@@ -45,5 +44,6 @@
         <file>Resources/UISymbols/UI_Fullscreen_Exit_Icon.svg</file>
         <file>Resources/UISymbols/UI_Fullscreen_Icon.svg</file>
         <file>Resources/Fonts/InterMonospace-Medium.otf</file>
+        <file>Resources/UISymbols/UI_File_Icon.svg</file>
     </qresource>
 </RCC>
