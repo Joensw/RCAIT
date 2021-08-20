@@ -6,10 +6,10 @@ bool FlickrPlugin::loadImages(QString path,ProgressablePlugin* receiver,  int im
     m_receiver = receiver;
     QString fullCommand = createCommandlineString(path, imageCount, &label);
     qDebug() << fullCommand;
-    m_process = new QProcess();
+    m_process.reset(new QProcess);
     m_process->setReadChannel(QProcess::StandardOutput);
-    connect(m_process,&QProcess::readyReadStandardOutput,this,&FlickrPlugin::slot_readOutPut);
-    connect(m_process,&QProcess::finished,this,&FlickrPlugin::slot_pluginFinished);
+    connect(&*m_process,&QProcess::readyReadStandardOutput,this,&FlickrPlugin::slot_readOutPut);
+    connect(&*m_process,&QProcess::finished,this,&FlickrPlugin::slot_pluginFinished);
 
     m_process->startCommand(fullCommand);
     m_process->waitForStarted();
@@ -89,7 +89,7 @@ void FlickrPlugin::slot_readOutPut()
 void FlickrPlugin::slot_pluginFinished()
 {
     m_process->close();
-    delete m_process;
+    m_process.reset();
     emit m_receiver->sig_pluginFinished();
 }
 

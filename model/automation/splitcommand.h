@@ -38,7 +38,7 @@ private:
     QString mTempPath;
     QString mTrainPath;
     QString mValidationPath;
-    ImageInspectionModel* mImageModel;
+    QScopedPointer<ImageInspectionModel> mImageModel;
 };
 
 #endif // SPLITCOMMAND_H

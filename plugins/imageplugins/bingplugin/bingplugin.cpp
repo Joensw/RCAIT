@@ -6,10 +6,10 @@ bool BingPlugin::loadImages(QString path,ProgressablePlugin* receiver,  int imag
     m_receiver = receiver;
     QString fullCommand = createCommandlineString(path, imageCount, &label);
     qDebug() << fullCommand;
-    m_process = new QProcess();
+    m_process.reset(new QProcess);
     m_process->setReadChannel(QProcess::StandardOutput);
-    connect(m_process,&QProcess::readyReadStandardOutput,this,&BingPlugin::slot_readOutPut);
-    connect(m_process,&QProcess::finished,this,&BingPlugin::slot_pluginFinished);
+    connect(&*m_process,&QProcess::readyReadStandardOutput,this,&BingPlugin::slot_readOutPut);
+    connect(&*m_process,&QProcess::finished,this,&BingPlugin::slot_pluginFinished);
 
     m_process->startCommand(fullCommand);
     m_process->waitForStarted();
@@ -102,7 +102,7 @@ void BingPlugin::slot_readOutPut()
 void BingPlugin::slot_pluginFinished()
 {
     m_process->close();
-    delete m_process;
+    m_process.reset();
     emit m_receiver->sig_pluginFinished();
 }
 

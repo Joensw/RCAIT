@@ -84,7 +84,7 @@ signals:
 protected slots:
     void resizeEvent(QResizeEvent *e);
 private:
-    QThread* running;
+    QScopedPointer<QThread> running;
     bool mReady = true;
 
     // used for resizing images with fixed-sized lists

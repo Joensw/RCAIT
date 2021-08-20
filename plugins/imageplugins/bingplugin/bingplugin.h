@@ -75,7 +75,7 @@ class BingPlugin : public QObject, ImageLoaderPlugin
 private:
    BingSettings m_bingSettings;
    QWidget *pluginSettings;
-   QProcess* m_process;
+   QScopedPointer<QProcess> m_process;
    ProgressablePlugin* m_receiver;
    // in case something goes wrong (could be read from command line)
    bool m_success = true;

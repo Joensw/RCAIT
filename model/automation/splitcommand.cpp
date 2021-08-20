@@ -7,14 +7,14 @@ SplitCommand::SplitCommand(QString tempPath, QString trainPath, QString validati
     mTempPath = tempPath;
     mTrainPath = trainPath;
     mValidationPath = validationPath;
-    mImageModel = new ImageInspectionModel();
+    mImageModel.reset(new ImageInspectionModel);
 }
 
 bool SplitCommand::execute()
 {
     mImageModel->loadNewData(mTempPath, mSplit);
     mImageModel->mergeDataSets(mTrainPath, mValidationPath);
-    delete mImageModel;
+    mImageModel.reset();
     emit sig_progress(100);
     return true;
 }

@@ -19,7 +19,7 @@
  * @brief The Controller class creates and holds all the specific controllers and the application main window
  */
 class Controller : public QObject {
-    Q_OBJECT
+Q_OBJECT
 public:
     /**
      * @brief Controller a Controller with the given parameters. Initialises all the other controllers and the data manager
@@ -28,33 +28,34 @@ public:
     explicit Controller(QObject *parent = nullptr);
 
 public slots:
+
     /**
      * @brief slot_configurationComplete shows the main window of the application
      */
     void slot_configurationComplete();
 
 private:
-    MainWindow *mMainWindow;
+    QScopedPointer<MainWindow> mMainWindow;
 
-    SettingsController *mSettingsController;
+    QScopedPointer<ConfigurationController> mConfigurationController;
 
-    ProjectController *mProjectController;
+    QScopedPointer<SettingsController> mSettingsController;
 
-    AIController *mAiController;
+    QScopedPointer<ProjectController> mProjectController;
 
-    ResultsController *mResultsController;
+    QScopedPointer<AIController> mAiController;
 
-    ModelController *mModelController;
+    QScopedPointer<ResultsController> mResultsController;
 
-    AutomationController *mAutomationController;
+    QScopedPointer<ModelController> mModelController;
 
-    ConfigurationController * mConfigurationController;
+    QScopedPointer<AutomationController> mAutomationController;
 
-    ImageController* mImageController;
+    QScopedPointer<ImageController> mImageController;
 
-    TabController* mTabController;
+    QScopedPointer<TabController> mTabController;
 
-    DataManager *mDataManger;
+    QScopedPointer<DataManager> mDataManager;
 
 
 };

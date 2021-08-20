@@ -63,17 +63,12 @@ void ImageGallery::concurrentAddDir(const QString &path) {
             this->mPathDir = std::move(pathDir);
         }
 
-        ~addDirTask() override {
-            delete mGallery;
-        }
-
         void run() override {
             QStringList images = mPathDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
 
                     foreach(QString imageName, images) {
-                    if (abort) {
-                        return;
-                    }
+                    if (abort) return;
+
                     QString localPath = mPathDir.path() + "/" + imageName;
                     mGallery->addImage(QImage(localPath));
                 }
@@ -89,14 +84,11 @@ void ImageGallery::concurrentAddDir(const QString &path) {
         volatile bool abort;
     };
 
-    if (running != nullptr){
-        delete running;
-    }
+    //Auto deletes old pointer if that exists.
+    running.reset( new addDirTask(this, QDir(path)));
 
-    auto running = new addDirTask(this, QDir(path));
-
-    connect(this, &ImageGallery::sig_stopLoading, running, &addDirTask::quit);
-    connect(running, &QThread::finished, this, &ImageGallery::slot_isReady);
+    connect(this, &ImageGallery::sig_stopLoading, (addDirTask*) &*running, &addDirTask::quit);
+    connect(&*running, &QThread::finished, this, &ImageGallery::slot_isReady);
 
     if (count() != 0) clear();
     running->start();
@@ -110,7 +102,7 @@ void ImageGallery::concurrentAddDir(const QList<QImage> imageList) {
 
 void ImageGallery::concurrentAddDir(const QList<QString> imageList) {
     auto task = QtConcurrent::run([this, imageList] { this->addDir(imageList); });
-Q_UNUSED(task)
+    Q_UNUSED(task)
 }
 
 void ImageGallery::slot_isReady() {

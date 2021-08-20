@@ -19,7 +19,7 @@ public:
     }
 
 private:
-    ImageSearchThread *m_worker;
+    QScopedPointer<ImageSearchThread> m_worker;
 
 
 public slots:
