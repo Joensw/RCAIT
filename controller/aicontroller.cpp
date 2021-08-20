@@ -35,11 +35,12 @@ AIController::AIController(DataManager *dataManager, InputImagesWidget *inputIma
 
 void AIController::slot_startTraining()
 {  
+   QString modelName = mDataManager->getCurrentModel();
    mTrainer->train( mDataManager->getCurrentClassificationPlugin(),
-                              mDataManager->getCurrentModel(),
+                              modelName,
                               mDataManager->getProjectDataSetTrainSubdir(),
                               mDataManager->getProjectDataSetValSubdir(),
-                              NULL); //mDataManager->get();  hier muss ein temporäres workdir hin)
+                              mDataManager->createNewWorkSubDir(modelName)); //mDataManager->get();  hier muss ein temporäres workdir hin)
    emit mTrainer->sig_startTraining();
 
 }
