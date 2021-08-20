@@ -47,6 +47,10 @@ private:
     ClassificationPluginManager& mPluginManager =  ClassificationPluginManager::getInstance();
     TrainingResult* mResult;
     ProgressablePlugin* mReceiver;
+    QVariantMap mInputOptions;
+    QWidget* mInputWidget;
+    QVariantMap mAugmentationOptions;
+    QWidget* mAugmentationWidget;
     bool parsingFailed = false;
 
     QString mImagePath;
