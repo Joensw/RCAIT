@@ -14,6 +14,8 @@ void ClassificationResultsWidget::configure_placeholderTab() {
     auto placeholder = new GenericGraphicsView(this);
     m_tabWidget->insertTab(0, placeholder, icon, QString());
     m_tabWidget->setTabEnabled(0, false);
+    //Placeholder cannot be saved
+    placeholder->setSaved(true);
 }
 
 void ClassificationResultsWidget::addClassificationResult(ClassificationResult *result) {
