@@ -80,6 +80,8 @@ private slots:
     void on_horizontalSlider_sliderMoved(int position);
 
 
+    void on_pushButton_loadLabelsFromFile_clicked();
+
 signals:
     /**
      * @brief sig_newModel emitted when the UI to create a new model is to be opened
