@@ -17,23 +17,41 @@ TrainingCommand::TrainingCommand(QVariantMap map, QString trainDataSetPath, QStr
         return;
     }
 
-    QWidget* inputWidget = mPluginManager.getInputWidget(mAiPluginName);
+    mInputWidget = mPluginManager.getInputWidget(mAiPluginName);
+    // getting all property names of input widget
     auto end = map.end();
     for(auto it = map.begin(); it != end; ++it){
         const char* charstring = it.key().toUtf8().data();
-        inputWidget->setProperty(charstring, it.value());
+        if (mInputWidget->property(charstring).isValid()){
+            mInputOptions.insert(it.key(), it.value());
+        }
     }
 
-    QWidget* automationWidget = mPluginManager.getDataAugmentationInputWidget(mAiPluginName);
+    mAugmentationWidget = mPluginManager.getDataAugmentationInputWidget(mAiPluginName);
+    // getting all property names of augmentation widget
     for(auto it = map.begin(); it != end; ++it){
         const char* charstring = it.key().toUtf8().data();
-        automationWidget->setProperty(charstring, it.value());
+        if (mAugmentationWidget->property(charstring).isValid()){
+            mAugmentationOptions.insert(it.key(), it.value());
+        }
     }
 }
 
 bool TrainingCommand::execute()
 {
     if(parsingFailed) return false;
+    // setting properties
+    auto endInput = mInputOptions.end();
+    for (auto it = mInputOptions.begin(); it != endInput; ++it){
+        const char* charstring = it.key().toUtf8().data();
+        mInputWidget->setProperty(charstring, it.value());
+    }
+    auto endAutomation = mAugmentationOptions.end();
+    for (auto it = mAugmentationOptions.begin(); it != endAutomation; ++it){
+        const char* charstring = it.key().toUtf8().data();
+        mAugmentationWidget->setProperty(charstring, it.value());
+    }
+
     mResult = mPluginManager.train(mAiPluginName, mModelName, mTrainDataSetPath, mValidationDataSetPath, mWorkingDir, mReceiver);
     if (mResult == nullptr){
         return false;

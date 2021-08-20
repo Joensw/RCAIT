@@ -33,6 +33,8 @@ public:
 private:
     ImageLoaderPluginManager& mPluginManager =  ImageLoaderPluginManager::getInstance();
     ProgressablePlugin* mReceiver;
+    QVariantMap mWidgetOptions;
+    QWidget* mInputWidget;
     bool parsingFailed = false;
     int mCount;
     QStringList mLabels;

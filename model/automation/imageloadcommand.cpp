@@ -16,18 +16,26 @@ ImageLoadCommand::ImageLoadCommand(QVariantMap map, QString imagePath, Progressa
         return;
     }
 
-    QWidget* inputWidget = mPluginManager.getConfigurationWidget(mPluginName);
+    mInputWidget = mPluginManager.getConfigurationWidget(mPluginName);
 
     auto end = map.end();
     for(auto it = map.begin(); it != end; ++it){
         const char* charstring = it.key().toUtf8().data();
-        inputWidget->setProperty(charstring, it.value());
+        if (mInputWidget->property(charstring).isValid()){
+            mWidgetOptions.insert(it.key(), it.value());
+        }
     }
-
-    mPluginManager.saveConfiguration(mPluginName);
 }
 
 bool ImageLoadCommand::execute(){
     if(parsingFailed) return false;
+
+    auto end = mWidgetOptions.end();
+    for (auto it = mWidgetOptions.begin(); it != end; ++it){
+        const char* charstring = it.key().toUtf8().data();
+        mInputWidget->setProperty(charstring, it.value());
+    }
+    mPluginManager.saveConfiguration(mPluginName);
+
     return mPluginManager.loadImages(mPath, mReceiver, mPluginName, mCount, mLabels);
 }
