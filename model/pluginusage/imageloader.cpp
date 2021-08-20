@@ -22,6 +22,7 @@ void ImageLoader::load()
 
 
 void ImageLoader::handleResults() {
+    m_worker.reset();
     emit sig_progress(100);
     emit sig_imagesReady();
     qDebug() << "Plugin finished and thread deleted";
