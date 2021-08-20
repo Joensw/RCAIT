@@ -176,6 +176,11 @@ public:
      */
     QString recallLastWorkingDirectoryOfModel(QString projectName, QString modelName);
 
+
+    QString recallPluginNameOfModell(QString projectName, QString modelName);
+
+
+
     /**
      * @return the classification plugin the current model is from
      */

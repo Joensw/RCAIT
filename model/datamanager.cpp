@@ -107,6 +107,11 @@ QString DataManager::recallLastWorkingDirectoryOfModel(QString projectName, QStr
     return mModelManager->recallLastWorkingDirectoryOfModel(projectName, modelName);
 }
 
+QString DataManager::recallPluginNameOfModell(QString projectName, QString modelName)
+{
+    return mModelManager->recallPluginNameOfModell(projectName, modelName);
+}
+
 QString DataManager::getCurrentClassificationPlugin(){
     return mModelManager->getCurrentPlugin();
 }

@@ -90,6 +90,20 @@ QString ModelManager::recallLastWorkingDirectoryOfModel(QString projectName, QSt
     }
 }
 
+QString ModelManager::recallPluginNameOfModell(QString projectName, QString modelName) {
+    QStringList modelSpecificData;
+    m_userModelNamesPerProject.beginGroup(projectName);
+    modelSpecificData = m_userModelNamesPerProject.value(modelName).toStringList();
+    m_userModelNamesPerProject.endGroup();
+
+    if (modelSpecificData.size() == 2) {
+        return modelSpecificData.at(pluginNamePosition);
+    } else {
+        return QString();
+    }
+
+}
+
 QWidget * ModelManager::getInputWidget(){
     return mClassificationPluginManager->getInputWidget(mCurrentModel);
 }
