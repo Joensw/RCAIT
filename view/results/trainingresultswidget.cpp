@@ -5,7 +5,7 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
 
     //Top Accuracies Tab configuration
     configure_topAccuraciesTab();
-    connect(m_topAccuraciesView.get(), &TopAccuraciesView::sig_normal_requestTopAccuraciesGraphics, this,
+    connect(&*m_topAccuraciesView, &TopAccuraciesView::sig_normal_requestTopAccuraciesGraphics, this,
             &TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics);
 }
 
@@ -20,12 +20,12 @@ void TrainingResultsWidget::addComparisonResult(const QString &runNameToCompare)
     auto tab = createResultTab<TrainingResultView>(runNameToCompare);
     emit sig_comparison_loadTrainingResultGraphics(tab, runNameToCompare);
     emit sig_comparison_loadTrainingResultData(tab, runNameToCompare);
-    emit sig_comparison_loadAccuracyData(m_topAccuraciesView.get(), m_topAccuraciesGraphics.get(), runNameToCompare);
+    emit sig_comparison_loadAccuracyData(&*m_topAccuraciesView, &*m_topAccuraciesGraphics, runNameToCompare);
 }
 
 void TrainingResultsWidget::removeComparisonResult(const QString &runNameToCompare) {
     deleteResultTab(runNameToCompare);
-    emit sig_comparison_unloadAccuracyData(m_topAccuraciesView.get(), m_topAccuraciesGraphics.get(), runNameToCompare);
+    emit sig_comparison_unloadAccuracyData(&*m_topAccuraciesView, &*m_topAccuraciesGraphics, runNameToCompare);
 }
 
 void TrainingResultsWidget::configure_topAccuraciesTab() {
@@ -35,24 +35,24 @@ void TrainingResultsWidget::configure_topAccuraciesTab() {
     auto newView = QScopedPointer<TopAccuraciesView>(new TopAccuraciesView(m_tabWidget));
     m_topAccuraciesView.swap(newView);
 
-    m_tabWidget->insertTab(0, m_topAccuraciesView.get(), icon, QString());
+    m_tabWidget->insertTab(0, &*m_topAccuraciesView, icon, QString());
 }
 
 void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(GenericGraphicsView *receiver) {
     //Forward signal
-    emit sig_normal_requestTopAccuraciesGraphics(receiver, m_topAccuraciesGraphics.get());
+    emit sig_normal_requestTopAccuraciesGraphics(receiver, &*m_topAccuraciesGraphics);
 }
 
 void TrainingResultsWidget::retranslateUi() {
-    int index = m_tabWidget->indexOf(m_topAccuraciesView.get());
+    int index = m_tabWidget->indexOf(&*m_topAccuraciesView);
     m_tabWidget->setTabText(index, tr("Top Accuracies"));
 
     GenericComparisonWidget::retranslateUi();
 }
 
 void TrainingResultsWidget::saveResult(GenericGraphicsView *view) {
-    if (view == m_topAccuraciesView.get())
-            emit sig_save_TopAccuracies(m_topAccuraciesGraphics.get());
+    if (view == &*m_topAccuraciesView)
+            emit sig_save_TopAccuracies(&*m_topAccuraciesGraphics);
     else
             emit sig_save_TrainingResult(m_mapResultsByTab[view]);
 }

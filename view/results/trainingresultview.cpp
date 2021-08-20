@@ -14,7 +14,7 @@ void TrainingResultView::setAccuracyCurve(const QSharedPointer<QGraphicsItem> &a
     auto view = ui->graphicsView_accuracycurve;
     auto *scene = new QGraphicsScene();
 
-    scene->addItem(accuracyCurveImage.get());
+    scene->addItem(&*accuracyCurveImage);
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 
@@ -32,7 +32,7 @@ void TrainingResultView::setConfusionMatrix(const QSharedPointer<QGraphicsItem> 
 
     auto view = ui->graphicsView_confusionmatrix;
     auto *scene = new QGraphicsScene();
-    scene->addItem(matrixImage.get());
+    scene->addItem(&*matrixImage);
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 

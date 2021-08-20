@@ -40,7 +40,7 @@ void ClassificationResultView::setClassificationGraphics(
 
     auto view = ui->graphicsView_classificationresult;
     auto *scene = new QGraphicsScene();
-    scene->addItem(classificationGraphicsImage.get());
+    scene->addItem(&*classificationGraphicsImage);
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 

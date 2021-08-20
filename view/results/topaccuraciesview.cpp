@@ -52,7 +52,7 @@ void TopAccuraciesView::setTopAccuraciesGraphics(const QSharedPointer<QGraphicsI
 
     auto view = ui->graphicsView_topAccuracies;
     auto *scene = new QGraphicsScene();
-    scene->addItem(topAccuraciesImage.get());
+    scene->addItem(&*topAccuraciesImage);
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 
