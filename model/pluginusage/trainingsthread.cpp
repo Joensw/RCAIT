@@ -16,7 +16,7 @@ TrainingsThread::TrainingsThread(QString pluginName, QString modelName, QString 
 
 void TrainingsThread::slot_startTraining()
 {
-    //m_trainingResult = m_classificationPluginManager.train(m_pluginName,m_modelName,m_trainDatasetPath,m_validationDatasetPath, m_workingDirectory, m_receiver);
+    m_trainingResult = m_classificationPluginManager.train(m_pluginName,m_modelName,m_trainDatasetPath,m_validationDatasetPath, m_workingDirectory, m_receiver);
     qDebug() << "Training started: Comment in the actual call to the plugin in TrainingsThread and move sig->pluginfinished emission to plugin, if the program does not block on the return value";
     emit m_receiver->sig_pluginFinished();
 }

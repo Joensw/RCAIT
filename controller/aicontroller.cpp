@@ -9,6 +9,12 @@ AIController::AIController(DataManager *dataManager, InputImagesWidget *inputIma
     mTrainer = new Trainer;
     mClassifier = new Classifier;
 
+
+    //connect augmentation preview
+    //mAItrainingWIdget sig_showAugmentationPreview         AI Controller slot_showAugmentationPreview
+
+
+
     //connect progress
     connect(mClassifier, &Classifier::sig_progress, mInputImagesWidget, &InputImagesWidget::slot_progress);
     connect(mTrainer, &Trainer::sig_progress, mAiTrainingWidget, &AITrainingWidget::slot_progress);
@@ -29,11 +35,12 @@ AIController::AIController(DataManager *dataManager, InputImagesWidget *inputIma
 
 void AIController::slot_startTraining()
 {  
+   QString modelName = mDataManager->getCurrentModel();
    mTrainer->train( mDataManager->getCurrentClassificationPlugin(),
-                              mDataManager->getCurrentModel(),
+                              modelName,
                               mDataManager->getProjectDataSetTrainSubdir(),
                               mDataManager->getProjectDataSetValSubdir(),
-                              NULL); //mDataManager->get();  hier muss ein temporäres workdir hin)
+                              mDataManager->createNewWorkSubDir(modelName)); //mDataManager->get();  hier muss ein temporäres workdir hin)
    emit mTrainer->sig_startTraining();
 
 }
@@ -79,6 +86,8 @@ void AIController::slot_abortClassify()
 
 void AIController::slot_showAugmentationPreview()
 {
+//ToDo: Daria schreibt hier was passiert
+    //call bool ClassificationPluginManager::getAugmentationPreview(QString pluginName, QString modelName, QString inputPath, QString targetPath, int amount)
 
 }
 
