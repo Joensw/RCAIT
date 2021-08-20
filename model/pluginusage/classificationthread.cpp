@@ -18,7 +18,7 @@ ClassificationResult *ClassificationThread::getResult()
 
 void ClassificationThread::slot_startClassification()
 {
-    //m_classificationResult = m_classificationPluginManager.classify(m_pluginName, m_inputImageDirPath, m_trainDatasetPath, m_workingDirectory, m_modelName, m_receiver);
+    m_classificationResult = m_classificationPluginManager.classify(m_pluginName, m_inputImageDirPath, m_trainDatasetPath, m_workingDirectory, m_modelName, m_receiver);
     qDebug() << "Classification started: Comment in the actual call to the plugin in ClassifiactionThread and move sig pluginfinished to plugin";
     emit m_receiver->sig_pluginFinished();
 }
