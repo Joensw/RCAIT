@@ -14,7 +14,6 @@ bool SplitCommand::execute()
 {
     mImageModel->loadNewData(mTempPath, mSplit);
     mImageModel->mergeDataSets(mTrainPath, mValidationPath);
-    mImageModel.reset();
     emit sig_progress(100);
     return true;
 }

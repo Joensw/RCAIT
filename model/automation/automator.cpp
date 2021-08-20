@@ -88,6 +88,7 @@ void Automator::queue(int taskNum)
 {
     mQueuedTasks.append(mUnqueuedTasks.at(taskNum));
     mUnqueuedTasks.remove(taskNum);
+    mQueuedTasks.last()->resetTask();
     emit sig_taskUpdate(mQueuedTasks.last()->getName(), "Scheduled");
 }
 

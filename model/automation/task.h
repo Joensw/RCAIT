@@ -49,6 +49,12 @@ public:
     TaskState getState();
 
     /**
+     * @brief resetTask resets stopped task to standard state.
+     *
+     */
+    void resetTask();
+
+    /**
      * @brief run executes all commands of the Task.
      *
      */

@@ -95,6 +95,12 @@ TaskState Task::getState()
     return mState;
 }
 
+void Task::resetTask()
+{
+    mState = SCHEDULED;
+    mAbort = false;
+}
+
 bool Task::isValid()
 {
     return valid;
