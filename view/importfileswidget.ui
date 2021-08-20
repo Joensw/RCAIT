@@ -58,14 +58,54 @@
       </item>
       <item row="0" column="0" colspan="2">
        <layout class="QGridLayout" name="gridLayout_12">
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_plugin">
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_split">
           <property name="text">
-           <string>Collector Plugin</string>
+           <string>Split Validation (%)</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
+        <item row="5" column="1">
+         <spacer name="verticalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="8" column="2">
+         <widget class="QLabel" name="label_splitPercent">
+          <property name="text">
+           <string>40%</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <spacer name="verticalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_amount">
+          <property name="text">
+           <string>Image Count</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
          <widget class="QSpinBox" name="spinBox_amount">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -81,26 +121,6 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="label_split">
-          <property name="text">
-           <string>Split Validation (%)</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <spacer name="verticalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_keyword">
           <property name="text">
@@ -108,25 +128,19 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_plugin">
+          <property name="text">
+           <string>Collector Plugin</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
          <widget class="QComboBox" name="comboBox_plugins">
           <property name="enabled">
            <bool>true</bool>
           </property>
          </widget>
-        </item>
-        <item row="6" column="1">
-         <spacer name="verticalSpacer_6">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item row="0" column="1">
          <widget class="Tags" name="lineEdit_labels">
@@ -161,7 +175,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="UI_Icons.qrc">
+             <iconset resource="../UI_Icons.qrc">
               <normaloff>:/Resources/UISymbols/UI_Backspace_Icon.svg</normaloff>:/Resources/UISymbols/UI_Backspace_Icon.svg</iconset>
             </property>
             <property name="flat">
@@ -171,7 +185,7 @@
           </item>
          </layout>
         </item>
-        <item row="7" column="1">
+        <item row="8" column="1">
          <widget class="QSlider" name="horizontalSlider">
           <property name="maximum">
            <number>100</number>
@@ -190,14 +204,7 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_amount">
-          <property name="text">
-           <string>Image Count</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
+        <item row="2" column="1">
          <spacer name="verticalSpacer_4">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -210,12 +217,16 @@
           </property>
          </spacer>
         </item>
-        <item row="7" column="2">
-         <widget class="QLabel" name="label_splitPercent">
-          <property name="text">
-           <string>40%</string>
-          </property>
-         </widget>
+        <item row="1" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="pushButton_loadLabelFromFile">
+            <property name="text">
+             <string>Load from .txt file</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
@@ -274,7 +285,7 @@ selection-background-color: rgb(255, 255, 255);</string>
              <string>Add</string>
             </property>
             <property name="icon">
-             <iconset resource="UI_Icons.qrc">
+             <iconset resource="../UI_Icons.qrc">
               <normaloff>:/Resources/UISymbols/UI_Add_Icon.svg</normaloff>:/Resources/UISymbols/UI_Add_Icon.svg</iconset>
             </property>
            </widget>
@@ -285,7 +296,7 @@ selection-background-color: rgb(255, 255, 255);</string>
              <string>Remove</string>
             </property>
             <property name="icon">
-             <iconset resource="UI_Icons.qrc">
+             <iconset resource="../UI_Icons.qrc">
               <normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</iconset>
             </property>
            </widget>
@@ -299,7 +310,7 @@ selection-background-color: rgb(255, 255, 255);</string>
              <string>Load</string>
             </property>
             <property name="icon">
-             <iconset resource="UI_Icons.qrc">
+             <iconset resource="../UI_Icons.qrc">
               <normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</iconset>
             </property>
            </widget>
@@ -339,7 +350,7 @@ selection-background-color: rgb(255, 255, 255);</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="UI_Icons.qrc"/>
+  <include location="../UI_Icons.qrc"/>
  </resources>
  <connections/>
 </ui>
