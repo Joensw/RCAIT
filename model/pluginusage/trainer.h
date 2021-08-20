@@ -23,6 +23,8 @@ public:
     TrainingResult* getLastTrainingResult();
     bool getAugmentationPreview(QString pluginName, QString inputPath);
 
+    QString getRecentWorkingDir();
+
 
 signals:
     void sig_trainingResultUpdated();
@@ -34,6 +36,8 @@ public slots:
 private:
     TrainingResult* m_trainingResults;
     TrainingsThread *m_trainWorker;
+
+    QString m_recentWorkingDir;
 
 
 };

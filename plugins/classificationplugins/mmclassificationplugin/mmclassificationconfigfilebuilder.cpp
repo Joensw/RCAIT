@@ -159,13 +159,13 @@ void MMClassificationConfigFileBuilder::changeModelNumberOfClasses(QString model
 {
     const QString expression = "num_classes = (\\d+)";
 
-    QVector<QString> toReplace;
-    toReplace.append(expression);
+    QFile file(modelConfigPath);
+    file.open(QIODevice::Text | QIODevice::ReadOnly);
+    QString modelConfigPathContent = file.readAll();
+    modelConfigPathContent = replaceText(modelConfigPathContent, expression, 1, QString::number(numberOfClasses));
 
-    QVector<QString> replaceWith;
-    replaceWith.append(QString::number(numberOfClasses));
-
-    readAndReplaceLinesInOrder(modelConfigPath, toReplace, replaceWith, 1);
+    QStringList list = modelConfigPathContent.split(QRegularExpression(m_newLineRegExText));
+    writeBack(modelConfigPath, list);
 }
 
 void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(QString datasetConfigPath, QString albuTransform, int randomResizedCropSize, double randomFlipProb, QString randomFlipDirection, bool randomErasing, int resize, int centerCropSize)

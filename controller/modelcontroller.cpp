@@ -53,7 +53,9 @@ void ModelController::slot_removeModelConfirm()
 
 void ModelController::slot_loadModel(QString modelName)
 {
-    mDataManager->loadModel(modelName, "PLACEHOLDER");
+    QString projectName = mDataManager->getProjectName();
+    QString pluginName = mDataManager->recallPluginNameOfModell(projectName, modelName);
+    mDataManager->loadModel(modelName, pluginName);
     emit sig_modelLoaded();
 }
 

@@ -85,6 +85,9 @@ public:
      */
     QString recallLastWorkingDirectoryOfModel(QString projectName, QString modelName);
 
+
+    QString recallPluginNameOfModell(QString projectName, QString modelName);
+
 private:
     const int pluginNamePosition = 0;
     const int lastWorkingDirectoryPosition = 1;

@@ -57,7 +57,10 @@ void AIController::slot_results()
 
 void AIController::slot_trainingResultUpdated()
 {
-
+    QString projectName = mDataManager->getProjectName();
+    QString modelName = mDataManager->getCurrentModel();
+    QString lastWorkingDirectory = mTrainer->getRecentWorkingDir();
+    mDataManager->saveLastWorkingDirectoryOfModel(projectName, modelName, lastWorkingDirectory);
 }
 
 void AIController::slot_classificationResultUpdated()
@@ -70,11 +73,12 @@ void AIController::slot_startClassify(QString path)
     QString currentClassificationPlugin = mDataManager->getCurrentClassificationPlugin();
     QString projectDatasetTrainSubDir = mDataManager->getProjectDataSetTrainSubdir();
     QString currentModel =  mDataManager->getCurrentModel();
+    QString lastWorkingDirectory = mDataManager->recallLastWorkingDirectoryOfModel(mDataManager->getProjectName(), currentModel);
 
     mClassifier->classify(currentClassificationPlugin,
                               path,
                               projectDatasetTrainSubDir,
-                             "In AICOntroller den String noch mit Funktion ersetzen", //mDataManager->get();  hier muss ein temporäres workdir hin)
+                              lastWorkingDirectory,
                               currentModel);
     emit mClassifier->sig_startClassification();
 }
