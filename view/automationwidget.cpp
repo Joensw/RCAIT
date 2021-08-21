@@ -88,18 +88,30 @@ void AutomationWidget::on_removeButton_clicked()
 
 void AutomationWidget::on_unqueueSelectedButton_clicked()
 {
-    for (QModelIndex index : ui->queuedTasks->selectionModel()->selectedIndexes()){
-        ui->idleTasks->addItem(ui->queuedTasks->takeItem(index.row()));
-        emit sig_unqueueSelected(index.row());
+    int size = ui->queuedTasks->count();
+
+    for (int i = 0; i < size; i++){
+        if (ui->queuedTasks->item(i)->isSelected()) {
+            ui->idleTasks->addItem(ui->queuedTasks->takeItem(i));
+            emit sig_unqueueSelected(i);
+            i--;
+            size--;
+        }
     }
 }
 
 
 void AutomationWidget::on_queueSelectedButton_clicked()
 {
-    for (QModelIndex index : ui->idleTasks->selectionModel()->selectedIndexes()){
-        ui->queuedTasks->addItem(ui->idleTasks->takeItem(index.row()));
-        emit sig_queueSelected(index.row());
+    int size = ui->idleTasks->count();
+
+    for (int i = 0; i < size; i++){
+        if (ui->idleTasks->item(i)->isSelected()) {
+            ui->queuedTasks->addItem(ui->idleTasks->takeItem(i));
+            emit sig_queueSelected(i);
+            i--;
+            size--;
+        }
     }
 }
 

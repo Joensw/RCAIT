@@ -38,10 +38,18 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QListWidget" name="idleTasks"/>
+       <widget class="QListWidget" name="idleTasks">
+        <property name="selectionMode">
+         <enum>QAbstractItemView::MultiSelection</enum>
+        </property>
+       </widget>
       </item>
       <item row="1" column="4">
-       <widget class="QListWidget" name="queuedTasks"/>
+       <widget class="QListWidget" name="queuedTasks">
+        <property name="selectionMode">
+         <enum>QAbstractItemView::MultiSelection</enum>
+        </property>
+       </widget>
       </item>
       <item row="1" column="2">
        <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -220,6 +228,7 @@
   </layout>
  </widget>
  <resources>
+  <include location="../UI_Icons.qrc"/>
   <include location="../UI_Icons.qrc"/>
  </resources>
  <connections/>
