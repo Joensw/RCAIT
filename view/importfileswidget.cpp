@@ -122,7 +122,7 @@ void ImportFilesWidget::on_pushButton_loadLabelsFromFile_clicked() {
     QTextStream stream(&inputFile);
 
     for (auto line = stream.readLine(); !line.isNull(); line = stream.readLine()) {
-        //Ignore emoty and commented out lines
+        //Ignore empty and commented out lines
         if (line.isEmpty() || line.startsWith('#')) continue;
         labelsVector.push_back(line.simplified());
     }
