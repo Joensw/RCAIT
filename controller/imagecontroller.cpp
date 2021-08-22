@@ -36,9 +36,9 @@ void ImageController::slot_loadInputImages(QString pluginName, int count, QStrin
 
 }
 
-void ImageController::slot_confirm() {
+//void ImageController::slot_confirm() {
 
-}
+//}
 
 void ImageController::slot_imagesReady() {
 

@@ -10,13 +10,89 @@
 #include "imageinspectionwidget.h"
 #include "imageinspectionmodel.h"
 
+
+/**
+ * @brief The ImageController class mediates between the UI of ImageInspection, ImageLoading and their logic.
+ *
+ */
 class ImageController : public QObject{
     Q_OBJECT
 public:
+    /**
+     * @brief ImageController constructs an ImageController.
+     *
+     * @param imageInspectionWidget
+     * @param importFilesWidget
+     * @param dataManager
+     */
     ImageController(ImageInspectionWidget* imageInspectionWidget, ImportFilesWidget* importFilesWidget, DataManager* dataManager);
 
+public slots:
+
+    /**
+     * @brief slot_remove
+     * @param treeWidgetIndex
+     * @param removedImages
+     */
+    void slot_remove(int treeWidgetIndex, QMap<QString, QList<int>> removedImages);
+
+    /**
+     * @brief slot_loadInputImages starts image loading.
+     *
+     * @param pluginName name of image loader plugin
+     * @param count number of images per label
+     * @param labels list of image labels
+     * @param split number of images used for validation in percent
+     */
+    void slot_loadInputImages(QString pluginName, int count, QStringList labels, int split);
+
+    /**
+     * @brief slot_imagesReady updates ImageInspectionWidget.
+     *
+     */
+    void slot_imagesReady();
+
+    /**
+     * @brief slot_handelImageLoadProgress updates progressbar.
+     *
+     * @param progress image load progress
+     */
+    void slot_handelImageLoadProgress(int progress);
+
+    /**
+     * @brief slot_openProject loads ImageInspectionWidget with images of opened project.
+     *
+     */
+    void slot_openProject();
+
+    /**
+     * @brief slot_mergeDatasets merges images of temp folder into training/validation folders.
+     *
+     */
+    void slot_mergeDatasets();
+
+    /**
+     * @brief slot_updateImageLoadStatusText updates status message above progressbar.
+     *
+     * @param status status message
+     */
+    void slot_updateImageLoadStatusText(QString status);
+
+    /**
+     * @brief slot_imagePluginDirectoryChanged updates available image load plugins.
+     *
+     * @param newDirectory new image plugin directory
+     */
+    void slot_imagePluginDirectoryChanged(const QString& newDirectory);
+
 signals:
+
+    /**
+     * @brief sig_imagesLoaded signals completion of image loading.
+     *
+     */
     void sig_imagesLoaded();
+
 private:
     ImageLoader* m_imageLoader;
     ImageInspectionWidget* m_imageinspectionwidget;
@@ -26,17 +102,6 @@ private:
     int m_split = 40;
     void updateDatasetDisplay();
     void updateNewDatasetDisplay();
-
-public slots:
-    void slot_remove(int treeWidgetIndex, QMap<QString, QList<int>> removedImages);
-    void slot_loadInputImages(QString pluginName, int count, QStringList labels, int split);
-    void slot_confirm();
-    void slot_imagesReady();
-    void slot_handelImageLoadProgress(int progress);
-    void slot_openProject();
-    void slot_mergeDatasets();
-    void slot_updateImageLoadStatusText(QString status);
-    void slot_imagePluginDirectoryChanged(const QString& newDirectory);
 };
 
 
