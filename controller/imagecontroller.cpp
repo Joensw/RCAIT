@@ -40,10 +40,12 @@ void ImageController::slot_loadInputImages(QString pluginName, int count, QStrin
 
 //}
 
-void ImageController::slot_imagesReady() {
-
+void ImageController::slot_imagesReady()
+{
+    emit sig_startLoading();
     updateNewDatasetDisplay();
     updateDatasetDisplay();
+    emit sig_imagesUpdated();
 }
 
 
@@ -55,15 +57,12 @@ void ImageController::slot_handelImageLoadProgress(int progress)
 
 void ImageController::slot_openProject()
 {
-   updateDatasetDisplay();
-   updateNewDatasetDisplay();
+   slot_imagesReady();
 }
 
 void ImageController::slot_mergeDatasets() {
     m_imageInspectionModel.mergeDataSets(m_dataManager->getProjectDataSetTrainSubdir(), m_dataManager->getProjectDataSetValSubdir());
-    updateNewDatasetDisplay();
-    updateDatasetDisplay();
-
+    slot_imagesReady();
 }
 
 

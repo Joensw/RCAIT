@@ -36,8 +36,12 @@ public:
     void setNewValidationImages(QMap<QString, QStringList> labelToPathsMap);
     void setNewTrainImages(QMap<QString, QStringList> labelToPathsMap);
 
+public slots:
+    void slot_imagesUpdated();
+
+    void slot_startLoading();
 private:
-    void replaceGalleryTree(ImageGalleryTree* oldGalleryTree, ImageGalleryTree* newGalleryTree);
+
 
 signals:
     void sig_mergeDatasets();

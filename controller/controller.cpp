@@ -53,6 +53,11 @@ void Controller::slot_configurationComplete() {
     connect(&*mMainWindow, &MainWindow::sig_changedWindowState, mMainWindow->getStartWidget(),
             &StartWidget::slot_changedWindowState);
 
+    connect(&*mImageController, &ImageController::sig_imagesUpdated, mMainWindow->getStartWidget(), &StartWidget::slot_imagesUpdated);
+    connect(&*mImageController, &ImageController::sig_imagesUpdated, mMainWindow->getImageInspectionWidget(), &ImageInspectionWidget::slot_imagesUpdated);
+    connect(&*mImageController, &ImageController::sig_startLoading, mMainWindow->getStartWidget(), &StartWidget::slot_startLoading);
+    connect(&*mImageController, &ImageController::sig_startLoading, mMainWindow->getImageInspectionWidget(), &ImageInspectionWidget::slot_startLoading);
+
     mMainWindow->show();
 }
 

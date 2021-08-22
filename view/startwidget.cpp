@@ -114,3 +114,13 @@ void StartWidget::slot_changedWindowState(Qt::WindowStates flags) {
             break;
     }
 }
+
+void StartWidget::slot_imagesUpdated()
+{
+    ui->pushButton_openProject->setEnabled(true);
+}
+
+void StartWidget::slot_startLoading()
+{
+    ui->pushButton_openProject->setEnabled(false);
+}

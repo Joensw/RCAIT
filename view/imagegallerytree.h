@@ -22,14 +22,8 @@ public:
      */
     ImageGalleryTree(QWidget* parent);
 
-    /**
-     * @brief ImageGalleryTree createss a new ImageGalleryTree
-     * @param paths paths of the directories to be display
-     */
-    ImageGalleryTree(QStringList paths);
 
-
-    ImageGalleryTree(QMap<QString, QStringList> labelToPathsMap);
+    void resetTree();
 
     /**
      * @brief addDir add a directory to the displayed directories
@@ -46,7 +40,7 @@ public:
     QMap<QString, QList<int>> removeSelected();
     void test();
 private:
-    QList<ImageGallery*>* galleries = new QList<ImageGallery*>();
+    QList<ImageGallery*> galleries;
 
 };
 

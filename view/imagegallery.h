@@ -4,6 +4,7 @@
 
 #include <QListWidget>
 #include <QDir>
+#include <QThread>
 #include <view/aspectratiolabel.h>
 
 
@@ -84,6 +85,33 @@ signals:
 protected slots:
     void resizeEvent(QResizeEvent *e);
 private:
+
+    class addDirTask : public QThread {
+    public:
+        addDirTask(ImageGallery *gallery, QStringList imageList) {
+            abort = false;
+            this->mGallery = gallery;
+            this->mImageList = std::move(imageList);
+        }
+
+        void run() override {
+                 foreach(QString imageName, mImageList) {
+                    if (abort) return;;
+                    mGallery->addImage(QImage(imageName));
+                }
+        }
+
+        void quit() {
+            abort = true;
+        }
+
+    private:
+        ImageGallery *mGallery;
+        QStringList mImageList;
+        volatile bool abort;
+    };
+
+
     QScopedPointer<QThread> running;
     bool mReady = true;
 

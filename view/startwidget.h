@@ -51,6 +51,9 @@ public:
 public slots:
     void slot_changedWindowState(Qt::WindowStates flags);
 
+    void slot_imagesUpdated();
+    void slot_startLoading();
+
 private:
     Ui::StartWidget *ui;
 

@@ -55,44 +55,12 @@ void ImageGallery::addDir(QList<QImage> imageList) {
 }
 
 void ImageGallery::concurrentAddDir(const QString &path) {
-    class addDirTask : public QThread {
-    public:
-        addDirTask(ImageGallery *gallery, QDir pathDir) {
-            abort = false;
-            this->mGallery = gallery;
-            this->mPathDir = std::move(pathDir);
-        }
-
-        void run() override {
-            QStringList images = mPathDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
-
-                    foreach(QString imageName, images) {
-                    if (abort) return;
-
-                    QString localPath = mPathDir.path() + "/" + imageName;
-                    mGallery->addImage(QImage(localPath));
-                }
-        }
-
-        void quit() {
-            abort = true;
-        }
-
-    private:
-        ImageGallery *mGallery;
-        QDir mPathDir;
-        volatile bool abort;
-    };
-
-    //Auto deletes old pointer if that exists.
-    running.reset( new addDirTask(this, QDir(path)));
-
-    connect(this, &ImageGallery::sig_stopLoading, (addDirTask*) &*running, &addDirTask::quit);
-    connect(&*running, &QThread::finished, this, &ImageGallery::slot_isReady);
-
-    if (count() != 0) clear();
-    running->start();
-    mReady = false;
+    QStringList images;
+    QDir imgDir(path);
+    foreach(QString imageName, imgDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files)){
+        images.append(imgDir.absoluteFilePath(imageName));
+    }
+    concurrentAddDir(images);
 }
 
 void ImageGallery::concurrentAddDir(const QList<QImage> imageList) {
@@ -101,8 +69,15 @@ void ImageGallery::concurrentAddDir(const QList<QImage> imageList) {
 }
 
 void ImageGallery::concurrentAddDir(const QList<QString> imageList) {
-    auto task = QtConcurrent::run([this, imageList] { this->addDir(imageList); });
-    Q_UNUSED(task)
+    //Auto deletes old pointer if that exists.
+    running.reset( new addDirTask(this, imageList));
+
+    connect(this, &ImageGallery::sig_stopLoading, (addDirTask*) &*running, &addDirTask::quit);
+    connect(&*running, &QThread::finished, this, &ImageGallery::slot_isReady);
+
+    if (count() != 0) clear();
+    running->start();
+    mReady = false;
 }
 
 void ImageGallery::slot_isReady() {
@@ -167,9 +142,9 @@ ImageGallery::ImageGallery(QWidget *parent, const QStringList &images) {
     setDragEnabled(true);
     setAcceptDrops(true);
     setDefaultDropAction(Qt::MoveAction);
-
-    auto task = QtConcurrent::run([this, images] { this->addDir(images); });
-    Q_UNUSED(task)
+    concurrentAddDir(images);
+   // auto task = QtConcurrent::run([this, images] { this->addDir(images); });
+   // Q_UNUSED(task)
 }
 
 void ImageGallery::setQuadraticGrid(int rows) {

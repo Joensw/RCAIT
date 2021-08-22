@@ -93,6 +93,19 @@ signals:
      */
     void sig_imagesLoaded();
 
+
+
+    /**
+     * @brief sig_imagesUpdated signals completion of image loading.
+     */
+    void sig_imagesUpdated();
+
+    /**
+     * @brief sig_startLoading signals start of image loading.
+     */
+    void sig_startLoading();
+
+
 private:
     ImageLoader* m_imageLoader;
     ImageInspectionWidget* m_imageinspectionwidget;

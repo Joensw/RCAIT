@@ -27,37 +27,33 @@ void ImageInspectionWidget::on_pushButton_clicked()
 }
 
 void ImageInspectionWidget::setCurrentDataSetTrainImages(QMap<QString, QStringList> labelToPathsMap) {
-    ImageGalleryTree* newTree = new ImageGalleryTree(labelToPathsMap);
-    newTree->setObjectName("datasetTrainImages");
-    replaceGalleryTree(ui->datasetTrainImages, newTree);
-    ui->datasetTrainImages = newTree;
+    ui->datasetTrainImages->resetTree();
+    ui->datasetTrainImages->addLabels(labelToPathsMap);
 }
 
 void ImageInspectionWidget::setCurrentDataSetValidationImages(QMap<QString, QStringList> labelToPathsMap) {
-    ImageGalleryTree* newTree = new ImageGalleryTree(labelToPathsMap);
-    newTree->setObjectName("datasetValidationImages");
-    replaceGalleryTree(ui->datasetValidationImages, newTree);
-    ui->datasetValidationImages = newTree;
+    ui->datasetValidationImages->resetTree();
+    ui->datasetValidationImages->addLabels(labelToPathsMap);
 }
 
 void ImageInspectionWidget::setNewValidationImages(QMap<QString, QStringList> labelToPathsMap) {
-    ImageGalleryTree* newTree = new ImageGalleryTree(labelToPathsMap);
-    newTree->setObjectName("newValidationImages");
-    replaceGalleryTree(ui->newValidationImages, newTree);
-    ui->newValidationImages = newTree;
+    ui->newValidationImages->resetTree();
+    ui->newValidationImages->addLabels(labelToPathsMap);
 }
 
 void ImageInspectionWidget::setNewTrainImages(QMap<QString, QStringList> labelToPathsMap) {
-    ImageGalleryTree* newTree = new ImageGalleryTree(labelToPathsMap);
-    newTree->setObjectName("newTrainImages");
-    replaceGalleryTree(ui->newTrainImages, newTree);
-    ui->newTrainImages = newTree;
+    ui->newTrainImages->resetTree();
+    ui->newTrainImages->addLabels(labelToPathsMap);
 }
 
-void ImageInspectionWidget::replaceGalleryTree(ImageGalleryTree *oldGalleryTree, ImageGalleryTree *newGalleryTree) {
-    ui->gridLayout->replaceWidget(oldGalleryTree,newGalleryTree);
-    delete oldGalleryTree;
-    ui->gridLayout->update();
+void ImageInspectionWidget::slot_imagesUpdated()
+{
+    ui->pushButton_commit->setEnabled(true);
+}
+
+void ImageInspectionWidget::slot_startLoading()
+{
+    ui->pushButton_commit->setEnabled(false);
 }
 
 
