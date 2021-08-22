@@ -90,7 +90,12 @@ void AIController::slot_abortClassify()
 
 void AIController::slot_showAugmentationPreview()
 {
-//ToDo: Daria schreibt hier was passiert
+    QString pluginName = mDataManager->getCurrentClassificationPlugin();
+    QString modelName = mDataManager->getCurrentModel();
+    QString inputPath;
+    QString targetPath;
+    int amount;
+
     //call bool ClassificationPluginManager::getAugmentationPreview(QString pluginName, QString modelName, QString inputPath, QString targetPath, int amount)
 
 }
