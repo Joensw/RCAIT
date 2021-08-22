@@ -81,3 +81,6 @@ Backup of *.doc*
 
 #Python virtual environment
 venv/*
+
+#doxygen files
+out/*
