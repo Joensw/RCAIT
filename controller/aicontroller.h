@@ -66,9 +66,10 @@ public slots:
     void slot_abortClassify();
 
     /**
-     * @brief slot_showAugmentationPreview
+     * @brief slot_showAugmentationPreview tries to show augmentation preview when triggered.
+     * @param amount
      */
-    void slot_showAugmentationPreview();
+    void slot_showAugmentationPreview(int amount);
 
 
     /**

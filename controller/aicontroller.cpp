@@ -1,4 +1,5 @@
 #include "aicontroller.h"
+#include "imagegallery.h"
 
 
 AIController::AIController(DataManager *dataManager, InputImagesWidget *inputImagesWidget, AITrainingWidget *aiTrainingTab)
@@ -11,7 +12,8 @@ AIController::AIController(DataManager *dataManager, InputImagesWidget *inputIma
 
 
     //connect augmentation preview
-    //mAItrainingWIdget sig_showAugmentationPreview         AI Controller slot_showAugmentationPreview
+    //mAItrainingWIdget sig_showAugmentationPreview
+    connect(mAiTrainingWidget, &AITrainingWidget::sig_showAugmentationPreview, this, &AIController::slot_showAugmentationPreview);
 
 
 
@@ -88,15 +90,17 @@ void AIController::slot_abortClassify()
 
 }
 
-void AIController::slot_showAugmentationPreview()
+void AIController::slot_showAugmentationPreview(int amount)
 {
     QString pluginName = mDataManager->getCurrentClassificationPlugin();
     QString modelName = mDataManager->getCurrentModel();
     QString inputPath = mDataManager->getProjectImageTempDir();
     QString targetPath = mDataManager->getProjectAugTempDir();
-    int amount;
 
-    //call bool ClassificationPluginManager::getAugmentationPreview(QString pluginName, QString modelName, QString inputPath, QString targetPath, int amount)
+    /*if (!ClassificationPluginManager::getInstance().getAugmentationPreview(pluginName, modelName, inputPath, targetPath, amount)) {
+    qDebug()<<"AIController::sl ot_showAugmentationPreview(int amount) : getAugmentationPreview returns false";
+    return;
+    } */
 
 }
 
