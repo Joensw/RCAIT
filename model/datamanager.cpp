@@ -164,6 +164,11 @@ QWidget *DataManager::getInputWidget()
     return mModelManager->getInputWidget();
 }
 
+QWidget *DataManager::getDataAugmentationInputWidget()
+{
+    return mModelManager->getDataAugmentationInputWidget();
+}
+
 QStringList DataManager::getImageLoaderPluginNames() {
     return mSettingsManager->getImageLoaderPluginNames();
 }

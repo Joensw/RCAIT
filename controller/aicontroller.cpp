@@ -103,5 +103,5 @@ void AIController::slot_showAugmentationPreview()
 void AIController::slot_modelLoaded()
 {
     mAiTrainingWidget->setAIConfigWidget(mDataManager->getInputWidget());
-    //mAiTrainingWidget->setDataAugWidget(mDataManager->getDataAugWidget)
+    mAiTrainingWidget->setDataAugWidget(mDataManager->getDataAugmentationInputWidget());
 }
