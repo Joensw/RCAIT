@@ -94,7 +94,7 @@ void AIController::slot_showAugmentationPreview(int amount)
 {
     QString pluginName = mDataManager->getCurrentClassificationPlugin();
     QString modelName = mDataManager->getCurrentModel();
-    QString inputPath = mDataManager->getProjectImageTempDir();
+    QString inputPath = mDataManager->getProjectDataSetTrainSubdir();
     QString targetPath = mDataManager->getProjectAugTempDir();
 
     /*if (!ClassificationPluginManager::getInstance().getAugmentationPreview(pluginName, modelName, inputPath, targetPath, amount)) {
