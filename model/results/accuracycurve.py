@@ -1,6 +1,7 @@
 # confusion_matrix
 import argparse
 import ast
+import os
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -71,10 +72,12 @@ if __name__ == '__main__':
     file_name = args.outfilename
 
     # specify the custom font to use
-    font_path = 'Inter-Regular.otf'
+    font_path = os.path.join(os.path.dirname(__file__), 'Inter-Regular.otf')
+    font_manager.fontManager.addfont(font_path)
     prop = font_manager.FontProperties(fname=font_path)
-    plt.rcParams['font.family'] = 'sans-serif'
-    plt.rcParams['font.sans-serif'] = prop.get_name()
+    family = str(prop.get_family()[0])
+    plt.rcParams['font.family'] = family
+    plt.rcParams['font.{}'.format(family)] = str(prop.get_name())
     plt.rcParams['font.size'] = 12
 
     plot_acc_curve(data, file_name)
