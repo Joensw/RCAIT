@@ -92,8 +92,8 @@ void AIController::slot_showAugmentationPreview()
 {
     QString pluginName = mDataManager->getCurrentClassificationPlugin();
     QString modelName = mDataManager->getCurrentModel();
-    QString inputPath;
-    QString targetPath;
+    QString inputPath = mDataManager->getProjectImageTempDir();
+    QString targetPath = mDataManager->getProjectAugTempDir();
     int amount;
 
     //call bool ClassificationPluginManager::getAugmentationPreview(QString pluginName, QString modelName, QString inputPath, QString targetPath, int amount)
