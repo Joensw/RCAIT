@@ -105,5 +105,10 @@ QString ModelManager::recallPluginNameOfModell(QString projectName, QString mode
 }
 
 QWidget * ModelManager::getInputWidget(){
-    return mClassificationPluginManager->getInputWidget(mCurrentModel);
+    return mClassificationPluginManager->getInputWidget(mCurrentPlugin);
+}
+
+QWidget *ModelManager::getDataAugmentationInputWidget()
+{
+    return mClassificationPluginManager->getDataAugmentationInputWidget(mCurrentPlugin);
 }

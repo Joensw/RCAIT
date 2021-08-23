@@ -29,7 +29,7 @@ void InputImagesWidget::on_selectFolderButton_clicked()
      if (path == nullptr) return;
      ui->preview->clearAndStop();
      ui->preview->setEnabled(true);
-     ui->preview->concurrentAddDir(path);
+     ui->preview->concurrentAddImages(path);
      ui->classifyButton->setEnabled(true);
 }
 

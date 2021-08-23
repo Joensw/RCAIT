@@ -271,6 +271,11 @@ public:
      * @return the input UI of the current classification plugin that is to be shown
      */
     QWidget *getInputWidget();
+
+    /**
+     * @return the input UI of the current classification plugins data augmentation settings that are to be shown
+     */
+    QWidget * getDataAugmentationInputWidget();
 private:
     //TODO: Singleton adaption
     ProjectManager* mProjectManager;

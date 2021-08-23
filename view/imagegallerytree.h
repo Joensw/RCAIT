@@ -4,41 +4,48 @@
 #include "imagegallery.h"
 
 #include <QTreeWidget>
+
 /**
- * @brief The ImageGalleryTree class is a UI class that display a tree structure of images from directories
+ * @brief The ImageGalleryTree class is a UI class that display a tree structure of images from directories.
+ *
  */
 class ImageGalleryTree : public QTreeWidget
 {
 public:
 
-    enum ImageLoadType
-    {
-        FromDirectory  = 1,
-        FromMap  = 2,
-    };
     /**
-     * @brief ImageGalleryTree creates a new ImageGalleryTree
+     * @brief ImageGalleryTree creates a new ImageGalleryTree.
+     *
      * @param parent optional parent argument
      */
     ImageGalleryTree(QWidget* parent);
 
-
+    /**
+     * @brief resetTree removes all galleries and their corresponding labels from the tree.
+     *
+     */
     void resetTree();
 
     /**
-     * @brief addDir add a directory to the displayed directories
+     * @brief addLabel adds a label with images.
+     *
+     * @param label label of images
+     * @param images images to add
      */
-    void addDir(QString);
-
     void addLabel(QString label, QStringList images);
+
+    /**
+     * @brief addLabels adds multiple labels with images.
+     *
+     * @param labelToPathsMap map of labels and image path lists
+     */
     void addLabels(QMap<QString, QStringList> labelToPathsMap);
-    QMap<QString,QList<int>> getSelected();
 
     /**
      * @brief removeSelected remove images selected in the UI
      */
     QMap<QString, QList<int>> removeSelected();
-    void test();
+
 private:
     QList<ImageGallery*> galleries;
 

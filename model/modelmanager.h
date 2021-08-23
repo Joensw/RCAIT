@@ -51,6 +51,11 @@ public:
     QWidget * getInputWidget();
 
     /**
+     * @return the input UI of the current classification plugins data augmentation settings that are to be shown
+     */
+    QWidget * getDataAugmentationInputWidget();
+
+    /**
      * @return the currently loaded model
      */
     QString getCurrentModel();

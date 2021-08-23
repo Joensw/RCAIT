@@ -7,7 +7,10 @@
 #include <QThread>
 #include <view/aspectratiolabel.h>
 
-
+/**
+ * @brief The ImageGallery class shows a list of images.
+ *
+ */
 class ImageGallery : public QListWidget
 {
     Q_OBJECT
@@ -15,80 +18,126 @@ class ImageGallery : public QListWidget
 public:
 
     /**
-     * @brief ImageGallery::ImageGallery
-     * @param parent
+     * @brief ImageGallery constructs a new ImageGallery.
      *
-     * Creates an empty ImageGallery. Use this constructor instead of ImageGallery(QWidget *parent, const QDir& imageDirectory).
+     * @param parent optional parent widget
      */
     explicit ImageGallery(QWidget *parent = nullptr);
-    ImageGallery(QWidget *parent, int row, int collums);
-
-
-    ImageGallery(QWidget *parent, const QStringList& images);
 
     ~ImageGallery();
 
 
     /**
-     * @brief removeselected
+     * @brief removeselected removes all selected images from the gallery.
+     *
      */
     QList<int> removeselected();
 
     /**
-     * @brief addDir
-     * @param imageDir
+     * @brief addImages adds images from paths to gallery.
      *
-     * Adds images in a directory to the imagelist
+     * @param pathList list of image paths
      */
-    void addDir(const QStringList& imageDir);
-
-    void addDir(QList<QImage> imageList);
+    void addImages(const QStringList& pathList);
 
     /**
-     * @brief addDir
-     * @param imageDir
+     * @brief addImages adds images from an imagelist to gallery.
      *
-     * Runs addDir(QDir) concurrently.
+     * @param imageList list of images
      */
-    void concurrentAddDir(const QString& path);
+    void addImages(QList<QImage> imageList);
 
+    /**
+     * @brief concurrentAddImages adds images of directory concurrently.
+     *
+     * @param path directory path
+     */
+    void concurrentAddImages(const QString& path);
+
+    /**
+     * @brief concurrentAddImages adds images from an imagelist concurrently.
+     *
+     * @param imageList list of images
+     */
+    void concurrentAddImages(const QList<QImage> imageList);
+
+    /**
+     * @brief addImages adds images from paths to gallery concurrently.
+     *
+     * @param pathList list of image paths
+     */
+    void concurrentAddImages(const QStringList pathList);
+
+    /**
+     * @brief addImage adds an image to gallery.
+     *
+     * @param image image to add
+     */
     void addImage(const QImage& image);
 
     /**
-     * @brief setDragDropEnabled
-     * @param var
+     * @brief setDragDropEnabled enables/disables drag&drop in the gallery.
      *
+     * @param var true or false
      */
     void setDragDropEnabled(bool var);
 
+    /**
+     * @brief minimumSizeHint gets minimum size of gallery.
+     *
+     * @return size hint
+     */
     QSize minimumSizeHint() const override;
-    QSize sizeHint() const override;
-
-    void clearAndStop();
-
-    void concurrentAddDir(const QList<QImage> imageList);
-
-
-    void concurrentAddDir(const QStringList imageList);
 
     /**
-     * @brief setQuadraticGrid sets fixed number of rows and collums for imagegallery;
+     * @brief sizeHint gets preferred size of gallery.
+     *
+     * @return size hint
+     */
+    QSize sizeHint() const override;
+
+    /**
+     * @brief clearAndStop clears a gallery and stops all concurrent load tasks.
+     *
+     */
+    void clearAndStop();
+
+    /**
+     * @brief setQuadraticGrid sets fixed number of rows and collums for gallery.
+     *
      * @param rows number of rows and collums
      */
     void setQuadraticGrid(int rows);
-private slots:
-    void slot_isReady();
+
 
 signals:
+
+    /**
+     * @brief sig_stopLoading signals running loading tasks to stop.
+     *
+     */
     void sig_stopLoading();
 
 protected slots:
+
+    /**
+     * @brief resizeEvent assures quadratic gallery on resize if quadratic grid is used, else default resize.
+     *
+     * @param e resize event
+     */
     void resizeEvent(QResizeEvent *e);
+
+private slots:
+    void slot_isReady();
+
+
+
 private:
 
-    class addDirTask : public QThread {
+    // used for adding images concurrently, safely stoppable
+    class addImagesTask : public QThread {
     public:
-        addDirTask(ImageGallery *gallery, QStringList imageList) {
+        addImagesTask(ImageGallery *gallery, QStringList imageList) {
             abort = false;
             this->mGallery = gallery;
             this->mImageList = std::move(imageList);
