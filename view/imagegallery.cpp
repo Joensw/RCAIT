@@ -42,37 +42,37 @@ QList<int> ImageGallery::removeselected() {
     return selected;
 }
 
-void ImageGallery::addDir(const QStringList &imageDirectory) {
+void ImageGallery::addImages(const QStringList &imageDirectory) {
             foreach(QString imageName, imageDirectory) {
             addImage(QImage(imageName));
         }
 }
 
-void ImageGallery::addDir(QList<QImage> imageList) {
+void ImageGallery::addImages(QList<QImage> imageList) {
             foreach(QImage image, imageList) {
             addImage(image);
         }
 }
 
-void ImageGallery::concurrentAddDir(const QString &path) {
+void ImageGallery::concurrentAddImages(const QString &path) {
     QStringList images;
     QDir imgDir(path);
     foreach(QString imageName, imgDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files)){
         images.append(imgDir.absoluteFilePath(imageName));
     }
-    concurrentAddDir(images);
+    concurrentAddImages(images);
 }
 
-void ImageGallery::concurrentAddDir(const QList<QImage> imageList) {
-    auto task = QtConcurrent::run([this, imageList] { this->addDir(imageList); });
+void ImageGallery::concurrentAddImages(const QList<QImage> imageList) {
+    auto task = QtConcurrent::run([this, imageList] { this->addImages(imageList); });
     Q_UNUSED(task)
 }
 
-void ImageGallery::concurrentAddDir(const QList<QString> imageList) {
+void ImageGallery::concurrentAddImages(const QList<QString> imageList) {
     //Auto deletes old pointer if that exists.
-    running.reset( new addDirTask(this, imageList));
+    running.reset( new addImagesTask(this, imageList));
 
-    connect(this, &ImageGallery::sig_stopLoading, (addDirTask*) &*running, &addDirTask::quit);
+    connect(this, &ImageGallery::sig_stopLoading, (addImagesTask*) &*running, &addImagesTask::quit);
     connect(&*running, &QThread::finished, this, &ImageGallery::slot_isReady);
 
     if (count() != 0) clear();
@@ -125,26 +125,6 @@ void ImageGallery::clearAndStop() {
         QThread::sleep(1);
     }
     if (count() != 0) clear();
-}
-
-ImageGallery::ImageGallery(QWidget *parent, const QStringList &images) {
-
-    setMovement(QListView::Static);
-    setParent(parent);
-    setViewMode(ViewMode::IconMode);
-    setSelectionMode(QListView::MultiSelection);
-    setIconSize(QSize(100, 100));
-    setFlow(QListWidget::LeftToRight);
-    setResizeMode(QListWidget::Adjust);
-    setUniformItemSizes(true);
-
-
-    setDragEnabled(true);
-    setAcceptDrops(true);
-    setDefaultDropAction(Qt::MoveAction);
-    concurrentAddDir(images);
-   // auto task = QtConcurrent::run([this, images] { this->addDir(images); });
-   // Q_UNUSED(task)
 }
 
 void ImageGallery::setQuadraticGrid(int rows) {
