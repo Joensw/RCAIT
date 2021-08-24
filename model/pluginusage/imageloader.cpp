@@ -25,9 +25,10 @@ void ImageLoader::handleResults() {
     m_worker.reset();
     emit sig_progress(100);
     emit sig_imagesReady();
-    qDebug() << "Plugin finished and thread deleted";
     //if this object is not deleted threads never die and the signal operate starts all created threads
-    delete this;
+    imageloadThread.quit();
+    imageloadThread.wait();
+    qDebug() << "Plugin finished and thread deleted";
 }
 
 void ImageLoader::slot_makeProgress(int progress)
