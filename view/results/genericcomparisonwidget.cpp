@@ -74,8 +74,10 @@ void GenericComparisonWidget::slot_comparisonMenu_triggered(QAction *action) {
 
 void GenericComparisonWidget::slot_updateSaveButton(int index) {
     auto widget = m_tabWidget->widget(index);
+    if (widget != nullptr){ //Added this here because the program would always crash on close
     auto tab = dynamic_cast<GenericGraphicsView *>(widget);
     m_pushButton_saveCurrentTab->setEnabled(!tab->isSaved());
+    }
 }
 
 void GenericComparisonWidget::on_pushButton_saveCurrentTab_clicked() {

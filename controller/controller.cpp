@@ -41,6 +41,8 @@ void Controller::slot_configurationComplete() {
     connect(&*mImageController, &ImageController::sig_imagesLoaded, &*mTabController, &TabController::slot_imagesLoaded);
     connect(&*mModelController, &ModelController::sig_modelLoaded, &*mTabController, &TabController::slot_modelLoaded);
 
+    connect(&*mModelController, &ModelController::sig_modelLoaded, &*mAiController, &AIController::slot_modelLoaded);
+
     connect(&*mSettingsController, &SettingsController::sig_imagePluginsDirectoryChanged, &*mImageController,
             &ImageController::slot_imagePluginDirectoryChanged);
     connect(&*mProjectController, &ProjectController::sig_projectPathUpdated, &*mResultsController,
