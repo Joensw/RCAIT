@@ -46,12 +46,14 @@ void AITrainingWidget::on_resultsButton_clicked()
 
 void AITrainingWidget::setDataAugWidget(QWidget *replacement)
 {
-    ui->gridLayout_dataAug->replaceWidget(ui->dataAugWidget, replacement);
+    //ui->gridLayout_dataAug->replaceWidget(ui->dataAugWidget, replacement);
+    ui->scrollArea_augmentation->setWidget(replacement);
 }
 
 void AITrainingWidget::setAIConfigWidget(QWidget *replacement)
 {
-    ui->gridLayout_AIconfig->replaceWidget(ui->AIConfigWidget, replacement);
+    //ui->gridLayout_AIconfig->replaceWidget(ui->AIConfigWidget, replacement);
+    ui->scrollArea_configuration->setWidget(replacement);
 }
 
 void AITrainingWidget::on_previewButton_clicked()
