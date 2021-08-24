@@ -4,9 +4,9 @@
 #include <trainingresultview.h>
 #include <QProcess>
 #include <QtConcurrent/QtConcurrentRun>
-#include "abstractresultgraphics.h"
+#include "genericresultgraphics.h"
 
-AbstractResultGraphics::AbstractResultGraphics(const QString &directory, QString baseName, QString extension)
+GenericResultGraphics::GenericResultGraphics(const QString &directory, QString baseName, QString extension)
         : m_baseName(std::move(baseName)),
           m_extension(std::move(extension)),
           m_fullName(m_baseName + '.' + m_extension),
@@ -15,7 +15,7 @@ AbstractResultGraphics::AbstractResultGraphics(const QString &directory, QString
 
 }
 
-void AbstractResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
+void GenericResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
     auto generateGraphicsTask = QtConcurrent::run([this, receiver] {
         this->generateGraphicsInternal('"' + m_fullPath + '"');
         this->passResultGraphics(m_fullPath, receiver);
@@ -23,27 +23,27 @@ void AbstractResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
     Q_UNUSED(generateGraphicsTask)
 }
 
-const QString &AbstractResultGraphics::getBaseName() const {
+const QString &GenericResultGraphics::getBaseName() const {
     return m_baseName;
 }
 
-const QString &AbstractResultGraphics::getExtension() const {
+const QString &GenericResultGraphics::getExtension() const {
     return m_extension;
 }
 
-const QString &AbstractResultGraphics::getFullName() const {
+const QString &GenericResultGraphics::getFullName() const {
     return m_fullName;
 }
 
-const QString &AbstractResultGraphics::getDirectory() const {
+const QString &GenericResultGraphics::getDirectory() const {
     return m_directory;
 }
 
-const QString &AbstractResultGraphics::getFullPath() const {
+const QString &GenericResultGraphics::getFullPath() const {
     return m_fullPath;
 }
 
-void AbstractResultGraphics::launch_externalGraphicsGenerator(const QString &command, const QStringList &args) {
+void GenericResultGraphics::launch_externalGraphicsGenerator(const QString &command, const QStringList &args) {
     auto *process = new QProcess();
     auto commandWithArgs = command + " " + args.join(" ");
     process->startCommand(commandWithArgs);

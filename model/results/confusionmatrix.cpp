@@ -5,7 +5,7 @@ ConfusionMatrix::ConfusionMatrix(const QString &directory,
                                  const QString &identifier,
                                  const QStringList &classLabels,
                                  const QList<int> &values)
-        : AbstractResultGraphics(directory, "confusionmatrix_" + identifier, "svg"),
+        : GenericResultGraphics(directory, "confusionmatrix_" + identifier, "svg"),
           m_size(classLabels.size()) {
 
     if (classLabels.isEmpty()) {
@@ -28,7 +28,7 @@ void ConfusionMatrix::generateGraphicsInternal(const QString &fullFilePath) {
     QStringList params =
             QStringList() << file.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fullFilePath
                           << "--normalized";
-    AbstractResultGraphics::launch_externalGraphicsGenerator("python", params);
+    GenericResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 
 /**

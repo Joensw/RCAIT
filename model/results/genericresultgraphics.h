@@ -7,7 +7,7 @@
 #include <QThread>
 #include <QRunnable>
 
-class AbstractResultGraphics {
+class GenericResultGraphics {
 
 private:
     const QString m_baseName;
@@ -21,7 +21,7 @@ private:
     virtual void passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) = 0;
 
 public:
-    AbstractResultGraphics(const QString& directory, QString baseName, QString extension);
+    GenericResultGraphics(const QString& directory, QString baseName, QString extension);
 
     void generateGraphics(GenericGraphicsView *receiver);
 

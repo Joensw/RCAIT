@@ -4,9 +4,9 @@
 
 #include <QGraphicsItem>
 #include <trainingresultview.h>
-#include "abstractresultgraphics.h"
+#include "genericresultgraphics.h"
 
-class AccuracyCurve : public AbstractResultGraphics{
+class AccuracyCurve : public GenericResultGraphics{
 public:
     AccuracyCurve(const QString &directory, const QString &identifier,
                   const QMap<int, QPair<double, double>> &data);

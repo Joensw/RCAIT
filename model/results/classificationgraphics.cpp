@@ -5,7 +5,7 @@
 
 ClassificationGraphics::ClassificationGraphics(const QString &directory, const QString &identifier,
                                                const QMap<QString, QList<double>> &data)
-        : AbstractResultGraphics(directory, "classification_" + identifier, "svg") {
+        : GenericResultGraphics(directory, "classification_" + identifier, "svg") {
 
     m_data = data;
 }
@@ -60,7 +60,7 @@ void ClassificationGraphics::generateGraphicsInternal(const QString &fullFilePat
     auto pyScript = QFileInfo("classificationgraphics.py");
     QStringList params =
             QStringList() << pyScript.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fullFilePath;
-    AbstractResultGraphics::launch_externalGraphicsGenerator("python", params);
+    GenericResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 
 void ClassificationGraphics::passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) {

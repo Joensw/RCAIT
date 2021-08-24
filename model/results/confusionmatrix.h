@@ -7,9 +7,9 @@
 #include <QGraphicsSvgItem>
 #include <QDir>
 #include <trainingresultview.h>
-#include "abstractresultgraphics.h"
+#include "genericresultgraphics.h"
 
-class ConfusionMatrix : public AbstractResultGraphics {
+class ConfusionMatrix : public GenericResultGraphics {
 public:
 
     ConfusionMatrix(const QString &directory, const QString &identifier,

@@ -4,9 +4,9 @@
 #include <QMap>
 #include <QGraphicsSvgItem>
 #include <genericgraphicsview.h>
-#include "abstractresultgraphics.h"
+#include "genericresultgraphics.h"
 
-class TopAccuraciesGraphics : public AbstractResultGraphics {
+class TopAccuraciesGraphics : public GenericResultGraphics {
 public:
     explicit TopAccuraciesGraphics(const QString &directory,
                                    const QList<QPair<QString, QList<double>>> &data = {});

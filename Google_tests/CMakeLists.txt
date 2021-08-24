@@ -86,8 +86,8 @@ set(Sources
         ../model/results/confusionmatrix.h
         ../model/results/accuracycurve.cpp
         ../model/results/accuracycurve.h
-        ../model/results/abstractresultgraphics.cpp
-        ../model/results/abstractresultgraphics.h
+        ../model/results/genericresultgraphics.cpp
+        ../model/results/genericresultgraphics.h
         ../model/results/classificationgraphics.h
         ../model/results/classificationgraphics.cpp
 

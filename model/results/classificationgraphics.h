@@ -4,9 +4,9 @@
 #include <QMap>
 #include <QGraphicsSvgItem>
 #include <genericgraphicsview.h>
-#include "abstractresultgraphics.h"
+#include "genericresultgraphics.h"
 
-class ClassificationGraphics : public AbstractResultGraphics {
+class ClassificationGraphics : public GenericResultGraphics {
 
 public:
     ClassificationGraphics(const QString &directory, const QString &identifier,

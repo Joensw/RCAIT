@@ -3,7 +3,7 @@
 
 TopAccuraciesGraphics::TopAccuraciesGraphics(const QString &directory,
                                              const QList<QPair<QString, QList<double>>> &data)
-        : AbstractResultGraphics(directory, "topaccuracies", "svg") {
+        : GenericResultGraphics(directory, "topaccuracies", "svg") {
 
     m_data = data;
 }
@@ -76,7 +76,7 @@ void TopAccuraciesGraphics::generateGraphicsInternal(const QString &fullFilePath
     auto pyScript = QFileInfo("topaccuraciesgraphics.py");
     QStringList params =
             QStringList() << pyScript.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fullFilePath;
-    AbstractResultGraphics::launch_externalGraphicsGenerator("python", params);
+    GenericResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 
 void TopAccuraciesGraphics::passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) {
