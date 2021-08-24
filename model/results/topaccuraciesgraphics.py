@@ -84,9 +84,9 @@ if __name__ == '__main__':
                                                  'an image.')
     parser.add_argument('accuracies_data', metavar='data',
                         help='Raw table data of the accuracies, formatted as a python array')
-    parser.add_argument('row_labels', metavar='labels',
+    parser.add_argument('row_labels', metavar='labels', type=str,
                         help='List of row labels, formatted as python array')
-    parser.add_argument('outfile_name', metavar='outfile',
+    parser.add_argument('outfile_name', metavar='outfile', type=str,
                         help='Output file name including extension')
 
     args = parser.parse_args()

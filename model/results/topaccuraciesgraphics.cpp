@@ -31,7 +31,8 @@ QString TopAccuraciesGraphics::labelsToPyText() {
     for (const auto &[key, _] : m_data) {
         results << QString("'%1'").arg(key);
     }
-    return '[' + results.join(',') + ']';
+    //Add "" around string so that dashes are not recognized as new arguments
+    return '"' + ('[' + results.join(',') + ']') + '"';
 }
 
 void TopAccuraciesGraphics::addDataRow(const QString &identifier, const QList<double> &data) {
