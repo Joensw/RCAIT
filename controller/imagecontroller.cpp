@@ -17,6 +17,7 @@ m_importFilesWidget = importFilesWidget;
 connect(m_importFilesWidget, &ImportFilesWidget::sig_loadInputImages, this, &ImageController::slot_loadInputImages);
 connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_mergeDatasets, this, &ImageController::slot_mergeDatasets);
 connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_removeImages, this, &ImageController::slot_remove);
+connect(m_importFilesWidget, &ImportFilesWidget::sig_abortLoading, this, &ImageController::slot_abortLoading);
 
 }
 
@@ -36,9 +37,9 @@ void ImageController::slot_loadInputImages(QString pluginName, int count, QStrin
 
 }
 
-//void ImageController::slot_confirm() {
-
-//}
+void ImageController::slot_abortLoading() {
+    emit m_imageLoader->sig_pluginAborted();
+}
 
 void ImageController::slot_imagesReady()
 {

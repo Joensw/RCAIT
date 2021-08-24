@@ -77,6 +77,9 @@ void ImportFilesWidget::on_pushButton_loadModel_clicked() {
 
 
 void ImportFilesWidget::on_pushButton_loadImages_clicked() {
+    ui->pushButton_loadImages->setEnabled(false);
+    ui->pushButton_abortLoading->setEnabled(true);
+
     std::vector<QString> labelsVector = ui->lineEdit_labels->tags();
     QStringList labelsList;
     for (QString label : labelsVector) {
@@ -95,6 +98,10 @@ void ImportFilesWidget::setAvailablePlugins(QStringList pluginNames) {
 
 void ImportFilesWidget::updateProgressBar(int progress) {
     ui->progressBar_images->setValue(progress);
+    if (progress == 100){
+        ui->pushButton_loadImages->setEnabled(true);
+        ui->pushButton_abortLoading->setEnabled(false);
+    }
 }
 
 void ImportFilesWidget::updateStatusText(QString status) {
@@ -128,5 +135,12 @@ void ImportFilesWidget::on_pushButton_loadLabelsFromFile_clicked() {
     }
 
     ui->lineEdit_labels->tags(labelsVector);
+}
+
+
+void ImportFilesWidget::on_pushButton_abortLoading_clicked()
+{
+    emit sig_abortLoading();
+    ui->pushButton_abortLoading->setEnabled(false);
 }
 
