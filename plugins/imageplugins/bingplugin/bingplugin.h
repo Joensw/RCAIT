@@ -115,9 +115,8 @@ public:
      */
     QWidget*  getInputWidget() override;
 
-
-
 private slots:
+    void slot_abort();
     void slot_readOutPut();
     void slot_pluginFinished();
 

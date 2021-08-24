@@ -31,7 +31,7 @@ public:
     QString getName() override;
     QWidget*  getInputWidget() override;
 
-public slots:
+private slots:
     void slot_abort();
 
 private:
