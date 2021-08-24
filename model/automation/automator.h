@@ -126,6 +126,12 @@ signals:
      */
     void sig_progress(int progress);
 
+    /**
+     * @brief sig_finished signals completion of all tasks.
+     *
+     */
+    void sig_finished();
+
 
 private:
     QList<Task*> mUnqueuedTasks;
