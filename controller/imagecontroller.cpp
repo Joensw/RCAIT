@@ -29,12 +29,10 @@ void ImageController::slot_loadInputImages(QString pluginName, int count, QStrin
 
     QString tempDir = m_dataManager->getProjectImageTempDir();
     m_imageLoader = new ImageLoader();
-    m_imageLoader->loadInputImages(count,labels,pluginName,tempDir);
     connect(m_imageLoader, &ImageLoader::sig_progress, this, &ImageController::slot_handelImageLoadProgress);
     connect(m_imageLoader, &ImageLoader::sig_imagesReady, this, &ImageController::slot_imagesReady);
     connect(m_imageLoader, &ImageLoader::sig_statusUpdate, this, &ImageController::slot_updateImageLoadStatusText);
-    m_imageLoader->load();
-
+    m_imageLoader->loadInputImages(count,labels,pluginName,tempDir);
 }
 
 void ImageController::slot_abortLoading() {
