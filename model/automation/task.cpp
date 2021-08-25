@@ -111,6 +111,11 @@ void Task::abort()
     mAbort = true;
     emit sig_pluginAborted();
     emit sig_progress(100);
+    while (true){
+        if (mState == FAILED || mState == COMPLETED) return;
+        QApplication::processEvents();
+        QThread::sleep(1);
+    }
 }
 
 void Task::slot_makeProgress(int progress)
