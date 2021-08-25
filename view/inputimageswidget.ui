@@ -83,7 +83,7 @@
   <customwidget>
    <class>ImageGallery</class>
    <extends>QListWidget</extends>
-   <header>imagegallery.h</header>
+   <header location="global">imagegallery.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -35,6 +35,7 @@ public:
     void setAIConfigWidget(QWidget * replacement);
 
 
+    void showImages(const QString &path);
 public slots:
     /**
      * @brief slot_progress update the progress bar shown in the UI representing the progress of the training

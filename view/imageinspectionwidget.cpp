@@ -16,7 +16,7 @@ ImageInspectionWidget::~ImageInspectionWidget()
 {
     delete ui;
 }
-
+//FIXME: where is an error QMetaObject::connectSlotsByName: No matching signal for on_pushButton_clicked()
 void ImageInspectionWidget::on_pushButton_clicked()
 {
 
