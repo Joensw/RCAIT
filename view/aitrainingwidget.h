@@ -34,8 +34,13 @@ public:
 
     void setAIConfigWidget(QWidget * replacement);
 
+    /**
+     * @brief showImages update Augmentation Preview tab with images from folder
+     * @param path path to folder with images
+     */
 
     void showImages(const QString &path);
+
 public slots:
     /**
      * @brief slot_progress update the progress bar shown in the UI representing the progress of the training
