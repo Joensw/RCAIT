@@ -29,12 +29,15 @@ void Automator::performTasks()
         tasksCompleted++;
     }
     emit sig_progress(100);
+    emit sig_finished();
 }
 
 void Automator::stopTasks()
 {
     stop = true;
-    (*mRunningTask)->abort();
+    if (mRunningTask != mQueuedTasks.end()){
+        (*mRunningTask)->abort();
+    }
 }
 
 void Automator::addTasks(QString path)
