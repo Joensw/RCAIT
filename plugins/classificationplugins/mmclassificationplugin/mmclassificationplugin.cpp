@@ -88,6 +88,16 @@ bool MMClassificationPlugin::checkTrainMethodInput(QStringList labels, QString m
     return !labels.isEmpty() && mainConfigInfo.exists() && trainDatasetInfo.exists() && validationDatasetInfo.exists() && workingDirectoryInfo.exists();
 }
 
+void MMClassificationPlugin::adjustCheckpointCreation(QString runtimeConfigPath, int max_iters)
+{
+    const int defaultCheckpointCreationStep = 1000;
+    if (max_iters % defaultCheckpointCreationStep != 0) {
+        m_mmClassificationConfigFileBuilder.changeCheckpointCreationStep(runtimeConfigPath, max_iters);
+    } else {
+        m_mmClassificationConfigFileBuilder.changeCheckpointCreationStep(runtimeConfigPath, defaultCheckpointCreationStep);
+    }
+}
+
 QString MMClassificationPlugin::getName()
 {
     return m_name;
@@ -135,6 +145,7 @@ bool MMClassificationPlugin::createNewModel(QString modelName, QString baseModel
     const QString modelConfigIdentifier = "_model";
     const QString datasetConfigIdentifier = "_dataset";
     const QString scheduleConfigIdentifier = "_schedule";
+    const QString runtimeConfigIdentifier = "_runtime";
     const QString mainConfigIdentifier = "_main";
     bool validBaseModel = false;
     QString baseModelPath;
@@ -153,8 +164,7 @@ bool MMClassificationPlugin::createNewModel(QString modelName, QString baseModel
         QString modelConfigPath = m_mmClassificationConfigFileBuilder.createModelConfigFile(modelName + modelConfigIdentifier, baseModelPath);
         QString datasetConfigPath = m_mmClassificationConfigFileBuilder.createDatasetConfigFile(modelName + datasetConfigIdentifier);
         QString scheduleConfigPath = m_mmClassificationConfigFileBuilder.createScheduleConfigFile(modelName + scheduleConfigIdentifier);
-        // default runtime is sufficient in most cases
-        QString defaultRuntimePath = m_mmClassificationConfigFileBuilder.getDefaultRuntimeConfigFilePath();
+        QString defaultRuntimePath = m_mmClassificationConfigFileBuilder.createRuntimeConfigFile(modelName + runtimeConfigIdentifier);
         QString checkpointFilePath = m_mmClassificationSettings.getMMClassificationPath() + QDir::fromNativeSeparators(QDir::separator())
                 + m_subfolder_checkpoints + QDir::fromNativeSeparators(QDir::separator()) + checkpointFileName;
 
@@ -389,7 +399,8 @@ TrainingResult* MMClassificationPlugin::train(QString modelName, QString trainDa
     m_mmClassificationConfigFileBuilder.changeScheduleOptions(scheduleConfigPath, max_iters);
 
     // copy and change runtime config if checkpoint creation and max_iters does not fit
-    // to do
+    QString runtimeConfigPath = loadModel(modelName).getRuntimeConfigPath();
+    adjustCheckpointCreation(runtimeConfigPath, max_iters);
 
     int cudaDeviceNumber = m_mmClassificationInput->getCudaDevice();
 
