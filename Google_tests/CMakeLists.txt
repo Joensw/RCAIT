@@ -47,8 +47,6 @@ set(Sources
         ../model/pluginusage/classificationthread.cpp
         ../model/pluginusage/trainingsthread.h
         ../model/pluginusage/trainingsthread.cpp
-        ../model/pluginusage/imagesearchthread.h
-        ../model/pluginusage/imagesearchthread.cpp
         ../model/pluginusage/imageloader.h
         ../model/pluginusage/imageloader.cpp
         ../model/automation/command.h

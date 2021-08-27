@@ -1,33 +1,23 @@
 #include "model/pluginusage/imageloader.h"
+#include <QtConcurrent/QtConcurrent>
 
 ImageLoader::ImageLoader()= default;
 
 void ImageLoader::loadInputImages(int count, QStringList labels, QString pluginName, QString tempImageDir)
 {
-    m_worker.reset(new ImageSearchThread((ProgressablePlugin*) this, tempImageDir,pluginName,count, labels));
-    m_worker->moveToThread(&imageloadThread);
-    connect(&imageloadThread, &QThread::finished, &*m_worker, &QObject::deleteLater);
-    connect(&imageloadThread, &QThread::finished, this, &ImageLoader::handleResults);
-    connect(this, &ImageLoader::operate, &*m_worker, &ImageSearchThread::loadImages);
     connect(this, &ImageLoader::sig_pluginFinished, this, &ImageLoader::handleResults);
-    imageloadThread.start();
-}
-
-void ImageLoader::load()
-{
+    auto task = QtConcurrent::run(&ImageLoaderPluginManager::loadImages, &mManager, tempImageDir, (ProgressablePlugin*) this, pluginName, count, labels);
+    Q_UNUSED(task);
     emit sig_progress(0);
-    emit operate();
-
 }
+
 
 
 void ImageLoader::handleResults() {
-    m_worker.reset();
     emit sig_progress(100);
     emit sig_imagesReady();
-    qDebug() << "Plugin finished and thread deleted";
     //if this object is not deleted threads never die and the signal operate starts all created threads
-    delete this;
+    qDebug() << "Plugin finished and thread deleted";
 }
 
 void ImageLoader::slot_makeProgress(int progress)

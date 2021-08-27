@@ -30,30 +30,59 @@ public:
      * @param trainingPath absolute path to images
      */
     ImageInspectionWidget(QWidget *parent, QStringList inputPath, QStringList trainingPath);
+
+    /**
+     * @brief setCurrentDataSetTrainImages updates display of current training dataset images
+     * @param labelToPathsMap current training dataset
+     */
     void setCurrentDataSetTrainImages(QMap<QString, QStringList> labelToPathsMap);
+
+    /**
+     * @brief setCurrentDataSetValidationImages updates display of current validation dataset images
+     * @param labelToPathsMap current validation dataset
+     */
     void setCurrentDataSetValidationImages(QMap<QString, QStringList> labelToPathsMap);
 
+    /**
+     * @brief setNewValidationImages updates display of new validation images
+     * @param labelToPathsMap new validation dataset
+     */
     void setNewValidationImages(QMap<QString, QStringList> labelToPathsMap);
+
+    /**
+     * @brief setNewTrainImages updates display of new training images
+     * @param labelToPathsMap new training dataset
+     */
     void setNewTrainImages(QMap<QString, QStringList> labelToPathsMap);
 
 public slots:
+
+    /**
+     * @brief slot_imagesUpdated is used when display updates are completed
+     */
     void slot_imagesUpdated();
 
+    /**
+     * @brief slot_startLoading is used when display updates are started
+     */
     void slot_startLoading();
-private:
-
 
 signals:
+
+    /**
+     * @brief sig_mergeDatasets signals request to merge new images with existing dataset
+     */
     void sig_mergeDatasets();
+
+    /**
+     * @brief sig_removeImages signals removal of images from dataset/temp images
+     * @param treeWidgetIndex index of dataset (temp/dataset + training/validation)
+     * @param removedImages map of images to remove
+     */
     void sig_removeImages(int treeWidgetIndex, QMap<QString, QList<int>> removedImages);
 
 
 private slots:
-    /**
-     * @brief on_pushButton_clicked removes selected images from the display and subsequently deletes them
-     */
-    void on_pushButton_clicked();
-
 
     void on_pushButton_commit_clicked();
 

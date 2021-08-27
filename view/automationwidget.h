@@ -51,6 +51,11 @@ public slots:
      */
     void slot_taskUpdate(QString name, QString state);
 
+    /**
+     * @brief slot_finished resets most buttons/elements to pre-start state.
+     *
+     */
+    void slot_finished();
 
 signals:
 

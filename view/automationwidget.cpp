@@ -24,16 +24,21 @@ AutomationWidget::~AutomationWidget()
 void AutomationWidget::slot_progress(int progress)
 {
     ui->progressBar->setValue(progress);
-    if(progress == 100){
-        ui->startButton->setEnabled(true);
-        ui->queueAllButton->setEnabled(true);
-        ui->unqueueAllButton->setEnabled(true);
-        ui->queueSelectedButton->setEnabled(true);
-        ui->unqueueSelectedButton->setEnabled(true);
-        ui->stopButton->setEnabled(false);
-        ui->progressBar->setEnabled(false);
-    }
 }
+
+void AutomationWidget::slot_finished()
+{
+    ui->progressBar->setValue(100);
+    ui->startButton->setEnabled(true);
+    ui->queueAllButton->setEnabled(true);
+    ui->unqueueAllButton->setEnabled(true);
+    ui->queueSelectedButton->setEnabled(true);
+    ui->unqueueSelectedButton->setEnabled(true);
+    ui->stopButton->setEnabled(false);
+    ui->progressBar->setEnabled(false);
+}
+
+
 
 void AutomationWidget::slot_taskAdded(QString name)
 {

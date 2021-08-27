@@ -17,6 +17,7 @@ m_importFilesWidget = importFilesWidget;
 connect(m_importFilesWidget, &ImportFilesWidget::sig_loadInputImages, this, &ImageController::slot_loadInputImages);
 connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_mergeDatasets, this, &ImageController::slot_mergeDatasets);
 connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_removeImages, this, &ImageController::slot_remove);
+connect(m_importFilesWidget, &ImportFilesWidget::sig_abortLoading, this, &ImageController::slot_abortLoading);
 
 }
 
@@ -28,17 +29,15 @@ void ImageController::slot_loadInputImages(QString pluginName, int count, QStrin
 
     QString tempDir = m_dataManager->getProjectImageTempDir();
     m_imageLoader = new ImageLoader();
-    m_imageLoader->loadInputImages(count,labels,pluginName,tempDir);
     connect(m_imageLoader, &ImageLoader::sig_progress, this, &ImageController::slot_handelImageLoadProgress);
     connect(m_imageLoader, &ImageLoader::sig_imagesReady, this, &ImageController::slot_imagesReady);
     connect(m_imageLoader, &ImageLoader::sig_statusUpdate, this, &ImageController::slot_updateImageLoadStatusText);
-    m_imageLoader->load();
-
+    m_imageLoader->loadInputImages(count,labels,pluginName,tempDir);
 }
 
-//void ImageController::slot_confirm() {
-
-//}
+void ImageController::slot_abortLoading() {
+    emit m_imageLoader->sig_pluginAborted();
+}
 
 void ImageController::slot_imagesReady()
 {

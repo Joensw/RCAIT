@@ -34,6 +34,12 @@ public:
 
     void setAIConfigWidget(QWidget * replacement);
 
+    /**
+     * @brief showImages update Augmentation Preview tab with images from folder
+     * @param path path to folder with images
+     */
+
+    void showImages(const QString &path);
 
 public slots:
     /**

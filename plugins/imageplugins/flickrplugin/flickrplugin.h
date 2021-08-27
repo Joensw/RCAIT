@@ -79,7 +79,6 @@ public:
     QString getName() override;
     QWidget*  getInputWidget() override;
 
-
 private:
    FlickrSettings m_flickrSettings;
    QWidget *pluginSettings;
@@ -90,6 +89,7 @@ private:
    QString createCommandlineString( QString path,  int imageCount,  QStringList* label);
 
 private slots:
+    void slot_abort();
     void slot_readOutPut();
     void slot_pluginFinished();
 

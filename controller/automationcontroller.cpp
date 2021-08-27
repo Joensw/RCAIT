@@ -18,6 +18,7 @@ AutomationController::AutomationController(DataManager *dataManager, AutomationW
     connect(mAutomator, &Automator::sig_taskAdded, mWidget, &AutomationWidget::slot_taskAdded);
     connect(mAutomator, &Automator::sig_taskUpdate, mWidget, &AutomationWidget::slot_taskUpdate);
     connect(mAutomator, &Automator::sig_progress, mWidget, &AutomationWidget::slot_progress);
+    connect(mAutomator, &Automator::sig_finished, mWidget, &AutomationWidget::slot_finished);
 
 
 }

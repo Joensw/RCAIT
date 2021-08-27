@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tab_aitraining">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_configuration">
       <attribute name="title">
@@ -242,11 +242,24 @@
       <attribute name="title">
        <string>Data Augmentation Preview</string>
       </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="ImageGallery" name="widgetPreview" native="true"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ImageGallery</class>
+   <extends>QWidget</extends>
+   <header location="global">imagegallery.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

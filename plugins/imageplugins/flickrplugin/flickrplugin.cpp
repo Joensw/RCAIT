@@ -93,4 +93,9 @@ void FlickrPlugin::slot_pluginFinished()
     emit m_receiver->sig_pluginFinished();
 }
 
+void FlickrPlugin::slot_abort()
+{
+    m_process->kill();
+}
+
 //! [0]

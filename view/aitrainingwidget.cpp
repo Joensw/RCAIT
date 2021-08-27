@@ -70,3 +70,9 @@ void AITrainingWidget::changeEvent(QEvent *event) {
     QWidget::changeEvent(event);
 }
 
+void AITrainingWidget::showImages(const QString& path){
+    ui->widgetPreview->clearAndStop();
+    ui->widgetPreview->setEnabled(true);
+    ui->widgetPreview->concurrentAddImages(path);
+}
+

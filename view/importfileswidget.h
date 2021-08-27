@@ -82,6 +82,8 @@ private slots:
 
     void on_pushButton_loadLabelsFromFile_clicked();
 
+    void on_pushButton_abortLoading_clicked();
+
 signals:
     /**
      * @brief sig_newModel emitted when the UI to create a new model is to be opened
@@ -108,6 +110,11 @@ signals:
      * @param split integer argument from 1-100
      */
     void sig_loadInputImages(QString pluginName, int count, QStringList label,int split);
+
+    /**
+     * @brief sig_abortLoading emits request to abort image loading
+     */
+    void sig_abortLoading();
 };
 
 #endif // IMPORTFILESWIDGET_H

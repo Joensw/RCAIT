@@ -1,5 +1,6 @@
 #include "aicontroller.h"
 #include "imagegallery.h"
+#include <QMessageBox>
 
 
 AIController::AIController(DataManager *dataManager, InputImagesWidget *inputImagesWidget, AITrainingWidget *aiTrainingTab)
@@ -96,12 +97,12 @@ void AIController::slot_showAugmentationPreview(int amount)
     QString modelName = mDataManager->getCurrentModel();
     QString inputPath = mDataManager->getProjectDataSetTrainSubdir();
     QString targetPath = mDataManager->getProjectAugTempDir();
-
-    /*if (!ClassificationPluginManager::getInstance().getAugmentationPreview(pluginName, modelName, inputPath, targetPath, amount)) {
-    qDebug()<<"AIController::sl ot_showAugmentationPreview(int amount) : getAugmentationPreview returns false";
-    return;
-    } */
-
+    //TODO: if no model was chosen it crashs
+    if (!ClassificationPluginManager::getInstance().getAugmentationPreview(pluginName, modelName, inputPath, targetPath, amount)) {
+        qDebug()<<"can not show preview";
+        return;
+    }
+    mAiTrainingWidget->showImages(targetPath);
 }
 
 void AIController::slot_modelLoaded()

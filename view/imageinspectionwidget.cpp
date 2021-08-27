@@ -17,15 +17,6 @@ ImageInspectionWidget::~ImageInspectionWidget()
     delete ui;
 }
 
-void ImageInspectionWidget::on_pushButton_clicked()
-{
-
-   ui->datasetTrainImages->removeSelected();
-   ui->datasetValidationImages->removeSelected();
-   ui->newValidationImages->removeSelected();
-   ui->newTrainImages->removeSelected();
-}
-
 void ImageInspectionWidget::setCurrentDataSetTrainImages(QMap<QString, QStringList> labelToPathsMap) {
     ui->datasetTrainImages->resetTree();
     ui->datasetTrainImages->addLabels(labelToPathsMap);
@@ -65,7 +56,6 @@ void ImageInspectionWidget::on_pushButton_commit_clicked()
 
 void ImageInspectionWidget::on_pushButton_removeImages_clicked()
 {
-    //ui->datasetTrainImages->test();
     emit sig_removeImages(3,  ui->datasetTrainImages->removeSelected());
     emit sig_removeImages(2,  ui->datasetValidationImages->removeSelected());
     emit sig_removeImages(0,  ui->newValidationImages->removeSelected());

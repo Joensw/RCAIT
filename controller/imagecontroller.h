@@ -85,6 +85,12 @@ public slots:
      */
     void slot_imagePluginDirectoryChanged(const QString& newDirectory);
 
+    /**
+     * @brief slot_abortLoading aborts image loading.
+     *
+     */
+    void slot_abortLoading();
+
 signals:
 
     /**

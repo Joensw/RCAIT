@@ -3,6 +3,7 @@
 
 bool BingPlugin::loadImages(QString path,ProgressablePlugin* receiver,  int imageCount,  QStringList label)
 {
+    connect(receiver, &ProgressablePlugin::sig_pluginAborted, this, &BingPlugin::slot_abort);
     m_receiver = receiver;
     QString fullCommand = createCommandlineString(path, imageCount, &label);
     qDebug() << fullCommand;
@@ -104,6 +105,11 @@ void BingPlugin::slot_pluginFinished()
     m_process->close();
     m_process.reset();
     emit m_receiver->sig_pluginFinished();
+}
+
+void BingPlugin::slot_abort()
+{
+    m_process->kill();
 }
 
 //! [0]
