@@ -70,6 +70,15 @@ QStringList MMClassificationPlugin::getLabels(QString datasetPath)
     return labels;
 }
 
+bool MMClassificationPlugin::checkDataAugmentationPreviewInput(QString modelName, QString inputPath, QString targetPath, int amount)
+{
+    QDir inputDir(inputPath);
+    QDir targetDir(targetPath);
+    QString datasetConfigPath = loadModel(modelName).getDatasetConfigPath();
+    QFileInfo datasetConfigInfo(datasetConfigPath);
+    return inputDir.exists() && targetDir.exists() && amount && datasetConfigInfo.exists();
+}
+
 bool MMClassificationPlugin::checkTrainMethodInput(QStringList labels, QString mainConfigPath, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectoryPath)
 {
     QFileInfo mainConfigInfo(mainConfigPath);
@@ -188,10 +197,12 @@ bool MMClassificationPlugin::removeModel(QString modelName)
 
 bool MMClassificationPlugin::getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount)
 {
-    QDir targetDir(targetPath);
-    if (!targetDir.exists() || amount == 0 || inputPath.isEmpty() || targetPath.isEmpty()) {
+    if (!checkDataAugmentationPreviewInput(modelName, inputPath, targetPath, amount)) {
+        qWarning() << "Invalid Input";
         return false;
     }
+
+    QDir targetDir(targetPath);
     QString targetAbsolutePath = targetDir.absolutePath();
 
     // delete old Preview Pictures in the directory
