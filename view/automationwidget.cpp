@@ -84,10 +84,16 @@ void AutomationWidget::on_stopButton_clicked()
 
 void AutomationWidget::on_removeButton_clicked()
 {
-    for (QModelIndex index : ui->idleTasks->selectionModel()->selectedIndexes()){
-        emit sig_remove(index.row());
+    int size = ui->idleTasks->count();
+
+    for (int i = 0; i < size; i++){
+        if (ui->idleTasks->item(i)->isSelected()) {
+            ui->idleTasks->takeItem(i);
+            emit sig_remove(i);
+            i--;
+            size--;
+        }
     }
-    qDeleteAll(ui->idleTasks->selectedItems());
 }
 
 
