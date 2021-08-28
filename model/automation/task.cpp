@@ -112,7 +112,7 @@ void Task::abort()
     emit sig_pluginAborted();
     emit sig_progress(100);
     while (true){
-        if (mState == FAILED || mState == COMPLETED) return;
+        if (mState == FAILED || mState == COMPLETED || mState == SCHEDULED) return;
         QApplication::processEvents();
         QThread::sleep(1);
     }
