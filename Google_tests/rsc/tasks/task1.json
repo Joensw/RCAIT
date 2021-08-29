@@ -1,0 +1,5 @@
+{
+	"taskName": "task1",
+	"taskType": ["addProject"],
+	"projectName": "test_subfold"
+}

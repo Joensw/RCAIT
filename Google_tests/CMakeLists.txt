@@ -30,6 +30,10 @@ set(Sources
         ../model/imageinspectionmodel.h
         ../model/imageinspectionmodel.cpp
 
+        test_automator.cpp
+        ../model/automation/automator.h
+        ../model/automation/automator.cpp
+
         test_task.cpp
         ../model/automation/task.h
         ../model/automation/task.cpp
