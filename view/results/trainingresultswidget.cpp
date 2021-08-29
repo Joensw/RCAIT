@@ -9,6 +9,23 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
             &TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics);
 }
 
+void TrainingResultsWidget::configure_topAccuraciesTab() {
+    const auto icon = QIcon(":/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
+
+    //Old pointer will go out of scope after leaving this method and gets auto-deleted
+    m_topAccuraciesView.reset(new TopAccuraciesView(m_tabWidget));
+
+    m_tabWidget->insertTab(0, &*m_topAccuraciesView, icon, QString());
+}
+
+void TrainingResultsWidget::updateResultFolderPath(const QString &newDirPath) {
+    GenericComparisonWidget::updateResultFolderPath(newDirPath);
+
+    auto& pm = ProjectManager::getInstance();
+    //Old pointer will go out of scope after leaving this method and gets auto-deleted
+    m_topAccuraciesGraphics.reset(new TopAccuraciesGraphics(pm.getProjectImageTempDir()));
+}
+
 void TrainingResultsWidget::addTrainingResult(TrainingResult *result) {
     auto tab = createResultTab<TrainingResultView>(result->getIdentifier());
     m_mapResultsByTab[tab] = result;
@@ -28,15 +45,6 @@ void TrainingResultsWidget::removeComparisonResult(const QString &runNameToCompa
     emit sig_comparison_unloadAccuracyData(&*m_topAccuraciesView, &*m_topAccuraciesGraphics, runNameToCompare);
 }
 
-void TrainingResultsWidget::configure_topAccuraciesTab() {
-    const auto icon = QIcon(":/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
-
-    //Old pointer will go out of scope after leaving this method and gets auto-deleted
-    m_topAccuraciesView.reset(new TopAccuraciesView(m_tabWidget));
-
-    m_tabWidget->insertTab(0, &*m_topAccuraciesView, icon, QString());
-}
-
 void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(GenericGraphicsView *receiver) {
     //Forward signal
     emit sig_normal_requestTopAccuraciesGraphics(receiver, &*m_topAccuraciesGraphics);
@@ -54,13 +62,5 @@ void TrainingResultsWidget::saveResult(GenericGraphicsView *view) {
             emit sig_save_TopAccuracies(&*m_topAccuraciesGraphics);
     else
             emit sig_save_TrainingResult(m_mapResultsByTab[view]);
-}
-
-void TrainingResultsWidget::updateResultFolderPath(const QString &newDirPath) {
-    GenericComparisonWidget::updateResultFolderPath(newDirPath);
-
-    auto& pm = ProjectManager::getInstance();
-    //Old pointer will go out of scope after leaving this method and gets auto-deleted
-    m_topAccuraciesGraphics.reset(new TopAccuraciesGraphics(pm.getProjectImageTempDir()));
 }
 
