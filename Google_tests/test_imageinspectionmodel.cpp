@@ -6,13 +6,10 @@
 TEST(ImageInspectionModelTest, testLoadDataSet){
     ImageInspectionModel iim;
     QDir dir(QDir::current().path());
-    //TODO Change test
-//    dir.cd("dataset");
-//    iim.loadDataSet(dir.path());
-//    QMap<QString, QStringList> trainDataSet = iim.getTrainDataset();
-//    EXPECT_TRUE(trainDataSet.keys().contains("Mann"));
-//    EXPECT_TRUE(trainDataSet.value("Mann").isEmpty() == false);
-
+    dir.cd("dataset");
+    iim.loadDataSet(dir.path() + "/Train", dir.path() + "/Validate");
+    EXPECT_TRUE(iim.getTrainDataset().contains("Mann"));
+    EXPECT_TRUE(iim.getTrainDataset().value("Mann").isEmpty() == false);
 }
 
 TEST(ImageInspectionModelTest, DemonstratetTestMacros2){

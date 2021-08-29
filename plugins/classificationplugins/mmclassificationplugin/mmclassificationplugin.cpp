@@ -70,6 +70,15 @@ QStringList MMClassificationPlugin::getLabels(QString datasetPath)
     return labels;
 }
 
+bool MMClassificationPlugin::checkDataAugmentationPreviewInput(QString modelName, QString inputPath, QString targetPath, int amount)
+{
+    QDir inputDir(inputPath);
+    QDir targetDir(targetPath);
+    QString datasetConfigPath = loadModel(modelName).getDatasetConfigPath();
+    QFileInfo datasetConfigInfo(datasetConfigPath);
+    return inputDir.exists() && targetDir.exists() && amount && datasetConfigInfo.exists();
+}
+
 bool MMClassificationPlugin::checkTrainMethodInput(QStringList labels, QString mainConfigPath, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectoryPath)
 {
     QFileInfo mainConfigInfo(mainConfigPath);
@@ -77,6 +86,16 @@ bool MMClassificationPlugin::checkTrainMethodInput(QStringList labels, QString m
     QFileInfo validationDatasetInfo(validationDatasetPath);
     QFileInfo workingDirectoryInfo(workingDirectoryPath);
     return !labels.isEmpty() && mainConfigInfo.exists() && trainDatasetInfo.exists() && validationDatasetInfo.exists() && workingDirectoryInfo.exists();
+}
+
+void MMClassificationPlugin::adjustCheckpointCreation(QString runtimeConfigPath, int max_iters)
+{
+    const int defaultCheckpointCreationStep = 1000;
+    if (max_iters % defaultCheckpointCreationStep != 0) {
+        m_mmClassificationConfigFileBuilder.changeCheckpointCreationStep(runtimeConfigPath, max_iters);
+    } else {
+        m_mmClassificationConfigFileBuilder.changeCheckpointCreationStep(runtimeConfigPath, defaultCheckpointCreationStep);
+    }
 }
 
 QString MMClassificationPlugin::getName()
@@ -126,6 +145,7 @@ bool MMClassificationPlugin::createNewModel(QString modelName, QString baseModel
     const QString modelConfigIdentifier = "_model";
     const QString datasetConfigIdentifier = "_dataset";
     const QString scheduleConfigIdentifier = "_schedule";
+    const QString runtimeConfigIdentifier = "_runtime";
     const QString mainConfigIdentifier = "_main";
     bool validBaseModel = false;
     QString baseModelPath;
@@ -144,8 +164,7 @@ bool MMClassificationPlugin::createNewModel(QString modelName, QString baseModel
         QString modelConfigPath = m_mmClassificationConfigFileBuilder.createModelConfigFile(modelName + modelConfigIdentifier, baseModelPath);
         QString datasetConfigPath = m_mmClassificationConfigFileBuilder.createDatasetConfigFile(modelName + datasetConfigIdentifier);
         QString scheduleConfigPath = m_mmClassificationConfigFileBuilder.createScheduleConfigFile(modelName + scheduleConfigIdentifier);
-        // default runtime is sufficient in most cases
-        QString defaultRuntimePath = m_mmClassificationConfigFileBuilder.getDefaultRuntimeConfigFilePath();
+        QString defaultRuntimePath = m_mmClassificationConfigFileBuilder.createRuntimeConfigFile(modelName + runtimeConfigIdentifier);
         QString checkpointFilePath = m_mmClassificationSettings.getMMClassificationPath() + QDir::fromNativeSeparators(QDir::separator())
                 + m_subfolder_checkpoints + QDir::fromNativeSeparators(QDir::separator()) + checkpointFileName;
 
@@ -188,10 +207,12 @@ bool MMClassificationPlugin::removeModel(QString modelName)
 
 bool MMClassificationPlugin::getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount)
 {
-    QDir targetDir(targetPath);
-    if (!targetDir.exists() || amount == 0 || inputPath.isEmpty() || targetPath.isEmpty()) {
+    if (!checkDataAugmentationPreviewInput(modelName, inputPath, targetPath, amount)) {
+        qWarning() << "Invalid Input";
         return false;
     }
+
+    QDir targetDir(targetPath);
     QString targetAbsolutePath = targetDir.absolutePath();
 
     // delete old Preview Pictures in the directory
@@ -378,7 +399,8 @@ TrainingResult* MMClassificationPlugin::train(QString modelName, QString trainDa
     m_mmClassificationConfigFileBuilder.changeScheduleOptions(scheduleConfigPath, max_iters);
 
     // copy and change runtime config if checkpoint creation and max_iters does not fit
-    // to do
+    QString runtimeConfigPath = loadModel(modelName).getRuntimeConfigPath();
+    adjustCheckpointCreation(runtimeConfigPath, max_iters);
 
     int cudaDeviceNumber = m_mmClassificationInput->getCudaDevice();
 

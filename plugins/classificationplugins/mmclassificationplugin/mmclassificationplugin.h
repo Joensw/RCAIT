@@ -70,7 +70,11 @@ private:
 
     QStringList getLabels(QString datasetPath);
 
+    bool checkDataAugmentationPreviewInput(QString modelName, QString inputPath, QString targetPath, int amount);
     bool checkTrainMethodInput(QStringList labels, QString mainConfigPath, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectoryPath);
+
+    void adjustCheckpointCreation(QString runtimeConfigPath, int max_iters);
+
 public:
 
     ~MMClassificationPlugin();

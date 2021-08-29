@@ -78,11 +78,6 @@ public:
      */
     int getQueuedSize();
 
-    //probably never used
-    QList<QString> getUnqueuedTasks();
-    //probably never used
-    QList<QString> getQueuedTasks();
-
 public slots:
 
     /**

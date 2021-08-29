@@ -14,20 +14,17 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
     mDataManager = dataManager;
     mName = map.value("taskName").toString();
 
-    QStringList commands = map.value("taskType").toStringList();
-    if (commands.isEmpty()){
-        valid = false;
+    if (!list.isEmpty()){
+        mCommandList = list;
+        return;
     }
+
+    QStringList commands = map.value("taskType").toStringList();
 
     if (commands.contains("addProject")){
         mDataManager->createNewProject(map.value("projectName").toString());
     }
     mDataManager->loadProject(map.value("projectName").toString());
-
-    if (!list.isEmpty()){
-        mCommandList = list;
-        return;
-    }
 
     if (commands.contains("imageLoad")) {
         ImageLoadCommand* command = new ImageLoadCommand(map, mDataManager->getProjectImageTempDir(), this);
@@ -57,6 +54,7 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
         mCommandList.append(command);
         connect(command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
     }
+    if(mCommandList.isEmpty() && !commands.contains("addProject")) valid = false;
 
 }
 
@@ -112,7 +110,7 @@ void Task::abort()
     emit sig_pluginAborted();
     emit sig_progress(100);
     while (true){
-        if (mState == FAILED || mState == COMPLETED) return;
+        if (mState == FAILED || mState == COMPLETED || mState == SCHEDULED) return;
         QApplication::processEvents();
         QThread::sleep(1);
     }

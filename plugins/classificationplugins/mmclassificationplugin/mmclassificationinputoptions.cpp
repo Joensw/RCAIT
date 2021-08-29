@@ -6,8 +6,8 @@ MMClassificationInputOptions::MMClassificationInputOptions(QWidget *parent) :
     ui(new Ui::MMClassificationInputOptions)
 {
     ui->setupUi(this);
-    connect(ui->spinBox_cudaGpuDevice, QOverload<int>::of(&QSpinBox::valueChanged), this, &MMClassificationInputOptions::slot_maxItersChanged);
-    connect(ui->spinBox_numberIterations, QOverload<int>::of(&QSpinBox::valueChanged), this, &MMClassificationInputOptions::slot_cudaDeviceChanged);
+    connect(ui->spinBox_cudaGpuDevice, QOverload<int>::of(&QSpinBox::valueChanged), this, &MMClassificationInputOptions::slot_cudaDeviceChanged);
+    connect(ui->spinBox_numberIterations, QOverload<int>::of(&QSpinBox::valueChanged), this, &MMClassificationInputOptions::slot_maxItersChanged);
 }
 
 MMClassificationInputOptions::~MMClassificationInputOptions()
