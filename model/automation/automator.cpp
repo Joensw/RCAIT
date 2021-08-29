@@ -54,7 +54,6 @@ void Automator::addTasks(QString path)
 
     //check for required task keys
     if (jsonMap.isEmpty() || !jsonMap.contains("taskType") || !jsonMap.contains("taskName") || !jsonMap.contains("projectName")){
-        //TODO error message
         return;
     }
 
@@ -103,24 +102,6 @@ int Automator::getUnqueuedSize()
 int Automator::getQueuedSize()
 {
     return mQueuedTasks.size();
-}
-
-QList<QString> Automator::getUnqueuedTasks()
-{
-    QStringList list;
-    for (Task* task : mUnqueuedTasks){
-        list.append(task->getName());
-    }
-    return list;
-}
-
-QList<QString> Automator::getQueuedTasks()
-{
-    QStringList list;
-    for (Task* task : mQueuedTasks){
-        list.append(task->getName());
-    }
-    return list;
 }
 
 void Automator::slot_makeProgress(int progress)
