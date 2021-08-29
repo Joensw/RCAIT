@@ -1,5 +1,10 @@
 #include "resultsexporter.h"
 
+void ResultsExporter::updateResultFolderPaths() {
+    auto &pm = ProjectManager::getInstance();
+    m_trainingResultsDir = pm.getTrainingResultsDir();
+    m_classificationResultsDir = pm.getClassificationResultsDir();
+}
 
 void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics) {
     const auto &fileName = graphics->getFullName();
@@ -9,7 +14,7 @@ void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics) {
 
     auto targetName = QString("%1_%2.%3").arg(baseName, timestamp, extension);
 
-    const auto& oldFilePath = graphics->getFullPath();
+    const auto &oldFilePath = graphics->getFullPath();
     auto newFilePath = QDir(m_trainingResultsDir).absoluteFilePath(targetName);
 
     //Move graphics to result folder
@@ -132,23 +137,6 @@ void ResultsExporter::writeJSON(const QJsonObject &jsonObject, const QString &fi
     save_file.close();
 }
 
-void ResultsExporter::moveFile(const QString &oldFilePath, const QString &newFilePath) {
-    QFile::copy(oldFilePath, newFilePath);
-
-    if (!QFile(newFilePath).exists()) {
-        qWarning() << "New File " << newFilePath << " was not created";
-    }
-    if (!QFile::remove(oldFilePath)){
-        qWarning() << "Old File " << oldFilePath << " was not removed";
-    }
-}
-
-void ResultsExporter::updateResultFolderPaths() {
-    auto &pm = ProjectManager::getInstance();
-    m_trainingResultsDir = pm.getTrainingResultsDir();
-    m_classificationResultsDir = pm.getClassificationResultsDir();
-}
-
 QDir ResultsExporter::createResultDir(const QString &baseDir, const QString &identifier) {
     auto resultFolder = QDir(baseDir);
 
@@ -158,4 +146,9 @@ QDir ResultsExporter::createResultDir(const QString &baseDir, const QString &ide
     }
     resultFolder.cd(identifier);
     return resultFolder;
+}
+
+void ResultsExporter::moveFile(const QString &oldFilePath, const QString &newFilePath) {
+    if (!QFile::rename(oldFilePath, newFilePath))
+        qWarning() << "Move file " << oldFilePath << " -> " << newFilePath << " failed";
 }

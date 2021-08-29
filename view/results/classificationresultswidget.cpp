@@ -27,6 +27,8 @@ void ClassificationResultsWidget::addClassificationResult(ClassificationResult *
 
 void ClassificationResultsWidget::saveResult(GenericGraphicsView *view) {
     emit sig_save_ClassificationResult(m_mapResultsByTab[view]);
+    //Set result as saved, disables save button
+    view->setSaved(true);
 }
 
 void ClassificationResultsWidget::addComparisonResult(const QString &runNameToCompare) {
