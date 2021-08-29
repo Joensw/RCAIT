@@ -72,6 +72,8 @@ set(Sources
         ../model/results/resultsexporter.h
         ../model/results/resultsexporter.cpp
 
+        test_splitcommand.cpp
+
 
 
         test_projectmanager.cpp
