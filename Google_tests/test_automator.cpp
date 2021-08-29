@@ -6,6 +6,7 @@
 TEST(AutomatorTest, testAddTask){
     //set up
     DataManager* manager = new DataManager;
+    manager->saveProjectsDir(QDir::current().path());
     Automator* automator = new Automator(manager);
     QDir dir(QDir::current().path());
     dir.cd("tasks");
@@ -25,12 +26,18 @@ TEST(AutomatorTest, testAddTask){
     //try adding second valid task
     automator->addTasks(dir.path() + "/task2.json");
     EXPECT_EQ(automator->getUnqueuedSize(), 2);
+
+    //delete created folders
+    for (int i = 0; i < 2; i++){
+        manager->removeProject("test" + QString::number(i + 1));
+    }
 }
 
 //tests if queueing/unqueuing work as expected
 TEST(AutomatorTest, testUnQueueTask){
     //set up
     DataManager* manager = new DataManager;
+    manager->saveProjectsDir(QDir::current().path());
     Automator* automator = new Automator(manager);
     QSignalSpy spy(automator, &Automator::sig_taskUpdate);
     QDir dir(QDir::current().path());
@@ -66,11 +73,17 @@ TEST(AutomatorTest, testUnQueueTask){
     EXPECT_EQ(spy.at(4).at(1).toString(), "Scheduled");
     EXPECT_EQ(spy.at(5).at(0).toString(), "task3");
     EXPECT_EQ(spy.at(5).at(1).toString(), "Not_Scheduled");
+
+    //delete created folders
+    for (int i = 0; i < 3; i++){
+        manager->removeProject("test" + QString::number(i + 1));
+    }
 }
 
 TEST(AutomatorTest, testRemove){
     //set up
     DataManager* manager = new DataManager;
+    manager->saveProjectsDir(QDir::current().path());
     Automator* automator = new Automator(manager);
     QDir dir(QDir::current().path());
     dir.cd("tasks");
@@ -90,22 +103,26 @@ TEST(AutomatorTest, testRemove){
     EXPECT_EQ(automator->getUnqueuedSize(), 1);
     automator->remove(0);
     EXPECT_EQ(automator->getUnqueuedSize(), 0);
+
+    //delete created folders
+    for (int i = 0; i < 3; i++){
+        manager->removeProject("test" + QString::number(i + 1));
+    }
 }
 
 
 TEST(AutomatorTest, testPerformTasks){
     //set up
     DataManager* manager = new DataManager;
+    manager->saveProjectsDir(QDir::current().path());
     Automator* automator = new Automator(manager);
     QSignalSpy spy(automator, &Automator::sig_progress);
     QDir dir(QDir::current().path());
     dir.cd("tasks");
-    automator->addTasks(dir.path() + "/task1.json");
-    automator->addTasks(dir.path() + "/task2.json");
-    automator->addTasks(dir.path() + "/task3.json");
-    automator->queue(2);
-    automator->queue(1);
-    automator->queue(0);
+    for (int i = 0; i < 3; i++){
+        automator->addTasks(dir.path() + "/task" + QString::number(i + 1) + ".json");
+        automator->queue(0);
+    }
     QSignalSpy taskStateSpy(automator, &Automator::sig_taskUpdate);
 
     //start performing
@@ -126,4 +143,10 @@ TEST(AutomatorTest, testPerformTasks){
     EXPECT_EQ(taskStateSpy.at(3).at(1).toString(), "Completed");
     EXPECT_EQ(taskStateSpy.at(4).at(1).toString(), "Performing");
     EXPECT_EQ(taskStateSpy.at(5).at(1).toString(), "Completed");
+
+    //delete created folders
+    for (int i = 0; i < 3; i++){
+        manager->removeProject("test" + QString::number(i + 1));
+    }
+
 }

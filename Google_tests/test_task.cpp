@@ -98,6 +98,7 @@ TEST(TaskTest, testisvalid){
     map.insert("taskName", "example");
     map.insert("projectName", "test");
     DataManager* mngr = new DataManager();
+    mngr->saveProjectsDir(QDir::current().path());
 
     //init invalid task
     Task* task = new Task(map, mngr);
@@ -117,4 +118,7 @@ TEST(TaskTest, testisvalid){
     //init invalid task
     task = new Task(map, mngr);
     EXPECT_FALSE(task->isValid());
+
+    //remove created folder
+    mngr->removeProject("test");
 }
