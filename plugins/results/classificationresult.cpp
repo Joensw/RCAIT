@@ -7,7 +7,10 @@ ClassificationResult::ClassificationResult(const QMap<QString, QList<double>> &c
           m_classificationData(classificationData) {
 
     auto& pm = ProjectManager::getInstance();
-    m_classificationGraphics = new ClassificationGraphics(pm.getProjectImageTempDir(), this->getIdentifier(), classificationData);
+    auto tempDir = pm.getProjectImageTempDir();
+    auto savable_id = getSavableIdentifier();
+
+    m_classificationGraphics = new ClassificationGraphics(tempDir, savable_id, classificationData);
     m_labels = std::move(labels);
 }
 
