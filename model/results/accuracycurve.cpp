@@ -47,7 +47,7 @@ bool AccuracyCurve::operator!=(const AccuracyCurve &other) const {
     return m_data != other.m_data;
 }
 
-QMap<int, QPair<double, double> > AccuracyCurve::getData()
+[[maybe_unused]] QMap<int, QPair<double, double> > AccuracyCurve::getData()
 {
     return m_data;
 }

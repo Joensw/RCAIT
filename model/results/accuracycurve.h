@@ -15,7 +15,7 @@ public:
     bool operator==(const AccuracyCurve& other) const;
     bool operator!=(const AccuracyCurve& other) const;
 
-    QMap<int, QPair<double, double>> getData();
+    [[maybe_unused]] QMap<int, QPair<double, double>> getData();
 
 private:
     QMap<int, QPair<double, double>> m_data;

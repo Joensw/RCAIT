@@ -6,7 +6,9 @@ ConfusionMatrix::ConfusionMatrix(const QString &directory,
                                  const QStringList &classLabels,
                                  const QList<int> &values)
         : GenericResultGraphics(directory, "confusionmatrix_" + identifier, "svg"),
-          m_size(classLabels.size()) {
+          m_size(classLabels.size()),
+          m_classLabels(classLabels),
+          m_values(values) {
 
     if (classLabels.isEmpty()) {
         qWarning() << "Confusion Matrix has no labels";
@@ -14,11 +16,9 @@ ConfusionMatrix::ConfusionMatrix(const QString &directory,
     if (values.isEmpty()) {
         qWarning() << "Confusion Matrix has no values";
     }
-    if (!(classLabels.size() * classLabels.size() == values.size())) {
+    if (classLabels.size() * classLabels.size() != values.size()) {
         qWarning() << "Confusion Matrix must be a square Matrix of dimension: number of labels x number of labels";
     }
-    m_classLabels = classLabels;
-    m_values = values;
 }
 
 
@@ -31,19 +31,11 @@ void ConfusionMatrix::generateGraphicsInternal(const QString &fullFilePath) {
     GenericResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 
-/**
- * Access matrix via matrix(row,column) operator
- * @return value of matrix at(row,column)
- */
 double ConfusionMatrix::operator()(int row, int column) const {
     Q_ASSERT(row >= 0 && row < m_size && column >= 0 && column < m_size);
     return m_values[row * m_size + column];
 }
 
-/**
- * Convert matrix labels to text in a python-friendly way
- * @return QString label representation e.g. ["Car","Truck"]
- */
 QString ConfusionMatrix::labelsToPyText() {
     QStringList labels = QStringList();
     for (auto &item : m_classLabels) {
@@ -52,10 +44,6 @@ QString ConfusionMatrix::labelsToPyText() {
     return '[' + labels.join(',') + ']';
 }
 
-/**
- * Convert matrix data to text in a python-friendly way
- * @return QString matrix representation e.g. [[1,2],[3,4]]
- */
 QString ConfusionMatrix::valuesToPyText() {
     auto result = QStringList();
     for (qsizetype row = 0; row < m_size; row++) {
@@ -68,7 +56,7 @@ QString ConfusionMatrix::valuesToPyText() {
     return '[' + result.join(',') + ']';
 }
 
-bool ConfusionMatrix::operator==(const ConfusionMatrix other) const {
+bool ConfusionMatrix::operator==(const ConfusionMatrix &other) const {
     if (m_classLabels != other.m_classLabels) return false;
     if (m_size != other.m_size) return false;
 
@@ -80,15 +68,19 @@ bool ConfusionMatrix::operator==(const ConfusionMatrix other) const {
     return true;
 }
 
-bool ConfusionMatrix::operator!=(const ConfusionMatrix other) const {
+bool ConfusionMatrix::operator!=(const ConfusionMatrix& other) const {
     return !(*this == other);
 }
 
-QStringList ConfusionMatrix::getClassLabels() {
+[[maybe_unused]] const QStringList &ConfusionMatrix::getClassLabels() const {
     return m_classLabels;
 }
 
-QList<int> ConfusionMatrix::getValues() {
+[[maybe_unused]] qsizetype ConfusionMatrix::getSize() const {
+    return m_size;
+}
+
+[[maybe_unused]] const QList<int> &ConfusionMatrix::getValues() const {
     return m_values;
 }
 
@@ -97,4 +89,3 @@ void ConfusionMatrix::passResultGraphics(const QString &fullFilePath, GenericGra
     auto ptr = QSharedPointer<QGraphicsItem>(graphics);
     receiver->setConfusionMatrix(ptr);
 }
-

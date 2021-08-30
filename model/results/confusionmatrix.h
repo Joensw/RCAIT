@@ -9,27 +9,90 @@
 #include <trainingresultview.h>
 #include "genericresultgraphics.h"
 
+/**
+ * @brief Confusion matrices are used for visually comparing the precision of an AI
+ */
 class ConfusionMatrix : public GenericResultGraphics {
 public:
 
+    /**
+     * @brief Generate a new, square Confusion Matrix
+     * @param directory  Saving directory for result
+     * @param identifier file name including extension
+     * @param classLabels N labels for the matrix
+     * @param values NxN values, one for each cell
+     */
     ConfusionMatrix(const QString &directory, const QString &identifier,
                     const QStringList &classLabels, const QList<int> &values);
 
+    /**
+     * Access matrix via matrix(row,column) operator
+     * @return value of matrix at(row,column)
+     */
     double operator()(int row, int column) const;
-    bool operator==(ConfusionMatrix other) const;
-    bool operator!=(ConfusionMatrix other) const;
+
+    /**
+     * @brief Get a particular cell of the confusion matrix
+     * @param other matrix
+     * @return cell double value
+     */
+    bool operator==(const ConfusionMatrix &other) const;
+
+    /**
+     * @brief Compare matrix with the current one
+     * @param other matrix
+     * @return true when different, false otherwise
+     */
+    bool operator!=(const ConfusionMatrix& other) const;
 
     //needed for serialisation
-    QStringList getClassLabels();
-    QList<int> getValues();
+    /**
+     * @brief Get confusionmatrix class labels
+     * @return List of class labels
+     */
+    [[maybe_unused]] [[nodiscard]] const QStringList &getClassLabels() const;
+
+    /**
+     * @brief Get confusionmatrix dimensions
+     * @return N, where matrix has dimensions NxN
+     */
+    [[maybe_unused]] [[nodiscard]] qsizetype getSize() const;
+
+    /**
+     * @brief Get confusionmatrix values
+     * @return matrix values
+     */
+    [[maybe_unused]] [[nodiscard]] const QList<int> &getValues() const;
+
 private:
     QStringList m_classLabels;
     qsizetype m_size;
     QList<int> m_values;
-    void generateGraphicsInternal(const QString& fullFilePath) override;
+
+
+   /**
+    * @brief Generate the confusion matrix graphics
+    * @param fullFilePath where the graphics will be saved
+    */
+    void generateGraphicsInternal(const QString &fullFilePath) override;
+
+    /**
+     * @brief Give the generated graphics to the receiver
+     * @param fullFilePath path to the generated graphics
+     * @param receiver graphics view that will display the result image
+     */
     void passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) override;
 
+    /**
+     * @brief Convert matrix data to text in a python-friendly way
+     * @return QString matrix representation e.g. [[1,2],[3,4]]
+     */
     QString valuesToPyText();
+
+    /**
+     * @brief Convert matrix labels to text in a python-friendly way
+     * @return QString label representation e.g. "['Car','Truck']"
+     */
     QString labelsToPyText();
 };
 
