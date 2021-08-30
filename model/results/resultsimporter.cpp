@@ -23,7 +23,7 @@ void ResultsImporter::updateResultFolderPaths() {
 QString ResultsImporter::getResultDataPath(const QString &resultNameTemplate, const QString &baseDir,
                                            const QString &identifier) {
 
-    auto folderIdentifier = Result::saveableRepresentation(identifier);
+    auto folderIdentifier = Result::savableRepresentation(identifier);
     auto fullName = resultNameTemplate.arg(folderIdentifier);
     auto dir = QDir(baseDir);
 
@@ -165,7 +165,7 @@ void ResultsImporter::slot_comparison_loadTrainingResultGraphics(GenericGraphics
 void ResultsImporter::loadGraphicsInView(GenericGraphicsView *receiver, const QString &resultsFolder,
                                          const QString &baseDir) {
     auto dir = QDir(baseDir);
-    auto folderIdentifier = Result::saveableRepresentation(resultsFolder);
+    auto folderIdentifier = Result::savableRepresentation(resultsFolder);
     dir.cd(folderIdentifier);
 
     for (const auto &file : dir.entryInfoList(QDir::Files, QDir::Time)) {

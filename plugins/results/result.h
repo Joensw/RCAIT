@@ -21,7 +21,7 @@ public:
 
     virtual ~Result() = default;
 
-    static QString saveableRepresentation(QString date);
+    static QString savableRepresentation(QString date);
 
     static QString niceRepresentation(QString date);
 

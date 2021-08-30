@@ -23,7 +23,7 @@ QString Result::niceRepresentation(QString date){
     return date;
 }
 
-QString Result::saveableRepresentation(QString date){
+QString Result::savableRepresentation(QString date){
     date.replace(".","_");
     date.replace(" — ","#");
     date.replace(":","-");
@@ -39,5 +39,5 @@ QString Result::getIdentifier() const{
 }
 
 QString Result::getSaveableIdentifier() const{
-    return Result::saveableRepresentation(m_identifier);
+    return Result::savableRepresentation(m_identifier);
 }
