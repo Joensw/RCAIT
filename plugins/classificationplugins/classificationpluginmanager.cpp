@@ -98,10 +98,9 @@ QList<QWidget *> ClassificationPluginManager::getConfigurationWidgets()
 
 QStringList ClassificationPluginManager::getClassificationPluginBases(QString pluginName)
 {
-    QStringList emptyList = QStringList();
     if(!m_plugins.contains(pluginName)) {
         qWarning() << "No Classification Plugin with the name " + pluginName + " found!";
-        return emptyList;
+        return {};
     }
     return m_plugins.value(pluginName)->getAssociatedModels();
 }

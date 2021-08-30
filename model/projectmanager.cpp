@@ -92,8 +92,7 @@ QStringList ProjectManager::getProjects() {
         projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
         return projectsDir.entryList();
     }
-    QStringList empty;
-    return empty;
+    return {};
 }
 
 bool ProjectManager::createNewProject(const QString &projectName, QString * error) {
@@ -203,8 +202,7 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
         }
         return fileNameList ;
     }
-    QStringList empty;
-    return empty;
+    return {};
 }
 
 QString ProjectManager::createWorkDirSubfolder(const QString &name){
