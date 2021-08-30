@@ -3,12 +3,19 @@
 
 #include <QGraphicsItem>
 #include <QWidget>
+#include "savableresultswidget.h"
 
 class GenericGraphicsView : public QWidget {
 Q_OBJECT
 
 public:
-    explicit GenericGraphicsView(QWidget *parent = nullptr) : QWidget(parent) {}
+    GenericGraphicsView(SavableResultsWidget *tabWidget, QWidget *parent = nullptr)
+    : QWidget(parent), m_tabWidget(tabWidget) {};
+
+    [[nodiscard]] bool isSaved() const;
+
+    void setSaved(bool isSaved);
+
 
     virtual void setAccuracyCurve(const QSharedPointer<QGraphicsItem> &accuracyCurveImage) {};
 
@@ -18,12 +25,19 @@ public:
 
     virtual void setClassificationGraphics(const QSharedPointer<QGraphicsItem> &classificationGraphicsImage) {};
 
-    [[nodiscard]] bool isSaved() const { return m_isSaved; };
-
-    void setSaved(bool isSaved) { m_isSaved = isSaved; };
-
 private:
+    SavableResultsWidget *m_tabWidget;
     bool m_isSaved = false;
 };
+
+inline void GenericGraphicsView::setSaved(bool isSaved) {
+    m_isSaved = isSaved;
+    if (m_tabWidget)
+        m_tabWidget->updateSaveButton(this);
+}
+
+inline bool GenericGraphicsView::isSaved() const {
+    return m_isSaved;
+}
 
 #endif // GENERICGRAPHICSVIEW_H

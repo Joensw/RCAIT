@@ -3,7 +3,8 @@
 
 
 GenericComparisonWidget::GenericComparisonWidget(QWidget *parent)
-        : QWidget(parent), ui(new Ui::GenericComparisonWidget) {
+        : SavableResultsWidget(parent),
+          ui(new Ui::GenericComparisonWidget) {
 
     ui->setupUi(this);
 
@@ -11,7 +12,9 @@ GenericComparisonWidget::GenericComparisonWidget(QWidget *parent)
     m_tabWidget = ui->tabWidget_compareResults;
     m_pushButton_saveCurrentTab = ui->pushButton_saveCurrentTab;
 
-    connect(m_menu_addComparison, &QMenu::triggered, this, &GenericComparisonWidget::slot_comparisonMenu_triggered);
+    //Connect internal signals and slots
+    connect(m_menu_addComparison, &QMenu::triggered, this,
+            &GenericComparisonWidget::slot_comparisonMenu_triggered);
     connect(m_tabWidget, &QTabWidget::currentChanged, this,
             &GenericComparisonWidget::slot_updateSaveButton);
 
@@ -78,6 +81,11 @@ void GenericComparisonWidget::slot_updateSaveButton(int index) {
         auto tab = dynamic_cast<GenericGraphicsView *>(widget);
         m_pushButton_saveCurrentTab->setEnabled(!tab->isSaved());
     }
+}
+
+void GenericComparisonWidget::updateSaveButton(GenericGraphicsView *tab) {
+    if (tab != nullptr)
+        m_pushButton_saveCurrentTab->setEnabled(!tab->isSaved());
 }
 
 void GenericComparisonWidget::on_pushButton_saveCurrentTab_clicked() {

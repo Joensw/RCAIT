@@ -1,8 +1,8 @@
 #include "trainingresultview.h"
 #include "ui_trainingresultview.h"
 
-TrainingResultView::TrainingResultView(QWidget *parent) :
-        GenericGraphicsView(parent),
+TrainingResultView::TrainingResultView(SavableResultsWidget *tabWidget, QWidget *parent) :
+        GenericGraphicsView(tabWidget, parent),
         ui(new Ui::TrainingResultView) {
     ui->setupUi(this);
     ui->imageGallery_mostMisclassifiedImages->setQuadraticGrid(3);

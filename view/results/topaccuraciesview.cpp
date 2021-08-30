@@ -1,8 +1,8 @@
 #include "topaccuraciesview.h"
 #include "ui_topaccuraciesview.h"
 
-TopAccuraciesView::TopAccuraciesView(QWidget *parent) :
-        GenericGraphicsView(parent),
+TopAccuraciesView::TopAccuraciesView(SavableResultsWidget *tabWidget, QWidget *parent) :
+        GenericGraphicsView(tabWidget, parent),
         ui(new Ui::TopAccuraciesView) {
     ui->setupUi(this);
 

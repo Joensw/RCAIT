@@ -4,8 +4,8 @@
 #include "classificationresultview.h"
 #include "ui_classificationresultview.h"
 
-ClassificationResultView::ClassificationResultView(QWidget *parent) :
-        GenericGraphicsView(parent),
+ClassificationResultView::ClassificationResultView(SavableResultsWidget *tabWidget, QWidget *parent) :
+        GenericGraphicsView(tabWidget, parent),
         ui(new Ui::ClassificationResultView) {
     ui->setupUi(this);
 

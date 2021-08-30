@@ -20,7 +20,7 @@ protected:
     void changeEvent(QEvent *) override;
 
 public:
-    explicit ClassificationResultView(QWidget *parent = nullptr);
+    explicit ClassificationResultView(SavableResultsWidget *tabWidget, QWidget *parent = nullptr);
 
     void setClassificationGraphics(const QSharedPointer<QGraphicsItem> &classificationGraphicsImage) override;
 

@@ -9,9 +9,11 @@
 #include <QTabWidget>
 #include <QEvent>
 #include <type_traits>
+
 #include "result.h"
 #include "genericgraphicsview.h"
 #include "popupmenu.h"
+#include "savableresultswidget.h"
 
 using namespace std;
 
@@ -19,7 +21,7 @@ namespace Ui {
     class GenericComparisonWidget;
 }
 
-class GenericComparisonWidget : public QWidget {
+class GenericComparisonWidget : public SavableResultsWidget {
 Q_OBJECT
 
 protected:
@@ -41,7 +43,7 @@ protected:
      */
     template<typename T, typename = std::enable_if<std::is_base_of_v<GenericGraphicsView, T>>>
     T *createResultTab(const QString &tabName) {
-        auto *tab = new T(this);
+        auto *tab = new T((GenericComparisonWidget*)this);
         m_tabWidget->addTab(tab, tabName);
         m_mapTabsByName[tabName] = tab;
 
@@ -57,6 +59,8 @@ public:
     ~GenericComparisonWidget() override;
 
     virtual void updateResultFolderPath(const QString &newDirPath);
+
+    void updateSaveButton(GenericGraphicsView *tab) override;
 
 private:
     Ui::GenericComparisonWidget *ui;
@@ -74,15 +78,15 @@ private:
 
     virtual void removeComparisonResult(const QString &runNameToCompare) = 0;
 
-    virtual void saveResult(GenericGraphicsView *view) = 0;
+    void saveResult(GenericGraphicsView *view) override = 0;
 
 private slots:
 
     void slot_comparisonMenu_triggered(QAction *action);
 
-    void slot_updateSaveButton(int index);
+    void slot_updateSaveButton(int index) override;
 
-    void on_pushButton_saveCurrentTab_clicked();
+    void on_pushButton_saveCurrentTab_clicked() override;
 
 };
 

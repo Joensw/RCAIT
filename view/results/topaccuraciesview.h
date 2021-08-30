@@ -19,7 +19,7 @@ protected:
     void changeEvent(QEvent *) override;
 
 public:
-    explicit TopAccuraciesView(QWidget *parent = nullptr);
+    explicit TopAccuraciesView(SavableResultsWidget *tabWidget, QWidget *parent = nullptr);
 
     void addTopAccuraciesEntry(const QString &identifier, double top1, double top5);
 

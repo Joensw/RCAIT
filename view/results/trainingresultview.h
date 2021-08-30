@@ -17,7 +17,7 @@ protected:
     void changeEvent(QEvent *) override;
 
 public:
-    explicit TrainingResultView(QWidget *parent = nullptr);
+    explicit TrainingResultView(SavableResultsWidget *tabWidget, QWidget *parent = nullptr);
 
     void setAccuracyCurve(const QSharedPointer<QGraphicsItem> &accuracyCurveImage) override;
 
