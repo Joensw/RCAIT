@@ -66,14 +66,14 @@ private:
     void initBaseModels();
     void deleteBaseModels();
     void saveModel(Model model);
-    Model loadModel(QString name);
+    Model loadModel(const QString& name);
 
-    QStringList getLabels(QString datasetPath);
+    static QStringList getLabels(const QString& datasetPath);
 
-    bool checkDataAugmentationPreviewInput(QString modelName, QString inputPath, QString targetPath, int amount);
-    bool checkTrainMethodInput(QStringList labels, QString mainConfigPath, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectoryPath);
+    bool checkDataAugmentationPreviewInput(const QString& modelName, const QString& inputPath, const QString& targetPath, int amount);
+    static bool checkTrainMethodInput(const QStringList& labels, const QString& mainConfigPath, const QString& trainDatasetPath, const QString& validationDatasetPath, const QString& workingDirectoryPath);
 
-    void adjustCheckpointCreation(QString runtimeConfigPath, int max_iters);
+    void adjustCheckpointCreation(const QString& runtimeConfigPath, int max_iters);
 
 public:
 

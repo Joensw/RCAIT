@@ -40,7 +40,7 @@ public:
      * @param checkpointName the name of the checkpoint file to start with
      * @return the path of the created main config file
      */
-    QString createMainConfigFile(QString name, QString modelConfigPath, QString datasetConfigPath, QString scheduleConfigPath, QString runtimeConfigPath, QString checkpointName);
+    QString createMainConfigFile(const QString& name, const QString& modelConfigPath, const QString& datasetConfigPath, const QString& scheduleConfigPath, const QString& runtimeConfigPath, const QString& checkpointName);
 
     /**
      * @brief createModelConfigFile creates a new model config file by copying the default_model.py file in configs/_base_/models
@@ -48,28 +48,28 @@ public:
      * @param baseModelPath the path to the config of the base model
      * @return the path of the created model config file
      */
-    QString createModelConfigFile(QString name, QString baseModelPath);
+    QString createModelConfigFile(const QString& name, const QString& baseModelPath);
 
     /**
      * @brief createDatasetConfigFile creates a new dataset config file by copying the default_dataset.py file in configs/_base_/datasets
      * @param name to identify the dataset config file
      * @return the path of the created dataset config file
      */
-    QString createDatasetConfigFile(QString name);
+    QString createDatasetConfigFile(const QString& name);
 
     /**
      * @brief createScheduleConfigFile creates a new schedule config file by copying the default_schedule.py file in configs/_base_/schedules
      * @param name to identify the dataset config file
      * @return the path of the created schedule config file
      */
-    QString createScheduleConfigFile(QString name);
+    QString createScheduleConfigFile(const QString& name);
 
     /**
      * @brief createRuntimeConfigFile creates a new runtime config file by copying the default_runtime.py file in configs/_base_
      * @param name to identify the runtime config file
      * @return the path of the created runtime config file
      */
-    QString createRuntimeConfigFile(QString name);
+    QString createRuntimeConfigFile(const QString& name);
 
     /**
      * @brief getDefaultRuntimeConfigFilePath returns the path to the default_runtime.py file in configs/_base_ as it is sufficient for many cases
@@ -82,21 +82,21 @@ public:
      * @param mainConfigPath the path to the main config file, which should use the given runtime config
      * @param newRuntimeConfigPath the path to the new runtime config
      */
-    void changeRuntimeConfigPathInMainConfig(QString mainConfigPath, QString newRuntimeConfigPath);
+    void changeRuntimeConfigPathInMainConfig(const QString& mainConfigPath, const QString& newRuntimeConfigPath);
 
     /**
      * @brief changeCheckpointFilePath changes the path of the checkpoint file in the given main config file
      * @param mainConfigPath the path to the main config file, which should use the given checkpoint file
      * @param checkpointFilePath the path to the new checkpoint file
      */
-    void changeCheckpointFilePath(QString mainConfigPath, QString checkpointFilePath);
+    static void changeCheckpointFilePath(const QString& mainConfigPath, const QString& checkpointFilePath);
 
     /**
      * @brief changeModelNumberOfClasses changes the number of classes specification in the model config file
      * @param modelConfigPath the path to the modelConfigFile, where the number of classes should be changed
      * @param numberOfClasses a postive integer value, specifying the number of classes of the dataset
      */
-    void changeModelNumberOfClasses(QString modelConfigPath, int numberOfClasses);
+    void changeModelNumberOfClasses(const QString& modelConfigPath, qsizetype numberOfClasses);
 
     /**
      * @brief changeDataAugmentationOptions changes data augmentation parameter in the dataset config file
@@ -109,7 +109,7 @@ public:
      * @param resize the size to resize the input pictures
      * @param centerCropSize size of the from center cropped pictures
      */
-    void changeDataAugmentationOptions(QString datasetConfigPath, QString albuTransform, int randomResizedCropSize, double randomFlipProb, QString randomFlipDirection, bool RandomErasing, int resize, int centerCropSize);
+    static void changeDataAugmentationOptions(const QString& datasetConfigPath, const QString& albuTransform, int randomResizedCropSize, double randomFlipProb, const QString& randomFlipDirection, bool RandomErasing, int resize, int centerCropSize);
 
     /**
      * @brief changeDatasetPaths changes the absolute paths of the train, validation and test dataset in the given dataset config
@@ -118,36 +118,36 @@ public:
      * @param validatinoSetPath the absolute path of the validation dataset
      * @param testSetPath the absolute path of the test dataset
      */
-    void changeDatasetPaths(QString datasetConfigPath, QString trainingSetPath, QString validatinoSetPath, QString testSetPath);
+    void changeDatasetPaths(const QString& datasetConfigPath, const QString& trainingSetPath, const QString& validatinoSetPath, const QString& testSetPath);
 
     /**
      * @brief changeTestPath changes the test dataset path in the given dataset config file
      * @param datasetConfigPath the dataset config file to be changed
      * @param testSetPath the new absolute path of test dataset
      */
-    void changeTestPath(QString datasetConfigPath, QString testSetPath);
+    void changeTestPath(const QString& datasetConfigPath, const QString& testSetPath);
 
     /**
      * @brief changeScheduleOptions changes the maximal number of iterations and thereby the associated step size in the given schedule config
      * @param scheduleConfigPath the path to the schedule config file to be changed
      * @param maxIterations the maximal number of iterations during a training
     */
-    void changeScheduleOptions(QString scheduleConfigPath, int maxIterations);
+    void changeScheduleOptions(const QString& scheduleConfigPath, int maxIterations);
 
     /**
      * @brief changeCheckpointCreationStep changes the size of the checkpoint creation step in the given runtime config
      * @param runtimeConfigPath the runtime config to be changed
      * @param step determines after how many iterations a new checkpoint file is created
      */
-    void changeCheckpointCreationStep(QString runtimeConfigPath, int step);
+    void changeCheckpointCreationStep(const QString& runtimeConfigPath, int step);
 
 private:
 
-    QString createConfigFile(QString name, QString defaultFilePath);
-    QStringList readFileLines(QString pathToFile);
-    bool readAndReplaceLinesInOrder(QString pathToFile, QVector<QString> regularExpressions, QVector<QString> replaceWith, int caputureGroupIndex);
-    void writeBack(QString pathToFile, QStringList data);
-    QString replaceText(QString data, QString regularExpressionText, int captureGroupIndex, QString replacementText);
+    QString createConfigFile(const QString& name, const QString& defaultFilePath);
+    static QStringList readFileLines(const QString& pathToFile);
+    static bool readAndReplaceLinesInOrder(const QString& pathToFile, QVector<QString> regularExpressions, QVector<QString> replaceWith, int caputureGroupIndex);
+    static void writeBack(const QString& pathToFile, const QStringList& data);
+    static QString replaceText(QString data, const QString& regularExpressionText, int captureGroupIndex, const QString& replacementText);
 
     QString m_pathToMMClassification = "";
 

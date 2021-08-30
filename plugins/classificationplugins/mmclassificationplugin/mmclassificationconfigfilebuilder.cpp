@@ -1,26 +1,24 @@
 #include "mmclassificationconfigfilebuilder.h"
 
-MMClassificationConfigFileBuilder::MMClassificationConfigFileBuilder()
-{
+#include <utility>
 
+MMClassificationConfigFileBuilder::MMClassificationConfigFileBuilder() = default;
+
+void MMClassificationConfigFileBuilder::setPathToMMClassification(QString pathToMMClassification) {
+    m_pathToMMClassification = std::move(pathToMMClassification);
 }
 
-void MMClassificationConfigFileBuilder::setPathToMMClassification(QString pathToMMClassification)
-{
-    m_pathToMMClassification = pathToMMClassification;
-}
-
-QString MMClassificationConfigFileBuilder::createDatasetFileForDataAugmentationPreviewConfigFile()
-{
+QString MMClassificationConfigFileBuilder::createDatasetFileForDataAugmentationPreviewConfigFile() {
     QFileInfo infoMMClassification(m_pathToMMClassification);
     QString osIndependendPathToMMClassification = infoMMClassification.absoluteFilePath();
     QDir mmclassificationDirectory(osIndependendPathToMMClassification);
-    QString baseDatasetConfigPath = mmclassificationDirectory.cleanPath(mmclassificationDirectory.absoluteFilePath(m_defaultDatasetConfigPath));
+    QString baseDatasetConfigPath = QDir::cleanPath(
+            mmclassificationDirectory.absoluteFilePath(m_defaultDatasetConfigPath));
     QFile baseDatasetConfigFile(baseDatasetConfigPath);
     if (!baseDatasetConfigFile.exists()) {
-        return QString();
+        return {};
     }
-    QString previewConfigPath = mmclassificationDirectory.cleanPath(mmclassificationDirectory.absoluteFilePath(m_previewConfigPath));
+    QString previewConfigPath = QDir::cleanPath(mmclassificationDirectory.absoluteFilePath(m_previewConfigPath));
     QFile previewConfigFile(previewConfigPath);
     if (!previewConfigFile.exists()) {
         baseDatasetConfigFile.copy(previewConfigPath);
@@ -28,12 +26,13 @@ QString MMClassificationConfigFileBuilder::createDatasetFileForDataAugmentationP
     return previewConfigPath;
 }
 
-QString MMClassificationConfigFileBuilder::createMainConfigFile(QString name, QString modelConfigPath, QString datasetConfigPath, QString scheduleConfigPath, QString runtimeConfigPath, QString checkpointName)
-{
+QString MMClassificationConfigFileBuilder::createMainConfigFile(const QString& name, const QString& modelConfigPath,
+                                                                const QString& datasetConfigPath, const QString& scheduleConfigPath,
+                                                                const QString& runtimeConfigPath, const QString& checkpointName) {
     QFileInfo infoMMClassification(m_pathToMMClassification);
     QString osIndependendPathToMMClassification = infoMMClassification.absoluteFilePath();
     QDir mmclassificationDirectory(osIndependendPathToMMClassification);
-    QString mainConfigPath = mmclassificationDirectory.cleanPath(mmclassificationDirectory.absoluteFilePath(m_subFolderConfigs));
+    QString mainConfigPath = QDir::cleanPath(mmclassificationDirectory.absoluteFilePath(m_subFolderConfigs));
     //QString checkpointPath = mmclassificationDirectory.cleanPath(mmclassificationDirectory.absoluteFilePath(m_subfolderCheckpoints));
     QString checkpointPath = mmclassificationDirectory.absolutePath();
     // Create the directory if needed
@@ -46,20 +45,19 @@ QString MMClassificationConfigFileBuilder::createMainConfigFile(QString name, QS
     mainConfigDir.cdUp();
     mainConfigFile.open(QIODevice::WriteOnly);
     QTextStream out(&mainConfigFile);
-        out << "_base_ = [" << "\n";
-        out << "'" << mainConfigDir.relativeFilePath(modelConfigPath) << "'" << ',';
-        out << "'" << mainConfigDir.relativeFilePath(datasetConfigPath) << "'" << ',';
-        out << "'" << mainConfigDir.relativeFilePath(scheduleConfigPath) << "'" << ',';
-        out << "'" << mainConfigDir.relativeFilePath(runtimeConfigPath) << "'" << "\n";
-        out << "]" << "\n";
-        //out << "load_from = " << "'" + mainConfigDir.relativeFilePath(checkpointPath + checkpointName) + "'";
-        out << "load_from = " << "'" + checkpointName + "'";
+    out << "_base_ = [" << "\n";
+    out << "'" << mainConfigDir.relativeFilePath(modelConfigPath) << "'" << ',';
+    out << "'" << mainConfigDir.relativeFilePath(datasetConfigPath) << "'" << ',';
+    out << "'" << mainConfigDir.relativeFilePath(scheduleConfigPath) << "'" << ',';
+    out << "'" << mainConfigDir.relativeFilePath(runtimeConfigPath) << "'" << "\n";
+    out << "]" << "\n";
+    //out << "load_from = " << "'" + mainConfigDir.relativeFilePath(checkpointPath + checkpointName) + "'";
+    out << "load_from = " << "'" + checkpointName + "'";
     mainConfigFile.close();
     return mainConfigPath;
 }
 
-QString MMClassificationConfigFileBuilder::createModelConfigFile(QString name, QString baseModelPath)
-{
+QString MMClassificationConfigFileBuilder::createModelConfigFile(const QString& name, const QString &baseModelPath) {
     QString modelConfigPath = createConfigFile(name, m_defaultModelConfigPath);
     if (!modelConfigPath.isEmpty()) {
         QFile modelConfigFile(modelConfigPath);
@@ -76,10 +74,10 @@ QString MMClassificationConfigFileBuilder::createModelConfigFile(QString name, Q
             data.append(line);
         }
         modelConfigFile.close();
-        if(modelConfigFile.open(QFile::WriteOnly | QFile::Truncate)) {
+        if (modelConfigFile.open(QFile::WriteOnly | QFile::Truncate)) {
             QTextStream out(&modelConfigFile);
-            for (int i = 0; i < data.size(); i++) {
-                out << data.at(i) + "\n";
+            for (const auto &i : data) {
+                out << i + "\n";
             }
         }
         modelConfigFile.close();
@@ -87,47 +85,42 @@ QString MMClassificationConfigFileBuilder::createModelConfigFile(QString name, Q
     return modelConfigPath;
 }
 
-QString MMClassificationConfigFileBuilder::createDatasetConfigFile(QString name)
-{
+QString MMClassificationConfigFileBuilder::createDatasetConfigFile(const QString& name) {
     return createConfigFile(name, m_defaultDatasetConfigPath);
 }
 
-QString MMClassificationConfigFileBuilder::createScheduleConfigFile(QString name)
-{
+QString MMClassificationConfigFileBuilder::createScheduleConfigFile(const QString& name) {
     return createConfigFile(name, m_defaultScheduleConfigPath);
 }
 
-QString MMClassificationConfigFileBuilder::createRuntimeConfigFile(QString name)
-{
+QString MMClassificationConfigFileBuilder::createRuntimeConfigFile(const QString& name) {
     return createConfigFile(name, m_defaultRuntimeConfigPath);
 }
 
-QString MMClassificationConfigFileBuilder::getDefaultRuntimeConfigFilePath()
-{
+QString MMClassificationConfigFileBuilder::getDefaultRuntimeConfigFilePath() {
     QFileInfo infoMMClassification(m_pathToMMClassification);
     QString osIndependendPathToMMClassification = infoMMClassification.absoluteFilePath();
     QDir mmclassificationDirectory(osIndependendPathToMMClassification);
-    return mmclassificationDirectory.cleanPath(mmclassificationDirectory.absoluteFilePath(m_defaultRuntimeConfigPath));
+    return QDir::cleanPath(mmclassificationDirectory.absoluteFilePath(m_defaultRuntimeConfigPath));
 }
 
-QString MMClassificationConfigFileBuilder::createConfigFile(QString name, QString defaultFilePath)
-{
+QString MMClassificationConfigFileBuilder::createConfigFile(const QString &name, const QString& defaultFilePath) {
     QFileInfo infoMMClassification(m_pathToMMClassification);
     QString osIndependendPathToMMClassification = infoMMClassification.absoluteFilePath();
     QDir mmclassificationDirectory(osIndependendPathToMMClassification);
-    QString defaultConfigPath = mmclassificationDirectory.cleanPath(mmclassificationDirectory.absoluteFilePath(defaultFilePath));
+    QString defaultConfigPath = QDir::cleanPath(mmclassificationDirectory.absoluteFilePath(defaultFilePath));
     QFile defaultConfigFile(defaultConfigPath);
     if (!defaultConfigFile.exists()) {
-        return QString();
+        return {};
     }
-    QFileInfo info (defaultConfigPath);
-    QString newConfigPath = info.absolutePath() + QDir::fromNativeSeparators(QDir::separator()) + name + ".py";;
+    QFileInfo info(defaultConfigPath);
+    QString newConfigPath = info.absolutePath() + QDir::fromNativeSeparators(QDir::separator()) + name + ".py";
     defaultConfigFile.copy(newConfigPath);
     return newConfigPath;
 }
 
-void MMClassificationConfigFileBuilder::changeRuntimeConfigPathInMainConfig(QString mainConfigPath, QString newRuntimeConfigPath)
-{
+void MMClassificationConfigFileBuilder::changeRuntimeConfigPathInMainConfig(const QString &mainConfigPath,
+                                                                            const QString& newRuntimeConfigPath) {
     const int captureGroupIndex = 1;
     QFile file(mainConfigPath);
     file.open(QIODevice::Text | QIODevice::ReadOnly);
@@ -137,26 +130,23 @@ void MMClassificationConfigFileBuilder::changeRuntimeConfigPathInMainConfig(QStr
     mainConfigDir.cdUp();
     QString relativeRuntimeConfigPath = mainConfigDir.relativeFilePath(newRuntimeConfigPath);
 
-    mainConfigContent = replaceText(mainConfigContent, m_runtimeConfigPathRegExText, captureGroupIndex, relativeRuntimeConfigPath);
+    mainConfigContent = replaceText(mainConfigContent, m_runtimeConfigPathRegExText, captureGroupIndex,
+                                    relativeRuntimeConfigPath);
     QStringList list = mainConfigContent.split(QRegularExpression("[\r\n]"));
     writeBack(mainConfigPath, list);
 }
 
-void MMClassificationConfigFileBuilder::changeCheckpointFilePath(QString mainConfigPath, QString checkpointFilePath)
-{
+void
+MMClassificationConfigFileBuilder::changeCheckpointFilePath(const QString& mainConfigPath, const QString &checkpointFilePath) {
     const QString expression = "load_from = '(\\S+)'";
 
-    QVector<QString> toReplace;
-    toReplace.append(expression);
-
-    QVector<QString> replaceWith;
-    replaceWith.append(checkpointFilePath);
-
+    QVector<QString> toReplace(expression);
+    QVector<QString> replaceWith(checkpointFilePath);
     readAndReplaceLinesInOrder(mainConfigPath, toReplace, replaceWith, 1);
 }
 
-void MMClassificationConfigFileBuilder::changeModelNumberOfClasses(QString modelConfigPath, int numberOfClasses)
-{
+void
+MMClassificationConfigFileBuilder::changeModelNumberOfClasses(const QString &modelConfigPath, qsizetype numberOfClasses) {
     const QString expression = "num_classes = (\\d+)";
 
     QFile file(modelConfigPath);
@@ -168,8 +158,11 @@ void MMClassificationConfigFileBuilder::changeModelNumberOfClasses(QString model
     writeBack(modelConfigPath, list);
 }
 
-void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(QString datasetConfigPath, QString albuTransform, int randomResizedCropSize, double randomFlipProb, QString randomFlipDirection, bool randomErasing, int resize, int centerCropSize)
-{
+void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(const QString &datasetConfigPath,
+                                                                      const QString& albuTransform, int randomResizedCropSize,
+                                                                      double randomFlipProb,
+                                                                      const QString& randomFlipDirection, bool randomErasing,
+                                                                      int resize, int centerCropSize) {
     const QString albuTransformPlaceholder = "#no albu transform type specified";
     const QString randomResizedCropPlaceholder = "#no random resized crop specified";
     const QString randomFlipPlaceholder = "#no random flip specified";
@@ -232,9 +225,7 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(QString da
     bool containsResize = false;
     bool containsCenterCropSize = false;
 
-    QString line;
-    for (int i = 0; i < datasetConfigContent.size(); i++) {
-        line = datasetConfigContent.at(i);
+    for (const auto &line : datasetConfigContent) {
         if (line.contains(albuTransformIdentifier)) {
             containsAlbuTransformType = true;
         } else if (line.contains(randomResizedIdentifier)) {
@@ -266,20 +257,21 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(QString da
     if (randomResizedCropSize == 0 && containsRandomResizedCrop) {
         toReplace.append(randomResizedCropSizeCompleteRegExText);
         replaceWith.append(randomResizedCropPlaceholder);
-    } else if (randomResizedCropSize != 0){
+    } else if (randomResizedCropSize != 0) {
         if (containsRandomResizedCrop) {
             toReplace.append(randomResizedCropSizeGroupValueRegExText);
             replaceWith.append(QString::number(randomResizedCropSize));
         } else {
             toReplace.append("(" + randomResizedCropPlaceholder + ")");
-            replaceWith.append(randomResizedCropSizeBeforeValue + QString::number(randomResizedCropSize) + randomResizedCropSizeAfterValue);
+            replaceWith.append(randomResizedCropSizeBeforeValue + QString::number(randomResizedCropSize) +
+                               randomResizedCropSizeAfterValue);
         }
     }
 
     if ((randomFlipProb == 0 || randomFlipDirection.isEmpty()) && containsRandomFlip) {
         toReplace.append(randomFlipCompleteRegExText);
         replaceWith.append(randomFlipPlaceholder);
-    } else if (randomFlipProb != 0 && !randomFlipDirection.isEmpty()){
+    } else if (randomFlipProb != 0 && !randomFlipDirection.isEmpty()) {
         if (containsRandomFlip) {
             toReplace.append(randomFlipProbGroupValueRegExText);
             toReplace.append(randomFlipDirectionGroupValueRegExText);
@@ -287,14 +279,16 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(QString da
             replaceWith.append(randomFlipDirection);
         } else {
             toReplace.append("(" + randomFlipPlaceholder + ")");
-            replaceWith.append(randomFlipProbBeforeValue + QString::number(randomFlipProb) + randomFlipDirectionBeforeValue + randomFlipDirection + randomFlipDirectionAfterValue);
+            replaceWith.append(
+                    randomFlipProbBeforeValue + QString::number(randomFlipProb) + randomFlipDirectionBeforeValue +
+                    randomFlipDirection + randomFlipDirectionAfterValue);
         }
     }
 
     if (!randomErasing && containsRandomErasing) {
         toReplace.append(randomErasingCompleteRegExText);
         replaceWith.append(randomErasingPlaceholder);
-    } else if (randomErasing && !containsRandomErasing){
+    } else if (randomErasing && !containsRandomErasing) {
         toReplace.append("(" + randomErasingPlaceholder + ")");
         replaceWith.append(randomErasingLine);
     }
@@ -310,7 +304,7 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(QString da
     if (resize == 0 && containsResize) {
         toReplace.append(resizeCompleteRegExText);
         replaceWith.append(resizePlaceholder);
-    } else if (resize != 0){
+    } else if (resize != 0) {
         if (containsResize) {
             toReplace.append(resizeGroupValueRegExText);
             replaceWith.append(QString::number(resize));
@@ -323,7 +317,7 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(QString da
     if (centerCropSize == 0 && containsCenterCropSize) {
         toReplace.append(centerCropSizeCompleteRegExText);
         replaceWith.append(centerCropPlaceholder);
-    } else if (!albuTransform.isEmpty()){
+    } else if (!albuTransform.isEmpty()) {
         if (containsCenterCropSize) {
             toReplace.append(centerCropSizeGroupValueRegExText);
             replaceWith.append(QString::number(centerCropSize));
@@ -335,21 +329,23 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(QString da
     readAndReplaceLinesInOrder(datasetConfigPath, toReplace, replaceWith, groupIndex);
 }
 
-void MMClassificationConfigFileBuilder::changeDatasetPaths(QString datasetConfigPath, QString trainingSetPath, QString validationSetPath, QString testSetPath)
-{
+void MMClassificationConfigFileBuilder::changeDatasetPaths(const QString &datasetConfigPath, const QString& trainingSetPath,
+                                                           const QString& validationSetPath, const QString& testSetPath) {
     int groupIndex = 3;
     QFile file(datasetConfigPath);
     file.open(QIODevice::Text | QIODevice::ReadOnly);
     QString datasetConfigContent = file.readAll();
-    datasetConfigContent = replaceText(datasetConfigContent, m_trainPathRegExText, groupIndex, trainingSetPath);
-    datasetConfigContent = replaceText(datasetConfigContent, m_validationPathRegExText, groupIndex, validationSetPath);
+    datasetConfigContent = replaceText(datasetConfigContent, m_trainPathRegExText, groupIndex,
+                                       trainingSetPath);
+    datasetConfigContent = replaceText(datasetConfigContent, m_validationPathRegExText, groupIndex,
+                                       validationSetPath);
     datasetConfigContent = replaceText(datasetConfigContent, m_testPathRegExText, groupIndex, testSetPath);
-    QStringList list = datasetConfigContent.split(QRegularExpression(m_newLineRegExText)); // inverse transformation, so that it isn't in only one line
+    QStringList list = datasetConfigContent.split(
+            QRegularExpression(m_newLineRegExText)); // inverse transformation, so that it isn't in only one line
     writeBack(datasetConfigPath, list);
 }
 
-void MMClassificationConfigFileBuilder::changeTestPath(QString datasetConfigPath, QString testSetPath)
-{
+void MMClassificationConfigFileBuilder::changeTestPath(const QString &datasetConfigPath, const QString& testSetPath) {
     const int testPathGroupIndex = 3;
     QFile file(datasetConfigPath);
     file.open(QIODevice::Text | QIODevice::ReadOnly);
@@ -359,8 +355,7 @@ void MMClassificationConfigFileBuilder::changeTestPath(QString datasetConfigPath
     writeBack(datasetConfigPath, list);
 }
 
-void MMClassificationConfigFileBuilder::changeScheduleOptions(QString scheduleConfigPath, int maxIterations)
-{
+void MMClassificationConfigFileBuilder::changeScheduleOptions(const QString &scheduleConfigPath, int maxIterations) {
     const int split = 2;
     const int maxItersGroupIndex = 0;
     const int stepGroupIndex = 1;
@@ -371,7 +366,8 @@ void MMClassificationConfigFileBuilder::changeScheduleOptions(QString scheduleCo
     file.open(QIODevice::Text | QIODevice::ReadOnly);
     QString scheduleConfigContent = file.readAll();
     scheduleConfigContent = replaceText(scheduleConfigContent, m_step, stepGroupIndex, QString::number(step));
-    scheduleConfigContent = replaceText(scheduleConfigContent, m_maxItersRegExText, maxItersGroupIndex, maxItersExpression + QString::number(maxIterations));
+    scheduleConfigContent = replaceText(scheduleConfigContent, m_maxItersRegExText, maxItersGroupIndex,
+                                        maxItersExpression + QString::number(maxIterations));
 
     qDebug() << "step: " << step;
 
@@ -379,8 +375,7 @@ void MMClassificationConfigFileBuilder::changeScheduleOptions(QString scheduleCo
     writeBack(scheduleConfigPath, list);
 }
 
-void MMClassificationConfigFileBuilder::changeCheckpointCreationStep(QString runtimeConfigPath, int step)
-{
+void MMClassificationConfigFileBuilder::changeCheckpointCreationStep(const QString &runtimeConfigPath, int step) {
     const int groupIndex = 1;
     QFile file(runtimeConfigPath);
     file.open(QIODevice::Text | QIODevice::ReadOnly);
@@ -390,20 +385,21 @@ void MMClassificationConfigFileBuilder::changeCheckpointCreationStep(QString run
     writeBack(runtimeConfigPath, list);
 }
 
-QString MMClassificationConfigFileBuilder::replaceText(QString content, QString regularExpressionText, int captureGroupIndex, QString replacementText) {
+QString MMClassificationConfigFileBuilder::replaceText(QString content, const QString &regularExpressionText,
+                                                       int captureGroupIndex, const QString& replacementText) {
     QString textToReplace;
-    QRegularExpression regularExpresion(regularExpressionText);
+    QRegularExpression regularExpression(regularExpressionText);
     QRegularExpressionMatch match;
-    match = regularExpresion.match(content);
+    match = regularExpression.match(content);
     if (match.hasMatch()) {
         textToReplace = match.captured(captureGroupIndex);
-        regularExpresion.setPattern(textToReplace);
-        content.replace(regularExpresion, replacementText);
-     }
+        regularExpression.setPattern(textToReplace);
+        content.replace(regularExpression, replacementText);
+    }
     return content;
 }
 
-QStringList MMClassificationConfigFileBuilder::readFileLines(QString pathToFile) {
+QStringList MMClassificationConfigFileBuilder::readFileLines(const QString& pathToFile) {
     QFile file(pathToFile);
     file.open(QIODevice::Text | QIODevice::ReadOnly);
     QStringList data;
@@ -417,14 +413,16 @@ QStringList MMClassificationConfigFileBuilder::readFileLines(QString pathToFile)
     return data;
 }
 
-bool MMClassificationConfigFileBuilder::readAndReplaceLinesInOrder(QString pathToFile, QVector<QString> regularExpression, QVector<QString> replaceWith, int caputureGroupIndex) {
+bool
+MMClassificationConfigFileBuilder::readAndReplaceLinesInOrder(const QString& pathToFile, QVector<QString> regularExpression,
+                                                              QVector<QString> replaceWith, int caputureGroupIndex) {
     QFile file(pathToFile);
     file.open(QIODevice::Text | QIODevice::ReadOnly);
     QStringList data;
     QTextStream in(&file);
     int countReplaces = 0;
-    int regularExpressionSize = regularExpression.size();
-    int replaceWithSize = replaceWith.size();
+    auto regularExpressionSize = regularExpression.size();
+    auto replaceWithSize = replaceWith.size();
     if (regularExpressionSize == 0 or replaceWithSize == 0 or regularExpressionSize != replaceWithSize) {
         return false;
     }
@@ -439,8 +437,8 @@ bool MMClassificationConfigFileBuilder::readAndReplaceLinesInOrder(QString pathT
         if (!allReplaced && match.hasMatch()) {
             toReplace = match.captured(caputureGroupIndex);
             QRegularExpression valueToReplace(toReplace);
-            if(!valueToReplace.isValid())
-            line.replace(toReplace, replaceWith[countReplaces]);
+            if (!valueToReplace.isValid())
+                line.replace(toReplace, replaceWith[countReplaces]);
             QRegularExpressionMatch match2 = valueToReplace.match(line);
             countReplaces++;
             if (countReplaces == regularExpressionSize) {
@@ -460,12 +458,12 @@ bool MMClassificationConfigFileBuilder::readAndReplaceLinesInOrder(QString pathT
     return countReplaces == regularExpressionSize;
 }
 
-void MMClassificationConfigFileBuilder::writeBack(QString pathToFile, QStringList data) {
+void MMClassificationConfigFileBuilder::writeBack(const QString &pathToFile, const QStringList& data) {
     QFile file(pathToFile);
-    if(file.open(QFile::WriteOnly | QFile::Truncate)) {
+    if (file.open(QFile::WriteOnly | QFile::Truncate)) {
         QTextStream out(&file);
-        for (int i = 0; i < data.size(); i++) {
-            out << data.at(i) + "\n";
+        for (const auto &i : data) {
+            out << i + "\n";
         }
     }
     file.close();
