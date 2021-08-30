@@ -52,9 +52,9 @@ void GenericResultGraphics::launch_externalGraphicsGenerator(const QString &comm
 
     QString strTemp = QString::fromLocal8Bit(process->readAll());  // Get the output
 
-    qInfo() << qPrintable(QString("===%1===\n").arg(commandWithArgs))
-            << qPrintable(QString("%1\n").arg(strTemp.simplified())) //Print in console
-            << qPrintable(QString("===%1===\n").arg("END OF OUTPUT"));
+    qInfo() << QString("===%1===\n").arg(commandWithArgs)
+            << QString("%1\n").arg(strTemp.simplified()) //Print in console
+            << QString("===%1===\n").arg("END OF OUTPUT");
 
     process->close();
 }
