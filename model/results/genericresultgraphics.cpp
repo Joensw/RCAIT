@@ -38,17 +38,16 @@ const QString &GenericResultGraphics::getFullPath() const {
 }
 
 void GenericResultGraphics::launch_externalGraphicsGenerator(const QString &command, const QStringList &args) {
-    auto *process = new QProcess();
-    auto commandWithArgs = command % " " % args.join(" ");
-    process->startCommand(commandWithArgs);
-    process->waitForStarted();
-    process->waitForFinished();
+    auto commandWithArgs = command + " " + args.join(" ");
 
-    QString strTemp = QString::fromLocal8Bit(process->readAll());  // Get the output
+    QProcess process;
+    process.startCommand(commandWithArgs);
+    process.waitForStarted();
+    process.waitForFinished();
 
-    qInfo() << QString("===%1===\n").arg(commandWithArgs)
-            << QString("%1\n").arg(strTemp.simplified()) //Print in console
-            << QString("===%1===\n").arg("END OF OUTPUT");
+    qInfo() << qPrintable("::::::" % commandWithArgs % "::::::" % "\n")
+            << qPrintable(process.readAll().simplified().append("\n")) //Print in console
+            << qPrintable("::::::" % QString("END OF OUTPUT") % "::::::" % "\n");
 
-    process->close();
+    process.close();
 }
