@@ -11,6 +11,7 @@
 #include "classificationgraphics.h"
 #include "trainingresult.h"
 #include "classificationresult.h"
+#include <projectmanager.h>
 
 extern const QString TRAINING_JSON;
 extern const QString CLASSIFICATION_JSON;

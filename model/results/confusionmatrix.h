@@ -6,6 +6,7 @@
 #include <QFileInfo>
 #include <QGraphicsSvgItem>
 #include <QDir>
+#include <QStringBuilder>
 #include <trainingresultview.h>
 #include "genericresultgraphics.h"
 

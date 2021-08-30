@@ -1,7 +1,4 @@
-#include <projectmanager.h>
-#include <classificationresultview.h>
 #include "resultsprocessor.h"
-#include "mapadapt.h"
 
 const QString TRAINING_JSON = QString("training_%1.json");
 const QString CLASSIFICATION_JSON = QString("classification_%1.json");

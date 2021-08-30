@@ -1,37 +1,35 @@
-#include <QString>
-#include <QFileInfo>
-#include <mapadapt.h>
 #include "classificationgraphics.h"
 
 ClassificationGraphics::ClassificationGraphics(const QString &directory, const QString &identifier,
                                                const QMap<QString, QList<double>> &data)
-        : GenericResultGraphics(directory, "classification_" + identifier, "svg"),
+        : GenericResultGraphics(directory, "classification_" % identifier, "svg"),
           m_data(data) {
 }
 
 QString ClassificationGraphics::valuesToPyText() {
-    auto result = QStringList();
+    QStringList result;
 
     for (const auto &row_data: m_data) {
         //List for each row, which shall be joined in a single QString
-        auto rowList = QStringList();
+        QStringList rowList;
 
         //Convert to QString with precision of 2 digits
         for (const auto &value : row_data) {
             auto valueStr = QString::number(value, 'f', 2);
             rowList << valueStr;
         }
-        result << '[' + rowList.join(',') + ']';
+        result << '[' % rowList.join(',') % ']';
     }
-    return '[' + result.join(',') + ']';
+    return '[' % result.join(',') % ']';
 }
 
 QString ClassificationGraphics::labelsToPyText() {
-    auto results = QStringList();
+    QStringList results;
     for (const auto&[key, _]: MapAdapt(m_data)) {
-        results << QString("'%1'").arg(key);
+        results << "'" % key % "'";
     }
-    return '[' + results.join(',') + ']';
+    //Add "" around string so that dashes are not recognized as new arguments
+    return '"' % ('[' % results.join(',') % ']') % '"';
 }
 
 void ClassificationGraphics::addDataRow(const QString &identifier, QList<double> &data) {

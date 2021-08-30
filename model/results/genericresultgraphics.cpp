@@ -1,23 +1,17 @@
-#include <QThreadPool>
-#include <utility>
-#include <QGraphicsSvgItem>
-#include <trainingresultview.h>
-#include <QProcess>
-#include <QtConcurrent/QtConcurrentRun>
 #include "genericresultgraphics.h"
 
 GenericResultGraphics::GenericResultGraphics(const QString &directory, QString baseName, QString extension)
         : m_baseName(std::move(baseName)),
           m_extension(std::move(extension)),
-          m_fullName(m_baseName + '.' + m_extension),
+          m_fullName(m_baseName % '.' % m_extension),
           m_directory(directory),
-          m_fullPath(directory + m_fullName) {
+          m_fullPath(directory % m_fullName) {
 
 }
 
 void GenericResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
     auto generateGraphicsTask = QtConcurrent::run([this, receiver] {
-        this->generateGraphicsInternal('"' + m_fullPath + '"');
+        this->generateGraphicsInternal('"' % m_fullPath % '"');
         this->passResultGraphics(m_fullPath, receiver);
     });
     Q_UNUSED(generateGraphicsTask)
@@ -45,7 +39,7 @@ const QString &GenericResultGraphics::getFullPath() const {
 
 void GenericResultGraphics::launch_externalGraphicsGenerator(const QString &command, const QStringList &args) {
     auto *process = new QProcess();
-    auto commandWithArgs = command + " " + args.join(" ");
+    auto commandWithArgs = command % " " % args.join(" ");
     process->startCommand(commandWithArgs);
     process->waitForStarted();
     process->waitForFinished();

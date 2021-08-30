@@ -3,6 +3,7 @@
 
 #include <QMap>
 #include <QGraphicsSvgItem>
+#include <QStringBuilder>
 #include <genericgraphicsview.h>
 #include "genericresultgraphics.h"
 

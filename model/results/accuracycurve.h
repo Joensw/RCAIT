@@ -3,6 +3,11 @@
 
 
 #include <QGraphicsItem>
+#include <QFileInfo>
+#include <QGraphicsSvgItem>
+#include <QProcess>
+#include <QStringBuilder>
+#include <mapadapt.h>
 #include <trainingresultview.h>
 #include "genericresultgraphics.h"
 

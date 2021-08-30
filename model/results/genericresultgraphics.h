@@ -4,8 +4,12 @@
 
 #include <QString>
 #include <QGraphicsView>
-#include <QThread>
-#include <QRunnable>
+#include <utility>
+#include <QGraphicsSvgItem>
+#include <trainingresultview.h>
+#include <QProcess>
+#include <QtConcurrent/QtConcurrentRun>
+#include <QStringBuilder>
 
 class GenericResultGraphics {
 

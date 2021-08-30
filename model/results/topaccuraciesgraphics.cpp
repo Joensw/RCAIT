@@ -3,36 +3,33 @@
 
 TopAccuraciesGraphics::TopAccuraciesGraphics(const QString &directory,
                                              const QList<QPair<QString, QList<double>>> &data)
-        : GenericResultGraphics(directory, "topaccuracies", "svg") {
-
-    m_data = data;
+        : GenericResultGraphics(directory, "topaccuracies", "svg"),
+          m_data(data) {
 }
 
 QString TopAccuraciesGraphics::valuesToPyText() {
-    auto result = QStringList();
+    QStringList result;
 
     for (auto &[key, valuesList]: m_data) {
-
         //List for each row, which shall be joined in a single QString
-        auto rowList = QStringList();
+        QStringList rowList;
+
         for (const auto &value : valuesList) {
             //Convert to QString with precision of 2 digits
-            auto valStr = QString::number(value, 'f', 2);
-            rowList << valStr;
-
+            rowList << QString::number(value, 'f', 2);
         }
-        result << '[' + rowList.join(',') + ']';
+        result << '[' % rowList.join(',') % ']';
     }
-    return '[' + result.join(',') + ']';
+    return '[' % result.join(',') % ']';
 }
 
 QString TopAccuraciesGraphics::labelsToPyText() {
-    auto results = QStringList();
+    QStringList results;
     for (const auto &[key, _] : m_data) {
-        results << QString("'%1'").arg(key);
+        results << "'" % key % "'";
     }
     //Add "" around string so that dashes are not recognized as new arguments
-    return '"' + ('[' + results.join(',') + ']') + '"';
+    return '"' % ('[' % results.join(',') % ']') % '"';
 }
 
 void TopAccuraciesGraphics::addDataRow(const QString &identifier, const QList<double> &data) {

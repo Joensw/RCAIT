@@ -5,7 +5,7 @@ ConfusionMatrix::ConfusionMatrix(const QString &directory,
                                  const QString &identifier,
                                  const QStringList &classLabels,
                                  const QList<int> &values)
-        : GenericResultGraphics(directory, "confusionmatrix_" + identifier, "svg"),
+        : GenericResultGraphics(directory, "confusionmatrix_" % identifier, "svg"),
           m_size(classLabels.size()),
           m_classLabels(classLabels),
           m_values(values) {
@@ -37,23 +37,24 @@ double ConfusionMatrix::operator()(int row, int column) const {
 }
 
 QString ConfusionMatrix::labelsToPyText() {
-    QStringList labels = QStringList();
+    QStringList labels;
     for (auto &item : m_classLabels) {
-        labels << '"' + item + '"';
+        labels << "'" % item % "'";
     }
-    return '"' + ('[' + labels.join(',') + ']') + '"';
+    //Add "" around string so that dashes are not recognized as new arguments
+    return '"' % ('[' % labels.join(',') % ']') % '"';
 }
 
 QString ConfusionMatrix::valuesToPyText() {
-    auto result = QStringList();
+    QStringList result;
     for (qsizetype row = 0; row < m_size; row++) {
-        auto rowList = new QStringList();
+        QStringList rowList;
         for (qsizetype col = 0; col < m_size; col++) {
-            *rowList << QString::number(m_values[row * m_size + col]);
+            rowList << QString::number(m_values[row * m_size + col]);
         }
-        result << '[' + rowList->join(',') + ']';
+        result << '[' % rowList.join(',') % ']';
     }
-    return '[' + result.join(',') + ']';
+    return '[' % result.join(',') % ']';
 }
 
 bool ConfusionMatrix::operator==(const ConfusionMatrix &other) const {
