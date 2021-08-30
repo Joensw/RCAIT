@@ -8,7 +8,7 @@ class ClassificationThread : public QObject
 {
     Q_OBJECT
 public:
-    ClassificationThread(QString pluginName, QString inputImageDirPath, QString trainDatasetPath, QString workingDirectory, QString modelName, ProgressablePlugin * receiver);
+    ClassificationThread(const QString &pluginName, const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirectory, const QString &modelName, ProgressablePlugin * receiver);
     ClassificationResult* getResult();
 
 public slots:

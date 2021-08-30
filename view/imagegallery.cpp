@@ -63,12 +63,12 @@ void ImageGallery::concurrentAddImages(const QString &path) {
     concurrentAddImages(images);
 }
 
-void ImageGallery::concurrentAddImages(const QList<QImage> imageList) {
+void ImageGallery::concurrentAddImages(const QList<QImage> &imageList) {
     auto task = QtConcurrent::run([this, imageList] { this->addImages(imageList); });
     Q_UNUSED(task)
 }
 
-void ImageGallery::concurrentAddImages(const QList<QString> imageList) {
+void ImageGallery::concurrentAddImages(const QList<QString> &imageList) {
     //Auto deletes old pointer if that exists.
     running.reset( new addImagesTask(this, imageList));
 

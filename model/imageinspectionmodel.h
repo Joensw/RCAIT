@@ -18,9 +18,9 @@ private:
     QMap<QString, QStringList> m_validationDataset;
 
 public:
-    void loadDataSet(QString trainPath, QString validationPath);
-    void loadNewData(QString path, int split);
-    void mergeDataSets(QString trainPath, QString validationPath);
+    void loadDataSet(const QString &trainingPath, const QString &validationPath);
+    void loadNewData(const QString &path, int split);
+    void mergeDataSets(const QString &trainingPath, const QString &validationPath);
     void removeImage(int selectionIndex, QMap<QString, QList<int>> removedImages);
     const QMap<QString, QStringList> &getValidationDataset() const;
     const QMap<QString, QStringList> &getTrainDataset() const;
@@ -33,8 +33,8 @@ private:
     void insertLabeledImagePaths(QMap<QString, QStringList> *insertTarget, QString labeledImagePath);
     void removeImageWithIndex(QMap<QString, QStringList> *removeTarget, QMap<QString, QList<int>> removedImages);
     void mergeMap(QMap<QString, QStringList> *mergeIn, QMap<QString, QStringList> mergeFrom);
-    void moveFile(QString imagePath, QString label, QString trainOrValidate, int fileNumber);
-    int getFreeImageNumber(QStringList paths, QString label);
+    void moveFile(const QString &imagePath, const QString &label, const QString &trainOrValidate, int fileNumber);
+    int getFreeImageNumber(const QStringList &paths, const QString &label);
     static bool compareNames(const QString& s1,const QString& s2);
 
 };

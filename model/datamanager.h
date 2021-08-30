@@ -12,6 +12,10 @@
 
 class DataManager {
 public:
+    DataManager(const DataManager&) = delete;
+
+    DataManager& operator=(const DataManager&) = delete;
+
     /**
      * @brief DataManager create a new DataManager
      */
@@ -20,6 +24,7 @@ public:
     /**
      * @return list of all directories in the projects directory
      */
+
     QStringList getProjects();
 
     /**

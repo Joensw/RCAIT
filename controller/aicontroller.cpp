@@ -3,11 +3,11 @@
 #include <QMessageBox>
 
 
-AIController::AIController(DataManager *dataManager, InputImagesWidget *inputImagesWidget, AITrainingWidget *aiTrainingTab)
+AIController::AIController(DataManager *dataManager, InputImagesWidget *inputImagesWidget, AITrainingWidget *AITrainingWidget)
 {
     mDataManager = dataManager;
     mInputImagesWidget = inputImagesWidget;
-    mAiTrainingWidget = aiTrainingTab;
+    mAiTrainingWidget = AITrainingWidget;
     mTrainer = new Trainer;
     mClassifier = new Classifier;
 

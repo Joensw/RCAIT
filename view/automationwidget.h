@@ -41,7 +41,7 @@ public slots:
      *
      * @param name name of the task.
      */
-    void slot_taskAdded(QString name);
+    void slot_taskAdded(const QString &name);
 
     /**
      * @brief slot_taskUpdate is used change the task status icon on status change.
@@ -49,7 +49,7 @@ public slots:
      * @param name name of the task.
      * @param state new state of task.
      */
-    void slot_taskUpdate(QString name, QString state);
+    void slot_taskUpdate(const QString &name, const QString &state);
 
     /**
      * @brief slot_finished resets most buttons/elements to pre-start state.

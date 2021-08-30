@@ -1,6 +1,6 @@
 #include "imageinspectionmodel.h"
 
-void ImageInspectionModel::loadDataSet(QString trainingPath, QString validationPath) {
+void ImageInspectionModel::loadDataSet(const QString &trainingPath, const QString &validationPath) {
     //reset maps
     m_trainDataset.clear();
     m_validationDataset.clear();
@@ -11,22 +11,22 @@ void ImageInspectionModel::loadDataSet(QString trainingPath, QString validationP
 
 }
 
-void ImageInspectionModel::mergeDataSets(QString trainPath, QString validationPath) {
+void ImageInspectionModel::mergeDataSets(const QString &trainingPath, const QString &validationPath) {
     mergeMap(&m_trainDataset, m_trainNewData);
     mergeMap(&m_validationDataset,m_validationNewData);
     //move files since we can do it here for free before cleaning up the data structures
     foreach(QString label, m_trainNewData.keys()){
-        QStringList dataPaths = QStringList() << trainPath + "/" + label << validationPath + "/" + label;
+        QStringList dataPaths = QStringList() << trainingPath + "/" + label << validationPath + "/" + label;
         int fileNumber = getFreeImageNumber(dataPaths,label);
 
         for(QString& imagePath : m_trainNewData.value(label)){
-            moveFile(imagePath, label, trainPath, fileNumber);
+            moveFile(imagePath, label, trainingPath, fileNumber);
             fileNumber++;
         }
     }
 
     foreach(QString label, m_validationNewData.keys()){
-        QStringList dataPaths = QStringList() << trainPath + "/" + label << validationPath + "/" + label;
+        QStringList dataPaths = QStringList() << trainingPath + "/" + label << validationPath + "/" + label;
         int fileNumber = getFreeImageNumber(dataPaths,label);
 
         for(QString& imagePath : m_validationNewData.value(label)){
@@ -60,7 +60,7 @@ void ImageInspectionModel::removeImage(int selectionIndex, QMap<QString, QList<i
 
 }
 
-void ImageInspectionModel::loadNewData(QString path, int split) {
+void ImageInspectionModel::loadNewData(const QString &path, int split) {
     //reset maps because new data is coming
     m_trainNewData.clear();
     m_validationNewData.clear();
@@ -156,12 +156,12 @@ const QMap<QString, QStringList> &ImageInspectionModel::getTrainNewData() const 
     return m_trainNewData;
 }
 
-void ImageInspectionModel::moveFile(QString imagePath, QString label, QString trainOrValidate, int fileNumber) {
+void ImageInspectionModel::moveFile(const QString &imagePath, const QString &label, const QString &trainOrValidate, int fileNumber) {
     QFile file(imagePath);
     QFileInfo fileInfo(file);
     QString suffix = fileInfo.completeSuffix();
     QDir folder(fileInfo.absoluteDir());
-    QString filename(fileInfo.fileName());
+    QString filename(fileInfo.fileName()); //never used
     QString newPath = trainOrValidate + "/" + label;
     if(!QDir(newPath).exists()) {
         QDir().mkdir(newPath);
@@ -180,7 +180,7 @@ void ImageInspectionModel::moveFile(QString imagePath, QString label, QString tr
 
 }
 
-int ImageInspectionModel::getFreeImageNumber(QStringList paths, QString label)
+int ImageInspectionModel::getFreeImageNumber(const QStringList &paths, const QString &label)
 {
     int res = 1;
     QStringList fileList;
