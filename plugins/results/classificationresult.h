@@ -23,6 +23,8 @@ public:
     [[nodiscard]] const QList<QString> &getLabels() const;
 
     [[nodiscard]] ClassificationGraphics *getClassificationGraphics() const;
+
+    bool isValid();
 };
 
 

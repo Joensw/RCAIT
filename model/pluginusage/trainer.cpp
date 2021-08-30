@@ -33,6 +33,10 @@ void Trainer::slot_handleTrainingsResult(){
     emit sig_progress(100);
     trainThread.quit();
     trainThread.wait();
-    emit sig_trainingResultUpdated(m_trainingResult);
+    if (m_trainingResult->isValid()) {
+        emit sig_trainingResultUpdated(m_trainingResult);
+    } else {
+        qWarning() << "Invalid Training Result returned";
+    }
 }
 

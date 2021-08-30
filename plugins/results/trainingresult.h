@@ -42,6 +42,8 @@ public:
 
     [[nodiscard]] const QList<int> &getConfusionMatrixValues() const;
 
+    bool isValid();
+
 };
 
 

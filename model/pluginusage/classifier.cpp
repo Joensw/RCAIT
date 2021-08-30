@@ -20,9 +20,15 @@ void Classifier::classify(QString pluginName, QString inputImageDirPath, QString
 }
 
 void Classifier::slot_handleClassificationResult(){
-    ClassificationResult *classificationResult = m_classificationWorker->getResult();
+    //ClassificationResult *classificationResult = m_classificationWorker->getResult();
+    m_classificationResults = m_classificationWorker->getResult();
     emit sig_progress(100);
     classifyThread.quit();
     classifyThread.wait();
-    emit sig_classificationResultUpdated(classificationResult);
+    if (m_classificationResults->isValid()) {
+        emit sig_classificationResultUpdated(m_classificationResults);
+    } else {
+        qWarning() << "Invalid Classification Result returned";
+    }
+
 }
