@@ -11,7 +11,7 @@ public:
     AccuracyCurve(const QString &directory, const QString &identifier,
                   const QMap<int, QPair<double, double>> &data);
 
-    QPair<double,double> operator[](int epoch) const;
+    QPair<double,double> operator[](int iteration) const;
     bool operator==(const AccuracyCurve& other) const;
     bool operator!=(const AccuracyCurve& other) const;
 

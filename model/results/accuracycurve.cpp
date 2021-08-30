@@ -35,8 +35,8 @@ QString AccuracyCurve::valuesToPyText() {
     return '[' + result.join(',') + ']';
 }
 
-QPair<double, double> AccuracyCurve::operator[](int epoch) const {
-    return m_data[epoch];
+QPair<double, double> AccuracyCurve::operator[](int iteration) const {
+    return m_data[iteration];
 }
 
 bool AccuracyCurve::operator==(const AccuracyCurve &other) const {
