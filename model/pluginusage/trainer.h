@@ -27,17 +27,16 @@ public:
 
 
 signals:
-    void sig_trainingResultUpdated();
+    void sig_trainingResultUpdated(TrainingResult *trainingResult);
     void sig_startTraining();
 
 public slots:
     void slot_handleTrainingsResult();
 
 private:
-    TrainingResult* m_trainingResults;
     TrainingsThread *m_trainWorker;
-
     QString m_recentWorkingDir;
+    TrainingResult *m_trainingResult;
 
 
 };

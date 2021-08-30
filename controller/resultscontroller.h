@@ -18,13 +18,11 @@ Q_OBJECT
 public:
     ResultsController(DataManager *manager, ResultsWidget *resultsWidget);
 
-    void addTrainingResult(TrainingResult *result);
-
-    void addClassificationResult(ClassificationResult *result);
-
 public slots:
 
     void slot_projectPathUpdated();
+    void slot_addTrainingResult(TrainingResult *result);
+    void slot_addClassificationResult(ClassificationResult *result);
 
 private:
     DataManager *m_dataManager;

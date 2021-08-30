@@ -18,11 +18,6 @@ void Trainer::train(QString pluginName, QString modelName, QString trainDatasetP
         trainThread.start();
 }
 
-TrainingResult *Trainer::getLastTrainingResult()
-{
-    return m_trainingResults;
-}
-
 bool Trainer::getAugmentationPreview(QString pluginName, QString inputPath)
 {
     return false;
@@ -34,10 +29,10 @@ QString Trainer::getRecentWorkingDir()
 }
 
 void Trainer::slot_handleTrainingsResult(){
-    m_trainingResults = m_trainWorker->getResult();
+    m_trainingResult = m_trainWorker->getResult();
     emit sig_progress(100);
     trainThread.quit();
     trainThread.wait();
-    emit sig_trainingResultUpdated();
+    emit sig_trainingResultUpdated(m_trainingResult);
 }
 

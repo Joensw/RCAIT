@@ -20,14 +20,9 @@ void Classifier::classify(QString pluginName, QString inputImageDirPath, QString
 }
 
 void Classifier::slot_handleClassificationResult(){
-    m_classificationResults = m_classificationWorker->getResult();
+    ClassificationResult *classificationResult = m_classificationWorker->getResult();
     emit sig_progress(100);
     classifyThread.quit();
     classifyThread.wait();
-
-}
-
-ClassificationResult *Classifier::getLastClassificationResult()
-{
-    return m_classificationResults;
+    emit sig_classificationResultUpdated(classificationResult);
 }

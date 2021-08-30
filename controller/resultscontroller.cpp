@@ -83,16 +83,18 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
             &ResultsExporter::slot_save_ClassificationResult);
 }
 
-void ResultsController::addTrainingResult(TrainingResult *result) {
-    m_resultsWidget->addTrainingResult(result);
-}
-
-void ResultsController::addClassificationResult(ClassificationResult *result) {
-    m_resultsWidget->addClassificationResult(result);
-}
-
 void ResultsController::slot_projectPathUpdated() {
     m_resultsWidget->updateResultFolderPaths();
     m_resultsImporter->updateResultFolderPaths();
     m_resultsExporter->updateResultFolderPaths();
+}
+
+void ResultsController::slot_addTrainingResult(TrainingResult *result)
+{
+    m_resultsWidget->addTrainingResult(result);
+}
+
+void ResultsController::slot_addClassificationResult(ClassificationResult *result)
+{
+    m_resultsWidget->addClassificationResult(result);
 }
