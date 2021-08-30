@@ -7,15 +7,15 @@
 #include <QApplication>
 
 
-Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> list)
+Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> commandList)
 {
     mExporter = new ResultsExporter();
 
     mDataManager = dataManager;
     mName = map.value("taskName").toString();
 
-    if (!list.isEmpty()){
-        mCommandList = list;
+    if (!commandList.isEmpty()){
+        mCommandList = commandList;
         return;
     }
 

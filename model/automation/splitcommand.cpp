@@ -1,6 +1,6 @@
 #include "splitcommand.h"
 
-SplitCommand::SplitCommand(QString tempPath, QString trainPath, QString validationPath, int split, ProgressablePlugin *receiver)
+SplitCommand::SplitCommand(const QString &tempPath, const QString &trainPath, const QString &validationPath, int split, ProgressablePlugin *receiver)
 {
     connect(this, &SplitCommand::sig_progress, receiver, &Progressable::slot_makeProgress);
     mSplit = split;

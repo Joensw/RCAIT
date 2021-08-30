@@ -19,9 +19,9 @@ public:
             trainThread.wait();
     }
 
-    void train(QString pluginName, QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory);
+    void train(const QString &pluginName, const QString &modelName, const QString &trainDatasetPath, const QString &validationDatasetPath, const QString &workingDirectory);
     TrainingResult* getLastTrainingResult();
-    bool getAugmentationPreview(QString pluginName, QString inputPath);
+    bool getAugmentationPreview(const QString &pluginName, const QString &inputPath);
 
     QString getRecentWorkingDir();
 

@@ -1,7 +1,7 @@
 #include "classificationthread.h"
 
 
-ClassificationThread::ClassificationThread(QString pluginName, QString inputImageDirPath, QString trainDatasetPath, QString workingDirectory, QString modelName, ProgressablePlugin * receiver)
+ClassificationThread::ClassificationThread(const QString &pluginName, const QString &inputImageDirPath, const QString &trainDatasetPath, const  QString &workingDirectory, const  QString &modelName, ProgressablePlugin * receiver)
 {
     m_receiver = receiver;
     m_trainDatasetPath = trainDatasetPath;

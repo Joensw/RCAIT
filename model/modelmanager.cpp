@@ -56,7 +56,7 @@ QStringList ModelManager::getModelNamesOfProject(QString projectName)
     return modelNames;
 }
 
-void ModelManager::removeAllModelsOfProject(QString projectName)
+void ModelManager::removeAllModelsOfProject(const QString &projectName)
 {
     QStringList modelsToRemove = getModelNamesOfProject(projectName);
     foreach (QString modelName, modelsToRemove) {
@@ -64,7 +64,7 @@ void ModelManager::removeAllModelsOfProject(QString projectName)
     }
 }
 
-void ModelManager::saveLastWorkingDirectoryOfModel(QString projectName, QString modelName, QString workingDirectory)
+void ModelManager::saveLastWorkingDirectoryOfModel(const QString &projectName, const QString &modelName, const QString &workingDirectory)
 {
     QStringList modelSpecificData;
     m_userModelNamesPerProject.beginGroup(projectName);

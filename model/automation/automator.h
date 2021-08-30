@@ -90,10 +90,10 @@ public slots:
     /**
      * @brief slot_taskUpdated is used to handle changed task states.
      *
-     * @param name task name.
+     * @param taskName task name.
      * @param state task state.
      */
-    void slot_taskUpdated(QString name, TaskState state);
+    void slot_taskUpdated(const QString &taskName, TaskState state);
 
 
 

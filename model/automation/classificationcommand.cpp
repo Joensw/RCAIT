@@ -3,7 +3,7 @@
 #include <classificationpluginmanager.h>
 
 
-ClassificationCommand::ClassificationCommand(QVariantMap map, QString trainDataSetPath, QString workingDir, ProgressablePlugin* receiver)
+ClassificationCommand::ClassificationCommand(QVariantMap map, const QString &trainDataSetPath, const QString &workingDir, ProgressablePlugin* receiver)
 {
     mImagePath = map.value("classificationImagePath").toString();
     mModelName = map.value("modelName").toString();

@@ -5,7 +5,7 @@ Trainer::Trainer()
 
 }
 
-void Trainer::train(QString pluginName, QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory)
+void Trainer::train(const QString &pluginName, const QString &modelName, const QString &trainDatasetPath, const QString &validationDatasetPath, const QString &workingDirectory)
 {
         m_recentWorkingDir = workingDirectory;
         m_trainWorker = new TrainingsThread(pluginName, modelName, trainDatasetPath, validationDatasetPath, workingDirectory, this);
@@ -23,7 +23,7 @@ TrainingResult *Trainer::getLastTrainingResult()
     return m_trainingResults;
 }
 
-bool Trainer::getAugmentationPreview(QString pluginName, QString inputPath)
+bool Trainer::getAugmentationPreview(const QString &pluginName, const QString &inputPath)
 {
     return false;
 }

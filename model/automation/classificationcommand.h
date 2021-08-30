@@ -24,7 +24,7 @@ public:
      * @param workingDir working directory path
      * @param receiver object to receive progress.
      */
-    ClassificationCommand(QVariantMap map, QString trainDataSetPath, QString workingDir, ProgressablePlugin* receiver);
+    ClassificationCommand(QVariantMap map, const QString &trainDataSetPath, const QString &workingDir, ProgressablePlugin* receiver);
 
     /**
      * @brief execute executes the command.

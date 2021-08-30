@@ -26,7 +26,7 @@ public:
      * @param workingDir working dir path
      * @param receiver object to receive progress.
      */
-    TrainingCommand(QVariantMap map, QString trainDataSetPath, QString validationDataSetPath, QString workingDir, ProgressablePlugin* receiver);
+    TrainingCommand(QVariantMap map, const QString &trainDataSetPath, const QString &validationDataSetPath, const QString &workingDir, ProgressablePlugin* receiver);
 
     /**
      * @brief execute executes the command.

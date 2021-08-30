@@ -110,7 +110,7 @@ void Automator::slot_makeProgress(int progress)
     emit sig_progress(localProgress);
 }
 
-void Automator::slot_taskUpdated(QString taskName, TaskState state)
+void Automator::slot_taskUpdated(const QString &taskName, TaskState state)
 {
    QString StateMap[] = { "Scheduled", "Performing", "Failed", "Completed" };
    emit sig_taskUpdate(taskName, StateMap[state]);
