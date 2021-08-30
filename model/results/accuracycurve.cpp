@@ -6,8 +6,8 @@
 
 AccuracyCurve::AccuracyCurve(const QString &directory, const QString &identifier,
                              const QMap<int, QPair<double, double>> &data)
-        : GenericResultGraphics(directory, "accuracycurve_" + identifier, "svg") {
-    m_data = data;
+        : GenericResultGraphics(directory, "accuracycurve_" + identifier, "svg"),
+          m_data(data) {
 }
 
 void AccuracyCurve::generateGraphicsInternal(const QString &fullFilePath) {
@@ -20,7 +20,7 @@ void AccuracyCurve::generateGraphicsInternal(const QString &fullFilePath) {
 QString AccuracyCurve::valuesToPyText() {
     auto result = QStringList();
 
-    for (const auto& [key,_]: MapAdapt(m_data)) {
+    for (const auto&[key, _]: MapAdapt(m_data)) {
         auto &[train, val] = m_data[key];
 
         //Convert to QString with precision of 2 digits
@@ -47,8 +47,7 @@ bool AccuracyCurve::operator!=(const AccuracyCurve &other) const {
     return m_data != other.m_data;
 }
 
-[[maybe_unused]] QMap<int, QPair<double, double> > AccuracyCurve::getData()
-{
+[[maybe_unused]] QMap<int, QPair<double, double> > AccuracyCurve::getData() {
     return m_data;
 }
 

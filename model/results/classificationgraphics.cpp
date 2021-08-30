@@ -5,9 +5,8 @@
 
 ClassificationGraphics::ClassificationGraphics(const QString &directory, const QString &identifier,
                                                const QMap<QString, QList<double>> &data)
-        : GenericResultGraphics(directory, "classification_" + identifier, "svg") {
-
-    m_data = data;
+        : GenericResultGraphics(directory, "classification_" + identifier, "svg"),
+          m_data(data) {
 }
 
 QString ClassificationGraphics::valuesToPyText() {
@@ -29,7 +28,7 @@ QString ClassificationGraphics::valuesToPyText() {
 
 QString ClassificationGraphics::labelsToPyText() {
     auto results = QStringList();
-    for (const auto& [key,_]: MapAdapt(m_data)) {
+    for (const auto&[key, _]: MapAdapt(m_data)) {
         results << QString("'%1'").arg(key);
     }
     return '[' + results.join(',') + ']';
