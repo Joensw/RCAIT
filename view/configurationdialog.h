@@ -68,22 +68,22 @@ private slots:
     /**
      * @brief on_pushButton_apply_clicked emits the {sig_directories} signal when the "OK" button in the UI is pressed
      */
-    void on_pushButton_apply_clicked();
+    [[maybe_unused]] void on_pushButton_apply_clicked();
 
     /**
      * @brief slot_setProjectDir shows the user selected projects directory path from a file dialog in the UI
      */
-    void slot_setProjectDir();
+    [[maybe_unused]] void slot_setProjectDir();
 
     /**
      * @brief slot_setClassificationPluginsDir shows the user selected classification plugin directory path from a file dialog in the UI
      */
-    void slot_setClassificationPluginsDir();
+    [[maybe_unused]] void slot_setClassificationPluginsDir();
 
     /**
      * @brief slot_setImageLoaderPluginsDir shows the user selected image loader plugin directory path from a file dialog in the UI
      */
-    void slot_setImageLoaderPluginsDir();
+    [[maybe_unused]] void slot_setImageLoaderPluginsDir();
 };
 
 #endif // CONFIGURATIONDIALOG_H

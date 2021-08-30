@@ -9,7 +9,8 @@ public:
     ~AspectRatioLabel();
 
 public slots:
-    void setPixmap(const QPixmap& pm);
+
+    [[maybe_unused]] void setPixmap(const QPixmap& pm);
 
 protected:
     void resizeEvent(QResizeEvent* event) override;

@@ -112,9 +112,9 @@ signals:
 protected:
     void changeEvent(QEvent *event);
 private slots:
-    void on_saveButton_clicked();
+    [[maybe_unused]] void on_saveButton_clicked();
 
-    void on_cancelButton_clicked();
+    [[maybe_unused]] void on_cancelButton_clicked();
 
     void slot_setProjectDir();
     void slot_setClassificationPluginsDir();

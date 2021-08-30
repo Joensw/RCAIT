@@ -91,11 +91,9 @@ struct EmptySkipIterator {
 
     explicit EmptySkipIterator(It it) : it(it) {}
 
-    using difference_type = typename std::iterator_traits<It>::difference_type;
-    using value_type = typename std::iterator_traits<It>::value_type;
-    using pointer = typename std::iterator_traits<It>::pointer;
-    using reference = typename std::iterator_traits<It>::reference;
-    using iterator_category = std::output_iterator_tag;
+    using value_type [[maybe_unused]] = typename std::iterator_traits<It>::value_type;
+    using pointer [[maybe_unused]] = typename std::iterator_traits<It>::pointer;
+    using reference [[maybe_unused]] = typename std::iterator_traits<It>::reference;
 
     EmptySkipIterator& operator++() {
         while (++it != end && it->text.isEmpty())
@@ -167,7 +165,7 @@ struct Tags::Impl {
             auto const text_pos = i_r.topLeft() +
                                   QPointF(tag_inner_left_padding,
                                           ifce->fontMetrics().ascent() +
-                                              ((i_r.height() - ifce->fontMetrics().height()) / 2));
+                                              ((i_r.height() - ifce->fontMetrics().height()) / 2.0));
 
             // drag tag rect
             QColor const blue(0, 96, 255, 150);
@@ -317,8 +315,8 @@ struct Tags::Impl {
         }
 
         QTextLayout::FormatRange selection;
-        selection.start = select_start;
-        selection.length = select_size;
+        selection.start = (int) select_start;
+        selection.length = (int) select_size;
         selection.format.setBackground(ifce->palette().brush(QPalette::Highlight));
         selection.format.setForeground(ifce->palette().brush(QPalette::HighlightedText));
         return {selection};
@@ -352,10 +350,10 @@ struct Tags::Impl {
         select_size = 0;
     }
 
-    void moveCursor(int pos, bool mark) {
+    void moveCursor(qsizetype pos, bool mark) {
         if (mark) {
             auto e = select_start + select_size;
-            int anchor = select_size > 0 && cursor == select_start
+            auto anchor = select_size > 0 && cursor == select_start
                              ? e
                              : select_size > 0 && cursor == e
                                    ? select_start
@@ -373,8 +371,8 @@ struct Tags::Impl {
         return tags.back().rect.right() - tags.front().rect.left();
     }
 
-    qreal cursorToX() const {
-        return text_layout.lineAt(0).cursorToX(cursor);
+    [[nodiscard]] qreal cursorToX() const {
+        return text_layout.lineAt(0).cursorToX((int) cursor);
     }
 
     void calcHScroll(QRect const& r) {
@@ -423,18 +421,18 @@ struct Tags::Impl {
     Tags* const ifce;
     std::vector<Tag> tags;
     size_t editing_index;
-    int cursor;
+    qsizetype cursor;
     int blink_timer;
     bool blink_status;
     QTextLayout text_layout;
-    int select_start;
-    int select_size;
+    qsizetype select_start;
+    qsizetype select_size;
     QInputControl ctrl;
     std::unique_ptr<QCompleter> completer;
     int hscroll{0};
 };
 
-Tags::Tags(QWidget* parent)
+[[maybe_unused]] Tags::Tags(QWidget* parent)
     : QWidget(parent), impl(std::make_unique<Impl>(this)) {
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     setFocusPolicy(Qt::StrongFocus);
@@ -488,7 +486,7 @@ void Tags::paintEvent(QPaintEvent*) {
         // not terminated tag pos
         auto const& r = impl->currentRect();
         auto const& txt_p = r.topLeft() + QPointF(tag_inner_left_padding,
-                                                  ((r.height() - fontMetrics().height()) / 2));
+                                                  ((r.height() - fontMetrics().height()) / 2.0));
 
         // scroll
         impl->calcHScroll(r);
@@ -502,7 +500,7 @@ void Tags::paintEvent(QPaintEvent*) {
 
         // draw cursor
         if (impl->blink_status) {
-            impl->text_layout.drawCursor(&p, txt_p - QPointF(impl->hscroll, 0), impl->cursor);
+            impl->text_layout.drawCursor(&p, txt_p - QPointF(impl->hscroll, 0), (int) impl->cursor);
         }
 
         // tags
@@ -590,10 +588,10 @@ void Tags::keyPressEvent(QKeyEvent* event) {
         impl->selectAll();
         event->accept();
     } else if (event == QKeySequence::SelectPreviousChar) {
-        impl->moveCursor(impl->text_layout.previousCursorPosition(impl->cursor), true);
+        impl->moveCursor(impl->text_layout.previousCursorPosition((int) impl->cursor), true);
         event->accept();
     } else if (event == QKeySequence::SelectNextChar) {
-        impl->moveCursor(impl->text_layout.nextCursorPosition(impl->cursor), true);
+        impl->moveCursor(impl->text_layout.nextCursorPosition((int) impl->cursor), true);
         event->accept();
     } else {
         switch (event->key()) {
@@ -601,7 +599,7 @@ void Tags::keyPressEvent(QKeyEvent* event) {
             if (impl->cursor == 0) {
                 impl->editPreviousTag();
             } else {
-                impl->moveCursor(impl->text_layout.previousCursorPosition(impl->cursor), false);
+                impl->moveCursor(impl->text_layout.previousCursorPosition((int) impl->cursor), false);
             }
             event->accept();
             break;
@@ -609,7 +607,7 @@ void Tags::keyPressEvent(QKeyEvent* event) {
             if (impl->cursor == impl->currentText().size()) {
                 impl->editNextTag();
             } else {
-                impl->moveCursor(impl->text_layout.nextCursorPosition(impl->cursor), false);
+                impl->moveCursor(impl->text_layout.nextCursorPosition((int) impl->cursor), false);
             }
             event->accept();
             break;

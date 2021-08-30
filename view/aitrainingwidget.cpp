@@ -22,7 +22,7 @@ void AITrainingWidget::slot_progress(int progress)
     }
 }
 
-void AITrainingWidget::on_startButton_clicked()
+[[maybe_unused]] void AITrainingWidget::on_startButton_clicked()
 {
     emit sig_startTraining();
     ui->cancelButton->setEnabled(true);

@@ -84,9 +84,9 @@ signals:
 
 private slots:
 
-    void on_pushButton_commit_clicked();
+    [[maybe_unused]] void on_pushButton_commit_clicked();
 
-    void on_pushButton_removeImages_clicked();
+    [[maybe_unused]] void on_pushButton_removeImages_clicked();
 
 private:
     Ui::ImageInspectionWidget *ui;

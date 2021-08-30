@@ -13,6 +13,10 @@ void Canvas::paintEvent(QPaintEvent *pQEvent) {
     QGraphicsView::paintEvent(pQEvent);
 }
 
-bool Canvas::getAutoScale() const {
+[[maybe_unused]] bool Canvas::getAutoScale() const {
     return m_autoScale;
+}
+
+[[maybe_unused]] void Canvas::setAutoScale(bool autoScale) {
+    m_autoScale = autoScale;
 }

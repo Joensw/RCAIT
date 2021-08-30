@@ -110,9 +110,10 @@ protected:
 
 private slots:
     //slots correspond with the identically named button in the UI
-    void on_pushButton_project_clicked();
-    void on_pushButton_classification_clicked();
-    void on_pushButton_imageLoader_clicked();
+    [[maybe_unused]] void on_pushButton_project_clicked();
+    [[maybe_unused]] void on_pushButton_classification_clicked();
+    [[maybe_unused]]void on_pushButton_imageLoader_clicked();
+
 private:
     Ui::GlobalSettingsWidget *ui;
 };

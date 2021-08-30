@@ -27,7 +27,7 @@ public:
 
     void setTopAccuraciesGraphics(const QSharedPointer<QGraphicsItem> &topAccuraciesImage) override;
 
-    [[nodiscard]] const QSharedPointer<QGraphicsItem> &getTopAccuraciesImage() const;
+    [[maybe_unused]] [[nodiscard]] const QSharedPointer<QGraphicsItem> &getTopAccuraciesImage() const;
 
     ~TopAccuraciesView() override;
 

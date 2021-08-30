@@ -56,7 +56,7 @@ void ClassificationResultView::setClassificationGraphics(
     view->verticalScrollBar()->setValue(1);
 }
 
-[[maybe_unused]] const QSharedPointer<QGraphicsItem> &ClassificationResultView::getClassificationGraphics() const {
+[[maybe_unused]] [[maybe_unused]] const QSharedPointer<QGraphicsItem> &ClassificationResultView::getClassificationGraphics() const {
     return m_classificationGraphics;
 }
 

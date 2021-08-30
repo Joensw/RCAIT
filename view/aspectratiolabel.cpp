@@ -5,7 +5,7 @@ AspectRatioLabel::AspectRatioLabel(QWidget *parent, Qt::WindowFlags f) : QLabel(
 
 AspectRatioLabel::~AspectRatioLabel()= default;
 
-void AspectRatioLabel::setPixmap(const QPixmap &pm) {
+[[maybe_unused]] void AspectRatioLabel::setPixmap(const QPixmap &pm) {
     pixmapWidth = pm.width();
     pixmapHeight = pm.height();
 

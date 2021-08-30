@@ -54,11 +54,11 @@ TrainingResultView::~TrainingResultView() {
     delete ui;
 }
 
-const QSharedPointer<QGraphicsItem> &TrainingResultView::getAccuracyCurveImage() const {
+[[maybe_unused]] const QSharedPointer<QGraphicsItem> &TrainingResultView::getAccuracyCurveImage() const {
     return m_accuracyCurveImage;
 }
 
-const QSharedPointer<QGraphicsItem> &TrainingResultView::getConfusionMatrixImage() const {
+[[maybe_unused]] const QSharedPointer<QGraphicsItem> &TrainingResultView::getConfusionMatrixImage() const {
     return m_confusionMatrixImage;
 }
 

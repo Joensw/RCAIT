@@ -77,7 +77,7 @@ void TopAccuraciesView::configure_updateGraphicsButton() {
     }
 }
 
-const QSharedPointer<QGraphicsItem> &TopAccuraciesView::getTopAccuraciesImage() const {
+[[maybe_unused]] const QSharedPointer<QGraphicsItem> &TopAccuraciesView::getTopAccuraciesImage() const {
     return m_topAccuraciesImage;
 }
 

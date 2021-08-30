@@ -46,12 +46,12 @@ class Tags : public QWidget {
     Q_OBJECT
 
 public:
-    explicit Tags(QWidget* parent = nullptr);
+    [[maybe_unused]] explicit Tags(QWidget* parent = nullptr);
     ~Tags() override;
 
     // QWidget
-    QSize sizeHint() const override;
-    QSize minimumSizeHint() const override;
+    [[nodiscard]] QSize sizeHint() const override;
+    [[nodiscard]] QSize minimumSizeHint() const override;
 
     /// Set completions
     void completion(std::vector<QString> const& completions);
@@ -60,7 +60,7 @@ public:
     void tags(std::vector<QString> const& tags);
 
     /// Get tags
-    std::vector<QString> tags() const;
+    [[nodiscard]] std::vector<QString> tags() const;
 
 signals:
     void tagsEdited();

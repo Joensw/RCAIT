@@ -25,9 +25,9 @@ public:
 
     void setMostMisclassifiedImages(const QStringList& images);
 
-    [[nodiscard]] const QSharedPointer<QGraphicsItem> &getAccuracyCurveImage() const;
+    [[maybe_unused]] [[nodiscard]] const QSharedPointer<QGraphicsItem> &getAccuracyCurveImage() const;
 
-    [[nodiscard]] const QSharedPointer<QGraphicsItem> &getConfusionMatrixImage() const;
+    [[maybe_unused]] [[nodiscard]] const QSharedPointer<QGraphicsItem> &getConfusionMatrixImage() const;
 
     ~TrainingResultView() override;
 

@@ -53,11 +53,11 @@ protected:
     void changeEvent(QEvent *event);
 
 private slots:
-    void on_selectFolderButton_clicked();
+    [[maybe_unused]] void on_selectFolderButton_clicked();
 
-    void on_classifyButton_clicked();
+    [[maybe_unused]] void on_classifyButton_clicked();
     
-    void on_cancelButton_clicked();
+    [[maybe_unused]] void on_cancelButton_clicked();
 
 
 private:

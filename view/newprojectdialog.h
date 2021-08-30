@@ -16,7 +16,7 @@ class NewProjectDialog : public QDialog
 public:
     /**
      * @brief NewProjectDialog creates a newProjectDialog
-     * @param parent optional parent arguemnt
+     * @param parent optional parent argument
      */
     explicit NewProjectDialog(QWidget *parent = nullptr);
     ~NewProjectDialog();
@@ -47,8 +47,8 @@ private:
 
 private slots:
     //slots correspond with the identically named button in the UI
-    void on_buttonBox_accepted();
-    void on_buttonBox_rejected();
+    [[maybe_unused]] void on_buttonBox_accepted();
+    [[maybe_unused]] void on_buttonBox_rejected();
 
 
 };

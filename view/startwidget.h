@@ -68,11 +68,11 @@ private:
 
 private slots:
     //slots correspond with the identically named button in the UI
-    void on_pushButton_newProject_clicked();
-    void on_pushButton_removeProject_clicked();
-    void on_pushButton_openProject_clicked();
-    void on_comboBox_languageSelection_currentTextChanged(const QString &arg1);
-    void on_pushButton_toggleFullscreen_toggled(bool checked);
+    [[maybe_unused]] void on_pushButton_newProject_clicked();
+    [[maybe_unused]] void on_pushButton_removeProject_clicked();
+    [[maybe_unused]] void on_pushButton_openProject_clicked();
+    [[maybe_unused]] void on_comboBox_languageSelection_currentTextChanged(const QString &arg1);
+    [[maybe_unused]] void on_pushButton_toggleFullscreen_toggled(bool checked);
 
 signals:
     /**

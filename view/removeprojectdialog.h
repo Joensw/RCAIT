@@ -42,8 +42,8 @@ private:
 
 private slots:
     //slots correspond with the identically named button in the UI
-    void on_buttonBox_accepted();
-    void on_buttonBox_rejected();
+    [[maybe_unused]] void on_buttonBox_accepted();
+    [[maybe_unused]] void on_buttonBox_rejected();
 };
 
 #endif // REMOVEPROJECTDIALOG_H

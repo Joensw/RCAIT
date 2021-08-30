@@ -12,9 +12,9 @@ public:
 
     ~Canvas() override = default;
 
-    [[nodiscard]] bool getAutoScale() const;
+    [[maybe_unused]] [[nodiscard]] bool getAutoScale() const;
 
-    void setAutoScale(bool autoScale);
+    [[maybe_unused]] void setAutoScale(bool autoScale);
 
 protected:
 

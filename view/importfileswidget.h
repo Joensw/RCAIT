@@ -70,19 +70,19 @@ private:
 
 private slots:
     //slots correspond with the identically named button in the UI
-    void on_pushButton_clearTags_clicked();
+    [[maybe_unused]] void on_pushButton_clearTags_clicked();
 
-    void on_pushButton_addModel_clicked();
-    void on_pushButton_removeModel_clicked();
-    void on_pushButton_loadModel_clicked();
+    [[maybe_unused]] void on_pushButton_addModel_clicked();
+    [[maybe_unused]] void on_pushButton_removeModel_clicked();
+    [[maybe_unused]] void on_pushButton_loadModel_clicked();
 
-    void on_pushButton_loadImages_clicked();
-    void on_horizontalSlider_sliderMoved(int position);
+    [[maybe_unused]] void on_pushButton_loadImages_clicked();
+    [[maybe_unused]] void on_horizontalSlider_sliderMoved(int position);
 
 
-    void on_pushButton_loadLabelsFromFile_clicked();
+    [[maybe_unused]] void on_pushButton_loadLabelsFromFile_clicked();
 
-    void on_pushButton_abortLoading_clicked();
+    [[maybe_unused]] void on_pushButton_abortLoading_clicked();
 
 signals:
     /**

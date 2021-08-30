@@ -116,21 +116,21 @@ protected:
     void changeEvent(QEvent *event);
 
 private slots:
-    void on_startButton_clicked();
+    [[maybe_unused]] void on_startButton_clicked();
 
-    void on_stopButton_clicked();
+    [[maybe_unused]] void on_stopButton_clicked();
 
-    void on_removeButton_clicked();
+    [[maybe_unused]] void on_removeButton_clicked();
 
-    void on_unqueueSelectedButton_clicked();
+    [[maybe_unused]] void on_unqueueSelectedButton_clicked();
 
-    void on_queueSelectedButton_clicked();
+    [[maybe_unused]] void on_queueSelectedButton_clicked();
 
-    void on_queueAllButton_clicked();
+    [[maybe_unused]] void on_queueAllButton_clicked();
 
-    void on_unqueueAllButton_clicked();
+    [[maybe_unused]] void on_unqueueAllButton_clicked();
 
-    void on_importTasksButton_clicked();
+    [[maybe_unused]] void on_importTasksButton_clicked();
 
 private:
     Ui::AutomationWidget *ui;

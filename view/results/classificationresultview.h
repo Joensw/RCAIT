@@ -26,7 +26,7 @@ public:
 
     void setClassificationData(const QMap<int, QStringList> &data);
 
-    [[nodiscard]] const QSharedPointer<QGraphicsItem> &getClassificationGraphics() const;
+    [[maybe_unused]] [[nodiscard]] const QSharedPointer<QGraphicsItem> &getClassificationGraphics() const;
 
     ~ClassificationResultView() override;
 

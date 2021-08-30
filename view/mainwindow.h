@@ -43,21 +43,21 @@ public:
 
     ~MainWindow();
 
-    StartWidget *getStartWidget();
+   [[nodiscard]] StartWidget *getStartWidget();
 
-    ImportFilesWidget *getImportFilesWidget();
+   [[nodiscard]] ImportFilesWidget *getImportFilesWidget();
 
-    AITrainingWidget *getAITrainingWidget();
+   [[nodiscard]] AITrainingWidget *getAITrainingWidget();
 
-    InputImagesWidget *getInputImagesWidget();
+   [[nodiscard]] InputImagesWidget *getInputImagesWidget();
 
-    ResultsWidget *getResultsWidget();
+   [[nodiscard]] ResultsWidget *getResultsWidget();
 
-    AutomationWidget *getAutomationWidget();
+   [[nodiscard]] AutomationWidget *getAutomationWidget();
 
-    ImageInspectionWidget *getImageInspectionWidget();
+   [[nodiscard]] ImageInspectionWidget *getImageInspectionWidget();
 
-    CustomTabWidget *getTabWidget();
+   [[nodiscard]] CustomTabWidget *getTabWidget();
 
 signals:
 
