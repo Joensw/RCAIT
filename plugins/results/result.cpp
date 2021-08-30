@@ -8,24 +8,24 @@ Result::Result(QStringList additionalResults) : m_additionalResults(std::move(ad
 
 QString Result::generateTimestamp() {
     auto date = QDateTime::currentDateTime();
-    return date.toString("dd_MM_yy#hh-mm");
+    return date.toString("dd_MM_yy--hh-mm");
 }
 
 QString Result::generateExtendedTimestamp() {
     auto date = QDateTime::currentDateTime();
-    return date.toString("dd_MM_yy#hh-mm-ss");
+    return date.toString("dd_MM_yy--hh-mm-ss");
 }
 
 QString Result::niceRepresentation(QString date){
     date.replace("_",".");
-    date.replace("#"," — ");
+    date.replace("--"," — ");
     date.replace("-",":");
     return date;
 }
 
 QString Result::savableRepresentation(QString date){
     date.replace(".","_");
-    date.replace(" — ","#");
+    date.replace(" — ","--");
     date.replace(":","-");
     return date;
 }
