@@ -41,7 +41,7 @@ QString ConfusionMatrix::labelsToPyText() {
     for (auto &item : m_classLabels) {
         labels << '"' + item + '"';
     }
-    return '[' + labels.join(',') + ']';
+    return '"' + ('[' + labels.join(',') + ']') + '"';
 }
 
 QString ConfusionMatrix::valuesToPyText() {
