@@ -13,7 +13,7 @@ public:
 
     [[nodiscard]] QString getIdentifier() const;
 
-    [[nodiscard]] QString getSaveableIdentifier() const;
+    [[nodiscard]] QString getSavableIdentifier() const;
 
     static QString generateTimestamp();
 

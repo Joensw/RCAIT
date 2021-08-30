@@ -38,6 +38,6 @@ QString Result::getIdentifier() const{
     return Result::niceRepresentation(m_identifier);
 }
 
-QString Result::getSaveableIdentifier() const{
+QString Result::getSavableIdentifier() const{
     return Result::savableRepresentation(m_identifier);
 }

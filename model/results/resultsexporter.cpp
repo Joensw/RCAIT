@@ -22,7 +22,7 @@ void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics) {
 }
 
 void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
-    const QString &identifier = result->getSaveableIdentifier();
+    const QString &identifier = result->getSavableIdentifier();
     auto resultFolder = createResultDir(m_trainingResultsDir, identifier);
 
     //Extract relevant data from result
@@ -82,7 +82,7 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
 }
 
 void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *result) {
-    const QString &identifier = result->getSaveableIdentifier();
+    const QString &identifier = result->getSavableIdentifier();
     auto resultFolder = createResultDir(m_classificationResultsDir, identifier);
 
     //Extract relevant data from result
