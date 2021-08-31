@@ -1,7 +1,7 @@
 #ifndef PROGRESSABLEPLUGIN_H
 #define PROGRESSABLEPLUGIN_H
 
-#include "model/pluginusage/progressable.h"
+#include "progressable.h"
 
 class ProgressablePlugin : public Progressable
 {
@@ -18,13 +18,6 @@ signals:
     void sig_pluginFinished();
     void sig_progress(int progress);
     void sig_statusUpdate(QString status);
-
-
-private:
-    volatile bool stopped;
-    bool classificationFinished;
-
-
 };
 
 #endif // PROGRESSABLEPLUGIN_H
