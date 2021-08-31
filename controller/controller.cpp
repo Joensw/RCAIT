@@ -60,6 +60,9 @@ void Controller::slot_configurationComplete() {
     connect(&*mImageController, &ImageController::sig_startLoading, mMainWindow->getStartWidget(), &StartWidget::slot_startLoading);
     connect(&*mImageController, &ImageController::sig_startLoading, mMainWindow->getImageInspectionWidget(), &ImageInspectionWidget::slot_startLoading);
 
+    connect(&*mAiController, &AIController::sig_trainingResultUpdated, &*mResultsController, &ResultsController::slot_addTrainingResult);
+    connect(&*mAiController, &AIController::sig_classificationResultUpdated, &*mResultsController, &ResultsController::slot_addClassificationResult);
+
     mMainWindow->show();
 }
 

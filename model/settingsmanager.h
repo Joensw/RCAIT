@@ -19,6 +19,10 @@ extern const QString imageLoaderPluginDirectoryIdentifier;
 class SettingsManager{
 public:
 
+    SettingsManager(const SettingsManager&) = delete;
+
+    SettingsManager& operator=(const SettingsManager&) = delete;
+
     /**
      * @brief SettingsManager create a new SettingsManager
      */

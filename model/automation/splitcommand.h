@@ -16,11 +16,11 @@ public:
     /**
      * @brief SplitCommand constructs a SplitCommand with given split.
      *
-     * @param path path of temp images.
+     * @param tempPath path of temp images.
      * @param dataSetPath path of dataset.
      * @param receiver object to receive progress.
      */
-    SplitCommand(QString path, QString trainPath, QString validationPath, int split, ProgressablePlugin* receiver);
+    SplitCommand(const QString &tempPath, const QString &trainPath,  const QString &validationPath, int split, ProgressablePlugin* receiver);
 
 
     /**

@@ -3,11 +3,11 @@
 #include <QMessageBox>
 
 
-AIController::AIController(DataManager *dataManager, InputImagesWidget *inputImagesWidget, AITrainingWidget *aiTrainingTab)
+AIController::AIController(DataManager *dataManager, InputImagesWidget *inputImagesWidget, AITrainingWidget *AITrainingWidget)
 {
     mDataManager = dataManager;
     mInputImagesWidget = inputImagesWidget;
-    mAiTrainingWidget = aiTrainingTab;
+    mAiTrainingWidget = AITrainingWidget;
     mTrainer = new Trainer;
     mClassifier = new Classifier;
 
@@ -58,17 +58,18 @@ void AIController::slot_results()
 
 }
 
-void AIController::slot_trainingResultUpdated()
+void AIController::slot_trainingResultUpdated(TrainingResult *trainingResult)
 {
     QString projectName = mDataManager->getProjectName();
     QString modelName = mDataManager->getCurrentModel();
     QString lastWorkingDirectory = mTrainer->getRecentWorkingDir();
     mDataManager->saveLastWorkingDirectoryOfModel(projectName, modelName, lastWorkingDirectory);
+    emit sig_trainingResultUpdated(trainingResult);
 }
 
-void AIController::slot_classificationResultUpdated()
+void AIController::slot_classificationResultUpdated(ClassificationResult *classificationResult)
 {
-
+    emit sig_classificationResultUpdated(classificationResult);
 }
 
 void AIController::slot_startClassify(QString path)

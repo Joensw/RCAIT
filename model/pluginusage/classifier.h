@@ -24,7 +24,7 @@ public:
 
 
 signals:
-    void sig_classificationResultUpdated();
+    void sig_classificationResultUpdated(ClassificationResult* classificationResult);
     void sig_startClassification();
 
 public slots:

@@ -18,6 +18,11 @@ ClassificationGraphics *ClassificationResult::getClassificationGraphics() const 
     return m_classificationGraphics;
 }
 
+bool ClassificationResult::isValid()
+{
+    return !getClassificationData().isEmpty() && !getLabels().isEmpty();
+}
+
 const QMap<QString, QList<double>> &ClassificationResult::getClassificationData() const {
     return m_classificationData;
 }

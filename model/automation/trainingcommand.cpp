@@ -3,7 +3,7 @@
 #include <classificationpluginmanager.h>
 
 
-TrainingCommand::TrainingCommand(QVariantMap map, QString trainDataSetPath, QString validationDataSetPath, QString workingDir, ProgressablePlugin* receiver)
+TrainingCommand::TrainingCommand(QVariantMap map,const QString &trainDataSetPath, const QString &validationDataSetPath,const QString &workingDir, ProgressablePlugin* receiver)
 {
     mAiPluginName = map.value("aiPluginName").toString();
     mModelName = map.value("modelName").toString();

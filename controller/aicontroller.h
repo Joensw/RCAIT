@@ -7,6 +7,7 @@
 #include <inputimageswidget.h>
 #include "classifier.h"
 #include "trainer.h"
+#include "resultscontroller.h"
 
 
 
@@ -47,12 +48,12 @@ public slots:
     /**
      * @brief slot_trainingResultUpdated
      */
-    void slot_trainingResultUpdated();
+    void slot_trainingResultUpdated(TrainingResult *trainingResult);
 
     /**
      * @brief slot_classificationResultUpdated
      */
-    void slot_classificationResultUpdated();
+    void slot_classificationResultUpdated(ClassificationResult *classificationResult);
 
     /**
      * @brief slot_startClassify starts classification when triggered.
@@ -77,12 +78,25 @@ public slots:
      */
     void slot_modelLoaded();
 
+signals:
+    /**
+     * @brief sig_trainingResultUpdated emitted when a new training result is available
+     * @param trainingResult is the result of the last executed training
+     */
+    void sig_trainingResultUpdated(TrainingResult *trainingResult);
+
+    /**
+     * @brief sig_classificationResultUpdated emitted when a new classification result is available
+     * @param classificationResult is the result of the last executed classification
+     */
+    void sig_classificationResultUpdated(ClassificationResult *classificationResult);
+
 private:
     DataManager *mDataManager;
     InputImagesWidget *mInputImagesWidget;
     AITrainingWidget *mAiTrainingWidget;
-    Trainer* mTrainer;
-    Classifier* mClassifier;
+    Trainer *mTrainer;
+    Classifier *mClassifier;
     QString mTrainingPath;
     QString mClassificationPath;
 };

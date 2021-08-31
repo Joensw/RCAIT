@@ -40,12 +40,12 @@ void AutomationWidget::slot_finished()
 
 
 
-void AutomationWidget::slot_taskAdded(QString name)
+void AutomationWidget::slot_taskAdded(const QString &name)
 {
     ui->idleTasks->addItem(name);
 }
 
-void AutomationWidget::slot_taskUpdate(QString name, QString state)
+void AutomationWidget::slot_taskUpdate(const QString &name, const QString &state)
 {
     if (state == "Not_Scheduled"){
          ui->idleTasks->findItems(name, Qt::MatchExactly).at(0)->setIcon(QIcon(":/Resources/TaskIcons/Not_Scheduled.svg"));

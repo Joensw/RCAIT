@@ -26,6 +26,10 @@ public:
                    QStringList mostMisclassifiedImages, double top1Accuracy, double top5Accuracy,
                    const QStringList &additionalResults = {});
 
+    TrainingResult(const TrainingResult&) = delete;
+
+    TrainingResult& operator=(const TrainingResult&) = delete;
+
     [[nodiscard]] ConfusionMatrix *getConfusionMatrix() const;
 
     [[nodiscard]] AccuracyCurve *getAccuracyCurve();
@@ -41,6 +45,8 @@ public:
     [[nodiscard]] const QStringList &getClassLabels() const;
 
     [[nodiscard]] const QList<int> &getConfusionMatrixValues() const;
+
+    bool isValid();
 
 };
 

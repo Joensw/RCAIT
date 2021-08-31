@@ -24,7 +24,7 @@ public:
      * @param pluginName name of the plugin the model is from
      * @param baseModel name of the base model to be used
      */
-    void createNewModel(QString projectName, QString modelName, QString pluginName, QString baseModel);
+    void createNewModel(QString projectName,QString modelName, QString pluginName, QString baseModel);
 
     /**
      * @brief removeModel removes a model according to the specified parameters
@@ -72,7 +72,7 @@ public:
      * @brief removeAllModelsOfProject deletes every user created model from the given project
      * @param projectName the name of the project whose models are to be removed
      */
-    void removeAllModelsOfProject(QString projectName);
+    void removeAllModelsOfProject(const QString &projectName);
 
     /**
      * @brief setLastWorkingDirectoryOfModel saves the given working directory to the model data
@@ -80,7 +80,7 @@ public:
      * @param modelName the name of the model to which the working directory belongs
      * @param workingDirectory the working directory to save
      */
-    void saveLastWorkingDirectoryOfModel(QString projectName, QString modelName, QString workingDirectory);
+    void saveLastWorkingDirectoryOfModel(const QString &projectName, const QString &modelName, const QString &workingDirectory);
 
     /**
      * @brief recallLastWorkingDirectoryOfModel returns the saved working directory of the given model

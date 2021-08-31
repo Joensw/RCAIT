@@ -34,6 +34,11 @@ const QList<int> &TrainingResult::getConfusionMatrixValues() const {
     return m_confusionMatrixValues;
 }
 
+bool TrainingResult::isValid()
+{
+    return !getAccuracyCurveData().isEmpty() && !getClassLabels().isEmpty() && !getConfusionMatrixValues().isEmpty();
+}
+
 AccuracyCurve *TrainingResult::getAccuracyCurve() {
     return m_accCurve;
 }
