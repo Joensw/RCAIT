@@ -7,10 +7,10 @@ class ProgressablePlugin : public Progressable
 {
     Q_OBJECT
 public:
-    ProgressablePlugin();
+    ProgressablePlugin() = default;
 
 public slots:
-    void slot_makeProgress(int progress) override;
+    void slot_makeProgress(int progress) override = 0;
 
 signals:
     void sig_pluginStarted();

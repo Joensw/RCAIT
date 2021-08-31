@@ -4,13 +4,13 @@
 #include <QObject>
 
 
-
-class Progressable : public QObject
-{
-    Q_OBJECT
+class Progressable : public QObject {
+Q_OBJECT
 public:
-    Progressable();
+    Progressable() = default;
+
 public slots:
+
     virtual void slot_makeProgress(int progress) = 0;
 
 };
