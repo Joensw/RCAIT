@@ -21,7 +21,7 @@ find_package(Qt6 COMPONENTS Widgets)
 
 
 add_library(bingplugin MODULE
-    bingplugin.cpp bingplugin.h bingsettings.cpp bingsettings.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressableplugin.cpp ../../../model/pluginusage/progressable.h ../../../model/pluginusage/progressable.cpp
+    bingplugin.cpp bingplugin.h bingsettings.cpp bingsettings.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressable.h
 )
 
 set_target_properties(bingplugin PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../plugins)

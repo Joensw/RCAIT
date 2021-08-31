@@ -44,9 +44,7 @@ set(Sources
         ../model/modelmanager.h
         ../model/modelmanager.cpp
         ../model/pluginusage/progressable.h
-        ../model/pluginusage/progressable.cpp
         ../model/pluginusage/aithread.h
-        ../model/pluginusage/aithread.cpp
         ../model/pluginusage/classificationthread.h
         ../model/pluginusage/classificationthread.cpp
         ../model/pluginusage/trainingsthread.h
@@ -68,7 +66,6 @@ set(Sources
         ../plugins/imageplugins/imageloaderpluginmanager.h
         ../plugins/imageplugins/imageloaderpluginmanager.cpp
         ../model/pluginusage/progressableplugin.h
-        ../model/pluginusage/progressableplugin.cpp
         ../model/results/resultsexporter.h
         ../model/results/resultsexporter.cpp
 
