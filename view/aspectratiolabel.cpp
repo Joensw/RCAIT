@@ -13,7 +13,7 @@ AspectRatioLabel::~AspectRatioLabel()= default;
     QLabel::setPixmap(pm);
 }
 
-void AspectRatioLabel::resizeEvent(QResizeEvent *event) {
+[[maybe_unused]] void AspectRatioLabel::resizeEvent(QResizeEvent *event) {
     updateMargins();
     QLabel::resizeEvent(event);
 }

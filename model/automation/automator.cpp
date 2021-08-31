@@ -1,7 +1,6 @@
 #include "automator.h"
 
 #include <QJsonDocument>
-#include <QJsonObject>
 
 
 

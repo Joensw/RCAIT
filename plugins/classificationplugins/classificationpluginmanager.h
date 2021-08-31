@@ -30,17 +30,17 @@ public:
     QWidget * getConfigurationWidget(QString pluginName) override;
     void saveConfiguration(QString pluginName) override;
     QWidget * getInputWidget(QString pluginName) override;
-    QWidget * getDataAugmentationInputWidget(QString pluginName);
+    QWidget * getDataAugmentationInputWidget(const QString& pluginName);
     QStringList getNamesOfPlugins() override;
-    QStringList getModelNames(QString pluginName);
-    bool createNewModel(QString modelName, QString pluginName, QString baseModel);
-    bool getAugmentationPreview(QString pluginName, QString modelName, QString inputPath, QString targetPath, int amount);
-    bool removeModel(QString modelName, QString pluginName);
-    TrainingResult * train (QString pluginName, QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin * receiver);
-    ClassificationResult * classify(QString pluginName, QString inputImageDirPath, QString trainDatasetPath, QString workingDirectory, QString modelName, ProgressablePlugin * receiver);
+    QStringList getModelNames(const QString& pluginName);
+    bool createNewModel(QString modelName, const QString& pluginName, QString baseModel);
+    bool getAugmentationPreview(const QString& pluginName, QString modelName, QString inputPath, QString targetPath, int amount);
+    bool removeModel(QString modelName, const QString& pluginName);
+    TrainingResult * train (const QString& pluginName, QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin * receiver);
+    ClassificationResult * classify(const QString& pluginName, QString inputImageDirPath, QString trainDatasetPath, QString workingDirectory, QString modelName, ProgressablePlugin * receiver);
     QList<QWidget*> getConfigurationWidgets();
 
-    QStringList getClassificationPluginBases(QString plugin);
+    QStringList getClassificationPluginBases(const QString& plugin);
 private:
     ClassificationPluginManager * instance;
     QList<QWidget*> m_pluginConfigurationWidgets;

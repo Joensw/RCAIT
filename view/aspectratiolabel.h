@@ -6,14 +6,14 @@ class AspectRatioLabel : public QLabel
 {
 public:
     explicit AspectRatioLabel(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
-    ~AspectRatioLabel();
+    ~AspectRatioLabel() override;
 
 public slots:
 
     [[maybe_unused]] void setPixmap(const QPixmap& pm);
 
 protected:
-    void resizeEvent(QResizeEvent* event) override;
+    [[maybe_unused]] void resizeEvent(QResizeEvent* event) override;
 
 private:
     void updateMargins();

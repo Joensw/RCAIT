@@ -13,14 +13,13 @@ class Classifier : public ProgressablePlugin
 
 public:
     Classifier();
-    ~Classifier() {
+    ~Classifier() override {
             classifyThread.quit();
             classifyThread.wait();
     }
 
-    void classify(QString pluginName, QString inputImageDirPath, QString trainDatasetPath, QString workingDirectory, QString modelName);
-    ClassificationResult* getLastClassificationResult();
-    bool getAugmentationPreview(QString pluginName, QString inputPath);
+    void classify(const QString& pluginName, const QString& inputImageDirPath, const QString& trainDatasetPath, const QString& workingDirectory, const QString& modelName);
+    bool getAugmentationPreview(const QString& pluginName, const QString& inputPath);
 
 
 signals:
@@ -29,6 +28,7 @@ signals:
 
 public slots:
     void slot_handleClassificationResult();
+    void slot_makeProgress(int progress) override;
 
 private:
     ClassificationResult* m_classificationResults;
