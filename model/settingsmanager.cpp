@@ -16,7 +16,7 @@ SettingsManager::SettingsManager()
 
 SettingsManager::SettingsManager(bool verifying)
 {
-    if (verifying == false) {
+    if (!verifying) {
         qFatal("Only use this constructor for verifying paths, other functionality will not work and will cause the program to crash!");
     }
     mGlobalSettings = new QSettings();
