@@ -20,8 +20,7 @@ ImageLoadCommand::ImageLoadCommand(QVariantMap map, QString imagePath, Progressa
 
     auto end = map.end();
     for(auto it = map.begin(); it != end; ++it){
-        const char* charstring = it.key().toUtf8().data();
-        if (mInputWidget->property(charstring).isValid()){
+        if (mInputWidget->property(it.key().toUtf8().data()).isValid()){
             mWidgetOptions.insert(it.key(), it.value());
         }
     }
@@ -32,8 +31,7 @@ bool ImageLoadCommand::execute(){
 
     auto end = mWidgetOptions.end();
     for (auto it = mWidgetOptions.begin(); it != end; ++it){
-        const char* charstring = it.key().toUtf8().data();
-        mInputWidget->setProperty(charstring, it.value());
+        mInputWidget->setProperty(it.key().toUtf8().data(), it.value());
     }
     mPluginManager.saveConfiguration(mPluginName);
 

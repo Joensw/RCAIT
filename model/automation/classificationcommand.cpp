@@ -25,8 +25,7 @@ ClassificationCommand::ClassificationCommand(QVariantMap map, const QString &tra
     // getting all property names of input widget
     auto end = map.end();
     for(auto it = map.begin(); it != end; ++it){
-        const char* charstring = it.key().toUtf8().data();
-        if (mInputWidget->property(charstring).isValid()){
+        if (mInputWidget->property(it.key().toUtf8().data()).isValid()){
             mWidgetOptions.insert(it.key(), it.value());
         }
     }
@@ -39,8 +38,7 @@ bool ClassificationCommand::execute()
     // setting properties
     auto end = mWidgetOptions.end();
     for (auto it = mWidgetOptions.begin(); it != end; ++it){
-        const char* charstring = it.key().toUtf8().data();
-        mInputWidget->setProperty(charstring, it.value());
+        mInputWidget->setProperty(it.key().toUtf8().data(), it.value());
     }
 
     mResult = mPluginManager.classify(mAiPluginName, mImagePath, mTrainDataSetPath, mWorkingDir, mModelName, mReceiver);

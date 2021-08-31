@@ -1,7 +1,5 @@
 #include <gtest/gtest.h>
-#include "../model/imageinspectionmodel.h"
 #include <QDir>
-#include <QSignalSpy>
 #include <splitcommand.h>
 
 //check if loading labeled dataset imagefilepaths work
