@@ -2,22 +2,17 @@
 #define TRAINER_H
 
 #include <trainingresult.h>
+#include <qfuture.h>
+#include <classificationpluginmanager.h>
 #include "progressableplugin.h"
 #include "classificationresult.h"
-#include "trainingsthread.h"
-#include "classificationthread.h"
 
 class Trainer : public ProgressablePlugin
 {
     Q_OBJECT
-    QThread trainThread;
 
 public:
     Trainer();
-    ~Trainer() override {
-            trainThread.quit();
-            trainThread.wait();
-    }
 
     void train(const QString &pluginName, const QString &modelName, const QString &trainDatasetPath, const QString &validationDatasetPath, const QString &workingDirectory);
 
@@ -35,9 +30,10 @@ public slots:
     void slot_makeProgress(int progress) override;
 
 private:
-    TrainingsThread *m_trainWorker;
+    ClassificationPluginManager& mManager = ClassificationPluginManager::getInstance();
     QString m_recentWorkingDir;
-    TrainingResult *m_trainingResult;
+    QFuture<TrainingResult *> m_trainingResult;
+
 
 
 };
