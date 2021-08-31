@@ -31,3 +31,12 @@ void Classifier::slot_handleClassificationResult() {
     }
 
 }
+
+void Classifier::slot_makeProgress(int progress) {
+    //TODO Fill
+}
+
+bool Classifier::getAugmentationPreview(const QString &pluginName, const QString &inputPath) {
+    //TODO Fill
+    return false;
+}
