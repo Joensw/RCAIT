@@ -21,8 +21,7 @@ TrainingCommand::TrainingCommand(QVariantMap map,const QString &trainDataSetPath
     // getting all property names of input widget
     auto end = map.end();
     for(auto it = map.begin(); it != end; ++it){
-        const char* charstring = it.key().toUtf8().data();
-        if (mInputWidget->property(charstring).isValid()){
+        if (mInputWidget->property(it.key().toUtf8().data()).isValid()){
             mInputOptions.insert(it.key(), it.value());
         }
     }
@@ -30,8 +29,7 @@ TrainingCommand::TrainingCommand(QVariantMap map,const QString &trainDataSetPath
     mAugmentationWidget = mPluginManager.getDataAugmentationInputWidget(mAiPluginName);
     // getting all property names of augmentation widget
     for(auto it = map.begin(); it != end; ++it){
-        const char* charstring = it.key().toUtf8().data();
-        if (mAugmentationWidget->property(charstring).isValid()){
+        if (mAugmentationWidget->property(it.key().toUtf8().data()).isValid()){
             mAugmentationOptions.insert(it.key(), it.value());
         }
     }
@@ -43,13 +41,11 @@ bool TrainingCommand::execute()
     // setting properties
     auto endInput = mInputOptions.end();
     for (auto it = mInputOptions.begin(); it != endInput; ++it){
-        const char* charstring = it.key().toUtf8().data();
-        mInputWidget->setProperty(charstring, it.value());
+        mInputWidget->setProperty(it.key().toUtf8().data(), it.value());
     }
     auto endAutomation = mAugmentationOptions.end();
     for (auto it = mAugmentationOptions.begin(); it != endAutomation; ++it){
-        const char* charstring = it.key().toUtf8().data();
-        mAugmentationWidget->setProperty(charstring, it.value());
+        mAugmentationWidget->setProperty(it.key().toUtf8().data(), it.value());
     }
 
     mResult = mPluginManager.train(mAiPluginName, mModelName, mTrainDataSetPath, mValidationDataSetPath, mWorkingDir, mReceiver);
