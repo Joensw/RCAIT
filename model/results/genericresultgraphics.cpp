@@ -46,6 +46,7 @@ void GenericResultGraphics::launch_externalGraphicsGenerator(const QString &comm
     process.waitForFinished();
 
     qInfo() << qPrintable("::::::" % commandWithArgs % "::::::" % "\n")
+            << qPrintable(process.readAllStandardError().simplified().append("\n")) //Print in console
             << qPrintable(process.readAll().simplified().append("\n")) //Print in console
             << qPrintable("::::::" % QString("END OF OUTPUT") % "::::::" % "\n");
 
