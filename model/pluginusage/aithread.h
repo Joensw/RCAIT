@@ -5,16 +5,19 @@
 
 #include <QThread>
 
-class AIThread : public QThread
-{
+class AIThread : public QThread {
 public:
-    AIThread();
-    AIThread(Progressable* reciever, QString imagePath, QString modelName, QString pluginName, volatile bool* stopped);
+    AIThread() = default;
+
+    //TODO What is this used for?
+    AIThread(Progressable *receiver, QString imagePath, QString modelName, QString pluginName, volatile bool *stopped);
+
 private:
-    Progressable* receiver;
+    //TODO Are these needed?
+    Progressable *receiver;
     QString imagePath;
     QString modelName;
-    volatile bool* stopped;
+    volatile bool *stopped;
 };
 
 #endif // AITHREAD_H
