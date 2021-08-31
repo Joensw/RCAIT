@@ -74,6 +74,8 @@ set(Sources
 
         test_splitcommand.cpp
 
+        test_imageloadcommand.cpp
+
 
 
         test_projectmanager.cpp
