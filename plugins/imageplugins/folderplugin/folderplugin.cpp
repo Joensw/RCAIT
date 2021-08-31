@@ -17,10 +17,10 @@ bool FolderPlugin::loadImages(const QString path, ProgressablePlugin* receiver, 
         case 0: {
             QStringList imagefolders = folder.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
             int i = 0;
-            foreach(QString folderName, imagefolders){
+            foreach (QString folderName, imagefolders){
                 if (abort) return false;
                 folder.cd(folderName);
-                QStringList imagelist = folder.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
+                QStringList imagelist = folder.entryList(QStringList() << "*.JPG" << "*.jpg"  << "*.jpeg" << "*.png", QDir::Files);
                 if (!imagelist.isEmpty()){
                     if (!addLabel(imagelist, folder, output)){
                         receiver->slot_makeProgress(100);
@@ -38,11 +38,25 @@ bool FolderPlugin::loadImages(const QString path, ProgressablePlugin* receiver, 
 
         case 1: {
             // syntax for labels by filename is "label_image.png"
-            return false;
+            QStringList images = folder.entryList(QStringList() << "*_*.JPG" << "*_*.jpg" << "*_*.jpeg" << "*_*.png", QDir::Files);
+            foreach (QString image, images){
+                if (abort) return false;
+                QString label = image.mid(0, image.indexOf("_"));
+                output.mkdir(label);
+                if (!output.cd(label)) {
+                    receiver->slot_makeProgress(100);
+                    return false;
+                }
+                QString path = folder.path() + "/" + image;
+                QFile::copy(path, output.path() + "/" + image.mid(image.indexOf("_") + 1));
+                output.cdUp();
+            }
+            receiver->slot_makeProgress(100);
+            return true;
             break;
         }
         case 2: {
-            QStringList images = folder.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
+            QStringList images = folder.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.jpeg" << "*.png", QDir::Files);
             bool success = addLabel(images, folder, output);
             receiver->slot_makeProgress(100);
             return success;
@@ -88,8 +102,8 @@ void FolderPlugin::slot_abort()
 bool FolderPlugin::addLabel(QStringList images, QDir in, QDir out)
 {
     out.mkdir(in.dirName());
-    if(!out.cd(in.dirName())) return false;
-    foreach(QString imageName, images) {
+    if (!out.cd(in.dirName())) return false;
+    foreach (QString imageName, images) {
         if (abort) return false;
         QString path = in.path() + "/" + imageName;
         QFile::copy(path, out.path() + "/" + imageName);
