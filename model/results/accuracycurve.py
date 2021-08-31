@@ -1,13 +1,20 @@
-# confusion_matrix
-import argparse
-import ast
-import os
+# Check imports
+try:
+    import sys
+    import os
+    import argparse
+    import ast
 
-import matplotlib.pyplot as plt
-import numpy as np
-from matplotlib import font_manager
-from matplotlib.ticker import MaxNLocator, PercentFormatter
-from scipy.interpolate import make_interp_spline
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from matplotlib import font_manager
+    from matplotlib.ticker import MaxNLocator, PercentFormatter
+    from scipy.interpolate import make_interp_spline
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
+
 
 # No display of plot
 plt.ioff()

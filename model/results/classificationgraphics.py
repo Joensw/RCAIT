@@ -1,12 +1,19 @@
-import argparse
-import ast
-import os
+# Check imports
+try:
+    import argparse
+    import sys
+    import ast
+    import os
 
-import matplotlib.pyplot as plt
-import numpy as np
-from PIL import Image
-from matplotlib import font_manager
-from matplotlib.gridspec import GridSpec
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from PIL import Image
+    from matplotlib import font_manager
+    from matplotlib.gridspec import GridSpec
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
 
 # No display of plot
 plt.ioff()

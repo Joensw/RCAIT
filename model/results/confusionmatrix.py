@@ -1,13 +1,19 @@
-# confusion_matrix
-import argparse
-import ast
-import os
+# Check imports
+try:
+    import argparse
+    import sys
+    import ast
+    import os
 
-import itertools
-import matplotlib.pyplot as plt
-import numpy as np
-from matplotlib import font_manager
-from matplotlib.ticker import PercentFormatter
+    import itertools
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from matplotlib import font_manager
+    from matplotlib.ticker import PercentFormatter
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
 
 # No display of plot
 plt.ioff()

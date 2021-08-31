@@ -1,13 +1,19 @@
-# confusion_matrix
-import argparse
-import ast
-import os
+# Check imports
+try:
+    import argparse
+    import sys
+    import ast
+    import os
 
-import matplotlib.pyplot as plt
-import numpy as np
-from matplotlib import font_manager
-from matplotlib.figure import figaspect
-from matplotlib.ticker import PercentFormatter
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from matplotlib import font_manager
+    from matplotlib.figure import figaspect
+    from matplotlib.ticker import PercentFormatter
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
 
 # No display of plot
 plt.ioff()
@@ -36,8 +42,8 @@ def plot_top_accuracies_graphics(accdata, identifiers, file):
     fig, ax = plt.subplots(figsize=(w, h))
 
     # Chart line creation
-    top1Bars = ax.bar(x - width / 2, top1data, width, label='Top 1%', color='royalblue')
-    top5Bars = ax.bar(x + width / 2, top5data, width, label='Top 5%', color='orange')
+    top1_bars = ax.bar(x - width / 2, top1data, width, label='Top 1%', color='royalblue')
+    top5_bars = ax.bar(x + width / 2, top5data, width, label='Top 5%', color='orange')
 
     # Remove bounding box
     ax.spines['top'].set_visible(False)
@@ -70,8 +76,8 @@ def plot_top_accuracies_graphics(accdata, identifiers, file):
     ax.set_axisbelow(True)
 
     # Labels
-    ax.bar_label(top1Bars, padding=3)
-    ax.bar_label(top5Bars, padding=3)
+    ax.bar_label(top1_bars, padding=3)
+    ax.bar_label(top5_bars, padding=3)
     ax.legend(loc="lower left", ncol=1, bbox_to_anchor=(-0.05, -0.3), frameon=True)
     plt.ylabel("Accuracy")
     fig.tight_layout()
