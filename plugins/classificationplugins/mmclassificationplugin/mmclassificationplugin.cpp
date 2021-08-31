@@ -1,8 +1,6 @@
-#include <mapadapt.h>
 #include "mmclassificationplugin.h"
 
-MMClassificationPlugin::~MMClassificationPlugin()
-{
+MMClassificationPlugin::~MMClassificationPlugin() {
     delete m_baseModels;
 }
 
@@ -159,22 +157,22 @@ bool MMClassificationPlugin::createNewModel(QString modelName, QString baseModel
     }
     if (validBaseModel) {
         QString modelConfigPath = m_mmClassificationConfigFileBuilder.createModelConfigFile(
-                modelName + modelConfigIdentifier, baseModelPath);
+                modelName % modelConfigIdentifier, baseModelPath);
         QString datasetConfigPath = m_mmClassificationConfigFileBuilder.createDatasetConfigFile(
-                modelName + datasetConfigIdentifier);
+                modelName % datasetConfigIdentifier);
         QString scheduleConfigPath = m_mmClassificationConfigFileBuilder.createScheduleConfigFile(
-                modelName + scheduleConfigIdentifier);
+                modelName % scheduleConfigIdentifier);
         QString defaultRuntimePath = m_mmClassificationConfigFileBuilder.createRuntimeConfigFile(
-                modelName + runtimeConfigIdentifier);
+                modelName % runtimeConfigIdentifier);
         QString checkpointFilePath =
-                m_mmClassificationSettings.getMMClassificationPath() + QDir::fromNativeSeparators(QDir::separator())
-                + m_subfolder_checkpoints + QDir::fromNativeSeparators(QDir::separator()) + checkpointFileName;
+                m_mmClassificationSettings.getMMClassificationPath() % QDir::fromNativeSeparators(QDir::separator())
+                % m_subfolder_checkpoints % QDir::fromNativeSeparators(QDir::separator()) % checkpointFileName;
 
 
         QString absoluteCheckpointFilePath = QFileInfo(checkpointFilePath).absoluteFilePath();
 
         QString mainConfigPath = m_mmClassificationConfigFileBuilder.createMainConfigFile(
-                modelName + mainConfigIdentifier, modelConfigPath, datasetConfigPath,
+                modelName % mainConfigIdentifier, modelConfigPath, datasetConfigPath,
                 scheduleConfigPath, defaultRuntimePath, absoluteCheckpointFilePath);
         Model newModel(modelName, baseModelName, mainConfigPath, modelConfigPath, datasetConfigPath, scheduleConfigPath,
                        defaultRuntimePath);
@@ -221,7 +219,7 @@ MMClassificationPlugin::getAugmentationPreview(QString modelName, QString inputP
     // delete old Preview Pictures in the directory
     targetDir.setNameFilters(QStringList() << "*.jpg" << "*.png");
     targetDir.setFilter(QDir::Files);
-    for (const QString& dirFile : targetDir.entryList()) {
+    for (const QString &dirFile : targetDir.entryList()) {
         targetDir.remove(dirFile);
     }
 
@@ -314,8 +312,8 @@ MMClassificationPlugin::getAugmentationPreview(QString modelName, QString inputP
         sourceDirectoryPath = key;
         partAmount = distribution.value(key);
 
-        fullCommands.append(command + " " + scriptPath + " " + datasetConfigPath + " " + sourceDirectoryPath + " " +
-                            targetAbsolutePath + " " + QString::number(partAmount));
+        fullCommands.append(command % " " % scriptPath % " " % datasetConfigPath % " " % sourceDirectoryPath % " " %
+                            targetAbsolutePath % " " % QString::number(partAmount));
     }
 
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
@@ -326,26 +324,26 @@ MMClassificationPlugin::getAugmentationPreview(QString modelName, QString inputP
 
     if (!m_mmClassificationSettings.getMMClsPath().isEmpty()) {
         //  if (!pathValue.isEmpty()) {
-        //    pathValue += ";";
+        //    pathValue %= ";";
         // }
-        pathValue.prepend(m_mmClassificationSettings.getMMClsPath() + ":");
+        pathValue.prepend(m_mmClassificationSettings.getMMClsPath() % ":");
     }
     if (!m_mmClassificationSettings.getPythonPath().isEmpty()) {
         // if (!pathValue.isEmpty()) {
-        //     pathValue += ";";
+        //     pathValue %= ";";
         //}
-        pathValue.prepend(m_mmClassificationSettings.getPythonPath() + ":");
+        pathValue.prepend(m_mmClassificationSettings.getPythonPath() % ":");
     }
 
     envUpdate.insert("PATH", pathValue);
 
     for (const QString &fullCommand: fullCommands) {
-        QProcess *process;
-        process = new QProcess();
-        process->setProcessEnvironment(envUpdate);
-        process->startCommand(fullCommand);
-        process->waitForFinished();
-        qDebug() << QString::fromLocal8Bit(process->readAllStandardOutput()).simplified();
+        QProcess process;
+        process.setProcessEnvironment(envUpdate);
+        process.startCommand(fullCommand);
+        process.waitForFinished();
+        process.close();
+        qDebug() << qPrintable(process.readAllStandardOutput().simplified());
     }
     return true;
 }
@@ -407,7 +405,6 @@ MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QStri
     auto env = QProcessEnvironment::systemEnvironment();
     env.insert("CUDA_VISIBLE_DEVICES", QString::number(cudaDeviceNumber));
 
-    // QProcess* process;
     m_process = new QProcess();
     m_process->setProcessEnvironment(env);
     m_process->setReadChannel(QProcess::StandardOutput);
@@ -415,9 +412,9 @@ MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QStri
     m_process->waitForStarted();
     m_process->waitForFinished(-1);
 
-    qDebug() << QString::fromLocal8Bit(m_process->readAllStandardOutput()).simplified();
-    qDebug() << QString::fromLocal8Bit(m_process->readAllStandardError()).simplified();
-    qDebug() << QString::fromLocal8Bit(m_process->readAll()).simplified();
+    qDebug() << qPrintable(m_process->readAllStandardOutput().simplified());
+    qDebug() << qPrintable(m_process->readAllStandardError().simplified());
+    qDebug() << qPrintable(m_process->readAll().simplified());
 
     // Get Results
     const QString checkpointName = "latest.pth";
@@ -446,30 +443,31 @@ MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QStri
     QString testScriptPath = testScriptFile.absoluteFilePath();
     QString checkpointPath = workingDir.absoluteFilePath(checkpointName);
 
-    QString baseCommand = command + " " + testScriptPath + " " + mainConfigPath + " " + checkpointPath + " ";
+    QString baseCommand = command % " " % testScriptPath % " " % mainConfigPath % " " % checkpointPath % " ";
     fullCommands.append(baseCommand
-                        + metricConsoleArgumentName + "=" + metricAccuracy + " "
-                        + outputConsoleArgumentName + "=" + pathToAccuracyResultFile);
+                        % metricConsoleArgumentName % "=" % metricAccuracy % " "
+                        % outputConsoleArgumentName % "=" % pathToAccuracyResultFile);
     fullCommands.append(baseCommand
-                        + metricConsoleArgumentName + "=" + metricSupport + " "
-                        + outputConsoleArgumentName + "=" + pathToSupportResultFile);
+                        % metricConsoleArgumentName % "=" % metricSupport % " "
+                        % outputConsoleArgumentName % "=" % pathToSupportResultFile);
     fullCommands.append(baseCommand
-                        + outputConsoleArgumentName + "=" + pathToWithoutMetricResultFile);
+                        % outputConsoleArgumentName % "=" % pathToWithoutMetricResultFile);
 
     // execute test process to generate result files
     for (const QString &fullCommand: fullCommands) {
-        auto process = new QProcess();
-        process->startCommand(fullCommand);
-        process->waitForStarted();
-        process->waitForFinished();
-        qDebug() << QString::fromLocal8Bit(process->readAllStandardOutput()).simplified();
-        qDebug() << QString::fromLocal8Bit(process->readAllStandardError()).simplified();
+        QProcess process;
+        process.startCommand(fullCommand);
+        process.waitForStarted();
+        process.waitForFinished();
+        process.close();
+        qDebug() << qPrintable(process.readAllStandardOutput().simplified());
+        qDebug() << qPrintable(process.readAllStandardError().simplified());
     }
 
     const auto &[top1, top5] = m_jsonReader.readTopValuesFromJson(pathToAccuracyResultFile);
     const auto confusionMatrixFileName = "data_confusion_matrix.json";
     // QString pathToConfusionMatrix = m_mmClassificationSettings.getMMClassificationPath()
-    // + "/" + confusionMatrixFileName;
+    // % "/" % confusionMatrixFileName;
     QDir mmPath(m_mmClassificationSettings.getMMClassificationPath());
     auto pathToConfusionMatrix = mmPath.absoluteFilePath(confusionMatrixFileName);
     auto confusionMatrixData = m_jsonReader.readConfusionMatrixFromJsonFile(pathToConfusionMatrix);
@@ -528,8 +526,8 @@ MMClassificationPlugin::classify(QString inputImageDirPath, QString trainDataset
     auto pythonfile = QFileInfo("mmclassification_test.py");
     auto scriptPath = pythonfile.absoluteFilePath();
 
-    auto fullCommand = command + " " + scriptPath + " " + mainConfigPath + " " + checkpointPath + " "
-                       + outputConfidenceScoreConsoleArgumentName + "=" + pathToConfidenceScoreResultFile;
+    auto fullCommand = command % " " % scriptPath % " " % mainConfigPath % " " % checkpointPath % " "
+                       % outputConfidenceScoreConsoleArgumentName % "=" % pathToConfidenceScoreResultFile;
 
     auto env = QProcessEnvironment::systemEnvironment();
 
@@ -539,8 +537,8 @@ MMClassificationPlugin::classify(QString inputImageDirPath, QString trainDataset
     m_process->waitForFinished();
 
     // Get the output
-    qDebug() << QString::fromLocal8Bit(m_process->readAllStandardOutput()).simplified();
-    qDebug() << QString::fromLocal8Bit(m_process->readAllStandardError()).simplified();
+    qDebug() << qPrintable(m_process->readAllStandardOutput().simplified());
+    qDebug() << qPrintable(m_process->readAllStandardError().simplified());
 
     // new json file with complete data
     QDir inputImageDirectory(inputImageDirPath);

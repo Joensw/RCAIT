@@ -6,6 +6,8 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QRegularExpression>
+#include <QStringBuilder>
+#include <utility>
 
 /**
  * @brief The MMClassificationConfigFileBuilder class can create and change config files using default config files and the config include hierarchy of the MMClassification repository

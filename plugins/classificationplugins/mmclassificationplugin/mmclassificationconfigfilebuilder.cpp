@@ -1,7 +1,5 @@
 #include "mmclassificationconfigfilebuilder.h"
 
-#include <utility>
-
 MMClassificationConfigFileBuilder::MMClassificationConfigFileBuilder() = default;
 
 void MMClassificationConfigFileBuilder::setPathToMMClassification(QString pathToMMClassification) {
@@ -39,20 +37,20 @@ QString MMClassificationConfigFileBuilder::createMainConfigFile(const QString& n
     if (!mmclassificationDirectory.exists(mainConfigPath)) {
         mmclassificationDirectory.mkpath(mainConfigPath);
     }
-    mainConfigPath += QDir::fromNativeSeparators(QDir::separator()) + name + ".py";
+    mainConfigPath.append(QDir::fromNativeSeparators(QDir::separator()) % name % ".py");
     QFile mainConfigFile(mainConfigPath);
     QDir mainConfigDir(mainConfigPath);
     mainConfigDir.cdUp();
     mainConfigFile.open(QIODevice::WriteOnly);
     QTextStream out(&mainConfigFile);
     out << "_base_ = [" << "\n";
-    out << "'" << mainConfigDir.relativeFilePath(modelConfigPath) << "'" << ',';
-    out << "'" << mainConfigDir.relativeFilePath(datasetConfigPath) << "'" << ',';
-    out << "'" << mainConfigDir.relativeFilePath(scheduleConfigPath) << "'" << ',';
-    out << "'" << mainConfigDir.relativeFilePath(runtimeConfigPath) << "'" << "\n";
+    out << "'" % mainConfigDir.relativeFilePath(modelConfigPath) % "'" % ',';
+    out << "'" % mainConfigDir.relativeFilePath(datasetConfigPath) % "'" % ',';
+    out << "'" % mainConfigDir.relativeFilePath(scheduleConfigPath) % "'" % ',';
+    out << "'" % mainConfigDir.relativeFilePath(runtimeConfigPath) % "'" % "\n";
     out << "]" << "\n";
-    //out << "load_from = " << "'" + mainConfigDir.relativeFilePath(checkpointPath + checkpointName) + "'";
-    out << "load_from = " << "'" + checkpointName + "'";
+    //out << "load_from = " << "'" % mainConfigDir.relativeFilePath(checkpointPath % checkpointName) % "'";
+    out << "load_from = " << "'" % checkpointName % "'";
     mainConfigFile.close();
     return mainConfigPath;
 }
@@ -66,7 +64,7 @@ QString MMClassificationConfigFileBuilder::createModelConfigFile(const QString& 
         QTextStream in(&modelConfigFile);
         QString line = in.readLine();
         if (!line.isNull()) {
-            line = "_base_ = ['./" + baseModelPath + "']";
+            line = "_base_ = ['./" % baseModelPath % "']";
             data.append(line);
         }
         while (!line.isNull()) {
@@ -77,7 +75,7 @@ QString MMClassificationConfigFileBuilder::createModelConfigFile(const QString& 
         if (modelConfigFile.open(QFile::WriteOnly | QFile::Truncate)) {
             QTextStream out(&modelConfigFile);
             for (const auto &i : data) {
-                out << i + "\n";
+                out << i % "\n";
             }
         }
         modelConfigFile.close();
@@ -114,7 +112,7 @@ QString MMClassificationConfigFileBuilder::createConfigFile(const QString &name,
         return {};
     }
     QFileInfo info(defaultConfigPath);
-    QString newConfigPath = info.absolutePath() + QDir::fromNativeSeparators(QDir::separator()) + name + ".py";
+    QString newConfigPath = info.absolutePath() % QDir::fromNativeSeparators(QDir::separator()) % name % ".py";
     defaultConfigFile.copy(newConfigPath);
     return newConfigPath;
 }
@@ -249,8 +247,8 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(const QStr
             toReplace.append(albuTransformGroupValueRegExText);
             replaceWith.append(albuTransform);
         } else {
-            toReplace.append("(" + albuTransformPlaceholder + ")");
-            replaceWith.append(albuTransformBeforeValue + albuTransform + albuTransformAfterValue);
+            toReplace.append("(" % albuTransformPlaceholder % ")");
+            replaceWith.append(albuTransformBeforeValue % albuTransform % albuTransformAfterValue);
         }
     }
 
@@ -262,8 +260,8 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(const QStr
             toReplace.append(randomResizedCropSizeGroupValueRegExText);
             replaceWith.append(QString::number(randomResizedCropSize));
         } else {
-            toReplace.append("(" + randomResizedCropPlaceholder + ")");
-            replaceWith.append(randomResizedCropSizeBeforeValue + QString::number(randomResizedCropSize) +
+            toReplace.append("(" % randomResizedCropPlaceholder % ")");
+            replaceWith.append(randomResizedCropSizeBeforeValue % QString::number(randomResizedCropSize) %
                                randomResizedCropSizeAfterValue);
         }
     }
@@ -278,10 +276,10 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(const QStr
             replaceWith.append(QString::number(randomFlipProb));
             replaceWith.append(randomFlipDirection);
         } else {
-            toReplace.append("(" + randomFlipPlaceholder + ")");
+            toReplace.append("(" % randomFlipPlaceholder % ")");
             replaceWith.append(
-                    randomFlipProbBeforeValue + QString::number(randomFlipProb) + randomFlipDirectionBeforeValue +
-                    randomFlipDirection + randomFlipDirectionAfterValue);
+                    randomFlipProbBeforeValue % QString::number(randomFlipProb) % randomFlipDirectionBeforeValue %
+                    randomFlipDirection % randomFlipDirectionAfterValue);
         }
     }
 
@@ -289,7 +287,7 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(const QStr
         toReplace.append(randomErasingCompleteRegExText);
         replaceWith.append(randomErasingPlaceholder);
     } else if (randomErasing && !containsRandomErasing) {
-        toReplace.append("(" + randomErasingPlaceholder + ")");
+        toReplace.append("(" % randomErasingPlaceholder % ")");
         replaceWith.append(randomErasingLine);
     }
 
@@ -297,7 +295,7 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(const QStr
         toReplace.append(albuTransformCompleteLineRegExText);
         replaceWith.append(albuTransformPipelinePlaceholder);
     } else if (!albuTransform.isEmpty() && !containsAlbuTransformType) {
-        toReplace.append("(" + albuTransformPipelinePlaceholder + ")");
+        toReplace.append("(" % albuTransformPipelinePlaceholder % ")");
         replaceWith.append(albuTransformCompleteLine);
     }
 
@@ -309,8 +307,8 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(const QStr
             toReplace.append(resizeGroupValueRegExText);
             replaceWith.append(QString::number(resize));
         } else {
-            toReplace.append("(" + resizePlaceholder + ")");
-            replaceWith.append(resizeBeforeValue + QString::number(resize) + resizeAfterValue);
+            toReplace.append("(" % resizePlaceholder % ")");
+            replaceWith.append(resizeBeforeValue % QString::number(resize) % resizeAfterValue);
         }
     }
 
@@ -322,8 +320,8 @@ void MMClassificationConfigFileBuilder::changeDataAugmentationOptions(const QStr
             toReplace.append(centerCropSizeGroupValueRegExText);
             replaceWith.append(QString::number(centerCropSize));
         } else {
-            toReplace.append("(" + centerCropPlaceholder + ")");
-            replaceWith.append(centerCropSizeBeforeValue + QString::number(centerCropSize) + centerCropSizeAfterValue);
+            toReplace.append("(" % centerCropPlaceholder % ")");
+            replaceWith.append(centerCropSizeBeforeValue % QString::number(centerCropSize) % centerCropSizeAfterValue);
         }
     }
     readAndReplaceLinesInOrder(datasetConfigPath, toReplace, replaceWith, groupIndex);
@@ -367,7 +365,7 @@ void MMClassificationConfigFileBuilder::changeScheduleOptions(const QString &sch
     QString scheduleConfigContent = file.readAll();
     scheduleConfigContent = replaceText(scheduleConfigContent, m_step, stepGroupIndex, QString::number(step));
     scheduleConfigContent = replaceText(scheduleConfigContent, m_maxItersRegExText, maxItersGroupIndex,
-                                        maxItersExpression + QString::number(maxIterations));
+                                        maxItersExpression % QString::number(maxIterations));
 
     qDebug() << "step: " << step;
 
@@ -463,7 +461,7 @@ void MMClassificationConfigFileBuilder::writeBack(const QString &pathToFile, con
     if (file.open(QFile::WriteOnly | QFile::Truncate)) {
         QTextStream out(&file);
         for (const auto &i : data) {
-            out << i + "\n";
+            out << i << "\n";
         }
     }
     file.close();

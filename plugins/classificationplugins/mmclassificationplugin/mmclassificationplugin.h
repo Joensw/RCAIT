@@ -10,6 +10,7 @@
 #include <QProcess>
 #include <QProcessEnvironment>
 #include <QFileSystemModel>
+#include <QStringBuilder>
 
 #include "trainingresult.h"
 #include "classificationresult.h"
