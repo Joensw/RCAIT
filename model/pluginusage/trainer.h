@@ -1,9 +1,9 @@
 #ifndef TRAINER_H
 #define TRAINER_H
 
-#include <plugins/results/trainingresult.h>
-#include "model/pluginusage/progressableplugin.h"
-#include "plugins/results/classificationresult.h"
+#include <trainingresult.h>
+#include "progressableplugin.h"
+#include "classificationresult.h"
 #include "trainingsthread.h"
 #include "classificationthread.h"
 
@@ -14,14 +14,14 @@ class Trainer : public ProgressablePlugin
 
 public:
     Trainer();
-    ~Trainer() {
+    ~Trainer() override {
             trainThread.quit();
             trainThread.wait();
     }
 
     void train(const QString &pluginName, const QString &modelName, const QString &trainDatasetPath, const QString &validationDatasetPath, const QString &workingDirectory);
-    TrainingResult* getLastTrainingResult();
-    bool getAugmentationPreview(const QString &pluginName, const QString &inputPath);
+
+    [[maybe_unused]] bool getAugmentationPreview(const QString &pluginName, const QString &inputPath);
 
     QString getRecentWorkingDir();
 
@@ -32,6 +32,7 @@ signals:
 
 public slots:
     void slot_handleTrainingsResult();
+    void slot_makeProgress(int progress) override;
 
 private:
     TrainingsThread *m_trainWorker;

@@ -1,25 +1,24 @@
 #include "trainer.h"
 
-Trainer::Trainer()
-{
+Trainer::Trainer() = default;
 
-}
 
 void Trainer::train(const QString &pluginName, const QString &modelName, const QString &trainDatasetPath, const QString &validationDatasetPath, const QString &workingDirectory)
 {
-        m_recentWorkingDir = workingDirectory;
-        m_trainWorker = new TrainingsThread(pluginName, modelName, trainDatasetPath, validationDatasetPath, workingDirectory, this);
-        m_trainWorker->moveToThread(&trainThread);
-        connect(&trainThread, &QThread::finished, m_trainWorker, &QObject::deleteLater);
-        connect(&trainThread, &QThread::finished, this, &Trainer::slot_handleTrainingsResult);
-        connect(this, &Trainer::sig_startTraining, m_trainWorker, &TrainingsThread::slot_startTraining);
-        connect(this, &Trainer::sig_pluginFinished, this, &Trainer::slot_handleTrainingsResult);
-        emit sig_progress(0);
-        trainThread.start();
+    m_recentWorkingDir = workingDirectory;
+    m_trainWorker = new TrainingsThread(pluginName, modelName, trainDatasetPath, validationDatasetPath, workingDirectory, this);
+    m_trainWorker->moveToThread(&trainThread);
+    connect(&trainThread, &QThread::finished, m_trainWorker, &QObject::deleteLater);
+    connect(&trainThread, &QThread::finished, this, &Trainer::slot_handleTrainingsResult);
+    connect(this, &Trainer::sig_startTraining, m_trainWorker, &TrainingsThread::slot_startTraining);
+    connect(this, &Trainer::sig_pluginFinished, this, &Trainer::slot_handleTrainingsResult);
+    emit sig_progress(0);
+    trainThread.start();
 }
 
-bool Trainer::getAugmentationPreview(const QString &pluginName, const QString &inputPath)
+[[maybe_unused]] bool Trainer::getAugmentationPreview(const QString &pluginName, const QString &inputPath)
 {
+    //TODO Fill
     return false;
 }
 
@@ -38,5 +37,9 @@ void Trainer::slot_handleTrainingsResult(){
     } else {
         qWarning() << "Invalid Training Result returned";
     }
+}
+
+void Trainer::slot_makeProgress(int progress) {
+//TODO Fill
 }
 
