@@ -11,8 +11,7 @@ ImportFilesWidget::ImportFilesWidget(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::ImportFilesWidget) {
     ui->setupUi(this);
-    ui->label_splitPercent->setText(QString::number(ui->horizontalSlider->value()) + "%");
-
+    ui->label_splitPercent->setText(QString::number(ui->horizontalSlider->value()) % "%");
 
 }
 
@@ -112,8 +111,8 @@ void ImportFilesWidget::updateStatusText(QString status) {
 }
 
 
-void ImportFilesWidget::on_horizontalSlider_sliderMoved(int position) {
-    ui->label_splitPercent->setText(QString::number(position) + "%");
+void ImportFilesWidget::on_horizontalSlider_valueChanged(int value) {
+    ui->label_splitPercent->setText(QString::number(value) % "%");
 }
 
 

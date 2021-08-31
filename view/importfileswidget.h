@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QValidator>
 #include <QFontMetricsF>
+#include <QStringBuilder>
 
 namespace Ui {
 class ImportFilesWidget;
@@ -77,7 +78,7 @@ private slots:
     [[maybe_unused]] void on_pushButton_loadModel_clicked();
 
     [[maybe_unused]] void on_pushButton_loadImages_clicked();
-    [[maybe_unused]] void on_horizontalSlider_sliderMoved(int position);
+    [[maybe_unused]] void on_horizontalSlider_valueChanged(int value);
 
 
     [[maybe_unused]] void on_pushButton_loadLabelsFromFile_clicked();
