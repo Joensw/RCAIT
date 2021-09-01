@@ -43,7 +43,7 @@ protected:
      */
     template<typename T, typename = std::enable_if<std::is_base_of_v<GenericGraphicsView, T>>>
     T *createResultTab(const QString &tabName) {
-        auto *tab = new T((GenericComparisonWidget*)this);
+        auto *tab = new T(this);
         m_tabWidget->addTab(tab, tabName);
         m_mapTabsByName[tabName] = tab;
 
