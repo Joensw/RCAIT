@@ -8,17 +8,19 @@ void Classifier::classify(const QString &pluginName, const QString &inputImageDi
                           const QString &workingDirectory, const QString &modelName) {
 
     auto watcher = new QFutureWatcher<ClassificationResult*>;
-    connect(watcher, &QFutureWatcher<int>::finished, this, &Classifier::slot_handleClassificationResult);
-    m_classificationResult = QtConcurrent::run(&ClassificationPluginManager::classify, &mManager, pluginName, inputImageDirPath, trainDatasetPath, workingDirectory, modelName, this);
-    watcher->setFuture(m_classificationResult);
+    connect(watcher, &QFutureWatcher<ClassificationResult*>::finished, this, &Classifier::slot_handleClassificationResult);
+    mClassificationResult = QtConcurrent::run(&ClassificationPluginManager::classify, &mManager, pluginName, inputImageDirPath, trainDatasetPath, workingDirectory, modelName, this);
+    watcher->setFuture(mClassificationResult);
     emit sig_progress(0);
 
 }
 
+
+
 void Classifier::slot_handleClassificationResult() {
     emit sig_progress(100);
-    if (m_classificationResult.result()->isValid()) {
-        emit sig_classificationResultUpdated(m_classificationResult.result());
+    if (mClassificationResult.result()->isValid()) {
+        emit sig_classificationResultUpdated(mClassificationResult.result());
     } else {
         qWarning() << "Invalid Classification Result returned";
     }
@@ -29,7 +31,3 @@ void Classifier::slot_makeProgress(int progress) {
     emit sig_progress(progress);
 }
 
-bool Classifier::getAugmentationPreview(const QString &pluginName, const QString &inputPath) {
-    //TODO Fill
-    return false;
-}

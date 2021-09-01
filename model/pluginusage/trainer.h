@@ -16,7 +16,7 @@ public:
 
     void train(const QString &pluginName, const QString &modelName, const QString &trainDatasetPath, const QString &validationDatasetPath, const QString &workingDirectory);
 
-    [[maybe_unused]] bool getAugmentationPreview(const QString &pluginName, const QString &inputPath);
+    void getAugmentationPreview(const QString& pluginName, const QString& modelName, const QString& inputPath, const QString& targetPath, int amount);
 
     QString getRecentWorkingDir();
 
@@ -24,15 +24,19 @@ public:
 signals:
     void sig_trainingResultUpdated(TrainingResult *trainingResult);
     void sig_startTraining();
+    void sig_augmentationPreviewReady(bool success, QString targetpath);
 
 public slots:
     void slot_handleTrainingsResult();
+    void slot_handleAugmentationResult();
     void slot_makeProgress(int progress) override;
 
 private:
     ClassificationPluginManager& mManager = ClassificationPluginManager::getInstance();
-    QString m_recentWorkingDir;
+    QString mRecentWorkingDir;
+    QString mRecentTargetPath;
     QFuture<TrainingResult *> m_trainingResult;
+    QFuture<bool> mAugmentationSuccess;
 
 
 

@@ -67,8 +67,8 @@ public slots:
     void slot_abortClassify();
 
     /**
-     * @brief slot_showAugmentationPreview tries to show augmentation preview when triggered.
-     * @param amount
+     * @brief slot_showAugmentationPreview loads augmentation preview when triggered.
+     * @param amount number of new images
      */
     void slot_showAugmentationPreview(int amount);
 
@@ -78,6 +78,11 @@ public slots:
      */
     void slot_modelLoaded();
 
+    /**
+     * @brief slot_automationPreviewReady
+     * @param success
+     */
+    void slot_automationPreviewReady(bool success, QString targetPath);
 signals:
     /**
      * @brief sig_trainingResultUpdated emitted when a new training result is available
@@ -99,6 +104,7 @@ private:
     Classifier *mClassifier;
     QString mTrainingPath;
     QString mClassificationPath;
+    bool mPreviewLoading = false;
 };
 
 #endif // AICONTROLLER_H

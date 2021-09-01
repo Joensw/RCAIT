@@ -6,22 +6,26 @@ Trainer::Trainer() = default;
 
 void Trainer::train(const QString &pluginName, const QString &modelName, const QString &trainDatasetPath, const QString &validationDatasetPath, const QString &workingDirectory)
 {
-        m_recentWorkingDir = workingDirectory;
+        mRecentWorkingDir = workingDirectory;
         auto watcher = new QFutureWatcher<TrainingResult*>;
-        connect(watcher, &QFutureWatcher<int>::finished, this, &Trainer::slot_handleTrainingsResult);
+        connect(watcher, &QFutureWatcher<TrainingResult*>::finished, this, &Trainer::slot_handleTrainingsResult);
         m_trainingResult = QtConcurrent::run(&ClassificationPluginManager::train, &mManager, pluginName, modelName, trainDatasetPath, validationDatasetPath, workingDirectory, this);
         watcher->setFuture(m_trainingResult);
         emit sig_progress(0);
 }
 
-bool Trainer::getAugmentationPreview(const QString &pluginName, const QString &inputPath)
+void Trainer::getAugmentationPreview(const QString &pluginName, const QString &modelName, const QString &inputPath, const QString &targetPath, int amount)
 {
-    return false;
+    mRecentTargetPath = targetPath;
+    auto watcher = new QFutureWatcher<bool>;
+    connect(watcher, &QFutureWatcher<bool>::finished, this, &Trainer::slot_handleAugmentationResult);
+    mAugmentationSuccess = QtConcurrent::run(&ClassificationPluginManager::getAugmentationPreview, &mManager, pluginName, modelName, inputPath, targetPath, amount);
+    watcher->setFuture(mAugmentationSuccess);
 }
 
 QString Trainer::getRecentWorkingDir()
 {
-    return m_recentWorkingDir;
+    return mRecentWorkingDir;
 }
 
 void Trainer::slot_handleTrainingsResult(){
@@ -31,6 +35,11 @@ void Trainer::slot_handleTrainingsResult(){
     } else {
         qWarning() << "Invalid Training Result returned";
     }
+}
+
+void Trainer::slot_handleAugmentationResult()
+{
+    emit sig_augmentationPreviewReady(mAugmentationSuccess.result(), mRecentTargetPath);
 }
 
 void Trainer::slot_makeProgress(int progress)

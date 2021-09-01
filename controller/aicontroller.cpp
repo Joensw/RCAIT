@@ -94,16 +94,21 @@ void AIController::slot_abortClassify()
 
 void AIController::slot_showAugmentationPreview(int amount)
 {
+    if (mPreviewLoading) return;
+    mPreviewLoading = true;
     QString pluginName = mDataManager->getCurrentClassificationPlugin();
     QString modelName = mDataManager->getCurrentModel();
     QString inputPath = mDataManager->getProjectDataSetTrainSubdir();
     QString targetPath = mDataManager->getProjectAugTempDir();
-    //TODO: if no model was chosen it crashs
-    if (!ClassificationPluginManager::getInstance().getAugmentationPreview(pluginName, modelName, inputPath, targetPath, amount)) {
-        qDebug()<<"can not show preview";
-        return;
+    mTrainer->getAugmentationPreview(pluginName, modelName, inputPath, targetPath, amount);
+}
+
+void AIController::slot_automationPreviewReady(bool success, QString targetPath)
+{
+    if (success) {
+        mAiTrainingWidget->showImages(targetPath);
     }
-    mAiTrainingWidget->showImages(targetPath);
+    mPreviewLoading = false;
 }
 
 void AIController::slot_modelLoaded()

@@ -13,12 +13,12 @@ public:
     Classifier();
 
     void classify(const QString& pluginName, const QString& inputImageDirPath, const QString& trainDatasetPath, const QString& workingDirectory, const QString& modelName);
-    bool getAugmentationPreview(const QString& pluginName, const QString& inputPath);
 
 
 signals:
     void sig_classificationResultUpdated(ClassificationResult* classificationResult);
     void sig_startClassification();
+
 
 public slots:
     void slot_handleClassificationResult();
@@ -26,7 +26,7 @@ public slots:
 
 private:
     ClassificationPluginManager& mManager = ClassificationPluginManager::getInstance();
-    QFuture<ClassificationResult *> m_classificationResult;
+    QFuture<ClassificationResult *> mClassificationResult;
 
 };
 
