@@ -73,6 +73,12 @@ set(Sources
 
         test_imageloadcommand.cpp
 
+        test_folderplugin.cpp
+        ../plugins/imageplugins/folderplugin/folderplugin.h
+        ../plugins/imageplugins/folderplugin/folderplugin.cpp
+        ../plugins/imageplugins/folderplugin/folderconfigwidget.h
+        ../plugins/imageplugins/folderplugin/folderconfigwidget.cpp
+
 
 
         test_projectmanager.cpp

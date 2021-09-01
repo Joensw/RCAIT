@@ -1,10 +1,14 @@
 #include <gtest/gtest.h>
 #include <QSignalSpy>
+#include <qapplication.h>
 #include "../model/automation/automator.h"
 
 //check if loading labeled dataset imagefilepaths work
 TEST(AutomatorTest, testAddTask){
     //set up
+    int argc;
+    char *argv[1];
+    QApplication a(argc, argv);
     DataManager* manager = new DataManager;
     manager->saveProjectsDir(QDir::current().path());
     Automator* automator = new Automator(manager);
@@ -31,11 +35,15 @@ TEST(AutomatorTest, testAddTask){
     for (int i = 0; i < 2; i++){
         manager->removeProject("test" + QString::number(i + 1));
     }
+    a.exit();
 }
 
 //tests if queueing/unqueuing work as expected
 TEST(AutomatorTest, testUnQueueTask){
     //set up
+    int argc;
+    char *argv[1];
+    QApplication a(argc, argv);
     DataManager* manager = new DataManager;
     manager->saveProjectsDir(QDir::current().path());
     Automator* automator = new Automator(manager);
@@ -78,10 +86,14 @@ TEST(AutomatorTest, testUnQueueTask){
     for (int i = 0; i < 3; i++){
         manager->removeProject("test" + QString::number(i + 1));
     }
+    a.exit();
 }
 
 TEST(AutomatorTest, testRemove){
     //set up
+    int argc;
+    char *argv[1];
+    QApplication a(argc, argv);
     DataManager* manager = new DataManager;
     manager->saveProjectsDir(QDir::current().path());
     Automator* automator = new Automator(manager);
@@ -108,11 +120,15 @@ TEST(AutomatorTest, testRemove){
     for (int i = 0; i < 3; i++){
         manager->removeProject("test" + QString::number(i + 1));
     }
+    a.exit();
 }
 
 
 TEST(AutomatorTest, testPerformTasks){
     //set up
+    int argc;
+    char *argv[1];
+    QApplication a(argc, argv);
     DataManager* manager = new DataManager;
     manager->saveProjectsDir(QDir::current().path());
     Automator* automator = new Automator(manager);
@@ -148,5 +164,5 @@ TEST(AutomatorTest, testPerformTasks){
     for (int i = 0; i < 3; i++){
         manager->removeProject("test" + QString::number(i + 1));
     }
-
+    a.exit();
 }
