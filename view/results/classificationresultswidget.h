@@ -14,7 +14,7 @@ Q_OBJECT
 public:
     explicit ClassificationResultsWidget(QWidget *parent = nullptr);
 
-    ~ClassificationResultsWidget() = default;
+    ~ClassificationResultsWidget() override = default;
 
     void addClassificationResult(ClassificationResult *result);
 
