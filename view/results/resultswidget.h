@@ -40,6 +40,7 @@ private:
     TrainingResultsWidget* m_trainingResultsWidget;
     ClassificationResultsWidget* m_classificationResultsWidget;
 
+    ProjectManager *m_projectManager;
 };
 
 

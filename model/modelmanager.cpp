@@ -3,12 +3,13 @@
 #include <utility>
 
 
-ModelManager::ModelManager(){
-    mClassificationPluginManager = &ClassificationPluginManager::getInstance();
+ModelManager::ModelManager()
+        : mClassificationPluginManager(&ClassificationPluginManager::getInstance()) {
+
 }
 
-void ModelManager::createNewModel(QString projectName, QString modelName, QString pluginName, QString baseModel){
-    if(mClassificationPluginManager->createNewModel(modelName, pluginName, baseModel)) {
+void ModelManager::createNewModel(QString projectName, QString modelName, QString pluginName, QString baseModel) {
+    if (mClassificationPluginManager->createNewModel(modelName, pluginName, baseModel)) {
         // add the new model to the saved user models
         QStringList modelSpecificData = {QString(), QString()};
         modelSpecificData[pluginNamePosition] = pluginName;
@@ -20,7 +21,7 @@ void ModelManager::createNewModel(QString projectName, QString modelName, QStrin
     }
 }
 
-void ModelManager::removeModel(QString projectName, QString modelName){
+void ModelManager::removeModel(QString projectName, QString modelName) {
     m_userModelNamesPerProject.beginGroup(projectName);
     QStringList modelSpecificData = m_userModelNamesPerProject.value(modelName).toStringList();
     QString pluginName = modelSpecificData.at(pluginNamePosition);
@@ -36,36 +37,35 @@ void ModelManager::removeModel(QString projectName, QString modelName){
     }
 }
 
-void ModelManager::loadModel(QString modelName, QString pluginName){
+void ModelManager::loadModel(QString modelName, QString pluginName) {
     mCurrentModel = std::move(modelName);
     mCurrentPlugin = std::move(pluginName);
 }
 
-QString ModelManager::getCurrentPlugin(){
+QString ModelManager::getCurrentPlugin() {
     return mCurrentPlugin;
 }
-QString ModelManager::getCurrentModel(){
+
+QString ModelManager::getCurrentModel() {
     return mCurrentModel;
 }
 
-QStringList ModelManager::getModelNamesOfProject(QString projectName)
-{
+QStringList ModelManager::getModelNamesOfProject(QString projectName) {
     m_userModelNamesPerProject.beginGroup(projectName);
     QStringList modelNames = m_userModelNamesPerProject.childKeys();
     m_userModelNamesPerProject.endGroup();
     return modelNames;
 }
 
-void ModelManager::removeAllModelsOfProject(const QString &projectName)
-{
+void ModelManager::removeAllModelsOfProject(const QString &projectName) {
     QStringList modelsToRemove = getModelNamesOfProject(projectName);
-    foreach (QString modelName, modelsToRemove) {
-        removeModel(projectName, modelName);
-    }
+            foreach (QString modelName, modelsToRemove) {
+            removeModel(projectName, modelName);
+        }
 }
 
-void ModelManager::saveLastWorkingDirectoryOfModel(const QString &projectName, const QString &modelName, const QString &workingDirectory)
-{
+void ModelManager::saveLastWorkingDirectoryOfModel(const QString &projectName, const QString &modelName,
+                                                   const QString &workingDirectory) {
     QStringList modelSpecificData;
     m_userModelNamesPerProject.beginGroup(projectName);
     modelSpecificData = m_userModelNamesPerProject.value(modelName).toStringList();
@@ -76,8 +76,7 @@ void ModelManager::saveLastWorkingDirectoryOfModel(const QString &projectName, c
     m_userModelNamesPerProject.endGroup();
 }
 
-QString ModelManager::recallLastWorkingDirectoryOfModel(QString projectName, QString modelName)
-{
+QString ModelManager::recallLastWorkingDirectoryOfModel(QString projectName, QString modelName) {
     QStringList modelSpecificData;
     m_userModelNamesPerProject.beginGroup(projectName);
     modelSpecificData = m_userModelNamesPerProject.value(modelName).toStringList();
@@ -104,11 +103,10 @@ QString ModelManager::recallPluginNameOfModell(QString projectName, QString mode
 
 }
 
-QWidget * ModelManager::getInputWidget(){
+QWidget *ModelManager::getInputWidget() {
     return mClassificationPluginManager->getInputWidget(mCurrentPlugin);
 }
 
-QWidget *ModelManager::getDataAugmentationInputWidget()
-{
+QWidget *ModelManager::getDataAugmentationInputWidget() {
     return mClassificationPluginManager->getDataAugmentationInputWidget(mCurrentPlugin);
 }

@@ -4,7 +4,8 @@
 
 ResultsWidget::ResultsWidget(QWidget *parent) :
         QWidget(parent),
-        ui(new Ui::ResultsWidget) {
+        ui(new Ui::ResultsWidget),
+        m_projectManager(&ProjectManager::getInstance()) {
 
     ui->setupUi(this);
 
@@ -46,9 +47,8 @@ ClassificationResultsWidget *ResultsWidget::getClassificationResultsWidget() {
 }
 
 void ResultsWidget::updateResultFolderPaths() {
-    ProjectManager *pm = &ProjectManager::getInstance();
-    auto trainingPath = pm->getTrainingResultsDir();
-    auto classificationPath = pm->getClassificationResultsDir();
+    auto trainingPath = m_projectManager->getTrainingResultsDir();
+    auto classificationPath = m_projectManager->getClassificationResultsDir();
 
     m_trainingResultsWidget->updateResultFolderPath(trainingPath);
     m_classificationResultsWidget->updateResultFolderPath(classificationPath);
