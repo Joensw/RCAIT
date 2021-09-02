@@ -82,7 +82,7 @@ public slots:
      * @brief slot_automationPreviewReady
      * @param success
      */
-    void slot_automationPreviewReady(bool success, QString targetPath);
+    void slot_augmentationPreviewReady(bool success, QString targetPath);
 signals:
     /**
      * @brief sig_trainingResultUpdated emitted when a new training result is available

@@ -67,6 +67,7 @@ bool ClassificationPluginManager::createNewModel(QString modelName, const QStrin
 bool
 ClassificationPluginManager::getAugmentationPreview(const QString &pluginName, QString modelName, QString inputPath,
                                                     QString targetPath, int amount) {
+    if (m_plugins.value(pluginName) == nullptr) return false;
     return m_plugins.value(pluginName)->getAugmentationPreview(std::move(modelName), std::move(inputPath),
                                                                std::move(targetPath), amount);
 }
