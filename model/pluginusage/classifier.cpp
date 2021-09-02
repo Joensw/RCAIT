@@ -1,31 +1,26 @@
 #include "classifier.h"
 
+#include <qfuturewatcher.h>
+
 Classifier::Classifier() = default;
 
 void Classifier::classify(const QString &pluginName, const QString &inputImageDirPath, const QString &trainDatasetPath,
                           const QString &workingDirectory, const QString &modelName) {
 
-    m_classificationWorker = new ClassificationThread(pluginName, inputImageDirPath, trainDatasetPath, workingDirectory,
-                                                      modelName, this);
-    m_classificationWorker->moveToThread(&classifyThread);
-    connect(&classifyThread, &QThread::finished, m_classificationWorker, &QObject::deleteLater);
-    connect(&classifyThread, &QThread::finished, this, &Classifier::slot_handleClassificationResult);
-    connect(this, &Classifier::sig_startClassification, m_classificationWorker,
-            &ClassificationThread::slot_startClassification);
-    connect(this, &Classifier::sig_pluginFinished, this, &Classifier::slot_handleClassificationResult);
+    auto watcher = new QFutureWatcher<ClassificationResult*>;
+    connect(watcher, &QFutureWatcher<ClassificationResult*>::finished, this, &Classifier::slot_handleClassificationResult);
+    mClassificationResult = QtConcurrent::run(&ClassificationPluginManager::classify, &mManager, pluginName, inputImageDirPath, trainDatasetPath, workingDirectory, modelName, this);
+    watcher->setFuture(mClassificationResult);
     emit sig_progress(0);
-    classifyThread.start();
 
 }
 
+
+
 void Classifier::slot_handleClassificationResult() {
-    //ClassificationResult *classificationResult = m_classificationWorker->getResult();
-    m_classificationResults = m_classificationWorker->getResult();
     emit sig_progress(100);
-    classifyThread.quit();
-    classifyThread.wait();
-    if (m_classificationResults->isValid()) {
-        emit sig_classificationResultUpdated(m_classificationResults);
+    if (mClassificationResult.result()->isValid()) {
+        emit sig_classificationResultUpdated(mClassificationResult.result());
     } else {
         qWarning() << "Invalid Classification Result returned";
     }
@@ -33,10 +28,6 @@ void Classifier::slot_handleClassificationResult() {
 }
 
 void Classifier::slot_makeProgress(int progress) {
-    //TODO Fill
+    emit sig_progress(progress);
 }
 
-bool Classifier::getAugmentationPreview(const QString &pluginName, const QString &inputPath) {
-    //TODO Fill
-    return false;
-}

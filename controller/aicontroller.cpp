@@ -26,12 +26,12 @@ AIController::AIController(DataManager *dataManager, InputImagesWidget *inputIma
     connect(mInputImagesWidget, &InputImagesWidget::sig_startClassify, this, &AIController::slot_startClassify);
     connect(mInputImagesWidget, &InputImagesWidget::sig_abortClassify, this, &AIController::slot_abortClassify);
     connect(mClassifier, &Classifier::sig_classificationResultUpdated, this, &AIController::slot_classificationResultUpdated);
-    connect(mClassifier, &Classifier::sig_progress, mInputImagesWidget, &InputImagesWidget::slot_progress);
 
     //connect training parts
     connect(mAiTrainingWidget, &AITrainingWidget::sig_startTraining, this, &AIController::slot_startTraining);
     connect(mAiTrainingWidget, &AITrainingWidget::sig_abortTraining, this, &AIController::slot_abortTraining);
     connect(mTrainer, &Trainer::sig_trainingResultUpdated, this, &AIController::slot_trainingResultUpdated);
+    connect(mTrainer, &Trainer::sig_augmentationPreviewReady, this, &AIController::slot_augmentationPreviewReady);
 
 
 }
@@ -94,16 +94,21 @@ void AIController::slot_abortClassify()
 
 void AIController::slot_showAugmentationPreview(int amount)
 {
+    if (mPreviewLoading) return;
+    mPreviewLoading = true;
     QString pluginName = mDataManager->getCurrentClassificationPlugin();
     QString modelName = mDataManager->getCurrentModel();
     QString inputPath = mDataManager->getProjectDataSetTrainSubdir();
     QString targetPath = mDataManager->getProjectAugTempDir();
-    //TODO: if no model was chosen it crashs
-    if (!ClassificationPluginManager::getInstance().getAugmentationPreview(pluginName, modelName, inputPath, targetPath, amount)) {
-        qDebug()<<"can not show preview";
-        return;
+    mTrainer->getAugmentationPreview(pluginName, modelName, inputPath, targetPath, amount);
+}
+
+void AIController::slot_augmentationPreviewReady(bool success, QString targetPath)
+{
+    if (success) {
+        mAiTrainingWidget->showImages(targetPath);
     }
-    mAiTrainingWidget->showImages(targetPath);
+    mPreviewLoading = false;
 }
 
 void AIController::slot_modelLoaded()

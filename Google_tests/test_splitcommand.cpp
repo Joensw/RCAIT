@@ -1,11 +1,12 @@
 #include <gtest/gtest.h>
 #include <QDir>
+#include <imageloader.h>
 #include <splitcommand.h>
 
 //check if loading labeled dataset imagefilepaths work
 TEST(SplitCommandTest, testSplit){
     QString path = QDir::current().path();
-    SplitCommand cmd(path + "/temp_dataset", path + "/dataset/Train", path + "/dataset/Validate", 50, new ProgressablePlugin());
+    SplitCommand cmd(path + "/temp_dataset", path + "/dataset/Train", path + "/dataset/Validate", 50, new ImageLoader());
     EXPECT_TRUE(cmd.execute());
 
     //check if image is in each folder

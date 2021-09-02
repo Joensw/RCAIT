@@ -2,6 +2,7 @@
 #include <QDir>
 #include <datamanager.h>
 #include <imageloadcommand.h>
+#include <imageloader.h>
 #include <qapplication.h>
 
 //check if load images command work
@@ -24,7 +25,7 @@ TEST(ImageLoadCommandTest, testImageLoad){
     map.insert("imageFolder", path + "/dataset/Train/Mann");
 
     //construct and execute command
-    ImageLoadCommand cmd(map, mngr->getProjectImageTempDir(), new ProgressablePlugin());
+    ImageLoadCommand cmd(map, mngr->getProjectImageTempDir(), new ImageLoader());
     EXPECT_TRUE(cmd.execute());
 
     //check if image is copied to temp folder
@@ -62,7 +63,7 @@ TEST(ImageLoadCommandTest, testImageLoadFail){
     map.insert("imageFolder", path + "/dataset/Train/Mann");
 
     //construct and execute command
-    ImageLoadCommand cmd(map, mngr->getProjectImageTempDir(), new ProgressablePlugin());
+    ImageLoadCommand cmd(map, mngr->getProjectImageTempDir(), new ImageLoader());
     EXPECT_FALSE(cmd.execute());
 
     //check if temp image dir is empty

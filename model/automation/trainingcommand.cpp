@@ -49,7 +49,7 @@ bool TrainingCommand::execute()
     }
 
     mResult = mPluginManager.train(mAiPluginName, mModelName, mTrainDataSetPath, mValidationDataSetPath, mWorkingDir, mReceiver);
-    if (mResult == nullptr){
+    if (!mResult->isValid()){
         return false;
     }
     emit sig_saveResult(mResult);

@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <QtTest/QSignalSpy>
+#include <qapplication.h>
 #include "../model/automation/task.h"
 
 class MockCommand : public Command {
@@ -24,6 +25,9 @@ private:
 //check if running task and percentage signals work
 TEST(TaskTest, testruncompleted){
     //set up
+    int argc;
+    char *argv[1];
+    QApplication a(argc, argv);
     QVariantMap map = QVariantMap();
     map.insert("taskName", "example");
     QList<Command*> cmdList;
@@ -50,11 +54,17 @@ TEST(TaskTest, testruncompleted){
     EXPECT_EQ(spy.at(151).at(0).toInt(), 50);
     EXPECT_TRUE(task->getName() == "example");
     EXPECT_TRUE(task->getState() == TaskState::COMPLETED);
+
+    //tear down
+    a.exit();
 }
 
 //check if canceling task works
 TEST(TaskTest, testruncanceledreset){
     //set up
+    int argc;
+    char *argv[1];
+    QApplication a(argc, argv);
     QVariantMap map = QVariantMap();
     map.insert("taskName", "example");
     QList<Command*> cmdList;
@@ -89,11 +99,17 @@ TEST(TaskTest, testruncanceledreset){
     EXPECT_EQ(spy.at(1).at(1).toInt(), TaskState::FAILED);
     EXPECT_EQ(spy.at(2).at(1).toInt(), TaskState::PERFORMING);
     EXPECT_EQ(spy.at(3).at(1).toInt(), TaskState::COMPLETED);
+
+    //tear down
+    a.exit();
 }
 
 //check if isValid works
 TEST(TaskTest, testisvalid){
     //set up
+    int argc;
+    char *argv[1];
+    QApplication a(argc, argv);
     QVariantMap map = QVariantMap();
     map.insert("taskName", "example");
     map.insert("projectName", "test");
@@ -121,4 +137,7 @@ TEST(TaskTest, testisvalid){
 
     //remove created folder
     mngr->removeProject("test");
+
+    //tear down
+    a.exit();
 }
