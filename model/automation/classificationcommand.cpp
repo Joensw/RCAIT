@@ -42,7 +42,7 @@ bool ClassificationCommand::execute()
     }
 
     mResult = mPluginManager.classify(mAiPluginName, mImagePath, mTrainDataSetPath, mWorkingDir, mModelName, mReceiver);
-    if (mResult == nullptr){
+    if (!mResult->isValid()){
         return false;
     }
     emit sig_saveResult(mResult);
