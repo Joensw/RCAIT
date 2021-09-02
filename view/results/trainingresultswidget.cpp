@@ -62,12 +62,13 @@ void TrainingResultsWidget::retranslateUi() {
 }
 
 void TrainingResultsWidget::saveResult(GenericGraphicsView *view) {
+    bool success;
     if (view == &*m_topAccuraciesView)
-            emit sig_save_TopAccuracies(&*m_topAccuraciesGraphics);
+            emit sig_save_TopAccuracies(&*m_topAccuraciesGraphics, success);
     else
-            emit sig_save_TrainingResult(m_mapResultsByTab[view]);
+            emit sig_save_TrainingResult(m_mapResultsByTab[view], success);
 
-    //Set result as saved, disables save button
-    view->setSaved(true);
+    //Set result as saved iff successful
+    view->setSaved(success);
 }
 

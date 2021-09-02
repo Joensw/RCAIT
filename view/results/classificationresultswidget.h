@@ -40,7 +40,7 @@ signals:
 
     void sig_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver, ClassificationResult *result);
 
-    void sig_save_ClassificationResult(ClassificationResult *result);
+    void sig_save_ClassificationResult(ClassificationResult *result, bool &success);
 
 };
 

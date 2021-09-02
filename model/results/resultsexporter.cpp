@@ -6,7 +6,7 @@ void ResultsExporter::updateResultFolderPaths() {
     m_classificationResultsDir = pm.getClassificationResultsDir();
 }
 
-void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics) {
+void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics, bool &success) {
     const auto &fileName = graphics->getFullName();
     const auto &baseName = graphics->getBaseName();
     const auto &extension = graphics->getExtension();
@@ -17,11 +17,13 @@ void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics) {
     const auto &oldFilePath = graphics->getFullPath();
     auto newFilePath = QDir(m_trainingResultsDir).absoluteFilePath(targetName);
 
-    //Move graphics to result folder
-    moveFile(oldFilePath, newFilePath);
+    //Move graphics to result folder, set success state accordingly
+    success = saveFile(oldFilePath, newFilePath);
 }
 
-void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
+void ResultsExporter::slot_save_TrainingResult(TrainingResult *result, bool &success) {
+    success = true;
+
     const QString &identifier = result->getSavableIdentifier();
     auto resultFolder = createResultDir(m_trainingResultsDir, identifier);
 
@@ -37,7 +39,7 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
     //Create JSON Objects
     QJsonObject JSON;
     QJsonArray json_accuracy_data;
-    for (const auto &[iteration, pair] : MapAdapt(accuracy_data)) {
+    for (const auto &[iteration, pair]: MapAdapt(accuracy_data)) {
         auto &[train, validation] = pair;
 
         QJsonObject sub;
@@ -52,7 +54,7 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
     JSON["class_labels"] = QJsonArray::fromStringList(class_labels);
 
     QJsonArray json_confusionmatrix;
-    for (const auto &value : confusionmatrix) {
+    for (const auto &value: confusionmatrix) {
         json_confusionmatrix << value;
     }
     JSON["confusionmatrix"] = json_confusionmatrix;
@@ -66,7 +68,7 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
 
     //JSON object is prepared now, so save it
     auto savePath = resultFolder.absoluteFilePath(TRAINING_JSON.arg(identifier));
-    writeJSON(JSON, savePath);
+    success &= writeJSON(JSON, savePath);
 
     //Save images
     //TODO prepare for saving images in temp dir
@@ -76,12 +78,14 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result) {
     auto old_matrixPath = result->getConfusionMatrix()->getFullPath();
 
     //Move to result folder
-    moveFile(old_accCurvePath, resultFolder.absoluteFilePath(accCurveFilename));
-    moveFile(old_matrixPath, resultFolder.absoluteFilePath(matrixFileName));
+    success &= saveFile(old_accCurvePath, resultFolder.absoluteFilePath(accCurveFilename));
+    success &= saveFile(old_matrixPath, resultFolder.absoluteFilePath(matrixFileName));
 
 }
 
-void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *result) {
+void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *result, bool &success) {
+    success = true;
+
     const QString &identifier = result->getSavableIdentifier();
     auto resultFolder = createResultDir(m_classificationResultsDir, identifier);
 
@@ -93,11 +97,11 @@ void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *resul
     //Create JSON Objects
     QJsonObject JSON;
     QJsonArray json_classification_data;
-    for (const auto &[image_path, confidences] : MapAdapt(classification_data)) {
+    for (const auto &[image_path, confidences]: MapAdapt(classification_data)) {
 
         QJsonObject sub;
         QJsonArray confidenceArray;
-        for (const auto &value : confidences) {
+        for (const auto &value: confidences) {
             confidenceArray << value;
         }
 
@@ -114,27 +118,29 @@ void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *resul
 
     //JSON object is prepared now, so save it
     auto savePath = resultFolder.absoluteFilePath(CLASSIFICATION_JSON.arg(identifier));
-    writeJSON(JSON, savePath);
+    success &= writeJSON(JSON, savePath);
 
     //Save images
     auto graphicsFilename = result->getClassificationGraphics()->getFullName();
     auto old_graphicsPath = result->getClassificationGraphics()->getFullPath();
 
     //Move to result folder
-    moveFile(old_graphicsPath, resultFolder.absoluteFilePath(graphicsFilename));
+    success &= saveFile(old_graphicsPath, resultFolder.absoluteFilePath(graphicsFilename));
 }
 
-void ResultsExporter::writeJSON(const QJsonObject &jsonObject, const QString &filepath) {
+bool ResultsExporter::writeJSON(const QJsonObject &jsonObject, const QString &filepath) {
     QJsonDocument json_doc(jsonObject);
     auto rawData = json_doc.toJson();
 
     QFile save_file(filepath);
     if (!save_file.open(QIODevice::WriteOnly)) {
         qWarning() << "Failed to open save file " << filepath;
-        return;
+        return false;
     }
     save_file.write(rawData);
     save_file.close();
+
+    return true;
 }
 
 QDir ResultsExporter::createResultDir(const QString &baseDir, const QString &identifier) {
@@ -148,7 +154,11 @@ QDir ResultsExporter::createResultDir(const QString &baseDir, const QString &ide
     return resultFolder;
 }
 
-void ResultsExporter::moveFile(const QString &oldFilePath, const QString &newFilePath) {
-    if (!QFile::rename(oldFilePath, newFilePath))
-        qWarning() << "Move file " << oldFilePath << " -> " << newFilePath << " failed";
+bool ResultsExporter::saveFile(const QString &oldFilePath, const QString &newFilePath) {
+    QFile::rename(oldFilePath, newFilePath);
+    auto saveWorked = QFile::exists(newFilePath);
+    if (!saveWorked) {
+        qWarning() << "Saving file " << oldFilePath << " -> " << newFilePath << " failed";
+    }
+    return saveWorked;
 }

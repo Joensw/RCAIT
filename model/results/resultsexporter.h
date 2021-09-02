@@ -13,6 +13,8 @@
 #include "topaccuraciesgraphics.h"
 #include "resultsprocessor.h"
 
+static bool SAVED;
+
 class ResultsExporter : public QObject {
 Q_OBJECT
 
@@ -21,11 +23,11 @@ public:
 
 public slots:
 
-    void slot_save_TopAccuracies(TopAccuraciesGraphics *graphics);
+    void slot_save_TopAccuracies(TopAccuraciesGraphics *graphics, bool &success = SAVED);
 
-    void slot_save_TrainingResult(TrainingResult *result);
+    void slot_save_TrainingResult(TrainingResult *result, bool &success = SAVED);
 
-    void slot_save_ClassificationResult(ClassificationResult *result);
+    void slot_save_ClassificationResult(ClassificationResult *result, bool &success = SAVED);
 
 private:
     QString m_trainingResultsDir;
@@ -33,9 +35,9 @@ private:
 
     static QDir createResultDir(const QString &baseDir, const QString &identifier);
 
-    static void writeJSON(const QJsonObject &jsonObject, const QString &filepath);
+    static bool writeJSON(const QJsonObject &jsonObject, const QString &filepath);
 
-    static void moveFile(const QString &oldFilePath, const QString &newFilePath) ;
+    static bool saveFile(const QString &oldFilePath, const QString &newFilePath) ;
 };
 
 #endif // RESULTEXPORTER_H

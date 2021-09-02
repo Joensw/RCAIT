@@ -58,9 +58,9 @@ signals:
 
     void sig_normal_requestTopAccuraciesGraphics(GenericGraphicsView *receiver, TopAccuraciesGraphics *graphics);
 
-    void sig_save_TopAccuracies(TopAccuraciesGraphics *graphics);
+    void sig_save_TopAccuracies(TopAccuraciesGraphics *graphics, bool& success);
 
-    void sig_save_TrainingResult(TrainingResult *result);
+    void sig_save_TrainingResult(TrainingResult *result, bool &success);
 
 private slots:
 
