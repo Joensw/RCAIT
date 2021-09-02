@@ -34,7 +34,8 @@ protected:
     void deleteResultTab(const QString &tabName);
 
     /**
-     * @brief C++ templates have to be defined in the header.
+     * @brief Create a new result tab and add it to the tabWidget
+     * @attention C++ templates have to be defined in the header.
      * There is no other way.
      * Ugly, but that's the recommended way to do it.
      * @tparam T extends GenericGraphicsView, tab type to be created
