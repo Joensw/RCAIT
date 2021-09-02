@@ -1,6 +1,8 @@
 #include "controller.h"
 
-Controller::Controller(QObject *parent) : QObject(parent) {
+Controller::Controller(QObject *parent)
+        : QObject(parent),
+          mDataManager(&DataManager::getInstance()) {
 
     mConfigurationController.reset(new ConfigurationController(this));
 
@@ -14,7 +16,6 @@ void Controller::slot_configurationComplete() {
     mConfigurationController.reset();
 
     mMainWindow.reset(new MainWindow);
-    mDataManager.reset(new DataManager);
 
     mSettingsController.reset(new SettingsController(this, &*mDataManager));
     mProjectController.reset(new ProjectController(this, &*mDataManager, mMainWindow->getStartWidget()));
@@ -23,8 +24,9 @@ void Controller::slot_configurationComplete() {
                                          mMainWindow->getAITrainingWidget()));
     mAutomationController.reset(new AutomationController(&*mDataManager, mMainWindow->getAutomationWidget()));
     mResultsController.reset(new ResultsController(&*mDataManager, mMainWindow->getResultsWidget()));
-    mImageController.reset(new ImageController(mMainWindow->getImageInspectionWidget(), mMainWindow->getImportFilesWidget(),
-                                           &*mDataManager));
+    mImageController.reset(
+            new ImageController(mMainWindow->getImageInspectionWidget(), mMainWindow->getImportFilesWidget(),
+                                &*mDataManager));
     mTabController.reset(new TabController(mMainWindow->getTabWidget()));
 
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_openProject, &*mTabController,
@@ -38,7 +40,8 @@ void Controller::slot_configurationComplete() {
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_normalizeWindow, &*mMainWindow,
             &MainWindow::slot_normalizeWindow);
 
-    connect(&*mImageController, &ImageController::sig_imagesLoaded, &*mTabController, &TabController::slot_imagesLoaded);
+    connect(&*mImageController, &ImageController::sig_imagesLoaded, &*mTabController,
+            &TabController::slot_imagesLoaded);
     connect(&*mModelController, &ModelController::sig_modelLoaded, &*mTabController, &TabController::slot_modelLoaded);
 
     connect(&*mModelController, &ModelController::sig_modelLoaded, &*mAiController, &AIController::slot_modelLoaded);
@@ -51,17 +54,24 @@ void Controller::slot_configurationComplete() {
     connect(&*mProjectController, &ProjectController::sig_projectPathUpdated, &*mModelController,
             &ModelController::slot_projectPathUpdated);
 
-    connect(&*mMainWindow, &MainWindow::sig_openSettings, &*mSettingsController, &SettingsController::slot_openSettings);
+    connect(&*mMainWindow, &MainWindow::sig_openSettings, &*mSettingsController,
+            &SettingsController::slot_openSettings);
     connect(&*mMainWindow, &MainWindow::sig_changedWindowState, mMainWindow->getStartWidget(),
             &StartWidget::slot_changedWindowState);
 
-    connect(&*mImageController, &ImageController::sig_imagesUpdated, mMainWindow->getStartWidget(), &StartWidget::slot_imagesUpdated);
-    connect(&*mImageController, &ImageController::sig_imagesUpdated, mMainWindow->getImageInspectionWidget(), &ImageInspectionWidget::slot_imagesUpdated);
-    connect(&*mImageController, &ImageController::sig_startLoading, mMainWindow->getStartWidget(), &StartWidget::slot_startLoading);
-    connect(&*mImageController, &ImageController::sig_startLoading, mMainWindow->getImageInspectionWidget(), &ImageInspectionWidget::slot_startLoading);
+    connect(&*mImageController, &ImageController::sig_imagesUpdated, mMainWindow->getStartWidget(),
+            &StartWidget::slot_imagesUpdated);
+    connect(&*mImageController, &ImageController::sig_imagesUpdated, mMainWindow->getImageInspectionWidget(),
+            &ImageInspectionWidget::slot_imagesUpdated);
+    connect(&*mImageController, &ImageController::sig_startLoading, mMainWindow->getStartWidget(),
+            &StartWidget::slot_startLoading);
+    connect(&*mImageController, &ImageController::sig_startLoading, mMainWindow->getImageInspectionWidget(),
+            &ImageInspectionWidget::slot_startLoading);
 
-    connect(&*mAiController, &AIController::sig_trainingResultUpdated, &*mResultsController, &ResultsController::slot_addTrainingResult);
-    connect(&*mAiController, &AIController::sig_classificationResultUpdated, &*mResultsController, &ResultsController::slot_addClassificationResult);
+    connect(&*mAiController, &AIController::sig_trainingResultUpdated, &*mResultsController,
+            &ResultsController::slot_addTrainingResult);
+    connect(&*mAiController, &AIController::sig_classificationResultUpdated, &*mResultsController,
+            &ResultsController::slot_addClassificationResult);
 
     mMainWindow->show();
 }

@@ -15,7 +15,20 @@
 class ModelManager
 {
 public:
-    ModelManager(); // might become a singleton TODO?
+
+    ModelManager(const ModelManager &) = delete;
+
+    ModelManager &operator=(const ModelManager &) = delete;
+
+    /**
+     * @brief getInstance returns the only instance of the ModelManager class
+     * @return instance
+     */
+    static ModelManager &getInstance() {
+        static ModelManager instance; // Guaranteed to be destroyed.
+        // Instantiated on first use.
+        return instance;
+    }
 
     /**
      * @brief createNewModel created a new model with the specified parameters
@@ -105,6 +118,7 @@ private:
 
     QSettings m_userModelNamesPerProject = {"UserModelNamesPerProject", QSettings::IniFormat};
 
+    ModelManager();
 };
 
 #endif // MODELMANAGER_H

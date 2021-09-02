@@ -16,22 +16,22 @@ extern const QString imageLoaderPluginDirectoryIdentifier;
  * The SettingsManager contains logic for global settings of the application as well as plugin specific settings
  * @brief The SettingsManager class contains the logic for for the settings UI
  */
-class SettingsManager{
+class SettingsManager {
 public:
 
-    SettingsManager(const SettingsManager&) = delete;
+    SettingsManager(const SettingsManager &) = delete;
 
-    SettingsManager& operator=(const SettingsManager&) = delete;
-
-    /**
-     * @brief SettingsManager create a new SettingsManager
-     */
-    SettingsManager(); //might also become a singleton? TODO
+    SettingsManager &operator=(const SettingsManager &) = delete;
 
     /**
-     * @brief SettingsManager creates a new minimal settingsManagers
+     * @brief getInstance returns the only instance of the SettingsManager class
+     * @return instance
      */
-    SettingsManager(bool verifying);
+    static SettingsManager &getInstance() {
+        static SettingsManager instance; // Guaranteed to be destroyed.
+        // Instantiated on first use.
+        return instance;
+    }
 
     /**
      * @return a list of the names of all the plugins that were loaded
@@ -41,7 +41,7 @@ public:
     /**
      * @return the input UI's of all the plugins
      */
-    QList<QWidget*> getPluginSettings();
+    QList<QWidget *> getPluginSettings();
 
     /**
      * @brief savePluginSettings saves the settings of the plugin specified in the UI at the current index
@@ -92,7 +92,7 @@ public:
      * @return true if the new paths could be applied, false otherwise
      */
     bool applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
-                             QString * error = nullptr, int * pathsChanged = nullptr);
+                             QString *error = nullptr, int *pathsChanged = nullptr);
 
     /**
      * @return the names of all loaded image loader plugins
@@ -144,16 +144,17 @@ public:
      * @param classificationPluginDirectory absolute path the the classification plugin directory
      * @param imageLoaderDirectory absolute path to the image loader plugin directory
      */
-    void configureSettingsFile(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory);
+    void configureSettingsFile(QString projectsDirectory, QString classificationPluginDirectory,
+                               QString imageLoaderDirectory);
 
 private:
-    ClassificationPluginManager * mClassificationPluginManager;
-    ImageLoaderPluginManager * mImageLoaderPluginManager;
+    ClassificationPluginManager *mClassificationPluginManager;
+    ImageLoaderPluginManager *mImageLoaderPluginManager;
 
 
-    QSettings * mGlobalSettings;
+    QSettings *mGlobalSettings;
 
-
+    SettingsManager();
 
 };
 

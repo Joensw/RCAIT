@@ -48,7 +48,7 @@ public:
 
     /**
      * @brief getInstance returns the only instance of the ProjectManager class
-     * @return
+     * @return instance
      */
     static ProjectManager &getInstance() {
         static ProjectManager instance; // Guaranteed to be destroyed.

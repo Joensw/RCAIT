@@ -17,10 +17,15 @@ public:
     DataManager& operator=(const DataManager&) = delete;
 
     /**
-     * @brief DataManager create a new DataManager
+     * @brief getInstance returns the only instance of the DataManager class
+     * @return instance
      */
-    DataManager();
-
+    static DataManager &getInstance() {
+        static DataManager instance; // Guaranteed to be destroyed.
+        // Instantiated on first use.
+        return instance;
+    }
+    
     /**
      * @return list of all directories in the projects directory
      */
@@ -281,11 +286,13 @@ public:
      * @return the input UI of the current classification plugins data augmentation settings that are to be shown
      */
     QWidget * getDataAugmentationInputWidget();
+    
 private:
-    //TODO: Singleton adaption
     ProjectManager* mProjectManager;
     ModelManager* mModelManager;
     SettingsManager* mSettingsManager;
+
+    DataManager();
 };
 
 

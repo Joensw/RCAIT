@@ -35,6 +35,8 @@ public slots:
     void slot_configurationComplete();
 
 private:
+    DataManager *mDataManager;
+
     QScopedPointer<MainWindow> mMainWindow;
 
     QScopedPointer<ConfigurationController> mConfigurationController;
@@ -54,9 +56,6 @@ private:
     QScopedPointer<ImageController> mImageController;
 
     QScopedPointer<TabController> mTabController;
-
-    QScopedPointer<DataManager> mDataManager;
-
 
 };
 
