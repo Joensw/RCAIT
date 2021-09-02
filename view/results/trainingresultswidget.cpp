@@ -15,7 +15,7 @@ void TrainingResultsWidget::configure_topAccuraciesTab() {
     //Old pointer will go out of scope after leaving this method and gets auto-deleted
     m_topAccuraciesView.reset(new TopAccuraciesView(this));
 
-    m_tabWidget->insertTab(0, &*m_topAccuraciesView, icon, QString());
+    getTabWidget()->insertTab(0, &*m_topAccuraciesView, icon, QString());
     //Top Accuracies Tab cannot be saved in initial (= empty) state
     m_topAccuraciesView->setSaved(true);
 }
@@ -55,8 +55,8 @@ void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(GenericGrap
 }
 
 void TrainingResultsWidget::retranslateUi() {
-    int index = m_tabWidget->indexOf(&*m_topAccuraciesView);
-    m_tabWidget->setTabText(index, tr("Top Accuracies"));
+    int index = getTabWidget()->indexOf(&*m_topAccuraciesView);
+    getTabWidget()->setTabText(index, tr("Top Accuracies"));
 
     GenericComparisonWidget::retranslateUi();
 }

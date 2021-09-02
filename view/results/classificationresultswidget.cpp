@@ -1,5 +1,4 @@
 #include <projectmanager.h>
-#include <QProxyStyle>
 #include "classificationresultswidget.h"
 
 ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
@@ -12,8 +11,8 @@ ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
 void ClassificationResultsWidget::configure_placeholderTab() {
     const auto icon = QIcon(":/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
     auto placeholder = new GenericGraphicsView(this);
-    m_tabWidget->insertTab(0, placeholder, icon, QString());
-    m_tabWidget->setTabEnabled(0, false);
+    getTabWidget()->insertTab(0, placeholder, icon, QString());
+    getTabWidget()->setTabEnabled(0, false);
     //Placeholder cannot be saved
     placeholder->setSaved(true);
 }

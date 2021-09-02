@@ -11,6 +11,9 @@ GenericComparisonWidget::GenericComparisonWidget(QWidget *parent)
     //Setup variables
     m_tabWidget = ui->tabWidget_compareResults;
     m_pushButton_saveCurrentTab = ui->pushButton_saveCurrentTab;
+    m_pushButton_addComparison = new QPushButton(this);
+    m_menu_addComparison = new PopupMenu(m_pushButton_addComparison);
+
 
     //Connect internal signals and slots
     connect(m_menu_addComparison, &QMenu::triggered, this,
@@ -128,4 +131,12 @@ void GenericComparisonWidget::changeEvent(QEvent *event) {
  */
 void GenericComparisonWidget::retranslateUi() {
     m_pushButton_addComparison->setText(tr("Compare ..."));
+}
+
+QTabWidget *GenericComparisonWidget::getTabWidget() const {
+    return m_tabWidget;
+}
+
+const QMap<QString, QWidget *> &GenericComparisonWidget::getMapTabsByName() const {
+    return m_mapTabsByName;
 }

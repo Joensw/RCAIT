@@ -25,9 +25,6 @@ class GenericComparisonWidget : public SavableResultsWidget {
 Q_OBJECT
 
 protected:
-    QTabWidget *m_tabWidget;
-    QMap<QString, QWidget *> m_mapTabsByName;
-
     // this event is called, when a new translator is loaded or the system language is changed
     void changeEvent(QEvent *) override;
 
@@ -51,8 +48,11 @@ protected:
         return tab;
     }
 
-
     virtual void retranslateUi();
+
+    [[nodiscard]] QTabWidget *getTabWidget() const;
+
+    [[nodiscard]] const QMap<QString, QWidget *> &getMapTabsByName() const;
 
 public:
     explicit GenericComparisonWidget(QWidget *parent = nullptr);
@@ -65,9 +65,11 @@ public:
 
 private:
     Ui::GenericComparisonWidget *ui;
-    QPushButton *m_pushButton_addComparison = new QPushButton(this);
+    QTabWidget *m_tabWidget;
+    QMap<QString, QWidget *> m_mapTabsByName;
+    QPushButton *m_pushButton_addComparison;
     QPushButton *m_pushButton_saveCurrentTab;
-    QMenu *m_menu_addComparison = new PopupMenu(m_pushButton_addComparison);
+    QMenu *m_menu_addComparison;
 
     void configure_comparisonButton();
 
