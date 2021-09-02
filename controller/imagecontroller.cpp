@@ -1,23 +1,24 @@
-//
-// TODO: Replace this dummy with code
-//
-
 #include "imagecontroller.h"
 
+#include <utility>
+
 ImageController::ImageController(ImageInspectionWidget *imageInspectionWidget, ImportFilesWidget *importFilesWidget,
-                                 DataManager *dataManager) {
+                                 DataManager *dataManager)
+        : m_imageLoader(new ImageLoader()),
+          m_split(40) {
 
-m_dataManager = dataManager;
-m_imageinspectionwidget = imageInspectionWidget;
-m_importFilesWidget = importFilesWidget;
+    m_dataManager = dataManager;
+    m_imageinspectionwidget = imageInspectionWidget;
+    m_importFilesWidget = importFilesWidget;
 
-importFilesWidget->setAvailablePlugins(dataManager->getImageLoaderPluginNames());
-m_importFilesWidget = importFilesWidget;
+    importFilesWidget->setAvailablePlugins(dataManager->getImageLoaderPluginNames());
+    m_importFilesWidget = importFilesWidget;
 
-connect(m_importFilesWidget, &ImportFilesWidget::sig_loadInputImages, this, &ImageController::slot_loadInputImages);
-connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_mergeDatasets, this, &ImageController::slot_mergeDatasets);
-connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_removeImages, this, &ImageController::slot_remove);
-connect(m_importFilesWidget, &ImportFilesWidget::sig_abortLoading, this, &ImageController::slot_abortLoading);
+    connect(m_importFilesWidget, &ImportFilesWidget::sig_loadInputImages, this, &ImageController::slot_loadInputImages);
+    connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_mergeDatasets, this,
+            &ImageController::slot_mergeDatasets);
+    connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_removeImages, this, &ImageController::slot_remove);
+    connect(m_importFilesWidget, &ImportFilesWidget::sig_abortLoading, this, &ImageController::slot_abortLoading);
 
 }
 
@@ -28,19 +29,17 @@ void ImageController::slot_loadInputImages(QString pluginName, int count, QStrin
     m_split = split;
 
     QString tempDir = m_dataManager->getProjectImageTempDir();
-    m_imageLoader = new ImageLoader();
     connect(m_imageLoader, &ImageLoader::sig_progress, this, &ImageController::slot_handelImageLoadProgress);
     connect(m_imageLoader, &ImageLoader::sig_imagesReady, this, &ImageController::slot_imagesReady);
     connect(m_imageLoader, &ImageLoader::sig_statusUpdate, this, &ImageController::slot_updateImageLoadStatusText);
-    m_imageLoader->loadInputImages(count,labels,pluginName,tempDir);
+    m_imageLoader->loadInputImages(count, std::move(labels), std::move(pluginName), tempDir);
 }
 
 void ImageController::slot_abortLoading() {
     emit m_imageLoader->sig_pluginAborted();
 }
 
-void ImageController::slot_imagesReady()
-{
+void ImageController::slot_imagesReady() {
     emit sig_startLoading();
     updateNewDatasetDisplay();
     updateDatasetDisplay();
@@ -48,35 +47,34 @@ void ImageController::slot_imagesReady()
 }
 
 
-void ImageController::slot_handelImageLoadProgress(int progress)
-{
+void ImageController::slot_handelImageLoadProgress(int progress) {
     m_importFilesWidget->updateProgressBar(progress);
     emit sig_imagesLoaded(); //testing purposes for tabController
 }
 
-void ImageController::slot_openProject()
-{
-   slot_imagesReady();
+void ImageController::slot_openProject() {
+    slot_imagesReady();
 }
 
 void ImageController::slot_mergeDatasets() {
-    m_imageInspectionModel.mergeDataSets(m_dataManager->getProjectDataSetTrainSubdir(), m_dataManager->getProjectDataSetValSubdir());
+    m_imageInspectionModel.mergeDataSets(m_dataManager->getProjectDataSetTrainSubdir(),
+                                         m_dataManager->getProjectDataSetValSubdir());
     slot_imagesReady();
 }
 
 
-void ImageController::slot_updateImageLoadStatusText(QString status)
-{
-    m_importFilesWidget->updateStatusText(status);
+void ImageController::slot_updateImageLoadStatusText(QString status) {
+    m_importFilesWidget->updateStatusText(std::move(status));
 }
-void ImageController::slot_imagePluginDirectoryChanged(const QString& newDirectory)
-{
+
+void ImageController::slot_imagePluginDirectoryChanged(const QString &newDirectory) {
     m_importFilesWidget->setAvailablePlugins(m_dataManager->getImageLoaderPluginNames());
 
 }
 
 void ImageController::updateDatasetDisplay() {
-    m_imageInspectionModel.loadDataSet(m_dataManager->getProjectDataSetTrainSubdir(), m_dataManager->getProjectDataSetValSubdir());
+    m_imageInspectionModel.loadDataSet(m_dataManager->getProjectDataSetTrainSubdir(),
+                                       m_dataManager->getProjectDataSetValSubdir());
     m_imageinspectionwidget->setCurrentDataSetTrainImages(m_imageInspectionModel.getTrainDataset());
     m_imageinspectionwidget->setCurrentDataSetValidationImages(m_imageInspectionModel.getValidationDataset());
 }
@@ -87,6 +85,6 @@ void ImageController::updateNewDatasetDisplay() {
     m_imageinspectionwidget->setNewValidationImages(m_imageInspectionModel.getValidationNewData());
 }
 
-void ImageController::slot_remove(int treeWidgetIndex, QMap<QString, QList<int>> removedImages) {
-    m_imageInspectionModel.removeImage(treeWidgetIndex,removedImages);
+void ImageController::slot_remove(int treeWidgetIndex, const QMap<QString, QList<int>> &removedImages) {
+    m_imageInspectionModel.removeImage(treeWidgetIndex, removedImages);
 }

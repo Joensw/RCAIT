@@ -34,7 +34,7 @@ public slots:
      * @param treeWidgetIndex
      * @param removedImages
      */
-    void slot_remove(int treeWidgetIndex, QMap<QString, QList<int>> removedImages);
+    void slot_remove(int treeWidgetIndex, const QMap<QString, QList<int>>& removedImages);
 
     /**
      * @brief slot_loadInputImages starts image loading.
@@ -118,7 +118,7 @@ private:
     ImportFilesWidget* m_importFilesWidget;
     DataManager* m_dataManager;
     ImageInspectionModel m_imageInspectionModel;
-    int m_split = 40;
+    int m_split;
     void updateDatasetDisplay();
     void updateNewDatasetDisplay();
 };
