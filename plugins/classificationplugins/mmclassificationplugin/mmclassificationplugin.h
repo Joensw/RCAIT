@@ -61,7 +61,7 @@ private:
     QWidget *dataAugmentationInput;
     QWidget *inputOptions;
 
-    QProcess* m_process;
+    QScopedPointer<QProcess> m_process;
     ProgressablePlugin* m_receiver;
 
     void initBaseModels();
