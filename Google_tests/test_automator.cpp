@@ -9,7 +9,7 @@ TEST(AutomatorTest, testAddTask){
     int argc;
     char *argv[1];
     QApplication a(argc, argv);
-    DataManager* manager = new DataManager;
+    DataManager* manager = &DataManager::getInstance();
     manager->saveProjectsDir(QDir::current().path());
     Automator* automator = new Automator(manager);
     QDir dir(QDir::current().path());
@@ -44,7 +44,7 @@ TEST(AutomatorTest, testUnQueueTask){
     int argc;
     char *argv[1];
     QApplication a(argc, argv);
-    DataManager* manager = new DataManager;
+    DataManager* manager = &DataManager::getInstance();
     manager->saveProjectsDir(QDir::current().path());
     Automator* automator = new Automator(manager);
     QSignalSpy spy(automator, &Automator::sig_taskUpdate);
@@ -94,7 +94,7 @@ TEST(AutomatorTest, testRemove){
     int argc;
     char *argv[1];
     QApplication a(argc, argv);
-    DataManager* manager = new DataManager;
+    DataManager* manager = &DataManager::getInstance();
     manager->saveProjectsDir(QDir::current().path());
     Automator* automator = new Automator(manager);
     QDir dir(QDir::current().path());
@@ -129,7 +129,7 @@ TEST(AutomatorTest, testPerformTasks){
     int argc;
     char *argv[1];
     QApplication a(argc, argv);
-    DataManager* manager = new DataManager;
+    DataManager* manager = &DataManager::getInstance();
     manager->saveProjectsDir(QDir::current().path());
     Automator* automator = new Automator(manager);
     QSignalSpy spy(automator, &Automator::sig_progress);

@@ -34,7 +34,7 @@ TEST(TaskTest, testruncompleted){
     for (int i = 0; i < 3; i++){
         cmdList.append(new MockCommand());
     }
-    DataManager* mngr = new DataManager();
+    DataManager* mngr = &DataManager::getInstance();
 
     //init task
     Task* task = new Task(map, mngr, cmdList);
@@ -71,7 +71,7 @@ TEST(TaskTest, testruncanceledreset){
     for (int i = 0; i < 3; i++){
         cmdList.append(new MockCommand());
     }
-    DataManager* mngr = new DataManager();
+    DataManager* mngr = &DataManager::getInstance();
 
     //init task
     Task* task = new Task(map, mngr, cmdList);
@@ -113,7 +113,7 @@ TEST(TaskTest, testisvalid){
     QVariantMap map = QVariantMap();
     map.insert("taskName", "example");
     map.insert("projectName", "test");
-    DataManager* mngr = new DataManager();
+    DataManager* mngr = &DataManager::getInstance();
     mngr->saveProjectsDir(QDir::current().path());
 
     //init invalid task

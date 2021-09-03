@@ -12,7 +12,7 @@ TEST(ImageLoadCommandTest, testImageLoad){
     char *argv[1];
     QApplication a(argc, argv);
     QString path = QDir::current().path();
-    DataManager* mngr = new DataManager();
+    auto* mngr = &DataManager::getInstance();
     mngr->saveImageLoaderPluginDir(path + "/../plugins/imageplugins/plugins");
     mngr->saveProjectsDir(QDir::current().path());
     mngr->createNewProject("imageload_test");
@@ -39,7 +39,7 @@ TEST(ImageLoadCommandTest, testImageLoad){
 
     //remove project dir
     mngr->removeProject("imageload_test");
-    a.exit();
+    QApplication::exit();
 }
 
 //check if invalid commands are handled properly
@@ -49,7 +49,7 @@ TEST(ImageLoadCommandTest, testImageLoadFail){
     char *argv[1];
     QApplication a(argc, argv);
     QString path = QDir::current().path();
-    DataManager* mngr = new DataManager();
+    DataManager* mngr = &DataManager::getInstance();
     mngr->saveImageLoaderPluginDir(path + "/../plugins/imageplugins/plugins");
     mngr->saveProjectsDir(QDir::current().path());
     mngr->createNewProject("imageload_test");
@@ -72,5 +72,5 @@ TEST(ImageLoadCommandTest, testImageLoadFail){
 
     //remove project dir
     mngr->removeProject("imageload_test");
-    a.exit();
+    QApplication::exit();
 }
