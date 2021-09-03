@@ -19,6 +19,8 @@ class ResultsExporter : public QObject {
 Q_OBJECT
 
 public:
+    ResultsExporter();
+
     void updateResultFolderPaths();
 
 public slots:
@@ -30,6 +32,7 @@ public slots:
     void slot_save_ClassificationResult(ClassificationResult *result, bool &success = SAVED);
 
 private:
+    ProjectManager *m_projectManager;
     QString m_trainingResultsDir;
     QString m_classificationResultsDir;
 
@@ -38,6 +41,12 @@ private:
     static bool writeJSON(const QJsonObject &jsonObject, const QString &filepath);
 
     static bool saveFile(const QString &oldFilePath, const QString &newFilePath) ;
+
+    static QJsonObject
+    trainingResult2JSON(const TrainingResult *result);
+
+    static QJsonObject
+    classificationResult2JSON(const ClassificationResult *result);
 };
 
 #endif // RESULTEXPORTER_H

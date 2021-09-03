@@ -1,7 +1,7 @@
 #include "tabcontroller.h"
 
 enum tabs {
-    _BEGIN = -1,
+    $BEGIN = -1,
     START,
     IMPORT_FILES,
     IMAGE_INSPECTION,
@@ -9,13 +9,14 @@ enum tabs {
     INPUT_IMAGES,
     RESULTS,
     AUTOMATION,
-    _END
+    $END
 };
 
-TabController::TabController(CustomTabWidget *tWidget) {
-    m_tabWidget = tWidget;
+TabController::TabController(CustomTabWidget *tWidget)
+        : m_tabWidget(tWidget) {
+
     //disable all tabs, except start and automation
-    for (int i = _BEGIN + 1; i < _END; i++) {
+    for (int i = $BEGIN + 1; i < $END; i++) {
         //#################
         //uncomment to enable:
 
@@ -43,7 +44,7 @@ void TabController::slot_modelLoaded() {
 }
 
 void TabController::disableTemporaryTabs() {
-    for (int i = _BEGIN + 1; i < _END; i++) {
+    for (int i = $BEGIN + 1; i < $END; i++) {
         m_tabWidget->setTabEnabled(i, false);
     }
 }

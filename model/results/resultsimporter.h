@@ -15,6 +15,8 @@ class ResultsImporter : public QObject {
 Q_OBJECT
 
 public:
+    ResultsImporter();
+
     void updateResultFolderPaths();
 
 public slots:
@@ -23,7 +25,7 @@ public slots:
     void slot_comparison_loadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
                                           const QString &runNameToCompare);
 
-    void slot_comparison_unloadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+    static void slot_comparison_unloadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
                                             const QString &runNameToCompare);
 
     //Classification result slots
@@ -39,6 +41,7 @@ public slots:
     void slot_comparison_loadTrainingResultGraphics(GenericGraphicsView *receiver, const QString &runNameToCompare);
 
 private:
+    ProjectManager *m_projectManager;
     QString m_trainingResultsDir;
     QString m_classificationResultsDir;
 
@@ -50,12 +53,13 @@ private:
 
     [[nodiscard]] static QJsonObject readJSON(const QString &filepath);
 
+    static void passResultGraphics(GenericGraphicsView *receiver, const QFileInfo &file, int type);
+
 signals:
 
     void sig_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result);
 
     void sig_normal_loadClassificationResultData(ClassificationResultView *view, ClassificationResult *result);
-
 };
 
 #endif // RESULTIMPORTER_H
