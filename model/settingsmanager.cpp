@@ -7,9 +7,9 @@ const QString imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
 
 SettingsManager::SettingsManager()
         : mClassificationPluginManager(&ClassificationPluginManager::getInstance()),
-          mImageLoaderPluginManager(&ImageLoaderPluginManager::getInstance()),
-          mGlobalSettings(new QSettings()) {
+          mImageLoaderPluginManager(&ImageLoaderPluginManager::getInstance()) {
 
+    mGlobalSettings.reset(new QSettings);
     mClassificationPluginManager->loadPlugins(getClassificationPluginDir());
     mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 }

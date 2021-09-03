@@ -152,7 +152,7 @@ private:
     ImageLoaderPluginManager *mImageLoaderPluginManager;
 
 
-    QSettings *mGlobalSettings;
+    QScopedPointer<QSettings> mGlobalSettings;
 
     SettingsManager();
 
