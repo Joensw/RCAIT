@@ -2,10 +2,12 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent), ui(new Ui::MainWindow) {
+        : QMainWindow(parent),
+          ui(new Ui::MainWindow),
+          m_pushButton_settings(new QPushButton(this)) {
     ui->setupUi(this);
 
-    centralWidget()->layout()->setContentsMargins(2, 2, 2, 2);
+    centralWidget()->layout()->setContentsMargins(EDGE,EDGE,EDGE,EDGE);
     statusBar()->hide();
 
     //Spawn in screen center
@@ -18,11 +20,12 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::placeSettingsButton() {
-    pushButton_settings->setFlat(true);
-    pushButton_settings->setIcon(QIcon(":/Resources/TabIcons/Filled/Tab_Settings_Icon.svg"));
-    pushButton_settings->setIconSize(QSize(32, 57));
-    connect(pushButton_settings, &QPushButton::clicked, this, &MainWindow::slot_settingsButton_clicked);
-    ui->tabWidget->setCornerWidget(pushButton_settings, Qt::TopRightCorner);
+    connect(m_pushButton_settings, &QPushButton::clicked, this, &MainWindow::slot_settingsButton_clicked);
+
+    m_pushButton_settings->setFlat(true);
+    m_pushButton_settings->setIcon(QIcon(SETTINGSBUTTON_ICON));
+    m_pushButton_settings->setIconSize(QSize(SETTINGSBUTTON_WIDTH, SETTINGSBUTTON_HEIGHT));
+    ui->tabWidget->setCornerWidget(m_pushButton_settings, Qt::TopRightCorner);
 }
 
 MainWindow::~MainWindow() {
@@ -45,7 +48,7 @@ ImportFilesWidget *MainWindow::getImportFilesWidget() {
     return ui->tab_import;
 }
 
-ResultsWidget *MainWindow::getResultsWidget(){
+ResultsWidget *MainWindow::getResultsWidget() {
     return ui->tab_results;
 }
 
@@ -53,13 +56,11 @@ AutomationWidget *MainWindow::getAutomationWidget() {
     return ui->tab_automation;
 }
 
-ImageInspectionWidget *MainWindow::getImageInspectionWidget()
-{
+ImageInspectionWidget *MainWindow::getImageInspectionWidget() {
     return ui->tab_image_inspection;
 }
 
-CustomTabWidget *MainWindow::getTabWidget()
-{
+CustomTabWidget *MainWindow::getTabWidget() {
     return ui->tabWidget;
 }
 
@@ -71,18 +72,22 @@ void MainWindow::slot_maximizeWindow() {
     this->setWindowState(Qt::WindowMaximized);
 }
 
-void MainWindow::slot_normalizeWindow(){
+void MainWindow::slot_normalizeWindow() {
     this->setWindowState(Qt::WindowNoState);
 }
 
 
 void MainWindow::changeEvent(QEvent *event) {
-    if (event->type() == QEvent::LanguageChange) {
-        // this event is sent if a translator is loaded
-        ui->retranslateUi(this);
+    switch(event->type()) {
+        case QEvent::LanguageChange:
+            // this event is sent if a translator is loaded
+            ui->retranslateUi(this);
+            break;
+        case QEvent::WindowStateChange:
+            emit sig_changedWindowState(windowState());
+            break;
+        default:
+            QMainWindow::changeEvent(event);
+            break;
     }
-    if (event->type() == QEvent::WindowStateChange) {
-        emit sig_changedWindowState(windowState());
-    }
-    QMainWindow::changeEvent(event);
 }
