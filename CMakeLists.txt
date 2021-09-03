@@ -73,11 +73,13 @@ file(GLOB TS_FILES
 #qt_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${TS_FILES})
 qt_add_translation(QM_FILES ${TS_FILES})
 
+set(SRCS "${CMAKE_CURRENT_SOURCE_DIR}/RCAIT.rc")
+
 add_executable(${PROJECT_NAME}
         ${SOURCE_FILES}
         ${TS_FILES}
         ${QM_FILES}
-       # ${SRCS} RCAIT.rc
+        ${SRCS}
         )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${REQUIRED_LIBS_QUALIFIED})
