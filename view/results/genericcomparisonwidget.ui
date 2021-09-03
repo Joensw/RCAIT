@@ -76,7 +76,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../UI_Icons.qrc">
-         <normaloff>:/Resources/UISymbols/UI_Save_Icon.svg</normaloff>:/Resources/UISymbols/UI_Save_Icon.svg</iconset>
+         <normaloff>:UISymbols/UI_Save_Icon.svg</normaloff>:UISymbols/UI_Save_Icon.svg</iconset>
        </property>
        <property name="iconSize">
         <size>

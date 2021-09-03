@@ -9,7 +9,7 @@ ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
 }
 
 void ClassificationResultsWidget::configure_placeholderTab() {
-    const auto icon = QIcon(":/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
+    const auto icon = QIcon(":/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
     auto placeholder = new GenericGraphicsView(this);
     getTabWidget()->insertTab(0, placeholder, icon, QString());
     getTabWidget()->setTabEnabled(0, false);

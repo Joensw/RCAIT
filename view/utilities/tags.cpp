@@ -180,7 +180,7 @@ struct Tags::Impl {
             auto const i_cross_r = crossRect(i_r);
 
             //Paint icon
-            QIcon remove_icon = QIcon(":/Resources/UISymbols/UI_Delete_Item.svg");
+            QIcon remove_icon = QIcon(":/UISymbols/UI_Delete_Item.svg");
             remove_icon.paint(&p,i_cross_r.toRect(),Qt::AlignVertical_Mask|Qt::AlignHCenter);
         }
     }

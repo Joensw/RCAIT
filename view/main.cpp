@@ -7,8 +7,8 @@ int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
     //Load fonts
-    QFontDatabase::addApplicationFont(":/Resources/Fonts/Inter-Regular.otf");
-    QFontDatabase::addApplicationFont(":/Resources/Fonts/InterMonospace-Medium.otf");
+    QFontDatabase::addApplicationFont(":/Fonts/Inter-Regular.otf");
+    QFontDatabase::addApplicationFont(":/Fonts/InterMonospace-Medium.otf");
 
     //Set UI style and font
     QApplication::setStyle(QStyleFactory::create("fusion"));

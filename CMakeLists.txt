@@ -29,7 +29,7 @@ set(ALL_PROJECT_DIRS
 set(CMAKE_AUTOUIC_SEARCH_PATHS  ${ALL_PROJECT_DIRS})
 include_directories(${ALL_PROJECT_DIRS})
 
-file(GLOB_RECURSE SOURCE_FILES_A
+file(GLOB_RECURSE SOURCE_FILES
         "model/*"
         "view/*"
         "controller/*"
@@ -37,18 +37,11 @@ file(GLOB_RECURSE SOURCE_FILES_A
         "Resources/*"
         )
 
-list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/test/.*" )
-list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/flickrplugin/.*" )
-list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/folderplugin/.*" )
-list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/bingplugin/.*" )
-list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/mmclassificationplugin/.*")
-
-
-file(GLOB SOURCE_FILES_B
-        "*.qrc"
-        "*.ui"
-        "*.py"
-        )
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/test/.*" )
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/flickrplugin/.*" )
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/folderplugin/.*" )
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/bingplugin/.*" )
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/mmclassificationplugin/.*")
 
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/Resources/Fonts/Inter-Regular.otf ${CMAKE_CURRENT_BINARY_DIR}/Inter-Regular.otf COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/confusionmatrix.py ${CMAKE_CURRENT_BINARY_DIR}/confusionmatrix.py COPYONLY)
@@ -61,8 +54,6 @@ CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/flickrplugin/tes
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/classificationplugins/mmclassificationplugin/mmclassification_preview_pipeline.py ${CMAKE_CURRENT_BINARY_DIR}/mmclassification_preview_pipeline.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/classificationplugins/mmclassificationplugin/mmclassification_test.py ${CMAKE_CURRENT_BINARY_DIR}/mmclassification_test.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/classificationplugins/mmclassificationplugin/mmclassification_train.py ${CMAKE_CURRENT_BINARY_DIR}/mmclassification_train.py COPYONLY)
-
-set(SOURCE_FILES ${SOURCE_FILES_A} ${SOURCE_FILES_B})
 
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 

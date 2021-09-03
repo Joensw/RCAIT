@@ -10,7 +10,7 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
 }
 
 void TrainingResultsWidget::configure_topAccuraciesTab() {
-    const auto icon = QIcon(":/Resources/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
+    const auto icon = QIcon(":/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
 
     //Old pointer will go out of scope after leaving this method and gets auto-deleted
     m_topAccuraciesView.reset(new TopAccuraciesView(this));

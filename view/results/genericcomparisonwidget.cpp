@@ -30,7 +30,7 @@ GenericComparisonWidget::~GenericComparisonWidget() {
 
 void GenericComparisonWidget::configure_comparisonButton() {
     //Configure add run compare button
-    const auto icon = QIcon(":/Resources/UISymbols/UI_Add_Result_Comparison_Icon.svg");
+    const auto icon = QIcon(":/UISymbols/UI_Add_Result_Comparison_Icon.svg");
     m_pushButton_addComparison->setIcon(icon);
     m_pushButton_addComparison->setFlat(true);
     m_pushButton_addComparison->setMenu(m_menu_addComparison);

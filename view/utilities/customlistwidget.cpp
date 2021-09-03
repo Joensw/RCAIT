@@ -1,8 +1,8 @@
 #include "customlistwidget.h"
 
 //Definitions
-const QString selectedIconPath = ":/Resources/UISymbols/ListItem_Selected.svg";
-const QString unselectedIconPath = ":/Resources/UISymbols/ListItem_Unselected.svg";
+const QString selectedIconPath = ":/UISymbols/ListItem_Selected.svg";
+const QString unselectedIconPath = ":/UISymbols/ListItem_Unselected.svg";
 
 CustomListWidget::CustomListWidget(QWidget *parent) : QListWidget(parent) {
     connect(this, &CustomListWidget::currentItemChanged, this, &CustomListWidget::updateSelectionIcon);

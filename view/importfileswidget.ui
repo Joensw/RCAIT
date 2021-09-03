@@ -183,7 +183,7 @@
             </property>
             <property name="icon">
              <iconset resource="../UI_Icons.qrc">
-              <normaloff>:/Resources/UISymbols/UI_Backspace_Icon.svg</normaloff>:/Resources/UISymbols/UI_Backspace_Icon.svg</iconset>
+              <normaloff>:UISymbols/UI_Backspace_Icon.svg</normaloff>:UISymbols/UI_Backspace_Icon.svg</iconset>
             </property>
             <property name="flat">
              <bool>true</bool>
@@ -197,7 +197,7 @@
             </property>
             <property name="icon">
              <iconset resource="../UI_Icons.qrc">
-              <normaloff>:/Resources/UISymbols/UI_File_Icon.svg</normaloff>:/Resources/UISymbols/UI_File_Icon.svg</iconset>
+              <normaloff>:UISymbols/UI_File_Icon.svg</normaloff>:UISymbols/UI_File_Icon.svg</iconset>
             </property>
             <property name="flat">
              <bool>true</bool>
@@ -302,7 +302,7 @@ selection-background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="icon">
              <iconset resource="../UI_Icons.qrc">
-              <normaloff>:/Resources/UISymbols/UI_Add_Icon.svg</normaloff>:/Resources/UISymbols/UI_Add_Icon.svg</iconset>
+              <normaloff>:UISymbols/UI_Add_Icon.svg</normaloff>:UISymbols/UI_Add_Icon.svg</iconset>
             </property>
            </widget>
           </item>
@@ -313,7 +313,7 @@ selection-background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="icon">
              <iconset resource="../UI_Icons.qrc">
-              <normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</iconset>
+              <normaloff>:UISymbols/UI_Delete_Item.svg</normaloff>:UISymbols/UI_Delete_Item.svg</iconset>
             </property>
            </widget>
           </item>
@@ -327,7 +327,7 @@ selection-background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="icon">
              <iconset resource="../UI_Icons.qrc">
-              <normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</iconset>
+              <normaloff>:UISymbols/UI_Arrow_Forward.svg</normaloff>:UISymbols/UI_Arrow_Forward.svg</iconset>
             </property>
            </widget>
           </item>

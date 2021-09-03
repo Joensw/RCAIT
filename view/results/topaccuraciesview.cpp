@@ -70,7 +70,7 @@ void TopAccuraciesView::slot_pushButton_updateGraphics_clicked() {
 }
 
 void TopAccuraciesView::configure_updateGraphicsButton() {
-    const auto icon = QIcon(":/Resources/UISymbols/UI_Reload_Icon.svg");
+    const auto icon = QIcon(":/UISymbols/UI_Reload_Icon.svg");
     m_pushButton_updateGraphics = ui->tableWidget_topAccuracies->getCornerButton();
     if (m_pushButton_updateGraphics) {
         m_pushButton_updateGraphics->setIcon(icon);

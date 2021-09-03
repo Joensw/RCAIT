@@ -84,7 +84,7 @@ private:
     static constexpr int EDGE = 2;
     static constexpr int SETTINGSBUTTON_WIDTH = 32;
     static constexpr int SETTINGSBUTTON_HEIGHT = 57;
-    static constexpr CE_String SETTINGSBUTTON_ICON = ":/Resources/TabIcons/Filled/Tab_Settings_Icon.svg";
+    static constexpr CE_String SETTINGSBUTTON_ICON = ":/TabIcons/Filled/Tab_Settings_Icon.svg";
 
     Ui::MainWindow *ui;
     QPushButton *m_pushButton_settings;
