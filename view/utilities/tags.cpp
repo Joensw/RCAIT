@@ -31,7 +31,7 @@ Mehrere Veränderungen für dieses PSE, wie
 Quelle des Originals: https://github.com/nicktrandafil/tags
 */
 
-#include <view/tags.hpp>
+#include <view/utilities/tags.hpp>
 
 #include <QApplication>
 #include <QCompleter>
@@ -41,7 +41,7 @@ Quelle des Originals: https://github.com/nicktrandafil/tags
 #include <QStyleHints>
 #include <QStyleOptionFrame>
 #include <QTextLayout>
-#include <view/qinputcontrol_p.h>
+#include <view/utilities/qinputcontrol_p.h>
 
 #include <cassert>
 

@@ -19,11 +19,11 @@ set(REQUIRED_LIBS_QUALIFIED Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Svg Qt6::SvgWid
 
 set(ALL_PROJECT_DIRS
         ${CMAKE_CURRENT_SOURCE_DIR}
-        model model/automation model/pluginusage model/results
-        view view/results
+        model model/automation model/pluginusage model/results model/utilities
+        view view/results view/utilities
         controller
         Resources
-        plugins plugins/imageplugins plugins/classificationplugins plugins/results
+        plugins plugins/classificationplugins plugins/imageplugins plugins/results
         )
 
 set(CMAKE_AUTOUIC_SEARCH_PATHS  ${ALL_PROJECT_DIRS})

@@ -1,5 +1,5 @@
 #include "imageinspectionmodel.h"
-#include "mapadapt.h"
+#include "model/utilities/mapadapt.h"
 
 void ImageInspectionModel::loadDataSet(const QString &trainingPath, const QString &validationPath) {
     //reset maps

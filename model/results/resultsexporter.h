@@ -8,7 +8,7 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <projectmanager.h>
-#include <mapadapt.h>
+#include <model/utilities/mapadapt.h>
 #include <QJsonArray>
 #include "topaccuraciesgraphics.h"
 #include "resultsprocessor.h"
