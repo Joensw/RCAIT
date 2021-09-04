@@ -10,8 +10,10 @@ SettingsManager::SettingsManager()
           mImageLoaderPluginManager(&ImageLoaderPluginManager::getInstance()) {
 
     mGlobalSettings.reset(new QSettings);
+    if (!getClassificationPluginDir().isEmpty() || !getImageLoaderPluginDir().isEmpty()) {
     mClassificationPluginManager->loadPlugins(getClassificationPluginDir());
     mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
+    }
 }
 
 QStringList SettingsManager::getPluginNames() {
