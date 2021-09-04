@@ -7,6 +7,9 @@
 
 class PopupMenu : public QMenu {
 Q_OBJECT
+protected:
+    void mouseReleaseEvent(QMouseEvent *event) override;
+
 public:
     /**
      * Creates a new popup menu
