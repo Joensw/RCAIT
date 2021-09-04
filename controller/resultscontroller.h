@@ -21,15 +21,17 @@ public:
 public slots:
 
     void slot_projectPathUpdated();
+
     void slot_addTrainingResult(TrainingResult *result);
+
     void slot_addClassificationResult(ClassificationResult *result);
 
 private:
     DataManager *m_dataManager;
     ResultsWidget *m_resultsWidget;
-    ResultsProcessor *m_resultsProcessor;
-    ResultsImporter *m_resultsImporter;
-    ResultsExporter *m_resultsExporter;
+    ResultsProcessor m_resultsProcessor;
+    ResultsImporter m_resultsImporter;
+    ResultsExporter m_resultsExporter;
 };
 
 

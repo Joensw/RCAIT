@@ -59,7 +59,7 @@ public slots:
      * @brief slot_startClassify starts classification when triggered.
      * @param path
      */
-    void slot_startClassify(QString path);
+    void slot_startClassify(const QString &path);
 
     /**
      * @brief slot_abortClassify tries to stop classification when triggered.
@@ -82,7 +82,7 @@ public slots:
      * @brief slot_automationPreviewReady
      * @param success
      */
-    void slot_augmentationPreviewReady(bool success, QString targetPath);
+    void slot_augmentationPreviewReady(bool success, const QString &targetPath);
 signals:
     /**
      * @brief sig_trainingResultUpdated emitted when a new training result is available
@@ -100,8 +100,8 @@ private:
     DataManager *mDataManager;
     InputImagesWidget *mInputImagesWidget;
     AITrainingWidget *mAiTrainingWidget;
-    Trainer *mTrainer;
-    Classifier *mClassifier;
+    QScopedPointer<Trainer> mTrainer;
+    QScopedPointer<Classifier> mClassifier;
     QString mTrainingPath;
     QString mClassificationPath;
     bool mPreviewLoading = false;

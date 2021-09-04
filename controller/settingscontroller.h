@@ -5,6 +5,7 @@
 
 #include <settingsview.h>
 #include <datamanager.h>
+#include <utility>
 #include "configurationdialog.h"
 
 
@@ -73,7 +74,7 @@ signals:
     void sig_classificationDirectoryChanged(const QString& newDirectory);
 
 private:
-    SettingsView *mSettingsView;
+    QScopedPointer<SettingsView> mSettingsView;
 
     DataManager *mDataManager;
 
