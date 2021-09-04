@@ -1,10 +1,5 @@
 #include "settingsmanager.h"
 
-
-const QString projectDirectoryIdentifier = "ProjectDirectory";
-const QString classificationPluginDirectoryIdentifier = "ClassificationPluginPath";
-const QString imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
-
 SettingsManager::SettingsManager()
         : mClassificationPluginManager(&ClassificationPluginManager::getInstance()),
           mImageLoaderPluginManager(&ImageLoaderPluginManager::getInstance()) {
@@ -141,7 +136,7 @@ bool
 SettingsManager::applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
                                      QString *error, int *pathsChanged) {
 
-    int pathsChangedTemp = 0;
+    int pathsChangedCounter = 0;
     QString tempProjectsDir = getProjectsDir();
     QString tempClassificationPluginDir = getClassificationPluginDir();
     QString tempImageLoaderPluginDir = getImageLoaderPluginDir();
@@ -149,15 +144,15 @@ SettingsManager::applyGlobalSettings(QString projectsDir, QString classification
 
     //Check if there is an actual update to any of the paths
     if (!projectsDir.isEmpty()) {
-        pathsChangedTemp++;
+        pathsChangedCounter++;
         tempProjectsDir = projectsDir;
     }
     if (!classificationPluginDir.isEmpty()) {
-        pathsChangedTemp++;
+        pathsChangedCounter++;
         tempClassificationPluginDir = classificationPluginDir;
     }
     if (!imageLoaderPluginDir.isEmpty()) {
-        pathsChangedTemp++;
+        pathsChangedCounter++;
         tempImageLoaderPluginDir = imageLoaderPluginDir;
     }
 
@@ -168,12 +163,13 @@ SettingsManager::applyGlobalSettings(QString projectsDir, QString classification
         saveImageLoaderPluginDir(tempImageLoaderPluginDir);
 
         if (pathsChanged != nullptr) {
-            *pathsChanged = pathsChangedTemp;
+            *pathsChanged = pathsChangedCounter;
         }
         return true;
 
     }
     if (error != nullptr) {
+        //Todo replace this too when possible, variable is alredy defined in header ERROR_CONFLICT
         *error = QObject::tr(
                 "Settings have not been updated, there is a conflict. \n Paths may not be identical and must exist, this includes new and unchanged paths.");
     }

@@ -148,6 +148,13 @@ public:
                                QString imageLoaderDirectory);
 
 private:
+    //Keys for the QSettings Settings object
+    static constexpr CE_String projectDirectoryIdentifier = "ProjectDirectory";
+    static constexpr CE_String classificationPluginDirectoryIdentifier = "ClassificationPluginPath";
+    static constexpr CE_String imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
+
+    static constexpr CE_String ERROR_CONFLICT = "Settings have not been updated, there is a conflict. \n Paths may not be identical and must exist, this includes new and unchanged paths.";
+
     ClassificationPluginManager *mClassificationPluginManager;
     ImageLoaderPluginManager *mImageLoaderPluginManager;
 

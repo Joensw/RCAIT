@@ -7,32 +7,6 @@
 #include <QSettings>
 #include <QRegularExpression>
 
-const QString resultsDirectoryName = "results";
-const QString datasetDirectoryName = "data";
-const QString tempImagesDirectoryName = "temp_Images";
-const QString tempDataAugDirectoryName = "temp_Aug";
-const QString trainingsResultsDirectoryName = "training_results";
-const QString classificationResultsDirectoryName = "classification_results";
-
-const QString projectNameIdentifier = "projectName";
-const QString projectDatasetDirectoryIdentifier = "datasetDirName";
-const QString projectValidationDatasetIdentifier = "validationDatasetDirName";
-const QString projectTrainingDatasetIdentifier = "trainingDatasetDirName";
-const QString projectTempImagesDirectoryIdentifier = "tempImagesDirName";
-const QString projectTempDataAugDirectoryIdentifier = "tempDataAugDirName";
-const QString projectResultsDirectoryIdentifier = "resultsDirName";
-const QString projectTrainingsResultsDirectoryIdentifer = "trainingResultsDirName";
-const QString projectClassificationResultsDirectoryIdentifier = "classificationResultsDirName";
-const QString projectWorkingDirIdentifier = "workingDirName";
-
-const QString projectFileType = ".ini";
-
-const QString  validiationDatasetDirectoryName = "validation";
-const QString  trainingDatasetDirectoryName = "training";
-
-const QString workingDirectoryName = "working_directory";
-
-//on creation, meaning program startup, there will be no project selected. all the strings will be null/empty
 ProjectManager::ProjectManager() {
 
 }
@@ -228,10 +202,11 @@ void ProjectManager::setProjectsDirectory(const QString &newDirectory)
     mProjectsDirectory = newDirectory;
 }
 
+//TODO replace with constants! tr only takes const char *. Variables are already defined in header as ERROR_...
 bool ProjectManager::verifyName(QString projectName, QString *error)
 {
     if (projectName.length() == 0){
-        error->append(QObject::tr("Name must contain at least 1 character") + "\n");
+        error->append(QObject::tr("Name must contain at least 1 character"));
         return false;
     }
 
