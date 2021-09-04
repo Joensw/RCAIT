@@ -67,23 +67,22 @@ void GenericComparisonWidget::deleteResultTab(const QString &tabName) {
     auto tab = m_mapTabsByName.take(tabName);
     auto index = m_tabWidget->indexOf(tab);
     m_tabWidget->removeTab(index);
-    delete tab;
+    tab->deleteLater();
 }
 
 void GenericComparisonWidget::slot_comparisonMenu_triggered(QAction *action) {
-    const QString &runNameToCompare = action->text();
-    if (action->isChecked())
-        addComparisonResult(runNameToCompare);
+    //Add or Remove a result based on checkbox state
+    //This uses action's text as tab name
+    if (action && action->isChecked())
+        addComparisonResult(action->text());
     else
-        removeComparisonResult(runNameToCompare);
+        removeComparisonResult(action->text());
 }
 
 void GenericComparisonWidget::slot_updateSaveButton(int index) {
     auto widget = m_tabWidget->widget(index);
-    if (widget != nullptr) {
-        auto tab = dynamic_cast<GenericGraphicsView *>(widget);
-        m_pushButton_saveCurrentTab->setEnabled(!tab->isSaved());
-    }
+    auto tab = dynamic_cast<GenericGraphicsView *>(widget);
+    updateSaveButton(tab);
 }
 
 void GenericComparisonWidget::updateSaveButton(GenericGraphicsView *tab) {
@@ -93,8 +92,8 @@ void GenericComparisonWidget::updateSaveButton(GenericGraphicsView *tab) {
 
 void GenericComparisonWidget::on_pushButton_saveCurrentTab_clicked() {
     auto widget = m_tabWidget->currentWidget();
-    auto resultTab = dynamic_cast<GenericGraphicsView *>(widget);
-    saveResult(resultTab);
+    auto tab = dynamic_cast<GenericGraphicsView *>(widget);
+    if (tab) saveResult(tab);
 }
 
 void GenericComparisonWidget::updateResultFolderPath(const QString &newDirPath) {
