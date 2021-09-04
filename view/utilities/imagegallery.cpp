@@ -57,7 +57,7 @@ void ImageGallery::addImages(QList<QImage> imageList) {
 void ImageGallery::concurrentAddImages(const QString &path) {
     QStringList images;
     QDir imgDir(path);
-    foreach(QString imageName, imgDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files)){
+    foreach(QString imageName, imgDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.jpeg" << "*.png", QDir::Files)){
         images.append(imgDir.absoluteFilePath(imageName));
     }
     concurrentAddImages(images);
