@@ -12,23 +12,24 @@
 class ClassificationResult : public Result {
 private:
     QMap<QString, QList<double>> m_classificationData;
-    ClassificationGraphics* m_classificationGraphics;
+    QSharedPointer<ClassificationGraphics> m_classificationGraphics;
     QList<QString> m_labels;
+
 public:
     ClassificationResult(const QMap<QString, QList<double>> &classificationData,
-                         QList<QString> labels, const QStringList& additionalResults = {});
+                         QList<QString> labels, const QStringList &additionalResults = {});
 
-    ClassificationResult(const ClassificationResult&) = delete;
+    ClassificationResult(const ClassificationResult &) = delete;
 
-    ClassificationResult& operator=(const ClassificationResult&) = delete;
+    ClassificationResult &operator=(const ClassificationResult &) = delete;
 
     [[nodiscard]] const QMap<QString, QList<double>> &getClassificationData() const;
 
     [[nodiscard]] const QList<QString> &getLabels() const;
 
-    [[nodiscard]] ClassificationGraphics *getClassificationGraphics() const;
+    const QSharedPointer<ClassificationGraphics> &getClassificationGraphics() const;
 
-    bool isValid();
+    bool isValid() const;
 };
 
 

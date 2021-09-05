@@ -15,8 +15,6 @@
 #include "popupmenu.h"
 #include "savableresultswidget.h"
 
-using namespace std;
-
 namespace Ui {
     class GenericComparisonWidget;
 }
@@ -50,9 +48,9 @@ protected:
 
     virtual void retranslateUi();
 
-    [[nodiscard]] QTabWidget *getTabWidget() const;
+    [[maybe_unused]] [[nodiscard]] QTabWidget *getTabWidget() const;
 
-    [[nodiscard]] const QMap<QString, QWidget *> &getMapTabsByName() const;
+    [[maybe_unused]] [[nodiscard]] const QMap<QString, QWidget *> &getMapTabsByName() const;
 
 public:
     explicit GenericComparisonWidget(QWidget *parent = nullptr);
@@ -67,9 +65,9 @@ private:
     Ui::GenericComparisonWidget *ui;
     QTabWidget *m_tabWidget;
     QMap<QString, QWidget *> m_mapTabsByName;
-    QPushButton *m_pushButton_addComparison;
+    QScopedPointer<QPushButton> m_pushButton_addComparison;
+    QScopedPointer<QMenu> m_menu_addComparison;
     QPushButton *m_pushButton_saveCurrentTab;
-    QMenu *m_menu_addComparison;
 
     void configure_comparisonButton();
 

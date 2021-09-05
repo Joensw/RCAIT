@@ -26,8 +26,9 @@ public:
     void updateResultFolderPath(const QString &newDirPath) override;
 
 private:
+    ProjectManager *m_projectManager;
     QScopedPointer<TopAccuraciesView> m_topAccuraciesView;
-    QScopedPointer<TopAccuraciesGraphics> m_topAccuraciesGraphics;
+    QSharedPointer<TopAccuraciesGraphics> m_topAccuraciesGraphics;
     QMap<GenericGraphicsView *, TrainingResult *> m_mapResultsByTab;
 
     void addComparisonResult(const QString &runNameToCompare) override;
@@ -56,7 +57,8 @@ signals:
 
     void sig_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result);
 
-    void sig_normal_requestTopAccuraciesGraphics(GenericGraphicsView *receiver, TopAccuraciesGraphics *graphics);
+    void sig_normal_requestTopAccuraciesGraphics(GenericGraphicsView *receiver,
+                                                 QSharedPointer<TopAccuraciesGraphics> graphics);
 
     void sig_save_TopAccuracies(TopAccuraciesGraphics *graphics, bool& success);
 

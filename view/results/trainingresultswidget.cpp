@@ -1,7 +1,8 @@
 #include "trainingresultswidget.h"
 
 TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
-        : GenericComparisonWidget(parent) {
+        : GenericComparisonWidget(parent),
+          m_projectManager(&ProjectManager::getInstance()) {
 
     //Top Accuracies Tab configuration
     configure_topAccuraciesTab();
@@ -23,9 +24,9 @@ void TrainingResultsWidget::configure_topAccuraciesTab() {
 void TrainingResultsWidget::updateResultFolderPath(const QString &newDirPath) {
     GenericComparisonWidget::updateResultFolderPath(newDirPath);
 
-    auto &pm = ProjectManager::getInstance();
     //Old pointer will go out of scope after leaving this method and gets auto-deleted
-    m_topAccuraciesGraphics.reset(new TopAccuraciesGraphics(pm.getProjectImageTempDir()));
+    auto tempDir = m_projectManager->getProjectImageTempDir();
+    m_topAccuraciesGraphics.reset(new TopAccuraciesGraphics(tempDir));
 }
 
 void TrainingResultsWidget::addTrainingResult(TrainingResult *result) {
@@ -49,7 +50,7 @@ void TrainingResultsWidget::removeComparisonResult(const QString &runNameToCompa
 
 void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(GenericGraphicsView *receiver) {
     //Forward signal
-    emit sig_normal_requestTopAccuraciesGraphics(receiver, &*m_topAccuraciesGraphics);
+    emit sig_normal_requestTopAccuraciesGraphics(receiver, m_topAccuraciesGraphics);
 }
 
 void TrainingResultsWidget::retranslateUi() {

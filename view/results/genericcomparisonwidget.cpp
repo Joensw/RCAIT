@@ -4,19 +4,20 @@
 
 GenericComparisonWidget::GenericComparisonWidget(QWidget *parent)
         : SavableResultsWidget(parent),
-          ui(new Ui::GenericComparisonWidget) {
+          ui(new Ui::GenericComparisonWidget),
+          m_pushButton_addComparison(new QPushButton(this)),
+          m_menu_addComparison(new PopupMenu(&*m_pushButton_addComparison)) {
 
     ui->setupUi(this);
 
     //Setup variables
     m_tabWidget = ui->tabWidget_compareResults;
     m_pushButton_saveCurrentTab = ui->pushButton_saveCurrentTab;
-    m_pushButton_addComparison = new QPushButton(this);
-    m_menu_addComparison = new PopupMenu(m_pushButton_addComparison);
+
 
 
     //Connect internal signals and slots
-    connect(m_menu_addComparison, &QMenu::triggered, this,
+    connect(&*m_menu_addComparison, &QMenu::triggered, this,
             &GenericComparisonWidget::slot_comparisonMenu_triggered);
     connect(m_tabWidget, &QTabWidget::currentChanged, this,
             &GenericComparisonWidget::slot_updateSaveButton);
@@ -33,9 +34,9 @@ void GenericComparisonWidget::configure_comparisonButton() {
     const auto icon = QIcon(":/UISymbols/UI_Add_Result_Comparison_Icon.svg");
     m_pushButton_addComparison->setIcon(icon);
     m_pushButton_addComparison->setFlat(true);
-    m_pushButton_addComparison->setMenu(m_menu_addComparison);
+    m_pushButton_addComparison->setMenu(&*m_menu_addComparison);
 
-    m_tabWidget->setCornerWidget(m_pushButton_addComparison, Qt::TopRightCorner);
+    m_tabWidget->setCornerWidget(&*m_pushButton_addComparison, Qt::TopRightCorner);
 }
 
 void GenericComparisonWidget::configure_comparisonMenu(const QString &targetDir) {
@@ -43,21 +44,21 @@ void GenericComparisonWidget::configure_comparisonMenu(const QString &targetDir)
     QFont inter("Inter Monospace", 9);
     m_menu_addComparison->setFont(inter);
 
-    auto oldMenuEntries = QStringList();
-    for (const auto &item : m_menu_addComparison->actions()) {
+    QStringList oldMenuEntries;
+    for (const auto &item: m_menu_addComparison->actions()) {
         oldMenuEntries << item->text();
     }
     //Add new compare button menu entries
     auto dir = QDir(targetDir);
     auto entryList = dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
 
-    for (const auto &item : entryList) {
+    for (const auto &item: entryList) {
         auto niceItem = Result::niceRepresentation(item);
         //Leave already contained entries in the menu
         if (oldMenuEntries.contains(niceItem)) continue;
 
         //New directory detected, add it to the menu
-        auto *action = new QAction(niceItem, m_menu_addComparison);
+        auto *action = new QAction(niceItem, &*m_menu_addComparison);
         action->setCheckable(true);
         m_menu_addComparison->addAction(action);
     }
@@ -104,7 +105,7 @@ void GenericComparisonWidget::updateResultFolderPath(const QString &newDirPath) 
 void GenericComparisonWidget::cleanup_comparisonMenu() {
     //Cleanup, because results dir was changed
     //Remove opened tabs
-    for (const auto &action : m_menu_addComparison->actions()) {
+    for (const auto &action: m_menu_addComparison->actions()) {
         if (action->isChecked()) {
             auto runName = action->text();
             removeComparisonResult(runName);
@@ -112,6 +113,14 @@ void GenericComparisonWidget::cleanup_comparisonMenu() {
     }
     //Clear menu entries
     m_menu_addComparison->clear();
+}
+
+[[maybe_unused]] QTabWidget *GenericComparisonWidget::getTabWidget() const {
+    return m_tabWidget;
+}
+
+[[maybe_unused]] const QMap<QString, QWidget *> &GenericComparisonWidget::getMapTabsByName() const {
+    return m_mapTabsByName;
 }
 
 void GenericComparisonWidget::changeEvent(QEvent *event) {
@@ -130,12 +139,4 @@ void GenericComparisonWidget::changeEvent(QEvent *event) {
  */
 void GenericComparisonWidget::retranslateUi() {
     m_pushButton_addComparison->setText(tr("Compare ..."));
-}
-
-QTabWidget *GenericComparisonWidget::getTabWidget() const {
-    return m_tabWidget;
-}
-
-const QMap<QString, QWidget *> &GenericComparisonWidget::getMapTabsByName() const {
-    return m_mapTabsByName;
 }
