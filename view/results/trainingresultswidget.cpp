@@ -4,29 +4,36 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
         : GenericComparisonWidget(parent),
           m_projectManager(&ProjectManager::getInstance()) {
 
-    //Top Accuracies Tab configuration
-    configure_topAccuraciesTab();
-    connect(&*m_topAccuraciesView, &TopAccuraciesView::sig_normal_requestTopAccuraciesGraphics, this,
-            &TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics);
 }
 
 void TrainingResultsWidget::configure_topAccuraciesTab() {
     const auto icon = QIcon(":/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
+    auto tempDir = m_projectManager->getProjectImageTempDir();
 
+    //Cleanup old stuff
+    getTabWidget()->removeTab(0);
     //Old pointer will go out of scope after leaving this method and gets auto-deleted
     m_topAccuraciesView.reset(new TopAccuraciesView(this));
+    m_topAccuraciesGraphics.reset(new TopAccuraciesGraphics(tempDir));
 
+    //Connect signals and slots
+    connect(&*m_topAccuraciesView, &TopAccuraciesView::sig_normal_requestTopAccuraciesGraphics, this,
+            &TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics);
+
+    //Configure tab
     getTabWidget()->insertTab(0, &*m_topAccuraciesView, icon, QString());
     //Top Accuracies Tab cannot be saved in initial (= empty) state
     m_topAccuraciesView->setSaved(true);
+
+    //Update UI to show changes
+    retranslateUi();
 }
 
 void TrainingResultsWidget::updateResultFolderPath(const QString &newDirPath) {
     GenericComparisonWidget::updateResultFolderPath(newDirPath);
 
     //Old pointer will go out of scope after leaving this method and gets auto-deleted
-    auto tempDir = m_projectManager->getProjectImageTempDir();
-    m_topAccuraciesGraphics.reset(new TopAccuraciesGraphics(tempDir));
+    configure_topAccuraciesTab();
 }
 
 void TrainingResultsWidget::addTrainingResult(TrainingResult *result) {
