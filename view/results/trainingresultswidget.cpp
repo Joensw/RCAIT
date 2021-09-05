@@ -53,13 +53,6 @@ void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(TopAccuraci
     emit sig_normal_requestTopAccuraciesGraphics(receiver, m_topAccuraciesGraphics);
 }
 
-void TrainingResultsWidget::retranslateUi() {
-    int index = getTabWidget()->indexOf(&*m_topAccuraciesView);
-    getTabWidget()->setTabText(index, tr("Top Accuracies"));
-
-    GenericComparisonWidget::retranslateUi();
-}
-
 void TrainingResultsWidget::saveResult(GenericGraphicsView *view) {
     //Keeps user from clicking the save button multiple times
     view->setSaved(true);
@@ -72,5 +65,12 @@ void TrainingResultsWidget::saveResult(GenericGraphicsView *view) {
 
     //Set result as saved iff successful
     view->setSaved(success);
+}
+
+void TrainingResultsWidget::retranslateUi() {
+    int index = getTabWidget()->indexOf(&*m_topAccuraciesView);
+    getTabWidget()->setTabText(index, tr("Top Accuracies"));
+
+    GenericComparisonWidget::retranslateUi();
 }
 
