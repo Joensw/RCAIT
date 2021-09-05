@@ -13,6 +13,9 @@
 #include "topaccuraciesgraphics.h"
 #include "resultsprocessor.h"
 
+//Dummy variable to achieve optional parameters
+static bool SAVED;
+
 class ResultsExporter : public QObject {
 Q_OBJECT
 
@@ -30,8 +33,6 @@ public slots:
     void slot_save_ClassificationResult(ClassificationResult *result, bool &success = SAVED);
 
 private:
-    //Dummy variable to achieve optional parameters
-    static bool SAVED;
 
     ProjectManager *m_projectManager;
     QString m_trainingResultsDir;
