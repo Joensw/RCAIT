@@ -1,5 +1,5 @@
-#ifndef RESULTIMPORTER_H
-#define RESULTIMPORTER_H
+#ifndef RESULTSIMPORTER_H
+#define RESULTSIMPORTER_H
 
 #include <QRegularExpression>
 #include <projectmanager.h>
@@ -19,6 +19,12 @@ public:
 
     void updateResultFolderPaths();
 
+signals:
+
+    void sig_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result);
+
+    void sig_normal_loadClassificationResultData(ClassificationResultView *view, ClassificationResult *result);
+
 public slots:
 
     //Top Accuracies slots
@@ -26,7 +32,7 @@ public slots:
                                           const QString &runNameToCompare);
 
     static void slot_comparison_unloadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
-                                            const QString &runNameToCompare);
+                                                   const QString &runNameToCompare);
 
     //Classification result slots
     void slot_comparison_loadClassificationResultData(ClassificationResultView *view,
@@ -55,11 +61,16 @@ private:
 
     static void passResultGraphics(GenericGraphicsView *receiver, const QFileInfo &file, int type);
 
-signals:
+    template<typename T>
+    static QList<T> QJsonArray_toList(const QJsonArray &json_array) {
+        QList<T> list;
 
-    void sig_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result);
-
-    void sig_normal_loadClassificationResultData(ClassificationResultView *view, ClassificationResult *result);
+        for (const auto &item: json_array) {
+            Q_ASSERT(item.toVariant().canConvert<T>());
+            list << qvariant_cast<T>(item.toVariant());
+        }
+        return list;
+    }
 };
 
-#endif // RESULTIMPORTER_H
+#endif // RESULTSIMPORTER_H

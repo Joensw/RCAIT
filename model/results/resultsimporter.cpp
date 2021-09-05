@@ -81,22 +81,12 @@ void ResultsImporter::slot_comparison_loadClassificationResultData(Classificatio
         auto imagePath = obj["image_path"].toString();
         auto json_list = obj["confidence"].toArray();
 
-        QList<double> list;
-        for (const auto &item: json_list) {
-            list << item.toDouble();
-        }
+        auto list = QJsonArray_toList<double>(json_list);
         classification_data[imagePath] = list;
     }
 
-    QStringList labels;
-    for (const auto &label: json_labels) {
-        labels << label.toString();
-    }
-
-    QStringList additionalResults;
-    for (const auto &resultPath: json_additionalResults) {
-        additionalResults << resultPath.toString();
-    }
+    auto labels = QJsonArray_toList<QString>(json_labels);
+    auto additionalResults = QJsonArray_toList<QString>(json_additionalResults);
 
     auto result = new ClassificationResult(classification_data, labels, additionalResults);
     emit sig_normal_loadClassificationResultData(view, result);
@@ -136,25 +126,10 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
         accuracy_data[iteration] = qMakePair(train, validation);
     }
 
-    QStringList class_labels;
-    for (const auto &class_label: json_class_labels) {
-        class_labels << class_label.toString();
-    }
-
-    QList<int> confusionmatrix;
-    for (const auto &value: json_confusionmatrix) {
-        confusionmatrix << value.toInt();
-    }
-
-    QStringList most_misclassified_images;
-    for (const auto &imagePath: json_mostMisclassifiedImages) {
-        most_misclassified_images << imagePath.toString();
-    }
-
-    QStringList additionalResults;
-    for (const auto &resultPath: json_additionalResults) {
-        additionalResults << resultPath.toString();
-    }
+    auto class_labels = QJsonArray_toList<QString>(json_class_labels);
+    auto confusionmatrix = QJsonArray_toList<int>(json_confusionmatrix);
+    auto most_misclassified_images = QJsonArray_toList<QString>(json_mostMisclassifiedImages);
+    auto additionalResults = QJsonArray_toList<QString>(json_additionalResults);
 
     auto result = new TrainingResult(accuracy_data, class_labels, confusionmatrix, most_misclassified_images, top1,
                                      top5, additionalResults);
@@ -231,6 +206,7 @@ QJsonObject ResultsImporter::readJSON(const QString &filepath) {
     auto file = QFile(filepath);
     if (!file.open(QIODevice::ReadOnly)) {
         qWarning() << "Json file couldn't be opened/found";
+        return {};
     }
 
     QByteArray byteArray = file.readAll();
@@ -242,6 +218,7 @@ QJsonObject ResultsImporter::readJSON(const QString &filepath) {
     QJsonDocument jsonDoc = QJsonDocument::fromJson(byteArray, &parseError);
     if (parseError.error != QJsonParseError::NoError) {
         qWarning() << "Parse error at " << parseError.offset << ":" << parseError.errorString();
+        return {};
     }
 
     //Create a JSON object and fill it with the ByteArray content

@@ -91,13 +91,7 @@ QJsonObject ResultsExporter::trainingResult2JSON(const TrainingResult *result) {
     }
     JSON["accuracy_data"] = json_accuracy_data;
     JSON["class_labels"] = QJsonArray::fromStringList(class_labels);
-
-    QJsonArray json_confusionmatrix;
-    for (const auto &value: confusionmatrix) {
-        json_confusionmatrix << value;
-    }
-    JSON["confusionmatrix"] = json_confusionmatrix;
-
+    JSON["confusionmatrix"] = QJsonArray_fromAnyList(confusionmatrix);
     JSON["most_misclassified_images"] = QJsonArray::fromStringList(most_misclassified_images);
 
     JSON["top1"] = top1;
@@ -120,21 +114,17 @@ QJsonObject ResultsExporter::classificationResult2JSON(const ClassificationResul
     QJsonArray json_classification_data;
     for (const auto &[image_path, confidences]: MapAdapt(classification_data)) {
 
-        QJsonObject sub;
-        QJsonArray confidenceArray;
-        for (const auto &value: confidences) {
-            confidenceArray << value;
-        }
+        QJsonObject json_sub;
+        QJsonArray json_confidenceArray = QJsonArray_fromAnyList(confidences);
 
-        sub["image_path"] = image_path;
-        sub["confidence"] = confidenceArray;
+        json_sub["image_path"] = image_path;
+        json_sub["confidence"] = json_confidenceArray;
 
-        json_classification_data << sub;
+        json_classification_data << json_sub;
     }
     JSON["classification_data"] = json_classification_data;
 
     JSON["labels"] = QJsonArray::fromStringList(labels);
-
     JSON["additionalResults"] = QJsonArray::fromStringList(additionalResults);
 
     //JSON object is prepared now, so return it

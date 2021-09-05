@@ -1,5 +1,5 @@
-#ifndef RESULTEXPORTER_H
-#define RESULTEXPORTER_H
+#ifndef RESULTSEXPORTER_H
+#define RESULTSEXPORTER_H
 
 #include <QString>
 #include <QJsonObject>
@@ -12,8 +12,6 @@
 #include <QJsonArray>
 #include "topaccuraciesgraphics.h"
 #include "resultsprocessor.h"
-
-static bool SAVED;
 
 class ResultsExporter : public QObject {
 Q_OBJECT
@@ -32,6 +30,9 @@ public slots:
     void slot_save_ClassificationResult(ClassificationResult *result, bool &success = SAVED);
 
 private:
+    //Dummy variable to achieve optional parameters
+    static bool SAVED;
+
     ProjectManager *m_projectManager;
     QString m_trainingResultsDir;
     QString m_classificationResultsDir;
@@ -40,13 +41,23 @@ private:
 
     static bool writeJSON(const QJsonObject &jsonObject, const QString &filepath);
 
-    static bool saveFile(const QString &oldFilePath, const QString &newFilePath) ;
+    static bool saveFile(const QString &oldFilePath, const QString &newFilePath);
 
     static QJsonObject
     trainingResult2JSON(const TrainingResult *result);
 
     static QJsonObject
     classificationResult2JSON(const ClassificationResult *result);
+
+    template<typename T>
+    static QJsonArray QJsonArray_fromAnyList(const QList<T> &list) {
+        QJsonArray JSONArray;
+
+        for (const auto &value: list)
+            JSONArray << value;
+
+        return JSONArray;
+    }
 };
 
-#endif // RESULTEXPORTER_H
+#endif // RESULTSEXPORTER_H
