@@ -40,6 +40,10 @@ public:
 
     [[maybe_unused]] [[nodiscard]] const QString &getFullPath() const;
 
+signals:
+
+    void sig_graphicsGenerated(GenericGraphicsView *receiver, GenericResultGraphics *graphics, const QString &fullPath);
+
 protected:
     static void launch_externalGraphicsGenerator(const QString &command, const QStringList &args);
 

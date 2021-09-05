@@ -50,8 +50,6 @@ void TrainingResultsWidget::removeComparisonResult(const QString &runNameToCompa
 void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(GenericGraphicsView *receiver) {
     //Forward signal
     emit sig_normal_requestTopAccuraciesGraphics(receiver, &*m_topAccuraciesGraphics);
-    //Graphics generation was requested; allow saving result
-    m_topAccuraciesView->setSaved(false);
 }
 
 void TrainingResultsWidget::retranslateUi() {

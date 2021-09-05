@@ -3,12 +3,39 @@
 const QString TRAINING_JSON = QString("training_%1.json");
 const QString CLASSIFICATION_JSON = QString("classification_%1.json");
 
+void ResultsProcessor::addGraphicsGenerationJob(GenericGraphicsView *receiver,
+                                                const QList<GenericResultGraphics *> &graphicsList) {
+
+    auto count = 1;
+    auto total = graphicsList.size();
+    for (const auto &graphics: graphicsList) {
+        //Connect 'finished graphics generation' signal with slot
+        connect(graphics, &GenericResultGraphics::sig_graphicsGenerated,
+                this, &ResultsProcessor::slot_graphicsGenerated);
+
+        auto type = QString(graphics->metaObject()->className());
+        qInfo() << qPrintable(QString("(%1/%2) Generating %3 \n").arg(count++).arg(total).arg(type));
+
+        m_mapGraphicsByReceiver.insert(receiver, graphics);
+        graphics->generateGraphics(receiver);
+    }
+}
+
+void ResultsProcessor::slot_graphicsGenerated(GenericGraphicsView *receiver,
+                                              GenericResultGraphics *graphics, const QString &fullPath) {
+
+    if (!QFile::exists(fullPath)) return;
+    m_mapGraphicsByReceiver.remove(receiver, graphics);
+    if (m_mapGraphicsByReceiver.contains(receiver)) return;
+    receiver->setSaved(false);
+}
+
 /**
  * Top Accuracies slots
  */
 void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(GenericGraphicsView *receiver,
                                                                  TopAccuraciesGraphics *graphics) {
-    graphics->generateGraphics(receiver);
+    addGraphicsGenerationJob(receiver, {graphics});
 }
 
 /**
@@ -24,7 +51,7 @@ void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationRe
     auto tableMap = QMap<int, QStringList>();
 
     int rowNumber = 1;
-    for (const auto &[_, accList] : MapAdapt(map)) {
+    for (const auto &[_, accList]: MapAdapt(map)) {
         //Assert that each accuracy value has a corresponding label
         Q_ASSERT(accList.size() == labels.size());
         auto max = std::max_element(accList.begin(), accList.end());
@@ -41,8 +68,8 @@ void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationRe
 
 void ResultsProcessor::slot_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver,
                                                                         ClassificationResult *result) {
-    auto graphics = result->getClassificationGraphics();
-    graphics->generateGraphics(receiver);
+    auto classificationGraphics = result->getClassificationGraphics();
+    addGraphicsGenerationJob(receiver, {classificationGraphics});
 }
 
 /**
@@ -57,6 +84,5 @@ void ResultsProcessor::slot_normal_generateTrainingResultGraphics(GenericGraphic
                                                                   TrainingResult *result) {
     auto accCurve = result->getAccuracyCurve();
     auto confusionMatrix = result->getConfusionMatrix();
-    accCurve->generateGraphics(receiver);
-    confusionMatrix->generateGraphics(receiver);
+    addGraphicsGenerationJob(receiver, {accCurve, confusionMatrix});
 }

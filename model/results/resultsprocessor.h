@@ -36,6 +36,15 @@ public slots:
 
     void slot_normal_generateTrainingResultGraphics(GenericGraphicsView *receiver, TrainingResult *result);
 
+private:
+    QMultiMap<GenericGraphicsView *, GenericResultGraphics *> m_mapGraphicsByReceiver;
+
+    void addGraphicsGenerationJob(GenericGraphicsView *receiver, const QList<GenericResultGraphics *> &graphicsList);
+
+private slots:
+
+    void slot_graphicsGenerated(GenericGraphicsView *receiver, GenericResultGraphics *graphics,
+                                const QString &fullPath);
 };
 
 #endif // RESULTSPROCESSOR_H
