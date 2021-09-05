@@ -62,6 +62,9 @@ void TrainingResultsWidget::retranslateUi() {
 }
 
 void TrainingResultsWidget::saveResult(GenericGraphicsView *view) {
+    //Keeps user from clicking the save button multiple times
+    view->setSaved(true);
+
     bool success;
     if (view == &*m_topAccuraciesView)
             emit sig_save_TopAccuracies(&*m_topAccuraciesGraphics, success);

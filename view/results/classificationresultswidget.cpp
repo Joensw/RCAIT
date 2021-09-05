@@ -25,6 +25,9 @@ void ClassificationResultsWidget::addClassificationResult(ClassificationResult *
 }
 
 void ClassificationResultsWidget::saveResult(GenericGraphicsView *view) {
+    //Keeps user from clicking the save button multiple times
+    view->setSaved(true);
+
     bool success;
     emit sig_save_ClassificationResult(m_mapResultsByTab[view], success);
     //Set result as saved iff successful
