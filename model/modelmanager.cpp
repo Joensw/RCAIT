@@ -1,8 +1,5 @@
 #include "modelmanager.h"
 
-#include <utility>
-
-
 ModelManager::ModelManager()
         : mClassificationPluginManager(&ClassificationPluginManager::getInstance()) {
 

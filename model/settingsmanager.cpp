@@ -141,7 +141,6 @@ SettingsManager::applyGlobalSettings(QString projectsDir, QString classification
     QString tempClassificationPluginDir = getClassificationPluginDir();
     QString tempImageLoaderPluginDir = getImageLoaderPluginDir();
 
-
     //Check if there is an actual update to any of the paths
     if (!projectsDir.isEmpty()) {
         pathsChangedCounter++;
@@ -169,9 +168,7 @@ SettingsManager::applyGlobalSettings(QString projectsDir, QString classification
 
     }
     if (error != nullptr) {
-        //Todo replace this too when possible, variable is alredy defined in header ERROR_CONFLICT
-        *error = QObject::tr(
-                "Settings have not been updated, there is a conflict. \n Paths may not be identical and must exist, this includes new and unchanged paths.");
+        *error = QObject::tr(qPrintable(ERROR_CONFLICT));
     }
     if (pathsChanged != nullptr) {
         *pathsChanged = 0;

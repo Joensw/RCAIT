@@ -5,8 +5,8 @@
 #include <QWidget>
 #include <QSettings>
 
-#include "classificationpluginmanager.h"
-#include "imageloaderpluginmanager.h"
+#include <classificationpluginmanager.h>
+#include <imageloaderpluginmanager.h>
 
 extern const QString projectDirectoryIdentifier;
 extern const QString classificationPluginDirectoryIdentifier;

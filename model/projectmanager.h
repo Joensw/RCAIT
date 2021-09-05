@@ -4,8 +4,14 @@
 #include <QString>
 #include <QObject>
 #include <ce_string.h>
-#include "classificationresult.h"
-#include "trainingresult.h"
+#include <classificationresult.h>
+#include <trainingresult.h>
+#include <confusionmatrix.h>
+#include <accuracycurve.h>
+#include <QStringList>
+#include <QDir>
+#include <QSettings>
+#include <QRegularExpression>
 
 /**
  * @brief The ProjectManager class contains the logic for manipulating the projects of the application
@@ -175,6 +181,10 @@ private:
     static constexpr CE_String ERROR_DUPLICATE = "A project with this name already exists in the project directory";
     static constexpr CE_String ERROR_OS_SUPPORT = "The operating system cannot support this name";
 
+    //Regex to match String with consisting of only spaces
+    static constexpr CE_String REGEX_ONLY_SPACE = "^[ ]+$";
+
+    static constexpr CE_String TEXT_FILE_FILTER = "*.txt";
 
     bool verifyName(QString projectName, QString * error);
 
