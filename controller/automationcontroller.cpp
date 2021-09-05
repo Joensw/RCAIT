@@ -1,11 +1,10 @@
 #include "automationcontroller.h"
-#include <QtConcurrent/QtConcurrent>
 
-AutomationController::AutomationController(DataManager *dataManager, AutomationWidget * automationWidget)
-{
-    mDataManager = dataManager;
-    mWidget = automationWidget;
-    mAutomator = new Automator(mDataManager);    
+AutomationController::AutomationController(DataManager *dataManager, AutomationWidget *automationWidget)
+        : mDataManager(dataManager),
+          mWidget(automationWidget),
+          mAutomator(new Automator(mDataManager)) {
+
     connect(mWidget, &AutomationWidget::sig_start, this, &AutomationController::slot_start);
     connect(mWidget, &AutomationWidget::sig_stop, this, &AutomationController::slot_stop);
     connect(mWidget, &AutomationWidget::sig_import, this, &AutomationController::slot_import);
@@ -15,57 +14,48 @@ AutomationController::AutomationController(DataManager *dataManager, AutomationW
     connect(mWidget, &AutomationWidget::sig_unqueueAll, this, &AutomationController::slot_unqueueAll);
     connect(mWidget, &AutomationWidget::sig_unqueueSelected, this, &AutomationController::slot_unqueueSelected);
 
-    connect(mAutomator, &Automator::sig_taskAdded, mWidget, &AutomationWidget::slot_taskAdded);
-    connect(mAutomator, &Automator::sig_taskUpdate, mWidget, &AutomationWidget::slot_taskUpdate);
-    connect(mAutomator, &Automator::sig_progress, mWidget, &AutomationWidget::slot_progress);
-    connect(mAutomator, &Automator::sig_finished, mWidget, &AutomationWidget::slot_finished);
-
+    connect(&*mAutomator, &Automator::sig_taskAdded, mWidget, &AutomationWidget::slot_taskAdded);
+    connect(&*mAutomator, &Automator::sig_taskUpdate, mWidget, &AutomationWidget::slot_taskUpdate);
+    connect(&*mAutomator, &Automator::sig_progress, mWidget, &AutomationWidget::slot_progress);
+    connect(&*mAutomator, &Automator::sig_finished, mWidget, &AutomationWidget::slot_finished);
 
 }
 
-void AutomationController::slot_start()
-{
-    auto task = QtConcurrent::run(&Automator::performTasks, mAutomator);
+void AutomationController::slot_start() {
+    auto task = QtConcurrent::run(&Automator::performTasks, &*mAutomator);
     Q_UNUSED(task)
 }
 
-void AutomationController::slot_stop()
-{
+void AutomationController::slot_stop() {
     mAutomator->stopTasks();
 }
 
-void AutomationController::slot_remove(int index)
-{
+void AutomationController::slot_remove(int index) {
     mAutomator->remove(index);
 }
 
-void AutomationController::slot_import(QString path)
-{
-    mAutomator->addTasks(path);
+void AutomationController::slot_import(QString path) {
+    mAutomator->addTasks(std::move(path));
 }
 
-void AutomationController::slot_queueAll()
-{
+void AutomationController::slot_queueAll() {
     int size = mAutomator->getUnqueuedSize();
-    for (int i = 0; i < size; ++i){
+    for (int i = 0; i < size; ++i) {
         mAutomator->queue(0);
     }
 }
 
-void AutomationController::slot_queueSelected(int index)
-{
+void AutomationController::slot_queueSelected(int index) {
     mAutomator->queue(index);
 }
 
-void AutomationController::slot_unqueueAll()
-{
+void AutomationController::slot_unqueueAll() {
     int size = mAutomator->getQueuedSize();
-    for (int i = 0; i < size; ++i){
+    for (int i = 0; i < size; ++i) {
         mAutomator->unqueue(0);
     }
 }
 
-void AutomationController::slot_unqueueSelected(int index)
-{
+void AutomationController::slot_unqueueSelected(int index) {
     mAutomator->unqueue(index);
 }

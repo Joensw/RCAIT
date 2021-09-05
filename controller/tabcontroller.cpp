@@ -12,8 +12,8 @@ enum tabs {
     $END
 };
 
-TabController::TabController(CustomTabWidget *tWidget)
-        : m_tabWidget(tWidget) {
+TabController::TabController(CustomTabWidget *tabWidget)
+        : m_tabWidget(tabWidget) {
 
     //disable all tabs, except start and automation
     for (int i = $BEGIN + 1; i < $END; i++) {

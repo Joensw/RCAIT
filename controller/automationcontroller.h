@@ -3,6 +3,8 @@
 
 #include <datamanager.h>
 #include <QObject>
+#include <QtConcurrent/QtConcurrent>
+#include <utility>
 #include <automationwidget.h>
 #include <automator.h>
 
@@ -10,9 +12,8 @@
  * @brief The AutomationController class mediates between ui elements and the batch processing of tasks.
  *
  */
-class AutomationController : public QObject
-{
-    Q_OBJECT
+class AutomationController : public QObject {
+Q_OBJECT
 public:
 
     /**
@@ -79,7 +80,7 @@ public slots:
 private:
     AutomationWidget *mWidget;
     DataManager *mDataManager;
-    Automator* mAutomator;
+    QScopedPointer<Automator> mAutomator;
 
 };
 

@@ -9,6 +9,7 @@
 #include "datamanager.h"
 #include "imageinspectionwidget.h"
 #include "imageinspectionmodel.h"
+#include <utility>
 
 
 /**
@@ -53,11 +54,11 @@ public slots:
     void slot_imagesReady();
 
     /**
-     * @brief slot_handelImageLoadProgress updates progressbar.
+     * @brief slot_handleImageLoadProgress updates progressbar.
      *
      * @param progress image load progress
      */
-    void slot_handelImageLoadProgress(int progress);
+    void slot_handleImageLoadProgress(int progress);
 
     /**
      * @brief slot_openProject loads ImageInspectionWidget with images of opened project.
@@ -100,7 +101,6 @@ signals:
     void sig_imagesLoaded();
 
 
-
     /**
      * @brief sig_imagesUpdated signals completion of image loading.
      */
@@ -113,13 +113,15 @@ signals:
 
 
 private:
-    ImageLoader* m_imageLoader;
-    ImageInspectionWidget* m_imageinspectionwidget;
-    ImportFilesWidget* m_importFilesWidget;
-    DataManager* m_dataManager;
+    ImageLoader m_imageLoader;
+    ImageInspectionWidget *m_imageinspectionwidget;
+    ImportFilesWidget *m_importFilesWidget;
+    DataManager *m_dataManager;
     ImageInspectionModel m_imageInspectionModel;
     int m_split;
+
     void updateDatasetDisplay();
+
     void updateNewDatasetDisplay();
 };
 
