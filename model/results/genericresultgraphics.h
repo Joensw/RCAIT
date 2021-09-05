@@ -26,19 +26,19 @@ private:
     virtual void passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) = 0;
 
 public:
-    GenericResultGraphics(const QString& directory, QString baseName, QString extension);
+    GenericResultGraphics(const QString &directory, QString baseName, QString extension);
 
     void generateGraphics(GenericGraphicsView *receiver);
 
-    [[nodiscard]] const QString &getBaseName() const;
+    [[maybe_unused]] [[nodiscard]] const QString &getBaseName() const;
 
-    [[nodiscard]] const QString &getFullName() const;
+    [[maybe_unused]] [[nodiscard]] const QString &getFullName() const;
 
-    [[nodiscard]] const QString &getExtension() const;
+    [[maybe_unused]] [[nodiscard]] const QString &getExtension() const;
 
-    [[nodiscard]] const QString &getDirectory() const;
+    [[maybe_unused]] [[nodiscard]] const QString &getDirectory() const;
 
-    [[nodiscard]] const QString &getFullPath() const;
+    [[maybe_unused]] [[nodiscard]] const QString &getFullPath() const;
 
 protected:
     static void launch_externalGraphicsGenerator(const QString &command, const QStringList &args);

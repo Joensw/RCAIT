@@ -22,15 +22,18 @@ public:
     ResultsProcessor() = default;
 
 public slots:
+
     //Top Accuracies slots
     void slot_normal_generateTopAccuraciesGraphics(GenericGraphicsView *receiver, TopAccuraciesGraphics *graphics);
 
     //Classification result slots
-    void slot_normal_loadClassificationResultData(ClassificationResultView* view, ClassificationResult* result);
-    void slot_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver, ClassificationResult* result);
+    void slot_normal_loadClassificationResultData(ClassificationResultView *view, ClassificationResult *result);
+
+    void slot_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver, ClassificationResult *result);
 
     //Training result slots
-    void slot_normal_loadTrainingResultData(TrainingResultView* view, TrainingResult* result);
+    void slot_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result);
+
     void slot_normal_generateTrainingResultGraphics(GenericGraphicsView *receiver, TrainingResult *result);
 
 };
