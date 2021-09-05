@@ -57,7 +57,7 @@ signals:
 
     void sig_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result);
 
-    void sig_normal_requestTopAccuraciesGraphics(GenericGraphicsView *receiver,
+    void sig_normal_requestTopAccuraciesGraphics(TopAccuraciesView *receiver,
                                                  QSharedPointer<TopAccuraciesGraphics> graphics);
 
     void sig_save_TopAccuracies(TopAccuraciesGraphics *graphics, bool& success);
@@ -66,7 +66,7 @@ signals:
 
 private slots:
 
-    void slot_normal_requestTopAccuraciesGraphics(GenericGraphicsView *receiver);
+    void slot_normal_requestTopAccuraciesGraphics(TopAccuraciesView *receiver);
 
 };
 

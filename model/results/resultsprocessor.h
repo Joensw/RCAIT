@@ -25,7 +25,7 @@ public:
 public slots:
 
     //Top Accuracies slots
-    void slot_normal_generateTopAccuraciesGraphics(GenericGraphicsView *receiver,
+    void slot_normal_generateTopAccuraciesGraphics(TopAccuraciesView *receiver,
                                                    const QSharedPointer<TopAccuraciesGraphics> &graphics);
 
     //Classification result slots

@@ -27,13 +27,17 @@ public:
 
     void setTopAccuraciesGraphics(const QSharedPointer<QGraphicsItem> &topAccuraciesImage) override;
 
+    [[maybe_unused]] void updateGraphicsButton_setEnabled(bool enabled);
+
+    [[maybe_unused]] [[nodiscard]] bool updateGraphicsButton_isEnabled();
+
     [[maybe_unused]] [[nodiscard]] const QSharedPointer<QGraphicsItem> &getTopAccuraciesImage() const;
 
     ~TopAccuraciesView() override;
 
 signals:
 
-    void sig_normal_requestTopAccuraciesGraphics(GenericGraphicsView *receiver);
+    void sig_normal_requestTopAccuraciesGraphics(TopAccuraciesView *receiver);
 
 private slots:
 
@@ -41,7 +45,7 @@ private slots:
 
 private:
     Ui::TopAccuraciesView *ui;
-    QAbstractButton *m_pushButton_updateGraphics;
+    QAbstractButton *m_pushButton_updateGraphics{};
 
     QSharedPointer<QGraphicsItem> m_topAccuraciesImage;
 
