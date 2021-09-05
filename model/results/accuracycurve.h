@@ -11,7 +11,9 @@
 #include <trainingresultview.h>
 #include "genericresultgraphics.h"
 
-class AccuracyCurve : public GenericResultGraphics{
+class AccuracyCurve : public GenericResultGraphics {
+Q_OBJECT
+
 public:
     AccuracyCurve(const QString &directory, const QString &identifier,
                   const QMap<int, QPair<double, double>> &data);

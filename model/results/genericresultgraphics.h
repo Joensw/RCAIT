@@ -11,7 +11,8 @@
 #include <QtConcurrent/QtConcurrentRun>
 #include <QStringBuilder>
 
-class GenericResultGraphics {
+class GenericResultGraphics : public QObject {
+Q_OBJECT
 
 private:
     const QString m_baseName;

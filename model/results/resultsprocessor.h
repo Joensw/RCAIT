@@ -16,8 +16,8 @@
 extern const QString TRAINING_JSON;
 extern const QString CLASSIFICATION_JSON;
 
-class ResultsProcessor : public QObject{
-    Q_OBJECT
+class ResultsProcessor : public QObject {
+Q_OBJECT
 public:
     ResultsProcessor() = default;
 

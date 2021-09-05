@@ -14,6 +14,7 @@
  * @brief Confusion matrices are used for visually comparing the precision of an AI
  */
 class ConfusionMatrix : public GenericResultGraphics {
+    Q_OBJECT
 public:
 
     /**

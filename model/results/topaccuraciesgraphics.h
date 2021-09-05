@@ -8,6 +8,8 @@
 #include "genericresultgraphics.h"
 
 class TopAccuraciesGraphics : public GenericResultGraphics {
+Q_OBJECT
+
 public:
     explicit TopAccuraciesGraphics(const QString &directory,
                                    const QList<QPair<QString, QList<double>>> &data = {});
@@ -16,7 +18,7 @@ public:
 
     void removeDataRow(const QString &identifier);
 
-    QList<double> operator[] (const QString &identifier) const;
+    QList<double> operator[](const QString &identifier) const;
 
     bool operator==(const TopAccuraciesGraphics &other) const;
 

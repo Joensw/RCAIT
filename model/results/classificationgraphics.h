@@ -11,6 +11,7 @@
 #include "genericresultgraphics.h"
 
 class ClassificationGraphics : public GenericResultGraphics {
+Q_OBJECT
 
 public:
     ClassificationGraphics(const QString &directory, const QString &identifier,
