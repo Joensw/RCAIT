@@ -25,7 +25,9 @@ add_library(mmclassificationplugin MODULE
     ../../../view/results/trainingresultview.h ../../../view/results/trainingresultview.cpp
 
         ../../../view/results/genericgraphicsview.h
-
+        ../../../view/results/topaccuraciesview.h ../../../view/results/topaccuraciesview.cpp
+        ../../../model/results/topaccuraciesgraphics.h ../../../model/results/topaccuraciesgraphics.cpp
+        ../../../model/results/genericresultgraphics.h
         ../../../model/projectmanager.h
         ../../../model/projectmanager.cpp
 
@@ -36,6 +38,7 @@ add_library(mmclassificationplugin MODULE
         ../../../view/utilities/imagegallery.h ../../../view/utilities/imagegallery.cpp
 
         ../../../view/utilities/customtablewidget.h ../../../view/utilities/customtablewidget.cpp
+
 )
 
 set_target_properties(mmclassificationplugin PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../plugins)

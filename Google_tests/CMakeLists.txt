@@ -99,6 +99,10 @@ set(Sources
         ../model/results/genericresultgraphics.h
         ../model/results/classificationgraphics.h
         ../model/results/classificationgraphics.cpp
+        ../view/results/topaccuraciesview.h
+        ../view/results/topaccuraciesview.cpp
+        ../model/results/topaccuraciesgraphics.h
+        ../model/results/topaccuraciesgraphics.cpp
 
         ../model/results/resultsprocessor.h
         ../model/results/resultsprocessor.cpp
