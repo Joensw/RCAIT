@@ -102,7 +102,7 @@ QStringList ImageInspectionModel::readLabeledFolder(const QDir &labeledFolder) {
     return images;
 }
 
-void ImageInspectionModel::insertLabeledImagePaths(const QMap<QString, QStringList> &insertTarget,
+void ImageInspectionModel::insertLabeledImagePaths(QMap<QString, QStringList> &insertTarget,
                                                    const QString &labeledImagePath) {
 
     QDir labeledImages(labeledImagePath);
@@ -110,8 +110,7 @@ void ImageInspectionModel::insertLabeledImagePaths(const QMap<QString, QStringLi
     QDirIterator it(labeledImages, QDirIterator::NoIteratorFlags);
 
     for (const auto &item: labeledImages.entryInfoList()) {
-        auto dir = item.dir();
-        insertTarget[dir.dirName()] = readLabeledFolder(dir);
+        insertTarget.insert(item.fileName(), readLabeledFolder(item.absoluteFilePath()));
     }
 }
 
