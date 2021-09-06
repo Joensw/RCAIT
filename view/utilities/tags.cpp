@@ -84,7 +84,7 @@ struct EmptySkipIterator {
 
     // skip until `end`
     explicit EmptySkipIterator(It it, It end) : it(it), end(end) {
-        while (this->it != end && this->it->text.isEmpty()) {
+        while (this->it != end && this->it->text.simplified().isEmpty()) {
             ++this->it;
         }
     }
@@ -279,19 +279,23 @@ struct Tags::Impl {
         ifce->update();
     }
 
-    [[nodiscard]] QString const& currentText() const {
+    [[nodiscard]] QString const &currentText() const {
         return tags[editing_index].text;
     }
 
-    QString& currentText() {
+    QString &currentText() {
         return tags[editing_index].text;
     }
 
-    [[nodiscard]] QRect const& currentRect() const {
+    void setCurrentText(const QString &text) {
+        tags[editing_index].text = text;
+    }
+
+    [[nodiscard]] QRect const &currentRect() const {
         return tags[editing_index].rect;
     }
 
-    QRect& currentRect() {
+    QRect &currentRect() {
         return tags[editing_index].rect;
     }
 
@@ -633,18 +637,22 @@ void Tags::keyPressEvent(QKeyEvent* event) {
             } else if (impl->editing_index > 0) {
                 impl->editPreviousTag();
             }
-            event->accept();
-            break;
-        case Qt::Key_Enter:
-        case Qt::Key_Return:
-            if (!impl->currentText().isEmpty()) {
-                impl->tags.insert(impl->tags.begin() + std::ptrdiff_t(impl->editing_index + 1), Tag());
-                impl->editNextTag();
-            }
-            event->accept();
-            break;
-        default:
-            unknown = true;
+                event->accept();
+                break;
+            case Qt::Key_Enter:
+            case Qt::Key_Return:
+                //Remove trailing and multiple spaces
+                impl->setCurrentText(impl->currentText().simplified());
+                if (!impl->currentText().isEmpty()) {
+                    impl->tags.insert(impl->tags.begin() + std::ptrdiff_t(impl->editing_index + 1), Tag());
+                    impl->editNextTag();
+                }
+                //Make blank text empty
+                impl->setCurrentText("");
+                event->accept();
+                break;
+            default:
+                unknown = true;
         }
     }
 
