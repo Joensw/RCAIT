@@ -4,6 +4,8 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
         : GenericComparisonWidget(parent),
           m_projectManager(&ProjectManager::getInstance()) {
 
+    //Set up top accuracies tab
+    configure_topAccuraciesTab();
 }
 
 void TrainingResultsWidget::configure_topAccuraciesTab() {
@@ -32,7 +34,6 @@ void TrainingResultsWidget::configure_topAccuraciesTab() {
 void TrainingResultsWidget::updateResultFolderPath(const QString &newDirPath) {
     GenericComparisonWidget::updateResultFolderPath(newDirPath);
 
-    //Old pointer will go out of scope after leaving this method and gets auto-deleted
     configure_topAccuraciesTab();
 }
 
