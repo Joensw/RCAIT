@@ -12,11 +12,12 @@ int main(int argc, char *argv[]) {
 
     //Set UI style and font
     QApplication::setStyle(QStyleFactory::create("fusion"));
-    QPalette palette = QApplication::palette();
     //Base color
-    palette.setColor(QPalette::Highlight, QColor("royal blue"));
+    QPalette palette = QApplication::palette();
+    palette.setColor(QPalette::Highlight, QColor("#016DFF"));
     QApplication::setPalette(palette);
 
+    //Font
     QFont inter("Inter", 9);
     inter.setHintingPreference(QFont::HintingPreference::PreferNoHinting);
     QApplication::setFont(inter);
