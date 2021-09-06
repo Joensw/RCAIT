@@ -2,9 +2,8 @@
 
 Controller::Controller(QObject *parent)
         : QObject(parent),
-          mDataManager(&DataManager::getInstance()) {
-
-    mConfigurationController.reset(new ConfigurationController(this));
+          mDataManager(&DataManager::getInstance()),
+          mConfigurationController(new ConfigurationController(this)) {
 
     connect(&*mConfigurationController, &ConfigurationController::sig_configurationComplete, this,
             &Controller::slot_configurationComplete);
@@ -17,6 +16,7 @@ void Controller::slot_configurationComplete() {
 
     mMainWindow.reset(new MainWindow);
 
+    //Set member variables
     mSettingsController.reset(new SettingsController(this, &*mDataManager));
     mProjectController.reset(new ProjectController(this, &*mDataManager, mMainWindow->getStartWidget()));
     mModelController.reset(new ModelController(this, &*mDataManager, mMainWindow->getImportFilesWidget()));
@@ -29,6 +29,7 @@ void Controller::slot_configurationComplete() {
                                 &*mDataManager));
     mTabController.reset(new TabController(mMainWindow->getTabWidget()));
 
+    //Connect Signals/Slots
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_openProject, &*mTabController,
             &TabController::slot_openProject);
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_openProject, &*mImageController,

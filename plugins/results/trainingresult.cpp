@@ -11,15 +11,14 @@ TrainingResult::TrainingResult(const QMap<int, QPair<double, double>> &accuracyC
           m_classLabels(classLabels),
           m_confusionMatrixValues(confusionMatrixValues),
           m_top1Accuracy(top1Accuracy),
-          m_top5Accuracy(top5Accuracy) {
+          m_top5Accuracy(top5Accuracy),
+          m_mostMisclassifiedImages(std::move(mostMisclassifiedImages)) {
 
-    auto &pm = ProjectManager::getInstance();
-    auto tempDir = pm.getProjectImageTempDir();
+    auto tempDir = ProjectManager::getInstance().getProjectImageTempDir();
     auto savable_id = getSavableIdentifier();
 
-    m_accCurve = new AccuracyCurve(tempDir, savable_id, accuracyCurveData);
-    m_confusionMatrix = new ConfusionMatrix(tempDir, savable_id, classLabels, confusionMatrixValues);
-    m_mostMisclassifiedImages = std::move(mostMisclassifiedImages);
+    m_accCurve.reset(new AccuracyCurve(tempDir, savable_id, accuracyCurveData));
+    m_confusionMatrix.reset(new ConfusionMatrix(tempDir, savable_id, classLabels, confusionMatrixValues));
 }
 
 const QMap<int, QPair<double, double>> &TrainingResult::getAccuracyCurveData() const {
@@ -34,16 +33,17 @@ const QList<int> &TrainingResult::getConfusionMatrixValues() const {
     return m_confusionMatrixValues;
 }
 
-bool TrainingResult::isValid()
-{
-    return !getAccuracyCurveData().isEmpty() && !getClassLabels().isEmpty() && !getConfusionMatrixValues().isEmpty();
+bool TrainingResult::isValid() const {
+    return !m_accuracyCurveData.isEmpty()
+           && !m_classLabels.isEmpty()
+           && !m_confusionMatrixValues.isEmpty();
 }
 
-AccuracyCurve *TrainingResult::getAccuracyCurve() {
+const QSharedPointer<AccuracyCurve> &TrainingResult::getAccuracyCurve() const {
     return m_accCurve;
 }
 
-ConfusionMatrix *TrainingResult::getConfusionMatrix() const {
+const QSharedPointer<ConfusionMatrix> &TrainingResult::getConfusionMatrix() const {
     return m_confusionMatrix;
 }
 

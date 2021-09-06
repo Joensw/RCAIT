@@ -13,27 +13,28 @@ void GenericResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
     auto generateGraphicsTask = QtConcurrent::run([this, receiver] {
         this->generateGraphicsInternal('"' % m_fullPath % '"');
         this->passResultGraphics(m_fullPath, receiver);
+        emit sig_graphicsGenerated(receiver, this, m_fullPath);
     });
     Q_UNUSED(generateGraphicsTask)
 }
 
-const QString &GenericResultGraphics::getBaseName() const {
+[[maybe_unused]] const QString &GenericResultGraphics::getBaseName() const {
     return m_baseName;
 }
 
-const QString &GenericResultGraphics::getExtension() const {
+[[maybe_unused]] const QString &GenericResultGraphics::getExtension() const {
     return m_extension;
 }
 
-const QString &GenericResultGraphics::getFullName() const {
+[[maybe_unused]] const QString &GenericResultGraphics::getFullName() const {
     return m_fullName;
 }
 
-const QString &GenericResultGraphics::getDirectory() const {
+[[maybe_unused]] const QString &GenericResultGraphics::getDirectory() const {
     return m_directory;
 }
 
-const QString &GenericResultGraphics::getFullPath() const {
+[[maybe_unused]] const QString &GenericResultGraphics::getFullPath() const {
     return m_fullPath;
 }
 
@@ -45,10 +46,10 @@ void GenericResultGraphics::launch_externalGraphicsGenerator(const QString &comm
     process.waitForStarted();
     process.waitForFinished();
 
-    qInfo() << qPrintable("::::::" % commandWithArgs % "::::::" % "\n")
-            << qPrintable(process.readAllStandardError().simplified().append("\n")) //Print in console
-            << qPrintable(process.readAll().simplified().append("\n")) //Print in console
-            << qPrintable("::::::" % QString("END OF OUTPUT") % "::::::" % "\n");
+    qInfo() << qPrintable("::::::" % commandWithArgs % "::::::") << "\n"
+            << qPrintable(process.readAllStandardError().simplified()) << "\n"  //Print in console
+            << qPrintable(process.readAll().simplified()) << "\n"               //Print in console
+            << qPrintable("::::::" % QString("END OF OUTPUT") % "::::::") << "\n";
 
     process.close();
 }

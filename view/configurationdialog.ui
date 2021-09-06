@@ -41,7 +41,7 @@
              </property>
              <property name="icon">
               <iconset resource="UI_Icons.qrc">
-               <normaloff>:/Resources/UISymbols/UI_Folder_Icon.svg</normaloff>:/Resources/UISymbols/UI_Folder_Icon.svg</iconset>
+               <normaloff>:/UISymbols/UI_Folder_Icon.svg</normaloff>:/UISymbols/UI_Folder_Icon.svg</iconset>
              </property>
             </widget>
            </item>
@@ -92,7 +92,7 @@
              </property>
              <property name="icon">
               <iconset resource="UI_Icons.qrc">
-               <normaloff>:/Resources/UISymbols/UI_Folder_Icon.svg</normaloff>:/Resources/UISymbols/UI_Folder_Icon.svg</iconset>
+               <normaloff>:/UISymbols/UI_Folder_Icon.svg</normaloff>:/UISymbols/UI_Folder_Icon.svg</iconset>
              </property>
             </widget>
            </item>
@@ -149,7 +149,7 @@
              </property>
              <property name="icon">
               <iconset resource="UI_Icons.qrc">
-               <normaloff>:/Resources/UISymbols/UI_Folder_Icon.svg</normaloff>:/Resources/UISymbols/UI_Folder_Icon.svg</iconset>
+               <normaloff>:/UISymbols/UI_Folder_Icon.svg</normaloff>:/UISymbols/UI_Folder_Icon.svg</iconset>
              </property>
             </widget>
            </item>

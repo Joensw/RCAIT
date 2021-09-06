@@ -4,6 +4,7 @@
 #include <QString>
 #include <QWidget>
 #include <QSettings>
+#include <utility>
 
 #include "classificationpluginmanager.h"
 

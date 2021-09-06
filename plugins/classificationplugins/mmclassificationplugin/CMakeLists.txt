@@ -31,11 +31,11 @@ add_library(mmclassificationplugin MODULE
 
     ../../../view/results/classificationresultview.h ../../../view/results/classificationresultview.cpp
 
-    ../../../view/results/canvas.h ../../../view/results/canvas.cpp
+        ../../../view/utilities/canvas.h ../../../view/utilities/canvas.cpp
 
-    ../../../view/imagegallery.h ../../../view/imagegallery.cpp
+        ../../../view/utilities/imagegallery.h ../../../view/utilities/imagegallery.cpp
 
-    ../../../view/customtablewidget.h ../../../view/customtablewidget.cpp
+        ../../../view/utilities/customtablewidget.h ../../../view/utilities/customtablewidget.cpp
 )
 
 set_target_properties(mmclassificationplugin PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../plugins)

@@ -15,13 +15,13 @@ StaticList::StaticList(QWidget *parent) :
     ui->listWidget->setDragEnabled(false);
     ui->listWidget->setSelectionMode(QListWidget::NoSelection);
     ui->listWidget->setResizeMode(QListWidget::Adjust);
-    QStringList images = QDir(":/Resources/images/Flugzeug/").entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
+    QStringList images = QDir(":/images/Flugzeug/").entryList(QStringList() << "*.JPG" << "*.jpg" << "*.png", QDir::Files);
     std::shuffle(images.begin(),images.end()-1, std::mt19937(std::random_device()()));
     int i = 0;
     foreach(QString imageName, images){
         if(i >= 10) break;
 
-        QString path = ":/Resources/images/Flugzeug/" + imageName;
+        QString path = ":/images/Flugzeug/" + imageName;
 
 
         QImage image(path);

@@ -1,38 +1,6 @@
 #include "projectmanager.h"
-#include "confusionmatrix.h"
-#include "accuracycurve.h"
 
-#include <QStringList>
-#include <QDir>
-#include <QSettings>
-#include <QRegularExpression>
 
-const QString resultsDirectoryName = "results";
-const QString datasetDirectoryName = "data";
-const QString tempImagesDirectoryName = "temp_Images";
-const QString tempDataAugDirectoryName = "temp_Aug";
-const QString trainingsResultsDirectoryName = "training_results";
-const QString classificationResultsDirectoryName = "classification_results";
-
-const QString projectNameIdentifier = "projectName";
-const QString projectDatasetDirectoryIdentifier = "datasetDirName";
-const QString projectValidationDatasetIdentifier = "validationDatasetDirName";
-const QString projectTrainingDatasetIdentifier = "trainingDatasetDirName";
-const QString projectTempImagesDirectoryIdentifier = "tempImagesDirName";
-const QString projectTempDataAugDirectoryIdentifier = "tempDataAugDirName";
-const QString projectResultsDirectoryIdentifier = "resultsDirName";
-const QString projectTrainingsResultsDirectoryIdentifer = "trainingResultsDirName";
-const QString projectClassificationResultsDirectoryIdentifier = "classificationResultsDirName";
-const QString projectWorkingDirIdentifier = "workingDirName";
-
-const QString projectFileType = ".ini";
-
-const QString  validiationDatasetDirectoryName = "validation";
-const QString  trainingDatasetDirectoryName = "training";
-
-const QString workingDirectoryName = "working_directory";
-
-//on creation, meaning program startup, there will be no project selected. all the strings will be null/empty
 ProjectManager::ProjectManager() {
 
 }
@@ -192,7 +160,7 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
         QDir trainingResultsDir(getTrainingResultsDir());
 
         QStringList filters;
-        filters << "*.txt";
+        filters << TEXT_FILE_FILTER;
         trainingResultsDir.setNameFilters(filters);
 
         trainingResultsDir.setFilter(QDir::Files | QDir::NoDotAndDotDot);
@@ -208,15 +176,15 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
 }
 
 QString ProjectManager::createWorkDirSubfolder(const QString &name){
-    int identifier = 1;
+    int runningNameCount = 1;
     QDir dir(mProjectWorkingDir);
     dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
-    QString alteredName = name + "_" + QString::number(identifier);
+    QString alteredName = name + "_" + QString::number(runningNameCount);
     QStringList entries = dir.entryList();
 
     while (entries.contains(alteredName)) {
-        identifier++;
-        alteredName = name + "_" + QString::number(identifier);
+        runningNameCount++;
+        alteredName = name + "_" + QString::number(runningNameCount);
     }
     QString path = mProjectWorkingDir + "/" + alteredName;
     dir.mkpath(path);
@@ -231,20 +199,19 @@ void ProjectManager::setProjectsDirectory(const QString &newDirectory)
 bool ProjectManager::verifyName(QString projectName, QString *error)
 {
     if (projectName.length() == 0){
-        error->append(QObject::tr("Name must contain at least 1 character") + "\n");
+        error->append(QObject::tr(qPrintable(ERROR_NOCHAR)));
         return false;
     }
 
-    QRegularExpression noSpacesEx("^[ ]+$");
+    QRegularExpression noSpacesEx(REGEX_ONLY_SPACE);
     QRegularExpressionMatch match = noSpacesEx.match(projectName);
     if (match.hasMatch()){
-        error->append(QObject::tr("Name should contain more than only space (\" \") characters"));
+        error->append(QObject::tr(qPrintable(ERROR_ONLY_SPACE)));
         return false;
     }
-
-    //the next step is easier if we filters these outs prematurely
+    //TODO define these elsewhere and check a list of banned characters dynamically
     if (projectName.contains("/") || projectName.contains("\\")) {
-        error->append(QObject::tr("Name may not contain the  \"/\" or \"\\\" characters"));
+        error->append(QObject::tr(qPrintable(ERROR_ILLEGAL_CHAR)));
         return false;
     }
 
@@ -253,7 +220,7 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     QStringList projects = projectsDir.entryList();
     if (projects.contains(projectName)) {
-        error->append(QObject::tr("A project with this name aleady exists in the project directory"));
+        error->append(QObject::tr(qPrintable(ERROR_DUPLICATE)));
         return false;
 
     }
@@ -262,7 +229,7 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
     QDir tempDir(mProjectsDirectory + "/" + projectName);
     tempDir.setFilter(QDir::NoDotAndDotDot);
     if (!tempDir.mkpath(mProjectsDirectory + "/" + projectName )){
-        error->append(QObject::tr("The Operating system cannot support this name"));
+        error->append(QObject::tr(qPrintable(ERROR_OS_SUPPORT)));
         return false;
     }
     tempDir.removeRecursively();

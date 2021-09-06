@@ -26,8 +26,8 @@
          <string>Import New Tasks</string>
         </property>
         <property name="icon">
-         <iconset resource="../UI_Icons.qrc">
-          <normaloff>:/Resources/UISymbols/UI_Add_Task.svg</normaloff>:/Resources/UISymbols/UI_Add_Task.svg</iconset>
+         <iconset resource="UI_Icons.qrc">
+          <normaloff>:/UISymbols/UI_Add_Task.svg</normaloff>:/UISymbols/UI_Add_Task.svg</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -72,8 +72,8 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="../UI_Icons.qrc">
-            <normaloff>:/Resources/UISymbols/UI_Move_Right.svg</normaloff>:/Resources/UISymbols/UI_Move_Right.svg</iconset>
+           <iconset resource="UI_Icons.qrc">
+            <normaloff>:/UISymbols/UI_Move_Right.svg</normaloff>:/UISymbols/UI_Move_Right.svg</iconset>
           </property>
           <property name="flat">
            <bool>false</bool>
@@ -86,8 +86,8 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="../UI_Icons.qrc">
-            <normaloff>:/Resources/UISymbols/UI_Move_All_Right.svg</normaloff>:/Resources/UISymbols/UI_Move_All_Right.svg</iconset>
+           <iconset resource="UI_Icons.qrc">
+            <normaloff>:/UISymbols/UI_Move_All_Right.svg</normaloff>:/UISymbols/UI_Move_All_Right.svg</iconset>
           </property>
           <property name="flat">
            <bool>false</bool>
@@ -100,8 +100,8 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="../UI_Icons.qrc">
-            <normaloff>:/Resources/UISymbols/UI_Move_Left.svg</normaloff>:/Resources/UISymbols/UI_Move_Left.svg</iconset>
+           <iconset resource="UI_Icons.qrc">
+            <normaloff>:/UISymbols/UI_Move_Left.svg</normaloff>:/UISymbols/UI_Move_Left.svg</iconset>
           </property>
           <property name="flat">
            <bool>false</bool>
@@ -114,8 +114,8 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="../UI_Icons.qrc">
-            <normaloff>:/Resources/UISymbols/UI_Move_All_Left.svg</normaloff>:/Resources/UISymbols/UI_Move_All_Left.svg</iconset>
+           <iconset resource="UI_Icons.qrc">
+            <normaloff>:/UISymbols/UI_Move_All_Left.svg</normaloff>:/UISymbols/UI_Move_All_Left.svg</iconset>
           </property>
           <property name="autoDefault">
            <bool>false</bool>
@@ -150,8 +150,8 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="../UI_Icons.qrc">
-            <normaloff>:/Resources/UISymbols/UI_Start_Icon.svg</normaloff>:/Resources/UISymbols/UI_Start_Icon.svg</iconset>
+           <iconset resource="UI_Icons.qrc">
+            <normaloff>:/UISymbols/UI_Start_Icon.svg</normaloff>:/UISymbols/UI_Start_Icon.svg</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -173,8 +173,8 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="../UI_Icons.qrc">
-            <normaloff>:/Resources/UISymbols/UI_Pause_Icon.svg</normaloff>:/Resources/UISymbols/UI_Pause_Icon.svg</iconset>
+           <iconset resource="UI_Icons.qrc">
+            <normaloff>:/UISymbols/UI_Pause_Icon.svg</normaloff>:/UISymbols/UI_Pause_Icon.svg</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -193,8 +193,8 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="../UI_Icons.qrc">
-            <normaloff>:/Resources/UISymbols/UI_Delete_Alt_Icon.svg</normaloff>:/Resources/UISymbols/UI_Delete_Alt_Icon.svg</iconset>
+           <iconset resource="UI_Icons.qrc">
+            <normaloff>:/UISymbols/UI_Delete_Alt_Icon.svg</normaloff>:/UISymbols/UI_Delete_Alt_Icon.svg</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -228,8 +228,8 @@
   </layout>
  </widget>
  <resources>
-  <include location="../UI_Icons.qrc"/>
-  <include location="../UI_Icons.qrc"/>
+  <include location="UI_Icons.qrc"/>
+  <include location="UI_Icons.qrc"/>
  </resources>
  <connections/>
 </ui>

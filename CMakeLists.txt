@@ -19,17 +19,17 @@ set(REQUIRED_LIBS_QUALIFIED Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Svg Qt6::SvgWid
 
 set(ALL_PROJECT_DIRS
         ${CMAKE_CURRENT_SOURCE_DIR}
-        model model/automation model/pluginusage model/results
-        view view/results
+        model model/automation model/pluginusage model/results model/utilities
+        view view/results view/utilities
         controller
         Resources
-        plugins plugins/imageplugins plugins/classificationplugins plugins/results
+        plugins plugins/classificationplugins plugins/imageplugins plugins/results
         )
 
 set(CMAKE_AUTOUIC_SEARCH_PATHS  ${ALL_PROJECT_DIRS})
 include_directories(${ALL_PROJECT_DIRS})
 
-file(GLOB_RECURSE SOURCE_FILES_A
+file(GLOB_RECURSE SOURCE_FILES
         "model/*"
         "view/*"
         "controller/*"
@@ -37,18 +37,11 @@ file(GLOB_RECURSE SOURCE_FILES_A
         "Resources/*"
         )
 
-list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/test/.*" )
-list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/flickrplugin/.*" )
-list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/folderplugin/.*" )
-list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/bingplugin/.*" )
-list(FILTER SOURCE_FILES_A EXCLUDE REGEX "/mmclassificationplugin/.*")
-
-
-file(GLOB SOURCE_FILES_B
-        "*.qrc"
-        "*.ui"
-        "*.py"
-        )
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/test/.*" )
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/flickrplugin/.*" )
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/folderplugin/.*" )
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/bingplugin/.*" )
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/mmclassificationplugin/.*")
 
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/Resources/Fonts/Inter-Regular.otf ${CMAKE_CURRENT_BINARY_DIR}/Inter-Regular.otf COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/confusionmatrix.py ${CMAKE_CURRENT_BINARY_DIR}/confusionmatrix.py COPYONLY)
@@ -62,8 +55,6 @@ CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/classificationplugins/mmclass
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/classificationplugins/mmclassificationplugin/mmclassification_test.py ${CMAKE_CURRENT_BINARY_DIR}/mmclassification_test.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/classificationplugins/mmclassificationplugin/mmclassification_train.py ${CMAKE_CURRENT_BINARY_DIR}/mmclassification_train.py COPYONLY)
 
-set(SOURCE_FILES ${SOURCE_FILES_A} ${SOURCE_FILES_B})
-
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 
 file(GLOB TS_FILES
@@ -73,11 +64,13 @@ file(GLOB TS_FILES
 #qt_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${TS_FILES})
 qt_add_translation(QM_FILES ${TS_FILES})
 
+set(SRCS "${CMAKE_CURRENT_SOURCE_DIR}/RCAIT.rc")
+
 add_executable(${PROJECT_NAME}
         ${SOURCE_FILES}
         ${TS_FILES}
         ${QM_FILES}
-       # ${SRCS} RCAIT.rc
+        ${SRCS}
         )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${REQUIRED_LIBS_QUALIFIED})

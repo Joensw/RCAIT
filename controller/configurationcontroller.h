@@ -32,14 +32,15 @@ public slots:
      * @param classificationPluginDir selected classification plugin directory
      * @param imageLoaderPluginsDir selected image loader plugin directory
      */
-    void slot_directoriesSpecified(QString projectDir, QString classificationPluginDir, QString imageLoaderPluginsDir);
+    void slot_directoriesSpecified(const QString &projectDir, const QString &classificationPluginDir,
+                                   const QString &imageLoaderPluginsDir);
 signals:
     /**
      * @brief sig_configurationComplete emitted when the configuration is accepted
      */
     void sig_configurationComplete();
 private:
-    ConfigurationDialog *mConfigurationDialog;
+    QScopedPointer<ConfigurationDialog> mConfigurationDialog;
 
     SettingsManager *mSettingsManager;
 

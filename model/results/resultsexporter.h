@@ -1,5 +1,5 @@
-#ifndef RESULTEXPORTER_H
-#define RESULTEXPORTER_H
+#ifndef RESULTSEXPORTER_H
+#define RESULTSEXPORTER_H
 
 #include <QString>
 #include <QJsonObject>
@@ -8,17 +8,20 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <projectmanager.h>
-#include <mapadapt.h>
+#include <model/utilities/mapadapt.h>
 #include <QJsonArray>
 #include "topaccuraciesgraphics.h"
 #include "resultsprocessor.h"
 
+//Dummy variable to achieve optional parameters
 static bool SAVED;
 
 class ResultsExporter : public QObject {
 Q_OBJECT
 
 public:
+    ResultsExporter();
+
     void updateResultFolderPaths();
 
 public slots:
@@ -30,6 +33,8 @@ public slots:
     void slot_save_ClassificationResult(ClassificationResult *result, bool &success = SAVED);
 
 private:
+
+    ProjectManager *m_projectManager;
     QString m_trainingResultsDir;
     QString m_classificationResultsDir;
 
@@ -37,7 +42,23 @@ private:
 
     static bool writeJSON(const QJsonObject &jsonObject, const QString &filepath);
 
-    static bool saveFile(const QString &oldFilePath, const QString &newFilePath) ;
+    static bool saveFile(const QString &oldFilePath, const QString &newFilePath);
+
+    static QJsonObject
+    trainingResult2JSON(const TrainingResult *result);
+
+    static QJsonObject
+    classificationResult2JSON(const ClassificationResult *result);
+
+    template<typename T>
+    static QJsonArray QJsonArray_fromAnyList(const QList<T> &list) {
+        QJsonArray JSONArray;
+
+        for (const auto &value: list)
+            JSONArray << value;
+
+        return JSONArray;
+    }
 };
 
-#endif // RESULTEXPORTER_H
+#endif // RESULTSEXPORTER_H

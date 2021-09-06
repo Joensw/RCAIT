@@ -29,8 +29,8 @@
        </property>
        <property name="icon">
         <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/UISymbols/UI_Fullscreen_Icon.svg</normaloff>
-         <normalon>:/Resources/UISymbols/UI_Fullscreen_Exit_Icon.svg</normalon>:/Resources/UISymbols/UI_Fullscreen_Icon.svg</iconset>
+         <normaloff>:UISymbols/UI_Fullscreen_Icon.svg</normaloff>
+         <normalon>:UISymbols/UI_Fullscreen_Exit_Icon.svg</normalon>:UISymbols/UI_Fullscreen_Icon.svg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -160,7 +160,7 @@ selection-background-color: rgb(255, 255, 255);</string>
            </property>
            <property name="icon">
             <iconset resource="UI_Icons.qrc">
-             <normaloff>:/Resources/UISymbols/UI_Add_Icon.svg</normaloff>:/Resources/UISymbols/UI_Add_Icon.svg</iconset>
+             <normaloff>:UISymbols/UI_Add_Icon.svg</normaloff>:UISymbols/UI_Add_Icon.svg</iconset>
            </property>
           </widget>
          </item>
@@ -171,7 +171,7 @@ selection-background-color: rgb(255, 255, 255);</string>
            </property>
            <property name="icon">
             <iconset resource="UI_Icons.qrc">
-             <normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</normaloff>:/Resources/UISymbols/UI_Delete_Item.svg</iconset>
+             <normaloff>:UISymbols/UI_Delete_Item.svg</normaloff>:UISymbols/UI_Delete_Item.svg</iconset>
            </property>
           </widget>
          </item>
@@ -193,7 +193,7 @@ selection-background-color: rgb(255, 255, 255);</string>
            </property>
            <property name="icon">
             <iconset resource="UI_Icons.qrc">
-             <normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</normaloff>:/Resources/UISymbols/UI_Arrow_Forward.svg</iconset>
+             <normaloff>:UISymbols/UI_Arrow_Forward.svg</normaloff>:UISymbols/UI_Arrow_Forward.svg</iconset>
            </property>
           </widget>
          </item>

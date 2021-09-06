@@ -70,11 +70,24 @@ void TopAccuraciesView::slot_pushButton_updateGraphics_clicked() {
 }
 
 void TopAccuraciesView::configure_updateGraphicsButton() {
-    const auto icon = QIcon(":/Resources/UISymbols/UI_Reload_Icon.svg");
+    const auto icon = QIcon(":/UISymbols/UI_Reload_Icon.svg");
     m_pushButton_updateGraphics = ui->tableWidget_topAccuracies->getCornerButton();
     if (m_pushButton_updateGraphics) {
         m_pushButton_updateGraphics->setIcon(icon);
     }
+}
+
+[[maybe_unused]] void TopAccuraciesView::updateGraphicsButton_setEnabled(bool enabled) {
+    if (m_pushButton_updateGraphics) {
+        m_pushButton_updateGraphics->setEnabled(enabled);
+    }
+}
+
+[[maybe_unused]] bool TopAccuraciesView::updateGraphicsButton_isEnabled() {
+    if (m_pushButton_updateGraphics) {
+        return m_pushButton_updateGraphics->isEnabled();
+    }
+    return false;
 }
 
 [[maybe_unused]] const QSharedPointer<QGraphicsItem> &TopAccuraciesView::getTopAccuraciesImage() const {

@@ -113,14 +113,14 @@ set(Sources
         ../view/results/genericgraphicsview.h
 
 
-        ../view/results/canvas.h
-        ../view/results/canvas.cpp
+        ../view/utilities/canvas.h
+        ../view/utilities/canvas.cpp
 
-        ../view/imagegallery.h
-        ../view/imagegallery.cpp
+        ../view/utilities/imagegallery.h
+        ../view/utilities/imagegallery.cpp
 
-        ../view/customtablewidget.h
-        ../view/customtablewidget.cpp
+        ../view/utilities/customtablewidget.h
+        ../view/utilities/customtablewidget.cpp
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

@@ -12,9 +12,9 @@ class TabController : public QObject
 public:
     /**
      * @brief TabController creates a new tabController
-     * @param tWidget a CustomTabWidget argument
+     * @param tabWidget a CustomTabWidget argument
      */
-    TabController(CustomTabWidget * tWidget);
+    TabController(CustomTabWidget *tabWidget);
 public slots:
     /**
      * @brief slot_openProject called when a project is openened, unlocks the importFilesTab

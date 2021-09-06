@@ -31,7 +31,7 @@ Mehrere Veränderungen für dieses PSE, wie
 Quelle des Originals: https://github.com/nicktrandafil/tags
 */
 
-#include <view/tags.hpp>
+#include <view/utilities/tags.hpp>
 
 #include <QApplication>
 #include <QCompleter>
@@ -41,7 +41,7 @@ Quelle des Originals: https://github.com/nicktrandafil/tags
 #include <QStyleHints>
 #include <QStyleOptionFrame>
 #include <QTextLayout>
-#include <view/qinputcontrol_p.h>
+#include <view/utilities/qinputcontrol_p.h>
 
 #include <cassert>
 
@@ -180,7 +180,7 @@ struct Tags::Impl {
             auto const i_cross_r = crossRect(i_r);
 
             //Paint icon
-            QIcon remove_icon = QIcon(":/Resources/UISymbols/UI_Delete_Item.svg");
+            QIcon remove_icon = QIcon(":/UISymbols/UI_Delete_Item.svg");
             remove_icon.paint(&p,i_cross_r.toRect(),Qt::AlignVertical_Mask|Qt::AlignHCenter);
         }
     }

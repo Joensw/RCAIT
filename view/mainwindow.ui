@@ -20,8 +20,8 @@
    <string>Rapid Classification AI Trainer</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="UI_Icons.qrc">
-    <normaloff>:/Resources/UISymbols/processor_icon.svg</normaloff>:/Resources/UISymbols/processor_icon.svg</iconset>
+   <iconset>
+    <normaloff>:/RCAIT.ico</normaloff>:/RCAIT.ico</iconset>
   </property>
   <property name="iconSize">
    <size>
@@ -55,7 +55,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -74,8 +74,8 @@
       </property>
       <widget class="StartWidget" name="tab_start">
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/Tab_Start_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Start_Icon.svg</iconset>
+        <iconset resource="../Resources/UI_Icons.qrc">
+         <normaloff>:/TabIcons/Filled/Tab_Start_Icon.svg</normaloff>:/TabIcons/Filled/Tab_Start_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
         <string comment="tab_start_text">Home</string>
@@ -86,8 +86,8 @@
         <bool>true</bool>
        </property>
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/Tab_Crawler_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Crawler_Icon.svg</iconset>
+        <iconset>
+         <normaloff>:/TabIcons/Filled/Tab_Crawler_Icon.svg</normaloff>:/TabIcons/Filled/Tab_Crawler_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
         <string>Import Files</string>
@@ -95,8 +95,8 @@
       </widget>
       <widget class="ImageInspectionWidget" name="tab_image_inspection">
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Input_Images_Icon.svg</iconset>
+        <iconset>
+         <normaloff>:/TabIcons/Filled/Tab_Input_Images_Icon.svg</normaloff>:/TabIcons/Filled/Tab_Input_Images_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
         <string>Image Inspection</string>
@@ -104,8 +104,8 @@
       </widget>
       <widget class="AITrainingWidget" name="tab_ai_training">
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/Tab_Training_Images_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Training_Images_Icon.svg</iconset>
+        <iconset>
+         <normaloff>:/TabIcons/Filled/Tab_Training_Images_Icon.svg</normaloff>:/TabIcons/Filled/Tab_Training_Images_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
         <string>AI Training</string>
@@ -113,8 +113,8 @@
       </widget>
       <widget class="InputImagesWidget" name="tab_inputimages">
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/filter_black_24dp.svg</normaloff>:/Resources/TabIcons/Filled/filter_black_24dp.svg</iconset>
+        <iconset>
+         <normaloff>:/TabIcons/Filled/filter_black_24dp.svg</normaloff>:/TabIcons/Filled/filter_black_24dp.svg</iconset>
        </attribute>
        <attribute name="title">
         <string>Input Images</string>
@@ -122,8 +122,8 @@
       </widget>
       <widget class="ResultsWidget" name="tab_results">
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/Tab_Results_Icon.svg</normaloff>:/Resources/TabIcons/Filled/Tab_Results_Icon.svg</iconset>
+        <iconset>
+         <normaloff>:/TabIcons/Filled/Tab_Results_Icon.svg</normaloff>:/TabIcons/Filled/Tab_Results_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
         <string>Results</string>
@@ -131,8 +131,8 @@
       </widget>
       <widget class="AutomationWidget" name="tab_automation">
        <attribute name="icon">
-        <iconset resource="UI_Icons.qrc">
-         <normaloff>:/Resources/TabIcons/Filled/batch_prediction_black_24dp.svg</normaloff>:/Resources/TabIcons/Filled/batch_prediction_black_24dp.svg</iconset>
+        <iconset>
+         <normaloff>:/TabIcons/Filled/batch_prediction_black_24dp.svg</normaloff>:/TabIcons/Filled/batch_prediction_black_24dp.svg</iconset>
        </attribute>
        <attribute name="title">
         <string>Automation</string>
@@ -149,7 +149,7 @@
      <x>0</x>
      <y>0</y>
      <width>1250</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -205,8 +205,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="UI_Icons.qrc"/>
-  <include location="UI_Icons.qrc"/>
+  <include location="../Resources/UI_Icons.qrc"/>
  </resources>
  <connections/>
 </ui>

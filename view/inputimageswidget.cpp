@@ -27,9 +27,17 @@ void InputImagesWidget::on_selectFolderButton_clicked()
 {
      path = QFileDialog::getExistingDirectory(this, tr("Select image directory"));
      if (path == nullptr) return;
+     QStringList imagePaths;
+     QDir imgDir(path);
+     foreach (QString imgSubPath, imgDir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot)){
+         QDir imgSubDir(path + "/" + imgSubPath);
+         foreach (QString imageName, imgSubDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.jpeg" << "*.png", QDir::Files)){
+             imagePaths.append(imgSubDir.absoluteFilePath(imageName));
+         }
+     }
      ui->preview->clearAndStop();
      ui->preview->setEnabled(true);
-     ui->preview->concurrentAddImages(path);
+     ui->preview->concurrentAddImages(imagePaths);
      ui->classifyButton->setEnabled(true);
 }
 

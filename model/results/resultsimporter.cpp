@@ -5,19 +5,17 @@ enum GraphicsType {
     ACCURACYCURVE,
     CONFUSIONMATRIX,
     TOPACCURACIES,
-    _COUNT
-};
-const std::array<QRegularExpression, _COUNT> GRAPHICSTYPE2REGEX = {
-        QRegularExpression("classification_(.*)\\.(svg|png)$"),
-        QRegularExpression("accuracycurve_(.*)\\.(svg|png)$"),
-        QRegularExpression("confusionmatrix_(.*)\\.(svg|png)$"),
-        QRegularExpression("topaccuracies_(.*)\\.(svg|png)$")
+    $COUNT
 };
 
+ResultsImporter::ResultsImporter()
+        : m_projectManager(&ProjectManager::getInstance()) {
+
+}
+
 void ResultsImporter::updateResultFolderPaths() {
-    auto &pm = ProjectManager::getInstance();
-    m_trainingResultsDir = pm.getTrainingResultsDir();
-    m_classificationResultsDir = pm.getClassificationResultsDir();
+    m_trainingResultsDir = m_projectManager->getTrainingResultsDir();
+    m_classificationResultsDir = m_projectManager->getClassificationResultsDir();
 }
 
 QString ResultsImporter::getResultDataPath(const QString &resultNameTemplate, const QString &baseDir,
@@ -27,12 +25,11 @@ QString ResultsImporter::getResultDataPath(const QString &resultNameTemplate, co
     auto fullName = resultNameTemplate.arg(folderIdentifier);
     auto dir = QDir(baseDir);
 
-    if (!dir.cd(folderIdentifier)) {
+    if (!dir.cd(folderIdentifier))
         qWarning() << "Error finding result dir " << folderIdentifier;
-    }
-    if (!dir.exists(fullName)) {
+    if (!dir.exists(fullName))
         qWarning() << "Error finding target file " << fullName;
-    }
+
     return dir.absoluteFilePath(fullName);
 }
 
@@ -41,6 +38,8 @@ QString ResultsImporter::getResultDataPath(const QString &resultNameTemplate, co
  */
 void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
                                                        const QString &runNameToCompare) {
+    Q_ASSERT(graphics);
+    Q_ASSERT(view);
 
     auto filepath = getResultDataPath(TRAINING_JSON, m_trainingResultsDir, runNameToCompare);
     auto jsonObject = readJSON(filepath);
@@ -54,6 +53,9 @@ void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view, 
 
 void ResultsImporter::slot_comparison_unloadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
                                                          const QString &runNameToCompare) {
+    Q_ASSERT(graphics);
+    Q_ASSERT(view);
+
     graphics->removeDataRow(runNameToCompare);
     view->removeTopAccuraciesEntry(runNameToCompare);
 }
@@ -63,6 +65,7 @@ void ResultsImporter::slot_comparison_unloadAccuracyData(TopAccuraciesView *view
  */
 void ResultsImporter::slot_comparison_loadClassificationResultData(ClassificationResultView *view,
                                                                    const QString &runNameToCompare) {
+    Q_ASSERT(view);
     view->setSaved(true);
 
     auto filepath = getResultDataPath(CLASSIFICATION_JSON, m_classificationResultsDir, runNameToCompare);
@@ -73,27 +76,17 @@ void ResultsImporter::slot_comparison_loadClassificationResultData(Classificatio
     auto json_additionalResults = jsonObject["additionalResults"].toArray();
 
     QMap<QString, QList<double>> classification_data;
-    for (const auto &value : json_classification_data) {
+    for (const auto &value: json_classification_data) {
         auto obj = value.toObject();
         auto imagePath = obj["image_path"].toString();
         auto json_list = obj["confidence"].toArray();
 
-        QList<double> list;
-        for (const auto &item : json_list) {
-            list << item.toDouble();
-        }
+        auto list = QJsonArray_toList<double>(json_list);
         classification_data[imagePath] = list;
     }
 
-    QStringList labels;
-    for (const auto &label : json_labels) {
-        labels << label.toString();
-    }
-
-    QStringList additionalResults;
-    for (const auto &resultPath : json_additionalResults) {
-        additionalResults << resultPath.toString();
-    }
+    auto labels = QJsonArray_toList<QString>(json_labels);
+    auto additionalResults = QJsonArray_toList<QString>(json_additionalResults);
 
     auto result = new ClassificationResult(classification_data, labels, additionalResults);
     emit sig_normal_loadClassificationResultData(view, result);
@@ -109,6 +102,7 @@ void ResultsImporter::slot_comparison_loadClassificationResultGraphics(GenericGr
  */
 void
 ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare) {
+    Q_ASSERT(view);
     view->setSaved(true);
 
     auto filepath = getResultDataPath(TRAINING_JSON, m_trainingResultsDir, runNameToCompare);
@@ -123,7 +117,7 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
     auto json_additionalResults = jsonObject["additionalResults"].toArray();
 
     QMap<int, QPair<double, double>> accuracy_data;
-    for (const auto &value : json_accuracy_data) {
+    for (const auto &value: json_accuracy_data) {
         auto obj = value.toObject();
         int iteration = obj["iteration"].toInt();
         int train = obj["train"].toInt();
@@ -132,25 +126,10 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
         accuracy_data[iteration] = qMakePair(train, validation);
     }
 
-    QStringList class_labels;
-    for (const auto &class_label : json_class_labels) {
-        class_labels << class_label.toString();
-    }
-
-    QList<int> confusionmatrix;
-    for (const auto &value : json_confusionmatrix) {
-        confusionmatrix << value.toInt();
-    }
-
-    QStringList most_misclassified_images;
-    for (const auto &imagePath : json_mostMisclassifiedImages) {
-        most_misclassified_images << imagePath.toString();
-    }
-
-    QStringList additionalResults;
-    for (const auto &resultPath : json_additionalResults) {
-        additionalResults << resultPath.toString();
-    }
+    auto class_labels = QJsonArray_toList<QString>(json_class_labels);
+    auto confusionmatrix = QJsonArray_toList<int>(json_confusionmatrix);
+    auto most_misclassified_images = QJsonArray_toList<QString>(json_mostMisclassifiedImages);
+    auto additionalResults = QJsonArray_toList<QString>(json_additionalResults);
 
     auto result = new TrainingResult(accuracy_data, class_labels, confusionmatrix, most_misclassified_images, top1,
                                      top5, additionalResults);
@@ -164,49 +143,62 @@ void ResultsImporter::slot_comparison_loadTrainingResultGraphics(GenericGraphics
 
 void ResultsImporter::loadGraphicsInView(GenericGraphicsView *receiver, const QString &resultsFolder,
                                          const QString &baseDir) {
+    Q_ASSERT(receiver);
+
+    static std::array<QRegularExpression, $COUNT> GRAPHICSTYPE2REGEX = {
+            QRegularExpression("classification_(.*)\\.(svg|png)$"),
+            QRegularExpression("accuracycurve_(.*)\\.(svg|png)$"),
+            QRegularExpression("confusionmatrix_(.*)\\.(svg|png)$"),
+            QRegularExpression("topaccuracies_(.*)\\.(svg|png)$")
+    };
+
     auto dir = QDir(baseDir);
     auto folderIdentifier = Result::savableRepresentation(resultsFolder);
     dir.cd(folderIdentifier);
 
-    for (const auto &file : dir.entryInfoList(QDir::Files, QDir::Time)) {
-        for (int type = 0; type < _COUNT; type++) {
+    for (const auto &file: dir.entryInfoList(QDir::Files, QDir::Time)) {
+        for (int type = 0; type < $COUNT; type++) {
             auto regex = GRAPHICSTYPE2REGEX[type];
-            auto match = regex.match(file.fileName());
 
+            auto match = regex.match(file.fileName());
             if (!match.hasMatch()) continue;
 
             auto fileIdentifier = match.captured(1);
-            auto fileExtension = match.captured(2);
 
-            if (folderIdentifier != fileIdentifier) continue;
-
-            QGraphicsItem *graphics;
-            if (fileExtension == "svg")
-                graphics = new QGraphicsSvgItem(file.absoluteFilePath());
-            else
-                graphics = new QGraphicsPixmapItem(file.absoluteFilePath());
-
-            auto graphics_ptr = QSharedPointer<QGraphicsItem>(graphics);
-
-            switch (type) {
-                case CLASSIFICATION:
-                    receiver->setClassificationGraphics(graphics_ptr);
-                    break;
-                case ACCURACYCURVE:
-                    receiver->setAccuracyCurve(graphics_ptr);
-                    break;
-                case CONFUSIONMATRIX:
-                    receiver->setConfusionMatrix(graphics_ptr);
-                    break;
-                case TOPACCURACIES:
-                    receiver->setTopAccuraciesGraphics(graphics_ptr);
-                    break;
-                default:
-                    qDebug() << "Attempted to set unknown result graphics type";
-                    break;
-            }
-
+            if (folderIdentifier == fileIdentifier)
+                passResultGraphics(receiver, file, type);
         }
+    }
+}
+
+void ResultsImporter::passResultGraphics(GenericGraphicsView *receiver, const QFileInfo &file, int type) {
+    Q_ASSERT(receiver);
+    QGraphicsItem *graphics;
+
+    //Create graphics item for vector/pixmap items accordingly
+    if (file.suffix() == "svg")
+        graphics = new QGraphicsSvgItem(file.absoluteFilePath());
+    else
+        graphics = new QGraphicsPixmapItem(file.absoluteFilePath());
+
+    auto graphics_ptr = QSharedPointer<QGraphicsItem>(graphics);
+
+    switch (type) {
+        case CLASSIFICATION:
+            receiver->setClassificationGraphics(graphics_ptr);
+            break;
+        case ACCURACYCURVE:
+            receiver->setAccuracyCurve(graphics_ptr);
+            break;
+        case CONFUSIONMATRIX:
+            receiver->setConfusionMatrix(graphics_ptr);
+            break;
+        case TOPACCURACIES:
+            receiver->setTopAccuraciesGraphics(graphics_ptr);
+            break;
+        default:
+            qDebug() << "Attempted to set unknown result graphics type";
+            break;
     }
 }
 
@@ -214,6 +206,7 @@ QJsonObject ResultsImporter::readJSON(const QString &filepath) {
     auto file = QFile(filepath);
     if (!file.open(QIODevice::ReadOnly)) {
         qWarning() << "Json file couldn't be opened/found";
+        return {};
     }
 
     QByteArray byteArray = file.readAll();
@@ -225,6 +218,7 @@ QJsonObject ResultsImporter::readJSON(const QString &filepath) {
     QJsonDocument jsonDoc = QJsonDocument::fromJson(byteArray, &parseError);
     if (parseError.error != QJsonParseError::NoError) {
         qWarning() << "Parse error at " << parseError.offset << ":" << parseError.errorString();
+        return {};
     }
 
     //Create a JSON object and fill it with the ByteArray content

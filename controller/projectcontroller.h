@@ -2,10 +2,12 @@
 #define PROJECTCONTROLLER_H
 
 #include <QString>
+#include <QDir>
 #include <newprojectdialog.h>
 #include <removeprojectdialog.h>
 #include <startwidget.h>
 #include <datamanager.h>
+#include <utility>
 
 /**
  * @brief The ProjectController class mediates between the project logic and project UI
@@ -58,13 +60,13 @@ public slots:
      * @brief slot_projectDirectoryChanged refreshes the project UI
      * @param newDirectory current directory
      */
-    void slot_projectDirectoryChanged(const QString& newDirectory);
+    void slot_projectDirectoryChanged(const QString &newDirectory);
 
 private:
     DataManager *mDataManager;
-    NewProjectDialog *mNewProjectDialog;
-    RemoveProjectDialog *mRemoveProjectDialog;
-    StartWidget * mStartWidget;
+    NewProjectDialog *mNewProjectDialog{};
+    RemoveProjectDialog *mRemoveProjectDialog{};
+    StartWidget *mStartWidget;
 
 };
 

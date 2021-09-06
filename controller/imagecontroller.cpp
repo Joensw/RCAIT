@@ -1,18 +1,13 @@
 #include "imagecontroller.h"
 
-#include <utility>
-
 ImageController::ImageController(ImageInspectionWidget *imageInspectionWidget, ImportFilesWidget *importFilesWidget,
                                  DataManager *dataManager)
-        : m_imageLoader(new ImageLoader()),
-          m_split(40) {
+        : m_split(40),
+          m_dataManager(dataManager),
+          m_imageinspectionwidget(imageInspectionWidget),
+          m_importFilesWidget(importFilesWidget) {
 
-    m_dataManager = dataManager;
-    m_imageinspectionwidget = imageInspectionWidget;
-    m_importFilesWidget = importFilesWidget;
-
-    importFilesWidget->setAvailablePlugins(dataManager->getImageLoaderPluginNames());
-    m_importFilesWidget = importFilesWidget;
+    m_importFilesWidget->setAvailablePlugins(dataManager->getImageLoaderPluginNames());
 
     connect(m_importFilesWidget, &ImportFilesWidget::sig_loadInputImages, this, &ImageController::slot_loadInputImages);
     connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_mergeDatasets, this,
@@ -29,14 +24,14 @@ void ImageController::slot_loadInputImages(QString pluginName, int count, QStrin
     m_split = split;
 
     QString tempDir = m_dataManager->getProjectImageTempDir();
-    connect(m_imageLoader, &ImageLoader::sig_progress, this, &ImageController::slot_handelImageLoadProgress);
-    connect(m_imageLoader, &ImageLoader::sig_imagesReady, this, &ImageController::slot_imagesReady);
-    connect(m_imageLoader, &ImageLoader::sig_statusUpdate, this, &ImageController::slot_updateImageLoadStatusText);
-    m_imageLoader->loadInputImages(count, std::move(labels), std::move(pluginName), tempDir);
+    connect(&m_imageLoader, &ImageLoader::sig_progress, this, &ImageController::slot_handleImageLoadProgress);
+    connect(&m_imageLoader, &ImageLoader::sig_imagesReady, this, &ImageController::slot_imagesReady);
+    connect(&m_imageLoader, &ImageLoader::sig_statusUpdate, this, &ImageController::slot_updateImageLoadStatusText);
+    m_imageLoader.loadInputImages(count, std::move(labels), std::move(pluginName), tempDir);
 }
 
 void ImageController::slot_abortLoading() {
-    emit m_imageLoader->sig_pluginAborted();
+    emit m_imageLoader.sig_pluginAborted();
 }
 
 void ImageController::slot_imagesReady() {
@@ -47,7 +42,7 @@ void ImageController::slot_imagesReady() {
 }
 
 
-void ImageController::slot_handelImageLoadProgress(int progress) {
+void ImageController::slot_handleImageLoadProgress(int progress) {
     m_importFilesWidget->updateProgressBar(progress);
     emit sig_imagesLoaded(); //testing purposes for tabController
 }

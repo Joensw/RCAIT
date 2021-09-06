@@ -15,8 +15,8 @@ private:
     QMap<int, QPair<double, double>> m_accuracyCurveData;
     QStringList m_classLabels;
     QList<int> m_confusionMatrixValues;
-    AccuracyCurve *m_accCurve;
-    ConfusionMatrix *m_confusionMatrix;
+    QSharedPointer<AccuracyCurve> m_accCurve;
+    QSharedPointer<ConfusionMatrix> m_confusionMatrix;
     double m_top1Accuracy;
     double m_top5Accuracy;
 
@@ -26,13 +26,13 @@ public:
                    QStringList mostMisclassifiedImages, double top1Accuracy, double top5Accuracy,
                    const QStringList &additionalResults = {});
 
-    TrainingResult(const TrainingResult&) = delete;
+    TrainingResult(const TrainingResult &) = delete;
 
-    TrainingResult& operator=(const TrainingResult&) = delete;
+    TrainingResult &operator=(const TrainingResult &) = delete;
 
-    [[nodiscard]] ConfusionMatrix *getConfusionMatrix() const;
+    const QSharedPointer<AccuracyCurve> &getAccuracyCurve() const;
 
-    [[nodiscard]] AccuracyCurve *getAccuracyCurve();
+    const QSharedPointer<ConfusionMatrix> &getConfusionMatrix() const;
 
     [[nodiscard]] double getTop1Accuracy() const;
 
@@ -46,7 +46,7 @@ public:
 
     [[nodiscard]] const QList<int> &getConfusionMatrixValues() const;
 
-    bool isValid();
+    bool isValid() const;
 
 };
 
