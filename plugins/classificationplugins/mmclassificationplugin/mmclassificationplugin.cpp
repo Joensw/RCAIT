@@ -61,7 +61,7 @@ QStringList MMClassificationPlugin::getLabels(const QString &datasetPath) {
     rootDir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
 
     for (const auto &item: rootDir.entryInfoList()) {
-        labels << item.dir().dirName();
+        labels << item.baseName();
     }
     return labels;
 }
