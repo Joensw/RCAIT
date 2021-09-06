@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - doc-coverage.info - rapid-classification-ai-trainer/model/results/topaccuraciesgraphics.py</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">rapid-classification-ai-trainer/model/results</a> - topaccuraciesgraphics.py</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">doc-coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-09-06 03:30:40</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span><span class="lineNoCov">          0 : # Check imports</span></a>
+<a name="2"><span class="lineNum">       2 </span>            : try:</a>
+<a name="3"><span class="lineNum">       3 </span>            :     import argparse</a>
+<a name="4"><span class="lineNum">       4 </span>            :     import sys</a>
+<a name="5"><span class="lineNum">       5 </span>            :     import ast</a>
+<a name="6"><span class="lineNum">       6 </span>            :     import os</a>
+<a name="7"><span class="lineNum">       7 </span>            : </a>
+<a name="8"><span class="lineNum">       8 </span>            :     import matplotlib.pyplot as plt</a>
+<a name="9"><span class="lineNum">       9 </span>            :     import numpy as np</a>
+<a name="10"><span class="lineNum">      10 </span>            :     from matplotlib import font_manager</a>
+<a name="11"><span class="lineNum">      11 </span>            :     from matplotlib.figure import figaspect</a>
+<a name="12"><span class="lineNum">      12 </span>            :     from matplotlib.ticker import PercentFormatter</a>
+<a name="13"><span class="lineNum">      13 </span>            : except ImportError as error:</a>
+<a name="14"><span class="lineNum">      14 </span>            :     # Output expected ImportErrors.</a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineNoCov">          0 :     print(error.__class__.__name__ + &quot;: &quot; + error.msg, file=sys.stderr)</span></a>
+<a name="16"><span class="lineNum">      16 </span>            :     sys.exit(1)</a>
+<a name="17"><span class="lineNum">      17 </span>            : </a>
+<a name="18"><span class="lineNum">      18 </span>            : # No display of plot</a>
+<a name="19"><span class="lineNum">      19 </span>            : plt.ioff()</a>
+<a name="20"><span class="lineNum">      20 </span>            : </a>
+<a name="21"><span class="lineNum">      21 </span>            : </a>
+<a name="22"><span class="lineNum">      22 </span><span class="lineNoCov">          0 : def plot_top_accuracies_graphics(accdata, identifiers, file):</span></a>
+<a name="23"><span class="lineNum">      23 </span>            :     np.set_printoptions(precision=2)</a>
+<a name="24"><span class="lineNum">      24 </span>            :     np.set_printoptions(suppress=True)</a>
+<a name="25"><span class="lineNum">      25 </span>            :     # Top accuracy is a (compared runs number) x 2 matrix</a>
+<a name="26"><span class="lineNum">      26 </span>            :     print('Top Accuracies data')</a>
+<a name="27"><span class="lineNum">      27 </span>            :     print(accdata)</a>
+<a name="28"><span class="lineNum">      28 </span>            : </a>
+<a name="29"><span class="lineNum">      29 </span>            :     # Sort by top1 Accuracy (stable sort)</a>
+<a name="30"><span class="lineNum">      30 </span>            :     permutation = accdata[:, 0].argsort(kind='mergesort')</a>
+<a name="31"><span class="lineNum">      31 </span>            :     accdata = accdata[permutation]</a>
+<a name="32"><span class="lineNum">      32 </span>            :     identifiers = identifiers[permutation]</a>
+<a name="33"><span class="lineNum">      33 </span>            : </a>
+<a name="34"><span class="lineNum">      34 </span>            :     x = np.arange(len(identifiers))  # the label locations</a>
+<a name="35"><span class="lineNum">      35 </span>            :     width = 0.35  # the width of the bars</a>
+<a name="36"><span class="lineNum">      36 </span>            : </a>
+<a name="37"><span class="lineNum">      37 </span>            :     # Raw data</a>
+<a name="38"><span class="lineNum">      38 </span>            :     top1data = accdata[:, 0]  # 1st column</a>
+<a name="39"><span class="lineNum">      39 </span>            :     top5data = accdata[:, 1]  # 2nd column</a>
+<a name="40"><span class="lineNum">      40 </span>            : </a>
+<a name="41"><span class="lineNum">      41 </span>            :     w, h = figaspect(1 / 3)</a>
+<a name="42"><span class="lineNum">      42 </span>            :     fig, ax = plt.subplots(figsize=(w, h))</a>
+<a name="43"><span class="lineNum">      43 </span>            : </a>
+<a name="44"><span class="lineNum">      44 </span>            :     # Chart line creation</a>
+<a name="45"><span class="lineNum">      45 </span>            :     top1_bars = ax.bar(x - width / 2, top1data, width, label='Top 1%', color='royalblue')</a>
+<a name="46"><span class="lineNum">      46 </span>            :     top5_bars = ax.bar(x + width / 2, top5data, width, label='Top 5%', color='orange')</a>
+<a name="47"><span class="lineNum">      47 </span>            : </a>
+<a name="48"><span class="lineNum">      48 </span>            :     # Remove bounding box</a>
+<a name="49"><span class="lineNum">      49 </span>            :     ax.spines['top'].set_visible(False)</a>
+<a name="50"><span class="lineNum">      50 </span>            :     ax.spines['right'].set_visible(False)</a>
+<a name="51"><span class="lineNum">      51 </span>            :     ax.spines['bottom'].set_visible(False)</a>
+<a name="52"><span class="lineNum">      52 </span>            :     ax.spines['left'].set_visible(False)</a>
+<a name="53"><span class="lineNum">      53 </span>            : </a>
+<a name="54"><span class="lineNum">      54 </span>            :     # Remove tickmarks</a>
+<a name="55"><span class="lineNum">      55 </span>            :     plt.tick_params(</a>
+<a name="56"><span class="lineNum">      56 </span>            :         axis='x',  # changes apply to the x-axis</a>
+<a name="57"><span class="lineNum">      57 </span>            :         which='both',  # both major and minor ticks are affected</a>
+<a name="58"><span class="lineNum">      58 </span>            :         bottom=False,  # ticks along the bottom edge are off</a>
+<a name="59"><span class="lineNum">      59 </span>            :         top=False,  # ticks along the top edge are off</a>
+<a name="60"><span class="lineNum">      60 </span>            :         labelbottom=True)  # labels along the bottom edge are on</a>
+<a name="61"><span class="lineNum">      61 </span>            :     plt.tick_params(</a>
+<a name="62"><span class="lineNum">      62 </span>            :         axis='y',  # changes apply to the x-axis</a>
+<a name="63"><span class="lineNum">      63 </span>            :         which='both',  # both major and minor ticks are affected</a>
+<a name="64"><span class="lineNum">      64 </span>            :         left=False,  # ticks along the left edge are off</a>
+<a name="65"><span class="lineNum">      65 </span>            :         right=False,  # ticks along the top edge are off</a>
+<a name="66"><span class="lineNum">      66 </span>            :         labelbottom=True)  # labels along the left edge are on</a>
+<a name="67"><span class="lineNum">      67 </span>            : </a>
+<a name="68"><span class="lineNum">      68 </span>            :     # Formatting</a>
+<a name="69"><span class="lineNum">      69 </span>            :     ax.set_ylim([0, 105])</a>
+<a name="70"><span class="lineNum">      70 </span>            :     ax.yaxis.set_major_formatter(PercentFormatter(100))</a>
+<a name="71"><span class="lineNum">      71 </span>            :     ax.set_xticks(x)</a>
+<a name="72"><span class="lineNum">      72 </span>            :     ax.set_xticklabels(identifiers, rotation=45)</a>
+<a name="73"><span class="lineNum">      73 </span>            : </a>
+<a name="74"><span class="lineNum">      74 </span>            :     # Grid</a>
+<a name="75"><span class="lineNum">      75 </span>            :     plt.grid(color='lightgrey', linestyle='-', linewidth=2, axis='y')</a>
+<a name="76"><span class="lineNum">      76 </span>            :     ax.set_axisbelow(True)</a>
+<a name="77"><span class="lineNum">      77 </span>            : </a>
+<a name="78"><span class="lineNum">      78 </span>            :     # Labels</a>
+<a name="79"><span class="lineNum">      79 </span>            :     ax.bar_label(top1_bars, padding=3)</a>
+<a name="80"><span class="lineNum">      80 </span>            :     ax.bar_label(top5_bars, padding=3)</a>
+<a name="81"><span class="lineNum">      81 </span>            :     ax.legend(loc=&quot;lower left&quot;, ncol=1, bbox_to_anchor=(-0.05, -0.3), frameon=True)</a>
+<a name="82"><span class="lineNum">      82 </span>            :     plt.ylabel(&quot;Accuracy&quot;)</a>
+<a name="83"><span class="lineNum">      83 </span>            :     fig.tight_layout()</a>
+<a name="84"><span class="lineNum">      84 </span>            : </a>
+<a name="85"><span class="lineNum">      85 </span>            :     plt.savefig(file, format=&quot;svg&quot;, bbox_inches=&quot;tight&quot;)</a>
+<a name="86"><span class="lineNum">      86 </span>            : </a>
+<a name="87"><span class="lineNum">      87 </span>            : </a>
+<a name="88"><span class="lineNum">      88 </span>            : if __name__ == '__main__':</a>
+<a name="89"><span class="lineNum">      89 </span><span class="lineNoCov">          0 :     parser = argparse.ArgumentParser(description='Generates a comparison graphic of top accuracies and stores it as '</span></a>
+<a name="90"><span class="lineNum">      90 </span>            :                                                  'an image.')</a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineNoCov">          0 :     parser.add_argument('accuracies_data', metavar='data',</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineNoCov">          0 :                         help='Raw table data of the accuracies, formatted as a python array')</span></a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineNoCov">          0 :     parser.add_argument('row_labels', metavar='labels', type=str,</span></a>
+<a name="94"><span class="lineNum">      94 </span>            :                         help='List of row labels, formatted as python array')</a>
+<a name="95"><span class="lineNum">      95 </span>            :     parser.add_argument('outfile_name', metavar='outfile', type=str,</a>
+<a name="96"><span class="lineNum">      96 </span>            :                         help='Output file name including extension')</a>
+<a name="97"><span class="lineNum">      97 </span>            : </a>
+<a name="98"><span class="lineNum">      98 </span><span class="lineNoCov">          0 :     args = parser.parse_args()</span></a>
+<a name="99"><span class="lineNum">      99 </span><span class="lineNoCov">          0 :     data = np.array(ast.literal_eval(args.accuracies_data))</span></a>
+<a name="100"><span class="lineNum">     100 </span><span class="lineNoCov">          0 :     labels = np.array(ast.literal_eval(args.row_labels))</span></a>
+<a name="101"><span class="lineNum">     101 </span><span class="lineNoCov">          0 :     file_name = args.outfile_name</span></a>
+<a name="102"><span class="lineNum">     102 </span>            : </a>
+<a name="103"><span class="lineNum">     103 </span>            :     # specify the custom font to use</a>
+<a name="104"><span class="lineNum">     104 </span><span class="lineNoCov">          0 :     font_path = os.path.join(os.path.dirname(__file__), 'Inter-Regular.otf')</span></a>
+<a name="105"><span class="lineNum">     105 </span>            :     font_manager.fontManager.addfont(font_path)</a>
+<a name="106"><span class="lineNum">     106 </span><span class="lineNoCov">          0 :     prop = font_manager.FontProperties(fname=font_path)</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineNoCov">          0 :     family = str(prop.get_family()[0])</span></a>
+<a name="108"><span class="lineNum">     108 </span>            :     plt.rcParams['font.family'] = family</a>
+<a name="109"><span class="lineNum">     109 </span>            :     plt.rcParams['font.{}'.format(family)] = str(prop.get_name())</a>
+<a name="110"><span class="lineNum">     110 </span>            :     plt.rcParams['font.size'] = 12</a>
+<a name="111"><span class="lineNum">     111 </span>            : </a>
+<a name="112"><span class="lineNum">     112 </span>            :     plot_top_accuracies_graphics(data, labels, file_name)</a>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.14</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
