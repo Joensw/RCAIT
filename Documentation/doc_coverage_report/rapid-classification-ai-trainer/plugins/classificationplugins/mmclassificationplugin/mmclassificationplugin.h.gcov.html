@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">13</td>
-            <td class="headerCovTableEntry">48</td>
-            <td class="headerCovTableEntryLo">27.1 %</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntryMed">86.7 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-06 03:30:40</td>
+            <td class="headerValue">2021-09-07 11:34:11</td>
             <td></td>
           </tr>
           <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -93,46 +93,46 @@
 <a name="35"><span class="lineNum">      35 </span>            :     Q_INTERFACES(ClassificationPlugin)</a>
 <a name="36"><span class="lineNum">      36 </span>            : private:</a>
 <a name="37"><span class="lineNum">      37 </span>            : </a>
-<a name="38"><span class="lineNum">      38 </span><span class="lineNoCov">          0 :     const QString m_name = &quot;MMClassification&quot;;</span></a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :     const QString m_modelNameKey = &quot;name&quot;;</span></a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineNoCov">          0 :     const QString m_baseModelNameKey = &quot;baseModel&quot;;</span></a>
-<a name="41"><span class="lineNum">      41 </span><span class="lineNoCov">          0 :     const QString m_mainConfigPathKey = &quot;configPath&quot;;</span></a>
-<a name="42"><span class="lineNum">      42 </span><span class="lineNoCov">          0 :     const QString m_modelConfigPathKey = &quot;modelConfig&quot;;</span></a>
-<a name="43"><span class="lineNum">      43 </span><span class="lineNoCov">          0 :     const QString m_datasetConfigPathKey = &quot;datasetPath&quot;;</span></a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineNoCov">          0 :     const QString m_scheduleConfigPathKey = &quot;schedulePath&quot;;</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineNoCov">          0 :     const QString m_runtimeConfigPathKey = &quot;runtimePath&quot;;</span></a>
+<a name="38"><span class="lineNum">      38 </span>            :     const QString m_name = &quot;MMClassification&quot;;</a>
+<a name="39"><span class="lineNum">      39 </span>            :     const QString m_modelNameKey = &quot;name&quot;;</a>
+<a name="40"><span class="lineNum">      40 </span>            :     const QString m_baseModelNameKey = &quot;baseModel&quot;;</a>
+<a name="41"><span class="lineNum">      41 </span>            :     const QString m_mainConfigPathKey = &quot;configPath&quot;;</a>
+<a name="42"><span class="lineNum">      42 </span>            :     const QString m_modelConfigPathKey = &quot;modelConfig&quot;;</a>
+<a name="43"><span class="lineNum">      43 </span>            :     const QString m_datasetConfigPathKey = &quot;datasetPath&quot;;</a>
+<a name="44"><span class="lineNum">      44 </span>            :     const QString m_scheduleConfigPathKey = &quot;schedulePath&quot;;</a>
+<a name="45"><span class="lineNum">      45 </span>            :     const QString m_runtimeConfigPathKey = &quot;runtimePath&quot;;</a>
 <a name="46"><span class="lineNum">      46 </span>            : </a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineNoCov">          0 :     const QString m_subfolder_checkpoints = &quot;checkpoints&quot;;</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineNoCov">          0 :     const int m_numberOfMissClassifiedImages = 9;</span></a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineNoCov">          0 :     const QString m_annotationFileName = &quot;val.txt&quot;;</span></a>
+<a name="47"><span class="lineNum">      47 </span>            :     const QString m_subfolder_checkpoints = &quot;checkpoints&quot;;</a>
+<a name="48"><span class="lineNum">      48 </span>            :     const int m_numberOfMissClassifiedImages = 9;</a>
+<a name="49"><span class="lineNum">      49 </span>            :     const QString m_annotationFileName = &quot;val.txt&quot;;</a>
 <a name="50"><span class="lineNum">      50 </span>            : </a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineNoCov">          0 :     QList&lt;BaseModel&gt;* m_baseModels;</span></a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineNoCov">          0 :     QSettings m_models = {&quot;MMClassificationModels&quot;, QSettings::IniFormat};</span></a>
+<a name="51"><span class="lineNum">      51 </span>            :     QList&lt;BaseModel&gt;* m_baseModels;</a>
+<a name="52"><span class="lineNum">      52 </span>            :     QSettings m_models = {&quot;MMClassificationModels&quot;, QSettings::IniFormat};</a>
 <a name="53"><span class="lineNum">      53 </span>            : </a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineNoCov">          0 :     MMClassificationSettings m_mmClassificationSettings;</span></a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineNoCov">          0 :     MMClassificationConfigFileBuilder m_mmClassificationConfigFileBuilder;</span></a>
-<a name="56"><span class="lineNum">      56 </span><span class="lineNoCov">          0 :     MMClassificiationDataAugmentationInput *m_mmclassificiationdataaugmentationinput;</span></a>
-<a name="57"><span class="lineNum">      57 </span><span class="lineNoCov">          0 :     MMClassificationInputOptions *m_mmClassificationInput;</span></a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineNoCov">          0 :     MMClassificationJsonResultReader m_jsonReader;</span></a>
+<a name="54"><span class="lineNum">      54 </span>            :     MMClassificationSettings m_mmClassificationSettings;</a>
+<a name="55"><span class="lineNum">      55 </span>            :     MMClassificationConfigFileBuilder m_mmClassificationConfigFileBuilder;</a>
+<a name="56"><span class="lineNum">      56 </span>            :     MMClassificiationDataAugmentationInput *m_mmclassificiationdataaugmentationinput;</a>
+<a name="57"><span class="lineNum">      57 </span>            :     MMClassificationInputOptions *m_mmClassificationInput;</a>
+<a name="58"><span class="lineNum">      58 </span>            :     MMClassificationJsonResultReader m_jsonReader;</a>
 <a name="59"><span class="lineNum">      59 </span>            : </a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineNoCov">          0 :     QWidget *pluginSettings;</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineNoCov">          0 :     QWidget *dataAugmentationInput;</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineNoCov">          0 :     QWidget *inputOptions;</span></a>
+<a name="60"><span class="lineNum">      60 </span>            :     QWidget *pluginSettings;</a>
+<a name="61"><span class="lineNum">      61 </span>            :     QWidget *dataAugmentationInput;</a>
+<a name="62"><span class="lineNum">      62 </span>            :     QWidget *inputOptions;</a>
 <a name="63"><span class="lineNum">      63 </span>            : </a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineNoCov">          0 :     QScopedPointer&lt;QProcess&gt; m_process;</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineNoCov">          0 :     ProgressablePlugin* m_receiver;</span></a>
+<a name="64"><span class="lineNum">      64 </span>            :     QScopedPointer&lt;QProcess&gt; m_process;</a>
+<a name="65"><span class="lineNum">      65 </span>            :     ProgressablePlugin* m_receiver;</a>
 <a name="66"><span class="lineNum">      66 </span>            : </a>
-<a name="67"><span class="lineNum">      67 </span><span class="lineNoCov">          0 :     void initBaseModels();</span></a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineNoCov">          0 :     void deleteBaseModels();</span></a>
-<a name="69"><span class="lineNum">      69 </span><span class="lineNoCov">          0 :     void saveModel(Model model);</span></a>
-<a name="70"><span class="lineNum">      70 </span><span class="lineNoCov">          0 :     Model loadModel(const QString&amp; name);</span></a>
+<a name="67"><span class="lineNum">      67 </span>            :     void initBaseModels();</a>
+<a name="68"><span class="lineNum">      68 </span>            :     void deleteBaseModels();</a>
+<a name="69"><span class="lineNum">      69 </span>            :     void saveModel(Model model);</a>
+<a name="70"><span class="lineNum">      70 </span>            :     Model loadModel(const QString&amp; name);</a>
 <a name="71"><span class="lineNum">      71 </span>            : </a>
-<a name="72"><span class="lineNum">      72 </span><span class="lineNoCov">          0 :     static QStringList getLabels(const QString&amp; datasetPath);</span></a>
+<a name="72"><span class="lineNum">      72 </span>            :     static QStringList getLabels(const QString&amp; datasetPath);</a>
 <a name="73"><span class="lineNum">      73 </span>            : </a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineNoCov">          0 :     bool checkDataAugmentationPreviewInput(const QString&amp; modelName, const QString&amp; inputPath, const QString&amp; targetPath, int amount);</span></a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineNoCov">          0 :     static bool checkTrainMethodInput(const QStringList&amp; labels, const QString&amp; mainConfigPath, const QString&amp; trainDatasetPath, const QString&amp; validationDatasetPath, const QString&amp; workingDirectoryPath);</span></a>
+<a name="74"><span class="lineNum">      74 </span>            :     bool checkDataAugmentationPreviewInput(const QString&amp; modelName, const QString&amp; inputPath, const QString&amp; targetPath, int amount);</a>
+<a name="75"><span class="lineNum">      75 </span>            :     static bool checkTrainMethodInput(const QStringList&amp; labels, const QString&amp; mainConfigPath, const QString&amp; trainDatasetPath, const QString&amp; validationDatasetPath, const QString&amp; workingDirectoryPath);</a>
 <a name="76"><span class="lineNum">      76 </span>            : </a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineNoCov">          0 :     void adjustCheckpointCreation(const QString&amp; runtimeConfigPath, int max_iters);</span></a>
+<a name="77"><span class="lineNum">      77 </span>            :     void adjustCheckpointCreation(const QString&amp; runtimeConfigPath, int max_iters);</a>
 <a name="78"><span class="lineNum">      78 </span>            : </a>
 <a name="79"><span class="lineNum">      79 </span>            : public:</a>
 <a name="80"><span class="lineNum">      80 </span>            : </a>
@@ -228,8 +228,8 @@
 <a name="170"><span class="lineNum">     170 </span><span class="lineCov">          1 :     QWidget* getDataAugmentationInputWidget() override;</span></a>
 <a name="171"><span class="lineNum">     171 </span>            : </a>
 <a name="172"><span class="lineNum">     172 </span>            : private slots:</a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineNoCov">          0 :     void slot_readOutPut();</span></a>
-<a name="174"><span class="lineNum">     174 </span><span class="lineNoCov">          0 :     void slot_pluginFinished();</span></a>
+<a name="173"><span class="lineNum">     173 </span>            :     void slot_readOutPut();</a>
+<a name="174"><span class="lineNum">     174 </span>            :     void slot_pluginFinished();</a>
 <a name="175"><span class="lineNum">     175 </span>            : };</a>
 <a name="176"><span class="lineNum">     176 </span>            : #endif // MMCLASSIFICATIONPLUGIN_H</a>
 </pre>

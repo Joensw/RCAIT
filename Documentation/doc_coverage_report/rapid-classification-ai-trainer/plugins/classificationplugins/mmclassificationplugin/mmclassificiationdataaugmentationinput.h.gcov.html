@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">16</td>
-            <td class="headerCovTableEntry">34</td>
-            <td class="headerCovTableEntryLo">47.1 %</td>
+            <td class="headerCovTableEntry">18</td>
+            <td class="headerCovTableEntryMed">88.9 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-06 03:30:40</td>
+            <td class="headerValue">2021-09-07 11:34:11</td>
             <td></td>
           </tr>
           <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -184,13 +184,13 @@
 <a name="126"><span class="lineNum">     126 </span>            : </a>
 <a name="127"><span class="lineNum">     127 </span>            : </a>
 <a name="128"><span class="lineNum">     128 </span>            : private:</a>
-<a name="129"><span class="lineNum">     129 </span><span class="lineNoCov">          0 :     void connectCheckboxes();</span></a>
-<a name="130"><span class="lineNum">     130 </span><span class="lineNoCov">          0 :     void connectInputElements();</span></a>
+<a name="129"><span class="lineNum">     129 </span>            :     void connectCheckboxes();</a>
+<a name="130"><span class="lineNum">     130 </span>            :     void connectInputElements();</a>
 <a name="131"><span class="lineNum">     131 </span>            : </a>
-<a name="132"><span class="lineNum">     132 </span><span class="lineNoCov">          0 :     Ui::MMClassificiationDataAugmentationInput *ui;</span></a>
+<a name="132"><span class="lineNum">     132 </span>            :     Ui::MMClassificiationDataAugmentationInput *ui;</a>
 <a name="133"><span class="lineNum">     133 </span>            : </a>
 <a name="134"><span class="lineNum">     134 </span>            :     QString m_albu_transform_type = &quot;ColorJitter&quot;;</a>
-<a name="135"><span class="lineNum">     135 </span><span class="lineNoCov">          0 :     int m_random_resized_crop_size = 224;</span></a>
+<a name="135"><span class="lineNum">     135 </span>            :     int m_random_resized_crop_size = 224;</a>
 <a name="136"><span class="lineNum">     136 </span>            :     double m_random_flip_prob = 0.5;</a>
 <a name="137"><span class="lineNum">     137 </span>            :     QString m_random_flip_direction = &quot;horizontal&quot;;</a>
 <a name="138"><span class="lineNum">     138 </span>            :     bool m_randomErasing = true;</a>
@@ -198,19 +198,19 @@
 <a name="140"><span class="lineNum">     140 </span>            :     int m_center_crop_size = 224;</a>
 <a name="141"><span class="lineNum">     141 </span>            : </a>
 <a name="142"><span class="lineNum">     142 </span>            : private slots:</a>
-<a name="143"><span class="lineNum">     143 </span><span class="lineNoCov">          0 :     void slot_albuTransformChecked(bool isChecked);</span></a>
-<a name="144"><span class="lineNum">     144 </span><span class="lineNoCov">          0 :     void slot_randomResizedCropSizeChecked(bool isChecked);</span></a>
-<a name="145"><span class="lineNum">     145 </span><span class="lineNoCov">          0 :     void slot_randomFlipProbAndDirectionChecked(bool isChecked);</span></a>
-<a name="146"><span class="lineNum">     146 </span><span class="lineNoCov">          0 :     void slot_randomErasingChecked(bool isChecked);</span></a>
-<a name="147"><span class="lineNum">     147 </span><span class="lineNoCov">          0 :     void slot_resizeChecked(bool isChecked);</span></a>
-<a name="148"><span class="lineNum">     148 </span><span class="lineNoCov">          0 :     void slot_centerCropSizeChecked(bool isChecked);</span></a>
+<a name="143"><span class="lineNum">     143 </span>            :     void slot_albuTransformChecked(bool isChecked);</a>
+<a name="144"><span class="lineNum">     144 </span>            :     void slot_randomResizedCropSizeChecked(bool isChecked);</a>
+<a name="145"><span class="lineNum">     145 </span>            :     void slot_randomFlipProbAndDirectionChecked(bool isChecked);</a>
+<a name="146"><span class="lineNum">     146 </span>            :     void slot_randomErasingChecked(bool isChecked);</a>
+<a name="147"><span class="lineNum">     147 </span>            :     void slot_resizeChecked(bool isChecked);</a>
+<a name="148"><span class="lineNum">     148 </span>            :     void slot_centerCropSizeChecked(bool isChecked);</a>
 <a name="149"><span class="lineNum">     149 </span>            : </a>
-<a name="150"><span class="lineNum">     150 </span><span class="lineNoCov">          0 :     void slot_albuTransformChanged(QString type);</span></a>
-<a name="151"><span class="lineNum">     151 </span><span class="lineNoCov">          0 :     void slot_randomResizedCropSizeChanged(int size);</span></a>
-<a name="152"><span class="lineNum">     152 </span><span class="lineNoCov">          0 :     void slot_randomFlipProbChanged(double probability);</span></a>
-<a name="153"><span class="lineNum">     153 </span><span class="lineNoCov">          0 :     void slot_randomFlipDirectionChanged(QString direction);</span></a>
-<a name="154"><span class="lineNum">     154 </span><span class="lineNoCov">          0 :     void slot_resizeChanged(int size);</span></a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineNoCov">          0 :     void slot_centerCropSizeChanged(int size);</span></a>
+<a name="150"><span class="lineNum">     150 </span>            :     void slot_albuTransformChanged(QString type);</a>
+<a name="151"><span class="lineNum">     151 </span>            :     void slot_randomResizedCropSizeChanged(int size);</a>
+<a name="152"><span class="lineNum">     152 </span>            :     void slot_randomFlipProbChanged(double probability);</a>
+<a name="153"><span class="lineNum">     153 </span>            :     void slot_randomFlipDirectionChanged(QString direction);</a>
+<a name="154"><span class="lineNum">     154 </span>            :     void slot_resizeChanged(int size);</a>
+<a name="155"><span class="lineNum">     155 </span>            :     void slot_centerCropSizeChanged(int size);</a>
 <a name="156"><span class="lineNum">     156 </span>            : };</a>
 <a name="157"><span class="lineNum">     157 </span>            : </a>
 <a name="158"><span class="lineNum">     158 </span>            : #endif // MMCLASSIFICIATIONDATAAUGMENTATIONINPUT_H</a>

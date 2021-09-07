@@ -30,7 +30,7 @@ public:
 
 private:
     static QStringList readLabeledFolder(const QDir& labeledFolder);
-    static void insertLabeledImagePaths(const QMap<QString, QStringList> &insertTarget, const QString& labeledImagePath);
+    static void insertLabeledImagePaths(QMap<QString, QStringList> &insertTarget, const QString& labeledImagePath);
     static void removeImageWithIndex(const QMap<QString, QStringList> &removeTarget, const QMap<QString, QList<int>>& removedImages);
     static void mergeMap(const QMap<QString, QStringList> &mergeIn, const QMap<QString, QStringList>& mergeFrom);
     static void moveFile(const QString &imagePath, const QString &label, const QString &trainOrValidate, int fileNumber);

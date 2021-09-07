@@ -26,9 +26,9 @@ include_directories(${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
 # 'Google_Tests_run' is the target name
 
 set(Sources
-        test_imageinspectionmodel.cpp
-        ../model/imageinspectionmodel.h
-        ../model/imageinspectionmodel.cpp
+        #test_imageinspectionmodel.cpp
+        #../model/imageinspectionmodel.h
+        #../model/imageinspectionmodel.cpp
 
         test_automator.cpp
         ../model/automation/automator.h
@@ -63,6 +63,9 @@ set(Sources
         ../model/automation/splitcommand.cpp
         ../plugins/classificationplugins/classificationpluginmanager.h
         ../plugins/classificationplugins/classificationpluginmanager.cpp
+        ../plugins/plugin.h
+        ../plugins/plugin.cpp
+        ../plugins/imageplugins/imageloaderplugin.h
         ../plugins/imageplugins/imageloaderpluginmanager.h
         ../plugins/imageplugins/imageloaderpluginmanager.cpp
         ../model/pluginusage/progressableplugin.h
@@ -99,6 +102,10 @@ set(Sources
         ../model/results/genericresultgraphics.h
         ../model/results/classificationgraphics.h
         ../model/results/classificationgraphics.cpp
+        ../view/results/topaccuraciesview.h
+        ../view/results/topaccuraciesview.cpp
+        ../model/results/topaccuraciesgraphics.h
+        ../model/results/topaccuraciesgraphics.cpp
 
         ../model/results/resultsprocessor.h
         ../model/results/resultsprocessor.cpp
@@ -124,8 +131,33 @@ set(Sources
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+
+
+#add_executable(Test1 test_imageinspectionmodel.cpp ../model/imageinspectionmodel.h ../model/imageinspectionmodel.cpp)
 add_executable(Google_Tests_run ${Sources})
+add_executable(Test2 test_imageinspectionmodel.cpp ../model/imageinspectionmodel.h  ../model/imageinspectionmodel.cpp)
+
+
+
+target_include_directories(Google_Tests_run PUBLIC
+    ../plugins
+    ../
+    ../model
+    ../model/results
+    ../model/utilities
+    ../model/pluginusage
+    ../model/automation
+    ../plugins/imageplugins
+    ../plugins/classificationplugins
+    ../plugins/results
+    ../view
+    ../view/results
+    ../view/utilities
+    ../controller)
 target_link_libraries(Google_Tests_run gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
+target_link_libraries(Test2 gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
+
 
 enable_testing()
 add_test(Google_Tests_run COMMAND Google_Tests_run)
