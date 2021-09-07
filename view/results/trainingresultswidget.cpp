@@ -78,6 +78,7 @@ void TrainingResultsWidget::saveResult(GenericGraphicsView *view) {
 void TrainingResultsWidget::retranslateUi() {
     int index = getTabWidget()->indexOf(&*m_topAccuraciesView);
     getTabWidget()->setTabText(index, tr("Top Accuracies"));
+    m_topAccuraciesView->setName(tr("Top Accuracies"));
 
     GenericComparisonWidget::retranslateUi();
 }

@@ -52,14 +52,15 @@ void GenericComparisonWidget::configure_comparisonMenu(const QString &targetDir)
     auto dir = QDir(targetDir);
     auto entryList = dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
 
-    for (const auto &item: entryList) {
-        auto niceItem = Result::niceRepresentation(item);
+    for (const auto &resultEntry: entryList) {
         //Leave already contained entries in the menu
-        if (oldMenuEntries.contains(niceItem)) continue;
+        auto niceEntry = Result::niceRepresentation(resultEntry);
+        if (oldMenuEntries.contains(niceEntry)) continue;
 
         //New directory detected, add it to the menu
-        auto *action = new QAction(niceItem, &*m_menu_addComparison);
+        auto *action = new QAction(niceEntry, &*m_menu_addComparison);
         action->setCheckable(true);
+        action->setChecked(m_mapTabsByName.contains(niceEntry));
         m_menu_addComparison->addAction(action);
     }
 }
@@ -87,8 +88,13 @@ void GenericComparisonWidget::slot_updateSaveButton(int index) {
 }
 
 void GenericComparisonWidget::updateSaveButton(GenericGraphicsView *tab) {
-    if (tab != nullptr)
-        m_pushButton_saveCurrentTab->setEnabled(!tab->isSaved());
+    if (!tab) return;
+    bool canBeSaved = !tab->isSaved();
+
+    m_pushButton_saveCurrentTab->setEnabled(canBeSaved);
+    auto index = m_tabWidget->indexOf(tab);
+    auto prefix = (canBeSaved) ? PREFIX_TAB_SAVED : "";
+    m_tabWidget->setTabText(index, prefix % tab->getName());
 }
 
 void GenericComparisonWidget::on_pushButton_saveCurrentTab_clicked() {

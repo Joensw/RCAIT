@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QTabWidget>
 #include <QEvent>
+#include <QStringBuilder>
 #include <type_traits>
 
 #include "result.h"
@@ -40,6 +41,7 @@ protected:
     template<typename T, typename = std::enable_if<std::is_base_of_v<GenericGraphicsView, T>>>
     T *createResultTab(const QString &tabName) {
         auto *tab = new T(this);
+        tab->setName(tabName);
         m_tabWidget->addTab(tab, tabName);
         m_mapTabsByName[tabName] = tab;
 
@@ -62,6 +64,8 @@ public:
     void updateSaveButton(GenericGraphicsView *tab) override;
 
 private:
+    static constexpr auto PREFIX_TAB_SAVED = "\uF79A ";
+
     Ui::GenericComparisonWidget *ui;
     QTabWidget *m_tabWidget;
     QMap<QString, QWidget *> m_mapTabsByName;
