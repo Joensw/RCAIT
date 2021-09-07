@@ -9,10 +9,10 @@ ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
 }
 
 void ClassificationResultsWidget::configure_placeholderTab() {
-    const auto icon = QIcon(":/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
+    const auto icon = QIcon(PLACEHOLDER_TAB_ICON);
     auto placeholder = new GenericGraphicsView(this);
-    getTabWidget()->insertTab(0, placeholder, icon, QString());
-    getTabWidget()->setTabEnabled(0, false);
+    getTabWidget()->insertTab(PLACEHOLDER_TAB_INDEX, placeholder, icon, QString());
+    getTabWidget()->setTabEnabled(PLACEHOLDER_TAB_INDEX, false);
     //Placeholder cannot be saved
     placeholder->setSaved(true);
 }

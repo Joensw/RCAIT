@@ -7,7 +7,7 @@ TopAccuraciesView::TopAccuraciesView(SavableResultsWidget *tabWidget, QWidget *p
     ui->setupUi(this);
 
     QTableWidget *table = ui->tableWidget_topAccuracies;
-    table->setColumnCount(2);
+    table->setColumnCount(TABLE_COLUMN_COUNT);
 
     //Stretch table headers to fill the space available
     QHeaderView *h_header = table->horizontalHeader();
@@ -17,8 +17,8 @@ TopAccuraciesView::TopAccuraciesView(SavableResultsWidget *tabWidget, QWidget *p
     configure_updateGraphicsButton();
 
     //Configure font
-    QFont inter("Inter Monospace", 8);
-    v_header->setFont(inter);
+    QFont font(FONT_NAME, FONT_SIZE);
+    v_header->setFont(font);
 
     //Internal signals/slots
     connect(m_pushButton_updateGraphics, &QAbstractButton::clicked, this,
@@ -28,14 +28,14 @@ TopAccuraciesView::TopAccuraciesView(SavableResultsWidget *tabWidget, QWidget *p
 
 void TopAccuraciesView::addTopAccuraciesEntry(const QString &identifier, double top1, double top5) {
     auto table = ui->tableWidget_topAccuracies;
-    auto top1Str = QString::number(top1, 'f', 2);
-    auto top5Str = QString::number(top5, 'f', 2);
+    auto top1Str = QString::number(top1, NUMBER_FORMAT, NUMBER_PRECISION);
+    auto top5Str = QString::number(top5, NUMBER_FORMAT, NUMBER_PRECISION);
 
     int row = table->addTableRow(identifier, {top1Str, top5Str});
 
     //Set colors matching the graphical result
-    table->at(row, 0)->setBackground(QBrush("royal blue"));
-    table->at(row, 1)->setBackground(QBrush("orange"));
+    table->at(row, 0)->setBackground(QBrush(TOP1_COLOR));
+    table->at(row, 1)->setBackground(QBrush(TOP5_COLOR));
 }
 
 void TopAccuraciesView::removeTopAccuraciesEntry(const QString &identifier) {
@@ -56,7 +56,7 @@ void TopAccuraciesView::setTopAccuraciesGraphics(const QSharedPointer<QGraphicsI
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 
-    view->scale(0.9, 0.9);
+    view->scale(GRAPHICS_SCALING_FACTOR, GRAPHICS_SCALING_FACTOR);
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -70,7 +70,7 @@ void TopAccuraciesView::slot_pushButton_updateGraphics_clicked() {
 }
 
 void TopAccuraciesView::configure_updateGraphicsButton() {
-    const auto icon = QIcon(":/UISymbols/UI_Reload_Icon.svg");
+    const auto icon = QIcon(UPDATE_GRAPHICS_BUTTON_ICON);
     m_pushButton_updateGraphics = ui->tableWidget_topAccuracies->getCornerButton();
     if (m_pushButton_updateGraphics) {
         m_pushButton_updateGraphics->setIcon(icon);
@@ -78,9 +78,8 @@ void TopAccuraciesView::configure_updateGraphicsButton() {
 }
 
 [[maybe_unused]] void TopAccuraciesView::updateGraphicsButton_setEnabled(bool enabled) {
-    if (m_pushButton_updateGraphics) {
+    if (m_pushButton_updateGraphics)
         m_pushButton_updateGraphics->setEnabled(enabled);
-    }
 }
 
 [[maybe_unused]] bool TopAccuraciesView::updateGraphicsButton_isEnabled() {
@@ -112,8 +111,8 @@ void TopAccuraciesView::changeEvent(QEvent *event) {
 void TopAccuraciesView::retranslateUi() {
 
     auto *table = ui->tableWidget_topAccuracies;
-    table->setHorizontalHeaderLabels({tr("Top 1%"), tr("Top 5%")});
+    table->setHorizontalHeaderLabels({tr(TOP1_HEADER), tr(TOP5_HEADER)});
     if (m_pushButton_updateGraphics) {
-        m_pushButton_updateGraphics->setToolTip(tr("Update graphics..."));
+        m_pushButton_updateGraphics->setToolTip(tr(UPDATE_GRAPHICS_BUTTON_TOOLTIP));
     }
 }

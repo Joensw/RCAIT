@@ -31,6 +31,11 @@ public:
     ~ClassificationResultView() override;
 
 private:
+    static constexpr auto CLASSIFICATION_GRAPHICS_SCALING_FACTOR = 0.6;
+    static constexpr auto TABLE_COLUMN_CODE = 2;
+    static constexpr auto CONFIDENCE_HEADER = "Confidence";
+    static constexpr auto LABEL_HEADER = "Label";
+
     Ui::ClassificationResultView *ui;
     QSharedPointer<QGraphicsItem> m_classificationGraphics;
 

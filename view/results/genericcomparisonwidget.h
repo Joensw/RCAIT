@@ -65,6 +65,10 @@ public:
 
 private:
     static constexpr auto PREFIX_TAB_SAVED = "\uF79A ";
+    static constexpr auto COMPARISON_BUTTON_ICON = ":/UISymbols/UI_Add_Result_Comparison_Icon.svg";
+    static constexpr auto FONT_NAME = "Inter Monospace";
+    static constexpr auto FONT_SIZE = 9;
+    static constexpr auto COMPARE_BUTTON_LABEL = "Compare ...";
 
     Ui::GenericComparisonWidget *ui;
     QTabWidget *m_tabWidget;
@@ -77,7 +81,7 @@ private:
 
     void configure_comparisonMenu(const QString &targetDir);
 
-    void cleanup_comparisonMenu();
+    void cleanup_oldResults();
 
     virtual void addComparisonResult(const QString &runNameToCompare) = 0;
 

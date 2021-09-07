@@ -23,7 +23,7 @@ public:
 
     void setConfusionMatrix(const QSharedPointer<QGraphicsItem> &matrixImage) override;
 
-    void setMostMisclassifiedImages(const QStringList& images);
+    void setMostMisclassifiedImages(const QStringList &images);
 
     [[maybe_unused]] [[nodiscard]] const QSharedPointer<QGraphicsItem> &getAccuracyCurveImage() const;
 
@@ -32,6 +32,10 @@ public:
     ~TrainingResultView() override;
 
 private:
+    static constexpr auto IMAGES_GRID_SIZE = 3;
+    static constexpr auto ACCURACY_CURVE_SCALING_FACTOR = 0.9;
+    static constexpr auto CONFUSIONMATRIX_SCALING_FACTOR = 0.85;
+
     Ui::TrainingResultView *ui;
 
     QSharedPointer<QGraphicsItem> m_accuracyCurveImage;

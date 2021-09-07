@@ -44,6 +44,22 @@ private slots:
     void slot_pushButton_updateGraphics_clicked();
 
 private:
+    static constexpr auto FONT_NAME = "Inter Monospace";
+    static constexpr auto FONT_SIZE = 8;
+
+    static constexpr auto NUMBER_FORMAT = 'f';
+    static constexpr auto NUMBER_PRECISION = 2;
+
+    static constexpr auto TABLE_COLUMN_COUNT = 2;
+    static constexpr auto TOP1_HEADER = "Top 1%";
+    static constexpr auto TOP5_HEADER = "Top 5%";
+    static constexpr auto TOP1_COLOR = "royal blue";
+    static constexpr auto TOP5_COLOR = "orange";
+
+    static constexpr auto GRAPHICS_SCALING_FACTOR = 0.9;
+    static constexpr auto UPDATE_GRAPHICS_BUTTON_ICON = ":/UISymbols/UI_Reload_Icon.svg";
+    static constexpr auto UPDATE_GRAPHICS_BUTTON_TOOLTIP = "Update graphics...";
+
     Ui::TopAccuraciesView *ui;
     QAbstractButton *m_pushButton_updateGraphics{};
 

@@ -10,7 +10,7 @@ ClassificationResultView::ClassificationResultView(SavableResultsWidget *tabWidg
     ui->setupUi(this);
 
     auto *table = ui->tableWidget_classificationresult;
-    table->setColumnCount(2);
+    table->setColumnCount(TABLE_COLUMN_CODE);
 
     // Add full touch compliance
     QScroller::grabGesture(ui->graphicsView_classificationresult, QScroller::TouchGesture);
@@ -44,7 +44,7 @@ void ClassificationResultView::setClassificationGraphics(
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 
-    view->scale(0.6, 0.6);
+    view->scale(CLASSIFICATION_GRAPHICS_SCALING_FACTOR, CLASSIFICATION_GRAPHICS_SCALING_FACTOR);
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -56,7 +56,7 @@ void ClassificationResultView::setClassificationGraphics(
     view->verticalScrollBar()->setValue(1);
 }
 
-[[maybe_unused]] [[maybe_unused]] const QSharedPointer<QGraphicsItem> &ClassificationResultView::getClassificationGraphics() const {
+[[maybe_unused]] const QSharedPointer<QGraphicsItem> &ClassificationResultView::getClassificationGraphics() const {
     return m_classificationGraphics;
 }
 
@@ -80,5 +80,5 @@ void ClassificationResultView::changeEvent(QEvent *event) {
  */
 void ClassificationResultView::retranslateUi() {
     auto *table = ui->tableWidget_classificationresult;
-    table->setHorizontalHeaderLabels({tr("Confidence"), tr("Label")});
+    table->setHorizontalHeaderLabels({tr(CONFIDENCE_HEADER), tr(LABEL_HEADER)});
 }

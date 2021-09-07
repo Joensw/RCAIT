@@ -9,11 +9,11 @@ TrainingResultsWidget::TrainingResultsWidget(QWidget *parent)
 }
 
 void TrainingResultsWidget::configure_topAccuraciesTab() {
-    const auto icon = QIcon(":/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg");
+    const auto icon = QIcon(TOP_ACCURACIES_TAB_ICON);
     auto tempDir = m_projectManager->getProjectImageTempDir();
 
     //Cleanup old stuff
-    getTabWidget()->removeTab(0);
+    getTabWidget()->removeTab(TOP_ACCURACIES_TAB_INDEX);
     //Old pointer will go out of scope after leaving this method and gets auto-deleted
     m_topAccuraciesView.reset(new TopAccuraciesView(this));
     m_topAccuraciesGraphics.reset(new TopAccuraciesGraphics(tempDir));
@@ -23,7 +23,7 @@ void TrainingResultsWidget::configure_topAccuraciesTab() {
             &TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics);
 
     //Configure tab
-    getTabWidget()->insertTab(0, &*m_topAccuraciesView, icon, QString());
+    getTabWidget()->insertTab(TOP_ACCURACIES_TAB_INDEX, &*m_topAccuraciesView, icon, QString());
     //Top Accuracies Tab cannot be saved in initial (= empty) state
     m_topAccuraciesView->setSaved(true);
 
@@ -77,8 +77,8 @@ void TrainingResultsWidget::saveResult(GenericGraphicsView *view) {
 
 void TrainingResultsWidget::retranslateUi() {
     int index = getTabWidget()->indexOf(&*m_topAccuraciesView);
-    getTabWidget()->setTabText(index, tr("Top Accuracies"));
-    m_topAccuraciesView->setName(tr("Top Accuracies"));
+    getTabWidget()->setTabText(index, tr(TOP_ACCURACIES_TAB_NAME));
+    m_topAccuraciesView->setName(tr(TOP_ACCURACIES_TAB_NAME));
 
     GenericComparisonWidget::retranslateUi();
 }

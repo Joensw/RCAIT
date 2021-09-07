@@ -31,7 +31,7 @@ GenericComparisonWidget::~GenericComparisonWidget() {
 
 void GenericComparisonWidget::configure_comparisonButton() {
     //Configure add run compare button
-    const auto icon = QIcon(":/UISymbols/UI_Add_Result_Comparison_Icon.svg");
+    const auto icon = QIcon(COMPARISON_BUTTON_ICON);
     m_pushButton_addComparison->setIcon(icon);
     m_pushButton_addComparison->setFlat(true);
     m_pushButton_addComparison->setMenu(&*m_menu_addComparison);
@@ -41,7 +41,7 @@ void GenericComparisonWidget::configure_comparisonButton() {
 
 void GenericComparisonWidget::configure_comparisonMenu(const QString &targetDir) {
 
-    QFont inter("Inter Monospace", 9);
+    QFont inter(FONT_NAME, FONT_SIZE);
     m_menu_addComparison->setFont(inter);
 
     QStringList oldMenuEntries;
@@ -104,11 +104,11 @@ void GenericComparisonWidget::on_pushButton_saveCurrentTab_clicked() {
 }
 
 void GenericComparisonWidget::updateResultFolderPath(const QString &newDirPath) {
-    cleanup_comparisonMenu();
+    cleanup_oldResults();
     configure_comparisonMenu(newDirPath);
 }
 
-void GenericComparisonWidget::cleanup_comparisonMenu() {
+void GenericComparisonWidget::cleanup_oldResults() {
     //Cleanup, because results dir was changed
     //Remove opened tabs
     for (const auto &action: m_menu_addComparison->actions()) {
@@ -144,5 +144,5 @@ void GenericComparisonWidget::changeEvent(QEvent *event) {
  * were not created in the UI builder
  */
 void GenericComparisonWidget::retranslateUi() {
-    m_pushButton_addComparison->setText(tr("Compare ..."));
+    m_pushButton_addComparison->setText(tr(COMPARE_BUTTON_LABEL));
 }

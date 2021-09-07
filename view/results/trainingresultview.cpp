@@ -5,7 +5,7 @@ TrainingResultView::TrainingResultView(SavableResultsWidget *tabWidget, QWidget 
         GenericGraphicsView(tabWidget, parent),
         ui(new Ui::TrainingResultView) {
     ui->setupUi(this);
-    ui->imageGallery_mostMisclassifiedImages->setQuadraticGrid(3);
+    ui->imageGallery_mostMisclassifiedImages->setQuadraticGrid(IMAGES_GRID_SIZE);
 }
 
 void TrainingResultView::setAccuracyCurve(const QSharedPointer<QGraphicsItem> &accuracyCurveImage) {
@@ -18,7 +18,7 @@ void TrainingResultView::setAccuracyCurve(const QSharedPointer<QGraphicsItem> &a
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 
-    view->scale(0.9, 0.9);
+    view->scale(ACCURACY_CURVE_SCALING_FACTOR, ACCURACY_CURVE_SCALING_FACTOR);
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -36,7 +36,7 @@ void TrainingResultView::setConfusionMatrix(const QSharedPointer<QGraphicsItem> 
     //Jump back to main programs thread to avoid warnings
     scene->moveToThread(this->thread());
 
-    view->scale(0.85, 0.85);
+    view->scale(CONFUSIONMATRIX_SCALING_FACTOR, CONFUSIONMATRIX_SCALING_FACTOR);
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

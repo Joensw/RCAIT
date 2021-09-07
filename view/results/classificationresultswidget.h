@@ -19,6 +19,9 @@ public:
     void addClassificationResult(ClassificationResult *result);
 
 private:
+    static constexpr auto PLACEHOLDER_TAB_INDEX = 0;
+    static constexpr auto PLACEHOLDER_TAB_ICON = ":/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg";
+
     QMap<GenericGraphicsView *, ClassificationResult *> m_mapResultsByTab;
 
     void addComparisonResult(const QString &runNameToCompare) override;

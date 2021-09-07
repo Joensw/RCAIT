@@ -26,6 +26,10 @@ public:
     void updateResultFolderPath(const QString &newDirPath) override;
 
 private:
+    static constexpr auto TOP_ACCURACIES_TAB_INDEX = 0;
+    static constexpr auto TOP_ACCURACIES_TAB_ICON = ":/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg";
+    static constexpr auto TOP_ACCURACIES_TAB_NAME = "Top Accuracies";
+
     ProjectManager *m_projectManager;
     QScopedPointer<TopAccuraciesView> m_topAccuraciesView;
     QSharedPointer<TopAccuraciesGraphics> m_topAccuraciesGraphics;
