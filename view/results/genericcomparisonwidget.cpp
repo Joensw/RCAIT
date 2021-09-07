@@ -93,8 +93,10 @@ void GenericComparisonWidget::updateSaveButton(GenericGraphicsView *tab) {
 
     m_pushButton_saveCurrentTab->setEnabled(canBeSaved);
     auto index = m_tabWidget->indexOf(tab);
-    auto prefix = (canBeSaved) ? PREFIX_TAB_SAVED : "";
-    m_tabWidget->setTabText(index, prefix % tab->getName());
+    auto tabName = (canBeSaved) ? PREFIX_TAB_SAVED % tab->getName()
+                                : tab->getName();
+
+    m_tabWidget->setTabText(index, tabName);
 }
 
 void GenericComparisonWidget::on_pushButton_saveCurrentTab_clicked() {
