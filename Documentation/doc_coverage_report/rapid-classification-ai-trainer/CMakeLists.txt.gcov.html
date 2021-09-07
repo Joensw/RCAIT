@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-06 03:30:40</td>
+            <td class="headerValue">2021-09-07 11:34:11</td>
             <td></td>
           </tr>
           <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
@@ -182,13 +182,13 @@
 <a name="124"><span class="lineNum">     124 </span>            : </a>
 <a name="125"><span class="lineNum">     125 </span>            : #Code Coverage</a>
 <a name="126"><span class="lineNum">     126 </span>            : add_custom_target(Code_Coverage_Report ALL COMMAND ${CMAKE_COMMAND} -E make_directory code_coverage)</a>
-<a name="127"><span class="lineNum">     127 </span>            : add_custom_target(lcov ALL COMMAND ${LCOV_PATH} -c -d . -o code_coverage/my.info DEPENDS Code_Coverage_Report ${PROJECT_NAME})</a>
+<a name="127"><span class="lineNum">     127 </span>            : add_custom_target(lcov ALL COMMAND ${LCOV_PATH} -c -d . -o code_coverage/my.info DEPENDS Code_Coverage_Report ${PROJECT_NAME} Google_tests)</a>
 <a name="128"><span class="lineNum">     128 </span>            : add_custom_target(lcov_rm ALL COMMAND ${LCOV_PATH} -r code_coverage/my.info \&quot;/usr*\&quot; \&quot;${CMAKE_CURRENT_BINARY_DIR}*\&quot; \&quot;/home/sascha/Qt/6.1.1/gcc_64/include/*\&quot; -o code_coverage/my.info DEPENDS lcov)</a>
 <a name="129"><span class="lineNum">     129 </span>            : add_custom_target(genhtml ALL COMMAND ${GENHTML_PATH} ${CMAKE_CURRENT_BINARY_DIR}/code_coverage/my.info --output-directory ${CMAKE_CURRENT_BINARY_DIR}/code_coverage/ --ignore-errors source DEPENDS lcov_rm )</a>
 <a name="130"><span class="lineNum">     130 </span>            : #Documentation Coverage</a>
 <a name="131"><span class="lineNum">     131 </span>            : add_custom_target(doxygen ALL COMMAND ${DOXYGEN_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.cfg)</a>
 <a name="132"><span class="lineNum">     132 </span>            : add_custom_target(pythontest ALL COMMAND ${PYTHON_PATH} -m coverxygen --xml-dir ${CMAKE_CURRENT_BINARY_DIR}/out/xml/ --src-dir ${CMAKE_CURRENT_SOURCE_DIR}/ --output ${CMAKE_CURRENT_BINARY_DIR}/doc-coverage.info DEPENDS doxygen)</a>
-<a name="133"><span class="lineNum">     133 </span>            : #add_custom_target(dochtml ALL COMMAND ${GENHTML_PATH}  --no-function-coverage --no-branch-coverage ${CMAKE_CURRENT_BINARY_DIR}/doc-coverage.info -o ${CMAKE_CURRENT_BINARY_DIR}/doc_coverage --ignore-errors source DEPENDS dochtml)</a>
+<a name="133"><span class="lineNum">     133 </span>            : add_custom_target(dochtml ALL COMMAND ${GENHTML_PATH}  --no-function-coverage --no-branch-coverage ${CMAKE_CURRENT_BINARY_DIR}/doc-coverage.info -o ${CMAKE_CURRENT_BINARY_DIR}/doc_coverage --ignore-errors source DEPENDS dochtml)</a>
 </pre>
       </td>
     </tr>

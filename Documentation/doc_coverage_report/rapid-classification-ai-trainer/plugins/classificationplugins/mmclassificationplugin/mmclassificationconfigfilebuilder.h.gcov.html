@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">18</td>
-            <td class="headerCovTableEntry">40</td>
-            <td class="headerCovTableEntryLo">45.0 %</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntryHi">94.7 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-06 03:30:40</td>
+            <td class="headerValue">2021-09-07 11:34:11</td>
             <td></td>
           </tr>
           <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -203,34 +203,34 @@
 <a name="145"><span class="lineNum">     145 </span>            : </a>
 <a name="146"><span class="lineNum">     146 </span>            : private:</a>
 <a name="147"><span class="lineNum">     147 </span>            : </a>
-<a name="148"><span class="lineNum">     148 </span><span class="lineNoCov">          0 :     QString createConfigFile(const QString&amp; name, const QString&amp; defaultFilePath);</span></a>
-<a name="149"><span class="lineNum">     149 </span><span class="lineNoCov">          0 :     static QStringList readFileLines(const QString&amp; pathToFile);</span></a>
-<a name="150"><span class="lineNum">     150 </span><span class="lineNoCov">          0 :     static bool readAndReplaceLinesInOrder(const QString&amp; pathToFile, QVector&lt;QString&gt; regularExpressions, QVector&lt;QString&gt; replaceWith, int caputureGroupIndex);</span></a>
-<a name="151"><span class="lineNum">     151 </span><span class="lineNoCov">          0 :     static void writeBack(const QString&amp; pathToFile, const QStringList&amp; data);</span></a>
-<a name="152"><span class="lineNum">     152 </span><span class="lineNoCov">          0 :     static QString replaceText(QString data, const QString&amp; regularExpressionText, int captureGroupIndex, const QString&amp; replacementText);</span></a>
+<a name="148"><span class="lineNum">     148 </span>            :     QString createConfigFile(const QString&amp; name, const QString&amp; defaultFilePath);</a>
+<a name="149"><span class="lineNum">     149 </span>            :     static QStringList readFileLines(const QString&amp; pathToFile);</a>
+<a name="150"><span class="lineNum">     150 </span>            :     static bool readAndReplaceLinesInOrder(const QString&amp; pathToFile, QVector&lt;QString&gt; regularExpressions, QVector&lt;QString&gt; replaceWith, int caputureGroupIndex);</a>
+<a name="151"><span class="lineNum">     151 </span>            :     static void writeBack(const QString&amp; pathToFile, const QStringList&amp; data);</a>
+<a name="152"><span class="lineNum">     152 </span>            :     static QString replaceText(QString data, const QString&amp; regularExpressionText, int captureGroupIndex, const QString&amp; replacementText);</a>
 <a name="153"><span class="lineNum">     153 </span>            : </a>
-<a name="154"><span class="lineNum">     154 </span><span class="lineNoCov">          0 :     QString m_pathToMMClassification = &quot;&quot;;</span></a>
+<a name="154"><span class="lineNum">     154 </span>            :     QString m_pathToMMClassification = &quot;&quot;;</a>
 <a name="155"><span class="lineNum">     155 </span>            : </a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineNoCov">          0 :     QString m_subFolderConfigs = &quot;configs&quot;;</span></a>
-<a name="157"><span class="lineNum">     157 </span><span class="lineNoCov">          0 :     const QString m_subfolderCheckpoints = &quot;checkpoints&quot;;</span></a>
+<a name="156"><span class="lineNum">     156 </span>            :     QString m_subFolderConfigs = &quot;configs&quot;;</a>
+<a name="157"><span class="lineNum">     157 </span>            :     const QString m_subfolderCheckpoints = &quot;checkpoints&quot;;</a>
 <a name="158"><span class="lineNum">     158 </span>            : </a>
-<a name="159"><span class="lineNum">     159 </span><span class="lineNoCov">          0 :     const QString m_defaultModelConfigPath = &quot;configs/_base_/models/default_model.py&quot;;</span></a>
-<a name="160"><span class="lineNum">     160 </span><span class="lineNoCov">          0 :     const QString m_defaultDatasetConfigPath = &quot;configs/_base_/datasets/default_dataset.py&quot;;</span></a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineNoCov">          0 :     const QString m_defaultScheduleConfigPath = &quot;configs/_base_/schedules/default_schedule.py&quot;;</span></a>
-<a name="162"><span class="lineNum">     162 </span><span class="lineNoCov">          0 :     const QString m_defaultRuntimeConfigPath = &quot;configs/_base_/default_runtime.py&quot;;</span></a>
+<a name="159"><span class="lineNum">     159 </span>            :     const QString m_defaultModelConfigPath = &quot;configs/_base_/models/default_model.py&quot;;</a>
+<a name="160"><span class="lineNum">     160 </span>            :     const QString m_defaultDatasetConfigPath = &quot;configs/_base_/datasets/default_dataset.py&quot;;</a>
+<a name="161"><span class="lineNum">     161 </span>            :     const QString m_defaultScheduleConfigPath = &quot;configs/_base_/schedules/default_schedule.py&quot;;</a>
+<a name="162"><span class="lineNum">     162 </span>            :     const QString m_defaultRuntimeConfigPath = &quot;configs/_base_/default_runtime.py&quot;;</a>
 <a name="163"><span class="lineNum">     163 </span>            : </a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineNoCov">          0 :     const QString m_previewConfigPath = &quot;configs/datapreviewConfig.py&quot;;</span></a>
+<a name="164"><span class="lineNum">     164 </span>            :     const QString m_previewConfigPath = &quot;configs/datapreviewConfig.py&quot;;</a>
 <a name="165"><span class="lineNum">     165 </span>            : </a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineNoCov">          0 :     const QString m_newLineRegExText = &quot;[\r\n]&quot;;</span></a>
+<a name="166"><span class="lineNum">     166 </span>            :     const QString m_newLineRegExText = &quot;[\r\n]&quot;;</a>
 <a name="167"><span class="lineNum">     167 </span>            : </a>
-<a name="168"><span class="lineNum">     168 </span><span class="lineNoCov">          0 :     const QString m_runtimeConfigPathRegExText = &quot;_base_ = \\[\\s*'.*'*,\\s*'.*',\\s*'(.*)'&quot;;</span></a>
+<a name="168"><span class="lineNum">     168 </span>            :     const QString m_runtimeConfigPathRegExText = &quot;_base_ = \\[\\s*'.*'*,\\s*'.*',\\s*'(.*)'&quot;;</a>
 <a name="169"><span class="lineNum">     169 </span>            : </a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineNoCov">          0 :     const QString m_trainPathRegExText = &quot;train = (.|\n)*data_prefix = (.|\n)*'(.*)',\n.*train_pipeline&quot;;</span></a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineNoCov">          0 :     const QString m_validationPathRegExText = &quot;val = (.|\n)*data_prefix = (.|\n)*'(.*)',(.|\n)*\\),&quot;;</span></a>
-<a name="172"><span class="lineNum">     172 </span><span class="lineNoCov">          0 :     const QString m_testPathRegExText = &quot;test = (.|\n)*data_prefix = (.|\n)*'(.*)',(.|\n)*pipeline&quot;;</span></a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineNoCov">          0 :     const QString m_maxItersRegExText = &quot;max_iters=\\d+&quot;;</span></a>
-<a name="174"><span class="lineNum">     174 </span><span class="lineNoCov">          0 :     const QString m_step = &quot;step=\\[(\\d+)&quot;;</span></a>
-<a name="175"><span class="lineNum">     175 </span><span class="lineNoCov">          0 :     const QString m_checkpointInterval = &quot;checkpoint_config = dict\\(interval=(\\d+)&quot;;</span></a>
+<a name="170"><span class="lineNum">     170 </span>            :     const QString m_trainPathRegExText = &quot;train = (.|\n)*data_prefix = (.|\n)*'(.*)',\n.*train_pipeline&quot;;</a>
+<a name="171"><span class="lineNum">     171 </span>            :     const QString m_validationPathRegExText = &quot;val = (.|\n)*data_prefix = (.|\n)*'(.*)',(.|\n)*\\),&quot;;</a>
+<a name="172"><span class="lineNum">     172 </span>            :     const QString m_testPathRegExText = &quot;test = (.|\n)*data_prefix = (.|\n)*'(.*)',(.|\n)*pipeline&quot;;</a>
+<a name="173"><span class="lineNum">     173 </span>            :     const QString m_maxItersRegExText = &quot;max_iters=\\d+&quot;;</a>
+<a name="174"><span class="lineNum">     174 </span>            :     const QString m_step = &quot;step=\\[(\\d+)&quot;;</a>
+<a name="175"><span class="lineNum">     175 </span>            :     const QString m_checkpointInterval = &quot;checkpoint_config = dict\\(interval=(\\d+)&quot;;</a>
 <a name="176"><span class="lineNum">     176 </span>            : </a>
 <a name="177"><span class="lineNum">     177 </span>            : };</a>
 <a name="178"><span class="lineNum">     178 </span>            : </a>

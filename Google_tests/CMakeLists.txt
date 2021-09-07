@@ -26,9 +26,9 @@ include_directories(${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
 # 'Google_Tests_run' is the target name
 
 set(Sources
-        test_imageinspectionmodel.cpp
-        ../model/imageinspectionmodel.h
-        ../model/imageinspectionmodel.cpp
+        #test_imageinspectionmodel.cpp
+        #../model/imageinspectionmodel.h
+        #../model/imageinspectionmodel.cpp
 
         test_automator.cpp
         ../model/automation/automator.h
@@ -134,8 +134,11 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DI
 
 
 
-
+#add_executable(Test1 test_imageinspectionmodel.cpp ../model/imageinspectionmodel.h ../model/imageinspectionmodel.cpp)
 add_executable(Google_Tests_run ${Sources})
+add_executable(Test2 test_imageinspectionmodel.cpp ../model/imageinspectionmodel.h  ../model/imageinspectionmodel.cpp)
+
+
 
 target_include_directories(Google_Tests_run PUBLIC
     ../plugins
@@ -153,6 +156,8 @@ target_include_directories(Google_Tests_run PUBLIC
     ../view/utilities
     ../controller)
 target_link_libraries(Google_Tests_run gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
+target_link_libraries(Test2 gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
+
 
 enable_testing()
 add_test(Google_Tests_run COMMAND Google_Tests_run)
