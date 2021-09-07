@@ -9,8 +9,7 @@ class GenericGraphicsView : public QWidget {
 Q_OBJECT
 
 public:
-    GenericGraphicsView(SavableResultsWidget *tabWidget, QWidget *parent = nullptr)
-            : QWidget(parent), m_tabWidget(tabWidget) {};
+    GenericGraphicsView(SavableResultsWidget *tabWidget, QWidget *parent = nullptr);
 
     [[nodiscard]] bool isSaved() const;
 
@@ -20,6 +19,12 @@ public:
 
     void setName(const QString &name);
 
+
+    /*
+     * Every result will accept some sort of graphics.
+     * These here are all available methods over all types of graphics,
+     * ready to be overridden and implemented.
+     */
     virtual void setAccuracyCurve(const QSharedPointer<QGraphicsItem> &accuracyCurveImage) {};
 
     virtual void setConfusionMatrix(const QSharedPointer<QGraphicsItem> &matrixImage) {};
@@ -33,23 +38,5 @@ private:
     bool m_isSaved = false;
     QString m_name;
 };
-
-inline void GenericGraphicsView::setSaved(bool isSaved) {
-    m_isSaved = isSaved;
-    if (m_tabWidget)
-        m_tabWidget->updateSaveButton(this);
-}
-
-inline void GenericGraphicsView::setName(const QString &name) {
-    m_name = name;
-}
-
-inline bool GenericGraphicsView::isSaved() const {
-    return m_isSaved;
-}
-
-inline const QString &GenericGraphicsView::getName() const {
-    return m_name;
-}
 
 #endif // GENERICGRAPHICSVIEW_H
