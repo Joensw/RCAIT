@@ -83,9 +83,8 @@ void ImageInspectionModel::loadNewData(const QString &path, int split) {
         auto splitPos = (long long int) floorl(splitPosDbl);
 
         Q_ASSERT(splitPos >= 0 && splitPos < dataPoints);
-        auto trainData = data.sliced(0, splitPos);
-        auto validationData = data.sliced(splitPos);
-
+        auto trainData = data.sliced(splitPos);
+        auto validationData = data.sliced(0, splitPos);
         m_trainNewData[key] = trainData;
         m_validationNewData[key] = validationData;
 
