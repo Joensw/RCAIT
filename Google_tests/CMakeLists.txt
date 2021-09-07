@@ -27,8 +27,8 @@ include_directories(${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
 
 set(Sources
         #test_imageinspectionmodel.cpp
-        #../model/imageinspectionmodel.h
-        #../model/imageinspectionmodel.cpp
+        ../model/imageinspectionmodel.h
+        ../model/imageinspectionmodel.cpp
 
         test_automator.cpp
         ../model/automation/automator.h
@@ -118,6 +118,7 @@ set(Sources
 
 
         ../view/results/genericgraphicsview.h
+        ../view/results/genericgraphicsview.cpp
 
 
         ../view/utilities/canvas.h
@@ -136,7 +137,7 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DI
 
 #add_executable(Test1 test_imageinspectionmodel.cpp ../model/imageinspectionmodel.h ../model/imageinspectionmodel.cpp)
 add_executable(Google_Tests_run ${Sources})
-add_executable(Test2 test_imageinspectionmodel.cpp ../model/imageinspectionmodel.h  ../model/imageinspectionmodel.cpp)
+add_executable(ImageInspectionModelTest test_imageinspectionmodel.cpp ../model/imageinspectionmodel.h  ../model/imageinspectionmodel.cpp ../model/utilities/mapadapt.h)
 
 
 
@@ -155,8 +156,24 @@ target_include_directories(Google_Tests_run PUBLIC
     ../view/results
     ../view/utilities
     ../controller)
+
+target_include_directories(ImageInspectionModelTest PUBLIC
+    ../plugins
+    ../
+    ../model
+    ../model/results
+    ../model/utilities
+    ../model/pluginusage
+    ../model/automation
+    ../plugins/imageplugins
+    ../plugins/classificationplugins
+    ../plugins/results
+    ../view
+    ../view/results
+    ../view/utilities
+    ../controller)
 target_link_libraries(Google_Tests_run gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
-target_link_libraries(Test2 gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
+target_link_libraries(ImageInspectionModelTest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 
 
 enable_testing()
