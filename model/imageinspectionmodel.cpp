@@ -53,12 +53,15 @@ void ImageInspectionModel::removeImage(int selectionIndex, const QMap<QString, Q
     switch (selectionIndex) {
         case 2:
             removeImageWithIndex(m_validationDataset, removedImages);
+        break;
         case 3:
             removeImageWithIndex(m_trainDataset, removedImages);
+        break;
         case 0:
             removeImageWithIndex(m_validationNewData, removedImages);
         case 1:
             removeImageWithIndex(m_trainNewData, removedImages);
+        break;
         default:
             qWarning() << "Unknown selectionIndex: " << selectionIndex;
     }
@@ -83,9 +86,8 @@ void ImageInspectionModel::loadNewData(const QString &path, int split) {
         auto splitPos = (long long int) floorl(splitPosDbl);
 
         Q_ASSERT(splitPos >= 0 && splitPos < dataPoints);
-        auto trainData = data.sliced(0, splitPos);
-        auto validationData = data.sliced(splitPos);
-
+        auto trainData = data.sliced(splitPos);
+        auto validationData = data.sliced(0, splitPos);
         m_trainNewData[key] = trainData;
         m_validationNewData[key] = validationData;
 

@@ -25,6 +25,7 @@ add_library(mmclassificationplugin MODULE
     ../../../view/results/trainingresultview.h ../../../view/results/trainingresultview.cpp
 
         ../../../view/results/genericgraphicsview.h
+        ../../../view/results/genericgraphicsview.cpp
         ../../../view/results/topaccuraciesview.h ../../../view/results/topaccuraciesview.cpp
         ../../../model/results/topaccuraciesgraphics.h ../../../model/results/topaccuraciesgraphics.cpp
         ../../../model/results/genericresultgraphics.h
