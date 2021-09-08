@@ -28,7 +28,7 @@ public:
 private:
     static constexpr auto TOP_ACCURACIES_TAB_INDEX = 0;
     static constexpr auto TOP_ACCURACIES_TAB_ICON = ":/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg";
-    static constexpr auto TOP_ACCURACIES_TAB_NAME = "Top Accuracies";
+    static constexpr auto TOP_ACCURACIES_TAB_NAME = QT_TR_NOOP("Top Accuracies");
 
     ProjectManager *m_projectManager;
     QScopedPointer<TopAccuraciesView> m_topAccuraciesView;

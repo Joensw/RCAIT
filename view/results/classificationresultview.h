@@ -33,8 +33,8 @@ public:
 private:
     static constexpr auto CLASSIFICATION_GRAPHICS_SCALING_FACTOR = 0.6;
     static constexpr auto TABLE_COLUMN_CODE = 2;
-    static constexpr auto CONFIDENCE_HEADER = "Confidence";
-    static constexpr auto LABEL_HEADER = "Label";
+    static constexpr auto CONFIDENCE_HEADER = QT_TR_NOOP("Confidence");
+    static constexpr auto LABEL_HEADER = QT_TR_NOOP("Label");
 
     Ui::ClassificationResultView *ui;
     QSharedPointer<QGraphicsItem> m_classificationGraphics;
