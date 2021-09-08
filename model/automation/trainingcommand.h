@@ -3,7 +3,6 @@
 
 #include "command.h"
 
-#include <pluginusage/trainingsthread.h>
 
 #include <classificationpluginmanager.h>
 #include <progressableplugin.h>

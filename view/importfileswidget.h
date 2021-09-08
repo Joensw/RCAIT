@@ -17,7 +17,12 @@ class ImportFilesWidget : public QWidget
     Q_OBJECT
 
 protected:
-    // this event is called, when a new translator is loaded or the system language is changed
+
+    /**
+     * @brief changeEvent event handler
+     *
+     * @param event incoming event
+     */
     void changeEvent(QEvent *) override;
 
 public:
@@ -26,6 +31,10 @@ public:
      * @param parent optional parent arguement
      */
     explicit ImportFilesWidget(QWidget *parent = nullptr);
+
+    /**
+     * @brief destructor
+     */
     ~ImportFilesWidget();
 
     /**
