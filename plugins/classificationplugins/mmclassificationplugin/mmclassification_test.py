@@ -159,6 +159,7 @@ def main():
             for k, v in eval_results.items():
                 print(f'\n{k} : {v:.2f}')
         if args.confidenceScoresOut:
+                scores = np.vstack(outputs)
                 print("saving confidence scores to " + args.confidenceScoresOut)
                 with open(args.confidenceScoresOut, 'w') as outfile:
                         json.dump(scores.tolist(), outfile)

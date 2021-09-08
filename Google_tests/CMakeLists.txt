@@ -23,6 +23,22 @@ add_subdirectory(lib)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 include_directories(${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
 
+#include directories so that the inclusion of header files works without specifying the path
+set(MY_INCLUDE_DIRECTORIES ../plugins
+    ../
+    ../model
+    ../model/results
+    ../model/utilities
+    ../model/pluginusage
+    ../model/automation
+    ../plugins/imageplugins
+    ../plugins/classificationplugins
+    ../plugins/results
+    ../view
+    ../view/results
+    ../view/utilities
+    ../controller)
+
 # 'Google_Tests_run' is the target name
 
 set(Sources
@@ -135,46 +151,19 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DI
 
 
 
-#add_executable(Test1 test_imageinspectionmodel.cpp ../model/imageinspectionmodel.h ../model/imageinspectionmodel.cpp)
+#add executables
 add_executable(Google_Tests_run ${Sources})
 add_executable(ImageInspectionModelTest test_imageinspectionmodel.cpp ../model/imageinspectionmodel.h  ../model/imageinspectionmodel.cpp ../model/utilities/mapadapt.h)
 
+#add include directory
+target_include_directories(Google_Tests_run PUBLIC ${MY_INCLUDE_DIRECTORIES})
+target_include_directories(ImageInspectionModelTest PUBLIC ${MY_INCLUDE_DIRECTORIES})
 
-
-target_include_directories(Google_Tests_run PUBLIC
-    ../plugins
-    ../
-    ../model
-    ../model/results
-    ../model/utilities
-    ../model/pluginusage
-    ../model/automation
-    ../plugins/imageplugins
-    ../plugins/classificationplugins
-    ../plugins/results
-    ../view
-    ../view/results
-    ../view/utilities
-    ../controller)
-
-target_include_directories(ImageInspectionModelTest PUBLIC
-    ../plugins
-    ../
-    ../model
-    ../model/results
-    ../model/utilities
-    ../model/pluginusage
-    ../model/automation
-    ../plugins/imageplugins
-    ../plugins/classificationplugins
-    ../plugins/results
-    ../view
-    ../view/results
-    ../view/utilities
-    ../controller)
+#add test libarries
 target_link_libraries(Google_Tests_run gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(ImageInspectionModelTest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 
 
 enable_testing()
 add_test(Google_Tests_run COMMAND Google_Tests_run)
+add_test(ImageInspectionModelTest COMMAND ImageInspectionModelTest)
