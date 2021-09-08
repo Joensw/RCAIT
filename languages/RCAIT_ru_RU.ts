@@ -363,7 +363,7 @@ The application will terminate</source>
     <message>
         <location filename="../view/results/genericcomparisonwidget.ui" line="75"/>
         <source>Save Result</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить результат</translation>
     </message>
     <message>
         <source>Save Results</source>
@@ -419,7 +419,7 @@ The application will terminate</source>
     <message>
         <location filename="../view/globalsettingswidget.cpp" line="50"/>
         <source>Success. Updated</source>
-        <translation type="unfinished">Успешно обновлено</translation>
+        <translation>Успешно обновлено</translation>
     </message>
     <message>
         <location filename="../view/globalsettingswidget.cpp" line="57"/>
@@ -432,7 +432,7 @@ The application will terminate</source>
     <message>
         <location filename="../view/utilities/imagegallery.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Форма</translation>
+        <translation>Форма</translation>
     </message>
 </context>
 <context>
@@ -440,37 +440,37 @@ The application will terminate</source>
     <message>
         <location filename="../view/imageinspectionwidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Форма</translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../view/imageinspectionwidget.ui" line="20"/>
         <source>New validation images</source>
-        <translation type="unfinished"></translation>
+        <translation>Новые валидационные изображения</translation>
     </message>
     <message>
         <location filename="../view/imageinspectionwidget.ui" line="27"/>
         <source>New training images</source>
-        <translation type="unfinished"></translation>
+        <translation>Новые тренировочные изображения</translation>
     </message>
     <message>
         <location filename="../view/imageinspectionwidget.ui" line="64"/>
         <source>Current dataset validation images</source>
-        <translation type="unfinished"></translation>
+        <translation>Текущий набор валидационных изображений</translation>
     </message>
     <message>
         <location filename="../view/imageinspectionwidget.ui" line="71"/>
         <source>Current dataset training images</source>
-        <translation type="unfinished"></translation>
+        <translation>Текущий набор тренировочных изображений</translation>
     </message>
     <message>
         <location filename="../view/imageinspectionwidget.ui" line="102"/>
         <source>Merge into dataset</source>
-        <translation type="unfinished"></translation>
+        <translation>Объединить в набор данных</translation>
     </message>
     <message>
         <location filename="../view/imageinspectionwidget.ui" line="109"/>
         <source>Remove selected images</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить выбранные изображения</translation>
     </message>
 </context>
 <context>
@@ -518,7 +518,7 @@ The application will terminate</source>
     <message>
         <location filename="../view/importfileswidget.ui" line="257"/>
         <source>Cancel</source>
-        <translation type="unfinished">Отменить</translation>
+        <translation>Отменить</translation>
     </message>
     <message>
         <location filename="../view/importfileswidget.ui" line="267"/>
@@ -543,7 +543,7 @@ The application will terminate</source>
     <message>
         <location filename="../view/importfileswidget.cpp" line="121"/>
         <source>Select .txt file</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите .txt файл</translation>
     </message>
 </context>
 <context>
