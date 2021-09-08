@@ -1,3 +1,10 @@
+/**
+ * @file imageinspectionmodel.h
+ *
+ * @brief fuctions for managing a classification dataset on disk
+ *
+ * @author Sascha Rolinger
+ */
 #ifndef IMAGEINSPECTIONMODEL_H
 #define IMAGEINSPECTIONMODEL_H
 #include <QString>
@@ -7,7 +14,9 @@
 #include <QDirIterator>
 #include <QRegularExpression>
 
-
+/**
+ * @brief The ImageInspectionModel class
+ */
 class ImageInspectionModel {
 
 

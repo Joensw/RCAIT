@@ -1,6 +1,14 @@
+/**
+ * @file imagecontroller.h
+ *
+ * @brief acts as controller between a classifiaction dataset and its view
+ *
+ * @author Sascha Rolinger
+ * @author Adrian Nelson
+ */
+
 #ifndef IMAGECONTROLLER_H
 #define IMAGECONTROLLER_H
-
 
 #include <Qt>
 #include "imageloader.h"

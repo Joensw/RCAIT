@@ -1,3 +1,10 @@
+/**
+ * @file imageinspectionmodel.cpp
+ *
+ * @brief fuctions for managing a classification dataset on disk
+ *
+ * @author Sascha Rolinger
+ */
 #include "imageinspectionmodel.h"
 #include "model/utilities/mapadapt.h"
 
