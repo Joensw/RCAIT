@@ -23,6 +23,9 @@ public:
      */
     explicit AutomationWidget(QWidget *parent = nullptr);
 
+    /**
+     * @brief destructor
+     */
     ~AutomationWidget();
 
 
@@ -113,6 +116,12 @@ signals:
 
 
 protected:
+
+    /**
+     * @brief changeEvent event handler
+     *
+     * @param event incoming event
+     */
     void changeEvent(QEvent *event);
 
 private slots:

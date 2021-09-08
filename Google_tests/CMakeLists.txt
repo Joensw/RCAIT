@@ -60,11 +60,6 @@ set(Sources
         ../model/modelmanager.h
         ../model/modelmanager.cpp
         ../model/pluginusage/progressable.h
-        ../model/pluginusage/aithread.h
-        ../model/pluginusage/classificationthread.h
-        ../model/pluginusage/classificationthread.cpp
-        ../model/pluginusage/trainingsthread.h
-        ../model/pluginusage/trainingsthread.cpp
         ../model/pluginusage/imageloader.h
         ../model/pluginusage/imageloader.cpp
         ../model/automation/command.h

@@ -4,7 +4,6 @@
 #include "command.h"
 
 #include <classificationpluginmanager.h>
-#include <classificationthread.h>
 #include <progressableplugin.h>
 
 /**

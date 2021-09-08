@@ -21,6 +21,10 @@ public:
      * @param parent optional parent argument
      */
     explicit ImageInspectionWidget(QWidget *parent = nullptr);
+
+    /**
+     * @brief destructor
+     */
     ~ImageInspectionWidget();
 
     /**

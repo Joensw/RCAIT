@@ -28,6 +28,10 @@ public:
      * @param parent Optional parent widget.
      */
     explicit SettingsView(QWidget *parent = nullptr);
+
+    /**
+     * @brief destructor
+     */
     ~SettingsView();
 
     /**
@@ -110,7 +114,14 @@ signals:
     void sig_applySettings(int index);
 
 protected:
+
+    /**
+     * @brief changeEvent event handler
+     *
+     * @param event incoming event
+     */
     void changeEvent(QEvent *event);
+
 private slots:
     [[maybe_unused]] void on_saveButton_clicked();
 
