@@ -20,6 +20,10 @@ public:
      * @param parent
      */
     explicit GlobalSettingsWidget(QWidget *parent = nullptr);
+
+    /**
+     * @brief destructor
+     */
     ~GlobalSettingsWidget();
 
     /**
@@ -106,6 +110,12 @@ signals:
 
 
 protected:
+
+    /**
+     * @brief changeEvent event handler
+     *
+     * @param event incoming event
+     */
     void changeEvent(QEvent *event);
 
 private slots:

@@ -23,6 +23,9 @@ public:
      */
     explicit InputImagesWidget(QWidget *parent = nullptr);
 
+    /**
+     * @brief destructor
+     */
     ~InputImagesWidget();
 
 signals:
@@ -50,6 +53,12 @@ public slots:
     void slot_progress(int progress);
 
 protected:
+
+    /**
+     * @brief changeEvent event handler
+     *
+     * @param event incoming event
+     */
     void changeEvent(QEvent *event);
 
 private slots:

@@ -20,6 +20,9 @@ public:
      */
     explicit AITrainingWidget(QWidget *parent = nullptr);
 
+    /**
+     * @brief destructor
+     */
     ~AITrainingWidget() override;
 
     /**
@@ -73,6 +76,12 @@ signals:
 
 
 protected:
+
+    /**
+     * @brief changeEvent event handler
+     *
+     * @param event incoming event
+     */
     void changeEvent(QEvent *event) override;
 
 private slots:
