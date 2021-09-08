@@ -131,8 +131,8 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
     auto most_misclassified_images = QJsonArray_toList<QString>(json_mostMisclassifiedImages);
     auto additionalResults = QJsonArray_toList<QString>(json_additionalResults);
 
-    auto result = new TrainingResult(accuracy_data, class_labels, confusionmatrix, most_misclassified_images, top1,
-                                     top5, additionalResults);
+    auto result = new TrainingResult(accuracy_data, class_labels, confusionmatrix,
+                                     most_misclassified_images, top1, top5, additionalResults);
     emit sig_normal_loadTrainingResultData(view, result);
 }
 

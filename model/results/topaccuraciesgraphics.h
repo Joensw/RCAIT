@@ -24,7 +24,7 @@ public:
 
     bool operator!=(const TopAccuraciesGraphics &other) const;
 
-    void setData(const QList<QPair<QString, QList<double>>> &mData);
+    [[maybe_unused]] void setData(const QList<QPair<QString, QList<double>>> &mData);
 
 private:
     QList<QPair<QString, QList<double>>> m_data;
