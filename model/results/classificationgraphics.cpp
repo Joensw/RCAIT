@@ -1,12 +1,15 @@
 #include "classificationgraphics.h"
 
 ClassificationGraphics::ClassificationGraphics(const QString &directory, const QString &identifier,
-                                               const QMap<QString, QList<double>> &data)
+                                               const QMap<QString, QList<double>> &data,
+                                               const QStringList &classLabels)
         : GenericResultGraphics(directory, "classification_" % identifier, "svg"),
-          m_data(data) {
+          m_data(data),
+          m_classLabels(classLabels) {
+
 }
 
-QString ClassificationGraphics::valuesToPyText() {
+QString ClassificationGraphics::dataToPyText() {
     QStringList result;
 
     for (const auto &row_data: m_data) {
@@ -14,7 +17,7 @@ QString ClassificationGraphics::valuesToPyText() {
         QStringList rowList;
 
         //Convert to QString with precision of 2 digits
-        for (const auto &value : row_data) {
+        for (const auto &value: row_data) {
             auto valueStr = QString::number(value, 'f', 2);
             rowList << valueStr;
         }
@@ -23,20 +26,29 @@ QString ClassificationGraphics::valuesToPyText() {
     return '[' % result.join(',') % ']';
 }
 
-QString ClassificationGraphics::labelsToPyText() {
+QString ClassificationGraphics::imagePathsToPyText() {
     QStringList results;
-    for (const auto&[key, _]: MapAdapt(m_data)) {
-        results << "'" % key % "'";
+    for (const auto&[imagePath, _]: MapAdapt(m_data)) {
+        results << "'" % imagePath % "'";
     }
     //Add "" around string so that dashes are not recognized as new arguments
     return '"' % ('[' % results.join(',') % ']') % '"';
 }
 
-void ClassificationGraphics::addDataRow(const QString &identifier, QList<double> &data) {
+QString ClassificationGraphics::classLabelsToPyText() {
+    QStringList results;
+    for (const auto &class_label: m_classLabels) {
+        results << "'" % class_label % "'";
+    }
+    //Add "" around string so that dashes are not recognized as new arguments
+    return '"' % ('[' % results.join(',') % ']') % '"';
+}
+
+[[maybe_unused]] void ClassificationGraphics::addClassificationEntry(const QString &identifier, QList<double> &data) {
     m_data.insert(identifier, data);
 }
 
-void ClassificationGraphics::removeDataRow(const QString &identifier) {
+[[maybe_unused]] void ClassificationGraphics::removeClassificationEntry(const QString &identifier) {
     m_data.remove(identifier);
 }
 
@@ -56,7 +68,8 @@ void ClassificationGraphics::generateGraphicsInternal(const QString &fullFilePat
     // python script.py <classification data> <classification labels> <output file name>
     auto pyScript = QFileInfo("classificationgraphics.py");
     QStringList params =
-            QStringList() << pyScript.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fullFilePath;
+            QStringList() << pyScript.absoluteFilePath() << dataToPyText() << imagePathsToPyText()
+                          << classLabelsToPyText() << fullFilePath;
     GenericResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 

@@ -29,7 +29,7 @@ ClassificationResultView::ClassificationResultView(SavableResultsWidget *tabWidg
 
 void ClassificationResultView::setClassificationData(const QMap<int, QStringList> &data) {
     auto table = ui->tableWidget_classificationresult;
-    for (const auto &[key, valuesList] : MapAdapt(data)) {
+    for (const auto &[key, valuesList]: MapAdapt(data)) {
         table->addTableRow(QString::number(key), valuesList);
     }
 }
@@ -39,18 +39,18 @@ void ClassificationResultView::setClassificationGraphics(
     m_classificationGraphics = classificationGraphicsImage;
 
     auto view = ui->graphicsView_classificationresult;
-    auto *scene = new QGraphicsScene();
-    scene->addItem(&*classificationGraphicsImage);
+    m_classificationScene.reset(new QGraphicsScene);
+    m_classificationScene->addItem(&*classificationGraphicsImage);
     //Jump back to main programs thread to avoid warnings
-    scene->moveToThread(this->thread());
+    m_classificationScene->moveToThread(this->thread());
 
     view->scale(CLASSIFICATION_GRAPHICS_SCALING_FACTOR, CLASSIFICATION_GRAPHICS_SCALING_FACTOR);
-    view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+    view->fitInView(m_classificationScene->sceneRect(), Qt::KeepAspectRatio);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
-    view->setScene(scene);
+    view->setScene(&*m_classificationScene);
 
     //Scroll up to the beginning of the scene on startup
     view->verticalScrollBar()->setValue(1);
@@ -61,6 +61,7 @@ void ClassificationResultView::setClassificationGraphics(
 }
 
 ClassificationResultView::~ClassificationResultView() {
+    m_classificationGraphics.clear();
     delete ui;
 }
 

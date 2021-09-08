@@ -15,11 +15,12 @@ Q_OBJECT
 
 public:
     ClassificationGraphics(const QString &directory, const QString &identifier,
-                           const QMap<QString, QList<double>> &data = {});
+                           const QMap<QString, QList<double>> &data,
+                           const QStringList &classLabels);
 
-    void addDataRow(const QString &identifier, QList<double> &data);
+    [[maybe_unused]] void addClassificationEntry(const QString &identifier, QList<double> &data);
 
-    void removeDataRow(const QString &identifier);
+    [[maybe_unused]] void removeClassificationEntry(const QString &identifier);
 
     QList<double> operator[](const QString &identifier) const;
 
@@ -28,15 +29,19 @@ public:
     bool operator!=(const ClassificationGraphics &other) const;
 
 private:
-    QMap <QString, QList<double>> m_data;
+    QMap<QString, QList<double>> m_data;
+    QStringList m_classLabels;
 
     void generateGraphicsInternal(const QString &fullFilePath) override;
 
     void passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) override;
 
-    QString labelsToPyText();
+    QString dataToPyText();
 
-    QString valuesToPyText();
+    QString imagePathsToPyText();
+
+    QString classLabelsToPyText();
+
 };
 
 #endif // CLASSIFICATIONGRAPHICS_H

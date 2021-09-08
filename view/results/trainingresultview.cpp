@@ -12,37 +12,37 @@ void TrainingResultView::setAccuracyCurve(const QSharedPointer<QGraphicsItem> &a
     m_accuracyCurveImage = accuracyCurveImage;
 
     auto view = ui->graphicsView_accuracycurve;
-    auto *scene = new QGraphicsScene();
+    m_accuracyCurveScene.reset(new QGraphicsScene);
 
-    scene->addItem(&*accuracyCurveImage);
+    m_accuracyCurveScene->addItem(&*accuracyCurveImage);
     //Jump back to main programs thread to avoid warnings
-    scene->moveToThread(this->thread());
+    m_accuracyCurveScene->moveToThread(this->thread());
 
     view->scale(ACCURACY_CURVE_SCALING_FACTOR, ACCURACY_CURVE_SCALING_FACTOR);
-    view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+    view->fitInView(m_accuracyCurveScene->sceneRect(), Qt::KeepAspectRatio);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    view->setScene(scene);
+    view->setScene(&*m_accuracyCurveScene);
 }
 
 void TrainingResultView::setConfusionMatrix(const QSharedPointer<QGraphicsItem> &matrixImage) {
     m_confusionMatrixImage = matrixImage;
 
     auto view = ui->graphicsView_confusionmatrix;
-    auto *scene = new QGraphicsScene();
-    scene->addItem(&*matrixImage);
+    m_confusionMatrixScene.reset(new QGraphicsScene);
+    m_confusionMatrixScene->addItem(&*matrixImage);
     //Jump back to main programs thread to avoid warnings
-    scene->moveToThread(this->thread());
+    m_confusionMatrixScene->moveToThread(this->thread());
 
     view->scale(CONFUSIONMATRIX_SCALING_FACTOR, CONFUSIONMATRIX_SCALING_FACTOR);
-    view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+    view->fitInView(m_confusionMatrixScene->sceneRect(), Qt::KeepAspectRatio);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    view->setScene(scene);
+    view->setScene(&*m_confusionMatrixScene);
 }
 
 void TrainingResultView::setMostMisclassifiedImages(const QStringList& images) {
@@ -51,6 +51,8 @@ void TrainingResultView::setMostMisclassifiedImages(const QStringList& images) {
 }
 
 TrainingResultView::~TrainingResultView() {
+    m_accuracyCurveImage.clear();
+    m_confusionMatrixImage.clear();
     delete ui;
 }
 

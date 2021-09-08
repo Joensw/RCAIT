@@ -44,6 +44,7 @@ void TopAccuraciesView::removeTopAccuraciesEntry(const QString &identifier) {
 }
 
 TopAccuraciesView::~TopAccuraciesView() {
+    m_topAccuraciesImage.clear();
     delete ui;
 }
 
@@ -51,18 +52,18 @@ void TopAccuraciesView::setTopAccuraciesGraphics(const QSharedPointer<QGraphicsI
     m_topAccuraciesImage = topAccuraciesImage;
 
     auto view = ui->graphicsView_topAccuracies;
-    auto *scene = new QGraphicsScene();
-    scene->addItem(&*topAccuraciesImage);
+    m_topAccuraciesScene.reset(new QGraphicsScene);
+    m_topAccuraciesScene->addItem(&*topAccuraciesImage);
     //Jump back to main programs thread to avoid warnings
-    scene->moveToThread(this->thread());
+    m_topAccuraciesScene->moveToThread(this->thread());
 
     view->scale(GRAPHICS_SCALING_FACTOR, GRAPHICS_SCALING_FACTOR);
-    view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+    view->fitInView(m_topAccuraciesScene->sceneRect(), Qt::KeepAspectRatio);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    view->setScene(scene);
+    view->setScene(&*m_topAccuraciesScene);
 }
 
 void TopAccuraciesView::slot_pushButton_updateGraphics_clicked() {

@@ -13,11 +13,11 @@ class ClassificationResult : public Result {
 private:
     QMap<QString, QList<double>> m_classificationData;
     QSharedPointer<ClassificationGraphics> m_classificationGraphics;
-    QList<QString> m_labels;
+    QStringList m_labels;
 
 public:
     ClassificationResult(const QMap<QString, QList<double>> &classificationData,
-                         QList<QString> labels, const QStringList &additionalResults = {});
+                         const QStringList &labels, const QStringList &additionalResults = {});
 
     ClassificationResult(const ClassificationResult &) = delete;
 
@@ -25,7 +25,7 @@ public:
 
     [[nodiscard]] const QMap<QString, QList<double>> &getClassificationData() const;
 
-    [[nodiscard]] const QList<QString> &getLabels() const;
+    [[nodiscard]] const QStringList &getLabels() const;
 
     const QSharedPointer<ClassificationGraphics> &getClassificationGraphics() const;
 

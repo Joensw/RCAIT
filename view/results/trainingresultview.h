@@ -40,6 +40,8 @@ private:
 
     QSharedPointer<QGraphicsItem> m_accuracyCurveImage;
     QSharedPointer<QGraphicsItem> m_confusionMatrixImage;
+    QScopedPointer<QGraphicsScene> m_accuracyCurveScene;
+    QScopedPointer<QGraphicsScene> m_confusionMatrixScene;
 };
 
 #endif // TRAININGRESULTVIEW_H

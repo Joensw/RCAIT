@@ -2,15 +2,15 @@
 #include <utility>
 
 ClassificationResult::ClassificationResult(const QMap<QString, QList<double>> &classificationData,
-                                           QList<QString> labels, const QStringList &additionalResults)
+                                           const QStringList &labels, const QStringList &additionalResults)
         : Result(additionalResults),
           m_classificationData(classificationData),
-          m_labels(std::move(labels)) {
+          m_labels(labels) {
 
     auto tempDir = ProjectManager::getInstance().getProjectImageTempDir();
     auto savable_id = getSavableIdentifier();
 
-    m_classificationGraphics.reset(new ClassificationGraphics(tempDir, savable_id, classificationData));
+    m_classificationGraphics.reset(new ClassificationGraphics(tempDir, savable_id, classificationData, labels));
 }
 
 bool ClassificationResult::isValid() const {
@@ -21,7 +21,7 @@ const QMap<QString, QList<double>> &ClassificationResult::getClassificationData(
     return m_classificationData;
 }
 
-const QList<QString> &ClassificationResult::getLabels() const {
+const QStringList &ClassificationResult::getLabels() const {
     return m_labels;
 }
 
