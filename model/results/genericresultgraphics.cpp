@@ -5,8 +5,7 @@ GenericResultGraphics::GenericResultGraphics(const QString &directory, QString b
           m_extension(std::move(extension)),
           m_fullName(m_baseName % '.' % m_extension),
           m_directory(directory),
-          m_fullPath(directory % m_fullName) {
-
+          m_fullPath(directory % '/' % m_fullName) {
 }
 
 void GenericResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
