@@ -51,14 +51,14 @@ private:
     static constexpr auto NUMBER_PRECISION = 2;
 
     static constexpr auto TABLE_COLUMN_COUNT = 2;
-    static constexpr auto TOP1_HEADER = "Top 1%";
-    static constexpr auto TOP5_HEADER = "Top 5%";
+    static constexpr auto TOP1_HEADER = QT_TR_NOOP("Top 1%");
+    static constexpr auto TOP5_HEADER = QT_TR_NOOP("Top 5%");
     static constexpr auto TOP1_COLOR = "royal blue";
     static constexpr auto TOP5_COLOR = "orange";
 
     static constexpr auto GRAPHICS_SCALING_FACTOR = 0.9;
     static constexpr auto UPDATE_GRAPHICS_BUTTON_ICON = ":/UISymbols/UI_Reload_Icon.svg";
-    static constexpr auto UPDATE_GRAPHICS_BUTTON_TOOLTIP = "Update graphics...";
+    static constexpr auto UPDATE_GRAPHICS_BUTTON_TOOLTIP = QT_TR_NOOP("Update graphics...");
 
     Ui::TopAccuraciesView *ui;
     QAbstractButton *m_pushButton_updateGraphics{};

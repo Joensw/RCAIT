@@ -9,118 +9,114 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="20"/>
+        <location filename="../view/aitrainingwidget.ui" line="24"/>
+        <location filename="../view/aitrainingwidget.ui" line="39"/>
+        <source>Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="83"/>
         <source>Data Augmentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="28"/>
         <source>Normalize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="35"/>
         <source>Random Flip Direction</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="59"/>
         <source>Random Resized Crop Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="92"/>
         <source>std</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="99"/>
-        <location filename="../view/aitrainingwidget.ui" line="122"/>
-        <location filename="../view/aitrainingwidget.ui" line="132"/>
-        <location filename="../view/aitrainingwidget.ui" line="142"/>
-        <location filename="../view/aitrainingwidget.ui" line="186"/>
         <source>0,00</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="152"/>
         <source>0,000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="207"/>
-        <location filename="../view/aitrainingwidget.ui" line="294"/>
+        <location filename="../view/aitrainingwidget.ui" line="129"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="221"/>
         <source>0,0000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="115"/>
         <source>red</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="165"/>
         <source>blue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="172"/>
         <source>green</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="179"/>
         <source>mean</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="200"/>
         <source>Random Flip Probability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="214"/>
         <source>horizontal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="267"/>
+        <location filename="../view/aitrainingwidget.ui" line="154"/>
         <source>Show Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="279"/>
         <source>Run Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="287"/>
         <source>Resize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="309"/>
+        <location filename="../view/aitrainingwidget.ui" line="122"/>
+        <source>Amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="175"/>
         <source>Run Model Training</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="342"/>
+        <location filename="../view/aitrainingwidget.ui" line="208"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="352"/>
+        <location filename="../view/aitrainingwidget.ui" line="218"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/aitrainingwidget.ui" line="362"/>
+        <location filename="../view/aitrainingwidget.ui" line="228"/>
         <source>Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/aitrainingwidget.ui" line="243"/>
+        <source>Data Augmentation Preview</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -142,60 +138,85 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
-<context>
-    <name>ClassificationResultView</name>
-    <message>
-        <location filename="../view/results/classificationresultview.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/results/classificationresultview.cpp" line="75"/>
-        <source>Confidence</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/results/classificationresultview.cpp" line="75"/>
-        <source>Label</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
+    <context>
+        <name>BingSettings</name>
+        <message>
+            <location filename="../plugins/imageplugins/bingplugin/bingsettings.ui" line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/imageplugins/bingplugin/bingsettings.ui" line="22"/>
+            <source>Python executable path</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <source>API Key</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <source>API Secret</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <source>Python Path</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>ClassificationResultView</name>
+        <message>
+            <location filename="../view/results/classificationresultview.ui" line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/results/classificationresultview.h" line="36"/>
+            <source>Confidence</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/results/classificationresultview.h" line="37"/>
+            <source>Label</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
 <context>
     <name>ConfigurationDialog</name>
     <message>
-        <location filename="../configurationdialog.ui" line="17"/>
+        <location filename="../view/configurationdialog.ui" line="17"/>
         <source>Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configurationdialog.ui" line="34"/>
+        <location filename="../view/configurationdialog.ui" line="34"/>
         <source>Project Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configurationdialog.ui" line="61"/>
-        <location filename="../configurationdialog.ui" line="112"/>
-        <location filename="../configurationdialog.ui" line="169"/>
+        <location filename="../view/configurationdialog.ui" line="61"/>
+        <location filename="../view/configurationdialog.ui" line="112"/>
+        <location filename="../view/configurationdialog.ui" line="169"/>
         <source>Selected path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configurationdialog.ui" line="85"/>
+        <location filename="../view/configurationdialog.ui" line="85"/>
         <source>Classification Plugin Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configurationdialog.ui" line="136"/>
+        <location filename="../view/configurationdialog.ui" line="136"/>
         <source>Imageloader Plugin Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configurationdialog.ui" line="196"/>
+        <location filename="../view/configurationdialog.ui" line="196"/>
         <source>&lt;error&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configurationdialog.ui" line="218"/>
+        <location filename="../view/configurationdialog.ui" line="218"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -231,139 +252,283 @@ The application will terminate</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
-<context>
-    <name>GenericComparisonWidget</name>
+    <context>
+        <name>FlickrSettings</name>
+        <message>
+            <location filename="../plugins/imageplugins/flickrplugin/flickrsettings.ui" line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/imageplugins/flickrplugin/flickrsettings.ui" line="22"/>
+            <source>API key</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/imageplugins/flickrplugin/flickrsettings.ui" line="32"/>
+            <source>API secret</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/imageplugins/flickrplugin/flickrsettings.ui" line="42"/>
+            <source>Python executable path</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <source>API Key</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <source>API Secret</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <source>Python Path</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>FolderConfigwidget</name>
+        <message>
+            <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="31"/>
+            <source>Loading method:</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="39"/>
+            <source>subfolders as labels</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="44"/>
+            <source>names as labels</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="49"/>
+            <source>folder as label</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="61"/>
+            <source>Load folder</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.cpp" line="32"/>
+            <source>Saved changes.</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.cpp" line="46"/>
+            <source>Select image directory</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.cpp" line="48"/>
+            <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.cpp" line="57"/>
+            <source>There may be unsaved changes.</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>GenericComparisonWidget</name>
+        <message>
+            <location filename="../view/results/genericcomparisonwidget.ui" line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/results/genericcomparisonwidget.ui" line="75"/>
+            <source>Save Result</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/results/genericcomparisonwidget.h" line="71"/>
+            <source>Compare ...</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <source>Save Result</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>GlobalSettingsWidget</name>
+        <message>
+            <location filename="../view/globalsettingswidget.ui" line="14"/>
+            <source>Global settings</source>
+            <translation type="unfinished">Global settings</translation>
+        </message>
+        <message>
+            <location filename="../view/globalsettingswidget.ui" line="33"/>
+            <source>Project Directory</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/globalsettingswidget.ui" line="60"/>
+            <location filename="../view/globalsettingswidget.ui" line="168"/>
+            <location filename="../view/globalsettingswidget.ui" line="252"/>
+            <source>Current path:</source>
+            <translation type="unfinished"></translation>
+        </message>
     <message>
-        <location filename="../view/results/genericcomparisonwidget.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/results/genericcomparisonwidget.ui" line="75"/>
-        <source>Save Results </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/results/genericcomparisonwidget.cpp" line="109"/>
-        <source>Compare ...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>GlobalSettingsWidget</name>
-    <message>
-        <location filename="../globalsettingswidget.ui" line="14"/>
-        <source>Global settings</source>
-        <translation type="unfinished">Global settings</translation>
-    </message>
-    <message>
-        <location filename="../globalsettingswidget.ui" line="33"/>
-        <source>Project Directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../globalsettingswidget.ui" line="60"/>
-        <location filename="../globalsettingswidget.ui" line="168"/>
-        <location filename="../globalsettingswidget.ui" line="252"/>
-        <source>Current path:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../globalsettingswidget.ui" line="87"/>
-        <location filename="../globalsettingswidget.ui" line="195"/>
-        <location filename="../globalsettingswidget.ui" line="282"/>
+        <location filename="../view/globalsettingswidget.ui" line="87"/>
+        <location filename="../view/globalsettingswidget.ui" line="195"/>
+        <location filename="../view/globalsettingswidget.ui" line="282"/>
         <source>New path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../globalsettingswidget.ui" line="141"/>
+        <location filename="../view/globalsettingswidget.ui" line="141"/>
         <source>Classification Plugin Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../globalsettingswidget.ui" line="219"/>
+        <location filename="../view/globalsettingswidget.ui" line="219"/>
         <source>Imageloader Plugin Directory</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../view/globalsettingswidget.cpp" line="50"/>
-        <source> path(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/globalsettingswidget.cpp" line="50"/>
-        <source>Success. Updated </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/globalsettingswidget.cpp" line="57"/>
-        <source>No changes were made</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ImportFilesWidget</name>
-    <message>
-        <location filename="../importfileswidget.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="23"/>
-        <source>Import Images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="35"/>
-        <source>Load Images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="64"/>
-        <source>Collector Plugin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="87"/>
-        <source>Split Validation (%)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="107"/>
-        <source>Search Keyword / Label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="196"/>
-        <source>Image Count</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="216"/>
-        <source>40%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="235"/>
-        <source>Load Model</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="274"/>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="285"/>
-        <source>Remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../importfileswidget.ui" line="296"/>
-        <source>Load</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
+        <message>
+            <location filename="../view/globalsettingswidget.cpp" line="50"/>
+            <source>path(s)</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/globalsettingswidget.cpp" line="50"/>
+            <source>Success. Updated</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/globalsettingswidget.cpp" line="57"/>
+            <source>No changes were made</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>ImageGallery</name>
+        <message>
+            <location filename="../view/utilities/imagegallery.ui" line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>ImageInspectionWidget</name>
+        <message>
+            <location filename="../view/imageinspectionwidget.ui" line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/imageinspectionwidget.ui" line="20"/>
+            <source>New validation images</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/imageinspectionwidget.ui" line="27"/>
+            <source>New training images</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/imageinspectionwidget.ui" line="64"/>
+            <source>Current dataset validation images</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/imageinspectionwidget.ui" line="71"/>
+            <source>Current dataset training images</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/imageinspectionwidget.ui" line="102"/>
+            <source>Merge into dataset</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/imageinspectionwidget.ui" line="109"/>
+            <source>Remove selected images</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>ImportFilesWidget</name>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="23"/>
+            <source>Import Images</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="35"/>
+            <source>Load Images</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="170"/>
+            <source>Collector Plugin</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="197"/>
+            <source>Split Validation (%)</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="97"/>
+            <source>Search Keyword / Label</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="90"/>
+            <source>Image Count</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="190"/>
+            <source>40%</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="257"/>
+            <source>Cancel</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="267"/>
+            <source>Load Model</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="306"/>
+            <source>Add</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="318"/>
+            <source>Remove</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.ui" line="333"/>
+            <source>Load</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/importfileswidget.cpp" line="121"/>
+            <source>Select .txt file</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
 <context>
     <name>InputImagesWidget</name>
     <message>
@@ -392,84 +557,273 @@ The application will terminate</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
-<context>
-    <name>MainWindow</name>
+    <context>
+        <name>MMClassificationInputOptions</name>
+        <message>
+            <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationinputoptions.ui"
+                      line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationinputoptions.ui"
+                      line="36"/>
+            <source>CUDA GPU Device</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationinputoptions.ui"
+                      line="43"/>
+            <source>Number of Iterations</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>MMClassificationSettings</name>
+        <message>
+            <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui"
+                      line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui"
+                      line="22"/>
+            <source>MMClassification path</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui"
+                      line="32"/>
+            <source>mmcls path</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui"
+                      line="45"/>
+            <source>Python Path</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>MMClassificiationDataAugmentationInput</name>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="26"/>
+            <source>Train Pipeline</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="34"/>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="236"/>
+            <source>224</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="53"/>
+            <source>RandomErasing</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="83"/>
+            <source>Random Resized Crop Size</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="90"/>
+            <source>Albu Transform Type</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="97"/>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="101"/>
+            <source>ColorJitter</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="139"/>
+            <source>0,5000</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="158"/>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="162"/>
+            <source>horizontal</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="167"/>
+            <source>vertical</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="175"/>
+            <source>Random Flip Direction</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="182"/>
+            <source>Random Flip Probability</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="223"/>
+            <source>Test Pipeline</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="264"/>
+            <source>Resize</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="271"/>
+            <source>256</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location
+                    filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                    line="304"/>
+            <source>Center Crop Size</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>MainWindow</name>
+        <message>
+            <location filename="../view/mainwindow.ui" line="81"/>
+            <source>Home</source>
+            <comment>tab_start_text</comment>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/mainwindow.ui" line="93"/>
+            <source>Import Files</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/mainwindow.ui" line="20"/>
+            <source>Rapid Classification AI Trainer</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/mainwindow.ui" line="102"/>
+            <source>Image Inspection</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/mainwindow.ui" line="111"/>
+            <source>AI Training</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/mainwindow.ui" line="129"/>
+            <source>Results</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/mainwindow.ui" line="120"/>
+            <source>Input Images</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/mainwindow.ui" line="138"/>
+            <source>Automation</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../images.ui" line="14"/>
+            <source>MainWindow</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../images.ui" line="40"/>
+            <source>Remove selected images</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../images.ui" line="47"/>
+            <source>Input images</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../images.ui" line="57"/>
+            <source>Training images</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>NewModelDialog</name>
+        <message>
+            <location filename="../view/newmodeldialog.ui" line="14"/>
+            <source>New Model</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/newmodeldialog.ui" line="33"/>
+            <source>Plugin</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <source>MMClassification Plugin</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <source>Tensorflow Plugin</source>
+            <translation type="unfinished"></translation>
+        </message>
     <message>
-        <location filename="../mainwindow.ui" line="81"/>
-        <source>Home</source>
-        <comment>tab_start_text</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="93"/>
-        <source>Import Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="20"/>
-        <source>Rapid Classification AI Trainer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="102"/>
-        <source>Image Inspection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="111"/>
-        <source>AI Training</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="129"/>
-        <source>Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="120"/>
-        <source>Input Images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="138"/>
-        <source>Automation</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>NewModelDialog</name>
-    <message>
-        <location filename="../newmodeldialog.ui" line="14"/>
-        <source>New Model</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../newmodeldialog.ui" line="33"/>
-        <source>Plugin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../newmodeldialog.ui" line="41"/>
-        <source>MMClassification Plugin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../newmodeldialog.ui" line="46"/>
-        <source>Tensorflow Plugin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../newmodeldialog.ui" line="54"/>
+        <location filename="../view/newmodeldialog.ui" line="43"/>
         <source>Pre-trained base</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newmodeldialog.ui" line="62"/>
         <source>VGG-11</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newmodeldialog.ui" line="70"/>
+        <location filename="../view/newmodeldialog.ui" line="53"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -477,68 +831,30 @@ The application will terminate</source>
 <context>
     <name>NewProjectDialog</name>
     <message>
-        <location filename="../newprojectdialog.ui" line="14"/>
+        <location filename="../view/newprojectdialog.ui" line="14"/>
         <source>New Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newprojectdialog.ui" line="36"/>
+        <location filename="../view/newprojectdialog.ui" line="36"/>
         <source>Project name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newprojectdialog.ui" line="51"/>
+        <location filename="../view/newprojectdialog.ui" line="51"/>
         <source>invalid name!</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>QObject</name>
-    <message>
-        <location filename="../model/projectmanager.cpp" line="157"/>
-        <source>Name must contain at least 1 character</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../model/projectmanager.cpp" line="165"/>
-        <source>Name should contain more than only space (&quot; &quot;) characters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../model/projectmanager.cpp" line="171"/>
-        <source>Name may not contain the  &quot;/&quot; or &quot;\&quot; characters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../model/projectmanager.cpp" line="190"/>
-        <source>The Operating system cannot support this name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../model/projectmanager.cpp" line="181"/>
-        <source>A project with this name aleady exists in the project directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../model/settingsmanager.cpp" line="163"/>
-        <source>Settings have not been updated, there is a conflict.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../model/settingsmanager.cpp" line="164"/>
-        <source>Paths may not be identical and must exist, this includes new and unchanged paths.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RemoveModelDialog</name>
     <message>
-        <location filename="../removemodeldialog.ui" line="14"/>
+        <location filename="../view/removemodeldialog.ui" line="14"/>
         <source>Remove Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../removemodeldialog.ui" line="64"/>
+        <location filename="../view/removemodeldialog.ui" line="64"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -546,17 +862,17 @@ The application will terminate</source>
 <context>
     <name>RemoveProjectDialog</name>
     <message>
-        <location filename="../removeprojectdialog.ui" line="14"/>
+        <location filename="../view/removeprojectdialog.ui" line="14"/>
         <source>Remove Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../removeprojectdialog.ui" line="71"/>
+        <location filename="../view/removeprojectdialog.ui" line="71"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../removeprojectdialog.ui" line="126"/>
+        <location filename="../view/removeprojectdialog.ui" line="126"/>
         <source>Remove associated Models</source>
         <translation type="unfinished"></translation>
     </message>
@@ -587,102 +903,106 @@ The application will terminate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.ui" line="79"/>
+        <location filename="../view/settingsview.ui" line="82"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.ui" line="92"/>
+        <location filename="../view/settingsview.ui" line="103"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.cpp" line="129"/>
+        <location filename="../view/settingsview.cpp" line="127"/>
         <source>Select project directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.cpp" line="139"/>
+        <location filename="../view/settingsview.cpp" line="137"/>
         <source>Select classification plugin directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/settingsview.cpp" line="149"/>
+        <location filename="../view/settingsview.cpp" line="147"/>
         <source>Select image loader plugin directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>StartWidget</name>
     <message>
-        <location filename="../startwidget.ui" line="14"/>
+        <location filename="../view/startwidget.ui" line="14"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../startwidget.ui" line="86"/>
+        <location filename="../view/startwidget.ui" line="86"/>
         <source>Welcome to RCAIT!
 Select a project to get started</source>
         <comment>welcome_label</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../startwidget.ui" line="159"/>
+        <location filename="../view/startwidget.ui" line="159"/>
         <source>New Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../startwidget.ui" line="170"/>
+        <location filename="../view/startwidget.ui" line="170"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../startwidget.ui" line="192"/>
+        <location filename="../view/startwidget.ui" line="192"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
-<context>
-    <name>StaticList</name>
-    <message>
-        <location filename="../staticlist.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TopAccuraciesView</name>
-    <message>
-        <location filename="../view/results/topaccuraciesview.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/results/topaccuraciesview.cpp" line="94"/>
-        <source>Top 1%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/results/topaccuraciesview.cpp" line="94"/>
-        <source>Top 5%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/results/topaccuraciesview.cpp" line="96"/>
-        <source>Update graphics...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TrainingResultView</name>
-    <message>
-        <location filename="../view/results/trainingresultview.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../view/results/trainingresultview.ui" line="31"/>
-        <source>Accuracy Curve</source>
+    <context>
+        <name>StaticList</name>
+        <message>
+            <location filename="../view/utilities/staticlist.ui" line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>TopAccuraciesView</name>
+        <message>
+            <location filename="../view/results/topaccuraciesview.ui" line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/results/topaccuraciesview.h" line="54"/>
+            <source>Top 1%</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/results/topaccuraciesview.h" line="55"/>
+            <source>Top 5%</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/results/topaccuraciesview.h" line="61"/>
+            <source>Update graphics...</source>
+            <translation type="unfinished"></translation>
+        </message>
+    </context>
+    <context>
+        <name>TrainingResultView</name>
+        <message>
+            <location filename="../view/results/trainingresultview.ui" line="14"/>
+            <source>Form</source>
+            <translation type="unfinished"></translation>
+        </message>
+        <message>
+            <location filename="../view/results/trainingresultview.ui" line="31"/>
+            <source>Accuracy Curve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -699,7 +1019,7 @@ Select a project to get started</source>
 <context>
     <name>TrainingResultsWidget</name>
     <message>
-        <location filename="../view/results/trainingresultswidget.cpp" line="47"/>
+        <location filename="../view/results/trainingresultswidget.h" line="31"/>
         <source>Top Accuracies</source>
         <translation type="unfinished"></translation>
     </message>

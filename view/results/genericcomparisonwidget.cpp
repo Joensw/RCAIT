@@ -90,13 +90,15 @@ void GenericComparisonWidget::slot_updateSaveButton(int index) {
 void GenericComparisonWidget::updateSaveButton(GenericGraphicsView *tab) {
     if (!tab) return;
     bool canBeSaved = !tab->isSaved();
-
-    m_pushButton_saveCurrentTab->setEnabled(canBeSaved);
     auto index = m_tabWidget->indexOf(tab);
     auto tabName = (canBeSaved) ? PREFIX_TAB_SAVED % tab->getName()
                                 : tab->getName();
 
     m_tabWidget->setTabText(index, tabName);
+
+    //Check if we are still on the tab to be updated. Otherwise, do nothing.
+    if (index == m_tabWidget->currentIndex())
+        m_pushButton_saveCurrentTab->setEnabled(canBeSaved);
 }
 
 void GenericComparisonWidget::on_pushButton_saveCurrentTab_clicked() {

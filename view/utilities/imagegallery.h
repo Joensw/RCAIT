@@ -5,7 +5,6 @@
 #include <QListWidget>
 #include <QDir>
 #include <QThread>
-#include <view/utilities/aspectratiolabel.h>
 
 /**
  * @brief The ImageGallery class shows a list of images.
@@ -24,6 +23,10 @@ public:
      */
     explicit ImageGallery(QWidget *parent = nullptr);
 
+    /**
+     * @brief destzructor of ImageGallery.
+     *
+     */
     ~ImageGallery();
 
 
@@ -134,15 +137,29 @@ private slots:
 
 private:
 
-    // used for adding images concurrently, safely stoppable
+    /**
+     * @brief The addImagesTask class provides stoppable image addition.
+     *
+     */
     class addImagesTask : public QThread {
     public:
+
+        /**
+         * @brief addImagesTask accepts necessary arguments for task.
+         *
+         * @param gallery ImageGallery to add images
+         * @param imageList list of imagepaths
+         */
         addImagesTask(ImageGallery *gallery, QStringList imageList) {
             abort = false;
             this->mGallery = gallery;
             this->mImageList = std::move(imageList);
         }
 
+        /**
+         * @brief run runs task.
+         *
+         */
         void run() override {
                  foreach(QString imageName, mImageList) {
                     if (abort) return;;
@@ -150,6 +167,10 @@ private:
                 }
         }
 
+        /**
+         * @brief quit stops task.
+         *
+         */
         void quit() {
             abort = true;
         }

@@ -14,8 +14,8 @@
 #include <projectmanager.h>
 #include <ce_string.h>
 
-constexpr CE_String TRAINING_JSON = "training_%1.json";
-constexpr CE_String CLASSIFICATION_JSON = "classification_%1.json";
+static constexpr CE_String TRAINING_JSON = "training_%1.json";
+static constexpr CE_String CLASSIFICATION_JSON = "classification_%1.json";
 
 class ResultsProcessor : public QObject {
 Q_OBJECT
