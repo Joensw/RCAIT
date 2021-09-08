@@ -1,3 +1,8 @@
+/**
+ * @file importfileswidget.h
+ *
+ * @brief contains ImportFilesWidget class
+ */
 #ifndef IMPORTFILESWIDGET_H
 #define IMPORTFILESWIDGET_H
 
