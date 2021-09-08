@@ -964,15 +964,11 @@ The application will terminate</source>
     <message>
         <location filename="../view/settingsview.ui" line="103"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить</translation>
     </message>
     <message>
         <source>Close</source>
         <translation type="vanished">Закрыть</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="vanished">Сохранить</translation>
     </message>
     <message>
         <location filename="../view/settingsview.cpp" line="127"/>

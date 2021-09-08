@@ -1127,10 +1127,6 @@ paths may not be identical and must exist, this includes new and unchanged paths
         <translation type="unfinished">Einstellungen</translation>
     </message>
     <message>
-        <source>Save</source>
-        <translation type="obsolete">Speichern</translation>
-    </message>
-    <message>
         <source>Global settings</source>
         <translation type="obsolete">Globale Einstellungen</translation>
     </message>
