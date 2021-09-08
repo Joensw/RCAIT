@@ -8,6 +8,10 @@
 #include <datamanager.h>
 #include "resultsexporter.h"
 
+/**
+ * @brief The TaskState enum is an enumeration of task states.
+ *
+ */
 enum TaskState
 {
     SCHEDULED,
