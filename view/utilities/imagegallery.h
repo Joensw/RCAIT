@@ -5,7 +5,6 @@
 #include <QListWidget>
 #include <QDir>
 #include <QThread>
-#include <view/utilities/aspectratiolabel.h>
 
 /**
  * @brief The ImageGallery class shows a list of images.
