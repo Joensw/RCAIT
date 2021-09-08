@@ -64,6 +64,7 @@ private:
     QAbstractButton *m_pushButton_updateGraphics{};
 
     QSharedPointer<QGraphicsItem> m_topAccuraciesImage;
+    QScopedPointer<QGraphicsScene> m_topAccuraciesScene;
 
     void configure_updateGraphicsButton();
 

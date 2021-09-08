@@ -38,6 +38,7 @@ private:
 
     Ui::ClassificationResultView *ui;
     QSharedPointer<QGraphicsItem> m_classificationGraphics;
+    QScopedPointer<QGraphicsScene> m_classificationScene;
 
     void retranslateUi();
 };
