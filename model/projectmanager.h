@@ -3,7 +3,6 @@
 
 #include <QString>
 #include <QObject>
-#include <ce_string.h>
 #include <classificationresult.h>
 #include <trainingresult.h>
 #include <confusionmatrix.h>
@@ -145,48 +144,48 @@ public:
      */
     void setProjectsDirectory(const QString &newDirectory);
 
-private:    
+private:
     //Names of the subfolders in the project directory
     //These can be changed.
     //Make sure to choose names that are not disallowed in windows ar under linux!
-    static constexpr CE_String resultsDirectoryName = "results";
-    static constexpr CE_String datasetDirectoryName = "data";
-    static constexpr CE_String tempImagesDirectoryName = "temp_Images";
-    static constexpr CE_String tempDataAugDirectoryName = "temp_Aug";
-    static constexpr CE_String trainingsResultsDirectoryName = "training_results";
-    static constexpr CE_String classificationResultsDirectoryName = "classification_results";
-    static constexpr CE_String  validiationDatasetDirectoryName = "validation";
-    static constexpr CE_String  trainingDatasetDirectoryName = "training";
-    static constexpr CE_String workingDirectoryName = "working_directory";
+    static constexpr auto resultsDirectoryName = "results";
+    static constexpr auto datasetDirectoryName = "data";
+    static constexpr auto tempImagesDirectoryName = "temp_Images";
+    static constexpr auto tempDataAugDirectoryName = "temp_Aug";
+    static constexpr auto trainingsResultsDirectoryName = "training_results";
+    static constexpr auto classificationResultsDirectoryName = "classification_results";
+    static constexpr auto validiationDatasetDirectoryName = "validation";
+    static constexpr auto trainingDatasetDirectoryName = "training";
+    static constexpr auto workingDirectoryName = "working_directory";
 
     //keys of the <String, String> pair in the project file
-    static constexpr CE_String projectNameIdentifier = "projectName";
-    static constexpr CE_String projectDatasetDirectoryIdentifier = "datasetDirName";
-    static constexpr CE_String projectValidationDatasetIdentifier = "validationDatasetDirName";
-    static constexpr CE_String projectTrainingDatasetIdentifier = "trainingDatasetDirName";
-    static constexpr CE_String projectTempImagesDirectoryIdentifier = "tempImagesDirName";
-    static constexpr CE_String projectTempDataAugDirectoryIdentifier = "tempDataAugDirName";
-    static constexpr CE_String projectResultsDirectoryIdentifier = "resultsDirName";
-    static constexpr CE_String projectTrainingsResultsDirectoryIdentifer = "trainingResultsDirName";
-    static constexpr CE_String projectClassificationResultsDirectoryIdentifier = "classificationResultsDirName";
-    static constexpr CE_String projectWorkingDirIdentifier = "workingDirName";
+    static constexpr auto projectNameIdentifier = "projectName";
+    static constexpr auto projectDatasetDirectoryIdentifier = "datasetDirName";
+    static constexpr auto projectValidationDatasetIdentifier = "validationDatasetDirName";
+    static constexpr auto projectTrainingDatasetIdentifier = "trainingDatasetDirName";
+    static constexpr auto projectTempImagesDirectoryIdentifier = "tempImagesDirName";
+    static constexpr auto projectTempDataAugDirectoryIdentifier = "tempDataAugDirName";
+    static constexpr auto projectResultsDirectoryIdentifier = "resultsDirName";
+    static constexpr auto projectTrainingsResultsDirectoryIdentifer = "trainingResultsDirName";
+    static constexpr auto projectClassificationResultsDirectoryIdentifier = "classificationResultsDirName";
+    static constexpr auto projectWorkingDirIdentifier = "workingDirName";
 
     //filetype the project file has
-    static constexpr CE_String projectFileType = ".ini";
+    static constexpr auto projectFileType = ".ini";
 
     //error messages for project names
-    static constexpr CE_String ERROR_NOCHAR = "Name must contain at least 1 character";
-    static constexpr CE_String ERROR_ONLY_SPACE = "Name should contain more than only space (\" \") characters";
-    static constexpr CE_String ERROR_ILLEGAL_CHAR = "Name may not contain the  \"/\" or \"\\\" characters";
-    static constexpr CE_String ERROR_DUPLICATE = "A project with this name already exists in the project directory";
-    static constexpr CE_String ERROR_OS_SUPPORT = "The operating system cannot support this name";
+    static constexpr auto ERROR_NOCHAR = "Name must contain at least 1 character";
+    static constexpr auto ERROR_ONLY_SPACE = "Name should contain more than only space (\" \") characters";
+    static constexpr auto ERROR_ILLEGAL_CHAR = "Name may not contain the  \"/\" or \"\\\" characters";
+    static constexpr auto ERROR_DUPLICATE = "A project with this name already exists in the project directory";
+    static constexpr auto ERROR_OS_SUPPORT = "The operating system cannot support this name";
 
     //Regex to match String with consisting of only spaces
-    static constexpr CE_String REGEX_ONLY_SPACE = "^[ ]+$";
+    static constexpr auto REGEX_ONLY_SPACE = "^[ ]+$";
 
-    static constexpr CE_String TEXT_FILE_FILTER = "*.txt";
+    static constexpr auto TEXT_FILE_FILTER = "*.txt";
 
-    bool verifyName(QString projectName, QString * error);
+    bool verifyName(QString projectName, QString *error);
 
     QString mProjectPath;
     QString mProjectImagesTempDir;

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.15)
 project(RCAIT LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -14,7 +14,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(QT_VERSION 6)
-set(REQUIRED_LIBS Core Gui Widgets LinguistTools Svg SvgWidgets )
+set(SRCS "${CMAKE_CURRENT_SOURCE_DIR}/RCAIT.rc")
+set(REQUIRED_LIBS Core Gui Widgets LinguistTools Svg SvgWidgets)
 set(REQUIRED_LIBS_QUALIFIED Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Svg Qt6::SvgWidgets)
 
 set(ALL_PROJECT_DIRS
@@ -26,7 +27,9 @@ set(ALL_PROJECT_DIRS
         plugins plugins/classificationplugins plugins/imageplugins plugins/results
         )
 
-set(CMAKE_AUTOUIC_SEARCH_PATHS  ${ALL_PROJECT_DIRS})
+list(FILTER ALL_PROJECT_DIRS EXCLUDE REGEX "/cmake-build-*")
+
+set(CMAKE_AUTOUIC_SEARCH_PATHS ${ALL_PROJECT_DIRS})
 include_directories(${ALL_PROJECT_DIRS})
 
 file(GLOB_RECURSE SOURCE_FILES
@@ -61,10 +64,12 @@ file(GLOB TS_FILES
         "languages/*.ts"
         )
 
-#qt_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${TS_FILES})
-qt_add_translation(QM_FILES ${TS_FILES})
+# Use qt_create_translation for finding new translatable strings.
+# Use qt_add_translation otherwise (much faster)
+# Reload CMake Project if you changed this. Change it back later (!)
 
-set(SRCS "${CMAKE_CURRENT_SOURCE_DIR}/RCAIT.rc")
+#qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+qt_add_translation(QM_FILES ${TS_FILES})
 
 add_executable(${PROJECT_NAME}
         ${SOURCE_FILES}
