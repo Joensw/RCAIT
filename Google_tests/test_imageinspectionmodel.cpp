@@ -25,15 +25,46 @@ TEST(ImageInspectionModelTest, testLoadNewDataSet){
     QMap<QString, QStringList> valData = iim.getValidationNewData();
     QMap<QString, QStringList> trainData = iim.getTrainNewData();
 
-    EXPECT_TRUE(valData.value("car").size()==4);
-    EXPECT_TRUE(trainData.value("car").size()==6);
+    EXPECT_EQ(valData.value("Auto").size(), 4);
+    EXPECT_EQ(trainData.value("Auto").size(), 6);
 
 }
 
-
-TEST(ImageInspectionModelTest, DemonstratetTestMacros3){
+//check if new data is correctly merged into new dataset
+TEST(ImageInspectionModelTest, testMergeDataSets){
     ImageInspectionModel iim;
+    QDir dir(QDir::current().path());
+    dir.cd("dataset");
+    iim.loadDataSet(dir.path() + "/training", dir.path() + "/validation");
+    QDir dir2(QDir::current().path());
+    dir2.cd("temp_dataset");
+    iim.loadNewData(dir2.path(),40);
+    iim.mergeDataSets(dir.path() + "/training", dir.path() + "/validation");
+
+    EXPECT_TRUE(iim.getTrainDataset().contains("Auto"));
+    EXPECT_EQ(iim.getTrainDataset().value("Auto").size(), 6);
+}
 
 
-    EXPECT_TRUE(true);
+TEST(ImageInspectionModelTest, testRemoveImage){
+    ImageInspectionModel iim;
+    QDir dir(QDir::current().path());
+    dir.cd("dataset");
+    iim.loadDataSet(dir.path() + "/training", dir.path() + "/validation");
+    QDir dir2(QDir::current().path());
+    dir2.cd("temp_dataset");
+    iim.loadNewData(dir2.path(),40);
+    //3 for traindataset
+    QMap<QString, QList<int>> removeImages;
+    //check if file we want to remove is really in training dataset
+    //EXPECT_TRUE(iim.getTrainDataset().value("Auto").contains(dir.path() + "/training/Auto/Auto_1.jpg"));
+    //removeImages.insert("Auto",QStringList() << dir.path() + "/training/Auto/Auto_1.jpg");
+    QList<int> intList;
+    intList.append(1);
+    intList.append(2);
+    removeImages.insert("Auto", intList);
+    iim.removeImage(3,removeImages);
+
+    EXPECT_TRUE(iim.getTrainDataset().contains("Auto"));
+    EXPECT_EQ(iim.getTrainDataset().value("Auto").size(), 6-2);
 }

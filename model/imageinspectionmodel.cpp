@@ -53,12 +53,15 @@ void ImageInspectionModel::removeImage(int selectionIndex, const QMap<QString, Q
     switch (selectionIndex) {
         case 2:
             removeImageWithIndex(m_validationDataset, removedImages);
+        break;
         case 3:
             removeImageWithIndex(m_trainDataset, removedImages);
+        break;
         case 0:
             removeImageWithIndex(m_validationNewData, removedImages);
         case 1:
             removeImageWithIndex(m_trainNewData, removedImages);
+        break;
         default:
             qWarning() << "Unknown selectionIndex: " << selectionIndex;
     }
