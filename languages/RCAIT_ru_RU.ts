@@ -579,17 +579,17 @@ The application will terminate</source>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationinputoptions.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Форма</translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationinputoptions.ui" line="36"/>
         <source>CUDA GPU Device</source>
-        <translation type="unfinished"></translation>
+        <translation>CUDA GPU Device</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationinputoptions.ui" line="43"/>
         <source>Number of Iterations</source>
-        <translation type="unfinished"></translation>
+        <translation>Количество итераций</translation>
     </message>
 </context>
 <context>
@@ -597,22 +597,22 @@ The application will terminate</source>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Форма</translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui" line="22"/>
         <source>MMClassification path</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь к MMClassification</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui" line="32"/>
         <source>mmcls path</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь к mmcl</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui" line="45"/>
         <source>Python Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь к Python</translation>
     </message>
 </context>
 <context>
@@ -620,85 +620,85 @@ The application will terminate</source>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Форма</translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="26"/>
         <source>Train Pipeline</source>
-        <translation type="unfinished"></translation>
+        <translation>Тренировочный пайплайн</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="34"/>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="236"/>
         <source>224</source>
-        <translation type="unfinished">40% {224?}</translation>
+        <translation>40% {224?}</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="53"/>
         <source>RandomErasing</source>
-        <translation type="unfinished"></translation>
+        <translation>Случайное стирание</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="83"/>
         <source>Random Resized Crop Size</source>
-        <translation type="unfinished">Случайное изменение обрезки</translation>
+        <translation>Случайное изменение обрезки</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="90"/>
         <source>Albu Transform Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип преобразования Albu</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="97"/>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="101"/>
         <source>ColorJitter</source>
-        <translation type="unfinished"></translation>
+        <translation>ColorJitter</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="139"/>
         <source>0,5000</source>
-        <translation type="unfinished">40% {0,5000?}</translation>
+        <translation>40% {0,5000?}</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="158"/>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="162"/>
         <source>horizontal</source>
-        <translation type="unfinished">по горизонтали</translation>
+        <translation>по горизонтали</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="167"/>
         <source>vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>по вертикали</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="175"/>
         <source>Random Flip Direction</source>
-        <translation type="unfinished">Случайное направление поворота</translation>
+        <translation>Случайное направление поворота</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="182"/>
         <source>Random Flip Probability</source>
-        <translation type="unfinished">Вероятность случайного поворота</translation>
+        <translation>Вероятность случайного поворота</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="223"/>
         <source>Test Pipeline</source>
-        <translation type="unfinished"></translation>
+        <translation>Тестировочный пайплайн</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="264"/>
         <source>Resize</source>
-        <translation type="unfinished">Изменить размер</translation>
+        <translation>Изменить размер</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="271"/>
         <source>256</source>
-        <translation type="unfinished">40% {256?}</translation>
+        <translation>40% {256?}</translation>
     </message>
     <message>
         <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="304"/>
         <source>Center Crop Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Размер обрезки по центру</translation>
     </message>
 </context>
 <context>
@@ -747,22 +747,22 @@ The application will terminate</source>
     <message>
         <location filename="../images.ui" line="14"/>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
+        <translation>Главное окно</translation>
     </message>
     <message>
         <location filename="../images.ui" line="40"/>
         <source>Remove selected images</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить выбранные изображения</translation>
     </message>
     <message>
         <location filename="../images.ui" line="47"/>
         <source>Input images</source>
-        <translation type="unfinished"></translation>
+        <translation>Входные изображения</translation>
     </message>
     <message>
         <location filename="../images.ui" line="57"/>
         <source>Training images</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображения для тренировки</translation>
     </message>
 </context>
 <context>
