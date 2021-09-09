@@ -1,3 +1,8 @@
+/**
+ *@file bingsettings.cpp
+ *
+ *@brief contains implementation for methods of BingSettings class
+ */
 #include "bingsettings.h"
 #include "ui_bingsettings.h"
 

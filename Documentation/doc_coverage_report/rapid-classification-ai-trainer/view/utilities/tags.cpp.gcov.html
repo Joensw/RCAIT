@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">1</td>
-            <td class="headerCovTableEntry">80</td>
+            <td class="headerCovTableEntry">81</td>
             <td class="headerCovTableEntryLo">1.2 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-07 11:34:11</td>
+            <td class="headerValue">2021-09-09 01:19:55</td>
             <td></td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -142,7 +142,7 @@
 <a name="84"><span class="lineNum">      84 </span>            : </a>
 <a name="85"><span class="lineNum">      85 </span>            :     // skip until `end`</a>
 <a name="86"><span class="lineNum">      86 </span><span class="lineNoCov">          0 :     explicit EmptySkipIterator(It it, It end) : it(it), end(end) {</span></a>
-<a name="87"><span class="lineNum">      87 </span>            :         while (this-&gt;it != end &amp;&amp; this-&gt;it-&gt;text.isEmpty()) {</a>
+<a name="87"><span class="lineNum">      87 </span>            :         while (this-&gt;it != end &amp;&amp; this-&gt;it-&gt;text.simplified().isEmpty()) {</a>
 <a name="88"><span class="lineNum">      88 </span>            :             ++this-&gt;it;</a>
 <a name="89"><span class="lineNum">      89 </span>            :         }</a>
 <a name="90"><span class="lineNum">      90 </span>            :     }</a>
@@ -337,448 +337,456 @@
 <a name="279"><span class="lineNum">     279 </span>            :         ifce-&gt;update();</a>
 <a name="280"><span class="lineNum">     280 </span>            :     }</a>
 <a name="281"><span class="lineNum">     281 </span>            : </a>
-<a name="282"><span class="lineNum">     282 </span><span class="lineNoCov">          0 :     [[nodiscard]] QString const&amp; currentText() const {</span></a>
+<a name="282"><span class="lineNum">     282 </span><span class="lineNoCov">          0 :     [[nodiscard]] QString const &amp;currentText() const {</span></a>
 <a name="283"><span class="lineNum">     283 </span>            :         return tags[editing_index].text;</a>
 <a name="284"><span class="lineNum">     284 </span>            :     }</a>
 <a name="285"><span class="lineNum">     285 </span>            : </a>
-<a name="286"><span class="lineNum">     286 </span><span class="lineNoCov">          0 :     QString&amp; currentText() {</span></a>
+<a name="286"><span class="lineNum">     286 </span><span class="lineNoCov">          0 :     QString &amp;currentText() {</span></a>
 <a name="287"><span class="lineNum">     287 </span>            :         return tags[editing_index].text;</a>
 <a name="288"><span class="lineNum">     288 </span>            :     }</a>
 <a name="289"><span class="lineNum">     289 </span>            : </a>
-<a name="290"><span class="lineNum">     290 </span><span class="lineNoCov">          0 :     [[nodiscard]] QRect const&amp; currentRect() const {</span></a>
-<a name="291"><span class="lineNum">     291 </span>            :         return tags[editing_index].rect;</a>
+<a name="290"><span class="lineNum">     290 </span><span class="lineNoCov">          0 :     void setCurrentText(const QString &amp;text) {</span></a>
+<a name="291"><span class="lineNum">     291 </span>            :         tags[editing_index].text = text;</a>
 <a name="292"><span class="lineNum">     292 </span>            :     }</a>
 <a name="293"><span class="lineNum">     293 </span>            : </a>
-<a name="294"><span class="lineNum">     294 </span><span class="lineNoCov">          0 :     QRect&amp; currentRect() {</span></a>
+<a name="294"><span class="lineNum">     294 </span><span class="lineNoCov">          0 :     [[nodiscard]] QRect const &amp;currentRect() const {</span></a>
 <a name="295"><span class="lineNum">     295 </span>            :         return tags[editing_index].rect;</a>
 <a name="296"><span class="lineNum">     296 </span>            :     }</a>
 <a name="297"><span class="lineNum">     297 </span>            : </a>
-<a name="298"><span class="lineNum">     298 </span><span class="lineNoCov">          0 :     void editNewTag() {</span></a>
-<a name="299"><span class="lineNum">     299 </span>            :         tags.emplace_back();</a>
-<a name="300"><span class="lineNum">     300 </span>            :         setEditingIndex(tags.size() - 1);</a>
-<a name="301"><span class="lineNum">     301 </span>            :         moveCursor(0, false);</a>
-<a name="302"><span class="lineNum">     302 </span>            :     }</a>
-<a name="303"><span class="lineNum">     303 </span>            : </a>
-<a name="304"><span class="lineNum">     304 </span><span class="lineNoCov">          0 :     void setupCompleter() {</span></a>
-<a name="305"><span class="lineNum">     305 </span>            :         completer-&gt;setWidget(ifce);</a>
-<a name="306"><span class="lineNum">     306 </span>            :         connect(completer.get(), qOverload&lt;QString const&amp;&gt;(&amp;QCompleter::activated),</a>
-<a name="307"><span class="lineNum">     307 </span>            :                 [this](QString const&amp; text) {</a>
-<a name="308"><span class="lineNum">     308 </span>            :                     currentText(text);</a>
-<a name="309"><span class="lineNum">     309 </span>            :                 });</a>
-<a name="310"><span class="lineNum">     310 </span>            :     }</a>
-<a name="311"><span class="lineNum">     311 </span>            : </a>
-<a name="312"><span class="lineNum">     312 </span><span class="lineNoCov">          0 :     [[nodiscard]] QVector&lt;QTextLayout::FormatRange&gt; formatting() const {</span></a>
-<a name="313"><span class="lineNum">     313 </span>            :         if (select_size == 0) {</a>
-<a name="314"><span class="lineNum">     314 </span>            :             return {};</a>
-<a name="315"><span class="lineNum">     315 </span>            :         }</a>
-<a name="316"><span class="lineNum">     316 </span>            : </a>
-<a name="317"><span class="lineNum">     317 </span>            :         QTextLayout::FormatRange selection;</a>
-<a name="318"><span class="lineNum">     318 </span>            :         selection.start = (int) select_start;</a>
-<a name="319"><span class="lineNum">     319 </span>            :         selection.length = (int) select_size;</a>
-<a name="320"><span class="lineNum">     320 </span>            :         selection.format.setBackground(ifce-&gt;palette().brush(QPalette::Highlight));</a>
-<a name="321"><span class="lineNum">     321 </span>            :         selection.format.setForeground(ifce-&gt;palette().brush(QPalette::HighlightedText));</a>
-<a name="322"><span class="lineNum">     322 </span>            :         return {selection};</a>
-<a name="323"><span class="lineNum">     323 </span>            :     }</a>
-<a name="324"><span class="lineNum">     324 </span>            : </a>
-<a name="325"><span class="lineNum">     325 </span><span class="lineNoCov">          0 :     [[nodiscard]] bool hasSelection() const noexcept {</span></a>
-<a name="326"><span class="lineNum">     326 </span>            :         return select_size &gt; 0;</a>
+<a name="298"><span class="lineNum">     298 </span><span class="lineNoCov">          0 :     QRect &amp;currentRect() {</span></a>
+<a name="299"><span class="lineNum">     299 </span>            :         return tags[editing_index].rect;</a>
+<a name="300"><span class="lineNum">     300 </span>            :     }</a>
+<a name="301"><span class="lineNum">     301 </span>            : </a>
+<a name="302"><span class="lineNum">     302 </span><span class="lineNoCov">          0 :     void editNewTag() {</span></a>
+<a name="303"><span class="lineNum">     303 </span>            :         tags.emplace_back();</a>
+<a name="304"><span class="lineNum">     304 </span>            :         setEditingIndex(tags.size() - 1);</a>
+<a name="305"><span class="lineNum">     305 </span>            :         moveCursor(0, false);</a>
+<a name="306"><span class="lineNum">     306 </span>            :     }</a>
+<a name="307"><span class="lineNum">     307 </span>            : </a>
+<a name="308"><span class="lineNum">     308 </span><span class="lineNoCov">          0 :     void setupCompleter() {</span></a>
+<a name="309"><span class="lineNum">     309 </span>            :         completer-&gt;setWidget(ifce);</a>
+<a name="310"><span class="lineNum">     310 </span>            :         connect(completer.get(), qOverload&lt;QString const&amp;&gt;(&amp;QCompleter::activated),</a>
+<a name="311"><span class="lineNum">     311 </span>            :                 [this](QString const&amp; text) {</a>
+<a name="312"><span class="lineNum">     312 </span>            :                     currentText(text);</a>
+<a name="313"><span class="lineNum">     313 </span>            :                 });</a>
+<a name="314"><span class="lineNum">     314 </span>            :     }</a>
+<a name="315"><span class="lineNum">     315 </span>            : </a>
+<a name="316"><span class="lineNum">     316 </span><span class="lineNoCov">          0 :     [[nodiscard]] QVector&lt;QTextLayout::FormatRange&gt; formatting() const {</span></a>
+<a name="317"><span class="lineNum">     317 </span>            :         if (select_size == 0) {</a>
+<a name="318"><span class="lineNum">     318 </span>            :             return {};</a>
+<a name="319"><span class="lineNum">     319 </span>            :         }</a>
+<a name="320"><span class="lineNum">     320 </span>            : </a>
+<a name="321"><span class="lineNum">     321 </span>            :         QTextLayout::FormatRange selection;</a>
+<a name="322"><span class="lineNum">     322 </span>            :         selection.start = (int) select_start;</a>
+<a name="323"><span class="lineNum">     323 </span>            :         selection.length = (int) select_size;</a>
+<a name="324"><span class="lineNum">     324 </span>            :         selection.format.setBackground(ifce-&gt;palette().brush(QPalette::Highlight));</a>
+<a name="325"><span class="lineNum">     325 </span>            :         selection.format.setForeground(ifce-&gt;palette().brush(QPalette::HighlightedText));</a>
+<a name="326"><span class="lineNum">     326 </span>            :         return {selection};</a>
 <a name="327"><span class="lineNum">     327 </span>            :     }</a>
 <a name="328"><span class="lineNum">     328 </span>            : </a>
-<a name="329"><span class="lineNum">     329 </span><span class="lineNoCov">          0 :     void removeSelection() {</span></a>
-<a name="330"><span class="lineNum">     330 </span>            :         cursor = select_start;</a>
-<a name="331"><span class="lineNum">     331 </span>            :         currentText().remove(cursor, select_size);</a>
-<a name="332"><span class="lineNum">     332 </span>            :         deselectAll();</a>
-<a name="333"><span class="lineNum">     333 </span>            :     }</a>
-<a name="334"><span class="lineNum">     334 </span>            : </a>
-<a name="335"><span class="lineNum">     335 </span><span class="lineNoCov">          0 :     void removeBackwardOne() {</span></a>
-<a name="336"><span class="lineNum">     336 </span>            :         if (hasSelection()) {</a>
-<a name="337"><span class="lineNum">     337 </span>            :             removeSelection();</a>
-<a name="338"><span class="lineNum">     338 </span>            :         } else {</a>
-<a name="339"><span class="lineNum">     339 </span>            :             currentText().remove(--cursor, 1);</a>
-<a name="340"><span class="lineNum">     340 </span>            :         }</a>
-<a name="341"><span class="lineNum">     341 </span>            :     }</a>
-<a name="342"><span class="lineNum">     342 </span>            : </a>
-<a name="343"><span class="lineNum">     343 </span><span class="lineNoCov">          0 :     void selectAll() {</span></a>
-<a name="344"><span class="lineNum">     344 </span>            :         select_start = 0;</a>
-<a name="345"><span class="lineNum">     345 </span>            :         select_size = currentText().size();</a>
-<a name="346"><span class="lineNum">     346 </span>            :     }</a>
-<a name="347"><span class="lineNum">     347 </span>            : </a>
-<a name="348"><span class="lineNum">     348 </span><span class="lineNoCov">          0 :     void deselectAll() {</span></a>
-<a name="349"><span class="lineNum">     349 </span>            :         select_start = 0;</a>
-<a name="350"><span class="lineNum">     350 </span>            :         select_size = 0;</a>
-<a name="351"><span class="lineNum">     351 </span>            :     }</a>
-<a name="352"><span class="lineNum">     352 </span>            : </a>
-<a name="353"><span class="lineNum">     353 </span><span class="lineNoCov">          0 :     void moveCursor(qsizetype pos, bool mark) {</span></a>
-<a name="354"><span class="lineNum">     354 </span>            :         if (mark) {</a>
-<a name="355"><span class="lineNum">     355 </span>            :             auto e = select_start + select_size;</a>
-<a name="356"><span class="lineNum">     356 </span>            :             auto anchor = select_size &gt; 0 &amp;&amp; cursor == select_start</a>
-<a name="357"><span class="lineNum">     357 </span>            :                              ? e</a>
-<a name="358"><span class="lineNum">     358 </span>            :                              : select_size &gt; 0 &amp;&amp; cursor == e</a>
-<a name="359"><span class="lineNum">     359 </span>            :                                    ? select_start</a>
-<a name="360"><span class="lineNum">     360 </span>            :                                    : cursor;</a>
-<a name="361"><span class="lineNum">     361 </span>            :             select_start = qMin(anchor, pos);</a>
-<a name="362"><span class="lineNum">     362 </span>            :             select_size = qMax(anchor, pos) - select_start;</a>
-<a name="363"><span class="lineNum">     363 </span>            :         } else {</a>
-<a name="364"><span class="lineNum">     364 </span>            :             deselectAll();</a>
-<a name="365"><span class="lineNum">     365 </span>            :         }</a>
-<a name="366"><span class="lineNum">     366 </span>            : </a>
-<a name="367"><span class="lineNum">     367 </span>            :         cursor = pos;</a>
-<a name="368"><span class="lineNum">     368 </span>            :     }</a>
-<a name="369"><span class="lineNum">     369 </span>            : </a>
-<a name="370"><span class="lineNum">     370 </span><span class="lineNoCov">          0 :     [[nodiscard]] qreal natrualWidth() const {</span></a>
-<a name="371"><span class="lineNum">     371 </span>            :         return tags.back().rect.right() - tags.front().rect.left();</a>
+<a name="329"><span class="lineNum">     329 </span><span class="lineNoCov">          0 :     [[nodiscard]] bool hasSelection() const noexcept {</span></a>
+<a name="330"><span class="lineNum">     330 </span>            :         return select_size &gt; 0;</a>
+<a name="331"><span class="lineNum">     331 </span>            :     }</a>
+<a name="332"><span class="lineNum">     332 </span>            : </a>
+<a name="333"><span class="lineNum">     333 </span><span class="lineNoCov">          0 :     void removeSelection() {</span></a>
+<a name="334"><span class="lineNum">     334 </span>            :         cursor = select_start;</a>
+<a name="335"><span class="lineNum">     335 </span>            :         currentText().remove(cursor, select_size);</a>
+<a name="336"><span class="lineNum">     336 </span>            :         deselectAll();</a>
+<a name="337"><span class="lineNum">     337 </span>            :     }</a>
+<a name="338"><span class="lineNum">     338 </span>            : </a>
+<a name="339"><span class="lineNum">     339 </span><span class="lineNoCov">          0 :     void removeBackwardOne() {</span></a>
+<a name="340"><span class="lineNum">     340 </span>            :         if (hasSelection()) {</a>
+<a name="341"><span class="lineNum">     341 </span>            :             removeSelection();</a>
+<a name="342"><span class="lineNum">     342 </span>            :         } else {</a>
+<a name="343"><span class="lineNum">     343 </span>            :             currentText().remove(--cursor, 1);</a>
+<a name="344"><span class="lineNum">     344 </span>            :         }</a>
+<a name="345"><span class="lineNum">     345 </span>            :     }</a>
+<a name="346"><span class="lineNum">     346 </span>            : </a>
+<a name="347"><span class="lineNum">     347 </span><span class="lineNoCov">          0 :     void selectAll() {</span></a>
+<a name="348"><span class="lineNum">     348 </span>            :         select_start = 0;</a>
+<a name="349"><span class="lineNum">     349 </span>            :         select_size = currentText().size();</a>
+<a name="350"><span class="lineNum">     350 </span>            :     }</a>
+<a name="351"><span class="lineNum">     351 </span>            : </a>
+<a name="352"><span class="lineNum">     352 </span><span class="lineNoCov">          0 :     void deselectAll() {</span></a>
+<a name="353"><span class="lineNum">     353 </span>            :         select_start = 0;</a>
+<a name="354"><span class="lineNum">     354 </span>            :         select_size = 0;</a>
+<a name="355"><span class="lineNum">     355 </span>            :     }</a>
+<a name="356"><span class="lineNum">     356 </span>            : </a>
+<a name="357"><span class="lineNum">     357 </span><span class="lineNoCov">          0 :     void moveCursor(qsizetype pos, bool mark) {</span></a>
+<a name="358"><span class="lineNum">     358 </span>            :         if (mark) {</a>
+<a name="359"><span class="lineNum">     359 </span>            :             auto e = select_start + select_size;</a>
+<a name="360"><span class="lineNum">     360 </span>            :             auto anchor = select_size &gt; 0 &amp;&amp; cursor == select_start</a>
+<a name="361"><span class="lineNum">     361 </span>            :                              ? e</a>
+<a name="362"><span class="lineNum">     362 </span>            :                              : select_size &gt; 0 &amp;&amp; cursor == e</a>
+<a name="363"><span class="lineNum">     363 </span>            :                                    ? select_start</a>
+<a name="364"><span class="lineNum">     364 </span>            :                                    : cursor;</a>
+<a name="365"><span class="lineNum">     365 </span>            :             select_start = qMin(anchor, pos);</a>
+<a name="366"><span class="lineNum">     366 </span>            :             select_size = qMax(anchor, pos) - select_start;</a>
+<a name="367"><span class="lineNum">     367 </span>            :         } else {</a>
+<a name="368"><span class="lineNum">     368 </span>            :             deselectAll();</a>
+<a name="369"><span class="lineNum">     369 </span>            :         }</a>
+<a name="370"><span class="lineNum">     370 </span>            : </a>
+<a name="371"><span class="lineNum">     371 </span>            :         cursor = pos;</a>
 <a name="372"><span class="lineNum">     372 </span>            :     }</a>
 <a name="373"><span class="lineNum">     373 </span>            : </a>
-<a name="374"><span class="lineNum">     374 </span><span class="lineNoCov">          0 :     [[nodiscard]] qreal cursorToX() const {</span></a>
-<a name="375"><span class="lineNum">     375 </span>            :         return text_layout.lineAt(0).cursorToX((int) cursor);</a>
+<a name="374"><span class="lineNum">     374 </span><span class="lineNoCov">          0 :     [[nodiscard]] qreal natrualWidth() const {</span></a>
+<a name="375"><span class="lineNum">     375 </span>            :         return tags.back().rect.right() - tags.front().rect.left();</a>
 <a name="376"><span class="lineNum">     376 </span>            :     }</a>
 <a name="377"><span class="lineNum">     377 </span>            : </a>
-<a name="378"><span class="lineNum">     378 </span><span class="lineNoCov">          0 :     void calcHScroll(QRect const&amp; r) {</span></a>
-<a name="379"><span class="lineNum">     379 </span>            :         auto const rect = cRect();</a>
-<a name="380"><span class="lineNum">     380 </span>            :         auto const width_used = qRound(natrualWidth()) + 1;</a>
-<a name="381"><span class="lineNum">     381 </span>            :         int const cix = r.x() + qRound(cursorToX());</a>
-<a name="382"><span class="lineNum">     382 </span>            :         if (width_used &lt;= rect.width()) {</a>
-<a name="383"><span class="lineNum">     383 </span>            :             // text fit</a>
-<a name="384"><span class="lineNum">     384 </span>            :             hscroll = 0;</a>
-<a name="385"><span class="lineNum">     385 </span>            :         } else if (cix - hscroll &gt;= rect.width()) {</a>
-<a name="386"><span class="lineNum">     386 </span>            :             // text doesn't fit, cursor is to the right of lineRect (scroll right)</a>
-<a name="387"><span class="lineNum">     387 </span>            :             hscroll = cix - rect.width() + 1;</a>
-<a name="388"><span class="lineNum">     388 </span>            :         } else if (cix - hscroll &lt; 0 &amp;&amp; hscroll &lt; width_used) {</a>
-<a name="389"><span class="lineNum">     389 </span>            :             // text doesn't fit, cursor is to the left of lineRect (scroll left)</a>
-<a name="390"><span class="lineNum">     390 </span>            :             hscroll = cix;</a>
-<a name="391"><span class="lineNum">     391 </span>            :         } else if (width_used - hscroll &lt; rect.width()) {</a>
-<a name="392"><span class="lineNum">     392 </span>            :             // text doesn't fit, text document is to the left of lineRect; align</a>
-<a name="393"><span class="lineNum">     393 </span>            :             // right</a>
-<a name="394"><span class="lineNum">     394 </span>            :             hscroll = width_used - rect.width() + 1;</a>
-<a name="395"><span class="lineNum">     395 </span>            :         } else {</a>
-<a name="396"><span class="lineNum">     396 </span>            :             //in case the text is bigger than the lineedit, the hscroll can never be negative</a>
-<a name="397"><span class="lineNum">     397 </span>            :             hscroll = qMax(0, hscroll);</a>
-<a name="398"><span class="lineNum">     398 </span>            :         }</a>
-<a name="399"><span class="lineNum">     399 </span>            :     }</a>
-<a name="400"><span class="lineNum">     400 </span>            : </a>
-<a name="401"><span class="lineNum">     401 </span><span class="lineNoCov">          0 :     void editPreviousTag() {</span></a>
-<a name="402"><span class="lineNum">     402 </span>            :         if (editing_index &gt; 0) {</a>
-<a name="403"><span class="lineNum">     403 </span>            :             setEditingIndex(editing_index - 1);</a>
-<a name="404"><span class="lineNum">     404 </span>            :             moveCursor(currentText().size(), false);</a>
-<a name="405"><span class="lineNum">     405 </span>            :         }</a>
-<a name="406"><span class="lineNum">     406 </span>            :     }</a>
-<a name="407"><span class="lineNum">     407 </span>            : </a>
-<a name="408"><span class="lineNum">     408 </span><span class="lineNoCov">          0 :     void editNextTag() {</span></a>
-<a name="409"><span class="lineNum">     409 </span>            :         if (editing_index &lt; tags.size() - 1) {</a>
-<a name="410"><span class="lineNum">     410 </span>            :             setEditingIndex(editing_index + 1);</a>
-<a name="411"><span class="lineNum">     411 </span>            :             moveCursor(0, false);</a>
-<a name="412"><span class="lineNum">     412 </span>            :         }</a>
-<a name="413"><span class="lineNum">     413 </span>            :     }</a>
-<a name="414"><span class="lineNum">     414 </span>            : </a>
-<a name="415"><span class="lineNum">     415 </span><span class="lineNoCov">          0 :     void editTag(size_t i) {</span></a>
-<a name="416"><span class="lineNum">     416 </span>            :         assert(i &lt; tags.size());</a>
-<a name="417"><span class="lineNum">     417 </span>            :         setEditingIndex(i);</a>
-<a name="418"><span class="lineNum">     418 </span>            :         moveCursor(currentText().size(), false);</a>
-<a name="419"><span class="lineNum">     419 </span>            :     }</a>
-<a name="420"><span class="lineNum">     420 </span>            : </a>
-<a name="421"><span class="lineNum">     421 </span><span class="lineNoCov">          0 :     Tags* const ifce;</span></a>
-<a name="422"><span class="lineNum">     422 </span><span class="lineNoCov">          0 :     std::vector&lt;Tag&gt; tags;</span></a>
-<a name="423"><span class="lineNum">     423 </span><span class="lineNoCov">          0 :     size_t editing_index;</span></a>
-<a name="424"><span class="lineNum">     424 </span><span class="lineNoCov">          0 :     qsizetype cursor;</span></a>
-<a name="425"><span class="lineNum">     425 </span><span class="lineNoCov">          0 :     int blink_timer;</span></a>
-<a name="426"><span class="lineNum">     426 </span><span class="lineNoCov">          0 :     bool blink_status;</span></a>
-<a name="427"><span class="lineNum">     427 </span><span class="lineNoCov">          0 :     QTextLayout text_layout;</span></a>
-<a name="428"><span class="lineNum">     428 </span><span class="lineNoCov">          0 :     qsizetype select_start;</span></a>
-<a name="429"><span class="lineNum">     429 </span><span class="lineNoCov">          0 :     qsizetype select_size;</span></a>
-<a name="430"><span class="lineNum">     430 </span><span class="lineNoCov">          0 :     QInputControl ctrl;</span></a>
-<a name="431"><span class="lineNum">     431 </span><span class="lineNoCov">          0 :     std::unique_ptr&lt;QCompleter&gt; completer;</span></a>
-<a name="432"><span class="lineNum">     432 </span><span class="lineNoCov">          0 :     int hscroll{0};</span></a>
-<a name="433"><span class="lineNum">     433 </span>            : };</a>
-<a name="434"><span class="lineNum">     434 </span>            : </a>
-<a name="435"><span class="lineNum">     435 </span>            : [[maybe_unused]] Tags::Tags(QWidget* parent)</a>
-<a name="436"><span class="lineNum">     436 </span>            :     : QWidget(parent), impl(std::make_unique&lt;Impl&gt;(this)) {</a>
-<a name="437"><span class="lineNum">     437 </span>            :     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);</a>
-<a name="438"><span class="lineNum">     438 </span>            :     setFocusPolicy(Qt::StrongFocus);</a>
-<a name="439"><span class="lineNum">     439 </span>            :     setCursor(Qt::IBeamCursor);</a>
-<a name="440"><span class="lineNum">     440 </span>            :     setAttribute(Qt::WA_InputMethodEnabled, true);</a>
-<a name="441"><span class="lineNum">     441 </span>            :     setMouseTracking(true);</a>
-<a name="442"><span class="lineNum">     442 </span>            : </a>
-<a name="443"><span class="lineNum">     443 </span>            :     impl-&gt;setupCompleter();</a>
-<a name="444"><span class="lineNum">     444 </span>            :     impl-&gt;setCursorVisible(hasFocus());</a>
-<a name="445"><span class="lineNum">     445 </span>            :     impl-&gt;updateDisplayText();</a>
-<a name="446"><span class="lineNum">     446 </span>            : }</a>
-<a name="447"><span class="lineNum">     447 </span>            : </a>
-<a name="448"><span class="lineNum">     448 </span>            : Tags::~Tags() = default;</a>
-<a name="449"><span class="lineNum">     449 </span>            : </a>
-<a name="450"><span class="lineNum">     450 </span>            : void Tags::resizeEvent(QResizeEvent*) {</a>
-<a name="451"><span class="lineNum">     451 </span>            :     impl-&gt;calcRects();</a>
-<a name="452"><span class="lineNum">     452 </span>            : }</a>
+<a name="378"><span class="lineNum">     378 </span><span class="lineNoCov">          0 :     [[nodiscard]] qreal cursorToX() const {</span></a>
+<a name="379"><span class="lineNum">     379 </span>            :         return text_layout.lineAt(0).cursorToX((int) cursor);</a>
+<a name="380"><span class="lineNum">     380 </span>            :     }</a>
+<a name="381"><span class="lineNum">     381 </span>            : </a>
+<a name="382"><span class="lineNum">     382 </span><span class="lineNoCov">          0 :     void calcHScroll(QRect const&amp; r) {</span></a>
+<a name="383"><span class="lineNum">     383 </span>            :         auto const rect = cRect();</a>
+<a name="384"><span class="lineNum">     384 </span>            :         auto const width_used = qRound(natrualWidth()) + 1;</a>
+<a name="385"><span class="lineNum">     385 </span>            :         int const cix = r.x() + qRound(cursorToX());</a>
+<a name="386"><span class="lineNum">     386 </span>            :         if (width_used &lt;= rect.width()) {</a>
+<a name="387"><span class="lineNum">     387 </span>            :             // text fit</a>
+<a name="388"><span class="lineNum">     388 </span>            :             hscroll = 0;</a>
+<a name="389"><span class="lineNum">     389 </span>            :         } else if (cix - hscroll &gt;= rect.width()) {</a>
+<a name="390"><span class="lineNum">     390 </span>            :             // text doesn't fit, cursor is to the right of lineRect (scroll right)</a>
+<a name="391"><span class="lineNum">     391 </span>            :             hscroll = cix - rect.width() + 1;</a>
+<a name="392"><span class="lineNum">     392 </span>            :         } else if (cix - hscroll &lt; 0 &amp;&amp; hscroll &lt; width_used) {</a>
+<a name="393"><span class="lineNum">     393 </span>            :             // text doesn't fit, cursor is to the left of lineRect (scroll left)</a>
+<a name="394"><span class="lineNum">     394 </span>            :             hscroll = cix;</a>
+<a name="395"><span class="lineNum">     395 </span>            :         } else if (width_used - hscroll &lt; rect.width()) {</a>
+<a name="396"><span class="lineNum">     396 </span>            :             // text doesn't fit, text document is to the left of lineRect; align</a>
+<a name="397"><span class="lineNum">     397 </span>            :             // right</a>
+<a name="398"><span class="lineNum">     398 </span>            :             hscroll = width_used - rect.width() + 1;</a>
+<a name="399"><span class="lineNum">     399 </span>            :         } else {</a>
+<a name="400"><span class="lineNum">     400 </span>            :             //in case the text is bigger than the lineedit, the hscroll can never be negative</a>
+<a name="401"><span class="lineNum">     401 </span>            :             hscroll = qMax(0, hscroll);</a>
+<a name="402"><span class="lineNum">     402 </span>            :         }</a>
+<a name="403"><span class="lineNum">     403 </span>            :     }</a>
+<a name="404"><span class="lineNum">     404 </span>            : </a>
+<a name="405"><span class="lineNum">     405 </span><span class="lineNoCov">          0 :     void editPreviousTag() {</span></a>
+<a name="406"><span class="lineNum">     406 </span>            :         if (editing_index &gt; 0) {</a>
+<a name="407"><span class="lineNum">     407 </span>            :             setEditingIndex(editing_index - 1);</a>
+<a name="408"><span class="lineNum">     408 </span>            :             moveCursor(currentText().size(), false);</a>
+<a name="409"><span class="lineNum">     409 </span>            :         }</a>
+<a name="410"><span class="lineNum">     410 </span>            :     }</a>
+<a name="411"><span class="lineNum">     411 </span>            : </a>
+<a name="412"><span class="lineNum">     412 </span><span class="lineNoCov">          0 :     void editNextTag() {</span></a>
+<a name="413"><span class="lineNum">     413 </span>            :         if (editing_index &lt; tags.size() - 1) {</a>
+<a name="414"><span class="lineNum">     414 </span>            :             setEditingIndex(editing_index + 1);</a>
+<a name="415"><span class="lineNum">     415 </span>            :             moveCursor(0, false);</a>
+<a name="416"><span class="lineNum">     416 </span>            :         }</a>
+<a name="417"><span class="lineNum">     417 </span>            :     }</a>
+<a name="418"><span class="lineNum">     418 </span>            : </a>
+<a name="419"><span class="lineNum">     419 </span><span class="lineNoCov">          0 :     void editTag(size_t i) {</span></a>
+<a name="420"><span class="lineNum">     420 </span>            :         assert(i &lt; tags.size());</a>
+<a name="421"><span class="lineNum">     421 </span>            :         setEditingIndex(i);</a>
+<a name="422"><span class="lineNum">     422 </span>            :         moveCursor(currentText().size(), false);</a>
+<a name="423"><span class="lineNum">     423 </span>            :     }</a>
+<a name="424"><span class="lineNum">     424 </span>            : </a>
+<a name="425"><span class="lineNum">     425 </span><span class="lineNoCov">          0 :     Tags* const ifce;</span></a>
+<a name="426"><span class="lineNum">     426 </span><span class="lineNoCov">          0 :     std::vector&lt;Tag&gt; tags;</span></a>
+<a name="427"><span class="lineNum">     427 </span><span class="lineNoCov">          0 :     size_t editing_index;</span></a>
+<a name="428"><span class="lineNum">     428 </span><span class="lineNoCov">          0 :     qsizetype cursor;</span></a>
+<a name="429"><span class="lineNum">     429 </span><span class="lineNoCov">          0 :     int blink_timer;</span></a>
+<a name="430"><span class="lineNum">     430 </span><span class="lineNoCov">          0 :     bool blink_status;</span></a>
+<a name="431"><span class="lineNum">     431 </span><span class="lineNoCov">          0 :     QTextLayout text_layout;</span></a>
+<a name="432"><span class="lineNum">     432 </span><span class="lineNoCov">          0 :     qsizetype select_start;</span></a>
+<a name="433"><span class="lineNum">     433 </span><span class="lineNoCov">          0 :     qsizetype select_size;</span></a>
+<a name="434"><span class="lineNum">     434 </span><span class="lineNoCov">          0 :     QInputControl ctrl;</span></a>
+<a name="435"><span class="lineNum">     435 </span><span class="lineNoCov">          0 :     std::unique_ptr&lt;QCompleter&gt; completer;</span></a>
+<a name="436"><span class="lineNum">     436 </span><span class="lineNoCov">          0 :     int hscroll{0};</span></a>
+<a name="437"><span class="lineNum">     437 </span>            : };</a>
+<a name="438"><span class="lineNum">     438 </span>            : </a>
+<a name="439"><span class="lineNum">     439 </span>            : [[maybe_unused]] Tags::Tags(QWidget* parent)</a>
+<a name="440"><span class="lineNum">     440 </span>            :     : QWidget(parent), impl(std::make_unique&lt;Impl&gt;(this)) {</a>
+<a name="441"><span class="lineNum">     441 </span>            :     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);</a>
+<a name="442"><span class="lineNum">     442 </span>            :     setFocusPolicy(Qt::StrongFocus);</a>
+<a name="443"><span class="lineNum">     443 </span>            :     setCursor(Qt::IBeamCursor);</a>
+<a name="444"><span class="lineNum">     444 </span>            :     setAttribute(Qt::WA_InputMethodEnabled, true);</a>
+<a name="445"><span class="lineNum">     445 </span>            :     setMouseTracking(true);</a>
+<a name="446"><span class="lineNum">     446 </span>            : </a>
+<a name="447"><span class="lineNum">     447 </span>            :     impl-&gt;setupCompleter();</a>
+<a name="448"><span class="lineNum">     448 </span>            :     impl-&gt;setCursorVisible(hasFocus());</a>
+<a name="449"><span class="lineNum">     449 </span>            :     impl-&gt;updateDisplayText();</a>
+<a name="450"><span class="lineNum">     450 </span>            : }</a>
+<a name="451"><span class="lineNum">     451 </span>            : </a>
+<a name="452"><span class="lineNum">     452 </span>            : Tags::~Tags() = default;</a>
 <a name="453"><span class="lineNum">     453 </span>            : </a>
-<a name="454"><span class="lineNum">     454 </span>            : void Tags::focusInEvent(QFocusEvent*) {</a>
-<a name="455"><span class="lineNum">     455 </span>            :     impl-&gt;setCursorVisible(true);</a>
-<a name="456"><span class="lineNum">     456 </span>            :     impl-&gt;updateDisplayText();</a>
-<a name="457"><span class="lineNum">     457 </span>            :     impl-&gt;calcRects();</a>
-<a name="458"><span class="lineNum">     458 </span>            :     update();</a>
-<a name="459"><span class="lineNum">     459 </span>            : }</a>
-<a name="460"><span class="lineNum">     460 </span>            : </a>
-<a name="461"><span class="lineNum">     461 </span>            : void Tags::focusOutEvent(QFocusEvent*) {</a>
-<a name="462"><span class="lineNum">     462 </span>            :     impl-&gt;setCursorVisible(false);</a>
-<a name="463"><span class="lineNum">     463 </span>            :     impl-&gt;updateDisplayText();</a>
-<a name="464"><span class="lineNum">     464 </span>            :     impl-&gt;calcRects();</a>
-<a name="465"><span class="lineNum">     465 </span>            :     update();</a>
-<a name="466"><span class="lineNum">     466 </span>            : }</a>
-<a name="467"><span class="lineNum">     467 </span>            : </a>
-<a name="468"><span class="lineNum">     468 </span>            : void Tags::paintEvent(QPaintEvent*) {</a>
-<a name="469"><span class="lineNum">     469 </span>            :     QPainter p(this);</a>
-<a name="470"><span class="lineNum">     470 </span>            : </a>
-<a name="471"><span class="lineNum">     471 </span>            :     // opt</a>
-<a name="472"><span class="lineNum">     472 </span>            :     auto const panel = [this] {</a>
-<a name="473"><span class="lineNum">     473 </span>            :         QStyleOptionFrame panel;</a>
-<a name="474"><span class="lineNum">     474 </span>            :         impl-&gt;initStyleOption(&amp;panel);</a>
-<a name="475"><span class="lineNum">     475 </span>            :         return panel;</a>
-<a name="476"><span class="lineNum">     476 </span>            :     }();</a>
-<a name="477"><span class="lineNum">     477 </span>            : </a>
-<a name="478"><span class="lineNum">     478 </span>            :     // draw frame</a>
-<a name="479"><span class="lineNum">     479 </span>            :     style()-&gt;drawPrimitive(QStyle::PE_PanelLineEdit, &amp;panel, &amp;p, this);</a>
-<a name="480"><span class="lineNum">     480 </span>            : </a>
-<a name="481"><span class="lineNum">     481 </span>            :     // clip</a>
-<a name="482"><span class="lineNum">     482 </span>            :     auto const rect = impl-&gt;cRect();</a>
-<a name="483"><span class="lineNum">     483 </span>            :     p.setClipRect(rect);</a>
+<a name="454"><span class="lineNum">     454 </span>            : void Tags::resizeEvent(QResizeEvent*) {</a>
+<a name="455"><span class="lineNum">     455 </span>            :     impl-&gt;calcRects();</a>
+<a name="456"><span class="lineNum">     456 </span>            : }</a>
+<a name="457"><span class="lineNum">     457 </span>            : </a>
+<a name="458"><span class="lineNum">     458 </span>            : void Tags::focusInEvent(QFocusEvent*) {</a>
+<a name="459"><span class="lineNum">     459 </span>            :     impl-&gt;setCursorVisible(true);</a>
+<a name="460"><span class="lineNum">     460 </span>            :     impl-&gt;updateDisplayText();</a>
+<a name="461"><span class="lineNum">     461 </span>            :     impl-&gt;calcRects();</a>
+<a name="462"><span class="lineNum">     462 </span>            :     update();</a>
+<a name="463"><span class="lineNum">     463 </span>            : }</a>
+<a name="464"><span class="lineNum">     464 </span>            : </a>
+<a name="465"><span class="lineNum">     465 </span>            : void Tags::focusOutEvent(QFocusEvent*) {</a>
+<a name="466"><span class="lineNum">     466 </span>            :     impl-&gt;setCursorVisible(false);</a>
+<a name="467"><span class="lineNum">     467 </span>            :     impl-&gt;updateDisplayText();</a>
+<a name="468"><span class="lineNum">     468 </span>            :     impl-&gt;calcRects();</a>
+<a name="469"><span class="lineNum">     469 </span>            :     update();</a>
+<a name="470"><span class="lineNum">     470 </span>            : }</a>
+<a name="471"><span class="lineNum">     471 </span>            : </a>
+<a name="472"><span class="lineNum">     472 </span>            : void Tags::paintEvent(QPaintEvent*) {</a>
+<a name="473"><span class="lineNum">     473 </span>            :     QPainter p(this);</a>
+<a name="474"><span class="lineNum">     474 </span>            : </a>
+<a name="475"><span class="lineNum">     475 </span>            :     // opt</a>
+<a name="476"><span class="lineNum">     476 </span>            :     auto const panel = [this] {</a>
+<a name="477"><span class="lineNum">     477 </span>            :         QStyleOptionFrame panel;</a>
+<a name="478"><span class="lineNum">     478 </span>            :         impl-&gt;initStyleOption(&amp;panel);</a>
+<a name="479"><span class="lineNum">     479 </span>            :         return panel;</a>
+<a name="480"><span class="lineNum">     480 </span>            :     }();</a>
+<a name="481"><span class="lineNum">     481 </span>            : </a>
+<a name="482"><span class="lineNum">     482 </span>            :     // draw frame</a>
+<a name="483"><span class="lineNum">     483 </span>            :     style()-&gt;drawPrimitive(QStyle::PE_PanelLineEdit, &amp;panel, &amp;p, this);</a>
 <a name="484"><span class="lineNum">     484 </span>            : </a>
-<a name="485"><span class="lineNum">     485 </span>            :     if (impl-&gt;cursorVisible()) {</a>
-<a name="486"><span class="lineNum">     486 </span>            :         // not terminated tag pos</a>
-<a name="487"><span class="lineNum">     487 </span>            :         auto const&amp; r = impl-&gt;currentRect();</a>
-<a name="488"><span class="lineNum">     488 </span>            :         auto const&amp; txt_p = r.topLeft() + QPointF(tag_inner_left_padding,</a>
-<a name="489"><span class="lineNum">     489 </span>            :                                                   ((r.height() - fontMetrics().height()) / 2.0));</a>
-<a name="490"><span class="lineNum">     490 </span>            : </a>
-<a name="491"><span class="lineNum">     491 </span>            :         // scroll</a>
-<a name="492"><span class="lineNum">     492 </span>            :         impl-&gt;calcHScroll(r);</a>
-<a name="493"><span class="lineNum">     493 </span>            : </a>
-<a name="494"><span class="lineNum">     494 </span>            :         // tags</a>
-<a name="495"><span class="lineNum">     495 </span>            :         impl-&gt;drawTags(p, std::make_pair(impl-&gt;tags.cbegin(), std::next(impl-&gt;tags.cbegin(), std::ptrdiff_t(impl-&gt;editing_index))));</a>
-<a name="496"><span class="lineNum">     496 </span>            : </a>
-<a name="497"><span class="lineNum">     497 </span>            :         // draw not terminated tag</a>
-<a name="498"><span class="lineNum">     498 </span>            :         auto const formatting = impl-&gt;formatting();</a>
-<a name="499"><span class="lineNum">     499 </span>            :         impl-&gt;text_layout.draw(&amp;p, txt_p - QPointF(impl-&gt;hscroll, 0), formatting);</a>
+<a name="485"><span class="lineNum">     485 </span>            :     // clip</a>
+<a name="486"><span class="lineNum">     486 </span>            :     auto const rect = impl-&gt;cRect();</a>
+<a name="487"><span class="lineNum">     487 </span>            :     p.setClipRect(rect);</a>
+<a name="488"><span class="lineNum">     488 </span>            : </a>
+<a name="489"><span class="lineNum">     489 </span>            :     if (impl-&gt;cursorVisible()) {</a>
+<a name="490"><span class="lineNum">     490 </span>            :         // not terminated tag pos</a>
+<a name="491"><span class="lineNum">     491 </span>            :         auto const&amp; r = impl-&gt;currentRect();</a>
+<a name="492"><span class="lineNum">     492 </span>            :         auto const&amp; txt_p = r.topLeft() + QPointF(tag_inner_left_padding,</a>
+<a name="493"><span class="lineNum">     493 </span>            :                                                   ((r.height() - fontMetrics().height()) / 2.0));</a>
+<a name="494"><span class="lineNum">     494 </span>            : </a>
+<a name="495"><span class="lineNum">     495 </span>            :         // scroll</a>
+<a name="496"><span class="lineNum">     496 </span>            :         impl-&gt;calcHScroll(r);</a>
+<a name="497"><span class="lineNum">     497 </span>            : </a>
+<a name="498"><span class="lineNum">     498 </span>            :         // tags</a>
+<a name="499"><span class="lineNum">     499 </span>            :         impl-&gt;drawTags(p, std::make_pair(impl-&gt;tags.cbegin(), std::next(impl-&gt;tags.cbegin(), std::ptrdiff_t(impl-&gt;editing_index))));</a>
 <a name="500"><span class="lineNum">     500 </span>            : </a>
-<a name="501"><span class="lineNum">     501 </span>            :         // draw cursor</a>
-<a name="502"><span class="lineNum">     502 </span>            :         if (impl-&gt;blink_status) {</a>
-<a name="503"><span class="lineNum">     503 </span>            :             impl-&gt;text_layout.drawCursor(&amp;p, txt_p - QPointF(impl-&gt;hscroll, 0), (int) impl-&gt;cursor);</a>
-<a name="504"><span class="lineNum">     504 </span>            :         }</a>
-<a name="505"><span class="lineNum">     505 </span>            : </a>
-<a name="506"><span class="lineNum">     506 </span>            :         // tags</a>
-<a name="507"><span class="lineNum">     507 </span>            :         impl-&gt;drawTags(p, std::make_pair(std::next(impl-&gt;tags.cbegin(), std::ptrdiff_t(impl-&gt;editing_index + 1)), impl-&gt;tags.cend()));</a>
-<a name="508"><span class="lineNum">     508 </span>            :     } else {</a>
-<a name="509"><span class="lineNum">     509 </span>            :         impl-&gt;drawTags(p, std::make_pair(EmptySkipIterator(impl-&gt;tags.begin(), impl-&gt;tags.end()), EmptySkipIterator(impl-&gt;tags.end())));</a>
-<a name="510"><span class="lineNum">     510 </span>            :     }</a>
-<a name="511"><span class="lineNum">     511 </span>            : }</a>
-<a name="512"><span class="lineNum">     512 </span>            : </a>
-<a name="513"><span class="lineNum">     513 </span>            : void Tags::timerEvent(QTimerEvent* event) {</a>
-<a name="514"><span class="lineNum">     514 </span>            :     if (event-&gt;timerId() == impl-&gt;blink_timer) {</a>
-<a name="515"><span class="lineNum">     515 </span>            :         impl-&gt;blink_status = !impl-&gt;blink_status;</a>
-<a name="516"><span class="lineNum">     516 </span>            :         update();</a>
-<a name="517"><span class="lineNum">     517 </span>            :     }</a>
-<a name="518"><span class="lineNum">     518 </span>            : }</a>
-<a name="519"><span class="lineNum">     519 </span>            : </a>
-<a name="520"><span class="lineNum">     520 </span>            : void Tags::mousePressEvent(QMouseEvent* event) {</a>
-<a name="521"><span class="lineNum">     521 </span>            :     bool found = false;</a>
-<a name="522"><span class="lineNum">     522 </span>            :     for (size_t i = 0; i &lt; impl-&gt;tags.size(); ++i) {</a>
-<a name="523"><span class="lineNum">     523 </span>            :         if (impl-&gt;inCrossArea(i, event-&gt;pos())) {</a>
-<a name="524"><span class="lineNum">     524 </span>            :             impl-&gt;tags.erase(impl-&gt;tags.begin() + std::ptrdiff_t(i));</a>
-<a name="525"><span class="lineNum">     525 </span>            :             if (i &lt;= impl-&gt;editing_index) {</a>
-<a name="526"><span class="lineNum">     526 </span>            :                 --impl-&gt;editing_index;</a>
-<a name="527"><span class="lineNum">     527 </span>            :             }</a>
-<a name="528"><span class="lineNum">     528 </span>            :             found = true;</a>
-<a name="529"><span class="lineNum">     529 </span>            :             break;</a>
-<a name="530"><span class="lineNum">     530 </span>            :         }</a>
-<a name="531"><span class="lineNum">     531 </span>            : </a>
-<a name="532"><span class="lineNum">     532 </span>            :         if (!impl-&gt;tags[i].rect.translated(-impl-&gt;hscroll, 0).contains(event-&gt;pos())) {</a>
-<a name="533"><span class="lineNum">     533 </span>            :             continue;</a>
+<a name="501"><span class="lineNum">     501 </span>            :         // draw not terminated tag</a>
+<a name="502"><span class="lineNum">     502 </span>            :         auto const formatting = impl-&gt;formatting();</a>
+<a name="503"><span class="lineNum">     503 </span>            :         impl-&gt;text_layout.draw(&amp;p, txt_p - QPointF(impl-&gt;hscroll, 0), formatting);</a>
+<a name="504"><span class="lineNum">     504 </span>            : </a>
+<a name="505"><span class="lineNum">     505 </span>            :         // draw cursor</a>
+<a name="506"><span class="lineNum">     506 </span>            :         if (impl-&gt;blink_status) {</a>
+<a name="507"><span class="lineNum">     507 </span>            :             impl-&gt;text_layout.drawCursor(&amp;p, txt_p - QPointF(impl-&gt;hscroll, 0), (int) impl-&gt;cursor);</a>
+<a name="508"><span class="lineNum">     508 </span>            :         }</a>
+<a name="509"><span class="lineNum">     509 </span>            : </a>
+<a name="510"><span class="lineNum">     510 </span>            :         // tags</a>
+<a name="511"><span class="lineNum">     511 </span>            :         impl-&gt;drawTags(p, std::make_pair(std::next(impl-&gt;tags.cbegin(), std::ptrdiff_t(impl-&gt;editing_index + 1)), impl-&gt;tags.cend()));</a>
+<a name="512"><span class="lineNum">     512 </span>            :     } else {</a>
+<a name="513"><span class="lineNum">     513 </span>            :         impl-&gt;drawTags(p, std::make_pair(EmptySkipIterator(impl-&gt;tags.begin(), impl-&gt;tags.end()), EmptySkipIterator(impl-&gt;tags.end())));</a>
+<a name="514"><span class="lineNum">     514 </span>            :     }</a>
+<a name="515"><span class="lineNum">     515 </span>            : }</a>
+<a name="516"><span class="lineNum">     516 </span>            : </a>
+<a name="517"><span class="lineNum">     517 </span>            : void Tags::timerEvent(QTimerEvent* event) {</a>
+<a name="518"><span class="lineNum">     518 </span>            :     if (event-&gt;timerId() == impl-&gt;blink_timer) {</a>
+<a name="519"><span class="lineNum">     519 </span>            :         impl-&gt;blink_status = !impl-&gt;blink_status;</a>
+<a name="520"><span class="lineNum">     520 </span>            :         update();</a>
+<a name="521"><span class="lineNum">     521 </span>            :     }</a>
+<a name="522"><span class="lineNum">     522 </span>            : }</a>
+<a name="523"><span class="lineNum">     523 </span>            : </a>
+<a name="524"><span class="lineNum">     524 </span>            : void Tags::mousePressEvent(QMouseEvent* event) {</a>
+<a name="525"><span class="lineNum">     525 </span>            :     bool found = false;</a>
+<a name="526"><span class="lineNum">     526 </span>            :     for (size_t i = 0; i &lt; impl-&gt;tags.size(); ++i) {</a>
+<a name="527"><span class="lineNum">     527 </span>            :         if (impl-&gt;inCrossArea(i, event-&gt;pos())) {</a>
+<a name="528"><span class="lineNum">     528 </span>            :             impl-&gt;tags.erase(impl-&gt;tags.begin() + std::ptrdiff_t(i));</a>
+<a name="529"><span class="lineNum">     529 </span>            :             if (i &lt;= impl-&gt;editing_index) {</a>
+<a name="530"><span class="lineNum">     530 </span>            :                 --impl-&gt;editing_index;</a>
+<a name="531"><span class="lineNum">     531 </span>            :             }</a>
+<a name="532"><span class="lineNum">     532 </span>            :             found = true;</a>
+<a name="533"><span class="lineNum">     533 </span>            :             break;</a>
 <a name="534"><span class="lineNum">     534 </span>            :         }</a>
 <a name="535"><span class="lineNum">     535 </span>            : </a>
-<a name="536"><span class="lineNum">     536 </span>            :         if (impl-&gt;editing_index == i) {</a>
-<a name="537"><span class="lineNum">     537 </span>            :             impl-&gt;moveCursor(impl-&gt;text_layout.lineAt(0).xToCursor(</a>
-<a name="538"><span class="lineNum">     538 </span>            :                                  (event-&gt;pos() - impl-&gt;currentRect().translated(-impl-&gt;hscroll, 0).topLeft()).x()),</a>
-<a name="539"><span class="lineNum">     539 </span>            :                              false);</a>
-<a name="540"><span class="lineNum">     540 </span>            :         } else {</a>
-<a name="541"><span class="lineNum">     541 </span>            :             impl-&gt;editTag(i);</a>
-<a name="542"><span class="lineNum">     542 </span>            :         }</a>
-<a name="543"><span class="lineNum">     543 </span>            : </a>
-<a name="544"><span class="lineNum">     544 </span>            :         found = true;</a>
-<a name="545"><span class="lineNum">     545 </span>            :         break;</a>
-<a name="546"><span class="lineNum">     546 </span>            :     }</a>
+<a name="536"><span class="lineNum">     536 </span>            :         if (!impl-&gt;tags[i].rect.translated(-impl-&gt;hscroll, 0).contains(event-&gt;pos())) {</a>
+<a name="537"><span class="lineNum">     537 </span>            :             continue;</a>
+<a name="538"><span class="lineNum">     538 </span>            :         }</a>
+<a name="539"><span class="lineNum">     539 </span>            : </a>
+<a name="540"><span class="lineNum">     540 </span>            :         if (impl-&gt;editing_index == i) {</a>
+<a name="541"><span class="lineNum">     541 </span>            :             impl-&gt;moveCursor(impl-&gt;text_layout.lineAt(0).xToCursor(</a>
+<a name="542"><span class="lineNum">     542 </span>            :                                  (event-&gt;pos() - impl-&gt;currentRect().translated(-impl-&gt;hscroll, 0).topLeft()).x()),</a>
+<a name="543"><span class="lineNum">     543 </span>            :                              false);</a>
+<a name="544"><span class="lineNum">     544 </span>            :         } else {</a>
+<a name="545"><span class="lineNum">     545 </span>            :             impl-&gt;editTag(i);</a>
+<a name="546"><span class="lineNum">     546 </span>            :         }</a>
 <a name="547"><span class="lineNum">     547 </span>            : </a>
-<a name="548"><span class="lineNum">     548 </span>            :     if (!found) {</a>
-<a name="549"><span class="lineNum">     549 </span>            :         impl-&gt;editNewTag();</a>
-<a name="550"><span class="lineNum">     550 </span>            :         event-&gt;accept();</a>
-<a name="551"><span class="lineNum">     551 </span>            :     }</a>
-<a name="552"><span class="lineNum">     552 </span>            : </a>
-<a name="553"><span class="lineNum">     553 </span>            :     if (event-&gt;isAccepted()) {</a>
-<a name="554"><span class="lineNum">     554 </span>            :         impl-&gt;updateDisplayText();</a>
-<a name="555"><span class="lineNum">     555 </span>            :         impl-&gt;calcRects();</a>
-<a name="556"><span class="lineNum">     556 </span>            :         impl-&gt;updateCursorBlinking();</a>
-<a name="557"><span class="lineNum">     557 </span>            :         update();</a>
-<a name="558"><span class="lineNum">     558 </span>            :     }</a>
-<a name="559"><span class="lineNum">     559 </span>            : }</a>
-<a name="560"><span class="lineNum">     560 </span>            : </a>
-<a name="561"><span class="lineNum">     561 </span>            : QSize Tags::sizeHint() const {</a>
-<a name="562"><span class="lineNum">     562 </span>            :     ensurePolished();</a>
-<a name="563"><span class="lineNum">     563 </span>            :     QFontMetrics fm(font());</a>
-<a name="564"><span class="lineNum">     564 </span>            :     int h = fm.height() + 2 * vertical_margin + top_text_margin + bottom_text_margin + topmargin + bottommargin;</a>
-<a name="565"><span class="lineNum">     565 </span>            :     int w = fm.boundingRect(QLatin1Char('x')).width() * 17 + 2 * horizontal_margin + leftmargin + rightmargin; // &quot;some&quot;</a>
-<a name="566"><span class="lineNum">     566 </span>            :     QStyleOptionFrame opt;</a>
-<a name="567"><span class="lineNum">     567 </span>            :     impl-&gt;initStyleOption(&amp;opt);</a>
-<a name="568"><span class="lineNum">     568 </span>            :     return (style()-&gt;sizeFromContents(QStyle::CT_LineEdit, &amp;opt,</a>
-<a name="569"><span class="lineNum">     569 </span>            :                                       QSize(w, h), this));</a>
-<a name="570"><span class="lineNum">     570 </span>            : }</a>
-<a name="571"><span class="lineNum">     571 </span>            : </a>
-<a name="572"><span class="lineNum">     572 </span>            : QSize Tags::minimumSizeHint() const {</a>
-<a name="573"><span class="lineNum">     573 </span>            :     ensurePolished();</a>
-<a name="574"><span class="lineNum">     574 </span>            :     QFontMetrics fm = fontMetrics();</a>
-<a name="575"><span class="lineNum">     575 </span>            :     int h = fm.height() + qMax(2 * vertical_margin, fm.leading()) + top_text_margin + bottom_text_margin + topmargin + bottommargin;</a>
-<a name="576"><span class="lineNum">     576 </span>            :     int w = fm.maxWidth() + leftmargin + rightmargin;</a>
-<a name="577"><span class="lineNum">     577 </span>            :     QStyleOptionFrame opt;</a>
-<a name="578"><span class="lineNum">     578 </span>            :     impl-&gt;initStyleOption(&amp;opt);</a>
-<a name="579"><span class="lineNum">     579 </span>            :     return (style()-&gt;sizeFromContents(QStyle::CT_LineEdit, &amp;opt,</a>
-<a name="580"><span class="lineNum">     580 </span>            :                                       QSize(w, h), this));</a>
-<a name="581"><span class="lineNum">     581 </span>            : }</a>
-<a name="582"><span class="lineNum">     582 </span>            : </a>
-<a name="583"><span class="lineNum">     583 </span>            : void Tags::keyPressEvent(QKeyEvent* event) {</a>
-<a name="584"><span class="lineNum">     584 </span>            :     event-&gt;setAccepted(false);</a>
-<a name="585"><span class="lineNum">     585 </span>            :     bool unknown = false;</a>
+<a name="548"><span class="lineNum">     548 </span>            :         found = true;</a>
+<a name="549"><span class="lineNum">     549 </span>            :         break;</a>
+<a name="550"><span class="lineNum">     550 </span>            :     }</a>
+<a name="551"><span class="lineNum">     551 </span>            : </a>
+<a name="552"><span class="lineNum">     552 </span>            :     if (!found) {</a>
+<a name="553"><span class="lineNum">     553 </span>            :         impl-&gt;editNewTag();</a>
+<a name="554"><span class="lineNum">     554 </span>            :         event-&gt;accept();</a>
+<a name="555"><span class="lineNum">     555 </span>            :     }</a>
+<a name="556"><span class="lineNum">     556 </span>            : </a>
+<a name="557"><span class="lineNum">     557 </span>            :     if (event-&gt;isAccepted()) {</a>
+<a name="558"><span class="lineNum">     558 </span>            :         impl-&gt;updateDisplayText();</a>
+<a name="559"><span class="lineNum">     559 </span>            :         impl-&gt;calcRects();</a>
+<a name="560"><span class="lineNum">     560 </span>            :         impl-&gt;updateCursorBlinking();</a>
+<a name="561"><span class="lineNum">     561 </span>            :         update();</a>
+<a name="562"><span class="lineNum">     562 </span>            :     }</a>
+<a name="563"><span class="lineNum">     563 </span>            : }</a>
+<a name="564"><span class="lineNum">     564 </span>            : </a>
+<a name="565"><span class="lineNum">     565 </span>            : QSize Tags::sizeHint() const {</a>
+<a name="566"><span class="lineNum">     566 </span>            :     ensurePolished();</a>
+<a name="567"><span class="lineNum">     567 </span>            :     QFontMetrics fm(font());</a>
+<a name="568"><span class="lineNum">     568 </span>            :     int h = fm.height() + 2 * vertical_margin + top_text_margin + bottom_text_margin + topmargin + bottommargin;</a>
+<a name="569"><span class="lineNum">     569 </span>            :     int w = fm.boundingRect(QLatin1Char('x')).width() * 17 + 2 * horizontal_margin + leftmargin + rightmargin; // &quot;some&quot;</a>
+<a name="570"><span class="lineNum">     570 </span>            :     QStyleOptionFrame opt;</a>
+<a name="571"><span class="lineNum">     571 </span>            :     impl-&gt;initStyleOption(&amp;opt);</a>
+<a name="572"><span class="lineNum">     572 </span>            :     return (style()-&gt;sizeFromContents(QStyle::CT_LineEdit, &amp;opt,</a>
+<a name="573"><span class="lineNum">     573 </span>            :                                       QSize(w, h), this));</a>
+<a name="574"><span class="lineNum">     574 </span>            : }</a>
+<a name="575"><span class="lineNum">     575 </span>            : </a>
+<a name="576"><span class="lineNum">     576 </span>            : QSize Tags::minimumSizeHint() const {</a>
+<a name="577"><span class="lineNum">     577 </span>            :     ensurePolished();</a>
+<a name="578"><span class="lineNum">     578 </span>            :     QFontMetrics fm = fontMetrics();</a>
+<a name="579"><span class="lineNum">     579 </span>            :     int h = fm.height() + qMax(2 * vertical_margin, fm.leading()) + top_text_margin + bottom_text_margin + topmargin + bottommargin;</a>
+<a name="580"><span class="lineNum">     580 </span>            :     int w = fm.maxWidth() + leftmargin + rightmargin;</a>
+<a name="581"><span class="lineNum">     581 </span>            :     QStyleOptionFrame opt;</a>
+<a name="582"><span class="lineNum">     582 </span>            :     impl-&gt;initStyleOption(&amp;opt);</a>
+<a name="583"><span class="lineNum">     583 </span>            :     return (style()-&gt;sizeFromContents(QStyle::CT_LineEdit, &amp;opt,</a>
+<a name="584"><span class="lineNum">     584 </span>            :                                       QSize(w, h), this));</a>
+<a name="585"><span class="lineNum">     585 </span>            : }</a>
 <a name="586"><span class="lineNum">     586 </span>            : </a>
-<a name="587"><span class="lineNum">     587 </span>            :     if (event == QKeySequence::SelectAll) {</a>
-<a name="588"><span class="lineNum">     588 </span>            :         impl-&gt;selectAll();</a>
-<a name="589"><span class="lineNum">     589 </span>            :         event-&gt;accept();</a>
-<a name="590"><span class="lineNum">     590 </span>            :     } else if (event == QKeySequence::SelectPreviousChar) {</a>
-<a name="591"><span class="lineNum">     591 </span>            :         impl-&gt;moveCursor(impl-&gt;text_layout.previousCursorPosition((int) impl-&gt;cursor), true);</a>
-<a name="592"><span class="lineNum">     592 </span>            :         event-&gt;accept();</a>
-<a name="593"><span class="lineNum">     593 </span>            :     } else if (event == QKeySequence::SelectNextChar) {</a>
-<a name="594"><span class="lineNum">     594 </span>            :         impl-&gt;moveCursor(impl-&gt;text_layout.nextCursorPosition((int) impl-&gt;cursor), true);</a>
-<a name="595"><span class="lineNum">     595 </span>            :         event-&gt;accept();</a>
-<a name="596"><span class="lineNum">     596 </span>            :     } else {</a>
-<a name="597"><span class="lineNum">     597 </span>            :         switch (event-&gt;key()) {</a>
-<a name="598"><span class="lineNum">     598 </span>            :         case Qt::Key_Left:</a>
-<a name="599"><span class="lineNum">     599 </span>            :             if (impl-&gt;cursor == 0) {</a>
-<a name="600"><span class="lineNum">     600 </span>            :                 impl-&gt;editPreviousTag();</a>
-<a name="601"><span class="lineNum">     601 </span>            :             } else {</a>
-<a name="602"><span class="lineNum">     602 </span>            :                 impl-&gt;moveCursor(impl-&gt;text_layout.previousCursorPosition((int) impl-&gt;cursor), false);</a>
-<a name="603"><span class="lineNum">     603 </span>            :             }</a>
-<a name="604"><span class="lineNum">     604 </span>            :             event-&gt;accept();</a>
-<a name="605"><span class="lineNum">     605 </span>            :             break;</a>
-<a name="606"><span class="lineNum">     606 </span>            :         case Qt::Key_Right:</a>
-<a name="607"><span class="lineNum">     607 </span>            :             if (impl-&gt;cursor == impl-&gt;currentText().size()) {</a>
-<a name="608"><span class="lineNum">     608 </span>            :                 impl-&gt;editNextTag();</a>
-<a name="609"><span class="lineNum">     609 </span>            :             } else {</a>
-<a name="610"><span class="lineNum">     610 </span>            :                 impl-&gt;moveCursor(impl-&gt;text_layout.nextCursorPosition((int) impl-&gt;cursor), false);</a>
-<a name="611"><span class="lineNum">     611 </span>            :             }</a>
-<a name="612"><span class="lineNum">     612 </span>            :             event-&gt;accept();</a>
-<a name="613"><span class="lineNum">     613 </span>            :             break;</a>
-<a name="614"><span class="lineNum">     614 </span>            :         case Qt::Key_Home:</a>
-<a name="615"><span class="lineNum">     615 </span>            :             if (impl-&gt;cursor == 0) {</a>
-<a name="616"><span class="lineNum">     616 </span>            :                 impl-&gt;editTag(0);</a>
-<a name="617"><span class="lineNum">     617 </span>            :             } else {</a>
-<a name="618"><span class="lineNum">     618 </span>            :                 impl-&gt;moveCursor(0, false);</a>
-<a name="619"><span class="lineNum">     619 </span>            :             }</a>
-<a name="620"><span class="lineNum">     620 </span>            :             event-&gt;accept();</a>
-<a name="621"><span class="lineNum">     621 </span>            :             break;</a>
-<a name="622"><span class="lineNum">     622 </span>            :         case Qt::Key_End:</a>
-<a name="623"><span class="lineNum">     623 </span>            :             if (impl-&gt;cursor == impl-&gt;currentText().size()) {</a>
-<a name="624"><span class="lineNum">     624 </span>            :                 impl-&gt;editTag(impl-&gt;tags.size() - 1);</a>
-<a name="625"><span class="lineNum">     625 </span>            :             } else {</a>
-<a name="626"><span class="lineNum">     626 </span>            :                 impl-&gt;moveCursor(impl-&gt;currentText().length(), false);</a>
-<a name="627"><span class="lineNum">     627 </span>            :             }</a>
-<a name="628"><span class="lineNum">     628 </span>            :             event-&gt;accept();</a>
-<a name="629"><span class="lineNum">     629 </span>            :             break;</a>
-<a name="630"><span class="lineNum">     630 </span>            :         case Qt::Key_Backspace:</a>
-<a name="631"><span class="lineNum">     631 </span>            :             if (!impl-&gt;currentText().isEmpty()) {</a>
-<a name="632"><span class="lineNum">     632 </span>            :                 impl-&gt;removeBackwardOne();</a>
-<a name="633"><span class="lineNum">     633 </span>            :             } else if (impl-&gt;editing_index &gt; 0) {</a>
-<a name="634"><span class="lineNum">     634 </span>            :                 impl-&gt;editPreviousTag();</a>
-<a name="635"><span class="lineNum">     635 </span>            :             }</a>
-<a name="636"><span class="lineNum">     636 </span>            :             event-&gt;accept();</a>
-<a name="637"><span class="lineNum">     637 </span>            :             break;</a>
-<a name="638"><span class="lineNum">     638 </span>            :         case Qt::Key_Enter:</a>
-<a name="639"><span class="lineNum">     639 </span>            :         case Qt::Key_Return:</a>
-<a name="640"><span class="lineNum">     640 </span>            :             if (!impl-&gt;currentText().isEmpty()) {</a>
-<a name="641"><span class="lineNum">     641 </span>            :                 impl-&gt;tags.insert(impl-&gt;tags.begin() + std::ptrdiff_t(impl-&gt;editing_index + 1), Tag());</a>
-<a name="642"><span class="lineNum">     642 </span>            :                 impl-&gt;editNextTag();</a>
-<a name="643"><span class="lineNum">     643 </span>            :             }</a>
-<a name="644"><span class="lineNum">     644 </span>            :             event-&gt;accept();</a>
-<a name="645"><span class="lineNum">     645 </span>            :             break;</a>
-<a name="646"><span class="lineNum">     646 </span>            :         default:</a>
-<a name="647"><span class="lineNum">     647 </span>            :             unknown = true;</a>
-<a name="648"><span class="lineNum">     648 </span>            :         }</a>
-<a name="649"><span class="lineNum">     649 </span>            :     }</a>
-<a name="650"><span class="lineNum">     650 </span>            : </a>
-<a name="651"><span class="lineNum">     651 </span>            :     if (unknown &amp;&amp; impl-&gt;ctrl.isAcceptableInput(event)) {</a>
-<a name="652"><span class="lineNum">     652 </span>            :         if (impl-&gt;hasSelection()) { impl-&gt;removeSelection(); }</a>
-<a name="653"><span class="lineNum">     653 </span>            :         impl-&gt;currentText().insert(impl-&gt;cursor, event-&gt;text());</a>
-<a name="654"><span class="lineNum">     654 </span>            :         impl-&gt;cursor += event-&gt;text().length();</a>
-<a name="655"><span class="lineNum">     655 </span>            :         event-&gt;accept();</a>
-<a name="656"><span class="lineNum">     656 </span>            :         unknown = false;</a>
+<a name="587"><span class="lineNum">     587 </span>            : void Tags::keyPressEvent(QKeyEvent* event) {</a>
+<a name="588"><span class="lineNum">     588 </span>            :     event-&gt;setAccepted(false);</a>
+<a name="589"><span class="lineNum">     589 </span>            :     bool unknown = false;</a>
+<a name="590"><span class="lineNum">     590 </span>            : </a>
+<a name="591"><span class="lineNum">     591 </span>            :     if (event == QKeySequence::SelectAll) {</a>
+<a name="592"><span class="lineNum">     592 </span>            :         impl-&gt;selectAll();</a>
+<a name="593"><span class="lineNum">     593 </span>            :         event-&gt;accept();</a>
+<a name="594"><span class="lineNum">     594 </span>            :     } else if (event == QKeySequence::SelectPreviousChar) {</a>
+<a name="595"><span class="lineNum">     595 </span>            :         impl-&gt;moveCursor(impl-&gt;text_layout.previousCursorPosition((int) impl-&gt;cursor), true);</a>
+<a name="596"><span class="lineNum">     596 </span>            :         event-&gt;accept();</a>
+<a name="597"><span class="lineNum">     597 </span>            :     } else if (event == QKeySequence::SelectNextChar) {</a>
+<a name="598"><span class="lineNum">     598 </span>            :         impl-&gt;moveCursor(impl-&gt;text_layout.nextCursorPosition((int) impl-&gt;cursor), true);</a>
+<a name="599"><span class="lineNum">     599 </span>            :         event-&gt;accept();</a>
+<a name="600"><span class="lineNum">     600 </span>            :     } else {</a>
+<a name="601"><span class="lineNum">     601 </span>            :         switch (event-&gt;key()) {</a>
+<a name="602"><span class="lineNum">     602 </span>            :         case Qt::Key_Left:</a>
+<a name="603"><span class="lineNum">     603 </span>            :             if (impl-&gt;cursor == 0) {</a>
+<a name="604"><span class="lineNum">     604 </span>            :                 impl-&gt;editPreviousTag();</a>
+<a name="605"><span class="lineNum">     605 </span>            :             } else {</a>
+<a name="606"><span class="lineNum">     606 </span>            :                 impl-&gt;moveCursor(impl-&gt;text_layout.previousCursorPosition((int) impl-&gt;cursor), false);</a>
+<a name="607"><span class="lineNum">     607 </span>            :             }</a>
+<a name="608"><span class="lineNum">     608 </span>            :             event-&gt;accept();</a>
+<a name="609"><span class="lineNum">     609 </span>            :             break;</a>
+<a name="610"><span class="lineNum">     610 </span>            :         case Qt::Key_Right:</a>
+<a name="611"><span class="lineNum">     611 </span>            :             if (impl-&gt;cursor == impl-&gt;currentText().size()) {</a>
+<a name="612"><span class="lineNum">     612 </span>            :                 impl-&gt;editNextTag();</a>
+<a name="613"><span class="lineNum">     613 </span>            :             } else {</a>
+<a name="614"><span class="lineNum">     614 </span>            :                 impl-&gt;moveCursor(impl-&gt;text_layout.nextCursorPosition((int) impl-&gt;cursor), false);</a>
+<a name="615"><span class="lineNum">     615 </span>            :             }</a>
+<a name="616"><span class="lineNum">     616 </span>            :             event-&gt;accept();</a>
+<a name="617"><span class="lineNum">     617 </span>            :             break;</a>
+<a name="618"><span class="lineNum">     618 </span>            :         case Qt::Key_Home:</a>
+<a name="619"><span class="lineNum">     619 </span>            :             if (impl-&gt;cursor == 0) {</a>
+<a name="620"><span class="lineNum">     620 </span>            :                 impl-&gt;editTag(0);</a>
+<a name="621"><span class="lineNum">     621 </span>            :             } else {</a>
+<a name="622"><span class="lineNum">     622 </span>            :                 impl-&gt;moveCursor(0, false);</a>
+<a name="623"><span class="lineNum">     623 </span>            :             }</a>
+<a name="624"><span class="lineNum">     624 </span>            :             event-&gt;accept();</a>
+<a name="625"><span class="lineNum">     625 </span>            :             break;</a>
+<a name="626"><span class="lineNum">     626 </span>            :         case Qt::Key_End:</a>
+<a name="627"><span class="lineNum">     627 </span>            :             if (impl-&gt;cursor == impl-&gt;currentText().size()) {</a>
+<a name="628"><span class="lineNum">     628 </span>            :                 impl-&gt;editTag(impl-&gt;tags.size() - 1);</a>
+<a name="629"><span class="lineNum">     629 </span>            :             } else {</a>
+<a name="630"><span class="lineNum">     630 </span>            :                 impl-&gt;moveCursor(impl-&gt;currentText().length(), false);</a>
+<a name="631"><span class="lineNum">     631 </span>            :             }</a>
+<a name="632"><span class="lineNum">     632 </span>            :             event-&gt;accept();</a>
+<a name="633"><span class="lineNum">     633 </span>            :             break;</a>
+<a name="634"><span class="lineNum">     634 </span>            :         case Qt::Key_Backspace:</a>
+<a name="635"><span class="lineNum">     635 </span>            :             if (!impl-&gt;currentText().isEmpty()) {</a>
+<a name="636"><span class="lineNum">     636 </span>            :                 impl-&gt;removeBackwardOne();</a>
+<a name="637"><span class="lineNum">     637 </span>            :             } else if (impl-&gt;editing_index &gt; 0) {</a>
+<a name="638"><span class="lineNum">     638 </span>            :                 impl-&gt;editPreviousTag();</a>
+<a name="639"><span class="lineNum">     639 </span>            :             }</a>
+<a name="640"><span class="lineNum">     640 </span>            :                 event-&gt;accept();</a>
+<a name="641"><span class="lineNum">     641 </span>            :                 break;</a>
+<a name="642"><span class="lineNum">     642 </span>            :             case Qt::Key_Enter:</a>
+<a name="643"><span class="lineNum">     643 </span>            :             case Qt::Key_Return:</a>
+<a name="644"><span class="lineNum">     644 </span>            :                 //Remove trailing and multiple spaces</a>
+<a name="645"><span class="lineNum">     645 </span>            :                 impl-&gt;setCurrentText(impl-&gt;currentText().simplified());</a>
+<a name="646"><span class="lineNum">     646 </span>            :                 if (!impl-&gt;currentText().isEmpty()) {</a>
+<a name="647"><span class="lineNum">     647 </span>            :                     impl-&gt;tags.insert(impl-&gt;tags.begin() + std::ptrdiff_t(impl-&gt;editing_index + 1), Tag());</a>
+<a name="648"><span class="lineNum">     648 </span>            :                     impl-&gt;editNextTag();</a>
+<a name="649"><span class="lineNum">     649 </span>            :                 }</a>
+<a name="650"><span class="lineNum">     650 </span>            :                 //Make blank text empty</a>
+<a name="651"><span class="lineNum">     651 </span>            :                 impl-&gt;setCurrentText(&quot;&quot;);</a>
+<a name="652"><span class="lineNum">     652 </span>            :                 event-&gt;accept();</a>
+<a name="653"><span class="lineNum">     653 </span>            :                 break;</a>
+<a name="654"><span class="lineNum">     654 </span>            :             default:</a>
+<a name="655"><span class="lineNum">     655 </span>            :                 unknown = true;</a>
+<a name="656"><span class="lineNum">     656 </span>            :         }</a>
 <a name="657"><span class="lineNum">     657 </span>            :     }</a>
 <a name="658"><span class="lineNum">     658 </span>            : </a>
-<a name="659"><span class="lineNum">     659 </span>            :     if (event-&gt;isAccepted()) {</a>
-<a name="660"><span class="lineNum">     660 </span>            :         // update content</a>
-<a name="661"><span class="lineNum">     661 </span>            :         impl-&gt;updateDisplayText();</a>
-<a name="662"><span class="lineNum">     662 </span>            :         impl-&gt;calcRects();</a>
-<a name="663"><span class="lineNum">     663 </span>            :         impl-&gt;updateCursorBlinking();</a>
-<a name="664"><span class="lineNum">     664 </span>            : </a>
-<a name="665"><span class="lineNum">     665 </span>            :         // complete</a>
-<a name="666"><span class="lineNum">     666 </span>            :         impl-&gt;completer-&gt;setCompletionPrefix(impl-&gt;currentText());</a>
-<a name="667"><span class="lineNum">     667 </span>            :         impl-&gt;completer-&gt;complete();</a>
-<a name="668"><span class="lineNum">     668 </span>            : </a>
-<a name="669"><span class="lineNum">     669 </span>            :         update();</a>
-<a name="670"><span class="lineNum">     670 </span>            : </a>
-<a name="671"><span class="lineNum">     671 </span>            :         emit tagsEdited();</a>
-<a name="672"><span class="lineNum">     672 </span>            :     }</a>
-<a name="673"><span class="lineNum">     673 </span>            : }</a>
-<a name="674"><span class="lineNum">     674 </span>            : </a>
-<a name="675"><span class="lineNum">     675 </span>            : void Tags::completion(std::vector&lt;QString&gt; const&amp; completions) {</a>
-<a name="676"><span class="lineNum">     676 </span>            :     impl-&gt;completer = std::make_unique&lt;QCompleter&gt;(</a>
-<a name="677"><span class="lineNum">     677 </span>            :         [&amp;] {</a>
-<a name="678"><span class="lineNum">     678 </span>            :             QStringList ret;</a>
-<a name="679"><span class="lineNum">     679 </span>            :             std::copy(completions.begin(),</a>
-<a name="680"><span class="lineNum">     680 </span>            :                       completions.end(), std::back_inserter(ret));</a>
-<a name="681"><span class="lineNum">     681 </span>            :             return ret;</a>
-<a name="682"><span class="lineNum">     682 </span>            :         }());</a>
-<a name="683"><span class="lineNum">     683 </span>            :     impl-&gt;setupCompleter();</a>
-<a name="684"><span class="lineNum">     684 </span>            : }</a>
-<a name="685"><span class="lineNum">     685 </span>            : </a>
-<a name="686"><span class="lineNum">     686 </span>            : void Tags::tags(std::vector&lt;QString&gt; const&amp; tags) {</a>
-<a name="687"><span class="lineNum">     687 </span>            :     std::vector&lt;Tag&gt; t{Tag()};</a>
-<a name="688"><span class="lineNum">     688 </span>            :     std::transform(tags.begin(), tags.end(), std::back_inserter(t),</a>
-<a name="689"><span class="lineNum">     689 </span>            :                    [](QString const&amp; text) {</a>
-<a name="690"><span class="lineNum">     690 </span>            :                        return Tag{text, QRect()};</a>
-<a name="691"><span class="lineNum">     691 </span>            :                    });</a>
-<a name="692"><span class="lineNum">     692 </span>            :     impl-&gt;tags = std::move(t);</a>
-<a name="693"><span class="lineNum">     693 </span>            :     impl-&gt;editing_index = 0;</a>
-<a name="694"><span class="lineNum">     694 </span>            :     impl-&gt;moveCursor(0, false);</a>
-<a name="695"><span class="lineNum">     695 </span>            : </a>
-<a name="696"><span class="lineNum">     696 </span>            :     impl-&gt;editNewTag();</a>
-<a name="697"><span class="lineNum">     697 </span>            :     impl-&gt;updateDisplayText();</a>
-<a name="698"><span class="lineNum">     698 </span>            :     impl-&gt;calcRects();</a>
-<a name="699"><span class="lineNum">     699 </span>            : </a>
-<a name="700"><span class="lineNum">     700 </span>            :     update();</a>
-<a name="701"><span class="lineNum">     701 </span>            : }</a>
-<a name="702"><span class="lineNum">     702 </span>            : </a>
-<a name="703"><span class="lineNum">     703 </span>            : std::vector&lt;QString&gt; Tags::tags() const {</a>
-<a name="704"><span class="lineNum">     704 </span>            :     std::vector&lt;QString&gt; ret;</a>
-<a name="705"><span class="lineNum">     705 </span>            :     std::transform(EmptySkipIterator(impl-&gt;tags.begin(), impl-&gt;tags.end()),</a>
-<a name="706"><span class="lineNum">     706 </span>            :                    EmptySkipIterator(impl-&gt;tags.end()),</a>
-<a name="707"><span class="lineNum">     707 </span>            :                    std::back_inserter(ret),</a>
-<a name="708"><span class="lineNum">     708 </span>            :                    [](Tag const&amp; tag) {</a>
-<a name="709"><span class="lineNum">     709 </span>            :                        return tag.text;</a>
-<a name="710"><span class="lineNum">     710 </span>            :                    });</a>
-<a name="711"><span class="lineNum">     711 </span>            :     return ret;</a>
-<a name="712"><span class="lineNum">     712 </span>            : }</a>
-<a name="713"><span class="lineNum">     713 </span>            : </a>
-<a name="714"><span class="lineNum">     714 </span>            : void Tags::mouseMoveEvent(QMouseEvent* event) {</a>
-<a name="715"><span class="lineNum">     715 </span>            :     for (size_t i = 0; i &lt; impl-&gt;tags.size(); ++i) {</a>
-<a name="716"><span class="lineNum">     716 </span>            :         if (impl-&gt;inCrossArea(i, event-&gt;pos())) {</a>
-<a name="717"><span class="lineNum">     717 </span>            :             setCursor(Qt::ArrowCursor);</a>
-<a name="718"><span class="lineNum">     718 </span>            :             return;</a>
-<a name="719"><span class="lineNum">     719 </span>            :         }</a>
-<a name="720"><span class="lineNum">     720 </span>            :     }</a>
-<a name="721"><span class="lineNum">     721 </span>            :     setCursor(Qt::IBeamCursor);</a>
-<a name="722"><span class="lineNum">     722 </span>            : }</a>
-<a name="723"><span class="lineNum">     723 </span>            : </a>
+<a name="659"><span class="lineNum">     659 </span>            :     if (unknown &amp;&amp; impl-&gt;ctrl.isAcceptableInput(event)) {</a>
+<a name="660"><span class="lineNum">     660 </span>            :         if (impl-&gt;hasSelection()) { impl-&gt;removeSelection(); }</a>
+<a name="661"><span class="lineNum">     661 </span>            :         impl-&gt;currentText().insert(impl-&gt;cursor, event-&gt;text());</a>
+<a name="662"><span class="lineNum">     662 </span>            :         impl-&gt;cursor += event-&gt;text().length();</a>
+<a name="663"><span class="lineNum">     663 </span>            :         event-&gt;accept();</a>
+<a name="664"><span class="lineNum">     664 </span>            :         unknown = false;</a>
+<a name="665"><span class="lineNum">     665 </span>            :     }</a>
+<a name="666"><span class="lineNum">     666 </span>            : </a>
+<a name="667"><span class="lineNum">     667 </span>            :     if (event-&gt;isAccepted()) {</a>
+<a name="668"><span class="lineNum">     668 </span>            :         // update content</a>
+<a name="669"><span class="lineNum">     669 </span>            :         impl-&gt;updateDisplayText();</a>
+<a name="670"><span class="lineNum">     670 </span>            :         impl-&gt;calcRects();</a>
+<a name="671"><span class="lineNum">     671 </span>            :         impl-&gt;updateCursorBlinking();</a>
+<a name="672"><span class="lineNum">     672 </span>            : </a>
+<a name="673"><span class="lineNum">     673 </span>            :         // complete</a>
+<a name="674"><span class="lineNum">     674 </span>            :         impl-&gt;completer-&gt;setCompletionPrefix(impl-&gt;currentText());</a>
+<a name="675"><span class="lineNum">     675 </span>            :         impl-&gt;completer-&gt;complete();</a>
+<a name="676"><span class="lineNum">     676 </span>            : </a>
+<a name="677"><span class="lineNum">     677 </span>            :         update();</a>
+<a name="678"><span class="lineNum">     678 </span>            : </a>
+<a name="679"><span class="lineNum">     679 </span>            :         emit tagsEdited();</a>
+<a name="680"><span class="lineNum">     680 </span>            :     }</a>
+<a name="681"><span class="lineNum">     681 </span>            : }</a>
+<a name="682"><span class="lineNum">     682 </span>            : </a>
+<a name="683"><span class="lineNum">     683 </span>            : void Tags::completion(std::vector&lt;QString&gt; const&amp; completions) {</a>
+<a name="684"><span class="lineNum">     684 </span>            :     impl-&gt;completer = std::make_unique&lt;QCompleter&gt;(</a>
+<a name="685"><span class="lineNum">     685 </span>            :         [&amp;] {</a>
+<a name="686"><span class="lineNum">     686 </span>            :             QStringList ret;</a>
+<a name="687"><span class="lineNum">     687 </span>            :             std::copy(completions.begin(),</a>
+<a name="688"><span class="lineNum">     688 </span>            :                       completions.end(), std::back_inserter(ret));</a>
+<a name="689"><span class="lineNum">     689 </span>            :             return ret;</a>
+<a name="690"><span class="lineNum">     690 </span>            :         }());</a>
+<a name="691"><span class="lineNum">     691 </span>            :     impl-&gt;setupCompleter();</a>
+<a name="692"><span class="lineNum">     692 </span>            : }</a>
+<a name="693"><span class="lineNum">     693 </span>            : </a>
+<a name="694"><span class="lineNum">     694 </span>            : void Tags::tags(std::vector&lt;QString&gt; const&amp; tags) {</a>
+<a name="695"><span class="lineNum">     695 </span>            :     std::vector&lt;Tag&gt; t{Tag()};</a>
+<a name="696"><span class="lineNum">     696 </span>            :     std::transform(tags.begin(), tags.end(), std::back_inserter(t),</a>
+<a name="697"><span class="lineNum">     697 </span>            :                    [](QString const&amp; text) {</a>
+<a name="698"><span class="lineNum">     698 </span>            :                        return Tag{text, QRect()};</a>
+<a name="699"><span class="lineNum">     699 </span>            :                    });</a>
+<a name="700"><span class="lineNum">     700 </span>            :     impl-&gt;tags = std::move(t);</a>
+<a name="701"><span class="lineNum">     701 </span>            :     impl-&gt;editing_index = 0;</a>
+<a name="702"><span class="lineNum">     702 </span>            :     impl-&gt;moveCursor(0, false);</a>
+<a name="703"><span class="lineNum">     703 </span>            : </a>
+<a name="704"><span class="lineNum">     704 </span>            :     impl-&gt;editNewTag();</a>
+<a name="705"><span class="lineNum">     705 </span>            :     impl-&gt;updateDisplayText();</a>
+<a name="706"><span class="lineNum">     706 </span>            :     impl-&gt;calcRects();</a>
+<a name="707"><span class="lineNum">     707 </span>            : </a>
+<a name="708"><span class="lineNum">     708 </span>            :     update();</a>
+<a name="709"><span class="lineNum">     709 </span>            : }</a>
+<a name="710"><span class="lineNum">     710 </span>            : </a>
+<a name="711"><span class="lineNum">     711 </span>            : std::vector&lt;QString&gt; Tags::tags() const {</a>
+<a name="712"><span class="lineNum">     712 </span>            :     std::vector&lt;QString&gt; ret;</a>
+<a name="713"><span class="lineNum">     713 </span>            :     std::transform(EmptySkipIterator(impl-&gt;tags.begin(), impl-&gt;tags.end()),</a>
+<a name="714"><span class="lineNum">     714 </span>            :                    EmptySkipIterator(impl-&gt;tags.end()),</a>
+<a name="715"><span class="lineNum">     715 </span>            :                    std::back_inserter(ret),</a>
+<a name="716"><span class="lineNum">     716 </span>            :                    [](Tag const&amp; tag) {</a>
+<a name="717"><span class="lineNum">     717 </span>            :                        return tag.text;</a>
+<a name="718"><span class="lineNum">     718 </span>            :                    });</a>
+<a name="719"><span class="lineNum">     719 </span>            :     return ret;</a>
+<a name="720"><span class="lineNum">     720 </span>            : }</a>
+<a name="721"><span class="lineNum">     721 </span>            : </a>
+<a name="722"><span class="lineNum">     722 </span>            : void Tags::mouseMoveEvent(QMouseEvent* event) {</a>
+<a name="723"><span class="lineNum">     723 </span>            :     for (size_t i = 0; i &lt; impl-&gt;tags.size(); ++i) {</a>
+<a name="724"><span class="lineNum">     724 </span>            :         if (impl-&gt;inCrossArea(i, event-&gt;pos())) {</a>
+<a name="725"><span class="lineNum">     725 </span>            :             setCursor(Qt::ArrowCursor);</a>
+<a name="726"><span class="lineNum">     726 </span>            :             return;</a>
+<a name="727"><span class="lineNum">     727 </span>            :         }</a>
+<a name="728"><span class="lineNum">     728 </span>            :     }</a>
+<a name="729"><span class="lineNum">     729 </span>            :     setCursor(Qt::IBeamCursor);</a>
+<a name="730"><span class="lineNum">     730 </span>            : }</a>
+<a name="731"><span class="lineNum">     731 </span>            : </a>
 </pre>
       </td>
     </tr>

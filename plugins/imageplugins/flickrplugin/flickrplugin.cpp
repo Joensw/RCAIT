@@ -1,3 +1,9 @@
+/**
+ * @file flickrplugin.cpp
+ *
+ * @brief implements methods of FlickrPlugin class
+ *
+ */
 #include "flickrplugin.h"
 
 

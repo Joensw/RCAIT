@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-07 11:34:11</td>
+            <td class="headerValue">2021-09-09 01:19:55</td>
             <td></td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -115,7 +115,7 @@
 <a name="57"><span class="lineNum">      57 </span>            : void ImageGallery::concurrentAddImages(const QString &amp;path) {</a>
 <a name="58"><span class="lineNum">      58 </span>            :     QStringList images;</a>
 <a name="59"><span class="lineNum">      59 </span>            :     QDir imgDir(path);</a>
-<a name="60"><span class="lineNum">      60 </span>            :     foreach(QString imageName, imgDir.entryList(QStringList() &lt;&lt; &quot;*.JPG&quot; &lt;&lt; &quot;*.jpg&quot; &lt;&lt; &quot;*.png&quot;, QDir::Files)){</a>
+<a name="60"><span class="lineNum">      60 </span>            :     foreach(QString imageName, imgDir.entryList(QStringList() &lt;&lt; &quot;*.JPG&quot; &lt;&lt; &quot;*.jpg&quot; &lt;&lt; &quot;*.jpeg&quot; &lt;&lt; &quot;*.png&quot;, QDir::Files)){</a>
 <a name="61"><span class="lineNum">      61 </span>            :         images.append(imgDir.absoluteFilePath(imageName));</a>
 <a name="62"><span class="lineNum">      62 </span>            :     }</a>
 <a name="63"><span class="lineNum">      63 </span>            :     concurrentAddImages(images);</a>

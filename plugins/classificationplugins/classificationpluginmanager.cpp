@@ -9,11 +9,11 @@ void ClassificationPluginManager::loadPlugins(QString pluginDir) {
     m_plugins.clear();
     m_pluginConfigurationWidgets.clear();
 
-
     QDir pluginsDir(pluginDir);
     const QStringList entries = pluginsDir.entryList(QDir::Files);
 
     for (const QString &fileName: entries) {
+        if (!QLibrary::isLibrary(fileName)) continue;
         QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
         QObject *plugin = pluginLoader.instance();
         if (plugin) {
@@ -27,8 +27,6 @@ void ClassificationPluginManager::loadPlugins(QString pluginDir) {
             //pluginLoader.unload(); //ToDo: Maybe use this
         }
     }
-
-
 }
 
 

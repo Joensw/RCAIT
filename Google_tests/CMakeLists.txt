@@ -75,7 +75,7 @@ set(Sources
         ../plugins/classificationplugins/classificationpluginmanager.h
         ../plugins/classificationplugins/classificationpluginmanager.cpp
         ../plugins/plugin.h
-        ../plugins/plugin.cpp
+
         ../plugins/imageplugins/imageloaderplugin.h
         ../plugins/imageplugins/imageloaderpluginmanager.h
         ../plugins/imageplugins/imageloaderpluginmanager.cpp

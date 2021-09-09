@@ -1,3 +1,8 @@
+/**
+ * @file folderplugin.h
+ *
+ * @brief contains class FolderPlugin
+ */
 #ifndef FOLDERPLUGIN_H
 #define FOLDERPLUGIN_H
 

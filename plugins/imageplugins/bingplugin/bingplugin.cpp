@@ -1,3 +1,8 @@
+/**
+ * @file bingplugin.cpp
+ *
+ * @brief implements methods for BingPlugin class
+ */
 #include "bingplugin.h"
 
 

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-07 11:34:11</td>
+            <td class="headerValue">2021-09-09 01:19:55</td>
             <td></td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -90,21 +90,22 @@
 <a name="32"><span class="lineNum">      32 </span>            :      * @param classificationPluginDir selected classification plugin directory</a>
 <a name="33"><span class="lineNum">      33 </span>            :      * @param imageLoaderPluginsDir selected image loader plugin directory</a>
 <a name="34"><span class="lineNum">      34 </span>            :      */</a>
-<a name="35"><span class="lineNum">      35 </span><span class="lineCov">          1 :     void slot_directoriesSpecified(QString projectDir, QString classificationPluginDir, QString imageLoaderPluginsDir);</span></a>
-<a name="36"><span class="lineNum">      36 </span>            : signals:</a>
-<a name="37"><span class="lineNum">      37 </span>            :     /**</a>
-<a name="38"><span class="lineNum">      38 </span>            :      * @brief sig_configurationComplete emitted when the configuration is accepted</a>
-<a name="39"><span class="lineNum">      39 </span>            :      */</a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineCov">          1 :     void sig_configurationComplete();</span></a>
-<a name="41"><span class="lineNum">      41 </span>            : private:</a>
-<a name="42"><span class="lineNum">      42 </span>            :     ConfigurationDialog *mConfigurationDialog;</a>
-<a name="43"><span class="lineNum">      43 </span>            : </a>
-<a name="44"><span class="lineNum">      44 </span>            :     SettingsManager *mSettingsManager;</a>
-<a name="45"><span class="lineNum">      45 </span>            : </a>
-<a name="46"><span class="lineNum">      46 </span>            :     DataManager *mDataManager;</a>
-<a name="47"><span class="lineNum">      47 </span>            : };</a>
-<a name="48"><span class="lineNum">      48 </span>            : </a>
-<a name="49"><span class="lineNum">      49 </span>            : #endif // CONFIGURATIONCONTROLLER_H</a>
+<a name="35"><span class="lineNum">      35 </span><span class="lineCov">          1 :     void slot_directoriesSpecified(const QString &amp;projectDir, const QString &amp;classificationPluginDir,</span></a>
+<a name="36"><span class="lineNum">      36 </span>            :                                    const QString &amp;imageLoaderPluginsDir);</a>
+<a name="37"><span class="lineNum">      37 </span>            : signals:</a>
+<a name="38"><span class="lineNum">      38 </span>            :     /**</a>
+<a name="39"><span class="lineNum">      39 </span>            :      * @brief sig_configurationComplete emitted when the configuration is accepted</a>
+<a name="40"><span class="lineNum">      40 </span>            :      */</a>
+<a name="41"><span class="lineNum">      41 </span><span class="lineCov">          1 :     void sig_configurationComplete();</span></a>
+<a name="42"><span class="lineNum">      42 </span>            : private:</a>
+<a name="43"><span class="lineNum">      43 </span>            :     QScopedPointer&lt;ConfigurationDialog&gt; mConfigurationDialog;</a>
+<a name="44"><span class="lineNum">      44 </span>            : </a>
+<a name="45"><span class="lineNum">      45 </span>            :     SettingsManager *mSettingsManager;</a>
+<a name="46"><span class="lineNum">      46 </span>            : </a>
+<a name="47"><span class="lineNum">      47 </span>            :     DataManager *mDataManager;</a>
+<a name="48"><span class="lineNum">      48 </span>            : };</a>
+<a name="49"><span class="lineNum">      49 </span>            : </a>
+<a name="50"><span class="lineNum">      50 </span>            : #endif // CONFIGURATIONCONTROLLER_H</a>
 </pre>
       </td>
     </tr>

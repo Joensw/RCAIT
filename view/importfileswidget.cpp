@@ -1,6 +1,8 @@
-//
-// Created by Paul on 02.07.2021.
-//
+/**
+ *@file importfileswidget.cpp
+ *
+ *@brief contains method implementations for ImportFilesWidget class
+ */
 
 #include "importfileswidget.h"
 #include "ui_importfileswidget.h"

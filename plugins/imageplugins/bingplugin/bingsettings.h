@@ -1,3 +1,8 @@
+/**
+ * @file bingsettings.h
+ *
+ * @brief contains class BingSettings
+ */
 #ifndef BINGSETTINGS_H
 #define BINGSETTINGS_H
 
@@ -8,13 +13,22 @@
 namespace Ui {
 class BingSettings;
 }
-
+/**
+ * @brief The BingSettings class for persistently storing settings of BingPlugin class
+ */
 class BingSettings : public QWidget
 {
     Q_OBJECT
 
 public:
+    /**
+     * @brief BingSettings constructor
+     * @param parent widget
+     */
     explicit BingSettings(QWidget *parent = nullptr);
+    /**
+     * @brief BingSettings destructor
+     */
     ~BingSettings();
     /**
      * @brief saveSettings safes the settings

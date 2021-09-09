@@ -1,3 +1,9 @@
+/**
+ * @file imageloaderpluginmanager.h
+ *
+ * @brief contains class ImagerLoaderPluginManager
+ *
+ */
 #ifndef IMAGELOADERPLUGINMANAGER_H
 #define IMAGELOADERPLUGINMANAGER_H
 
@@ -25,8 +31,13 @@ private:
     QList<QWidget*> m_pluginConfigurationWidgets;
 
 public:
-    //Threadsafe singleton pattern
+    /**
+     * @brief ImageLoaderPluginManager singleton constructor
+     */
     ImageLoaderPluginManager(ImageLoaderPluginManager const &) = delete;
+    /**
+     * @brief operator = delete
+     */
     void operator=(ImageLoaderPluginManager const &) = delete;
 
     /**

@@ -1,3 +1,9 @@
+/**
+ * @file flickrsettings.h
+ *
+ * @brief saves settings for the FlickrPlugin class persistently
+ *
+ */
 #ifndef FLICKRSETTINGS_H
 #define FLICKRSETTINGS_H
 
@@ -8,13 +14,22 @@
 namespace Ui {
 class FlickrSettings;
 }
-
+/**
+ *@brief the FlickrSettingsclass
+ */
 class FlickrSettings : public QWidget
 {
     Q_OBJECT
 
 public:
+    /**
+     * @brief FlickrSettings constructor
+     * @param parent the parent widget
+     */
     explicit FlickrSettings(QWidget *parent = nullptr);
+    /**
+     * @brief FlickrSettings destructor
+     */
     ~FlickrSettings();
     /**
      * @brief saveSettings saves the settings

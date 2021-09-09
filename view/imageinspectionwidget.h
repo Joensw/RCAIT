@@ -1,3 +1,8 @@
+/**
+ * @file imageinspectionwidget.h
+ *
+ * @brief contains class ImageInspectionWidget
+ */
 #ifndef IMAGEINSPECTIONWIDGET_H
 #define IMAGEINSPECTIONWIDGET_H
 

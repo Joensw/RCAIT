@@ -1,3 +1,8 @@
+/**
+ * @file folderconfigwidget.h
+ *
+ * @brief contains the FolderConfigWidget class
+ */
 #ifndef FOLDERCONFIGWIDGET_H
 #define FOLDERCONFIGWIDGET_H
 

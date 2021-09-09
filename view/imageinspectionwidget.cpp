@@ -1,3 +1,8 @@
+/**
+ *@file imageinspectionwidget.cpp
+ *
+ *@brief contains method implementations for ImageInspectionWidget class
+ */
 #include "imageinspectionwidget.h"
 #include "ui_imageinspectionwidget.h"
 
