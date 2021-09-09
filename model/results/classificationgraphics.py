@@ -9,6 +9,7 @@ try:
     import numpy as np
     from PIL import Image
     from matplotlib import font_manager
+    from matplotlib import transforms
     from matplotlib.gridspec import GridSpec
 except ImportError as error:
     # Output expected ImportErrors.
@@ -32,6 +33,10 @@ def crop_center(pil_img, crop_width, crop_height):
 
 
 def plot_classification_graphics(data, paths, category_names, file):
+    # Numeric settings
+    np.set_printoptions(precision=2)
+    np.set_printoptions(suppress=True)
+    data = data.astype('float') / data.sum(axis=1)[:, np.newaxis] * 100
     num_rows, num_cols = data.shape
     zones = 8
 
@@ -40,7 +45,7 @@ def plot_classification_graphics(data, paths, category_names, file):
         np.linspace(0.15, 0.85, data.shape[1]))
 
     # Adjust proportions
-    fig = plt.figure(constrained_layout=False, figsize=(20, num_rows * 2))
+    fig = plt.figure(constrained_layout=False, figsize=(21, num_rows * 2))
     gs = GridSpec(num_rows + 1, zones, figure=fig)
     plt.subplots_adjust(left=0, bottom=0, right=1, top=1, wspace=0, hspace=0.12)
 
@@ -62,20 +67,57 @@ def plot_classification_graphics(data, paths, category_names, file):
 
         # Place barcharts
         for j, (colname, color) in enumerate(zip(category_names, category_colors)):
-            widths = data[i, j]
-            starts = data_cum[i, j] - widths
-            rects = ax_chart.barh(1, widths, left=starts, height=1,
-                                  label=colname, color=color)
+            width = data[i, j]
+            start = data_cum[i, j] - width
+            if width == 0:
+                # Dont stack empty bars because they are bugged
+                ax_chart.barh(y=1, width=0, height=1, label=colname, color=color)
+            else:
+                rects = ax_chart.barh(y=1, width=width, left=start, height=1,
+                                      label=colname, color=color)
+                r, g, b, _ = color
+                if width >= 5:
+                    text_color = 'white' if r * g * b < 0.3 else 'black'
+                    ax_chart.bar_label(rects, fmt='%.0f%%', label_type='center', color=text_color, fontsize='30')
 
-            r, g, b, _ = color
-            text_color = 'white' if r * g * b < 0.3 else 'black'
-            ax_chart.bar_label(rects, label_type='center', color=text_color, fontsize='30')
-        handles, labels = ax_chart.get_legend_handles_labels()
-
-        # Add one legend for all bars
-        fig.legend(handles, labels, loc='upper left', ncol=len(category_names), fontsize='30')
+    # Add one legend for all bars, which supports auto wrapping of the legend
+    place_legend_intelligent(category_names, fig)
     # Save result
     plt.savefig(file, format="svg", bbox_inches="tight")
+
+
+def place_legend_intelligent(category_names, fig):
+    ncol = 1
+    lgwidth_old = 0.
+    renderer = fig.canvas.get_renderer()
+    while ncol <= len(category_names):
+        lg = plt.legend(bbox_to_anchor=[0, 0.8, 1, 1],
+                        loc='lower left',
+                        bbox_transform=plt.gcf().transFigure, borderaxespad=1, ncol=ncol, fontsize='30')
+        fig.canvas.draw()
+        lgbbox = lg.get_window_extent(renderer).transformed(plt.gca().transAxes.inverted())
+
+        if lgwidth_old == lgbbox.width:
+            # All the entries fit within a single row. Keep the legend
+            # as is and break the loop.
+            ncol -= 1
+            break
+
+        if lgbbox.width < 1:
+            # The width of the legend is still smaller than that of the axe.
+            # Continue iterating.
+            ncol += 1
+            lgwidth_old = lgbbox.width
+        else:
+            # The width of the legend is larger than that of the axe.
+            # Backtrack ncol, plot the legend so it span the entire width of
+            # the axe, and break the loop.
+            ncol -= 1
+            lg = plt.legend(bbox_to_anchor=[0, 0.8, 1, 1],
+                            loc='lower left',
+                            bbox_transform=plt.gcf().transFigure, borderaxespad=1, ncol=ncol,
+                            fontsize='30')
+            break
 
 
 if __name__ == '__main__':
