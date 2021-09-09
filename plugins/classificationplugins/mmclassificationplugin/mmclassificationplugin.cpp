@@ -123,6 +123,7 @@ void MMClassificationPlugin::init() {
     m_mmclassificiationdataaugmentationinput = qobject_cast<MMClassificiationDataAugmentationInput *>(
             dataAugmentationInput);
     m_mmClassificationInput = qobject_cast<MMClassificationInputOptions *>(inputOptions);
+    m_watcher = new QFileSystemWatcher();
 }
 
 QStringList MMClassificationPlugin::getAssociatedModels() {
@@ -374,12 +375,12 @@ MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QStri
                                                            validationDatasetPath);
 
     QString scheduleConfigPath = loadModel(modelName).getScheduleConfigPath();
-    int max_iters = m_mmClassificationInput->getMaxIters();
-    m_mmClassificationConfigFileBuilder.changeScheduleOptions(scheduleConfigPath, max_iters);
+    m_maxIters = m_mmClassificationInput->getMaxIters();
+    m_mmClassificationConfigFileBuilder.changeScheduleOptions(scheduleConfigPath, m_maxIters);
 
     // copy and change runtime config if checkpoint creation and max_iters does not fit
     QString runtimeConfigPath = loadModel(modelName).getRuntimeConfigPath();
-    adjustCheckpointCreation(runtimeConfigPath, max_iters);
+    adjustCheckpointCreation(runtimeConfigPath, m_maxIters);
 
     int cudaDeviceNumber = m_mmClassificationInput->getCudaDevice();
 
@@ -393,6 +394,10 @@ MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QStri
                                     workingDirectoryPath};
     auto env = QProcessEnvironment::systemEnvironment();
     env.insert("CUDA_VISIBLE_DEVICES", QString::number(cudaDeviceNumber));
+
+    m_workDir = workingDirectoryPath;
+    m_watcher->addPath(m_workDir);
+    connectIt();
 
     m_process.reset(new QProcess);
     m_process->setProcessEnvironment(env);
@@ -567,4 +572,68 @@ void MMClassificationPlugin::slot_readOutPut() {
 
 void MMClassificationPlugin::slot_pluginFinished() {
 
+}
+
+void MMClassificationPlugin::slot_checkForLogFile(QString path)
+{
+    Q_UNUSED(path)
+    QDir directory(m_workDir);
+    QStringList logFiles = directory.entryList(QStringList() << "*.log.json",QDir::Files);
+    if (!logFiles.isEmpty()) {
+        foreach(QString filename, logFiles) {
+            // disconnect due to found log file and monitor file directly
+            QObject::disconnect(m_watcher, &QFileSystemWatcher::directoryChanged, this, &MMClassificationPlugin::slot_checkForLogFile);
+            const QString logFilePath = m_workDir + "/" + filename;
+            connectFileWatcher(logFilePath);
+        }
+    }
+}
+
+void MMClassificationPlugin::slot_readChangeInLogFile(QString path)
+{
+    const QString modeForProgress = "train";
+    QFileInfo jsonLogFile = QFileInfo(path);
+    QFile inFile(jsonLogFile.absoluteFilePath());
+    inFile.open(QIODevice::ReadOnly|QIODevice::Text);
+    QStringList data = {};
+    QTextStream in(&inFile);
+    QString line = in.readLine();
+    while (!line.isNull() && !line.isEmpty()) {
+        line = in.readLine();
+        data.append(line);
+    }
+    inFile.close();
+    if (!(data.size() <= 1)) {
+        int offset = 1;
+        QJsonParseError errorPtr;
+        while(data[data.size() - offset].isEmpty()) {
+            offset++;
+        }
+        QJsonDocument doc = QJsonDocument::fromJson(data[data.size() - offset].toUtf8(), &errorPtr);
+        if (doc.isNull()) {
+            qWarning() << "Parse failed";
+        }
+        QJsonObject rootObj = doc.object();
+        if (rootObj.contains("iter") && rootObj.contains("mode")) {
+            QString mode = rootObj.value("mode").toString();
+            if (!mode.compare(modeForProgress)) {
+                int iter = rootObj.value("iter").toInt();
+                int progress = qCeil((iter*100)/m_maxIters);
+                m_receiver->slot_makeProgress(progress);
+            }
+        }
+    }
+}
+
+void MMClassificationPlugin::connectIt()
+{
+   QObject::connect(m_watcher, &QFileSystemWatcher::directoryChanged, this, &MMClassificationPlugin::slot_checkForLogFile);
+}
+
+void MMClassificationPlugin::connectFileWatcher(const QString path)
+{
+    QFileInfo info(path);
+    m_watcher->removePath(m_workDir);
+    m_watcher->addPath(path);
+    QObject::connect(m_watcher, &QFileSystemWatcher::fileChanged, this, &MMClassificationPlugin::slot_readChangeInLogFile);
 }
