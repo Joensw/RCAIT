@@ -144,21 +144,32 @@ set(Sources
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
-
+#imageloaderplugin used for testing created here
+add_library(ImageLoaderPluginMock MODULE imageloaderpluginmock.h imageloaderpluginmock.cpp)
 
 #add executables
 add_executable(Google_Tests_run ${Sources})
 add_executable(ImageInspectionModelTest test_imageinspectionmodel.cpp ../model/imageinspectionmodel.h  ../model/imageinspectionmodel.cpp ../model/utilities/mapadapt.h)
+add_executable(ImageLoaderPluginManagerTest test_imageloaderpluginmanager.cpp ../plugins/imageplugins/imageloaderpluginmanager.cpp ../plugins/imageplugins/imageloaderpluginmanager.h)
+
 
 #add include directory
 target_include_directories(Google_Tests_run PUBLIC ${MY_INCLUDE_DIRECTORIES})
 target_include_directories(ImageInspectionModelTest PUBLIC ${MY_INCLUDE_DIRECTORIES})
+target_include_directories(ImageLoaderPluginMock PUBLIC ${MY_INCLUDE_DIRECTORIES})
+target_include_directories(ImageLoaderPluginManagerTest PUBLIC ${MY_INCLUDE_DIRECTORIES})
 
-#add test libarries
+#add test libaries
 target_link_libraries(Google_Tests_run gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(ImageInspectionModelTest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
+target_link_libraries(ImageLoaderPluginMock gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
+target_link_libraries(ImageLoaderPluginManagerTest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 
 
 enable_testing()
 add_test(Google_Tests_run COMMAND Google_Tests_run)
 add_test(ImageInspectionModelTest COMMAND ImageInspectionModelTest)
+add_test(ImageLoaderPluginManagerTest COMMAND ImageLoaderPluginManagerTest)
+
+
+add_dependencies(ImageLoaderPluginManagerTest ImageLoaderPluginMock)
