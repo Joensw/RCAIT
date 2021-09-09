@@ -531,16 +531,25 @@ MMClassificationPlugin::classify(QString inputImageDirPath, QString trainDataset
     qDebug() << qPrintable(m_process->readAllStandardError().simplified());
     m_process->close();
 
-    // new json file with complete data
-    QDir inputImageDirectory(inputImageDirPath);
-    inputImageDirectory.setNameFilters(QStringList() << "*.jpg" << "*.png");
-    inputImageDirectory.setFilter(QDir::Files);
+    QStringList inputImageFilePaths = {};
+
+    // read subdirectories and take image paths
+    QDir imageRootDir(inputImageDirPath);
+    imageRootDir.setFilter(QDir::Dirs);
+    for (const auto &item: imageRootDir.entryInfoList()) {
+        QDir inputImageSubDirectory(item.absoluteFilePath());
+        inputImageSubDirectory.setNameFilters(QStringList() << "*.jpg" << "*.png");
+        inputImageSubDirectory.setFilter(QDir::Files);
+        foreach(QString imageFile, inputImageSubDirectory.entryList())
+        {
+            inputImageFilePaths.append(inputImageDirPath + "/" + item.baseName() + "/" + imageFile);
+        }
+    }
 
     QMap<QString, QList<double>> data;
     QList<QString> labels = getLabels(trainDatasetPath);
     QStringList additionalMetrics;
 
-    auto inputImageFilePaths = inputImageDirectory.entryList();
     if (!inputImageFilePaths.empty()) {
         data = m_jsonReader.readConfidenceScores(pathToConfidenceScoreResultFile, inputImageFilePaths);
         qDebug() << "content: " << data;
