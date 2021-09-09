@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-07 11:34:11</td>
+            <td class="headerValue">2021-09-09 01:19:55</td>
             <td></td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -63,7 +63,7 @@
 <a name="5"><span class="lineNum">       5 </span>            : </a>
 <a name="6"><span class="lineNum">       6 </span>            : void ImageLoader::loadInputImages(int count, QStringList labels, QString pluginName, QString tempImageDir)</a>
 <a name="7"><span class="lineNum">       7 </span>            : {</a>
-<a name="8"><span class="lineNum">       8 </span>            :     connect(this, &amp;ImageLoader::sig_pluginFinished, this, &amp;ImageLoader::handleResults);</a>
+<a name="8"><span class="lineNum">       8 </span>            :     connect(this, &amp;ImageLoader::sig_pluginFinished, this, &amp;ImageLoader::slot_handleResults);</a>
 <a name="9"><span class="lineNum">       9 </span>            :     auto task = QtConcurrent::run(&amp;ImageLoaderPluginManager::loadImages, &amp;mManager, tempImageDir, (ProgressablePlugin*) this, pluginName, count, labels);</a>
 <a name="10"><span class="lineNum">      10 </span>            :     Q_UNUSED(task);</a>
 <a name="11"><span class="lineNum">      11 </span>            :     emit sig_progress(0);</a>
@@ -71,7 +71,7 @@
 <a name="13"><span class="lineNum">      13 </span>            : </a>
 <a name="14"><span class="lineNum">      14 </span>            : </a>
 <a name="15"><span class="lineNum">      15 </span>            : </a>
-<a name="16"><span class="lineNum">      16 </span>            : void ImageLoader::handleResults() {</a>
+<a name="16"><span class="lineNum">      16 </span>            : void ImageLoader::slot_handleResults() {</a>
 <a name="17"><span class="lineNum">      17 </span>            :     emit sig_progress(100);</a>
 <a name="18"><span class="lineNum">      18 </span>            :     emit sig_imagesReady();</a>
 <a name="19"><span class="lineNum">      19 </span>            :     //if this object is not deleted threads never die and the signal operate starts all created threads</a>

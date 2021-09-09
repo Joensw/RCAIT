@@ -1,3 +1,9 @@
+/**
+ * @file flickrsettings.cpp
+ *
+ * @brief implmenets methods for FlickrSettings class
+ *
+ */
 #include "flickrsettings.h"
 #include "ui_flickrsettings.h"
 

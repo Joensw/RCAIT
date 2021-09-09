@@ -1,3 +1,8 @@
+/**
+ * @file imageloaderpluginmanager.cpp
+ *
+ * @brief implements functions of class ImageLoaderPluginManager
+ */
 #include "imageloaderpluginmanager.h"
 
 ImageLoaderPluginManager::ImageLoaderPluginManager() {

@@ -1,3 +1,9 @@
+/**
+ * @file imageloaderplugin.h
+ *
+ * @brief contains imageloaderplugin class
+ *
+ */
 #ifndef IMAGELOADERPLUGIN_H
 #define IMAGELOADERPLUGIN_H
 
@@ -33,6 +39,7 @@ public:
 
 QT_BEGIN_NAMESPACE
 
+/*! The imageloaderplugin interface */
 #define ImageLoaderPlugin_iid "de.Fraunhofer.IOSB.RCAIT.ImageLoaderPlugin"
 
 Q_DECLARE_INTERFACE(ImageLoaderPlugin, ImageLoaderPlugin_iid)

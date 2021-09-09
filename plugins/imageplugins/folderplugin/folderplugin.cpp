@@ -1,3 +1,8 @@
+/**
+ * @file folderplugin.cpp
+ *
+ * @brief contains method implementations for FolderPlugin class
+ */
 #include "folderconfigwidget.h"
 #include "folderplugin.h"
 

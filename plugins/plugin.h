@@ -1,3 +1,10 @@
+/**
+ *
+ * @file plugin.h
+ *
+ * @brief contains interface for plugins
+ *
+ */
 #ifndef PLUGIN_H
 #define PLUGIN_H
 

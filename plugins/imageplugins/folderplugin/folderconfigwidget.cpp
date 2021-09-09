@@ -1,3 +1,8 @@
+/**
+ * @file folderwidget.cpp
+ *
+ * @brief contains method implementations for the FolderWidget class
+ */
 #include "folderconfigwidget.h"
 #include "ui_folderconfigwidget.h"
 

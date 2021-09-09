@@ -1,3 +1,9 @@
+/**
+ * @file pluginmanager.h
+ *
+ * @brief contains PluginManager interface
+ *
+ */
 #ifndef PLUGINMANAGER_H
 #define PLUGINMANAGER_H
 
