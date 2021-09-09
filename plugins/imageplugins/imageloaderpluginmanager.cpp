@@ -13,24 +13,23 @@ void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
     m_pluginsSharedPointer.clear();
     m_pluginConfigurationWidgets.clear();
 
-
     QDir pluginsDir(pluginDir);
     const QStringList entries = pluginsDir.entryList(QDir::Files);
-
     for (const QString &fileName : entries) {
+        if (!QLibrary::isLibrary(fileName)) continue;
         QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
         QObject *plugin = pluginLoader.instance();
         if (plugin) {
             ImageLoaderPlugin* imageLoaderPlugin = qobject_cast<ImageLoaderPlugin *>(plugin);
-            imageLoaderPlugin->init(); //ToDo: call init function if necessary
-            m_pluginConfigurationWidgets.append(imageLoaderPlugin->getConfigurationWidget());
             if (imageLoaderPlugin){
-
+                imageLoaderPlugin->init(); //ToDo: call init function if necessary
+                m_pluginConfigurationWidgets.append(imageLoaderPlugin->getConfigurationWidget());
                 m_pluginsSharedPointer.insert( imageLoaderPlugin->getName(), imageLoaderPlugin);
 
             }
             //pluginLoader.unload(); //ToDo: Maybe use this
         }
+
     }
 
 
