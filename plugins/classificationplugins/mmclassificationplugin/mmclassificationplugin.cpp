@@ -465,13 +465,14 @@ MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QStri
     // Search for log file
     workingDir.setNameFilters(QStringList() << "*.log.json");
     workingDir.setFilter(QDir::Files);
-    QString pathToLogFile;
+    QString logFileName;
     for (const QString &dirFile: workingDir.entryList()) {
         //TODO replace these loops with something better
-        pathToLogFile = dirFile;
+        logFileName = dirFile;
     }
+    QString absoluteLogFilePath = workingDir.absoluteFilePath(logFileName);
 
-    auto accuracyCurveData = m_jsonReader.getAccuracyCurve(pathToLogFile);
+    auto accuracyCurveData = m_jsonReader.getAccuracyCurve(absoluteLogFilePath);
 
     QDir datasetDirectory(trainDatasetPath);
     datasetDirectory.cdUp();
