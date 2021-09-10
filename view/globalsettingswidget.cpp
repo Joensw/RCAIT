@@ -4,118 +4,94 @@
 #include <QResizeEvent>
 
 GlobalSettingsWidget::GlobalSettingsWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::GlobalSettingsWidget)
-{
+        QWidget(parent),
+        ui(new Ui::GlobalSettingsWidget) {
     ui->setupUi(this);
 }
 
-GlobalSettingsWidget::~GlobalSettingsWidget()
-{
+GlobalSettingsWidget::~GlobalSettingsWidget() {
     delete ui;
 }
 
-void GlobalSettingsWidget::setNewProjectPath(const QString& path)
-{
+void GlobalSettingsWidget::setNewProjectPath(const QString &path) {
     QFontMetrics metrics(ui->label_projectsDir_new->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
     ui->label_projectsDir_new->setText(text);
 }
 
-void GlobalSettingsWidget::setNewClassificationPluginPath(const QString& path)
-{
+void GlobalSettingsWidget::setNewClassificationPluginPath(const QString &path) {
     QFontMetrics metrics(ui->label_classificationDir_new->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
     ui->label_classificationDir_new->setText(text);
 }
 
-void GlobalSettingsWidget::setNewImageLoaderPath(const QString& path)
-{
+void GlobalSettingsWidget::setNewImageLoaderPath(const QString &path) {
     QFontMetrics metrics(ui->label_imageLoaderDir_new->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
     ui->label_imageLoaderDir_new->setText(text);
 }
 
-void GlobalSettingsWidget::clearNewPaths()
-{
+void GlobalSettingsWidget::clearNewPaths() {
     ui->label_projectsDir_new->clear();
     ui->label_classificationDir_new->clear();
     ui->label_imageLoaderDir_new->clear();
 }
 
-void GlobalSettingsWidget::showUpdate(int amount)
-{
+void GlobalSettingsWidget::showUpdate(int amount) {
     ui->label_information->clear();
-    ui->label_information->setStyleSheet("QLabel { color : green; }");
-    ui->label_information->setText(tr("Success. Updated ") + QString::number(amount) + tr(" path(s)"));
+    if (amount == 0) {
+        ui->label_information->setStyleSheet(STYLESHEET_BLUE);
+        ui->label_information->setText(tr(NO_CHANGES_MSG));
+    } else {
+        ui->label_information->setStyleSheet(STYLESHEET_GREEN);
+        ui->label_information->setText(tr(SUCCESS_UPDATED_PATHS_MSG).arg(QString::number(amount)));
+    }
 }
 
-void GlobalSettingsWidget::showNonUpdate()
-{
+void GlobalSettingsWidget::setError(const QString &error) {
     ui->label_information->clear();
-    ui->label_information->setStyleSheet("QLabel { color : blue; }");
-    ui->label_information->setText(tr("No changes were made"));
-}
-
-void GlobalSettingsWidget::setError(const QString& error)
-{
-    ui->label_information->clear();
-    ui->label_information->setStyleSheet("QLabel { color : red; }");
+    ui->label_information->setStyleSheet(STYLESHEET_RED);
     ui->label_information->setText(error);
 }
 
-void GlobalSettingsWidget::setCurrentProjectsDir(const QString& path)
-{
+void GlobalSettingsWidget::setCurrentProjectsDir(const QString &path) {
     QFontMetrics metrics(ui->label_projectsDir_current->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
     ui->label_projectsDir_current->setText(text);
 }
 
-void GlobalSettingsWidget::setCurrentClassificationDir(const QString& path)
-{
+void GlobalSettingsWidget::setCurrentClassificationDir(const QString &path) {
     QFontMetrics metrics(ui->label_classificationDir_current->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
     ui->label_classificationDir_current->setText(text);
 }
 
-void GlobalSettingsWidget::setCurrentImageLoaderDir(const QString& path)
-{
+void GlobalSettingsWidget::setCurrentImageLoaderDir(const QString &path) {
     QFontMetrics metrics(ui->label_imageLoaderDir_current->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
     ui->label_imageLoaderDir_current->setText(text);
 }
 
-void GlobalSettingsWidget::on_pushButton_project_clicked()
-{
+void GlobalSettingsWidget::on_pushButton_project_clicked() {
     emit sig_setProjectDir();
 }
 
-void GlobalSettingsWidget::on_pushButton_classification_clicked()
-{
+void GlobalSettingsWidget::on_pushButton_classification_clicked() {
     emit sig_setClassificationPluginsDir();
 }
 
-void GlobalSettingsWidget::on_pushButton_imageLoader_clicked()
-{
+void GlobalSettingsWidget::on_pushButton_imageLoader_clicked() {
     emit sig_setImageLoaderPluginsDir();
 }
 
 
-void GlobalSettingsWidget::changeEvent(QEvent *event)
-{
+void GlobalSettingsWidget::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         // this event is sent if a translator is loaded
-        QString tempProjects = ui->label_projectsDir_current->text();
-        QString tempClassification = ui->label_classificationDir_current->text();
-        QString tempImage = ui->label_imageLoaderDir_current->text();
         ui->retranslateUi(this);
-        ui->label_projectsDir_current->setText(tempProjects);
-        ui->label_classificationDir_current->setText(tempClassification);
-        ui->label_imageLoaderDir_current->setText(tempImage);
-        emit sig_wasTranslated();
+        setWindowTitle(tr(PLUGIN_NAME));
     }
 
     //Call to parent class
     QWidget::changeEvent(event);
-
 }

@@ -3,137 +3,100 @@
 
 
 SettingsView::SettingsView(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::SettingsView)
-{
+        QWidget(parent),
+        ui(new Ui::SettingsView) {
     ui->setupUi(this);
 }
 
-SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames, const QList<QWidget *> &pluginConfigurationWidgets) :
-    QWidget(parent),
-    ui(new Ui::SettingsView)
-{
+SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames,
+                           const QList<QWidget *> &pluginConfigurationWidgets) :
+        QWidget(parent),
+        ui(new Ui::SettingsView),
+        mGlobalSettingsWidget(new GlobalSettingsWidget(this)) {
     ui->setupUi(this);
-    mGlobalSettingsWidget = new GlobalSettingsWidget(this);
 
     ui->pluginList->addItem(mGlobalSettingsWidget->windowTitle());
 
-    connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_wasTranslated, this, &SettingsView::slot_retranslate);
+    connect(&*mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setProjectDir, this, &SettingsView::slot_setProjectDir);
+    connect(&*mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setClassificationPluginsDir, this,
+            &SettingsView::slot_setClassificationPluginsDir);
+    connect(&*mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setImageLoaderPluginsDir, this,
+            &SettingsView::slot_setImageLoaderPluginsDir);
 
-    connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setProjectDir, this, &SettingsView::slot_setProjectDir);
-    connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setClassificationPluginsDir, this, &SettingsView::slot_setClassificationPluginsDir);
-    connect(mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setImageLoaderPluginsDir, this, &SettingsView::slot_setImageLoaderPluginsDir);
+    ui->pluginWidget->addWidget(&*mGlobalSettingsWidget);
 
-    ui->pluginWidget->addWidget(mGlobalSettingsWidget);
+    addPluginWidgets(pluginNames, pluginConfigurationWidgets);
+}
 
+void SettingsView::addPluginWidgets(QStringList pluginNames, QList<QWidget *> pluginConfigurationWidgets) {
+    for (int i = ui->pluginWidget->count() - 1; i >= 1; --i) {
+        delete (ui->pluginList->takeItem(i));
+        QWidget *widget = ui->pluginWidget->widget(i);
+        ui->pluginWidget->removeWidget(widget);
+        widget->deleteLater();
+    }
 
     assert(pluginNames.size() == pluginConfigurationWidgets.size());
 
-   int i = 0;
-    for(QString name : pluginNames){
-        ui->pluginList->addItem(name);
-        ui->pluginWidget->addWidget(pluginConfigurationWidgets.at(i));
-        i++;
+    for (int i = 0; i < pluginNames.size(); i++) {
+        ui->pluginList->addItem(pluginNames[i]);
+        ui->pluginWidget->addWidget(pluginConfigurationWidgets[i]);
     }
-
-
 }
 
-void SettingsView::addPluginWidgets( QStringList pluginNames, QList<QWidget *> pluginConfigurationWidgets)
-{
-   for(int i = ui->pluginWidget->count() - 1; i >= 1; --i)
-   {
-       delete(ui->pluginList->takeItem(i));
-       QWidget* widget = ui->pluginWidget->widget(i);
-       ui->pluginWidget->removeWidget(widget);
-       widget->deleteLater();
-
-   }
-   assert(pluginNames.size() == pluginConfigurationWidgets.size());
-
-   int i = 0;
-   for(QString name : pluginNames){
-       ui->pluginList->addItem(name);
-       ui->pluginWidget->addWidget(pluginConfigurationWidgets.at(i));
-       i++;
-   }
-}
-
-void SettingsView::pathsUpdated(int amount)
-{
-    if (amount == 0){
-        mGlobalSettingsWidget->showNonUpdate();
-        return;
-    }
+void SettingsView::pathsUpdated(int amount) {
     mGlobalSettingsWidget->showUpdate(amount);
 }
 
-void SettingsView::clearPaths()
-{
+void SettingsView::clearPaths() {
     mClassificationPluginsDir.clear();
     mImageLoaderPluginsDir.clear();
     mProjectDir.clear();
     mGlobalSettingsWidget->clearNewPaths();
 }
 
-void SettingsView::setGlobalSettingsError(QString error)
-{
+void SettingsView::setGlobalSettingsError(const QString &error) {
     mGlobalSettingsWidget->setError(error);
 }
 
-void SettingsView::setCurrentProjectDirectory(QString path)
-{
+void SettingsView::setCurrentProjectDirectory(const QString &path) {
     mGlobalSettingsWidget->setCurrentProjectsDir(path);
 }
 
-void SettingsView::setCurrentClassificationPluginDirectory(QString path)
-{
+void SettingsView::setCurrentClassificationPluginDirectory(const QString &path) {
     mGlobalSettingsWidget->setCurrentClassificationDir(path);
 }
 
-void SettingsView::setCurrentImageLoaderPluginDirectory(QString path)
-{
+void SettingsView::setCurrentImageLoaderPluginDirectory(const QString &path) {
     mGlobalSettingsWidget->setCurrentImageLoaderDir(path);
 }
 
-void SettingsView::on_saveButton_clicked()
-{
+[[maybe_unused]] void SettingsView::on_saveButton_clicked() {
     int index = ui->pluginList->currentIndex().row();
 
-    if (index == 0){
-        /*
-        if (mProjectDir.isNull() || mClassificationPluginsDir.isNull() || mImageLoaderPluginsDir.isNull()){
-            return;
-            // shouldnt be a problem, this path is them simply not updated, same thing should occur if user closes out of file dialog
-            // that is why i have commented this section
-        }
-        */
+    if (index == 0) {
         emit sig_applyGlobalSettings(mProjectDir, mClassificationPluginsDir, mImageLoaderPluginsDir);
     } else {
-        // -1 weil 0. Eintrag GlobalSettings ist.
+        // -1 because 0th entry is Global settings
         emit sig_applySettings(index - 1);
     }
 }
 
-void SettingsView::on_cancelButton_clicked()
-{
+[[maybe_unused]] void SettingsView::on_cancelButton_clicked() {
     this->close();
 }
 
-
 //private slots for global settings widget
-void SettingsView::slot_setProjectDir()
-{
+void SettingsView::slot_setProjectDir() {
     mProjectDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
-    if (!mProjectDir.isEmpty()){
+    if (!mProjectDir.isEmpty()) {
         mGlobalSettingsWidget->setNewProjectPath(mProjectDir);
         return;
     }
     mGlobalSettingsWidget->setNewProjectPath("-");
 }
 
-void SettingsView::slot_setClassificationPluginsDir()
-{
+void SettingsView::slot_setClassificationPluginsDir() {
     mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select classification plugin directory"));
     if (!mClassificationPluginsDir.isEmpty()) {
         mGlobalSettingsWidget->setNewClassificationPluginPath(mClassificationPluginsDir);
@@ -142,8 +105,7 @@ void SettingsView::slot_setClassificationPluginsDir()
     mGlobalSettingsWidget->setNewClassificationPluginPath("-");
 }
 
-void SettingsView::slot_setImageLoaderPluginsDir()
-{
+void SettingsView::slot_setImageLoaderPluginsDir() {
     mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select image loader plugin directory"));
     if (!mImageLoaderPluginsDir.isEmpty()) {
         mGlobalSettingsWidget->setNewImageLoaderPath(mImageLoaderPluginsDir);
@@ -153,15 +115,14 @@ void SettingsView::slot_setImageLoaderPluginsDir()
 }
 
 
-SettingsView::~SettingsView()
-{
+SettingsView::~SettingsView() {
     delete ui;
 }
 
-void SettingsView::changeEvent(QEvent *event)
-{
+void SettingsView::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         // this event is sent if a translator is loaded
+        retranslateUi();
         ui->retranslateUi(this);
     }
     //Call to parent class
@@ -169,10 +130,10 @@ void SettingsView::changeEvent(QEvent *event)
 }
 
 
-void SettingsView::slot_retranslate()
-{
-    for (int i = 0; i < ui->pluginList->count(); i++){
-        ui->pluginList->item(i)->setText(ui->pluginWidget->widget(i)->windowTitle());
+void SettingsView::retranslateUi() {
+    for (int i = 0; i < ui->pluginList->count(); i++) {
+        auto text = ui->pluginWidget->widget(i)->windowTitle();
+        ui->pluginList->item(i)->setText(text);
     }
 }
 

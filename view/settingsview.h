@@ -60,28 +60,28 @@ public:
      *
      * @param error the error message.
      */
-    void setGlobalSettingsError(QString error);
+    void setGlobalSettingsError(const QString &error);
 
     /**
      * @brief setCurrentProjectDirectory sets project directory.
      *
      * @param path path of project directory.
      */
-    void setCurrentProjectDirectory(QString path);
+    void setCurrentProjectDirectory(const QString &path);
 
     /**
      * @brief setCurrentClassificationPluginDirectory sets classification plugin directory.
      *
      * @param path path of classification plugin directory.
      */
-    void setCurrentClassificationPluginDirectory(QString path);
+    void setCurrentClassificationPluginDirectory(const QString &path);
 
     /**
      * @brief setCurrentImageLoaderPluginDirectory sets imageloader plugin directory.
      *
      * @param path path of imageloader plugin directory.
      */
-    void setCurrentImageLoaderPluginDirectory(QString path);
+    void setCurrentImageLoaderPluginDirectory(const QString &path);
 
     /**
      * @brief addPluginWidgets adds plugin widgets to SettingsView.
@@ -89,12 +89,6 @@ public:
      * @param pluginConfigurationWidgets config widgets of plugins.
      */
     void addPluginWidgets(QStringList pluginNames, QList<QWidget *> pluginConfigurationWidgets);
-public slots:
-    /**
-     * @brief slot_retranslate is used to update translated pluginlist.
-     *
-     */
-    void slot_retranslate();
 
 signals:
     /**
@@ -123,22 +117,28 @@ protected:
     void changeEvent(QEvent *event);
 
 private slots:
+
     [[maybe_unused]] void on_saveButton_clicked();
 
     [[maybe_unused]] void on_cancelButton_clicked();
 
     void slot_setProjectDir();
     void slot_setClassificationPluginsDir();
+
     void slot_setImageLoaderPluginsDir();
 
 private:
     Ui::SettingsView *ui;
-    GlobalSettingsWidget * mGlobalSettingsWidget;
+    QScopedPointer<GlobalSettingsWidget> mGlobalSettingsWidget;
 
     QString mProjectDir;
     QString mClassificationPluginsDir;
     QString mImageLoaderPluginsDir;
 
+    /**
+     * @brief This method is used to update translated plugin list.
+     */
+    void retranslateUi();
 
 };
 

@@ -52,14 +52,9 @@ public:
 
     /**
      * @brief showUpdate displays an update message in the UI about the amount of paths changed
-     * @param integer argument representing the paths sucessfully applied
+     * @param integer argument representing the paths successfully applied
      */
     void showUpdate(int amount);
-
-    /**
-     * @brief showNonUpdate displays a message in the UI, signifying that no changes have occured
-     */
-    void showNonUpdate();
 
     /**
      * @brief setError sets an Error message to be shown in the UI
@@ -102,13 +97,6 @@ signals:
      */
     void sig_setImageLoaderPluginsDir();
 
-    /**
-     * @brief sig_wasTranslated emitted when a translation of the current objet has taken place
-     */
-    void sig_wasTranslated();
-
-
-
 protected:
 
     /**
@@ -119,12 +107,23 @@ protected:
     void changeEvent(QEvent *event);
 
 private slots:
+
     //slots correspond with the identically named button in the UI
     [[maybe_unused]] void on_pushButton_project_clicked();
+
     [[maybe_unused]] void on_pushButton_classification_clicked();
+
     [[maybe_unused]]void on_pushButton_imageLoader_clicked();
 
 private:
+    static constexpr auto STYLESHEET_RED = "QLabel { color : red; }";
+    static constexpr auto STYLESHEET_GREEN = "QLabel { color : green; }";
+    static constexpr auto STYLESHEET_BLUE = "QLabel { color : blue; }";
+
+    static constexpr auto PLUGIN_NAME = QT_TR_NOOP("Global Settings");
+    static constexpr auto SUCCESS_UPDATED_PATHS_MSG = QT_TR_NOOP("Success. Updated %1 path(s)");
+    static constexpr auto NO_CHANGES_MSG = QT_TR_NOOP("No changes were made");
+
     Ui::GlobalSettingsWidget *ui;
 };
 
