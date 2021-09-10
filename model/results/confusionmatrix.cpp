@@ -85,7 +85,7 @@ bool ConfusionMatrix::operator!=(const ConfusionMatrix& other) const {
     return m_values;
 }
 
-void ConfusionMatrix::passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) {
+void ConfusionMatrix::passResultGraphics(GenericGraphicsView *receiver, const QString &fullFilePath) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
     auto ptr = QSharedPointer<QGraphicsItem>(graphics);
     receiver->setConfusionMatrix(ptr);

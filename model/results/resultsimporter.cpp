@@ -94,7 +94,7 @@ void ResultsImporter::slot_comparison_loadClassificationResultData(Classificatio
 
 void ResultsImporter::slot_comparison_loadClassificationResultGraphics(GenericGraphicsView *receiver,
                                                                        const QString &runNameToCompare) {
-    loadGraphicsInView(receiver, runNameToCompare, m_classificationResultsDir);
+    loadGraphicsInView(receiver, m_classificationResultsDir, runNameToCompare);
 }
 
 /**
@@ -138,11 +138,11 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
 
 void ResultsImporter::slot_comparison_loadTrainingResultGraphics(GenericGraphicsView *receiver,
                                                                  const QString &runNameToCompare) {
-    loadGraphicsInView(receiver, runNameToCompare, m_trainingResultsDir);
+    loadGraphicsInView(receiver, m_trainingResultsDir, runNameToCompare);
 }
 
-void ResultsImporter::loadGraphicsInView(GenericGraphicsView *receiver, const QString &resultsFolder,
-                                         const QString &baseDir) {
+void ResultsImporter::loadGraphicsInView(GenericGraphicsView *receiver, const QString &baseDir,
+                                         const QString &resultsFolder) {
     Q_ASSERT(receiver);
 
     static std::array<QRegularExpression, $COUNT> GRAPHICSTYPE2REGEX = {
@@ -166,12 +166,12 @@ void ResultsImporter::loadGraphicsInView(GenericGraphicsView *receiver, const QS
             auto fileIdentifier = match.captured(1);
 
             if (folderIdentifier == fileIdentifier)
-                passResultGraphics(receiver, file, type);
+                passResultGraphicsMultiplexer(receiver, file, type);
         }
     }
 }
 
-void ResultsImporter::passResultGraphics(GenericGraphicsView *receiver, const QFileInfo &file, int type) {
+void ResultsImporter::passResultGraphicsMultiplexer(GenericGraphicsView *receiver, const QFileInfo &file, int type) {
     Q_ASSERT(receiver);
     QGraphicsItem *graphics;
 

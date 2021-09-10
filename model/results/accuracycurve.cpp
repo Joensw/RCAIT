@@ -47,7 +47,7 @@ bool AccuracyCurve::operator!=(const AccuracyCurve &other) const {
     return m_data;
 }
 
-void AccuracyCurve::passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) {
+void AccuracyCurve::passResultGraphics(GenericGraphicsView *receiver, const QString &fullFilePath) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
     auto ptr = QSharedPointer<QGraphicsItem>(graphics);
     receiver->setAccuracyCurve(ptr);

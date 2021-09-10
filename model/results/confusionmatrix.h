@@ -11,7 +11,8 @@
 #include "genericresultgraphics.h"
 
 /**
- * @brief Confusion matrices are used for visually comparing the precision of an AI
+ * @brief Confusion matrices are used for visually comparing the precision of an AI.
+ * This class is used for data retention and contains all information required for visualisation.
  */
 class ConfusionMatrix : public GenericResultGraphics {
     Q_OBJECT
@@ -83,7 +84,7 @@ private:
      * @param fullFilePath path to the generated graphics
      * @param receiver graphics view that will display the result image
      */
-    void passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) override;
+    void passResultGraphics(GenericGraphicsView *receiver, const QString &fullFilePath) override;
 
     /**
      * @brief Convert matrix data to text in a python-friendly way

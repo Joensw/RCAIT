@@ -75,7 +75,7 @@ void TopAccuraciesGraphics::generateGraphicsInternal(const QString &fullFilePath
     GenericResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 
-void TopAccuraciesGraphics::passResultGraphics(const QString &fullFilePath, GenericGraphicsView *receiver) {
+void TopAccuraciesGraphics::passResultGraphics(GenericGraphicsView *receiver, const QString &fullFilePath) {
     auto *graphics = new QGraphicsSvgItem(fullFilePath);
     auto ptr = QSharedPointer<QGraphicsItem>(graphics);
     receiver->setTopAccuraciesGraphics(ptr);

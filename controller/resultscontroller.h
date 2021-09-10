@@ -12,18 +12,39 @@
 #include <trainingresultswidget.h>
 #include <classificationresultswidget.h>
 
+/**
+ * @brief The ResultsController class mediates between the results logic and UI.
+ */
 class ResultsController : public QObject {
 
 Q_OBJECT
 public:
+    /**
+     * @brief Constructs a ResultsController
+     * @param manager source of general information.
+     * @param resultsWidget UI component to display information
+     */
     ResultsController(DataManager *manager, ResultsWidget *resultsWidget);
 
 public slots:
 
+    /**
+     * @brief Gets called when the project path has changed.
+     * This notifies all specialised result widgets with the new folder path
+     * to load/save results from/to.
+     */
     void slot_projectPathUpdated();
 
+    /**
+     * @brief Adds a new TrainingResult to the corresponding specialised widget
+     * @param result result to be added
+     */
     void slot_addTrainingResult(TrainingResult *result);
 
+    /**
+     * @brief Adds a new ClassificationResult to the corresponding specialised widget
+     * @param result result to be added
+     */
     void slot_addClassificationResult(ClassificationResult *result);
 
 private:

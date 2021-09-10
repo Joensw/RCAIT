@@ -18,10 +18,10 @@ void ResultsProcessor::addGraphicsGenerationJob(GenericGraphicsView *receiver,
     }
 }
 
-void ResultsProcessor::slot_graphicsGenerated(GenericGraphicsView *receiver,
-                                              GenericResultGraphics *graphics, const QString &fullPath) {
-
-    if (!QFile::exists(fullPath)) return;
+void ResultsProcessor::slot_graphicsGenerated(GenericGraphicsView *receiver, GenericResultGraphics *graphics) {
+    Q_ASSERT(receiver);
+    Q_ASSERT(graphics);
+    if (!QFile::exists(graphics->getFullPath())) return;
     m_mapGraphicsByReceiver.remove(receiver, graphics);
     if (m_mapGraphicsByReceiver.contains(receiver)) return;
     receiver->setSaved(false);
