@@ -189,22 +189,6 @@
         <translation>Настройки</translation>
     </message>
     <message>
-        <source>select project directory</source>
-        <translation type="vanished">выберите папку проекта</translation>
-    </message>
-    <message>
-        <source>path:</source>
-        <translation type="vanished">путь:</translation>
-    </message>
-    <message>
-        <source>select classification plugin directory</source>
-        <translation type="vanished">выберите папку плагина классификации</translation>
-    </message>
-    <message>
-        <source>select image loader plugin directory</source>
-        <translation type="vanished">выберите папку плагина загрузки изображений</translation>
-    </message>
-    <message>
         <location filename="../view/configurationdialog.ui" line="34"/>
         <source>Project Directory</source>
         <translation>Папка проекта</translation>
@@ -364,10 +348,6 @@ The application will terminate</source>
         <location filename="../view/results/genericcomparisonwidget.ui" line="75"/>
         <source>Save Result</source>
         <translation>Сохранить результат</translation>
-    </message>
-    <message>
-        <source>Save Results</source>
-        <translation type="vanished">Сохранить результаты</translation>
     </message>
     <message>
         <location filename="../view/results/genericcomparisonwidget.h" line="71"/>
@@ -577,17 +557,20 @@ The application will terminate</source>
 <context>
     <name>MMClassificationInputOptions</name>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationinputoptions.ui" line="14"/>
+        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationinputoptions.ui"
+                  line="14"/>
         <source>Form</source>
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationinputoptions.ui" line="36"/>
+        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationinputoptions.ui"
+                  line="36"/>
         <source>CUDA GPU Device</source>
         <translation>CUDA GPU Device</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationinputoptions.ui" line="43"/>
+        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationinputoptions.ui"
+                  line="43"/>
         <source>Number of Iterations</source>
         <translation>Количество итераций</translation>
     </message>
@@ -595,22 +578,26 @@ The application will terminate</source>
 <context>
     <name>MMClassificationSettings</name>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui" line="14"/>
+        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui"
+                  line="14"/>
         <source>Form</source>
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui" line="22"/>
+        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui"
+                  line="22"/>
         <source>MMClassification path</source>
         <translation>Путь к MMClassification</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui" line="32"/>
+        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui"
+                  line="32"/>
         <source>mmcls path</source>
         <translation>Путь к mmcl</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui" line="45"/>
+        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificationsettings.ui"
+                  line="45"/>
         <source>Python Path</source>
         <translation>Путь к Python</translation>
     </message>
@@ -618,85 +605,123 @@ The application will terminate</source>
 <context>
     <name>MMClassificiationDataAugmentationInput</name>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="14"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="14"/>
         <source>Form</source>
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="26"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="26"/>
         <source>Train Pipeline</source>
         <translation>Тренировочный пайплайн</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="34"/>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="236"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="34"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="236"/>
         <source>224</source>
         <translation>40% {224?}</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="53"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="53"/>
         <source>RandomErasing</source>
         <translation>Случайное стирание</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="83"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="83"/>
         <source>Random Resized Crop Size</source>
         <translation>Случайное изменение обрезки</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="90"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="90"/>
         <source>Albu Transform Type</source>
         <translation>Тип преобразования Albu</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="97"/>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="101"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="97"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="101"/>
         <source>ColorJitter</source>
         <translation>ColorJitter</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="139"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="139"/>
         <source>0,5000</source>
         <translation>40% {0,5000?}</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="158"/>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="162"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="158"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="162"/>
         <source>horizontal</source>
         <translation>по горизонтали</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="167"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="167"/>
         <source>vertical</source>
         <translation>по вертикали</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="175"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="175"/>
         <source>Random Flip Direction</source>
         <translation>Случайное направление поворота</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="182"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="182"/>
         <source>Random Flip Probability</source>
         <translation>Вероятность случайного поворота</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="223"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="223"/>
         <source>Test Pipeline</source>
         <translation>Тестировочный пайплайн</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="264"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="264"/>
         <source>Resize</source>
         <translation>Изменить размер</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="271"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="271"/>
         <source>256</source>
         <translation>40% {256?}</translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui" line="304"/>
+        <location
+                filename="../plugins/classificationplugins/MMClassificationPlugin/mmclassificiationdataaugmentationinput.ui"
+                line="304"/>
         <source>Center Crop Size</source>
         <translation>Размер обрезки по центру</translation>
     </message>
@@ -818,39 +843,9 @@ The application will terminate</source>
         <translation>недопустимое имя!</translation>
     </message>
 </context>
-<context>
-    <name>QObject</name>
-    <message>
-        <source>Name must contain at least 1 character</source>
-        <translation type="vanished">Имя должно содержать не менее 1 символа</translation>
-    </message>
-    <message>
-        <source>Name should contain more than only space (&quot; &quot;) characters</source>
-        <translation type="vanished">Имя должно содержать символы помимо пробела (&quot; &quot;)</translation>
-    </message>
-    <message>
-        <source>Name may not contain the  &quot;/&quot; or &quot;\&quot; characters</source>
-        <translation type="vanished">Имя не должно содержать символы &quot;/&quot; и &quot;\&quot;.</translation>
-    </message>
-    <message>
-        <source>The Operating system cannot support this name</source>
-        <translation type="vanished">Это имя не поддерживается операционной системой.</translation>
-    </message>
-    <message>
-        <source>A project with this name aleady exists in the project directory</source>
-        <translation type="vanished">Проект с таким именем уже существует</translation>
-    </message>
-    <message>
-        <source>Settings have not been updated, there is a conflict.</source>
-        <translation type="vanished">Не удалось обновить настройки ввиду конфликта.</translation>
-    </message>
-    <message>
-        <source>Paths may not be identical and must exist, this includes new and unchanged paths.</source>
-        <translation type="vanished">Пути не могут быть идентичными и должны существовать, это косается новых и
-            неизмененных путей.
-        </translation>
-    </message>
-</context>
+    <context>
+        <name>QObject</name>
+    </context>
 <context>
     <name>RemoveModelDialog</name>
     <message>
@@ -860,8 +855,14 @@ The application will terminate</source>
     </message>
     <message>
         <location filename="../view/removemodeldialog.ui" line="64"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Вы уверены, что хотите удалить &amp;quot;&amp;lt;имя модели&amp;gt;&amp;quot;? &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Этот элемент будет удален немедленно. Вы не сможете отменить это действие.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are
+            you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
+            item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+        </source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Вы
+            уверены, что хотите удалить &amp;quot;&amp;lt;имя модели&amp;gt;&amp;quot;? &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Этот
+            элемент будет удален немедленно. Вы не сможете отменить это действие.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.
+        </translation>
     </message>
 </context>
 <context>
@@ -873,8 +874,14 @@ The application will terminate</source>
     </message>
     <message>
         <location filename="../view/removeprojectdialog.ui" line="71"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Вы уверены, что хотите удалить &amp;quot;&amp;lt;название проекта&amp;gt;&amp;quot;? &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Этот элемент будет удален немедленно. Вы не сможете отменить это действие.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are
+            you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
+            item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+        </source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Вы
+            уверены, что хотите удалить &amp;quot;&amp;lt;название проекта&amp;gt;&amp;quot;? &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Этот
+            элемент будет удален немедленно. Вы не сможете отменить это действие.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;.
+        </translation>
     </message>
     <message>
         <location filename="../view/removeprojectdialog.ui" line="126"/>
@@ -916,10 +923,6 @@ The application will terminate</source>
         <location filename="../view/settingsview.ui" line="103"/>
         <source>Save</source>
         <translation>Сохранить</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Закрыть</translation>
     </message>
     <message>
         <location filename="../view/settingsview.cpp" line="127"/>

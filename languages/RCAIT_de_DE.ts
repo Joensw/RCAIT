@@ -28,28 +28,8 @@
         <translation type="unfinished">std</translation>
     </message>
     <message>
-        <source>116.28</source>
-        <translation type="obsolete">116.28</translation>
-    </message>
-    <message>
         <source>red</source>
         <translation type="unfinished">rot</translation>
-    </message>
-    <message>
-        <source>58.395</source>
-        <translation type="obsolete">58.395</translation>
-    </message>
-    <message>
-        <source>57.375</source>
-        <translation type="obsolete">57.375</translation>
-    </message>
-    <message>
-        <source>57.12</source>
-        <translation type="obsolete">57.12</translation>
-    </message>
-    <message>
-        <source>123.675</source>
-        <translation type="obsolete">123.675</translation>
     </message>
     <message>
         <source>blue</source>
@@ -64,24 +44,12 @@
         <translation type="unfinished">Mittelwert</translation>
     </message>
     <message>
-        <source>103.53</source>
-        <translation type="obsolete">103.53</translation>
-    </message>
-    <message>
         <source>Random Flip Probability</source>
         <translation type="unfinished">Zufällige Spiegelungs-Wahrscheinlichkeit</translation>
     </message>
     <message>
-        <source>224</source>
-        <translation type="obsolete">224</translation>
-    </message>
-    <message>
         <source>horizontal</source>
         <translation type="unfinished">horizontal</translation>
-    </message>
-    <message>
-        <source>0.5</source>
-        <translation type="obsolete">0.5</translation>
     </message>
     <message>
         <source>Show Preview</source>
@@ -94,10 +62,6 @@
     <message>
         <source>Resize</source>
         <translation type="unfinished">Größe ändern</translation>
-    </message>
-    <message>
-        <source>256</source>
-        <translation type="obsolete">256</translation>
     </message>
     <message>
         <source>Run Model Training</source>
@@ -199,51 +163,15 @@
     </context>
     <context>
         <name>ClassificationResultsWidget</name>
-        <message>
-            <source>Form</source>
-            <translation type="obsolete">Form</translation>
-        </message>
-        <message>
-            <source>Compare Classification Results</source>
-            <translation type="vanished">Klassifizierungsergebnisse vergleichen</translation>
-        </message>
-        <message>
-            <source>Save Results</source>
-            <translation type="vanished">Ergebnisse speichern</translation>
-        </message>
-        <message>
-            <source>Compare ...</source>
-            <translation type="obsolete">Vergleiche ...</translation>
-        </message>
     </context>
     <context>
         <name>ConfigurationController</name>
-        <message>
-            <source>Please specifiy all paths uniquely before proceeding.</source>
-            <translation type="vanished">Bitte geben Sie alle Pfade einmalig an, bevor Sie fortfahren.</translation>
-        </message>
     </context>
     <context>
         <name>ConfigurationDialog</name>
         <message>
             <source>Configuration</source>
             <translation>Konfiguration</translation>
-        </message>
-        <message>
-            <source>select project directory</source>
-            <translation type="vanished">Projektverzeichnis auswählen</translation>
-        </message>
-        <message>
-            <source>path:</source>
-            <translation type="vanished">Pfad:</translation>
-        </message>
-        <message>
-            <source>select classification plugin directory</source>
-            <translation type="vanished">Klassifizierungs-Plugin-Verzeichnis auswählen</translation>
-        </message>
-        <message>
-            <source>select image loader plugin directory</source>
-            <translation type="vanished">Plugin-Verzeichnis für den Bildlader auswählen</translation>
         </message>
         <message>
             <source>&lt;error&gt;</source>
@@ -372,10 +300,6 @@ The application will terminate</source>
             <translation type="unfinished">Form</translation>
         </message>
         <message>
-            <source>Save Results</source>
-            <translation type="obsolete">Ergebnisse speichern</translation>
-        </message>
-        <message>
             <source>Compare ...</source>
             <translation type="unfinished">Vergleiche ...</translation>
         </message>
@@ -387,48 +311,12 @@ The application will terminate</source>
     <context>
         <name>GlobalSettingsWidget</name>
         <message>
-            <source>Form</source>
-            <translation type="obsolete">Form</translation>
-        </message>
-        <message>
-            <source>Choose project directory</source>
-            <translation type="obsolete">Projektverzeichnis wählen</translation>
-        </message>
-        <message>
-            <source>current path:</source>
-            <translation type="obsolete">aktueller Pfad:</translation>
-        </message>
-        <message>
-            <source>new path:</source>
-            <translation type="obsolete">neuer Pfad:</translation>
-        </message>
-        <message>
-            <source>-</source>
-            <translation type="vanished">-</translation>
-        </message>
-        <message>
-            <source>Choose classification-plugin Directory</source>
-            <translation type="vanished">Klassifizierungspluginverzeichnis wählen</translation>
-        </message>
-        <message>
-            <source>Choose imageloader-plugin directory</source>
-            <translation type="obsolete">Bildladerpluginverzeichnis wählen</translation>
-        </message>
-        <message>
             <source>Global settings</source>
             <translation type="unfinished">Globale Einstellungen</translation>
         </message>
         <message>
-            <source>Sucess. Updated</source>
-            <translation type="obsolete"></translation>
-        </message>
-        <message>
             <source>path(s)</source>
             <translation type="unfinished">Pfad(e) wurden erfolgreich aktualisiert</translation>
-        </message>
-        <message>
-            <source>no changes were made</source>
-            <translation type="obsolete">keine Ã„nderung vorgenommen</translation>
         </message>
         <message>
             <source>Project Directory</source>
@@ -451,16 +339,12 @@ The application will terminate</source>
             <translation>Bildladerpluginverzeichnis</translation>
         </message>
         <message>
-            <source>Success. Updated</source>
-            <translation type="vanished">Erfolgreich aktualisiert</translation>
-        </message>
-        <message>
             <source>No changes were made</source>
             <translation>Es wurden keine Änderungen vorgenommen</translation>
         </message>
         <message>
             <source>Success. Updated</source>
-            <translation type="unfinished"></translation>
+            <translation type="unfinished"/>
         </message>
     </context>
     <context>
@@ -528,18 +412,6 @@ The application will terminate</source>
             <translation type="unfinished">Suchbegriff / Label</translation>
         </message>
         <message>
-            <source>Flickr API</source>
-            <translation type="obsolete">Flickr API</translation>
-        </message>
-        <message>
-            <source>Folder API</source>
-            <translation type="obsolete">Ordner API</translation>
-        </message>
-        <message>
-            <source>Bing Image Search API</source>
-            <translation type="obsolete">Bing Bildsuche API</translation>
-        </message>
-        <message>
             <source>Image Count</source>
             <translation type="unfinished">Bilderanzahl</translation>
         </message>
@@ -550,18 +422,6 @@ The application will terminate</source>
         <message>
             <source>Load Model</source>
             <translation type="unfinished">Lade Modell</translation>
-        </message>
-        <message>
-            <source>Model 1</source>
-            <translation type="obsolete">Modell 1</translation>
-        </message>
-        <message>
-            <source>Model 2</source>
-            <translation type="obsolete">Modell 2</translation>
-        </message>
-        <message>
-            <source>Model 3</source>
-            <translation type="obsolete">Modell 3</translation>
         </message>
         <message>
             <source>Add</source>
@@ -716,34 +576,6 @@ The application will terminate</source>
             <translation>Start</translation>
         </message>
         <message>
-            <source>Import Images</source>
-            <translation type="vanished">Importiere Bilder</translation>
-        </message>
-        <message>
-            <source>Search Keyword / Label</source>
-            <translation type="vanished">Suchbegriff / Label</translation>
-        </message>
-        <message>
-            <source>Image Count</source>
-            <translation type="vanished">Bilderanzahl</translation>
-        </message>
-        <message>
-            <source>Collector Plugin</source>
-            <translation type="vanished">Sammlerplugin</translation>
-        </message>
-        <message>
-            <source>Flickr API</source>
-            <translation type="vanished">Flickr API</translation>
-        </message>
-        <message>
-            <source>Bing Image Search API</source>
-            <translation type="vanished">Bing Bildsuche API</translation>
-        </message>
-        <message>
-            <source>Load Images</source>
-            <translation type="vanished">Lade Bilder</translation>
-        </message>
-        <message>
             <source>AI Training</source>
             <translation>AI Training</translation>
         </message>
@@ -760,56 +592,8 @@ The application will terminate</source>
             <translation>Automatisierung</translation>
         </message>
         <message>
-            <source>Batch Processing Tasks</source>
-            <translation type="vanished">Stapelverarbeitungsaufgaben</translation>
-        </message>
-        <message>
-            <source>Import New Tasks</source>
-            <translation type="vanished">Importiere neue Aufgaben</translation>
-        </message>
-        <message>
-            <source>Task 6</source>
-            <translation type="vanished">Aufgabe 6</translation>
-        </message>
-        <message>
-            <source>Task 7</source>
-            <translation type="vanished">Aufgabe 7</translation>
-        </message>
-        <message>
-            <source>Task 8</source>
-            <translation type="vanished">Aufgabe 8</translation>
-        </message>
-        <message>
-            <source>Task 1</source>
-            <translation type="vanished">Aufgabe 1</translation>
-        </message>
-        <message>
-            <source>Task 2</source>
-            <translation type="vanished">Aufgabe 2</translation>
-        </message>
-        <message>
-            <source>Task 3</source>
-            <translation type="vanished">Aufgabe 3</translation>
-        </message>
-        <message>
-            <source>Task 4</source>
-            <translation type="vanished">Aufgabe 4</translation>
-        </message>
-        <message>
-            <source>Task 5</source>
-            <translation type="vanished">Aufgabe 5</translation>
-        </message>
-        <message>
-            <source>Load Model</source>
-            <translation type="vanished">Lade Modell</translation>
-        </message>
-        <message>
             <source>Import Files</source>
             <translation>Importiere Dateien</translation>
-        </message>
-        <message>
-            <source>Folder API</source>
-            <translation type="vanished">Ordner API</translation>
         </message>
         <message>
             <source>Image Inspection</source>
@@ -818,38 +602,6 @@ The application will terminate</source>
         <message>
             <source>Rapid Classification AI Trainer</source>
             <translation>Rapid Classification AI Trainer</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation type="vanished">Entfernen</translation>
-        </message>
-        <message>
-            <source>Split Validation (%)</source>
-            <translation type="vanished">Validierungsanteil (%)</translation>
-        </message>
-        <message>
-            <source>40%</source>
-            <translation type="vanished">40%</translation>
-        </message>
-        <message>
-            <source>Model 1</source>
-            <translation type="vanished">Modell 1</translation>
-        </message>
-        <message>
-            <source>Model 2</source>
-            <translation type="vanished">Modell 2</translation>
-        </message>
-        <message>
-            <source>Model 3</source>
-            <translation type="vanished">Modell 3</translation>
-        </message>
-        <message>
-            <source>Add</source>
-            <translation type="vanished">Hinzufügen</translation>
-        </message>
-        <message>
-            <source>Load</source>
-            <translation type="vanished">Laden</translation>
         </message>
         <message>
             <source>MainWindow</source>
@@ -914,59 +666,12 @@ The application will terminate</source>
             <translation type="unfinished">Ungültiger Name!</translation>
         </message>
 </context>
-<context>
-    <name>ProjectController</name>
-    <message>
-        <source>Name must contain at least 1 character</source>
-        <translation type="vanished">Der Name muss mindestens aus einem Zeichen bestehen</translation>
-    </message>
-    <message>
-        <source>Name may not contain special characters</source>
-        <translation type="vanished">Der Name darf keine Sonderzeichen enthalten</translation>
-    </message>
-    <message>
-        <source>A project with this name aleady exists in the project directory</source>
-        <translation type="vanished">Dieser Projektname ist bereits vergeben</translation>
-    </message>
-</context>
-<context>
-    <name>QObject</name>
-    <message>
-        <source>Name must contain at least 1 character</source>
-        <translation type="obsolete">Der Name muss mindestens aus einem Zeichen bestehen</translation>
-    </message>
-    <message>
-        <source>Name may not contain special characters</source>
-        <translation type="obsolete">Der Name darf keine Sonderzeichen enthalten</translation>
-    </message>
-    <message>
-        <source>A project with this name aleady exists in the project directory</source>
-        <translation type="obsolete">Dieser Projektname ist bereits vergeben</translation>
-    </message>
-    <message>
-        <source>Name should contain more than only space (&quot; &quot;) characters</source>
-        <translation type="vanished">Der Name sollte mehr als nur Leerzeichen (&quot; &quot;) enthalten</translation>
-    </message>
-    <message>
-        <source>Name may not contain the &quot;/&quot; or &quot;\&quot; characters</source>
-        <translation type="vanished">Der Name darf die Zeichen &quot;/&quot; oder &quot;\&quot; nicht enthalten
-        </translation>
-    </message>
-    <message>
-        <source>The Operating system cannot support this name</source>
-        <translation type="vanished">Das Betriebssystem unterstützt diesen Namen nicht</translation>
-    </message>
-    <message>
-        <source>Settings have not been updated, there is a conflict.</source>
-        <translation type="vanished">Die Einstellungen wurden nicht aktualisiert, es besteht ein Konflikt.</translation>
-    </message>
-    <message>
-        <source>Paths may not be identical and must exist, this includes new and unchanged paths.</source>
-        <translation type="vanished">Pfade dürfen nicht identisch sein und müssen existieren, dies schließt neue und
-            unveränderte Pfade ein.
-        </translation>
-    </message>
-</context>
+    <context>
+        <name>ProjectController</name>
+    </context>
+    <context>
+        <name>QObject</name>
+    </context>
 <context>
     <name>RemoveModelDialog</name>
     <message>
@@ -974,12 +679,12 @@ The application will terminate</source>
         <translation>Modell löschen</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are
             you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
-            item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+            item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
         </source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;
-            font-weight:600;&quot;&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt;
+            font-weight:600;"&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das
             Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
         </translation>
     </message>
@@ -991,12 +696,12 @@ The application will terminate</source>
         <translation>Projekt löschen</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are
             you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
-            item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+            item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
         </source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;
-            font-weight:600;&quot;&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt;
+            font-weight:600;"&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das
             Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
         </translation>
     </message>
@@ -1016,110 +721,13 @@ The application will terminate</source>
         <translation type="unfinished">Trainingsergebnisse</translation>
     </message>
     <message>
-        <source>Compare Results</source>
-        <translation type="obsolete">Ergebnisse vergleichen</translation>
-    </message>
-    <message>
-        <source>Top Accuracies</source>
-        <translation type="obsolete">Top-Genauigkeiten</translation>
-    </message>
-    <message>
-        <source>Run 1</source>
-        <translation type="obsolete">Durchlauf 1</translation>
-    </message>
-    <message>
-        <source>Run 2</source>
-        <translation type="obsolete">Durchlauf 2</translation>
-    </message>
-    <message>
-        <source>Run 3</source>
-        <translation type="obsolete">Durchlauf 3</translation>
-    </message>
-    <message>
-        <source>Top1%</source>
-        <translation type="obsolete">Top1%</translation>
-    </message>
-    <message>
-        <source>Top5%</source>
-        <translation type="obsolete">Top5%</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="obsolete">Speichern</translation>
-    </message>
-    <message>
         <source>Classification Results</source>
         <translation type="unfinished">Klassifikationsergebnisse</translation>
     </message>
-    <message>
-        <source>Bild1</source>
-        <translation type="obsolete">Bild1</translation>
-    </message>
-    <message>
-        <source>Bild2</source>
-        <translation type="obsolete">Bild2</translation>
-    </message>
-    <message>
-        <source>Bild3</source>
-        <translation type="obsolete">Bild3</translation>
-    </message>
-    <message>
-        <source>Bild4</source>
-        <translation type="obsolete">Bild4</translation>
-    </message>
-    <message>
-        <source>Bild5</source>
-        <translation type="obsolete">Bild5</translation>
-    </message>
-    <message>
-        <source>Bild6</source>
-        <translation type="obsolete">Bild6</translation>
-    </message>
-    <message>
-        <source>Bild7</source>
-        <translation type="obsolete">Bild7</translation>
-    </message>
-    <message>
-        <source>Flugzeug</source>
-        <translation type="obsolete">Flugzeug</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation type="obsolete">Auto</translation>
-    </message>
-    <message>
-        <source>Truck</source>
-        <translation type="obsolete">Lkw</translation>
-    </message>
-    <message>
-        <source>1</source>
-        <translation type="obsolete">1</translation>
-    </message>
-    <message>
-        <source>0</source>
-        <translation type="obsolete">0</translation>
-    </message>
-    <message>
-        <source>0.4</source>
-        <translation type="obsolete">0.4</translation>
-    </message>
-    <message>
-        <source>0.6</source>
-        <translation type="obsolete">0.6</translation>
-    </message>
-    <message>
-        <source>Compare ...</source>
-        <translation type="obsolete">Vergleiche ...</translation>
-    </message>
 </context>
-<context>
-    <name>SettingsController</name>
-    <message>
-        <source>Settings have not been updated, there is a conflict.
-paths may not be identical and must exist, this includes new and unchanged paths</source>
-        <translation type="vanished">Die Einstellungen wurden nicht aktualisiert, es besteht ein Konflikt.\Pfade dürfen nicht identisch sein und müssen existieren, dies schließt neue und unveränderte Pfade ein</translation>
-    </message>
-</context>
+    <context>
+        <name>SettingsController</name>
+    </context>
 <context>
     <name>SettingsView</name>
     <message>
@@ -1127,21 +735,17 @@ paths may not be identical and must exist, this includes new and unchanged paths
         <translation type="unfinished">Einstellungen</translation>
     </message>
     <message>
-        <source>Global settings</source>
-        <translation type="obsolete">Globale Einstellungen</translation>
-    </message>
-    <message>
         <source>Select project directory</source>
         <translation>Projektverzeichnis wählen</translation>
     </message>
     <message>
         <source>Select classification plugin directory</source>
-        <translatorcomment>kann man sicher eleganter übersetzen</translatorcomment>
+        <translatorcomment>kann man sicher eleganter Ã¼bersetzen</translatorcomment>
         <translation>Klassifizierungspluginverzeichnis wählen</translation>
     </message>
     <message>
         <source>Select image loader plugin directory</source>
-        <translatorcomment>kann man sicher eleganter übersetzen</translatorcomment>
+        <translatorcomment>kann man sicher eleganter Ã¼bersetzen</translatorcomment>
         <translation>Bildladerpluginverzeichnis wählen</translation>
     </message>
     <message>
@@ -1154,7 +758,7 @@ paths may not be identical and must exist, this includes new and unchanged paths
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1169,18 +773,6 @@ Select a project to get started</source>
         <comment>welcome_label</comment>
         <translation type="unfinished">Willkommen bei RCAIT!
 Wähle ein Projekt aus, um loszulegen</translation>
-    </message>
-    <message>
-        <source>Project 1</source>
-        <translation type="obsolete">Projekt 1</translation>
-    </message>
-    <message>
-        <source>Project 2</source>
-        <translation type="obsolete">Projekt 2</translation>
-    </message>
-    <message>
-        <source>Project 3</source>
-        <translation type="obsolete">Projekt 3</translation>
     </message>
     <message>
         <source>New Project</source>
@@ -1228,10 +820,6 @@ Wähle ein Projekt aus, um loszulegen</translation>
         <translation type="unfinished">Form</translation>
     </message>
     <message>
-        <source>Loss Curve</source>
-        <translation type="obsolete">Verlustkurve</translation>
-    </message>
-    <message>
         <source>Most Misclassified Images</source>
         <translation type="unfinished">Am häufigsten falsch klassifizierte Bilder</translation>
     </message>
@@ -1244,66 +832,14 @@ Wähle ein Projekt aus, um loszulegen</translation>
         <translation>Genauigkeitskurve</translation>
     </message>
 </context>
-<context>
-    <name>TrainingResultsWidget</name>
-    <message>
-        <source>Form</source>
-        <translation type="obsolete">Form</translation>
-    </message>
-    <message>
-        <source>Compare Training Results</source>
-        <translation type="vanished">Trainingsergebnisse vergleichen</translation>
-    </message>
-    <message>
-        <source>Top Accuracies</source>
-        <translation type="unfinished">Top-Genauigkeiten</translation>
-    </message>
-    <message>
-        <source>Save Results </source>
-        <translation type="vanished">Ergebnisse speichern</translation>
-    </message>
-    <message>
-        <source>Compare ...</source>
-        <translation type="obsolete">Vergleiche ...</translation>
-    </message>
-</context>
-<context>
-    <name>imagesection</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Form</translation>
-    </message>
-    <message>
-        <source>Validation images</source>
-        <translation type="vanished">Validierungsbilder</translation>
-    </message>
-    <message>
-        <source>Training images</source>
-        <translation type="vanished">Trainingsbilder</translation>
-    </message>
-    <message>
-        <source>Remove selected images</source>
-        <translation type="vanished">Entferne ausgewählte Bilder</translation>
-    </message>
-    <message>
-        <source>Current dataset training images</source>
-        <translation type="vanished">Aktuelle Trainingsbilder aus dem Datensatz</translation>
-    </message>
-    <message>
-        <source>New training images</source>
-        <translation type="vanished">Neue Trainingsbilder</translation>
-    </message>
-    <message>
-        <source>Current dataset validation images</source>
-        <translation type="vanished">Aktueller Datensatz Validierungsbilder</translation>
-    </message>
-    <message>
-        <source>New validation images</source>
-        <translation type="vanished">Neue Validierungsbilder</translation>
-    </message>
-    <message>
-        <source>Merge into dataset</source>
-        <translation type="vanished">In Datensatz zusammenführen</translation>
-    </message>
-</context>
+    <context>
+        <name>TrainingResultsWidget</name>
+        <message>
+            <source>Top Accuracies</source>
+            <translation type="unfinished">Top-Genauigkeiten</translation>
+        </message>
+    </context>
+    <context>
+        <name>imagesection</name>
+    </context>
 </TS>
