@@ -84,10 +84,10 @@ void GenericComparisonWidget::slot_comparisonMenu_triggered(QAction *action) {
 void GenericComparisonWidget::slot_updateSaveButton(int index) {
     auto widget = m_tabWidget->widget(index);
     auto tab = dynamic_cast<GenericGraphicsView *>(widget);
-    updateSaveButton(tab);
+    updateSaveState(tab);
 }
 
-void GenericComparisonWidget::updateSaveButton(GenericGraphicsView *tab) {
+void GenericComparisonWidget::updateSaveState(GenericGraphicsView *tab) {
     if (!tab) return;
     bool canBeSaved = !tab->isSaved();
     auto index = m_tabWidget->indexOf(tab);

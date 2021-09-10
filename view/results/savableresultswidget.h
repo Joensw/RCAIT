@@ -6,17 +6,32 @@
 
 class GenericGraphicsView;
 
+/**
+ * @brief This class contains pure virtual methods of saving related functions.
+ */
 class SavableResultsWidget : public QWidget {
 Q_OBJECT
 
 public:
+    /**
+     * @brief Constructs a SavableResultsWidget
+     * @param parent QWidget parent (optional)
+     */
     explicit SavableResultsWidget(QWidget *parent = nullptr)
             : QWidget(parent) {}
 
-    virtual void updateSaveButton(GenericGraphicsView *tab) = 0;
+    /**
+     * @brief Update the saved state of a result view tab
+     * @param tab tab that changed its state
+     */
+    virtual void updateSaveState(GenericGraphicsView *tab) = 0;
 
 private:
 
+    /**
+     * @brief Saves a given result tab
+     * @param view tab to be saved
+     */
     virtual void saveResult(GenericGraphicsView *view) = 0;
 
 private slots:

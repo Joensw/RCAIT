@@ -40,41 +40,107 @@ Quelle des Originals: https://github.com/nicktrandafil/tags
 
 class QStyleOptionFrame;
 
-/// Tag editor widget
-/// `Space` commits a tag and initiates a new tag edition
+/**
+ * @brief Tag editor widget
+ * Enter` commits a tag and initiates a new tag edition
+ */
 class Tags : public QWidget {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    [[maybe_unused]] explicit Tags(QWidget* parent = nullptr);
+    /**
+     * @brief Default constructor.
+     * @param parent QObject parent object
+     */
+    [[maybe_unused]] explicit Tags(QWidget *parent = nullptr);
+
     ~Tags() override;
 
-    // QWidget
+    /**
+     * @brief Size hint, common for QWidgets
+     * @return QSize to be used
+     */
     [[nodiscard]] QSize sizeHint() const override;
+
+    /**
+     * @brief Size hint, common for QWidgets
+     * @return QSize to be used
+     */
     [[nodiscard]] QSize minimumSizeHint() const override;
 
-    /// Set completions
-    void completion(std::vector<QString> const& completions);
+    /**
+     * @brief Set a list of strings used to autocomplete the input tags
+     * @param completions
+     */
+    void completion(std::vector<QString> const &completions);
 
-    /// Set tags
-    void tags(std::vector<QString> const& tags);
+    /**
+     * @brief Set the current tags, replaces old ones
+     * @param tags vector of new tags
+     */
+    void tags(std::vector<QString> const &tags);
 
-    /// Get tags
+    /**
+     * @brief Get the current tags
+     * @return vector of tags
+     */
     [[nodiscard]] std::vector<QString> tags() const;
 
 signals:
+
+    /**
+     * @brief Emitted whenever a tag is edited
+     */
     void tagsEdited();
 
 protected:
-    // QWidget
-    void paintEvent(QPaintEvent* event) override;
-    void timerEvent(QTimerEvent* event) override;
-    void mousePressEvent(QMouseEvent* event) override;
-    void resizeEvent(QResizeEvent* event) override;
-    void focusInEvent(QFocusEvent* event) override;
-    void focusOutEvent(QFocusEvent* event) override;
-    void keyPressEvent(QKeyEvent* event) override;
-    void mouseMoveEvent(QMouseEvent* event) override;
+    /**
+     * @brief Paint event for widget
+     * @param event paint event
+     */
+    void paintEvent(QPaintEvent *event) override;
+
+    /**
+     * @brief Timer event for widget
+     * @param event timer event
+     */
+    void timerEvent(QTimerEvent *event) override;
+
+    /**
+     * @brief Mouse press event for widget
+     * @param event mouse event
+     */
+    void mousePressEvent(QMouseEvent *event) override;
+
+    /**
+     * @brief Resize event for widget
+     * @param event resize event
+     */
+    void resizeEvent(QResizeEvent *event) override;
+
+    /**
+     * @brief Focus in event for widget
+     * @param event focus in event
+     */
+    void focusInEvent(QFocusEvent *event) override;
+
+    /**
+     * @brief Focus out event for widget
+     * @param event focus out event
+     */
+    void focusOutEvent(QFocusEvent *event) override;
+
+    /**
+     * @brief Key press event for widget
+     * @param event key press event
+     */
+    void keyPressEvent(QKeyEvent *event) override;
+
+    /**
+     * @brief Mouse move event for widget
+     * @param event mouse move event
+     */
+    void mouseMoveEvent(QMouseEvent *event) override;
 
 private:
     struct Impl;

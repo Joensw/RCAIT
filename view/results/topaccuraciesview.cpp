@@ -78,12 +78,12 @@ void TopAccuraciesView::configure_updateGraphicsButton() {
     }
 }
 
-[[maybe_unused]] void TopAccuraciesView::updateGraphicsButton_setEnabled(bool enabled) {
+[[maybe_unused]] void TopAccuraciesView::setUpdateGraphicsButtonState(bool enabled) {
     if (m_pushButton_updateGraphics)
         m_pushButton_updateGraphics->setEnabled(enabled);
 }
 
-[[maybe_unused]] bool TopAccuraciesView::updateGraphicsButton_isEnabled() {
+[[maybe_unused]] bool TopAccuraciesView::getUpdateGraphicsButtonState() {
     if (m_pushButton_updateGraphics) {
         return m_pushButton_updateGraphics->isEnabled();
     }

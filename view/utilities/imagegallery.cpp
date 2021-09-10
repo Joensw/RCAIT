@@ -108,12 +108,18 @@ void ImageGallery::setDragDropEnabled(bool var) {
     setAcceptDrops(var);
 }
 
+/*!
+\reimp
+*/
 QSize ImageGallery::minimumSizeHint() const {
     QSize size(parentWidget()->size());
     size.setHeight(size.height() - 60);
     return size;
 }
 
+/*!
+\reimp
+*/
 QSize ImageGallery::sizeHint() const {
     return minimumSizeHint();
 }

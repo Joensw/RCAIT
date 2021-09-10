@@ -33,13 +33,13 @@ void ResultsProcessor::slot_graphicsGenerated(GenericGraphicsView *receiver,
 void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(TopAccuraciesView *receiver,
                                                                  const QSharedPointer<TopAccuraciesGraphics> &graphics) {
     //Keeps user from clicking the 'update graphics' button multiple times
-    receiver->updateGraphicsButton_setEnabled(false);
+    receiver->setUpdateGraphicsButtonState(false);
 
     addGraphicsGenerationJob(receiver, {graphics});
 
     //Enable button again after generating graphics finished
     connect(&*graphics, &GenericResultGraphics::sig_graphicsGenerated,
-            this, [receiver] { receiver->updateGraphicsButton_setEnabled(true); });
+            this, [receiver] { receiver->setUpdateGraphicsButtonState(true); });
 }
 
 /**
