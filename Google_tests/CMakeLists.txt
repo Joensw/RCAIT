@@ -140,6 +140,8 @@ set(Sources
 
         ../view/utilities/customtablewidget.h
         ../view/utilities/customtablewidget.cpp
+
+        test_imagegallery.cpp
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
