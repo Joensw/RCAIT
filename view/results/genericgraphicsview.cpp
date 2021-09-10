@@ -9,7 +9,7 @@ GenericGraphicsView::GenericGraphicsView(SavableResultsWidget *tabWidget, QWidge
 void GenericGraphicsView::setSaved(bool isSaved) {
     m_isSaved = isSaved;
     if (m_tabWidget)
-        m_tabWidget->updateSaveButton(this);
+        m_tabWidget->updateSaveState(this);
 }
 
 void GenericGraphicsView::setName(const QString &name) {

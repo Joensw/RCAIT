@@ -8,30 +8,28 @@
 
 /**
  * @brief The ImageGallery class shows a list of images.
- *
  */
-class ImageGallery : public QListWidget
-{
-    Q_OBJECT
+class ImageGallery : public QListWidget {
+Q_OBJECT
 
 public:
 
     /**
-     * @brief ImageGallery constructs a new ImageGallery.
+     * @brief Constructs an ImageGallery.
      *
      * @param parent optional parent widget
      */
     explicit ImageGallery(QWidget *parent = nullptr);
 
     /**
-     * @brief destzructor of ImageGallery.
+     * @brief destructor of ImageGallery.
      *
      */
-    ~ImageGallery();
+    ~ImageGallery() override;
 
 
     /**
-     * @brief removeselected removes all selected images from the gallery.
+     * @brief removes all selected images from the gallery.
      *
      */
     QList<int> removeselected();
@@ -41,7 +39,7 @@ public:
      *
      * @param pathList list of image paths
      */
-    void addImages(const QStringList& pathList);
+    void addImages(const QStringList &pathList);
 
     /**
      * @brief addImages adds images from an imagelist to gallery.
@@ -55,7 +53,7 @@ public:
      *
      * @param path directory path
      */
-    void concurrentAddImages(const QString& path);
+    void concurrentAddImages(const QString &path);
 
     /**
      * @brief concurrentAddImages adds images from an imagelist concurrently.
@@ -76,7 +74,7 @@ public:
      *
      * @param image image to add
      */
-    void addImage(const QImage& image);
+    void addImage(const QImage &image);
 
     /**
      * @brief setDragDropEnabled enables/disables drag&drop in the gallery.
@@ -131,8 +129,8 @@ protected slots:
     void resizeEvent(QResizeEvent *e);
 
 private slots:
-    void slot_isReady();
 
+    void slot_isReady();
 
 
 private:
@@ -161,7 +159,7 @@ private:
          *
          */
         void run() override {
-                 foreach(QString imageName, mImageList) {
+                    foreach(QString imageName, mImageList) {
                     if (abort) return;;
                     mGallery->addImage(QImage(imageName));
                 }
@@ -187,7 +185,7 @@ private:
 
     // used for resizing images with fixed-sized lists
     QList<QImage> mImageList;
-    int mRows = - 1;
+    int mRows = -1;
 
 };
 

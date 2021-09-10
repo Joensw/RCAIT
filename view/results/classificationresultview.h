@@ -12,22 +12,48 @@ namespace Ui {
     class ClassificationResultView;
 }
 
+/**
+ * @brief View wrapper for ClassificationResult objects.
+ * This is used as tabs in a ClassificationResultsWidget
+ */
 class ClassificationResultView : public GenericGraphicsView {
 Q_OBJECT
 
 protected:
-    // this event is called, when a new translator is loaded or the system language is changed
+    /**
+     * @brief this event is called, when a new translator is loaded or the system language is changed
+     */
     void changeEvent(QEvent *) override;
 
 public:
+    /**
+     * @brief Constructs a ClassificationResultView
+     * @param tabWidget TabWidget parent which will hold this object
+     * @param parent QWidget parent (optional)
+     */
     explicit ClassificationResultView(SavableResultsWidget *tabWidget, QWidget *parent = nullptr);
 
+    /**
+     * @brief Set the classification graphics to be displayed
+     * @param classificationGraphicsImage image to be displayed, passed via QSharedPointer
+     */
     void setClassificationGraphics(const QSharedPointer<QGraphicsItem> &classificationGraphicsImage) override;
 
+    /**
+     * @brief Sets the classification data shown in a table
+     * @param data map consists of an image index and a list of values as strings
+     */
     void setClassificationData(const QMap<int, QStringList> &data);
 
+    /**
+     * @brief Get the current classification graphics
+     * @return QSharedPointer pointing to the graphics
+     */
     [[maybe_unused]] [[nodiscard]] const QSharedPointer<QGraphicsItem> &getClassificationGraphics() const;
 
+    /**
+     * @brief Destructor for this class.
+     */
     ~ClassificationResultView() override;
 
 private:

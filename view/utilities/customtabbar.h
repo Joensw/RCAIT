@@ -22,14 +22,18 @@
  * @brief The CustomTabBar class is used in the CustomTabWidget
  */
 class CustomTabBar : public QTabBar {
+Q_OBJECT
 public:
-/**
- * @brief CustomTabBar constructor
- * @param tabWidget Associated TabWidget
- */
+    /**
+     * @brief CustomTabBar constructor
+     * @param tabWidget Associated TabWidget
+     */
     CustomTabBar(QTabWidget *tabWidget);
 
 protected:
+    /**
+     * @brief Overridden function to paint the widget
+     */
     void paintEvent(QPaintEvent *) override;
 
 private:

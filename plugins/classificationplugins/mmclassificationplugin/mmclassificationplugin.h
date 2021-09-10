@@ -64,6 +64,10 @@ private:
     QScopedPointer<QProcess> m_process;
     ProgressablePlugin* m_receiver;
 
+    QFileSystemWatcher *m_watcher;
+    QString m_workDir;
+    int m_maxIters;
+
     void initBaseModels();
     void deleteBaseModels();
     void saveModel(Model model);
@@ -75,6 +79,9 @@ private:
     static bool checkTrainMethodInput(const QStringList& labels, const QString& mainConfigPath, const QString& trainDatasetPath, const QString& validationDatasetPath, const QString& workingDirectoryPath);
 
     void adjustCheckpointCreation(const QString& runtimeConfigPath, int max_iters);
+
+    void connectIt();
+    void connectFileWatcher(QString path);
 
 public:
 
@@ -172,5 +179,7 @@ public:
 private slots:
     void slot_readOutPut();
     void slot_pluginFinished();
+    void slot_checkForLogFile(QString path);
+    void slot_readChangeInLogFile(QString path);
 };
 #endif // MMCLASSIFICATIONPLUGIN_H

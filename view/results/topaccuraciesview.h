@@ -11,32 +11,76 @@ namespace Ui {
     class TopAccuraciesView;
 }
 
+/**
+ * @brief This class is a view wrapper for top accuracies values
+ * of training results.
+ */
 class TopAccuraciesView : public GenericGraphicsView {
 Q_OBJECT
 
 protected:
-    // this event is called, when a new translator is loaded or the system language is changed
+    /**
+     * @brief this event is called, when a new translator is loaded or the system language is changed
+     */
     void changeEvent(QEvent *) override;
 
 public:
+    /**
+     * @brief Constructs a TopAccuraciesView
+     * @param tabWidget TabWidget parent which will hold this object
+     * @param parent QWidget parent (optional)
+     */
     explicit TopAccuraciesView(SavableResultsWidget *tabWidget, QWidget *parent = nullptr);
 
+    /**
+     * @brief Adds a new entry of top accuracies data
+     * @param identifier name of the corresponding training result
+     * @param top1 top1 accuracy value
+     * @param top5 top5 accuracy value
+     */
     void addTopAccuraciesEntry(const QString &identifier, double top1, double top5);
 
+    /**
+     * @brief Remove an entry of top accuracies data by identifier
+     * @param identifier name of the corresponding training result to be removed
+     */
     void removeTopAccuraciesEntry(const QString &identifier);
 
+    /**
+     * @brief Set the top accuracies graphics to be displayed
+     * @param topAccuraciesImage image to be displayed, passed via QSharedPointer
+     */
     void setTopAccuraciesGraphics(const QSharedPointer<QGraphicsItem> &topAccuraciesImage) override;
 
-    [[maybe_unused]] void updateGraphicsButton_setEnabled(bool enabled);
+    /**
+     * @brief Change the 'Update Graphics' button state
+     * @param enabled new state to be set to
+     */
+    [[maybe_unused]] void setUpdateGraphicsButtonState(bool enabled);
 
-    [[maybe_unused]] [[nodiscard]] bool updateGraphicsButton_isEnabled();
+    /**
+     * @brief Get the state of the 'Update Graphics' button
+     * @return button state
+     */
+    [[maybe_unused]] [[nodiscard]] bool getUpdateGraphicsButtonState();
 
+    /**
+     * @brief Get the current top accuracies graphics image
+     * @return QSharedPointer pointing to the graphics
+     */
     [[maybe_unused]] [[nodiscard]] const QSharedPointer<QGraphicsItem> &getTopAccuraciesImage() const;
 
+    /**
+     * @brief Destructor for this class.
+     */
     ~TopAccuraciesView() override;
 
 signals:
 
+    /**
+     * @brief Signal is emitted when the 'Update graphics' button is clicked.
+     * @param receiver receiver to get the graphics
+     */
     void sig_normal_requestTopAccuraciesGraphics(TopAccuraciesView *receiver);
 
 private slots:

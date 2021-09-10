@@ -5,6 +5,9 @@ Canvas::Canvas(bool autoScale) : QGraphicsView() {
     m_autoScale = autoScale;
 }
 
+/*!
+\reimp
+*/
 void Canvas::paintEvent(QPaintEvent *pQEvent) {
     const QGraphicsScene *pQGScene = scene();
     if (pQGScene && m_autoScale) {

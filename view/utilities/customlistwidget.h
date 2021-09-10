@@ -7,10 +7,6 @@
 #include <QScroller>
 
 
-//Declarations
-extern const QString selectedIconPath;
-extern const QString unselectedIconPath;
-
 /**
  * It is used in the UI for example for the project list and model list.
  * The elements of the list widget have specialized depictions to represent when and element has been selected / unselected.
@@ -18,6 +14,10 @@ extern const QString unselectedIconPath;
  */
 class CustomListWidget : public QListWidget {
 Q_OBJECT
+
+private:
+    static constexpr auto selectedIconPath = ":/UISymbols/ListItem_Selected.svg";
+    static constexpr auto unselectedIconPath = ":/UISymbols/ListItem_Unselected.svg";
 public:
     /**
      * @brief CustomListWidget create a new CustomListWidget

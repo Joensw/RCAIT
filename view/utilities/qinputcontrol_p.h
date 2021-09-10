@@ -57,21 +57,49 @@
 QT_BEGIN_NAMESPACE
 
 class QKeyEvent;
-class Q_GUI_EXPORT QInputControl : public QObject
-{
-    Q_OBJECT
+
+/**
+ * @brief Class required for key controls in tags fields.
+ */
+class Q_GUI_EXPORT QInputControl : public QObject {
+Q_OBJECT
 public:
+    /**
+     * @brief Edit types.
+     */
     enum Type {
         LineEdit,
         TextEdit
     };
 
+    /**
+     * @brief Default constructor.
+     * @param type Either LineEdit or TextEdit.
+     * @param parent QObject parent object
+     */
     explicit QInputControl(Type type, QObject *parent = nullptr);
 
+    /**
+     * @brief Check if the key event is accepted
+     * @param event QKeyEvent
+     * @return accepted or not
+     */
     bool isAcceptableInput(const QKeyEvent *event) const;
+
+    /**
+     * @brief Check if the key event is a text edit shortcut
+     * @param ke key event
+     * @return accepted or not
+     */
     static bool isCommonTextEditShortcut(const QKeyEvent *ke);
 
 protected:
+    /**
+     * @brief Protected constructor.
+     * @param type Either LineEdit or TextEdit.
+     * @param dd QObjectPrivate object
+     * @param parent QObject parent
+     */
     explicit QInputControl(Type type, QObjectPrivate &dd, QObject *parent = nullptr);
 
 private:
