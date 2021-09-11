@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tab_aitraining">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_configuration">
       <attribute name="title">
@@ -238,28 +238,34 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_preview">
-      <attribute name="title">
-       <string>Data Augmentation Preview</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_6">
-       <item>
-        <widget class="ImageGallery" name="widgetPreview" native="true"/>
-       </item>
-      </layout>
-     </widget>
+        <widget class="ImageGallery" name="tab_preview">
+            <attribute name="title">
+                <string>Data Augmentation Preview</string>
+            </attribute>
+        </widget>
+        <widget class="PythonConfigDiffWidget" name="tab_diff">
+            <attribute name="title">
+                <string>Compare Configuration Files</string>
+            </attribute>
+        </widget>
     </widget>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>ImageGallery</class>
-   <extends>QWidget</extends>
-   <header location="global">imagegallery.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
+    <customwidgets>
+        <customwidget>
+            <class>ImageGallery</class>
+            <extends>QWidget</extends>
+            <header location="global">imagegallery.h</header>
+            <container>1</container>
+        </customwidget>
+        <customwidget>
+            <class>PythonConfigDiffWidget</class>
+            <extends>QWidget</extends>
+            <header location="global">pythonconfigdiffwidget.h</header>
+            <container>1</container>
+        </customwidget>
+    </customwidgets>
  <resources/>
  <connections/>
 </ui>

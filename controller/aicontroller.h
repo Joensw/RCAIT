@@ -2,7 +2,7 @@
 #define AICONTROLLER_H
 
 #include <QString>
-#include <aitrainingwidget.h>
+#include <view/ai_training/aitrainingwidget.h>
 #include <datamanager.h>
 #include <inputimageswidget.h>
 #include "classifier.h"
