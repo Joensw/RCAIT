@@ -12,6 +12,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+SET(CMAKE_AUTOMOC_MOC_OPTIONS "-nw")
 
 set(QT_VERSION 6)
 set(SRCS "${CMAKE_CURRENT_SOURCE_DIR}/RCAIT.rc")
@@ -21,7 +22,7 @@ set(REQUIRED_LIBS_QUALIFIED Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Svg Qt6::SvgWid
 set(ALL_PROJECT_DIRS
         ${CMAKE_CURRENT_SOURCE_DIR}
         model model/automation model/pluginusage model/results model/utilities
-        view view/results view/utilities
+        view view/ai_training view/results view/utilities
         controller
         Resources
         plugins plugins/classificationplugins plugins/imageplugins plugins/results
