@@ -33,7 +33,7 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result, bool &suc
     const auto savePath = resultFolder.absoluteFilePath(TRAINING_JSON.arg(identifier));
     const auto JSON = trainingResult2JSON(result);
 
-    success &= writeJSON(JSON, savePath);
+    success &= JSON_Toolbox::writeJSONToFile(JSON, savePath);
 
     //Save images
     auto accCurveFilename = result->getAccuracyCurve()->getFullName();
@@ -55,7 +55,7 @@ void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *resul
     const auto savePath = resultFolder.absoluteFilePath(CLASSIFICATION_JSON.arg(identifier));
 
     auto JSON = classificationResult2JSON(result);
-    success &= writeJSON(JSON, savePath);
+    success &= JSON_Toolbox::writeJSONToFile(JSON, savePath);
 
     //Save images
     auto graphicsFilename = result->getClassificationGraphics()->getFullName();
@@ -129,21 +129,6 @@ QJsonObject ResultsExporter::classificationResult2JSON(const ClassificationResul
 
     //JSON object is prepared now, so return it
     return JSON;
-}
-
-bool ResultsExporter::writeJSON(const QJsonObject &jsonObject, const QString &filepath) {
-    QJsonDocument json_doc(jsonObject);
-    auto rawData = json_doc.toJson();
-
-    QFile save_file(filepath);
-    if (!save_file.open(QIODevice::WriteOnly)) {
-        qWarning() << "Failed to open save file " << filepath;
-        return false;
-    }
-    save_file.write(rawData);
-    save_file.close();
-
-    return true;
 }
 
 QDir ResultsExporter::createResultDir(const QString &baseDir, const QString &identifier) {

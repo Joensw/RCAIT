@@ -42,7 +42,7 @@ void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view, 
     Q_ASSERT(view);
 
     auto filepath = getResultDataPath(TRAINING_JSON, m_trainingResultsDir, runNameToCompare);
-    auto jsonObject = readJSON(filepath);
+    auto jsonObject = JSON_Toolbox::readJSONFromFile(filepath);
 
     auto top1 = jsonObject["top1"].toDouble();
     auto top5 = jsonObject["top5"].toDouble();
@@ -69,7 +69,7 @@ void ResultsImporter::slot_comparison_loadClassificationResultData(Classificatio
     view->setSaved(true);
 
     auto filepath = getResultDataPath(CLASSIFICATION_JSON, m_classificationResultsDir, runNameToCompare);
-    auto jsonObject = readJSON(filepath);
+    auto jsonObject = JSON_Toolbox::readJSONFromFile(filepath);
 
     auto json_classification_data = jsonObject["classification_data"].toArray();
     auto json_labels = jsonObject["labels"].toArray();
@@ -106,7 +106,7 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
     view->setSaved(true);
 
     auto filepath = getResultDataPath(TRAINING_JSON, m_trainingResultsDir, runNameToCompare);
-    auto jsonObject = readJSON(filepath);
+    auto jsonObject = JSON_Toolbox::readJSONFromFile(filepath);
 
     auto json_accuracy_data = jsonObject["accuracy_data"].toArray();
     auto json_class_labels = jsonObject["class_labels"].toArray();
@@ -200,27 +200,4 @@ void ResultsImporter::passResultGraphicsMultiplexer(GenericGraphicsView *receive
             qDebug() << "Attempted to set unknown result graphics type";
             break;
     }
-}
-
-QJsonObject ResultsImporter::readJSON(const QString &filepath) {
-    auto file = QFile(filepath);
-    if (!file.open(QIODevice::ReadOnly)) {
-        qWarning() << "Json file couldn't be opened/found";
-        return {};
-    }
-
-    QByteArray byteArray = file.readAll();
-    file.close();
-
-    //Format the content of the byteArray as QJsonDocument
-    //and check on parse Errors
-    QJsonParseError parseError;
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(byteArray, &parseError);
-    if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Parse error at " << parseError.offset << ":" << parseError.errorString();
-        return {};
-    }
-
-    //Create a JSON object and fill it with the ByteArray content
-    return jsonDoc.object();
 }

@@ -12,6 +12,7 @@
 #include <QJsonArray>
 #include "topaccuraciesgraphics.h"
 #include "resultsprocessor.h"
+#include <json_toolbox.h>
 
 /**
  * @brief Dummy variable to achieve optional parameters
@@ -72,14 +73,6 @@ private:
      * @return QDir of the subfolder
      */
     static QDir createResultDir(const QString &baseDir, const QString &identifier);
-
-    /**
-     * @brief Write a QJsonObject into a JSON file
-     * @param jsonObject object to write to file
-     * @param filepath path to store JSON file
-     * @return success state
-     */
-    static bool writeJSON(const QJsonObject &jsonObject, const QString &filepath);
 
     /**
      * @brief Saves a given file to another place, removes the original on success.

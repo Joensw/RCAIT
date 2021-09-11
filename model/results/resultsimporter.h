@@ -10,6 +10,7 @@
 #include <classificationresultview.h>
 #include "topaccuraciesgraphics.h"
 #include "resultsprocessor.h"
+#include <json_toolbox.h>
 
 /**
  * @brief The <code>ResultsImporter</code> is used to import all types of specialised results
@@ -122,13 +123,6 @@ private:
     static void
     loadGraphicsInView(GenericGraphicsView *receiver, const QString &baseDir,
                        const QString &resultsFolder);
-
-    /**
-     * @brief Read a JSON file into a QJsonObject
-     * @param filepath path of JSON file
-     * @return QJsonObject containing the file data in a usable format
-     */
-    [[nodiscard]] static QJsonObject readJSON(const QString &filepath);
 
     /**
      * @brief Helper method. Pass result to the right method via multiplexer
