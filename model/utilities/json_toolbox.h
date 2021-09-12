@@ -1,6 +1,11 @@
 #ifndef JSON_TOOLBOX_H
 #define JSON_TOOLBOX_H
 
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonParseError>
+
 /**
  * @brief This class contains utilities for converting, importing and exporting JSON objects
  */
@@ -76,5 +81,39 @@ inline bool JSON_Toolbox::writeJSONToFile(const QJsonObject &jsonObject, const Q
 
     return true;
 }
+
+/**
+     * @brief Read a QJsonArray into a list of arbitrary type
+     * @tparam T desired type
+     * @param json_array QJsonArray to be read
+     * @return list of desired type
+     */
+template<typename T>
+static QList<T> QJsonArray_toList(const QJsonArray &json_array) {
+    QList<T> list;
+
+    for (const auto &item: json_array) {
+        Q_ASSERT(item.toVariant().canConvert<T>());
+        list << qvariant_cast<T>(item.toVariant());
+    }
+    return list;
+}
+
+/**
+ * @brief Read any type of QList and make it a QJsonArray
+ * @tparam T arbitrary type
+ * @param list list to be converted
+ * @return QJsonArray containing the same elements
+ */
+template<typename T>
+static QJsonArray QJsonArray_fromAnyList(const QList<T> &list) {
+    QJsonArray JSONArray;
+
+    for (const auto &value: list)
+        JSONArray << value;
+
+    return JSONArray;
+}
+
 
 #endif // JSON_TOOLBOX_H

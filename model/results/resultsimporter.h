@@ -131,23 +131,6 @@ private:
      * @param type internal type number for each result type
      */
     static void passResultGraphicsMultiplexer(GenericGraphicsView *receiver, const QFileInfo &file, int type);
-
-    /**
-     * @brief Read a QJsonArray into a list of arbitrary type
-     * @tparam T desired type
-     * @param json_array QJsonArray to be read
-     * @return list of desired type
-     */
-    template<typename T>
-    static QList<T> QJsonArray_toList(const QJsonArray &json_array) {
-        QList<T> list;
-
-        for (const auto &item: json_array) {
-            Q_ASSERT(item.toVariant().canConvert<T>());
-            list << qvariant_cast<T>(item.toVariant());
-        }
-        return list;
-    }
 };
 
 #endif // RESULTSIMPORTER_H

@@ -97,22 +97,6 @@ private:
      */
     static QJsonObject
     classificationResult2JSON(const ClassificationResult *result);
-
-    /**
-     * @brief Read any type of QList and make it a QJsonArray
-     * @tparam T arbitrary type
-     * @param list list to be converted
-     * @return QJsonArray containing the same elements
-     */
-    template<typename T>
-    static QJsonArray QJsonArray_fromAnyList(const QList<T> &list) {
-        QJsonArray JSONArray;
-
-        for (const auto &value: list)
-            JSONArray << value;
-
-        return JSONArray;
-    }
 };
 
 #endif // RESULTSEXPORTER_H
