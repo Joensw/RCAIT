@@ -177,8 +177,8 @@ public:
     QWidget* getDataAugmentationInputWidget() override;
 
 private slots:
-    void slot_readOutPut();
-    void slot_pluginFinished();
+    void slot_readClassifyOutput();
+
     void slot_checkForLogFile(QString path);
     void slot_readChangeInLogFile(QString path);
 };
