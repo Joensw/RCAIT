@@ -5,6 +5,8 @@
 #include <QPlainTextEdit>
 #include <QFileDialog>
 #include <QFile>
+#include <filediff.h>
+#include "codeeditor.h"
 
 namespace Ui {
     class PythonConfigDiffWidget;
@@ -31,6 +33,8 @@ private:
     static constexpr auto FONT_SIZE = 8;
 
     Ui::PythonConfigDiffWidget *ui;
+    QSharedPointer<CodeEditor> m_leftCodeEditor, m_rightCodeEditor;
+    QScopedPointer<FileDiff> m_fileDiff;
     QString m_leftFilePath;
     QString m_rightFilePath;
 

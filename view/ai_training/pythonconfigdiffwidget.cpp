@@ -6,6 +6,10 @@ PythonConfigDiffWidget::PythonConfigDiffWidget(QWidget *parent) :
         ui(new Ui::PythonConfigDiffWidget) {
     ui->setupUi(this);
 
+    m_leftCodeEditor.reset(ui->codeEditor_left, &QObject::deleteLater);
+    m_rightCodeEditor.reset(ui->codeEditor_right, &QObject::deleteLater);
+    m_fileDiff.reset(new FileDiff(m_leftCodeEditor, m_rightCodeEditor));
+
     QFont font(FONT_NAME, FONT_SIZE);
     ui->codeEditor_left->setFont(font);
     ui->codeEditor_right->setFont(font);
@@ -35,6 +39,7 @@ void PythonConfigDiffWidget::on_pushButton_loadRightFile_clicked() {
 
 
 void PythonConfigDiffWidget::on_pushButton_startDiff_clicked() {
+    m_fileDiff->diff(m_leftFilePath, m_rightFilePath);
 }
 
 QString PythonConfigDiffWidget::openFile(QPlainTextEdit *codeView) {
@@ -47,7 +52,7 @@ QString PythonConfigDiffWidget::openFile(QPlainTextEdit *codeView) {
 
     QFile file(fileName);
     if (file.open(QFile::ReadOnly | QFile::Text)) {
-        codeView->setPlainText(file.readAll());
+        //codeView->setPlainText(file.readAll());
         return fileName;
     }
     return {};

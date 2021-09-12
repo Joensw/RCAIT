@@ -77,7 +77,7 @@ int CodeEditor::lineNumberAreaWidth() {
         ++digits;
     }
 
-    int space = 5 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits;
+    int space = 7 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits;
 
     return space;
 }
@@ -143,8 +143,11 @@ void CodeEditor::highlightCurrentLine() {
 
 void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event) {
     QPainter painter(lineNumberArea);
-    QColor color("#EEEEEE");
-    painter.fillRect(event->rect(), color);
+    QColor background("#EEEEEE");
+    QColor separator("#979797");
+    painter.fillRect(event->rect(), background);
+    painter.setPen(QPen(separator));
+    painter.drawLine(event->rect().topRight(), event->rect().bottomRight());
 
 //![extraAreaPaintEvent_0]
 
