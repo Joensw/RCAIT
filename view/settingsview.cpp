@@ -26,6 +26,9 @@ SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames,
     ui->pluginWidget->addWidget(&*mGlobalSettingsWidget);
 
     addPluginWidgets(pluginNames, pluginConfigurationWidgets);
+
+    //Without this the GlobalSettingsWidget ist shown, but the index of the list is at -1, leading to crashes.
+    ui->pluginList->setCurrentRow(0);
 }
 
 void SettingsView::addPluginWidgets(QStringList pluginNames, QList<QWidget *> pluginConfigurationWidgets) {
