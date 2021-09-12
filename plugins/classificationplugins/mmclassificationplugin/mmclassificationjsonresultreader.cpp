@@ -51,20 +51,29 @@ QMap<int, QPair<double, double>> MMClassificationJsonResultReader::getAccuracyCu
     inFile.close();
 
     QMap<int, QPair<double, double>> accuracyCurve = {};
-
     for (int j = 1; j < data.size(); j++) { // first line contains only information about the environment
-        QJsonParseError errorPtr;
-        QJsonDocument doc = QJsonDocument::fromJson(data[j].toUtf8(), &errorPtr);
-        if (doc.isNull()) {
-            qWarning() << "Parse failed";
-        }
-        QJsonObject rootObj = doc.object();
-        if (rootObj.contains("accuracy_top-1")) {
-            double accuracy_top_1_value_training = rootObj.value("top-1").toDouble(); // top 1 accuracy of the training
-            double accuracy_top_1_value_validation = rootObj.value("accuracy_top-1").toDouble(); // top 1 accuracy of the validation
-            evaluation_iteration += evaluation_frequency;
-            QPair<double, double> valuePair = {accuracy_top_1_value_training, accuracy_top_1_value_validation};
-            accuracyCurve.insert(evaluation_iteration, valuePair);
+        if (!data[j].toUtf8().isEmpty()) {
+            QJsonParseError errorPtr;
+            QJsonDocument doc = QJsonDocument::fromJson(data[j].toUtf8(), &errorPtr);
+            if (doc.isNull()) {
+                    qWarning() << "Parse failed";
+            }
+            QJsonObject rootObj = doc.object();
+            if (rootObj.contains("accuracy_top-1")) {
+                double accuracy_top_1_value_validation = rootObj.value("accuracy_top-1").toDouble(); // accuracy of the validation step
+                evaluation_iteration += evaluation_frequency;
+                double accuracy_top_1_value_training = 0.0;
+                QJsonDocument previousDoc = QJsonDocument::fromJson(data[j-1].toUtf8(), &errorPtr);
+                if (previousDoc.isNull()) {
+                    qWarning() << "Parse failed";
+                }
+                QJsonObject previousRootObj = previousDoc.object();
+                if (previousRootObj.contains("top-1")) {
+                    accuracy_top_1_value_training = previousRootObj.value("top-1").toDouble(); // accuracy of the training step
+                }
+                QPair<double, double> valuePair = {accuracy_top_1_value_training, accuracy_top_1_value_validation};
+                accuracyCurve.insert(evaluation_iteration, valuePair);
+            }
         }
     }
     return accuracyCurve;

@@ -398,7 +398,6 @@ MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QStri
     m_workDir = workingDirectoryPath;
     m_watcher->addPath(m_workDir);
     connectIt();
-
     m_process.reset(new QProcess);
     m_process->setProcessEnvironment(env);
     m_process->setReadChannel(QProcess::StandardOutput);
@@ -527,6 +526,8 @@ MMClassificationPlugin::classify(QString inputImageDirPath, QString trainDataset
                        % outputConfidenceScoreConsoleArgumentName % "=" % pathToConfidenceScoreResultFile;
 
     m_process.reset(new QProcess);
+    m_process->setReadChannel(QProcess::StandardOutput);
+    connect(&*m_process, &QProcess::readyReadStandardOutput, this, &MMClassificationPlugin::slot_readClassifyOutput);
     m_process->startCommand(fullCommand);
     m_process->waitForStarted();
     m_process->waitForFinished();
@@ -566,12 +567,21 @@ QWidget *MMClassificationPlugin::getDataAugmentationInputWidget() {
     return dataAugmentationInput;
 }
 
-void MMClassificationPlugin::slot_readOutPut() {
-
-}
-
-void MMClassificationPlugin::slot_pluginFinished() {
-
+void MMClassificationPlugin::slot_readClassifyOutput()
+{
+    const QString proportionRegularExpressionText = "[0-9]+\\/[0-9]+";
+    QString line = QString::fromLocal8Bit(m_process->readLine());
+    if (!line.isEmpty()) {
+        QRegularExpression regularExpression(proportionRegularExpressionText);
+        QRegularExpressionMatch match;
+        match = regularExpression.match(line);
+        if (match.hasMatch()) {
+             QString lastCapturedProportion = match.captured(match.lastCapturedIndex());
+             QStringList pieces = lastCapturedProportion.split( "/" );
+             int progress = qCeil((pieces.at(0).toInt()*100)/pieces.at(1).toInt());
+             m_receiver->slot_makeProgress(progress);
+        }
+    }
 }
 
 void MMClassificationPlugin::slot_checkForLogFile(QString path)
@@ -627,7 +637,7 @@ void MMClassificationPlugin::slot_readChangeInLogFile(QString path)
 
 void MMClassificationPlugin::connectIt()
 {
-   QObject::connect(m_watcher, &QFileSystemWatcher::directoryChanged, this, &MMClassificationPlugin::slot_checkForLogFile);
+   connect(m_watcher, &QFileSystemWatcher::directoryChanged, this, &MMClassificationPlugin::slot_checkForLogFile);
 }
 
 void MMClassificationPlugin::connectFileWatcher(const QString path)
