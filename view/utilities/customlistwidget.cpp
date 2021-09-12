@@ -15,10 +15,16 @@ CustomListWidget::CustomListWidget(QWidget *parent) : QListWidget(parent) {
 \reimp
 */
 void CustomListWidget::addItem(const QString &label) {
+    /*
     QListWidgetItem item(this);
     item.setText(label);
     item.setIcon(QIcon(unselectedIconPath));
-    QListWidget::addItem(&item);
+    */
+    // #####temporoary fix######## I had to chang this back to how it was, because it caused the list to no loner update the visuals :D
+    auto *item = new QListWidgetItem(this);
+    item->setText(label);
+    item->setIcon(QIcon(unselectedIconPath));
+    QListWidget::addItem(item);
 }
 
 /*!
