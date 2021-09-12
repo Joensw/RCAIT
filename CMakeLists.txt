@@ -41,17 +41,21 @@ file(GLOB_RECURSE SOURCE_FILES
         "Resources/*"
         )
 
-list(FILTER SOURCE_FILES EXCLUDE REGEX "/test/.*" )
-list(FILTER SOURCE_FILES EXCLUDE REGEX "/flickrplugin/.*" )
-list(FILTER SOURCE_FILES EXCLUDE REGEX "/folderplugin/.*" )
-list(FILTER SOURCE_FILES EXCLUDE REGEX "/bingplugin/.*" )
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/test/.*")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/flickrplugin/.*")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/folderplugin/.*")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/bingplugin/.*")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "/mmclassificationplugin/.*")
 
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/Resources/Fonts/Inter-Regular.otf ${CMAKE_CURRENT_BINARY_DIR}/Inter-Regular.otf COPYONLY)
-CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/confusionmatrix.py ${CMAKE_CURRENT_BINARY_DIR}/confusionmatrix.py COPYONLY)
+
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/utilities/difflibparser.py ${CMAKE_CURRENT_BINARY_DIR}/difflibparser.py COPYONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/utilities/filediff.py ${CMAKE_CURRENT_BINARY_DIR}/filediff.py COPYONLY)
+
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/accuracycurve.py ${CMAKE_CURRENT_BINARY_DIR}/accuracycurve.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/topaccuraciesgraphics.py ${CMAKE_CURRENT_BINARY_DIR}/topaccuraciesgraphics.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/classificationgraphics.py ${CMAKE_CURRENT_BINARY_DIR}/classificationgraphics.py COPYONLY)
+
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/flickrplugin/flickrapi_photosearch.py ${CMAKE_CURRENT_BINARY_DIR}/flickrapi_photosearch.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/bingplugin/bingapi_photosearch.py ${CMAKE_CURRENT_BINARY_DIR}/bingapi_photosearch.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/flickrplugin/test.py ${CMAKE_CURRENT_BINARY_DIR}/test.py COPYONLY)
@@ -68,9 +72,13 @@ file(GLOB TS_FILES
 # Use qt_create_translation for finding new translatable strings.
 # Use qt_add_translation otherwise (much faster)
 # Reload CMake Project if you changed this. Change it back later (!)
+option(CREATE_NEW_TRANSLATIONS "Find new strings and put them in ts files" OFF)
 
-#qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-qt_add_translation(QM_FILES ${TS_FILES})
+if (CREATE_NEW_TRANSLATIONS)
+    qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+else ()
+    qt_add_translation(QM_FILES ${TS_FILES})
+endif (CREATE_NEW_TRANSLATIONS)
 
 add_executable(${PROJECT_NAME}
         ${SOURCE_FILES}
@@ -81,9 +89,9 @@ add_executable(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${REQUIRED_LIBS_QUALIFIED})
 
-if(QT_VERSION_MAJOR EQUAL 6)
+if (QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(${PROJECT_NAME})
-endif()
+endif ()
 
 #enable_testing()
 #add_subdirectory(lib/googletest-master)
