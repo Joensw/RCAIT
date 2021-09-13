@@ -8,14 +8,15 @@ enum GraphicsType {
     CHANGED = 3,         // line has incremental changes on the left file, the diff is represented
 };
 
-FileDiff::FileDiff(const QSharedPointer<QPlainTextEdit> &left, const QSharedPointer<QPlainTextEdit> &right)
-        : m_leftTextEdit(left),
-          m_rightTextEdit(right) {
+FileDiff::FileDiff(const QSharedPointer<CodeEditor> &left, const QSharedPointer<CodeEditor> &right)
+        : m_leftCodeEditor(left),
+          m_rightCodeEditor(right),
+          m_maxLineWidth(0) {
 }
 
 QString FileDiff::color(const QString &text, QColor color) {
     auto hex = color.name();
-    return QString("<span style=\"background-color:%1\">%2</span>").arg(hex, text);
+    return HIGHLIGHTED_TEXT_TEMPLATE.arg(hex, text);
 }
 
 void FileDiff::slot_parseLine() {
@@ -31,35 +32,36 @@ void FileDiff::slot_parseLine() {
         auto leftchanges = QJsonArray_toList<int>(json_leftchanges);
         auto rightchanges = QJsonArray_toList<int>(json_rightchanges);
 
+        m_maxLineWidth = std::max({m_maxLineWidth, line.size(), newline.size()});
         QString tempLeft, tempRight;
         switch (code) {
             case SIMILAR:
-                m_leftTextEdit->appendHtml(line);
-                m_rightTextEdit->appendHtml(line);
+                m_leftCodeEditor->appendHtml(line);
+                m_rightCodeEditor->appendHtml(line);
                 break;
             case RIGHTONLY:
-                m_leftTextEdit->appendHtml(color("\n", GREY)); //gray
-                m_rightTextEdit->appendHtml(color(line, GREEN)); //green
+                m_leftCodeEditor->appendPlaceholder();
+                m_rightCodeEditor->appendHtml(color(line, GREEN));
                 break;
             case LEFTONLY:
-                m_leftTextEdit->appendHtml(color(line, RED)); //red
-                m_rightTextEdit->appendHtml(color("\n", GREY)); //gray
+                m_leftCodeEditor->appendHtml(color(line, RED));
+                m_rightCodeEditor->appendPlaceholder();
                 break;
             case CHANGED:
-                tempLeft.reserve(color(line, RED).length());
+                tempLeft.reserve(HIGHLIGHTED_TEXT_TEMPLATE_LENGTH * line.length());
                 for (int i = 0; i < line.length(); i++) {
-                    auto letter = line[i];
-                    QColor tone = (leftchanges.contains(i)) ? DARKRED : RED;
-                    tempLeft.append(color(letter, tone)); //darkred if i in leftchanges else red
+                    QColor tone = leftchanges.contains(i) ? DARKRED : RED;
+                    tempLeft.append(color(line[i], tone));
                 }
-                tempRight.reserve(color(newline, GREEN).length());
+
+                tempRight.reserve(HIGHLIGHTED_TEXT_TEMPLATE_LENGTH * newline.length());
                 for (int i = 0; i < newline.length(); i++) {
-                    auto letter = newline[i];
-                    QColor tone = (rightchanges.contains(i)) ? DARKGREEN : GREEN;
-                    tempRight.append(color(letter, tone)); //darkgreen if i in rightchanges else green
+                    QColor tone = rightchanges.contains(i) ? DARKGREEN : GREEN;
+                    tempRight.append(color(newline[i], tone));
                 }
-                m_leftTextEdit->appendHtml(tempLeft);
-                m_rightTextEdit->appendHtml(tempRight);
+
+                m_leftCodeEditor->appendHtml(tempLeft);
+                m_rightCodeEditor->appendHtml(tempRight);
                 break;
             default:
                 qDebug() << "Unknown code received. Ignoring.";
@@ -68,7 +70,14 @@ void FileDiff::slot_parseLine() {
     }
 }
 
+void FileDiff::slot_processFinished(int exitCode, QProcess::ExitStatus exitStatus) {
+    if (exitCode == 0 && exitStatus == QProcess::NormalExit) {
+        emit sig_diffFinished(m_maxLineWidth);
+    }
+}
+
 void FileDiff::diff(const QString &file1, const QString &file2) {
+    m_maxLineWidth = 0;
     auto pythonScript = QFileInfo("filediff.py");
     auto command = "python";
     auto args = {pythonScript.absoluteFilePath(), file1, file2};
@@ -76,6 +85,8 @@ void FileDiff::diff(const QString &file1, const QString &file2) {
     m_process.reset(new QProcess);
 
     connect(&*m_process, &QProcess::readyReadStandardOutput, this, &FileDiff::slot_parseLine);
+    connect(&*m_process, &QProcess::finished, this, &FileDiff::slot_processFinished);
+
     m_process->setReadChannel(QProcess::StandardOutput);
 
     m_process->start(command, args);

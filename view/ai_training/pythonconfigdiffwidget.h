@@ -22,11 +22,13 @@ public:
 
 private slots:
 
-    void on_pushButton_loadLeftFile_clicked();
+    [[maybe_unused]] void on_pushButton_loadLeftFile_clicked();
 
-    void on_pushButton_loadRightFile_clicked();
+    [[maybe_unused]] void on_pushButton_loadRightFile_clicked();
 
-    void on_pushButton_startDiff_clicked();
+    [[maybe_unused]] void on_pushButton_startDiff_clicked();
+
+    void slot_diffFinished(qsizetype longestLine);
 
 private:
     static constexpr auto FONT_NAME = "Inter Monospace";
@@ -38,7 +40,7 @@ private:
     QString m_leftFilePath;
     QString m_rightFilePath;
 
-    QString openFile(QPlainTextEdit *);
+    QString openFile(CodeEditor *codeView);
 };
 
 #endif // PYTHONCONFIGDIFFWIDGET_H
