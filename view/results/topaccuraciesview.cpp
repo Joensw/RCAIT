@@ -34,8 +34,8 @@ void TopAccuraciesView::addTopAccuraciesEntry(const QString &identifier, double 
     int row = table->addTableRow(identifier, {top1Str, top5Str});
 
     //Set colors matching the graphical result
-    table->at(row, 0)->setBackground(QBrush(TOP1_COLOR));
-    table->at(row, 1)->setBackground(QBrush(TOP5_COLOR));
+    table->at(row, 0)->setBackground(TOP1_COLOR);
+    table->at(row, 1)->setBackground(TOP5_COLOR);
 }
 
 void TopAccuraciesView::removeTopAccuraciesEntry(const QString &identifier) {
