@@ -41,8 +41,7 @@ QString FlickrSettings::getPythonPath(){
 }
 
 
-QString FlickrSettings::getaAPIKey()
-{
+QString FlickrSettings::getAPIKey() {
     return m_settings.value(m_apiKey).toString();
 }
 

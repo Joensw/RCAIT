@@ -13,6 +13,7 @@
 #include <QLineEdit>
 #include <QProcess>
 #include <QProcessEnvironment>
+#include <QStringBuilder>
 #include "imageloaderplugin.h"
 #include "flickrsettings.h"
 #include "progressableplugin.h"
@@ -44,7 +45,8 @@ private:
    ProgressablePlugin* m_receiver;
    // in case something goes wrong (could be read from command line)
    bool m_success = true;
-   QString createCommandlineString( QString path,  int imageCount,  QStringList* label);
+
+    QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
 
 private slots:
     void slot_abort();
