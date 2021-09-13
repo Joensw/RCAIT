@@ -66,17 +66,19 @@ QT_END_NAMESPACE
 
 class LineNumberArea;
 
-//![codeeditordefinition]
-
 class CodeEditor : public QPlainTextEdit {
 Q_OBJECT
 
 public:
-    CodeEditor(QWidget *parent = nullptr);
+    explicit CodeEditor(QWidget *parent = nullptr);
 
     void lineNumberAreaPaintEvent(QPaintEvent *event);
 
     int lineNumberAreaWidth();
+
+    void appendPlaceholder(const QString &placeholder = {});
+
+    void reset();
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
@@ -85,23 +87,21 @@ private slots:
 
     void updateLineNumberAreaWidth(int newBlockCount);
 
-    void highlightCurrentLine();
-
     void updateLineNumberArea(const QRect &rect, int dy);
 
 private:
     QWidget *lineNumberArea;
-};
+    QSet<int> m_placeholderLines;
 
-//![codeeditordefinition]
-//![extraarea]
+    using QPlainTextEdit::clear;
+};
 
 class LineNumberArea : public QWidget {
 public:
-    LineNumberArea(CodeEditor *editor) : QWidget(editor), codeEditor(editor) {}
+    explicit LineNumberArea(CodeEditor *editor) : QWidget(editor), codeEditor(editor) {}
 
-    QSize sizeHint() const override {
-        return QSize(codeEditor->lineNumberAreaWidth(), 0);
+    [[nodiscard]] QSize sizeHint() const override {
+        return {codeEditor->lineNumberAreaWidth(), 0};
     }
 
 protected:
@@ -112,7 +112,4 @@ protected:
 private:
     CodeEditor *codeEditor;
 };
-
-//![extraarea]
-
 #endif
