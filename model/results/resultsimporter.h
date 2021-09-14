@@ -103,6 +103,7 @@ private:
     ProjectManager *m_projectManager;
     QString m_trainingResultsDir;
     QString m_classificationResultsDir;
+    QString m_workingDir;
 
     /**
      * @brief Get the path of a result data file (JSON), if existent.

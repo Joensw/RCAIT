@@ -487,7 +487,7 @@ MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QStri
                                                           validationAnnotationFilePath,
                                                           pathToWithoutMetricResultFile);
 
-    return new TrainingResult(accuracyCurveData, labels, confusionMatrixData,
+    return new TrainingResult(workingDirectoryPath, accuracyCurveData, labels, confusionMatrixData,
                               mostMisclassifiedImages, top1, top5);
 }
 
@@ -560,7 +560,7 @@ MMClassificationPlugin::classify(QString inputImageDirPath, QString trainDataset
         data = m_jsonReader.readConfidenceScores(pathToConfidenceScoreResultFile, inputImageFilePaths);
         qDebug() << "content: " << data;
     }
-    return new ClassificationResult(data, labels, additionalMetrics);
+    return new ClassificationResult(workingDirPath, data, labels, additionalMetrics);
 }
 
 QWidget *MMClassificationPlugin::getDataAugmentationInputWidget() {

@@ -105,7 +105,7 @@ ClassificationPluginManager::train(const QString &pluginName, QString modelName,
                                    ProgressablePlugin *receiver) {
     if (!m_plugins.contains(pluginName)) {
         qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
-        return new TrainingResult({}, {}, {}, {}, 0, 0);
+        return new TrainingResult(workingDirectory, {}, {}, {}, {}, 0, 0);
     }
     return m_plugins.value(pluginName)->train(std::move(modelName), std::move(trainDatasetPath),
                                               std::move(validationDatasetPath), std::move(workingDirectory),

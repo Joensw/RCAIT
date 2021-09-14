@@ -21,7 +21,7 @@ private:
     double m_top5Accuracy;
 
 public:
-    TrainingResult(const QMap<int, QPair<double, double>> &accuracyCurveData,
+    TrainingResult(const QString &storageDir, const QMap<int, QPair<double, double>> &accuracyCurveData,
                    const QStringList &classLabels, const QList<int> &confusionMatrixValues,
                    QStringList mostMisclassifiedImages, double top1Accuracy, double top5Accuracy,
                    const QStringList &additionalResults = {});
@@ -30,9 +30,9 @@ public:
 
     TrainingResult &operator=(const TrainingResult &) = delete;
 
-    const QSharedPointer<AccuracyCurve> &getAccuracyCurve() const;
+    [[nodiscard]] const QSharedPointer<AccuracyCurve> &getAccuracyCurve() const;
 
-    const QSharedPointer<ConfusionMatrix> &getConfusionMatrix() const;
+    [[nodiscard]] const QSharedPointer<ConfusionMatrix> &getConfusionMatrix() const;
 
     [[nodiscard]] double getTop1Accuracy() const;
 

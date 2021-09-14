@@ -17,10 +17,10 @@
 #include <QObject>
 #include <QtWidgets/QWidget>
 #include <QtPlugin>
-
+#include <QStringBuilder>
 
 /**
- * @brief The FolderPlugin class is an ImageLoaderPlugin thst uses existing folders as image sources.
+ * @brief The FolderPlugin class is an ImageLoaderPlugin that uses existing folders as image sources.
  *
  */
 class FolderPlugin : public QObject, ImageLoaderPlugin
@@ -37,9 +37,9 @@ public:
      * @param receiver to receive progress and status messages
      * @param imageCount ignored by this plugin
      * @param label ignored by this plugin
-     * @return true if loading was successfull
+     * @return true if loading was successful
      */
-    bool loadImages(const QString path, ProgressablePlugin *receiver, const int imageCount, const QStringList label) override;
+    bool loadImages(QString path, ProgressablePlugin *receiver, int /*imageCount*/, QStringList /*label*/) override;
 
     /**
      * @brief getConfigurationWidget gets config widget of plugin.
@@ -82,7 +82,8 @@ private:
     int mode = 0;
     QString imageDir;
     bool abort = false;
-    bool addLabel(QStringList list, QDir in, QDir out);
+
+    [[nodiscard]] bool addLabel(const QStringList &list, const QDir &in, QDir out) const;
 
 };
 

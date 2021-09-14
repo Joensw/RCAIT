@@ -79,7 +79,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_loadLeftFile">
        <property name="text">
-        <string>Load left file</string>
+        <string>► Load left file</string>
        </property>
       </widget>
      </item>
@@ -100,11 +100,25 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_startDiff">
-       <property name="text">
-        <string>Diff</string>
-       </property>
-      </widget>
+         <widget class="QPushButton" name="pushButton_startDiff">
+             <property name="text">
+                 <string/>
+             </property>
+             <property name="icon">
+                 <iconset resource="../../Resources/UI_Icons.qrc">
+                     <normaloff>:/UISymbols/UI_Diff_Icon.svg</normaloff>:/UISymbols/UI_Diff_Icon.svg
+                 </iconset>
+             </property>
+             <property name="iconSize">
+                 <size>
+                     <width>20</width>
+                     <height>20</height>
+                 </size>
+             </property>
+             <property name="flat">
+                 <bool>true</bool>
+             </property>
+         </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer_3">
@@ -125,7 +139,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_loadRightFile">
        <property name="text">
-        <string>Load right file</string>
+           <string>Load right file ◄</string>
        </property>
       </widget>
      </item>
@@ -146,13 +160,15 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>CodeEditor</class>
-   <extends>QPlainTextEdit</extends>
-   <header location="global">codeeditor.h</header>
-  </customwidget>
- </customwidgets>
- <resources/>
- <connections/>
+    <customwidgets>
+        <customwidget>
+            <class>CodeEditor</class>
+            <extends>QPlainTextEdit</extends>
+            <header location="global">codeeditor.h</header>
+        </customwidget>
+    </customwidgets>
+    <resources>
+        <include location="../../Resources/UI_Icons.qrc"/>
+    </resources>
+    <connections/>
 </ui>

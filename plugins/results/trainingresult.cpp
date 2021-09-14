@@ -2,11 +2,11 @@
 
 #include <utility>
 
-TrainingResult::TrainingResult(const QMap<int, QPair<double, double>> &accuracyCurveData,
+TrainingResult::TrainingResult(const QString &storageDir, const QMap<int, QPair<double, double>> &accuracyCurveData,
                                const QStringList &classLabels, const QList<int> &confusionMatrixValues,
                                QStringList mostMisclassifiedImages, double top1Accuracy, double top5Accuracy,
                                const QStringList &additionalResults)
-        : Result(additionalResults),
+        : Result(storageDir, additionalResults),
           m_accuracyCurveData(accuracyCurveData),
           m_classLabels(classLabels),
           m_confusionMatrixValues(confusionMatrixValues),
@@ -14,11 +14,10 @@ TrainingResult::TrainingResult(const QMap<int, QPair<double, double>> &accuracyC
           m_top5Accuracy(top5Accuracy),
           m_mostMisclassifiedImages(std::move(mostMisclassifiedImages)) {
 
-    auto tempDir = ProjectManager::getInstance().getProjectImageTempDir();
     auto savable_id = getSavableIdentifier();
 
-    m_accCurve.reset(new AccuracyCurve(tempDir, savable_id, accuracyCurveData));
-    m_confusionMatrix.reset(new ConfusionMatrix(tempDir, savable_id, classLabels, confusionMatrixValues));
+    m_accCurve.reset(new AccuracyCurve(storageDir, savable_id, accuracyCurveData));
+    m_confusionMatrix.reset(new ConfusionMatrix(storageDir, savable_id, classLabels, confusionMatrixValues));
 }
 
 const QMap<int, QPair<double, double>> &TrainingResult::getAccuracyCurveData() const {

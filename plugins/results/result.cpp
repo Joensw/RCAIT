@@ -2,8 +2,10 @@
 #include <utility>
 #include "result.h"
 
-Result::Result(QStringList additionalResults) : m_additionalResults(std::move(additionalResults)){
-    m_identifier = generateTimestamp();
+Result::Result(const QString &storageDir, QStringList additionalResults)
+        : m_identifier(generateTimestamp()),
+          m_storageDir(storageDir),
+          m_additionalResults(std::move(additionalResults)) {
 }
 
 QString Result::generateTimestamp() {
@@ -16,17 +18,17 @@ QString Result::generateExtendedTimestamp() {
     return date.toString("dd_MM_yy--hh-mm-ss");
 }
 
-QString Result::niceRepresentation(QString date){
-    date.replace("_",".");
-    date.replace("--"," — ");
-    date.replace("-",":");
+QString Result::niceRepresentation(QString date) {
+    date.replace("_", ".");
+    date.replace("--", " — ");
+    date.replace("-", ":");
     return date;
 }
 
-QString Result::savableRepresentation(QString date){
-    date.replace(".","_");
-    date.replace(" — ","--");
-    date.replace(":","-");
+QString Result::savableRepresentation(QString date) {
+    date.replace(".", "_");
+    date.replace(" — ", "--");
+    date.replace(":", "-");
     return date;
 }
 
@@ -34,10 +36,14 @@ QStringList Result::getAdditionalResults() const {
     return m_additionalResults;
 }
 
-QString Result::getIdentifier() const{
+QString Result::getIdentifier() const {
     return Result::niceRepresentation(m_identifier);
 }
 
-QString Result::getSavableIdentifier() const{
+QString Result::getSavableIdentifier() const {
     return Result::savableRepresentation(m_identifier);
+}
+
+const QString &Result::getStorageDir() const {
+    return m_storageDir;
 }

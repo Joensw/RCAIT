@@ -3,13 +3,16 @@
 
 class Result {
 private:
+    QString m_storageDir;
     QStringList m_additionalResults;
     QString m_identifier;
 
 public:
-    explicit Result(QStringList additionalResults = {});
+    explicit Result(const QString &storageDir, QStringList additionalResults = {});
 
     [[nodiscard]] QStringList getAdditionalResults() const;
+
+    [[nodiscard]] const QString &getStorageDir() const;
 
     [[nodiscard]] QString getIdentifier() const;
 
