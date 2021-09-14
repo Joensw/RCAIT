@@ -4,10 +4,7 @@
 
 
 
-Automator::Automator(DataManager *dataManager)
-{
-    mDataManager = dataManager;
-}
+Automator::Automator() = default;
 
 void Automator::performTasks()
 {
@@ -22,9 +19,13 @@ void Automator::performTasks()
 
         connect((*mRunningTask), &Task::sig_progress, this, &Automator::slot_makeProgress);
         connect((*mRunningTask), &Task::sig_stateChanged, this, &Automator::slot_taskUpdated);
+        connect((*mRunningTask), &Task::sig_classificationResultUpdated, this, &Automator::sig_classificationResultUpdated);
+        connect((*mRunningTask), &Task::sig_trainingResultUpdated, this, &Automator::sig_trainingResultUpdated);
         (*mRunningTask)->run();
         disconnect((*mRunningTask), &Task::sig_progress, this, &Automator::slot_makeProgress);
         disconnect((*mRunningTask), &Task::sig_stateChanged, this, &Automator::slot_taskUpdated);
+        disconnect((*mRunningTask), &Task::sig_classificationResultUpdated, this, &Automator::sig_classificationResultUpdated);
+        disconnect((*mRunningTask), &Task::sig_trainingResultUpdated, this, &Automator::sig_trainingResultUpdated);
         tasksCompleted++;
     }
     emit sig_progress(100);
@@ -66,7 +67,7 @@ void Automator::addTasks(QString path)
     }
 
     //create task and add to list
-    Task* task = new Task(jsonMap, mDataManager);
+    Task* task = new Task(jsonMap);
     if (!task->isValid()) return;
     mUnqueuedTasks.append(task);
     emit sig_taskAdded(jsonMap.value("taskName").toString());

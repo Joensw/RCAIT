@@ -7,11 +7,8 @@
 #include <QApplication>
 
 
-Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> commandList)
+Task::Task(QVariantMap map, QList<Command*> commandList)
 {
-    mExporter = new ResultsExporter();
-
-    mDataManager = dataManager;
     mName = map.value("taskName").toString();
 
     if (!commandList.isEmpty()){
@@ -22,12 +19,12 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> commandLis
     QStringList commands = map.value("taskType").toStringList();
 
     if (commands.contains("addProject")){
-        mDataManager->createNewProject(map.value("projectName").toString());
+        mDataManager.createNewProject(map.value("projectName").toString());
     }
-    mDataManager->loadProject(map.value("projectName").toString());
+    mDataManager.loadProject(map.value("projectName").toString());
 
     if (commands.contains("imageLoad")) {
-        ImageLoadCommand* command = new ImageLoadCommand(map, mDataManager->getProjectImageTempDir(), this);
+        ImageLoadCommand* command = new ImageLoadCommand(map, mDataManager.getProjectImageTempDir(), this);
         mCommandList.append(command);
     }
 
@@ -36,22 +33,22 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> commandLis
         int split = map.value("split").toInt(&ok);
         if(!ok) split = DEFAULT_SPLIT;
 
-        SplitCommand* command = new SplitCommand(mDataManager->getProjectImageTempDir(),mDataManager->getProjectDataSetTrainSubdir(), mDataManager->getProjectDataSetValSubdir(), split, this);
+        SplitCommand* command = new SplitCommand(mDataManager.getProjectImageTempDir(),mDataManager.getProjectDataSetTrainSubdir(), mDataManager.getProjectDataSetValSubdir(), split, this);
         mCommandList.append(command);
     }
 
     if (commands.contains("training")) {
-        QString workingDir = mDataManager->createNewWorkSubDir(map.value("modelName").toString());
-        mDataManager->saveLastWorkingDirectoryOfModel(map.value("projectName").toString(), map.value("modelName").toString(), workingDir);
-        TrainingCommand* command = new TrainingCommand(map, mDataManager->getProjectDataSetTrainSubdir(), mDataManager->getProjectDataSetValSubdir(), workingDir, this);
+        QString workingDir = mDataManager.createNewWorkSubDir(map.value("modelName").toString());
+        mDataManager.saveLastWorkingDirectoryOfModel(map.value("projectName").toString(), map.value("modelName").toString(), workingDir);
+        TrainingCommand* command = new TrainingCommand(map, mDataManager.getProjectDataSetTrainSubdir(), mDataManager.getProjectDataSetValSubdir(), workingDir, this);
         mCommandList.append(command);
         connect(command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
         connect(command, &TrainingCommand::sig_createLoadModel, this, &Task::slot_createLoadModel);
     }
 
     if (commands.contains("classification")) {
-        QString workingDir =  mDataManager->recallLastWorkingDirectoryOfModel(map.value("projectName").toString(), map.value("modelName").toString());
-        ClassificationCommand* command = new ClassificationCommand(map, mDataManager->getProjectDataSetTrainSubdir(), workingDir, this);
+        QString workingDir =  mDataManager.recallLastWorkingDirectoryOfModel(map.value("projectName").toString(), map.value("modelName").toString());
+        ClassificationCommand* command = new ClassificationCommand(map, mDataManager.getProjectDataSetTrainSubdir(), workingDir, this);
         mCommandList.append(command);
         connect(command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
         connect(command, &ClassificationCommand::sig_createLoadModel, this, &Task::slot_createLoadModel);
@@ -126,18 +123,18 @@ void Task::slot_makeProgress(int progress)
 
 void Task::slot_saveTrainingResult(TrainingResult *result)
 {
-    mExporter->slot_save_TrainingResult(result);
+    emit sig_trainingResultUpdated(result);
 }
 
 void Task::slot_saveClassificationResult(ClassificationResult *result)
 {
-    mExporter->slot_save_ClassificationResult(result);
+    emit sig_classificationResultUpdated(result);
 }
 
 void Task::slot_createLoadModel(const QString & modelName, const QString &pluginName, const QString &baseModel)
 {
     if (!baseModel.isNull()){
-        mDataManager->createNewModel(modelName, pluginName, baseModel);
+        mDataManager.createNewModel(modelName, pluginName, baseModel);
     }
-    mDataManager->loadModel(modelName, pluginName);
+    mDataManager.loadModel(modelName, pluginName);
 }

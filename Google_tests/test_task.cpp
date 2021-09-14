@@ -37,7 +37,7 @@ TEST(TaskTest, testruncompleted){
     DataManager* mngr = &DataManager::getInstance();
 
     //init task
-    Task* task = new Task(map, mngr, cmdList);
+    Task* task = new Task(map, cmdList);
     EXPECT_TRUE(task->isValid());
 
     QSignalSpy spy(task, &Task::sig_progress);
@@ -74,7 +74,7 @@ TEST(TaskTest, testruncanceledreset){
     DataManager* mngr = &DataManager::getInstance();
 
     //init task
-    Task* task = new Task(map, mngr, cmdList);
+    Task* task = new Task(map, cmdList);
     QSignalSpy spy(task, &Task::sig_stateChanged);
     EXPECT_TRUE(task->getName() == "example");
 
@@ -117,14 +117,14 @@ TEST(TaskTest, testisvalid){
     mngr->saveProjectsDir(QDir::current().path());
 
     //init invalid task
-    Task* task = new Task(map, mngr);
+    Task* task = new Task(map);
     EXPECT_FALSE(task->isValid());
 
     //add elements to map
     map.insert("taskType", QStringList() << "addProject");
 
     //init valid task
-    task = new Task(map, mngr);
+    task = new Task(map);
     EXPECT_TRUE(task->isValid());
 
     //add unknown task type as only task type
@@ -132,7 +132,7 @@ TEST(TaskTest, testisvalid){
     map.insert("taskType", QStringList() << "unknownCommand");
 
     //init invalid task
-    task = new Task(map, mngr);
+    task = new Task(map);
     EXPECT_FALSE(task->isValid());
 
     //remove created folder

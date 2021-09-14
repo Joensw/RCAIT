@@ -22,7 +22,7 @@ void Controller::slot_configurationComplete() {
     mModelController.reset(new ModelController(this, &*mDataManager, mMainWindow->getImportFilesWidget()));
     mAiController.reset(new AIController(&*mDataManager, mMainWindow->getInputImagesWidget(),
                                          mMainWindow->getAITrainingWidget()));
-    mAutomationController.reset(new AutomationController(&*mDataManager, mMainWindow->getAutomationWidget()));
+    mAutomationController.reset(new AutomationController(mMainWindow->getAutomationWidget()));
     mResultsController.reset(new ResultsController(&*mDataManager, mMainWindow->getResultsWidget()));
     mImageController.reset(
             new ImageController(mMainWindow->getImageInspectionWidget(), mMainWindow->getImportFilesWidget(),
@@ -73,6 +73,11 @@ void Controller::slot_configurationComplete() {
             &ResultsController::slot_addTrainingResult);
     connect(&*mAiController, &AIController::sig_classificationResultUpdated, &*mResultsController,
             &ResultsController::slot_addClassificationResult);
+
+    connect(&*mAutomationController, &AutomationController::sig_trainingResultUpdated, &*mAiController,
+            &AIController::slot_trainingResultUpdated);
+    connect(&*mAutomationController, &AutomationController::sig_classificationResultUpdated, &*mAiController,
+            &AIController::slot_classificationResultUpdated);
 
     mMainWindow->show();
 }
