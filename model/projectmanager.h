@@ -2,6 +2,7 @@
 #define PROJECTMANAGER_H
 
 #include <QString>
+#include <QStringBuilder>
 #include <QObject>
 #include <classificationresult.h>
 #include <trainingresult.h>

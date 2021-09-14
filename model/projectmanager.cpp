@@ -7,7 +7,7 @@ ProjectManager::ProjectManager() {
 
 void ProjectManager::createNewProject(QString projectName)
 {
-    QString newProjectPath = mProjectsDirectory + "/" + projectName + "/" + projectName + projectFileType;
+    QString newProjectPath = mProjectsDirectory % "/" % projectName % "/" % projectName % projectFileType;
 
     /*goes into the projects folder, then into the specific project folder
     * there it creates a new ini file, which can be seen as the "project file"
@@ -38,20 +38,20 @@ void ProjectManager::createNewProject(QString projectName)
 
     //make temp, results and data subdirectories
     QDir dir;
-    dir.mkpath(absolute + "/" +  datasetDirectoryName);
-    dir.mkpath(absolute + "/" + tempImagesDirectoryName);
-    dir.mkpath(absolute + "/" + tempDataAugDirectoryName);
-    dir.mkpath(absolute + "/" +  resultsDirectoryName);
-    dir.mkpath(absolute + "/" + workingDirectoryName);
+    dir.mkpath(absolute   "/" %  datasetDirectoryName);
+    dir.mkpath(absolute % "/" % tempImagesDirectoryName);
+    dir.mkpath(absolute % "/" % tempDataAugDirectoryName);
+    dir.mkpath(absolute % "/" %  resultsDirectoryName);
+    dir.mkpath(absolute % "/" % workingDirectoryName);
 
     //make subdirectories for results
-    dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + trainingsResultsDirectoryName);
-    dir.mkpath(absolute + "/" +  resultsDirectoryName + "/" + classificationResultsDirectoryName);
+    dir.mkpath(absolute % "/" %  resultsDirectoryName % "/" % trainingsResultsDirectoryName);
+    dir.mkpath(absolute % "/" %  resultsDirectoryName % "/" % classificationResultsDirectoryName);
 
     //make subdirectories for dataset
 
-    dir.mkpath(absolute + "/" + datasetDirectoryName + "/" + validiationDatasetDirectoryName);
-    dir.mkpath(absolute + "/" + datasetDirectoryName + "/" + trainingDatasetDirectoryName);
+    dir.mkpath(absolute % "/" % datasetDirectoryName % "/" % validiationDatasetDirectoryName);
+    dir.mkpath(absolute % "/" % datasetDirectoryName % "/" % trainingDatasetDirectoryName);
 }
 
 QStringList ProjectManager::getProjects() {
@@ -72,29 +72,29 @@ bool ProjectManager::createNewProject(const QString &projectName, QString * erro
 }
 
 void ProjectManager::removeProject(const QString &projectName) {
-    QDir targetDir(mProjectsDirectory + "/" + projectName);
+    QDir targetDir(mProjectsDirectory % "/" % projectName);
     targetDir.removeRecursively();
 }
 
 void ProjectManager::loadProject(const QString &projectName) {
-    QString loadProjectPath = mProjectsDirectory + "/" + projectName + "/" + projectName + ".ini";
+    QString loadProjectPath = mProjectsDirectory % "/" % projectName % "/" % projectName % ".ini";
 
     QSettings projectfile(loadProjectPath, QSettings::IniFormat);
 
     mProjectName = projectfile.value(projectNameIdentifier).toString();
-    mProjectPath = mProjectsDirectory + "/" + projectName;
-    mProjectDataSetDir = mProjectPath + "/" + projectfile.value(projectDatasetDirectoryIdentifier).toString();
-    mProjectDataSetValSubdir =  mProjectDataSetDir + "/" + projectfile.value(projectValidationDatasetIdentifier).toString();
-    mProjectDataSetTrainSubdir = mProjectDataSetDir + "/" + projectfile.value(projectTrainingDatasetIdentifier).toString();
+    mProjectPath = mProjectsDirectory % projectName;
+    mProjectDataSetDir = mProjectPath % projectfile.value(projectDatasetDirectoryIdentifier).toString();
+    mProjectDataSetValSubdir =  mProjectDataSetDir % projectfile.value(projectValidationDatasetIdentifier).toString();
+    mProjectDataSetTrainSubdir = mProjectDataSetDir % "/" % projectfile.value(projectTrainingDatasetIdentifier).toString();
 
-    mProjectImagesTempDir = mProjectPath + "/" + projectfile.value(projectTempImagesDirectoryIdentifier).toString();
-    mProjectAugTempDir = mProjectPath + "/" + projectfile.value(projectTempDataAugDirectoryIdentifier).toString();
+    mProjectImagesTempDir = mProjectPath % "/" % projectfile.value(projectTempImagesDirectoryIdentifier).toString();
+    mProjectAugTempDir = mProjectPath % "/" % projectfile.value(projectTempDataAugDirectoryIdentifier).toString();
 
-    mProjectResultsDir = mProjectPath + "/" + projectfile.value(projectResultsDirectoryIdentifier).toString();
-    mProjectTrainingResultsDir =  mProjectResultsDir + "/" + projectfile.value(projectTrainingsResultsDirectoryIdentifer).toString();
-    mProjectClassificationResultsDir = mProjectResultsDir + "/" + projectfile.value(projectClassificationResultsDirectoryIdentifier).toString();
+    mProjectResultsDir = mProjectPath % "/" % projectfile.value(projectResultsDirectoryIdentifier).toString();
+    mProjectTrainingResultsDir =  mProjectResultsDir % "/" % projectfile.value(projectTrainingsResultsDirectoryIdentifer).toString();
+    mProjectClassificationResultsDir = mProjectResultsDir % "/" % projectfile.value(projectClassificationResultsDirectoryIdentifier).toString();
 
-    mProjectWorkingDir = mProjectPath + "/" + projectfile.value(projectWorkingDirIdentifier).toString();
+    mProjectWorkingDir = mProjectPath % "/" % projectfile.value(projectWorkingDirIdentifier).toString();
 
     /*
     qDebug() << mProjectName;
@@ -179,14 +179,14 @@ QString ProjectManager::createWorkDirSubfolder(const QString &name){
     int runningNameCount = 1;
     QDir dir(mProjectWorkingDir);
     dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
-    QString alteredName = name + "_" + QString::number(runningNameCount);
+    QString alteredName = name % "_" % QString::number(runningNameCount);
     QStringList entries = dir.entryList();
 
     while (entries.contains(alteredName)) {
         runningNameCount++;
-        alteredName = name + "_" + QString::number(runningNameCount);
+        alteredName = name % "_" % QString::number(runningNameCount);
     }
-    QString path = mProjectWorkingDir + "/" + alteredName;
+    QString path = mProjectWorkingDir % "/" % alteredName;
     dir.mkpath(path);
     return path;
 }
@@ -226,9 +226,9 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
     }
 
     //check if folders with this name can simply not be created
-    QDir tempDir(mProjectsDirectory + "/" + projectName);
+    QDir tempDir(mProjectsDirectory % "/" % projectName);
     tempDir.setFilter(QDir::NoDotAndDotDot);
-    if (!tempDir.mkpath(mProjectsDirectory + "/" + projectName )){
+    if (!tempDir.mkpath(mProjectsDirectory % "/" % projectName )){
         error->append(ERROR_OS_SUPPORT);
         return false;
     }
