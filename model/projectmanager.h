@@ -61,36 +61,36 @@ public:
     /**
      * @return list of all directories in the projects directory
      */
-    QStringList getProjects();
+    [[nodiscard]] QStringList getProjects();
 
     /**
      * @brief getProjectPath will return null string if no project is opened
      * @return absolute path to the currently opened project's subdirectory
      */
-    QString getProjectPath();
+    [[nodiscard]] QString getProjectPath();
 
     /**
      * @brief getProjectName will return null string if no project is opened
      * @return name of the currently opened project
      */
-    QString getProjectName();
+    [[nodiscard]] QString getProjectName();
 
     /**
      * @brief getProjectDataSetDir will return null string if no project is opened
      * @return absoulute path to the data set directory of the currently opened project
      */
-    QString getProjectDataSetDir();
+    [[nodiscard]] QString getProjectDataSetDir();
 
     /**
      * @return the absolute path to the validation images subfolder of the data set
      */
-    QString getProjectDataSetValSubdir();
+    [[nodiscard]] QString getProjectDataSetValSubdir();
 
     /**
      * @return the absolute path to the training images subfolder of the data set
      */
 
-    QString getProjectDataSetTrainSubdir();
+    [[nodiscard]] QString getProjectDataSetTrainSubdir();
 
 
     /**
@@ -98,37 +98,37 @@ public:
      * @return the absolute path to the image temporary directory of the current project
      */
 
-    QString getProjectImageTempDir();
+    [[nodiscard]] QString getProjectImageTempDir();
 
     /**
      * @brief getProjectAugTempDir will return null string if no project is opened
      * @return the absolute path to the data augmentation temporary directory of the current project
      */
 
-    QString getProjectAugTempDir();
+    [[nodiscard]] QString getProjectAugTempDir();
 
     /**
      * @brief getResultsDir will return null string if no project is opened
      * @return absolute path to the results directroy of the currently opened project
      */
-    QString getResultsDir();
+    [[nodiscard]] QString getResultsDir();
 
     /**
      * @brief getTrainingResultsDir will return null string if no project is opened
      * @return  absolute path to the trainings results subdirectory of the currently opened project
      */
-    QString getTrainingResultsDir();
+    [[nodiscard]] QString getTrainingResultsDir();
 
     /**
      * @brief getClassificationResultsDir will return null string if no project is opened
      * @return absolute path to the classification results subdirectory of the currently opened project
      */
-    QString getClassificationResultsDir();
+    [[nodiscard]] QString getClassificationResultsDir();
 
     /** Only .txt files are returned and within the list they have no file ending, if no project is opened an empty list is returned
      * @return getNamesOfSavedTrainingResults returns the names of all the files in the trainings results folder
      */
-    QStringList getNamesOfSavedTrainingResults();
+    [[nodiscard]] QStringList getNamesOfSavedTrainingResults();
 
     /**
      * The names receive the suffix _1, if this name is already taken, the suffix is incremented till it is available
@@ -136,7 +136,7 @@ public:
      * @param name string argument, name of the folder
      * @return absolute path to the folder
      */
-    QString createWorkDirSubfolder(const QString &name);
+    [[nodiscard]] QString createWorkDirSubfolder(const QString &name);
 
     /**
      * @brief setProjectsDirectory sets the  projects directory, ie. the directory projects are to be created, deleted and loaded from
