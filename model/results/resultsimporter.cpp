@@ -16,6 +16,7 @@ ResultsImporter::ResultsImporter()
 void ResultsImporter::updateResultFolderPaths() {
     m_trainingResultsDir = m_projectManager->getTrainingResultsDir();
     m_classificationResultsDir = m_projectManager->getClassificationResultsDir();
+    m_workingDir = m_projectManager->getProjectImageTempDir();
 }
 
 QString ResultsImporter::getResultDataPath(const QString &resultNameTemplate, const QString &baseDir,
@@ -88,7 +89,7 @@ void ResultsImporter::slot_comparison_loadClassificationResultData(Classificatio
     auto labels = QJsonArray_toList<QString>(json_labels);
     auto additionalResults = QJsonArray_toList<QString>(json_additionalResults);
 
-    auto result = new ClassificationResult(classification_data, labels, additionalResults);
+    auto result = new ClassificationResult(m_workingDir, classification_data, labels, additionalResults);
     emit sig_normal_loadClassificationResultData(view, result);
 }
 
@@ -131,7 +132,7 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
     auto most_misclassified_images = QJsonArray_toList<QString>(json_mostMisclassifiedImages);
     auto additionalResults = QJsonArray_toList<QString>(json_additionalResults);
 
-    auto result = new TrainingResult(accuracy_data, class_labels, confusionmatrix,
+    auto result = new TrainingResult(m_workingDir, accuracy_data, class_labels, confusionmatrix,
                                      most_misclassified_images, top1, top5, additionalResults);
     emit sig_normal_loadTrainingResultData(view, result);
 }
