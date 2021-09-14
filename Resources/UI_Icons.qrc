@@ -46,5 +46,7 @@
         <file>UISymbols/UI_File_Icon.svg</file>
         <file>RCAIT.ico</file>
         <file>RCAIT.svg</file>
+        <file>UISymbols/UI_Add_File_Icon.svg</file>
+        <file>UISymbols/UI_Diff_Icon.svg</file>
     </qresource>
 </RCC>
