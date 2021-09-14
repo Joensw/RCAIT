@@ -129,3 +129,30 @@ TEST(ImageGalleryTest, testStopConcurrentAddImages){
     std::this_thread::sleep_for(2s);
     a.exit();
 }
+
+//check if clear and stop works
+TEST(ImageGalleryTest, testClearAndStop){
+    //setup
+    int argc;
+    char *argv[1];
+    QApplication a(argc, argv);
+    QString path = QDir::current().path();
+    path += "/test_imagefolder/Auto/";
+    QList<QImage> imgList;
+    imgList.append(QImage(path + "images"));
+    imgList.append(QImage(path + "images_1"));
+    ImageGallery* gallery = new ImageGallery();
+
+    //start imageload
+    gallery->concurrentAddImages(imgList);
+    gallery->clearAndStop();
+
+
+    //check if imageloading was stopped and gallery cleared
+    EXPECT_TRUE(gallery->count() == 0);
+
+    //tear down
+    using namespace std::chrono_literals;
+    std::this_thread::sleep_for(1ms);
+    a.exit();
+}
