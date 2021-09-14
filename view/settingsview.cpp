@@ -3,16 +3,16 @@
 
 
 SettingsView::SettingsView(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::SettingsView) {
+    QWidget(parent),
+    ui(new Ui::SettingsView) {
     ui->setupUi(this);
 }
 
 SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames,
                            const QList<QWidget *> &pluginConfigurationWidgets) :
-        QWidget(parent),
-        ui(new Ui::SettingsView),
-        mGlobalSettingsWidget(new GlobalSettingsWidget(this)) {
+    QWidget(parent),
+    ui(new Ui::SettingsView),
+    mGlobalSettingsWidget(new GlobalSettingsWidget(this)) {
     ui->setupUi(this);
 
     ui->pluginList->addItem(mGlobalSettingsWidget->windowTitle());
@@ -91,30 +91,30 @@ void SettingsView::setCurrentImageLoaderPluginDirectory(const QString &path) {
 
 //private slots for global settings widget
 void SettingsView::slot_setProjectDir() {
-    mProjectDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
+    mProjectDir = QFileDialog::getExistingDirectory(this, PROJECT_SELECT);
     if (!mProjectDir.isEmpty()) {
         mGlobalSettingsWidget->setNewProjectPath(mProjectDir);
         return;
     }
-    mGlobalSettingsWidget->setNewProjectPath("-");
+    mGlobalSettingsWidget->setNewProjectPath(EMPTY_PATH);
 }
 
 void SettingsView::slot_setClassificationPluginsDir() {
-    mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select classification plugin directory"));
+    mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, CLASSIFICATION_SELECT);
     if (!mClassificationPluginsDir.isEmpty()) {
         mGlobalSettingsWidget->setNewClassificationPluginPath(mClassificationPluginsDir);
         return;
     }
-    mGlobalSettingsWidget->setNewClassificationPluginPath("-");
+    mGlobalSettingsWidget->setNewClassificationPluginPath(EMPTY_PATH);
 }
 
 void SettingsView::slot_setImageLoaderPluginsDir() {
-    mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select image loader plugin directory"));
+    mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, LOADER_SELECT);
     if (!mImageLoaderPluginsDir.isEmpty()) {
         mGlobalSettingsWidget->setNewImageLoaderPath(mImageLoaderPluginsDir);
         return;
     }
-    mGlobalSettingsWidget->setNewImageLoaderPath("-");
+    mGlobalSettingsWidget->setNewImageLoaderPath(EMPTY_PATH);
 }
 
 
