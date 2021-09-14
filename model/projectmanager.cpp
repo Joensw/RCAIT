@@ -206,12 +206,12 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
     QRegularExpression noSpacesEx(REGEX_ONLY_SPACE);
     QRegularExpressionMatch match = noSpacesEx.match(projectName);
     if (match.hasMatch()){
-        error->append(QObject::tr(qPrintable(ERROR_ONLY_SPACE)));
+        error->append(ERROR_ONLY_SPACE);
         return false;
     }
     //TODO define these elsewhere and check a list of banned characters dynamically
     if (projectName.contains("/") || projectName.contains("\\")) {
-        error->append(QObject::tr(qPrintable(ERROR_ILLEGAL_CHAR)));
+        error->append(ERROR_ILLEGAL_CHAR);
         return false;
     }
 
@@ -220,7 +220,7 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     QStringList projects = projectsDir.entryList();
     if (projects.contains(projectName)) {
-        error->append(QObject::tr(qPrintable(ERROR_DUPLICATE)));
+        error->append(ERROR_DUPLICATE);
         return false;
 
     }
@@ -229,7 +229,7 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
     QDir tempDir(mProjectsDirectory + "/" + projectName);
     tempDir.setFilter(QDir::NoDotAndDotDot);
     if (!tempDir.mkpath(mProjectsDirectory + "/" + projectName )){
-        error->append(QObject::tr(qPrintable(ERROR_OS_SUPPORT)));
+        error->append(ERROR_OS_SUPPORT);
         return false;
     }
     tempDir.removeRecursively();
