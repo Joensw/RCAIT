@@ -186,6 +186,8 @@ private:
 
     static constexpr auto TEXT_FILE_FILTER = "*.txt";
 
+    static const QVector<QString> UNWANTED_NAME_SEQUENCES;
+
     bool verifyName(QString projectName, QString *error);
 
     QString mProjectPath;

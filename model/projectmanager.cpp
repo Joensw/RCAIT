@@ -1,5 +1,6 @@
 #include "projectmanager.h"
 
+const QVector<QString> ProjectManager::UNWANTED_NAME_SEQUENCES = {"/", "\\"};
 
 ProjectManager::ProjectManager() {
 
@@ -38,7 +39,7 @@ void ProjectManager::createNewProject(QString projectName)
 
     //make temp, results and data subdirectories
     QDir dir;
-    dir.mkpath(absolute   "/" %  datasetDirectoryName);
+    dir.mkpath(absolute %  "/" %  datasetDirectoryName);
     dir.mkpath(absolute % "/" % tempImagesDirectoryName);
     dir.mkpath(absolute % "/" % tempDataAugDirectoryName);
     dir.mkpath(absolute % "/" %  resultsDirectoryName);
@@ -77,7 +78,7 @@ void ProjectManager::removeProject(const QString &projectName) {
 }
 
 void ProjectManager::loadProject(const QString &projectName) {
-    QString loadProjectPath = mProjectsDirectory % "/" % projectName % "/" % projectName % ".ini";
+    QString loadProjectPath = mProjectsDirectory % "/" % projectName % "/" % projectName % projectFileType;
 
     QSettings projectfile(loadProjectPath, QSettings::IniFormat);
 
@@ -199,7 +200,7 @@ void ProjectManager::setProjectsDirectory(const QString &newDirectory)
 bool ProjectManager::verifyName(QString projectName, QString *error)
 {
     if (projectName.length() == 0){
-        error->append(QObject::tr(qPrintable(ERROR_NOCHAR)));
+        error->append(ERROR_NOCHAR);
         return false;
     }
 
@@ -210,11 +211,18 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
         return false;
     }
     //TODO define these elsewhere and check a list of banned characters dynamically
+    foreach(QString charSequence, UNWANTED_NAME_SEQUENCES){
+        if(projectName.contains(charSequence)){
+            error->append(ERROR_ILLEGAL_CHAR);
+            return false;
+        }
+    }
+    /*
     if (projectName.contains("/") || projectName.contains("\\")) {
         error->append(ERROR_ILLEGAL_CHAR);
         return false;
     }
-
+    */
     //check if name is already taken
     QDir projectsDir(mProjectsDirectory);
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
