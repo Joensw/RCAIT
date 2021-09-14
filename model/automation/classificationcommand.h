@@ -36,9 +36,19 @@ signals:
 
     /**
      * @brief sig_saveResult emitted when classification results are ready.
+     *
      * @param result classification result.
      */
     void sig_saveResult(ClassificationResult *result);
+
+    /**
+     * @brief sig_createLoadModel signals need to load/create model
+     *
+     * @param modelName name of model
+     * @param pluginName name of plugin
+     * @param baseModel name of base model
+     */
+    void sig_createLoadModel(const QString &modelName, const QString &pluginName, const QString &baseModel = QString());
 
 
 private:

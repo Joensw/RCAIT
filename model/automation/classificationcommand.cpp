@@ -35,6 +35,9 @@ bool ClassificationCommand::execute()
 {
     if(parsingFailed) return false;
 
+    // loading model
+    emit sig_createLoadModel(mModelName, mAiPluginName);
+
     // setting properties
     auto end = mWidgetOptions.end();
     for (auto it = mWidgetOptions.begin(); it != end; ++it){

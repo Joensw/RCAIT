@@ -7,6 +7,7 @@ TrainingCommand::TrainingCommand(QVariantMap map,const QString &trainDataSetPath
 {
     mAiPluginName = map.value("aiPluginName").toString();
     mModelName = map.value("modelName").toString();
+    mBaseModel = map.value("baseModel").toString();
     mTrainDataSetPath = trainDataSetPath;
     mValidationDataSetPath = validationDataSetPath;
     mWorkingDir = workingDir;
@@ -38,6 +39,10 @@ TrainingCommand::TrainingCommand(QVariantMap map,const QString &trainDataSetPath
 bool TrainingCommand::execute()
 {
     if(parsingFailed) return false;
+
+    // creating/loading model
+    emit sig_createLoadModel(mModelName, mAiPluginName, mBaseModel);
+
     // setting properties
     auto endInput = mInputOptions.end();
     for (auto it = mInputOptions.begin(); it != endInput; ++it){

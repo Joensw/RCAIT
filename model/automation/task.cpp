@@ -41,11 +41,12 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> commandLis
     }
 
     if (commands.contains("training")) {
-        QString workingDir = mDataManager->createNewWorkSubDir("working_dir");
+        QString workingDir = mDataManager->createNewWorkSubDir(map.value("modelName").toString());
         mDataManager->saveLastWorkingDirectoryOfModel(map.value("projectName").toString(), map.value("modelName").toString(), workingDir);
         TrainingCommand* command = new TrainingCommand(map, mDataManager->getProjectDataSetTrainSubdir(), mDataManager->getProjectDataSetValSubdir(), workingDir, this);
         mCommandList.append(command);
         connect(command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
+        connect(command, &TrainingCommand::sig_createLoadModel, this, &Task::slot_createLoadModel);
     }
 
     if (commands.contains("classification")) {
@@ -53,6 +54,7 @@ Task::Task(QVariantMap map, DataManager *dataManager, QList<Command*> commandLis
         ClassificationCommand* command = new ClassificationCommand(map, mDataManager->getProjectDataSetTrainSubdir(), workingDir, this);
         mCommandList.append(command);
         connect(command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
+        connect(command, &ClassificationCommand::sig_createLoadModel, this, &Task::slot_createLoadModel);
     }
     if(mCommandList.isEmpty() && !commands.contains("addProject")) valid = false;
 
@@ -130,4 +132,12 @@ void Task::slot_saveTrainingResult(TrainingResult *result)
 void Task::slot_saveClassificationResult(ClassificationResult *result)
 {
     mExporter->slot_save_ClassificationResult(result);
+}
+
+void Task::slot_createLoadModel(const QString & modelName, const QString &pluginName, const QString &baseModel)
+{
+    if (!baseModel.isNull()){
+        mDataManager->createNewModel(modelName, pluginName, baseModel);
+    }
+    mDataManager->loadModel(modelName, pluginName);
 }
