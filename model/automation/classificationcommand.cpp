@@ -24,7 +24,7 @@ bool ClassificationCommand::execute()
     if(parsingFailed) return false;
 
     // loading model
-    emit sig_createLoadModel(mModelName, mAiPluginName);
+    mDataManager.loadModel(mModelName, mAiPluginName);
 
     mResult = mPluginManager.classify(mAiPluginName, mImagePath, mTrainDataSetPath, mWorkingDir, mModelName, mReceiver);
     if (!mResult->isValid()){

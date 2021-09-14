@@ -4,6 +4,7 @@
 #include "command.h"
 
 #include <classificationpluginmanager.h>
+#include <datamanager.h>
 #include <progressableplugin.h>
 
 /**
@@ -41,18 +42,10 @@ signals:
      */
     void sig_saveResult(ClassificationResult *result);
 
-    /**
-     * @brief sig_createLoadModel signals need to load/create model
-     *
-     * @param modelName name of model
-     * @param pluginName name of plugin
-     * @param baseModel name of base model
-     */
-    void sig_createLoadModel(const QString &modelName, const QString &pluginName, const QString &baseModel = QString());
-
-
 private:
+
    ClassificationPluginManager& mPluginManager =  ClassificationPluginManager::getInstance();
+   DataManager& mDataManager = DataManager::getInstance();
    ClassificationResult* mResult;
    ProgressablePlugin* mReceiver;
    bool parsingFailed = false;

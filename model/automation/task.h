@@ -100,16 +100,6 @@ public slots:
      */
     void slot_saveClassificationResult(ClassificationResult *result);
 
-    /**
-     * @brief createLoadModel tries to load model with given name, creates new one if it does not exist.
-     *
-     * @param modelName name of model to load
-     * @param pluginName name of plugin
-     * @param baseModel name of base model
-     */
-    void slot_createLoadModel(const QString &modelName, const QString &pluginName, const QString &baseModel = QString());
-
-
 signals:
 
     /**
