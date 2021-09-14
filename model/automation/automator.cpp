@@ -72,6 +72,7 @@ void Automator::addTasks(QString path)
     mUnqueuedTasks.append(task);
     emit sig_taskAdded(jsonMap.value("taskName").toString());
     emit sig_taskUpdate(mUnqueuedTasks.last()->getName(), "Not_Scheduled");
+    emit sig_projectCreated();
 }
 
 void Automator::remove(int taskNum)

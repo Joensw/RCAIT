@@ -15,11 +15,13 @@ AutomationController::AutomationController(AutomationWidget *automationWidget)
 
     connect(&*mAutomator, &Automator::sig_trainingResultUpdated, this, &AutomationController::sig_trainingResultUpdated);
     connect(&*mAutomator, &Automator::sig_classificationResultUpdated, this, &AutomationController::sig_classificationResultUpdated);
+    connect(&*mAutomator, &Automator::sig_projectCreated, this, &AutomationController::sig_projectDirectoryChanged);
 
     connect(&*mAutomator, &Automator::sig_taskAdded, mWidget, &AutomationWidget::slot_taskAdded);
     connect(&*mAutomator, &Automator::sig_taskUpdate, mWidget, &AutomationWidget::slot_taskUpdate);
     connect(&*mAutomator, &Automator::sig_progress, mWidget, &AutomationWidget::slot_progress);
     connect(&*mAutomator, &Automator::sig_finished, mWidget, &AutomationWidget::slot_finished);
+
 
 
 

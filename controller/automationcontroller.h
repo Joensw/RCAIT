@@ -71,7 +71,7 @@ public slots:
     void slot_queueSelected(int index);
 
     /**
-     * @brief slot_unqueueSelected  unqueues task at index.
+     * @brief slot_unqueueSelected unqueues task at index.
      *
      * @param index index of task.
      */
@@ -91,6 +91,11 @@ signals:
      * @param result classification result
      */
     void sig_classificationResultUpdated(ClassificationResult* result);
+
+    /**
+     * @brief slot_projectCreated used to signal update of project directory.
+     */
+    void sig_projectDirectoryChanged();
 
 private:
     AutomationWidget *mWidget;

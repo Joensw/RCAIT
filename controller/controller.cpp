@@ -78,6 +78,8 @@ void Controller::slot_configurationComplete() {
             &AIController::slot_trainingResultUpdated);
     connect(&*mAutomationController, &AutomationController::sig_classificationResultUpdated, &*mAiController,
             &AIController::slot_classificationResultUpdated);
+    connect(&*mAutomationController, &AutomationController::sig_projectDirectoryChanged, &*mProjectController,
+            &ProjectController::slot_projectDirectoryChanged);
 
     mMainWindow->show();
 }

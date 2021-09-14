@@ -141,6 +141,12 @@ signals:
      */
     void sig_classificationResultUpdated(ClassificationResult* result);
 
+    /**
+     * @brief sig_projectCreated signals potential creation of new project.
+     *
+     */
+    void sig_projectCreated();
+
 
 private:
     QList<Task*> mUnqueuedTasks;
