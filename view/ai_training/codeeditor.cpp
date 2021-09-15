@@ -104,8 +104,8 @@ void CodeEditor::resizeEvent(QResizeEvent *e) {
 void CodeEditor::appendPlaceholder(const QString &placeholder) {
     int lineCount = document()->lineCount();
     appendPlainText(placeholder);
-    //Mark line as placeholder
-    m_placeholderLines << lineCount;
+    //Mark lines as placeholder
+    m_placeholderLines << document()->findBlockByLineNumber(lineCount).blockNumber();
 }
 
 void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event) {
@@ -117,15 +117,17 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event) {
     painter.drawLine(event->rect().topRight(), event->rect().bottomRight());
 
     QTextBlock block = firstVisibleBlock();
-    int blockNumber = block.blockNumber();
+    int lineNumber = block.blockNumber();
     int top = qRound(blockBoundingGeometry(block).translated(contentOffset()).top());
     int bottom = top + qRound(blockBoundingRect(block).height());
 
     while (block.isValid() && top <= event->rect().bottom()) {
         //Placeholder lines will be skipped when assigning line numbers
-        if (block.isVisible() && !m_placeholderLines.contains(block.blockNumber()) && bottom >= event->rect().top()) {
-            QString number = QString::number(blockNumber + 1);
+        auto placeholder = m_placeholderLines.contains(block.blockNumber());
+        if (block.isVisible() && !placeholder && bottom >= event->rect().top()) {
+            QString number = QString::number(lineNumber + 1);
             painter.setPen(Qt::black);
+            painter.setFont(font());
             painter.drawText(0, top, lineNumberArea->width(), fontMetrics().height(),
                              Qt::AlignRight, number.append(" "));
         }
@@ -133,6 +135,6 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event) {
         block = block.next();
         top = bottom;
         bottom = top + qRound(blockBoundingRect(block).height());
-        if (!m_placeholderLines.contains(block.blockNumber())) ++blockNumber;
+        ++lineNumber;
     }
 }
