@@ -119,6 +119,11 @@ void ImageInspectionModel::insertLabeledImagePaths(QMap<QString, QStringList> &i
     QDirIterator it(labeledImages, QDirIterator::NoIteratorFlags);
 
     for (const auto &item: labeledImages.entryInfoList()) {
+        QDir currDir = QDir(item.absoluteFilePath());
+        if (currDir.exists() && currDir.isEmpty()){
+            currDir.removeRecursively();
+            continue;
+        }
         insertTarget.insert(item.fileName(), readLabeledFolder(item.absoluteFilePath()));
     }
 }
