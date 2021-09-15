@@ -5,7 +5,7 @@ SettingsManager::SettingsManager()
           mImageLoaderPluginManager(&ImageLoaderPluginManager::getInstance()) {
 
     mGlobalSettings.reset(new QSettings);
-    if (!getClassificationPluginDir().isEmpty() || !getImageLoaderPluginDir().isEmpty()) {
+    if (!getClassificationPluginDir().isEmpty() && !getImageLoaderPluginDir().isEmpty()) {
     mClassificationPluginManager->loadPlugins(getClassificationPluginDir());
     mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
     }
@@ -168,7 +168,7 @@ SettingsManager::applyGlobalSettings(QString projectsDir, QString classification
 
     }
     if (error != nullptr) {
-        *error = QObject::tr(qPrintable(ERROR_CONFLICT));
+        *error = ERROR_CONFLICT;
     }
     if (pathsChanged != nullptr) {
         *pathsChanged = 0;

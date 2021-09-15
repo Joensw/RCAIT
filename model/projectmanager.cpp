@@ -83,9 +83,9 @@ void ProjectManager::loadProject(const QString &projectName) {
     QSettings projectfile(loadProjectPath, QSettings::IniFormat);
 
     mProjectName = projectfile.value(projectNameIdentifier).toString();
-    mProjectPath = mProjectsDirectory % projectName;
-    mProjectDataSetDir = mProjectPath % projectfile.value(projectDatasetDirectoryIdentifier).toString();
-    mProjectDataSetValSubdir =  mProjectDataSetDir % projectfile.value(projectValidationDatasetIdentifier).toString();
+    mProjectPath = mProjectsDirectory % "/" % projectName;
+    mProjectDataSetDir = mProjectPath % "/" % projectfile.value(projectDatasetDirectoryIdentifier).toString();
+    mProjectDataSetValSubdir =  mProjectDataSetDir % "/" % projectfile.value(projectValidationDatasetIdentifier).toString();
     mProjectDataSetTrainSubdir = mProjectDataSetDir % "/" % projectfile.value(projectTrainingDatasetIdentifier).toString();
 
     mProjectImagesTempDir = mProjectPath % "/" % projectfile.value(projectTempImagesDirectoryIdentifier).toString();
@@ -110,6 +110,7 @@ void ProjectManager::loadProject(const QString &projectName) {
     qDebug() << mProjectClassificationResultsDir;
     qDebug() << mProjectWorkingDir;
     */
+
 }
 QString ProjectManager::getProjectPath() {
     return mProjectPath;
@@ -210,7 +211,6 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
         error->append(ERROR_ONLY_SPACE);
         return false;
     }
-    //TODO define these elsewhere and check a list of banned characters dynamically
     foreach(QString charSequence, UNWANTED_NAME_SEQUENCES){
         if(projectName.contains(charSequence)){
             error->append(ERROR_ILLEGAL_CHAR);
