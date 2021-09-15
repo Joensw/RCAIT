@@ -3,13 +3,13 @@
 #include <classificationpluginmanager.h>
 
 
-ClassificationCommand::ClassificationCommand(QVariantMap map, const QString &trainDataSetPath, const QString &workingDir, ProgressablePlugin* receiver)
+ClassificationCommand::ClassificationCommand(QVariantMap map, const QString &trainDataSetPath, ProgressablePlugin* receiver)
 {
+    mProjectName = map.value("projectName").toString();
     mImagePath = map.value("classificationImagePath").toString();
     mModelName = map.value("modelName").toString();
     mAiPluginName = map.value("aiPluginName").toString();
     mTrainDataSetPath = trainDataSetPath;
-    mWorkingDir = workingDir;
     mReceiver = receiver;
 
     if (mImagePath.isNull() || mModelName.isNull() || mAiPluginName.isNull()){
@@ -25,7 +25,7 @@ bool ClassificationCommand::execute()
 
     // loading model
     mDataManager.loadModel(mModelName, mAiPluginName);
-
+    mWorkingDir =  mDataManager.recallLastWorkingDirectoryOfModel(mProjectName, mModelName);
     mResult = mPluginManager.classify(mAiPluginName, mImagePath, mTrainDataSetPath, mWorkingDir, mModelName, mReceiver);
     if (!mResult->isValid()){
         return false;

@@ -45,8 +45,7 @@ Task::Task(QVariantMap map, QList<Command*> commandList)
     }
 
     if (commands.contains("classification")) {
-        QString workingDir =  mDataManager.recallLastWorkingDirectoryOfModel(map.value("projectName").toString(), map.value("modelName").toString());
-        ClassificationCommand* command = new ClassificationCommand(map, mDataManager.getProjectDataSetTrainSubdir(), workingDir, this);
+        ClassificationCommand* command = new ClassificationCommand(map, mDataManager.getProjectDataSetTrainSubdir(), this);
         mCommandList.append(command);
         connect(command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
     }
