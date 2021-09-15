@@ -91,7 +91,7 @@ void SettingsView::setCurrentImageLoaderPluginDirectory(const QString &path) {
 
 //private slots for global settings widget
 void SettingsView::slot_setProjectDir() {
-    mProjectDir = QFileDialog::getExistingDirectory(this, PROJECT_SELECT);
+    mProjectDir = QFileDialog::getExistingDirectory(this, PROJECT_SELECT_MSG);
     if (!mProjectDir.isEmpty()) {
         mGlobalSettingsWidget->setNewProjectPath(mProjectDir);
         return;
@@ -100,7 +100,7 @@ void SettingsView::slot_setProjectDir() {
 }
 
 void SettingsView::slot_setClassificationPluginsDir() {
-    mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, CLASSIFICATION_SELECT);
+    mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, CLASSIFICATION_SELECT_MSG);
     if (!mClassificationPluginsDir.isEmpty()) {
         mGlobalSettingsWidget->setNewClassificationPluginPath(mClassificationPluginsDir);
         return;
@@ -109,7 +109,7 @@ void SettingsView::slot_setClassificationPluginsDir() {
 }
 
 void SettingsView::slot_setImageLoaderPluginsDir() {
-    mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, LOADER_SELECT);
+    mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, LOADER_SELECT_MSG);
     if (!mImageLoaderPluginsDir.isEmpty()) {
         mGlobalSettingsWidget->setNewImageLoaderPath(mImageLoaderPluginsDir);
         return;

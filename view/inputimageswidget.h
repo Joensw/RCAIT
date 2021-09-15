@@ -70,9 +70,12 @@ private slots:
 
 
 private:
+    static constexpr auto DIALOG_CAPTION = QT_TR_NOOP("Select image directory");
+
     Ui::InputImagesWidget *ui;
     QString path;
     void retranslateUi();
+
 };
 
 #endif // INPUTIMAGESWIDGET_H

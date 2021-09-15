@@ -25,7 +25,7 @@ void InputImagesWidget::slot_progress(int progress)
 
 void InputImagesWidget::on_selectFolderButton_clicked()
 {
-     path = QFileDialog::getExistingDirectory(this, tr("Select image directory"));
+     path = QFileDialog::getExistingDirectory(this, DIALOG_CAPTION);
      if (path == nullptr) return;
      QStringList imagePaths;
      QDir imgDir(path);

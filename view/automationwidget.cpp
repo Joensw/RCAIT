@@ -1,9 +1,6 @@
 #include "automationwidget.h"
 #include "ui_automationwidget.h"
 
-#include <QFileDialog>
-#include <QScroller>
-
 AutomationWidget::AutomationWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AutomationWidget)
@@ -48,12 +45,13 @@ void AutomationWidget::slot_taskAdded(const QString &name)
 void AutomationWidget::slot_taskUpdate(const QString &name, const QString &state)
 {
     if (state == "Not_Scheduled"){
-         ui->idleTasks->findItems(name, Qt::MatchExactly).at(0)->setIcon(QIcon(":/TaskIcons/Not_Scheduled.svg"));
+         ui->idleTasks->findItems(name, Qt::MatchExactly).at(0)->setIcon(QIcon(TASK_NONSCHEDULED_ICON));
          return;
     }
     QList<QListWidgetItem*> task = ui->queuedTasks->findItems(name, Qt::MatchExactly);
-    //icons have to be named after states
-    task.at(0)->setIcon(QIcon(":/TaskIcons/" + state + ".svg"));
+    //icons have to be named after states    
+    QString temp = GENERIC_TASK_ICON;
+    task.at(0)->setIcon(QIcon(temp.arg(state)));
 }
 
 void AutomationWidget::on_startButton_clicked()

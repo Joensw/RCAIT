@@ -10,6 +10,8 @@
 #include <QValidator>
 #include <QFontMetricsF>
 #include <QStringBuilder>
+#include <QFileDialog>
+#include <QMessageBox>
 
 namespace Ui {
 class ImportFilesWidget;
@@ -78,8 +80,9 @@ public:
     void clearModelList();
 
 private:
-    Ui::ImportFilesWidget *ui;
+    static constexpr auto DIALOG_CAPTION = QT_TR_NOOP("Select .txt file");
 
+    Ui::ImportFilesWidget *ui;
 
     void retranslateUi();
 

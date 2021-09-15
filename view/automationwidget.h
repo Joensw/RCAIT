@@ -2,6 +2,8 @@
 #define AUTOMATIONWIDGET_H
 
 #include <QWidget>
+#include <QFileDialog>
+#include <QScroller>
 
 namespace Ui {
 class AutomationWidget;
@@ -142,6 +144,9 @@ private slots:
     [[maybe_unused]] void on_importTasksButton_clicked();
 
 private:
+    static constexpr auto TASK_NONSCHEDULED_ICON = ":/TaskIcons/Not_Scheduled.svg";
+    static constexpr auto GENERIC_TASK_ICON = ":/TaskIcons/%1.svg";
+
     Ui::AutomationWidget *ui;
 };
 

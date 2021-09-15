@@ -36,7 +36,11 @@ signals:
     void sig_removeProjectConfirm();
 
 private:
+    static constexpr auto PROJECT_NAME_PLACEHOLDER = "&lt;name&gt;";
+
     Ui::RemoveProjectDialog *ui;
+
+
 
     QString mToRemove;
 

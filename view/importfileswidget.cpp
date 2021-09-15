@@ -6,8 +6,7 @@
 
 #include "importfileswidget.h"
 #include "ui_importfileswidget.h"
-#include <QFileDialog>
-#include <QMessageBox>
+
 
 ImportFilesWidget::ImportFilesWidget(QWidget *parent) :
         QWidget(parent),
@@ -120,7 +119,7 @@ void ImportFilesWidget::on_horizontalSlider_valueChanged(int value) {
 
 void ImportFilesWidget::on_pushButton_loadLabelsFromFile_clicked() {
     std::vector<QString> labelsVector;
-    QString path = QFileDialog::getOpenFileName(this, tr("Select .txt file"), "", "*.txt");
+    QString path = QFileDialog::getOpenFileName(this, DIALOG_CAPTION, "", "*.txt");
     if (path.isEmpty()) return;
 
     QFile inputFile(path);
