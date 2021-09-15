@@ -142,6 +142,8 @@ set(Sources
         ../view/utilities/customtablewidget.cpp
 
         test_imagegallery.cpp
+
+        test_settingsmanager.cpp
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
