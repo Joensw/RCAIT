@@ -24,8 +24,6 @@ void Automator::performTasks()
         (*mRunningTask)->run();
         disconnect((*mRunningTask), &Task::sig_progress, this, &Automator::slot_makeProgress);
         disconnect((*mRunningTask), &Task::sig_stateChanged, this, &Automator::slot_taskUpdated);
-        disconnect((*mRunningTask), &Task::sig_classificationResultUpdated, this, &Automator::sig_classificationResultUpdated);
-        disconnect((*mRunningTask), &Task::sig_trainingResultUpdated, this, &Automator::sig_trainingResultUpdated);
         tasksCompleted++;
     }
     emit sig_progress(100);

@@ -39,7 +39,6 @@ Task::Task(QVariantMap map, QList<Command*> commandList)
 
     if (commands.contains("training")) {
         QString workingDir = mDataManager.createNewWorkSubDir(map.value("modelName").toString());
-        mDataManager.saveLastWorkingDirectoryOfModel(map.value("projectName").toString(), map.value("modelName").toString(), workingDir);
         TrainingCommand* command = new TrainingCommand(map, mDataManager.getProjectDataSetTrainSubdir(), mDataManager.getProjectDataSetValSubdir(), workingDir, this);
         mCommandList.append(command);
         connect(command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
