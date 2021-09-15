@@ -66,7 +66,7 @@ void ModelManager::saveLastWorkingDirectoryOfModel(const QString &projectName, c
     QStringList modelSpecificData;
     m_userModelNamesPerProject.beginGroup(projectName);
     modelSpecificData = m_userModelNamesPerProject.value(modelName).toStringList();
-    if (modelSpecificData.size() == numberOfEntries) {
+    if (!workingDirectory.trimmed().isEmpty() && modelSpecificData.size() == numberOfEntries) {
         modelSpecificData[lastWorkingDirectoryPosition] = workingDirectory;
         m_userModelNamesPerProject.setValue(modelName, modelSpecificData);
     }
