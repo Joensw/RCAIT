@@ -129,12 +129,15 @@ void ImageInspectionModel::removeImageWithIndex(const QMap<QString, QStringList>
     for (const auto &[label, values]: MapAdapt(removedImages)) {
         for (auto i = values.count() - 1; i >= 0; i--) {
             if (!values.contains(i)) continue;
-
                 QFile file(removeTarget[label][i]);
+                QDir currDir = QFileInfo(file).absoluteDir();
                 auto newList = removeTarget[label];
                 newList.removeAt(i);
                 removeTarget[label] = newList;
                 file.remove();
+                if (currDir.exists() && currDir.isEmpty()){
+                    currDir.removeRecursively();
+                }
         }
     }
 }
