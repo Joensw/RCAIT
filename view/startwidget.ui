@@ -17,34 +17,37 @@
    <bool>false</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-      <item row="2" column="0">
-          <spacer name="horizontalSpacer">
-              <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-                  <size>
-                      <width>40</width>
-                      <height>20</height>
-                  </size>
-              </property>
-          </spacer>
-      </item>
-      <item row="0" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_7">
-              <item>
-                  <widget class="QPushButton" name="pushButton_toggleFullscreen">
-                      <property name="styleSheet">
-                          <string notr="true">QPushButton:checked {background-color: none; border: none;}</string>
-                      </property>
-                      <property name="text">
-                          <string/>
-                      </property>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_welcomeMessage">
+     <property name="font">
+      <font>
+       <family>Inter</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string comment="welcome_label">Welcome to RCAIT!
+Select a project to get started</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <item>
+      <widget class="QPushButton" name="pushButton_toggleFullscreen">
+       <property name="styleSheet">
+        <string notr="true">QPushButton:checked {background-color: none; border: none;}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
        <property name="icon">
-           <iconset>
-               <normaloff>:UISymbols/UI_Fullscreen_Icon.svg</normaloff>
-               <normalon>:UISymbols/UI_Fullscreen_Exit_Icon.svg</normalon>:UISymbols/UI_Fullscreen_Icon.svg
-           </iconset>
+        <iconset>
+         <normaloff>:UISymbols/UI_Fullscreen_Icon.svg</normaloff>
+         <normalon>:UISymbols/UI_Fullscreen_Exit_Icon.svg</normalon>:UISymbols/UI_Fullscreen_Icon.svg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -105,133 +108,37 @@
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-              <widget class="QGroupBox" name="groupBox">
-                  <property name="styleSheet">
-                      <string notr="true">QGroupBox {
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
                           border: 2px solid rgb(218,218,218);
                           border-radius: 10px;
-                          }
-                      </string>
-                  </property>
-                  <property name="title">
-                      <string/>
-                  </property>
-                  <layout class="QGridLayout" name="gridLayout_2">
-                      <item row="0" column="0">
-                          <widget class="CustomListWidget" name="listWidget_projectsList">
-                              <property name="font">
-                                  <font>
-                                      <family>Inter</family>
-                                      <pointsize>8</pointsize>
-                                  </font>
-                              </property>
-                              <property name="styleSheet">
-                                  <string notr="true">selection-color: rgb(0, 0, 0);
-                                      selection-background-color: rgb(255, 255, 255);
-                                      background-color: none;
-                                      border: 2px rgb(0, 0, 0);
+                          }</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="CustomListWidget" name="listWidget_projectsList">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>8</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">selection-color: rgb(0, 0, 0);
+selection-background-color: rgb(255, 255, 255);
+background-color: none;
+border: 2px rgb(0, 0, 0);
                                   </string>
-                              </property>
-                          </widget>
-                      </item>
-                  </layout>
-              </widget>
+            </property>
+           </widget>
           </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <spacer name="horizontalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-             <widget class="QPushButton" name="pushButton_newProject">
-                 <property name="text">
-                     <string>New Project</string>
-                 </property>
-                 <property name="icon">
-                     <iconset>
-                         <normaloff>:UISymbols/UI_Add_Icon.svg</normaloff>:UISymbols/UI_Add_Icon.svg
-                     </iconset>
-                 </property>
-                 <property name="iconSize">
-                     <size>
-                         <width>16</width>
-                         <height>15</height>
-                     </size>
-                 </property>
-             </widget>
-         </item>
-         <item>
-             <widget class="QPushButton" name="pushButton_removeProject">
-                 <property name="text">
-                     <string>Remove</string>
-                 </property>
-                 <property name="icon">
-                     <iconset>
-                         <normaloff>:UISymbols/UI_Delete_Item.svg</normaloff>:UISymbols/UI_Delete_Item.svg
-                     </iconset>
-                 </property>
-                 <property name="iconSize">
-                     <size>
-                         <width>16</width>
-                         <height>15</height>
-                     </size>
-                 </property>
-             </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_openProject">
-           <property name="font">
-            <font>
-             <family>Inter</family>
-             <pointsize>8</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
-              <property name="layoutDirection">
-                  <enum>Qt::RightToLeft</enum>
-              </property>
-              <property name="text">
-                  <string>Open</string>
-              </property>
-              <property name="icon">
-                  <iconset>
-                      <normaloff>:UISymbols/UI_Arrow_Forward.svg</normaloff>:UISymbols/UI_Arrow_Forward.svg
-                  </iconset>
-              </property>
-              <property name="iconSize">
-                  <size>
-                      <width>16</width>
-                      <height>15</height>
-                  </size>
-              </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_5">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+         </layout>
+        </widget>
        </item>
       </layout>
      </item>
@@ -240,34 +147,134 @@
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-          <property name="sizeHint" stdset="0">
-              <size>
-                  <width>40</width>
-                  <height>20</height>
-              </size>
-          </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
       </spacer>
      </item>
     </layout>
    </item>
-      <item row="1" column="0">
-          <widget class="QLabel" name="label_welcomeMessage">
-              <property name="font">
-                  <font>
-                      <family>Inter</family>
-                      <pointsize>16</pointsize>
-                  </font>
-              </property>
-              <property name="text">
-                  <string comment="welcome_label">Welcome to RCAIT!
-                      Select a project to get started
-                  </string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-      </item>
+   <item row="5" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_newProject">
+       <property name="text">
+        <string>New Project</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>:UISymbols/UI_Add_Icon.svg</normaloff>:UISymbols/UI_Add_Icon.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>16</width>
+         <height>15</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_removeProject">
+       <property name="text">
+        <string>Remove</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>:UISymbols/UI_Delete_Item.svg</normaloff>:UISymbols/UI_Delete_Item.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>16</width>
+         <height>15</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_openProject">
+       <property name="font">
+        <font>
+         <family>Inter</family>
+         <pointsize>8</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="text">
+        <string>Open</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>:UISymbols/UI_Arrow_Forward.svg</normaloff>:UISymbols/UI_Arrow_Forward.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>16</width>
+         <height>15</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="0">
+    <spacer name="horizontalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="0">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -277,6 +284,6 @@
    <header>customlistwidget.h</header>
   </customwidget>
  </customwidgets>
-    <resources/>
+ <resources/>
  <connections/>
 </ui>

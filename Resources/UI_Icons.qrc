@@ -56,5 +56,7 @@
         <file>UISymbols/UI_Images_Folder_Icon.svg</file>
         <file>UISymbols/UI_Preview_Icon.svg</file>
         <file>UISymbols/UI_Eye_Icon.svg</file>
+        <file>UISymbols/UI_Triangle_Bottom.svg</file>
+        <file>UISymbols/UI_Triangle_Top.svg</file>
     </qresource>
 </RCC>
