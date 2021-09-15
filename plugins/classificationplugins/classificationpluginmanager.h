@@ -40,7 +40,7 @@ public:
     ClassificationResult * classify(const QString& pluginName, QString inputImageDirPath, QString trainDatasetPath, QString workingDirectory, QString modelName, ProgressablePlugin * receiver);
     QList<QWidget*> getConfigurationWidgets();
 
-    QStringList getClassificationPluginBases(const QString& plugin);
+    QStringList getClassificationPluginBases(const QString& pluginName);
 private:
     ClassificationPluginManager * instance;
     QList<QWidget*> m_pluginConfigurationWidgets;

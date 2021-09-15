@@ -83,7 +83,7 @@ private:
     QString imageDir;
     bool abort = false;
 
-    [[nodiscard]] bool addLabel(const QStringList &list, const QDir &in, QDir out) const;
+    [[nodiscard]] bool addLabel(const QStringList &images, const QDir &in, QDir out) const;
 
 };
 
