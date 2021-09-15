@@ -35,7 +35,7 @@ public:
      * @param map stores information for commands.
      * @param dataManager source of general information.
      */
-    Task(QVariantMap map, DataManager *dataManager, QList<Command*> commandList = {});
+    Task(QVariantMap map, QList<Command*> commandList = {});
 
     /**
      * @brief getName returns name of the Task.
@@ -100,16 +100,6 @@ public slots:
      */
     void slot_saveClassificationResult(ClassificationResult *result);
 
-    /**
-     * @brief createLoadModel tries to load model with given name, creates new one if it does not exist.
-     *
-     * @param modelName name of model to load
-     * @param pluginName name of plugin
-     * @param baseModel name of base model
-     */
-    void slot_createLoadModel(const QString &modelName, const QString &pluginName, const QString &baseModel = QString());
-
-
 signals:
 
     /**
@@ -126,6 +116,20 @@ signals:
      */
     void sig_progress(int progress);
 
+    /**
+     * @brief sig_trainingResultUpdated signals new training result from automation.
+     *
+     * @param result training result
+     */
+    void sig_trainingResultUpdated(TrainingResult* result);
+
+    /**
+     * @brief sig_classificationResultUpdated signals new classification result from automation.
+     *
+     * @param result classification result
+     */
+    void sig_classificationResultUpdated(ClassificationResult* result);
+
 
 
 private:
@@ -134,7 +138,7 @@ private:
     QString mName;
     TaskState mState = SCHEDULED;
     QString mProjectPath;
-    DataManager *mDataManager;
+    DataManager& mDataManager = DataManager::getInstance();;
     QList<Command*> mCommandList;
     ResultsExporter* mExporter;
 

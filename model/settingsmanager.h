@@ -153,7 +153,7 @@ private:
     static constexpr auto classificationPluginDirectoryIdentifier = "ClassificationPluginPath";
     static constexpr auto imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
 
-    static constexpr auto ERROR_CONFLICT = "Settings have not been updated, there is a conflict. \n Paths may not be identical and must exist, this includes new and unchanged paths.";
+    static constexpr auto ERROR_CONFLICT = QT_TR_NOOP("Settings have not been updated, there is a conflict. \n Paths may not be identical and must exist, this includes new and unchanged paths.");
 
     ClassificationPluginManager *mClassificationPluginManager;
     ImageLoaderPluginManager *mImageLoaderPluginManager;

@@ -2,6 +2,7 @@
 #define PROJECTMANAGER_H
 
 #include <QString>
+#include <QStringBuilder>
 #include <QObject>
 #include <classificationresult.h>
 #include <trainingresult.h>
@@ -174,16 +175,18 @@ private:
     static constexpr auto projectFileType = ".ini";
 
     //error messages for project names
-    static constexpr auto ERROR_NOCHAR = "Name must contain at least 1 character";
-    static constexpr auto ERROR_ONLY_SPACE = "Name should contain more than only space (\" \") characters";
-    static constexpr auto ERROR_ILLEGAL_CHAR = "Name may not contain the  \"/\" or \"\\\" characters";
-    static constexpr auto ERROR_DUPLICATE = "A project with this name already exists in the project directory";
-    static constexpr auto ERROR_OS_SUPPORT = "The operating system cannot support this name";
+    static constexpr auto ERROR_NOCHAR = QT_TR_NOOP("Name must contain at least 1 character");
+    static constexpr auto ERROR_ONLY_SPACE = QT_TR_NOOP("Name should contain more than only space (\" \") characters");
+    static constexpr auto ERROR_ILLEGAL_CHAR = QT_TR_NOOP("Name may not contain the  \"/\" or \"\\\" characters");
+    static constexpr auto ERROR_DUPLICATE = QT_TR_NOOP("A project with this name already exists in the project directory");
+    static constexpr auto ERROR_OS_SUPPORT = QT_TR_NOOP("The operating system cannot support this name");
 
     //Regex to match String with consisting of only spaces
     static constexpr auto REGEX_ONLY_SPACE = "^[ ]+$";
 
     static constexpr auto TEXT_FILE_FILTER = "*.txt";
+
+    static const QVector<QString> UNWANTED_NAME_SEQUENCES;
 
     bool verifyName(QString projectName, QString *error);
 

@@ -11,7 +11,7 @@ TEST(AutomatorTest, testAddTask){
     QApplication a(argc, argv);
     DataManager* manager = &DataManager::getInstance();
     manager->saveProjectsDir(QDir::current().path());
-    Automator* automator = new Automator(manager);
+    Automator* automator = new Automator();
     QDir dir(QDir::current().path());
     dir.cd("tasks");
 
@@ -46,7 +46,7 @@ TEST(AutomatorTest, testUnQueueTask){
     QApplication a(argc, argv);
     DataManager* manager = &DataManager::getInstance();
     manager->saveProjectsDir(QDir::current().path());
-    Automator* automator = new Automator(manager);
+    Automator* automator = new Automator();
     QSignalSpy spy(automator, &Automator::sig_taskUpdate);
     QDir dir(QDir::current().path());
     dir.cd("tasks");
@@ -96,7 +96,7 @@ TEST(AutomatorTest, testRemove){
     QApplication a(argc, argv);
     DataManager* manager = &DataManager::getInstance();
     manager->saveProjectsDir(QDir::current().path());
-    Automator* automator = new Automator(manager);
+    Automator* automator = new Automator();
     QDir dir(QDir::current().path());
     dir.cd("tasks");
 
@@ -131,7 +131,7 @@ TEST(AutomatorTest, testPerformTasks){
     QApplication a(argc, argv);
     DataManager* manager = &DataManager::getInstance();
     manager->saveProjectsDir(QDir::current().path());
-    Automator* automator = new Automator(manager);
+    Automator* automator = new Automator();
     QSignalSpy spy(automator, &Automator::sig_progress);
     QDir dir(QDir::current().path());
     dir.cd("tasks");

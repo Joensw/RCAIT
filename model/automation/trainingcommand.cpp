@@ -1,6 +1,7 @@
 #include "trainingcommand.h"
 
 #include <classificationpluginmanager.h>
+#include <datamanager.h>
 
 
 TrainingCommand::TrainingCommand(QVariantMap map,const QString &trainDataSetPath, const QString &validationDataSetPath,const QString &workingDir, ProgressablePlugin* receiver)
@@ -41,7 +42,10 @@ bool TrainingCommand::execute()
     if(parsingFailed) return false;
 
     // creating/loading model
-    emit sig_createLoadModel(mModelName, mAiPluginName, mBaseModel);
+    if (!mBaseModel.isNull()){
+        mDataManager.createNewModel(mModelName, mAiPluginName, mBaseModel);
+    }
+    mDataManager.loadModel(mModelName, mAiPluginName);
 
     // setting properties
     auto endInput = mInputOptions.end();

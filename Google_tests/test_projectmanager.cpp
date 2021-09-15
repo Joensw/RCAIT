@@ -1,7 +1,8 @@
 #include <gtest/gtest.h>
-#include "../model/projectmanager.h"
+#include <QStringBuilder>
+#include <projectmanager.h>
 
-QString tempProjectsDir = "../projects";
+QString tempProjectsDir = "../projectsForTests";
 QString testProjectName = "testProject";
 
 TEST(ProjectManagerTest, testFalseName){
@@ -31,11 +32,11 @@ TEST(ProjectManagerTest, createValidProject){
     EXPECT_TRUE(testClassResultsDir.exists());
     EXPECT_TRUE(testTrainResultsDir.exists());
 
-    QFile projFile(tempProjectsDir + "/" + testProjectName + "/" + testProjectName + ".ini");
+    QFile projFile(tempProjectsDir % "/" % testProjectName % "/" % testProjectName % ".ini");
     EXPECT_TRUE(projFile.exists());
 
     //QDir testDir("../projects/testProject1");
-    QDir testDir(tempProjectsDir + "/" + testProjectName);
+    QDir testDir(tempProjectsDir % "/" % testProjectName);
     EXPECT_TRUE(testDir.removeRecursively());
 
     //TearDown
@@ -52,7 +53,7 @@ TEST(ProjectManagerTest, deleteValidProject) {
     EXPECT_TRUE(out);
 
     pm->removeProject(testProjectName);
-    QDir testDir(tempProjectsDir + "/" + testProjectName);
+    QDir testDir(tempProjectsDir % "/" % testProjectName);
     EXPECT_FALSE(testDir.exists());
 
     //TearDown
@@ -72,8 +73,9 @@ TEST(ProjectManagerTest, loadProject){
 
     pm->loadProject(testProjectName);
 
-    QDir projectDir(tempProjectsDir + "/" + testProjectName);
+    QDir projectDir(tempProjectsDir % "/" % testProjectName);
     QString projectPath = projectDir.absolutePath();
+
     EXPECT_TRUE(pm->getProjectPath() == projectPath);
     //TearDown
     projectsDir.removeRecursively();
