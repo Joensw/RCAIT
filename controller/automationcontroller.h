@@ -22,7 +22,7 @@ public:
      * @param dataManager source of general information.
      * @param automationWidget user interface for operating automation.
      */
-    AutomationController(DataManager *dataManager, AutomationWidget *automationWidget);
+    AutomationController(AutomationWidget *automationWidget);
 
 public slots:
 
@@ -71,15 +71,34 @@ public slots:
     void slot_queueSelected(int index);
 
     /**
-     * @brief slot_unqueueSelected  unqueues task at index.
+     * @brief slot_unqueueSelected unqueues task at index.
      *
      * @param index index of task.
      */
     void slot_unqueueSelected(int index);
 
+signals:
+    /**
+     * @brief sig_trainingResultUpdated signals new training result from automation.
+     *
+     * @param result training result
+     */
+    void sig_trainingResultUpdated(TrainingResult* result);
+
+    /**
+     * @brief sig_classificationResultUpdated signals new classification result from automation.
+     *
+     * @param result classification result
+     */
+    void sig_classificationResultUpdated(ClassificationResult* result);
+
+    /**
+     * @brief slot_projectCreated used to signal update of project directory.
+     */
+    void sig_projectDirectoryChanged();
+
 private:
     AutomationWidget *mWidget;
-    DataManager *mDataManager;
     QScopedPointer<Automator> mAutomator;
 
 };

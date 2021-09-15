@@ -16,7 +16,7 @@ private:
     QStringList m_labels;
 
 public:
-    ClassificationResult(const QMap<QString, QList<double>> &classificationData,
+    ClassificationResult(const QString &storageDir, const QMap<QString, QList<double>> &classificationData,
                          const QStringList &labels, const QStringList &additionalResults = {});
 
     ClassificationResult(const ClassificationResult &) = delete;
@@ -27,9 +27,9 @@ public:
 
     [[nodiscard]] const QStringList &getLabels() const;
 
-    const QSharedPointer<ClassificationGraphics> &getClassificationGraphics() const;
+    [[nodiscard]] const QSharedPointer<ClassificationGraphics> &getClassificationGraphics() const;
 
-    bool isValid() const;
+    [[nodiscard]] bool isValid() const;
 };
 
 

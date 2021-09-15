@@ -58,9 +58,8 @@ public slots:
 
     /**
      * @brief slot_projectDirectoryChanged refreshes the project UI
-     * @param newDirectory current directory
      */
-    void slot_projectDirectoryChanged(const QString &newDirectory);
+    void slot_projectDirectoryChanged();
 
 private:
     DataManager *mDataManager;

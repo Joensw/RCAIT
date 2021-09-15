@@ -1,16 +1,16 @@
 #include "classificationresult.h"
 #include <utility>
 
-ClassificationResult::ClassificationResult(const QMap<QString, QList<double>> &classificationData,
+ClassificationResult::ClassificationResult(const QString &storageDir,
+                                           const QMap<QString, QList<double>> &classificationData,
                                            const QStringList &labels, const QStringList &additionalResults)
-        : Result(additionalResults),
+        : Result(storageDir, additionalResults),
           m_classificationData(classificationData),
           m_labels(labels) {
 
-    auto tempDir = ProjectManager::getInstance().getProjectImageTempDir();
     auto savable_id = getSavableIdentifier();
 
-    m_classificationGraphics.reset(new ClassificationGraphics(tempDir, savable_id, classificationData, labels));
+    m_classificationGraphics.reset(new ClassificationGraphics(storageDir, savable_id, classificationData, labels));
 }
 
 bool ClassificationResult::isValid() const {

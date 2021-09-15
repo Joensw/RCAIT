@@ -161,9 +161,7 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
     if (!mProjectPath.isEmpty()){
         QDir trainingResultsDir(getTrainingResultsDir());
 
-        QStringList filters;
-        filters << TEXT_FILE_FILTER;
-        trainingResultsDir.setNameFilters(filters);
+        trainingResultsDir.setNameFilters({TEXT_FILE_FILTER});
 
         trainingResultsDir.setFilter(QDir::Files | QDir::NoDotAndDotDot);
 
@@ -172,7 +170,7 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
         for(const QFileInfo &f: filelist){
             fileNameList.append(f.baseName());
         }
-        return fileNameList ;
+        return fileNameList;
     }
     return {};
 }
@@ -205,7 +203,7 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
         return false;
     }
 
-    QRegularExpression noSpacesEx(REGEX_ONLY_SPACE);
+    static QRegularExpression noSpacesEx(REGEX_ONLY_SPACE);
     QRegularExpressionMatch match = noSpacesEx.match(projectName);
     if (match.hasMatch()){
         error->append(ERROR_ONLY_SPACE);

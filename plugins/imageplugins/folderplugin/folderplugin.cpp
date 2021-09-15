@@ -7,111 +7,105 @@
 #include "folderplugin.h"
 
 
-bool FolderPlugin::loadImages(const QString path, ProgressablePlugin* receiver, const int imageCount = 0, const QStringList label = QStringList())
-{
+bool FolderPlugin::loadImages(QString path, ProgressablePlugin *receiver, int /*imageCount*/, QStringList /*label*/) {
     abort = false;
     connect(receiver, &ProgressablePlugin::sig_pluginAborted, this, &FolderPlugin::slot_abort);
     QDir output(path);
     QDir folder = QDir(imageDir);
-    if (!folder.exists() || !output.exists()){
+    if (!folder.exists() || !output.exists()) {
         receiver->slot_makeProgress(100);
         return false;
     }
 
-    switch(mode){
+    //TODO: Enum for case numbers
+    switch (mode) {
         case 0: {
-            QStringList imagefolders = folder.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
+            auto imageFolders = folder.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
             int i = 0;
-            foreach (QString folderName, imagefolders){
+            for (const QString &folderName: imageFolders) {
                 if (abort) return false;
+
                 folder.cd(folderName);
-                QStringList imagelist = folder.entryList(QStringList() << "*.JPG" << "*.jpg"  << "*.jpeg" << "*.png", QDir::Files);
-                if (!imagelist.isEmpty()){
-                    if (!addLabel(imagelist, folder, output)){
-                        receiver->slot_makeProgress(100);
-                        return false;
-                    }                   
+                auto imageList = folder.entryList({"*.JPG", "*.jpg", "*.jpeg", "*.png"}, QDir::Files);
+
+                if (imageList.isEmpty() || addLabel(imageList, folder, output)) {
+                    receiver->slot_makeProgress((int) ((i++ * 100 + 100) / imageFolders.count()));
+                    folder.cdUp();
+                } else {
+                    receiver->slot_makeProgress(100);
+                    return false;
                 }
-                receiver->slot_makeProgress((i * 100 + 100) / imagefolders.count());
-                i++;
-                folder.cdUp();
             }
             receiver->slot_makeProgress(100);
             return true;
-            break;
         }
 
         case 1: {
             // syntax for labels by filename is "label_image.png"
-            QStringList images = folder.entryList(QStringList() << "*_*.JPG" << "*_*.jpg" << "*_*.jpeg" << "*_*.png", QDir::Files);
-            foreach (QString image, images){
+            auto images = folder.entryList({"*_*.JPG", "*_*.jpg", "*_*.jpeg", "*_*.png"}, QDir::Files);
+
+            for (const QString &image: images) {
                 if (abort) return false;
-                QString label = image.mid(0, image.indexOf("_"));
+                auto label = image.mid(0, image.indexOf("_"));
                 output.mkdir(label);
+
                 if (!output.cd(label)) {
                     receiver->slot_makeProgress(100);
                     return false;
                 }
-                QString path = folder.path() + "/" + image;
-                QFile::copy(path, output.path() + "/" + image.mid(image.indexOf("_") + 1));
+
+                QString target = folder.path() % "/" % image;
+                QFile::copy(target, output.path() % "/" % image.mid(image.indexOf("_") + 1));
                 output.cdUp();
             }
             receiver->slot_makeProgress(100);
             return true;
-            break;
         }
         case 2: {
-            QStringList images = folder.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.jpeg" << "*.png", QDir::Files);
+            auto images = folder.entryList({"*.JPG", "*.jpg", "*.jpeg", "*.png"}, QDir::Files);
             bool success = addLabel(images, folder, output);
             receiver->slot_makeProgress(100);
             return success;
-            break;
         }
 
-    default: return false;
+        default:
+            return false;
     }
 
 }
 
-QWidget *FolderPlugin::getConfigurationWidget()
-{
+QWidget *FolderPlugin::getConfigurationWidget() {
     return mConfigWidget;
 }
 
-void FolderPlugin::saveConfiguration()
-{
+void FolderPlugin::saveConfiguration() {
     mode = mConfigWidget->getLoadMode();
     imageDir = mConfigWidget->getImageFolder();
 }
 
-void FolderPlugin::init()
-{
+void FolderPlugin::init() {
     mConfigWidget = new FolderConfigwidget();
 }
 
-QString FolderPlugin::getName()
-{
+QString FolderPlugin::getName() {
     return "FolderPlugin";
 }
 
-QWidget *FolderPlugin::getInputWidget()
-{
+QWidget *FolderPlugin::getInputWidget() {
     return mConfigWidget;
 }
 
-void FolderPlugin::slot_abort()
-{
+void FolderPlugin::slot_abort() {
     abort = true;
 }
 
-bool FolderPlugin::addLabel(QStringList images, QDir in, QDir out)
-{
+bool FolderPlugin::addLabel(const QStringList &images, const QDir &in, QDir out) const {
     out.mkdir(in.dirName());
     if (!out.cd(in.dirName())) return false;
-    foreach (QString imageName, images) {
+    return std::all_of(images.begin(), images.end(), [this, &in, &out](const QString &imageName) {
         if (abort) return false;
-        QString path = in.path() + "/" + imageName;
-        QFile::copy(path, out.path() + "/" + imageName);
-    }
-    return true;
+        QString path = in.path() % "/" % imageName;
+        QFile::copy(path, out.path() % "/" % imageName);
+        return true;
+    });
 }

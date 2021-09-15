@@ -39,11 +39,13 @@ public:
      * @brief loadSettings loads the settings from the persistent storage
      */
     void loadSettings();
+
     /**
-     * @brief getaAPIKey gets the API Key
+     * @brief getAPIKey gets the API Key
      * @return the API Key
      */
-    QString getaAPIKey();
+    QString getAPIKey();
+
     /**
      * @brief getAPISecret get the API secret
      * @return the API secret

@@ -22,7 +22,7 @@ public:
      *
      * @param dataManager source of general information.
      */
-    Automator(DataManager *dataManager);
+    Automator();
 
     /**
      * @brief performTasks starts tasks scheduled for execution.
@@ -127,11 +127,30 @@ signals:
      */
     void sig_finished();
 
+    /**
+     * @brief sig_trainingResultUpdated signals new training result from automation.
+     *
+     * @param result training result
+     */
+    void sig_trainingResultUpdated(TrainingResult* result);
+
+    /**
+     * @brief sig_classificationResultUpdated signals new classification result from automation.
+     *
+     * @param result classification result
+     */
+    void sig_classificationResultUpdated(ClassificationResult* result);
+
+    /**
+     * @brief sig_projectCreated signals potential creation of new project.
+     *
+     */
+    void sig_projectCreated();
+
 
 private:
     QList<Task*> mUnqueuedTasks;
     QList<Task*> mQueuedTasks;
-    DataManager *mDataManager;
     QList<Task*>::iterator mRunningTask;
 
     bool stop = false;

@@ -11,6 +11,7 @@
 #include <QSettings>
 #include <QLineEdit>
 #include <QProcess>
+#include <QStringBuilder>
 #include <QProcessEnvironment>
 #include "imageloaderplugin.h"
 #include "bingsettings.h"
@@ -18,9 +19,8 @@
 #include "QRegularExpression"
 
 
-
 /**
- * @brief The BingPlugin class for downloading images from the bing web search and saving to disk
+ * @brief The BingPlugin class is used for downloading images from the bing web search and saving to disk
  */
 class BingPlugin : public QObject, ImageLoaderPlugin
 {
@@ -36,7 +36,8 @@ private:
    ProgressablePlugin* m_receiver;
    // in case something goes wrong (could be read from command line)
    bool m_success = true;
-   QString createCommandlineString( QString path,  int imageCount,  QStringList* label);
+
+    QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
 
 public:
    /**
