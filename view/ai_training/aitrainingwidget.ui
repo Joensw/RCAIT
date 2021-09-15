@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tab_aitraining">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_configuration">
       <attribute name="title">
@@ -26,44 +26,77 @@
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <widget class="QWidget" name="configurationWidget" native="true">
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QGroupBox" name="groupDataAugmentation">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="title">
-             <string>Data Augmentation</string>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_7">
-             <item>
-              <widget class="QScrollArea" name="scrollArea_augmentation">
-               <property name="autoFillBackground">
-                <bool>false</bool>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::NoFrame</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Plain</enum>
-               </property>
-               <property name="lineWidth">
-                <number>0</number>
-               </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <property name="leftMargin">
+                    <number>0</number>
+                </property>
+                <property name="rightMargin">
+                    <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                    <number>0</number>
+                </property>
+                <item>
+                    <widget class="QGroupBox" name="groupDataAugmentation">
+                        <property name="sizePolicy">
+                            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="styleSheet">
+                            <string notr="true">QGroupBox {
+                                border: 2px solid rgb(218,218,218);
+                                border-radius: 10px;
+                                margin-top: 6px;
+                                }
+                                QGroupBox::title {
+                                subcontrol-origin: margin;
+                                left: 12px;
+                                padding: 0px 3px 0px 3px;
+
+                                }
+                            </string>
+                        </property>
+                        <property name="title">
+                            <string>Data Augmentation</string>
+                        </property>
+                        <property name="alignment">
+                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                        </property>
+                        <layout class="QVBoxLayout" name="verticalLayout_7">
+                            <item>
+                                <widget class="QScrollArea" name="scrollArea_augmentation">
+                                    <property name="autoFillBackground">
+                                        <bool>false</bool>
+                                    </property>
+                                    <property name="styleSheet">
+                                        <string notr="true">selection-color: rgb(0, 0, 0);
+                                            selection-background-color: rgb(255, 255, 255);
+                                            background-color: none;
+                                            border: 2px rgb(0, 0, 0);
+                                        </string>
+                                    </property>
+                                    <property name="frameShape">
+                                        <enum>QFrame::NoFrame</enum>
+                                    </property>
+                                    <property name="frameShadow">
+                                        <enum>QFrame::Plain</enum>
+                                    </property>
+                                    <property name="lineWidth">
+                                        <number>0</number>
+                                    </property>
                <property name="widgetResizable">
                 <bool>false</bool>
                </property>
                <widget class="QWidget" name="scrollAreaWidgetContents_3">
                 <property name="geometry">
-                 <rect>
-                  <x>0</x>
-                  <y>0</y>
-                  <width>859</width>
-                  <height>146</height>
-                 </rect>
+                    <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>0</width>
+                        <height>0</height>
+                    </rect>
                 </property>
                </widget>
               </widget>
@@ -105,11 +138,28 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="previewButton">
-                 <property name="text">
-                  <string>Show Preview</string>
-                 </property>
-                </widget>
+                   <widget class="QPushButton" name="previewButton">
+                       <property name="sizePolicy">
+                           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                           </sizepolicy>
+                       </property>
+                       <property name="text">
+                           <string>Show Preview</string>
+                       </property>
+                       <property name="icon">
+                           <iconset resource="../../Resources/UI_Icons.qrc">
+                               <normaloff>:/UISymbols/UI_Eye_Icon.svg</normaloff>:/UISymbols/UI_Eye_Icon.svg
+                           </iconset>
+                       </property>
+                       <property name="iconSize">
+                           <size>
+                               <width>18</width>
+                               <height>15</height>
+                           </size>
+                       </property>
+                   </widget>
                </item>
               </layout>
              </item>
@@ -117,42 +167,66 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="groupConfiguration">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="title">
-             <string>Configuration</string>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
-             <item>
-              <widget class="QScrollArea" name="scrollArea_configuration">
-               <property name="autoFillBackground">
-                <bool>false</bool>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::NoFrame</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Plain</enum>
-               </property>
-               <property name="lineWidth">
-                <number>0</number>
-               </property>
-               <property name="widgetResizable">
+              <widget class="QGroupBox" name="groupConfiguration">
+                  <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                      </sizepolicy>
+                  </property>
+                  <property name="styleSheet">
+                      <string notr="true">QGroupBox {
+                          border: 2px solid rgb(218,218,218);
+                          border-radius: 10px;
+                          margin-top: 6px;
+                          }
+                          QGroupBox::title {
+                          subcontrol-origin: margin;
+                          left: 12px;
+                          padding: 0px 3px 0px 3px;
+
+                          }
+                      </string>
+                  </property>
+                  <property name="title">
+                      <string>Configuration</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_2">
+                      <property name="topMargin">
+                          <number>12</number>
+                      </property>
+                      <item>
+                          <widget class="QScrollArea" name="scrollArea_configuration">
+                              <property name="autoFillBackground">
+                                  <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                                  <string notr="true">selection-color: rgb(0, 0, 0);
+                                      selection-background-color: rgb(255, 255, 255);
+                                      background-color: none;
+                                      border: 2px rgb(0, 0, 0);
+                                  </string>
+                              </property>
+                              <property name="frameShape">
+                                  <enum>QFrame::NoFrame</enum>
+                              </property>
+                              <property name="frameShadow">
+                                  <enum>QFrame::Plain</enum>
+                              </property>
+                              <property name="lineWidth">
+                                  <number>0</number>
+                              </property>
+                              <property name="widgetResizable">
                 <bool>false</bool>
                </property>
                <widget class="QWidget" name="scrollAreaWidgetContents_4">
                 <property name="geometry">
-                 <rect>
-                  <x>0</x>
-                  <y>0</y>
-                  <width>859</width>
-                  <height>146</height>
-                 </rect>
+                    <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>0</width>
+                        <height>0</height>
+                    </rect>
                 </property>
                </widget>
               </widget>
@@ -164,27 +238,44 @@
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QGroupBox" name="groupRunTraining">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Run Model Training</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_7">
-          <item row="1" column="0">
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <widget class="QProgressBar" name="progressBar">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="value">
-               <number>0</number>
-              </property>
+           <widget class="QGroupBox" name="groupRunTraining">
+               <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                   </sizepolicy>
+               </property>
+               <property name="styleSheet">
+                   <string notr="true">QGroupBox {
+                       border: 2px solid rgb(218,218,218);
+                       border-radius: 10px;
+                       margin-top: 6px;
+                       }
+                       QGroupBox::title {
+                       subcontrol-origin: margin;
+                       left: 12px;
+                       padding: 0px 3px 0px 3px;
+
+                       }
+                   </string>
+               </property>
+               <property name="title">
+                   <string>Run Model Training</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_7">
+                   <property name="topMargin">
+                       <number>12</number>
+                   </property>
+                   <item row="1" column="0">
+                       <layout class="QVBoxLayout" name="verticalLayout">
+                           <item>
+                               <widget class="QProgressBar" name="progressBar">
+                                   <property name="enabled">
+                                       <bool>false</bool>
+                                   </property>
+                                   <property name="value">
+                                       <number>0</number>
+                                   </property>
              </widget>
             </item>
             <item>
@@ -203,21 +294,34 @@
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="startButton">
-                <property name="text">
-                 <string>Start</string>
-                </property>
-               </widget>
+                  <widget class="QPushButton" name="startButton">
+                      <property name="layoutDirection">
+                          <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <property name="text">
+                          <string>Start</string>
+                      </property>
+                      <property name="icon">
+                          <iconset resource="../../Resources/UI_Icons.qrc">
+                              <normaloff>:/UISymbols/UI_Triangle_Right.svg</normaloff>:/UISymbols/UI_Triangle_Right.svg
+                          </iconset>
+                      </property>
+                  </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="cancelButton">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="text">
-                 <string>Cancel</string>
-                </property>
-               </widget>
+                  <widget class="QPushButton" name="cancelButton">
+                      <property name="enabled">
+                          <bool>false</bool>
+                      </property>
+                      <property name="text">
+                          <string>Cancel</string>
+                      </property>
+                      <property name="icon">
+                          <iconset resource="../../Resources/UI_Icons.qrc">
+                              <normaloff>:/UISymbols/UI_Cancel_Icon.svg</normaloff>:/UISymbols/UI_Cancel_Icon.svg
+                          </iconset>
+                      </property>
+                  </widget>
               </item>
               <item>
                <widget class="QPushButton" name="resultsButton">
@@ -231,10 +335,10 @@
               </item>
              </layout>
             </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
+                       </layout>
+                   </item>
+               </layout>
+           </widget>
        </item>
       </layout>
      </widget>
@@ -266,6 +370,8 @@
             <container>1</container>
         </customwidget>
     </customwidgets>
- <resources/>
- <connections/>
+    <resources>
+        <include location="../../Resources/UI_Icons.qrc"/>
+    </resources>
+    <connections/>
 </ui>

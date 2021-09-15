@@ -4,10 +4,10 @@
  <widget class="QWidget" name="InputImagesWidget">
   <property name="geometry">
    <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>400</width>
-    <height>300</height>
+       <x>0</x>
+       <y>0</y>
+       <width>489</width>
+       <height>244</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,76 +16,128 @@
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QPushButton" name="selectFolderButton">
-       <property name="text">
-        <string>Select input folder...</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="classifyButton">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Classify images</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0" colspan="2">
-      <widget class="ImageGallery" name="preview">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="selectionMode">
-        <enum>QAbstractItemView::NoSelection</enum>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>100</width>
-         <height>100</height>
-        </size>
-       </property>
-       <property name="viewMode">
-        <enum>QListView::IconMode</enum>
-       </property>
-       <property name="uniformItemSizes">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QProgressBar" name="progressBar">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="value">
-        <number>0</number>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="cancelButton">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Cancel</string>
-       </property>
-      </widget>
-     </item>
+        <item row="2" column="0">
+            <widget class="QPushButton" name="selectFolderButton">
+                <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="text">
+                    <string>Select input folder...</string>
+                </property>
+                <property name="icon">
+                    <iconset resource="../Resources/UI_Icons.qrc">
+                        <normaloff>:/UISymbols/UI_Images_Folder_Icon.svg</normaloff>
+                        :/UISymbols/UI_Images_Folder_Icon.svg
+                    </iconset>
+                </property>
+                <property name="iconSize">
+                    <size>
+                        <width>21</width>
+                        <height>15</height>
+                    </size>
+                </property>
+            </widget>
+        </item>
+        <item row="0" column="0" colspan="4">
+            <widget class="ImageGallery" name="preview" native="true">
+                <property name="enabled">
+                    <bool>false</bool>
+                </property>
+                <property name="iconSize" stdset="0">
+                    <size>
+                        <width>100</width>
+                        <height>100</height>
+                    </size>
+                </property>
+                <property name="uniformItemSizes" stdset="0">
+                    <bool>true</bool>
+                </property>
+            </widget>
+        </item>
+        <item row="2" column="3">
+            <widget class="QPushButton" name="cancelButton">
+                <property name="enabled">
+                    <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="text">
+                    <string>Cancel</string>
+                </property>
+                <property name="icon">
+                    <iconset resource="../Resources/UI_Icons.qrc">
+                        <normaloff>:/UISymbols/UI_Cancel_Icon.svg</normaloff>:/UISymbols/UI_Cancel_Icon.svg
+                    </iconset>
+                </property>
+                <property name="iconSize">
+                    <size>
+                        <width>16</width>
+                        <height>15</height>
+                    </size>
+                </property>
+            </widget>
+        </item>
+        <item row="2" column="2">
+            <widget class="QPushButton" name="classifyButton">
+                <property name="enabled">
+                    <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="layoutDirection">
+                    <enum>Qt::RightToLeft</enum>
+                </property>
+                <property name="text">
+                    <string>Classify images</string>
+                </property>
+                <property name="icon">
+                    <iconset resource="../Resources/UI_Icons.qrc">
+                        <normaloff>:/UISymbols/UI_Triangle_Right.svg</normaloff>:/UISymbols/UI_Triangle_Right.svg
+                    </iconset>
+                </property>
+                <property name="iconSize">
+                    <size>
+                        <width>16</width>
+                        <height>15</height>
+                    </size>
+                </property>
+            </widget>
+        </item>
+        <item row="1" column="0" colspan="4">
+            <widget class="QProgressBar" name="progressBar">
+                <property name="enabled">
+                    <bool>false</bool>
+                </property>
+                <property name="value">
+                    <number>0</number>
+                </property>
+            </widget>
+        </item>
     </layout>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>ImageGallery</class>
-   <extends>QListWidget</extends>
-   <header location="global">imagegallery.h</header>
-  </customwidget>
- </customwidgets>
- <resources/>
- <connections/>
+    <customwidgets>
+        <customwidget>
+            <class>ImageGallery</class>
+            <extends>QWidget</extends>
+            <header location="global">imagegallery.h</header>
+            <container>1</container>
+        </customwidget>
+    </customwidgets>
+    <resources>
+        <include location="../Resources/UI_Icons.qrc"/>
+    </resources>
+    <connections/>
 </ui>
