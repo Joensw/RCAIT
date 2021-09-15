@@ -6,8 +6,7 @@ SettingsManager::SettingsManager()
 
     mGlobalSettings.reset(new QSettings);
     if (!getClassificationPluginDir().isEmpty() && !getImageLoaderPluginDir().isEmpty()) {
-    mClassificationPluginManager->loadPlugins(getClassificationPluginDir());
-    mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
+        reload();
     }
 }
 
@@ -84,6 +83,12 @@ void SettingsManager::configureSettingsFile(QString projectsDirectory, QString c
     mGlobalSettings->setValue(projectDirectoryIdentifier, projectsDirectory);
     mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, classificationPluginDirectory);
     mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, imageLoaderDirectory);
+}
+
+void SettingsManager::reload()
+{
+    mClassificationPluginManager->loadPlugins(getClassificationPluginDir());
+    mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 }
 
 QList<QWidget *> SettingsManager::getPluginSettings() {

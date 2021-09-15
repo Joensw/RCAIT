@@ -146,6 +146,10 @@ public:
      */
     void configureSettingsFile(QString projectsDirectory, QString classificationPluginDirectory,
                                QString imageLoaderDirectory);
+    /**
+     * @brief reload manually prompt the plugin managers to reload the plugins from the current directories
+     */
+    void reload();
 
 private:
     //Keys for the QSettings Settings object

@@ -4,8 +4,7 @@
 ConfigurationController::ConfigurationController(QObject *parent)
         : QObject(parent),
           mConfigurationDialog(new ConfigurationDialog),
-          mSettingsManager(&SettingsManager::getInstance()),
-          mDataManager(&DataManager::getInstance()){
+          mSettingsManager(&SettingsManager::getInstance()){
 
     mConfigurationDialog->setAttribute(Qt::WA_DeleteOnClose, true);
     mConfigurationDialog->setModal(true);
@@ -19,6 +18,7 @@ ConfigurationController::slot_directoriesSpecified(const QString &projectDir, co
     if (mSettingsManager->verifyPaths(projectDir, classificationPluginDir, imageLoaderPluginsDir)) {
         mSettingsManager->configureSettingsFile(projectDir, classificationPluginDir, imageLoaderPluginsDir);
         mConfigurationDialog->confirm();
+        mSettingsManager->reload();
         emit sig_configurationComplete();
         return;
     }
