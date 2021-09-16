@@ -2,9 +2,9 @@
 #include <utility>
 #include "result.h"
 
-Result::Result(const QString &storageDir, QStringList additionalResults)
+Result::Result(QString storageDir, QStringList additionalResults)
         : m_identifier(generateTimestamp()),
-          m_storageDir(storageDir),
+          m_storageDir(std::move(storageDir)),
           m_additionalResults(std::move(additionalResults)) {
 }
 
@@ -32,18 +32,18 @@ QString Result::savableRepresentation(QString date) {
     return date;
 }
 
-QStringList Result::getAdditionalResults() const {
+[[maybe_unused]] QStringList Result::getAdditionalResults() const {
     return m_additionalResults;
 }
 
-QString Result::getIdentifier() const {
+[[maybe_unused]] QString Result::getIdentifier() const {
     return Result::niceRepresentation(m_identifier);
 }
 
-QString Result::getSavableIdentifier() const {
+[[maybe_unused]] QString Result::getSavableIdentifier() const {
     return Result::savableRepresentation(m_identifier);
 }
 
-const QString &Result::getStorageDir() const {
+[[maybe_unused]] const QString &Result::getStorageDir() const {
     return m_storageDir;
 }
