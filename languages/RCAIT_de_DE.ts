@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
     <name>AITrainingWidget</name>
@@ -107,6 +105,10 @@
         <source>Data Augmentation Preview</source>
         <translation>Vorschau zur Datenerweiterung</translation>
     </message>
+    <message>
+        <source>Compare Configuration Files</source>
+        <translation>Konfigurationsdateien vergleichen</translation>
+    </message>
 </context>
 <context>
     <name>AutomationWidget</name>
@@ -121,6 +123,14 @@
     <message>
         <source>Import New Tasks</source>
         <translation type="unfinished">Importiere neue Aufgaben</translation>
+    </message>
+    <message>
+        <source>Scheduled tasks</source>
+        <translation>Geplante Aufgaben</translation>
+    </message>
+    <message>
+        <source>Available tasks</source>
+        <translation>Verfügbare Aufgaben</translation>
     </message>
 </context>
     <context>
@@ -145,6 +155,10 @@
             <source>Python Path</source>
             <translation>Python-Pfad</translation>
         </message>
+        <message>
+            <source>Bing API Plugin</source>
+            <translation>Bing-API-Plugin</translation>
+        </message>
     </context>
     <context>
         <name>ClassificationResultView</name>
@@ -160,12 +174,6 @@
             <source>Label</source>
             <translation>Kennzeichnung</translation>
         </message>
-    </context>
-    <context>
-        <name>ClassificationResultsWidget</name>
-    </context>
-    <context>
-        <name>ConfigurationController</name>
     </context>
     <context>
         <name>ConfigurationDialog</name>
@@ -187,7 +195,8 @@
         </message>
         <message>
             <source>Are you sure you want to quit?
-The application will terminate</source>
+                The application will terminate
+            </source>
             <translation>Sind Sie sicher, dass Sie die Anwendung beenden möchten?</translation>
         </message>
         <message>
@@ -222,7 +231,7 @@ The application will terminate</source>
             <source>Imageloader Plugin Directory</source>
             <translation>Bildladerpluginverzeichnis</translation>
         </message>
-</context>
+    </context>
     <context>
         <name>FlickrSettings</name>
         <message>
@@ -253,6 +262,10 @@ The application will terminate</source>
             <source>Python Path</source>
             <translation>Python-Pfad</translation>
         </message>
+        <message>
+            <source>Flickr API Plugin</source>
+            <translation>Flickr-API-Plugin</translation>
+        </message>
     </context>
     <context>
         <name>FolderConfigwidget</name>
@@ -282,7 +295,7 @@ The application will terminate</source>
         </message>
         <message>
             <source>Saved changes.</source>
-            <translation>Gespeicherte Änderungen.</translation>
+            <translation>Gespeicherte Ã„nderungen.</translation>
         </message>
         <message>
             <source>Select image directory</source>
@@ -291,6 +304,10 @@ The application will terminate</source>
         <message>
             <source>There may be unsaved changes.</source>
             <translation>Es können noch nicht gespeicherte Änderungen vorhanden sein.</translation>
+        </message>
+        <message>
+            <source>FolderPlugin</source>
+            <translation>Ordner-Plugin</translation>
         </message>
     </context>
     <context>
@@ -307,6 +324,10 @@ The application will terminate</source>
             <source>Save Result</source>
             <translation>Ergebnis speichern</translation>
         </message>
+        <message>
+            <source>Save Result</source>
+            <translation>Ergebnis speichern</translation>
+        </message>
     </context>
     <context>
         <name>GlobalSettingsWidget</name>
@@ -316,7 +337,7 @@ The application will terminate</source>
         </message>
         <message>
             <source>path(s)</source>
-            <translation type="unfinished">Pfad(e) wurden erfolgreich aktualisiert</translation>
+            <translation type="obsolete">Pfad(e) wurden erfolgreich aktualisiert</translation>
         </message>
         <message>
             <source>Project Directory</source>
@@ -340,11 +361,15 @@ The application will terminate</source>
         </message>
         <message>
             <source>No changes were made</source>
-            <translation>Es wurden keine Änderungen vorgenommen</translation>
+            <translation>Es wurden keine Ã„nderungen vorgenommen</translation>
         </message>
         <message>
-            <source>Success. Updated</source>
-            <translation type="unfinished"/>
+            <source>Global Settings</source>
+            <translation>Globale Einstellungen</translation>
+        </message>
+        <message>
+            <source>Success. Updated %1 path(s)</source>
+            <translation>Erfolgreich. Aktualisierte %1 Pfad(e)</translation>
         </message>
     </context>
     <context>
@@ -383,6 +408,14 @@ The application will terminate</source>
         <message>
             <source>Remove selected images</source>
             <translation type="unfinished">Entferne ausgewählte Bilder</translation>
+        </message>
+        <message>
+            <source>Training Images</source>
+            <translation>Trainingsbilder</translation>
+        </message>
+        <message>
+            <source>Validation Images</source>
+            <translation>Validierungsbilder</translation>
         </message>
     </context>
     <context>
@@ -444,29 +477,29 @@ The application will terminate</source>
             <translation>.txt-Datei auswählen</translation>
         </message>
     </context>
-<context>
-    <name>InputImagesWidget</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished">Form</translation>
-    </message>
-    <message>
-        <source>Select input folder...</source>
-        <translation type="unfinished">Eingabeordner wählen...</translation>
-    </message>
+    <context>
+        <name>InputImagesWidget</name>
+        <message>
+            <source>Form</source>
+            <translation type="unfinished">Form</translation>
+        </message>
+        <message>
+            <source>Select input folder...</source>
+            <translation type="unfinished">Eingabeordner wählen...</translation>
+        </message>
     <message>
         <source>Classify images</source>
         <translation type="unfinished">Bilder klassifizieren</translation>
     </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
-    </message>
-    <message>
-        <source>Select image directory</source>
-        <translation type="unfinished">Bildordner auswählen</translation>
-    </message>
-</context>
+        <message>
+            <source>Cancel</source>
+            <translation type="unfinished">Abbrechen</translation>
+        </message>
+        <message>
+            <source>Select image directory</source>
+            <translation type="unfinished">Bildordner auswählen</translation>
+        </message>
+    </context>
     <context>
         <name>MMClassificationInputOptions</name>
         <message>
@@ -499,6 +532,10 @@ The application will terminate</source>
         <message>
             <source>Python Path</source>
             <translation>Python-Pfad</translation>
+        </message>
+        <message>
+            <source>MMClassification</source>
+            <translation>MMClassification</translation>
         </message>
     </context>
     <context>
@@ -605,19 +642,19 @@ The application will terminate</source>
         </message>
         <message>
             <source>MainWindow</source>
-            <translation>Hauptfenster</translation>
+            <translation type="vanished">Hauptfenster</translation>
         </message>
         <message>
             <source>Remove selected images</source>
-            <translation type="unfinished">Entferne ausgewählte Bilder</translation>
+            <translation type="obsolete">Entferne ausgewählte Bilder</translation>
         </message>
         <message>
             <source>Input images</source>
-            <translation>Eingabebilder</translation>
+            <translation type="vanished">Eingabebilder</translation>
         </message>
         <message>
             <source>Training images</source>
-            <translation type="unfinished">Trainingsbilder</translation>
+            <translation type="obsolete">Trainingsbilder</translation>
         </message>
     </context>
     <context>
@@ -665,30 +702,76 @@ The application will terminate</source>
             <source>invalid name!</source>
             <translation type="unfinished">Ungültiger Name!</translation>
         </message>
-</context>
-    <context>
-        <name>ProjectController</name>
     </context>
     <context>
-        <name>QObject</name>
+        <name>ProjectManager</name>
+        <message>
+            <source>Name must contain at least 1 character</source>
+            <translation>Der Name muss mindestens 1 Zeichen enthalten</translation>
+        </message>
+        <message>
+            <source>Name should contain more than only space (" ") characters</source>
+            <translation>Der Name sollte mehr als nur Leerzeichen (" ") enthalten</translation>
+        </message>
+        <message>
+            <source>Name may not contain the "/" or "\" characters</source>
+            <translation>Der Name darf nicht die Zeichen "/" oder "\" enthalten</translation>
+        </message>
+        <message>
+            <source>A project with this name already exists in the project directory</source>
+            <translation>Ein Projekt mit diesem Namen existiert bereits im Projektverzeichnis</translation>
+        </message>
+        <message>
+            <source>The operating system cannot support this name</source>
+            <translation>Das Betriebssystem kann diesen Namen nicht akzeptieren.</translation>
+        </message>
     </context>
-<context>
-    <name>RemoveModelDialog</name>
-    <message>
-        <source>Remove Model</source>
-        <translation>Modell löschen</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are
-            you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
-            item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-        </source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt;
-            font-weight:600;"&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das
-            Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-        </translation>
-    </message>
-</context>
+    <context>
+        <name>PythonConfigDiffWidget</name>
+        <message>
+            <source>Form</source>
+            <translation type="unfinished">Form</translation>
+        </message>
+        <message>
+            <source>Load right file</source>
+            <translation>Rechte Datei laden</translation>
+        </message>
+        <message>
+            <source>Load left file</source>
+            <translation>Linke Datei laden</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>Datei öffnen</translation>
+        </message>
+    </context>
+    <context>
+        <name>RemoveModelDialog</name>
+        <message>
+            <source>Remove Model</source>
+            <translation>Modell löschen</translation>
+        </message>
+        <message>
+            <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are
+                you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
+                item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+            </source>
+            <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt;
+                font-weight:600;"&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das
+                Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+            </translation>
+        </message>
+        <message>
+            <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are
+                you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
+                item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+            </source>
+            <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt;
+                font-weight:600;"&gt;Sind Sie sicher, dass Sie &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Dieses
+                Element wird sofort gelöscht. Sie können diese Aktion nicht rückgängig machen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+            </translation>
+        </message>
+    </context>
 <context>
     <name>RemoveProjectDialog</name>
     <message>
@@ -700,7 +783,7 @@ The application will terminate</source>
             you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
             item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
         </source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt;
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt;
             font-weight:600;"&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das
             Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
         </translation>
@@ -708,6 +791,16 @@ The application will terminate</source>
     <message>
         <source>Remove associated Models</source>
         <translation>Lösche assoziiertes Modell</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are
+            you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
+            item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+        </source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Sind
+            Sie sicher, dass Sie &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen wollen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Dieser
+            Eintrag wird sofort gelöscht. Sie können diese Aktion nicht rückgängig machen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+        </translation>
     </message>
 </context>
 <context>
@@ -726,7 +819,15 @@ The application will terminate</source>
     </message>
 </context>
     <context>
-        <name>SettingsController</name>
+        <name>SettingsManager</name>
+        <message>
+            <source>Settings have not been updated, there is a conflict.
+                Paths may not be identical and must exist, this includes new and unchanged paths.
+            </source>
+            <translation>Die Einstellungen wurden nicht aktualisiert, es besteht ein Konflikt.
+                Pfade dürfen nicht identisch sein und müssen existieren, dies schließt neue und unveränderte Pfade ein.
+            </translation>
+        </message>
     </context>
 <context>
     <name>SettingsView</name>
@@ -740,12 +841,12 @@ The application will terminate</source>
     </message>
     <message>
         <source>Select classification plugin directory</source>
-        <translatorcomment>kann man sicher eleganter Ã¼bersetzen</translatorcomment>
+        <translatorcomment>kann man sicher eleganter ÃƒÂ¼bersetzen</translatorcomment>
         <translation>Klassifizierungspluginverzeichnis wählen</translation>
     </message>
     <message>
         <source>Select image loader plugin directory</source>
-        <translatorcomment>kann man sicher eleganter Ã¼bersetzen</translatorcomment>
+        <translatorcomment>kann man sicher eleganter ÃƒÂ¼bersetzen</translatorcomment>
         <translation>Bildladerpluginverzeichnis wählen</translation>
     </message>
     <message>
@@ -758,7 +859,7 @@ The application will terminate</source>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>Speichern</translation>
     </message>
 </context>
 <context>
@@ -838,8 +939,5 @@ Wähle ein Projekt aus, um loszulegen</translation>
             <source>Top Accuracies</source>
             <translation type="unfinished">Top-Genauigkeiten</translation>
         </message>
-    </context>
-    <context>
-        <name>imagesection</name>
     </context>
 </TS>
