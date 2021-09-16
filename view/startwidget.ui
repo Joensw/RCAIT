@@ -39,7 +39,7 @@ Select a project to get started</string>
      <item>
       <widget class="QPushButton" name="pushButton_toggleFullscreen">
        <property name="styleSheet">
-        <string notr="true">QPushButton:checked {background-color: none; border: none;}</string>
+        <string notr="true">QPushButton {background-color: none; border: none;}</string>
        </property>
        <property name="text">
         <string/>
@@ -80,14 +80,52 @@ Select a project to get started</string>
       </spacer>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_languageSelection">
-       <property name="minimumSize">
-        <size>
-         <width>100</width>
-         <height>0</height>
-        </size>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>4</number>
        </property>
-      </widget>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="languageIcon">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {background-color: none; border: none;}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../Resources/UI_Icons.qrc">
+           <normaloff>:/UISymbols/UI_Language_Icon.svg</normaloff>
+           <disabledoff>:/UISymbols/UI_Language_Icon.svg</disabledoff>:/UISymbols/UI_Language_Icon.svg
+          </iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox_languageSelection">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
@@ -278,6 +316,8 @@ border: 2px rgb(0, 0, 0);
    <header>customlistwidget.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../Resources/UI_Icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
