@@ -15,6 +15,14 @@ namespace Ui {
 class PythonConfigDiffWidget : public QWidget {
 Q_OBJECT
 
+protected:
+
+    /**
+     * @brief changeEvent event handler
+     * @param event incoming event
+     */
+    void changeEvent(QEvent *event) override;
+
 public:
     explicit PythonConfigDiffWidget(QWidget *parent = nullptr);
 

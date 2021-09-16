@@ -16,9 +16,16 @@ class ImageInspectionWidget;
 /**
  * @brief The ImageInspectionWidget class is UI class which can display pictures from directory structures
  */
-class ImageInspectionWidget : public QWidget
-{
-    Q_OBJECT
+class ImageInspectionWidget : public QWidget {
+Q_OBJECT
+
+protected:
+
+    /**
+     * @brief changeEvent event handler
+     * @param event incoming event
+     */
+    void changeEvent(QEvent *event) override;
 
 public:
     /**

@@ -59,7 +59,7 @@ protected:
      *
      * @param event incoming event
      */
-    void changeEvent(QEvent *event);
+    void changeEvent(QEvent *event) override;
 
 private slots:
     [[maybe_unused]] void on_selectFolderButton_clicked();

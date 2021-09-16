@@ -16,7 +16,8 @@
 /**
  * @brief The ProjectManager class contains the logic for manipulating the projects of the application
  */
-class ProjectManager{
+class ProjectManager : public QObject {
+Q_OBJECT
 public:
     //Threadsafe Singleton pattern
     ProjectManager(ProjectManager const &) = delete;
@@ -45,7 +46,7 @@ public:
      * @param error pointer to where error messages can be written
      * @return true if a new project was created, false if there was an error
      */
-    bool createNewProject(const QString &projectName, QString * error);
+    bool createNewProject(const QString &projectName, QString *error);
 
     /**
      * @brief removeProject deleted the project sub directory from the current projects directory.
@@ -178,7 +179,8 @@ private:
     static constexpr auto ERROR_NOCHAR = QT_TR_NOOP("Name must contain at least 1 character");
     static constexpr auto ERROR_ONLY_SPACE = QT_TR_NOOP("Name should contain more than only space (\" \") characters");
     static constexpr auto ERROR_ILLEGAL_CHAR = QT_TR_NOOP("Name may not contain the  \"/\" or \"\\\" characters");
-    static constexpr auto ERROR_DUPLICATE = QT_TR_NOOP("A project with this name already exists in the project directory");
+    static constexpr auto ERROR_DUPLICATE = QT_TR_NOOP(
+            "A project with this name already exists in the project directory");
     static constexpr auto ERROR_OS_SUPPORT = QT_TR_NOOP("The operating system cannot support this name");
 
     //Regex to match String with consisting of only spaces

@@ -16,7 +16,8 @@ extern const QString imageLoaderPluginDirectoryIdentifier;
  * The SettingsManager contains logic for global settings of the application as well as plugin specific settings
  * @brief The SettingsManager class contains the logic for for the settings UI
  */
-class SettingsManager {
+class SettingsManager : public QObject {
+Q_OBJECT
 public:
 
     SettingsManager(const SettingsManager &) = delete;
@@ -153,7 +154,8 @@ private:
     static constexpr auto classificationPluginDirectoryIdentifier = "ClassificationPluginPath";
     static constexpr auto imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
 
-    static constexpr auto ERROR_CONFLICT = QT_TR_NOOP("Settings have not been updated, there is a conflict. \n Paths may not be identical and must exist, this includes new and unchanged paths.");
+    static constexpr auto ERROR_CONFLICT = QT_TR_NOOP(
+            "Settings have not been updated, there is a conflict. \n Paths may not be identical and must exist, this includes new and unchanged paths.");
 
     ClassificationPluginManager *mClassificationPluginManager;
     ImageLoaderPluginManager *mImageLoaderPluginManager;

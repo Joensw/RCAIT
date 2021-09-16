@@ -59,12 +59,19 @@ void ImageInspectionWidget::on_pushButton_commit_clicked()
 }
 
 
-void ImageInspectionWidget::on_pushButton_removeImages_clicked()
-{
-    emit sig_removeImages(3,  ui->datasetTrainImages->removeSelected());
-    emit sig_removeImages(2,  ui->datasetValidationImages->removeSelected());
-    emit sig_removeImages(0,  ui->newValidationImages->removeSelected());
-    emit sig_removeImages(1,   ui->newTrainImages->removeSelected());
+void ImageInspectionWidget::on_pushButton_removeImages_clicked() {
+    emit sig_removeImages(3, ui->datasetTrainImages->removeSelected());
+    emit sig_removeImages(2, ui->datasetValidationImages->removeSelected());
+    emit sig_removeImages(0, ui->newValidationImages->removeSelected());
+    emit sig_removeImages(1, ui->newTrainImages->removeSelected());
+}
 
+void ImageInspectionWidget::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        // this event is sent if a translator is loaded
+        ui->retranslateUi(this);
+    }
+    //Call to parent class
+    QWidget::changeEvent(event);
 }
 
