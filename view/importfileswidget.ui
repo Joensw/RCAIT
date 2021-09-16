@@ -25,15 +25,29 @@
      <layout class="QGridLayout" name="gridLayout_4" rowstretch="0,0,0,0">
       <item row="3" column="0">
        <widget class="QPushButton" name="pushButton_loadImages">
-        <property name="font">
-         <font>
-          <family>Inter</family>
-          <pointsize>8</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Load Images</string>
-        </property>
+           <property name="font">
+               <font>
+                   <family>Inter</family>
+                   <pointsize>8</pointsize>
+               </font>
+           </property>
+           <property name="layoutDirection">
+               <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+               <string>Load Images</string>
+           </property>
+           <property name="icon">
+               <iconset resource="../Resources/UI_Icons.qrc">
+                   <normaloff>:/UISymbols/UI_Download_Icon.svg</normaloff>:/UISymbols/UI_Download_Icon.svg
+               </iconset>
+           </property>
+           <property name="iconSize">
+               <size>
+                   <width>16</width>
+                   <height>15</height>
+               </size>
+           </property>
        </widget>
       </item>
       <item row="1" column="2">
@@ -130,35 +144,49 @@
             </property>
             <property name="maximumSize">
              <size>
-              <width>8</width>
-              <height>29</height>
+                 <width>8</width>
+                 <height>29</height>
              </size>
             </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>:UISymbols/UI_Backspace_Icon.svg</normaloff>:UISymbols/UI_Backspace_Icon.svg</iconset>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
+               <property name="text">
+                   <string/>
+               </property>
+               <property name="icon">
+                   <iconset>
+                       <normaloff>:UISymbols/UI_Backspace_Icon.svg</normaloff>:UISymbols/UI_Backspace_Icon.svg
+                   </iconset>
+               </property>
+               <property name="iconSize">
+                   <size>
+                       <width>20</width>
+                       <height>19</height>
+                   </size>
+               </property>
+               <property name="flat">
+                   <bool>true</bool>
+               </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_loadLabelsFromFile">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>:UISymbols/UI_File_Icon.svg</normaloff>:UISymbols/UI_File_Icon.svg</iconset>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
-           </widget>
+              <widget class="QPushButton" name="pushButton_loadLabelsFromFile">
+                  <property name="text">
+                      <string/>
+                  </property>
+                  <property name="icon">
+                      <iconset>
+                          <normaloff>:UISymbols/UI_File_Icon.svg</normaloff>:UISymbols/UI_File_Icon.svg
+                      </iconset>
+                  </property>
+                  <property name="iconSize">
+                      <size>
+                          <width>19</width>
+                          <height>20</height>
+                      </size>
+                  </property>
+                  <property name="flat">
+                      <bool>true</bool>
+                  </property>
+              </widget>
           </item>
          </layout>
         </item>
@@ -233,28 +261,42 @@
           <property name="pageStep">
            <number>1</number>
           </property>
-          <property name="value">
-           <number>40</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="tickPosition">
-           <enum>QSlider::TicksBothSides</enum>
-          </property>
+             <property name="value">
+                 <number>40</number>
+             </property>
+             <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="tickPosition">
+                 <enum>QSlider::TicksBothSides</enum>
+             </property>
+             <property name="tickInterval">
+                 <number>5</number>
+             </property>
          </widget>
         </item>
        </layout>
       </item>
       <item row="3" column="1">
-       <widget class="QPushButton" name="pushButton_abortLoading">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Cancel</string>
-        </property>
-       </widget>
+          <widget class="QPushButton" name="pushButton_abortLoading">
+              <property name="enabled">
+                  <bool>false</bool>
+              </property>
+              <property name="text">
+                  <string>Cancel</string>
+              </property>
+              <property name="icon">
+                  <iconset resource="../Resources/UI_Icons.qrc">
+                      <normaloff>:/UISymbols/UI_Cancel_Icon.svg</normaloff>:/UISymbols/UI_Cancel_Icon.svg
+                  </iconset>
+              </property>
+              <property name="iconSize">
+                  <size>
+                      <width>16</width>
+                      <height>15</height>
+                  </size>
+              </property>
+          </widget>
       </item>
      </layout>
     </widget>
@@ -267,22 +309,41 @@
      <layout class="QHBoxLayout" name="horizontalLayout_17">
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
-         <widget class="CustomListWidget" name="listWidget_modelNames">
-          <property name="font">
-           <font>
-            <family>Inter</family>
-            <pointsize>8</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">selection-color: rgb(0, 0, 0);
-selection-background-color: rgb(255, 255, 255);</string>
-          </property>
-         </widget>
-        </item>
+           <item>
+               <widget class="QGroupBox" name="groupBox">
+                   <property name="styleSheet">
+                       <string notr="true">QGroupBox {
+                           border: 2px solid rgb(218,218,218);
+                           border-radius: 10px;
+                           }
+                       </string>
+                   </property>
+                   <property name="title">
+                       <string/>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout">
+                       <item row="0" column="0">
+                           <widget class="CustomListWidget" name="listWidget_modelNames">
+                               <property name="font">
+                                   <font>
+                                       <family>Inter</family>
+                                       <pointsize>8</pointsize>
+                                       <weight>50</weight>
+                                       <bold>false</bold>
+                                   </font>
+                               </property>
+                               <property name="styleSheet">
+                                   <string notr="true">selection-color: rgb(0, 0, 0);
+                                       selection-background-color: rgb(255, 255, 255);
+                                       background-color: none;
+                                       border: 2px rgb(0, 0, 0);
+                                   </string>
+                               </property>
+                           </widget>
+                       </item>
+                   </layout>
+               </widget>
+           </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_16">
           <item>
@@ -299,39 +360,60 @@ selection-background-color: rgb(255, 255, 255);</string>
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_addModel">
-            <property name="text">
-             <string>Add</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>:UISymbols/UI_Add_Icon.svg</normaloff>:UISymbols/UI_Add_Icon.svg</iconset>
-            </property>
-           </widget>
+              <widget class="QPushButton" name="pushButton_addModel">
+                  <property name="text">
+                      <string>Add</string>
+                  </property>
+                  <property name="icon">
+                      <iconset>
+                          <normaloff>:UISymbols/UI_Add_Icon.svg</normaloff>:UISymbols/UI_Add_Icon.svg
+                      </iconset>
+                  </property>
+                  <property name="iconSize">
+                      <size>
+                          <width>16</width>
+                          <height>15</height>
+                      </size>
+                  </property>
+              </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_removeModel">
-            <property name="text">
-             <string>Remove</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>:UISymbols/UI_Delete_Item.svg</normaloff>:UISymbols/UI_Delete_Item.svg</iconset>
-            </property>
-           </widget>
+              <widget class="QPushButton" name="pushButton_removeModel">
+                  <property name="text">
+                      <string>Remove</string>
+                  </property>
+                  <property name="icon">
+                      <iconset>
+                          <normaloff>:UISymbols/UI_Delete_Item.svg</normaloff>:UISymbols/UI_Delete_Item.svg
+                      </iconset>
+                  </property>
+                  <property name="iconSize">
+                      <size>
+                          <width>16</width>
+                          <height>15</height>
+                      </size>
+                  </property>
+              </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_loadModel">
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>Load</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>:UISymbols/UI_Arrow_Forward.svg</normaloff>:UISymbols/UI_Arrow_Forward.svg</iconset>
-            </property>
+               <property name="layoutDirection">
+                   <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                   <string>Load</string>
+               </property>
+               <property name="icon">
+                   <iconset>
+                       <normaloff>:UISymbols/UI_Arrow_Forward.svg</normaloff>:UISymbols/UI_Arrow_Forward.svg
+                   </iconset>
+               </property>
+               <property name="iconSize">
+                   <size>
+                       <width>16</width>
+                       <height>15</height>
+                   </size>
+               </property>
            </widget>
           </item>
           <item>
@@ -358,16 +440,18 @@ selection-background-color: rgb(255, 255, 255);</string>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CustomListWidget</class>
-   <extends>QListWidget</extends>
-   <header>customlistwidget.h</header>
+      <class>CustomListWidget</class>
+      <extends>QListWidget</extends>
+      <header>customlistwidget.h</header>
   </customwidget>
-  <customwidget>
-   <class>Tags</class>
-   <extends>QLineEdit</extends>
-   <header>tags.hpp</header>
-  </customwidget>
+     <customwidget>
+         <class>Tags</class>
+         <extends>QLineEdit</extends>
+         <header>tags.hpp</header>
+     </customwidget>
  </customwidgets>
- <resources/>
- <connections/>
+    <resources>
+        <include location="../Resources/UI_Icons.qrc"/>
+    </resources>
+    <connections/>
 </ui>

@@ -6,22 +6,46 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>512</width>
-    <height>281</height>
+    <width>490</width>
+    <height>278</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox_leftFile">
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="groupBox_rightFile">
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+                         border: 2px solid rgb(218,218,218);
+                         border-radius: 10px;
+                         margin-top: 6px;
+                         }
+                         QGroupBox::title {
+                         subcontrol-origin: margin;
+                         left: 12px;
+                         padding: 0px 3px 0px 3px;
+
+                         }
+                     </string>
+     </property>
      <property name="title">
       <string notr="true">Load a file to compare...</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_12">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <property name="topMargin">
+       <number>12</number>
+      </property>
       <item row="0" column="0">
-       <widget class="CodeEditor" name="codeEditor_left">
+       <widget class="CodeEditor" name="codeEditor_right">
+        <property name="styleSheet">
+         <string notr="true">selection-color: rgb(0, 0, 0);
+                                     selection-background-color: rgb(255, 255, 255);
+                                     background-color: none;
+                                     border: 2px rgb(0, 0, 0);
+                                 </string>
+        </property>
         <property name="lineWrapMode">
          <enum>QPlainTextEdit::NoWrap</enum>
         </property>
@@ -36,14 +60,37 @@
      </layout>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QGroupBox" name="groupBox_rightFile">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox_leftFile">
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+                         border: 2px solid rgb(218,218,218);
+                         border-radius: 10px;
+                         margin-top: 6px;
+                         }
+                         QGroupBox::title {
+                         subcontrol-origin: margin;
+                         left: 12px;
+                         padding: 0px 3px 0px 3px;
+
+                         }
+                     </string>
+     </property>
      <property name="title">
       <string notr="true">Load a file to compare...</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
+     <layout class="QGridLayout" name="gridLayout_12">
+      <property name="topMargin">
+       <number>12</number>
+      </property>
       <item row="0" column="0">
-       <widget class="CodeEditor" name="codeEditor_right">
+       <widget class="CodeEditor" name="codeEditor_left">
+        <property name="styleSheet">
+         <string notr="true">selection-color: rgb(0, 0, 0);
+                                     selection-background-color: rgb(255, 255, 255);
+                                     background-color: none;
+                                     border: 2px rgb(0, 0, 0);</string>
+        </property>
         <property name="lineWrapMode">
          <enum>QPlainTextEdit::NoWrap</enum>
         </property>
@@ -59,37 +106,66 @@
     </widget>
    </item>
    <item row="1" column="0" colspan="2">
-    <layout class="QHBoxLayout" name="horizontalLayout_buttons" stretch="0,1,0,0,0,1,0">
-     <item>
-      <spacer name="horizontalSpacer_1">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+    <layout class="QGridLayout" name="gridLayout_4">
+     <item row="0" column="3">
+      <widget class="QPushButton" name="pushButton_startDiff">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
+       <property name="text">
+        <string/>
        </property>
-       <property name="sizeHint" stdset="0">
+       <property name="icon">
+        <iconset resource="../../Resources/UI_Icons.qrc">
+         <normaloff>:/UISymbols/UI_Diff_Icon.svg</normaloff>:/UISymbols/UI_Diff_Icon.svg</iconset>
+       </property>
+       <property name="iconSize">
         <size>
          <width>40</width>
          <height>20</height>
         </size>
        </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_loadLeftFile">
-       <property name="text">
-        <string>► Load left file</string>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="5">
+      <widget class="QPushButton" name="pushButton_loadRightFile">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="text">
+        <string>Load right file</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../Resources/UI_Icons.qrc">
+         <normaloff>:/UISymbols/UI_Triangle_Left.svg</normaloff>:/UISymbols/UI_Triangle_Left.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>18</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Ignored</enum>
+        <enum>QSizePolicy::Maximum</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -99,34 +175,52 @@
        </property>
       </spacer>
      </item>
-     <item>
-         <widget class="QPushButton" name="pushButton_startDiff">
-             <property name="text">
-                 <string/>
-             </property>
-             <property name="icon">
-                 <iconset resource="../../Resources/UI_Icons.qrc">
-                     <normaloff>:/UISymbols/UI_Diff_Icon.svg</normaloff>:/UISymbols/UI_Diff_Icon.svg
-                 </iconset>
-             </property>
-             <property name="iconSize">
-                 <size>
-                     <width>20</width>
-                     <height>20</height>
-                 </size>
-             </property>
-             <property name="flat">
-                 <bool>true</bool>
-             </property>
-         </widget>
+     <item row="0" column="0">
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Maximum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
-     <item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="pushButton_loadLeftFile">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Load left file</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../Resources/UI_Icons.qrc">
+         <normaloff>:/UISymbols/UI_Triangle_Right.svg</normaloff>:/UISymbols/UI_Triangle_Right.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>18</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
       <spacer name="horizontalSpacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Ignored</enum>
+        <enum>QSizePolicy::Maximum</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -136,17 +230,13 @@
        </property>
       </spacer>
      </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_loadRightFile">
-       <property name="text">
-           <string>Load right file ◄</string>
-       </property>
-      </widget>
-     </item>
-     <item>
+     <item row="0" column="6">
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Maximum</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -160,15 +250,15 @@
    </item>
   </layout>
  </widget>
-    <customwidgets>
-        <customwidget>
-            <class>CodeEditor</class>
-            <extends>QPlainTextEdit</extends>
-            <header location="global">codeeditor.h</header>
-        </customwidget>
-    </customwidgets>
-    <resources>
-        <include location="../../Resources/UI_Icons.qrc"/>
-    </resources>
-    <connections/>
+ <customwidgets>
+  <customwidget>
+   <class>CodeEditor</class>
+   <extends>QPlainTextEdit</extends>
+   <header location="global">codeeditor.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../../Resources/UI_Icons.qrc"/>
+ </resources>
+ <connections/>
 </ui>

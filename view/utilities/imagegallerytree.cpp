@@ -28,10 +28,15 @@ ImageGalleryTree::ImageGalleryTree(QWidget* parent){
 
 QMap<QString, QList<int>> ImageGalleryTree::removeSelected(){
     QMap<QString, QList<int>> removed;
-    for(int i = 0; i < this->topLevelItemCount(); i++){
+    for(int i = this->topLevelItemCount() - 1; i >= 0; i--){
         qDebug() << this->topLevelItem(i)->text(0);
         QList<int> selectedIdx = galleries.at(i)->removeselected();
         removed.insert(this->topLevelItem(i)->text(0),selectedIdx);
+        if (galleries.at(i)->count() == 0){
+            qDebug() << "count 0";
+            galleries.removeOne(galleries.at(i));
+            delete this->takeTopLevelItem(i);
+        }
     }
 
     return removed;
@@ -48,6 +53,7 @@ void ImageGalleryTree::resetTree()
 }
 
 void ImageGalleryTree::addLabel(QString label, QStringList images) {
+    if (images.size() == 0) return;
     QTreeWidgetItem* name = new QTreeWidgetItem(this);
     name->setText(0, label);
     name->setFlags(name->flags() ^Qt::ItemIsDropEnabled);

@@ -46,7 +46,7 @@ def plot_classification_graphics(data, paths, category_names, file):
 
     # Adjust proportions
     fig = plt.figure(constrained_layout=False, figsize=(21, num_rows * 2))
-    gs = GridSpec(num_rows + 1, zones, figure=fig)
+    gs = GridSpec(num_rows, zones, figure=fig)
     plt.subplots_adjust(left=0, bottom=0, right=1, top=1, wspace=0, hspace=0.12)
 
     for i in range(num_rows):
@@ -54,8 +54,8 @@ def plot_classification_graphics(data, paths, category_names, file):
 
         # Crop the center of the image
         cropped = crop_max_square(im)
-        ax_image = fig.add_subplot(gs[i + 1, 0:1])
-        ax_chart = fig.add_subplot(gs[i + 1, 1:])
+        ax_image = fig.add_subplot(gs[i, 0:1])
+        ax_chart = fig.add_subplot(gs[i, 1:])
         ax_image.imshow(cropped, extent=[0, 100, 0, 100])
 
         # Remove ticks and axes from the figure
@@ -91,7 +91,7 @@ def place_legend_intelligent(category_names, fig):
     lgwidth_old = 0.
     renderer = fig.canvas.get_renderer()
     while ncol <= len(category_names):
-        lg = plt.legend(bbox_to_anchor=[0, 0.8, 1, 1],
+        lg = plt.legend(bbox_to_anchor=[0, 1, 1, 0],
                         loc='lower left',
                         bbox_transform=plt.gcf().transFigure, borderaxespad=1, ncol=ncol, fontsize='30')
         fig.canvas.draw()
@@ -113,7 +113,7 @@ def place_legend_intelligent(category_names, fig):
             # Backtrack ncol, plot the legend so it span the entire width of
             # the axe, and break the loop.
             ncol -= 1
-            lg = plt.legend(bbox_to_anchor=[0, 0.8, 1, 1],
+            lg = plt.legend(bbox_to_anchor=[0, 1, 1, 0],
                             loc='lower left',
                             bbox_transform=plt.gcf().transFigure, borderaxespad=1, ncol=ncol,
                             fontsize='30')

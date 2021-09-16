@@ -39,7 +39,7 @@ def plot_acc_curve(accdata, file):
     k = max(0, min(len(iterations) - 1, 3))
     model_train = make_interp_spline(iterations, train, k)
     model_val = make_interp_spline(iterations, validation, k)
-    iterations_x = np.linspace(1, len(iterations), 500)
+    iterations_x = np.linspace(1, max(iterations), 500)
     train_y = model_train(iterations_x)
     validation_y = model_val(iterations_x)
 
@@ -48,7 +48,7 @@ def plot_acc_curve(accdata, file):
     plt.plot(iterations_x, validation_y, label="Validation", color='orange', linewidth=3)
 
     # Formatting
-    ax.set_xlim([1, len(iterations)])
+    ax.set_xlim([1, max(iterations)])
     ax.set_ylim([0, 100])
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     ax.yaxis.set_major_formatter(PercentFormatter(100))

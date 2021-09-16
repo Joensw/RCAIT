@@ -20,8 +20,139 @@
    <string>Rapid Classification AI Trainer</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="../Resources/UI_Icons.qrc">
     <normaloff>:/RCAIT.ico</normaloff>:/RCAIT.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">    QScrollBar:horizontal
+    {
+        height: 15px;
+        margin: 3px 15px 3px 15px;
+        border: 1px transparent #2A2929;
+        border-radius: 4px;
+        background-color: #FAFAFA;    /* white bg */
+    }
+
+    QScrollBar::handle:horizontal
+    {
+        background-color: #C2C2C2;      /* grey */
+        min-width: 5px;
+        border-radius: 4px;
+    }
+
+    QScrollBar::add-line:horizontal
+    {
+        margin: 0px 3px 0px 3px;
+        border-image: url(:/UISymbols/UI_Triangle_Right.svg);
+        width: 10px;
+        height: 10px;
+        subcontrol-position: right;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::sub-line:horizontal
+    {
+        margin: 0px 3px 0px 3px;
+        border-image: url(:/UISymbols/UI_Triangle_Left.svg);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: left;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::add-line:horizontal:hover,QScrollBar::add-line:horizontal:on
+    {
+        border-image: url(:/UISymbols/UI_Triangle_Right.svg);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: right;
+        subcontrol-origin: margin;
+    }
+
+
+    QScrollBar::sub-line:horizontal:hover, QScrollBar::sub-line:horizontal:on
+    {
+        border-image: url(:/UISymbols/UI_Triangle_Left.svg);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: left;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal
+    {
+        background: none;
+    }
+
+
+    QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
+    {
+        background: none;
+    }
+
+    QScrollBar:vertical
+    {
+        background-color: #FAFAFA;  /* white */
+        width: 15px;
+        margin: 15px 3px 15px 3px;
+        border: 1px transparent #2A2929;
+        border-radius: 4px;
+    }
+
+    QScrollBar::handle:vertical
+    {
+        background-color: #C2C2C2;         /* grey */
+        min-height: 5px;
+        border-radius: 4px;
+    }
+
+    QScrollBar::sub-line:vertical
+    {
+        margin: 3px 0px 3px 0px;
+        border-image: url(:/UISymbols/UI_Triangle_Top.svg);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: top;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::add-line:vertical
+    {
+        margin: 3px 0px 3px 0px;
+        border-image: url(:/UISymbols/UI_Triangle_Bottom.svg);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: bottom;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::sub-line:vertical:hover,QScrollBar::sub-line:vertical:on
+    {
+        border-image: url(:/UISymbols/UI_Triangle_Top.svg);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: top;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on
+    {
+        border-image: url(:/UISymbols/UI_Triangle_Bottom.svg);
+        height: 10px;
+        width: 10px;
+        subcontrol-position: bottom;
+        subcontrol-origin: margin;
+    }
+
+    QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
+    {
+        background: none;
+    }
+
+    QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
+    {
+        background: none;
+    }</string>
   </property>
   <property name="iconSize">
    <size>
@@ -86,7 +217,7 @@
         <bool>true</bool>
        </property>
        <attribute name="icon">
-        <iconset>
+        <iconset resource="../Resources/UI_Icons.qrc">
          <normaloff>:/TabIcons/Filled/Tab_Crawler_Icon.svg</normaloff>:/TabIcons/Filled/Tab_Crawler_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
@@ -95,7 +226,7 @@
       </widget>
       <widget class="ImageInspectionWidget" name="tab_image_inspection">
        <attribute name="icon">
-        <iconset>
+        <iconset resource="../Resources/UI_Icons.qrc">
          <normaloff>:/TabIcons/Filled/Tab_Input_Images_Icon.svg</normaloff>:/TabIcons/Filled/Tab_Input_Images_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
@@ -104,7 +235,7 @@
       </widget>
       <widget class="AITrainingWidget" name="tab_ai_training">
        <attribute name="icon">
-        <iconset>
+        <iconset resource="../Resources/UI_Icons.qrc">
          <normaloff>:/TabIcons/Filled/Tab_Training_Images_Icon.svg</normaloff>:/TabIcons/Filled/Tab_Training_Images_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
@@ -113,7 +244,7 @@
       </widget>
       <widget class="InputImagesWidget" name="tab_inputimages">
        <attribute name="icon">
-        <iconset>
+        <iconset resource="../Resources/UI_Icons.qrc">
          <normaloff>:/TabIcons/Filled/filter_black_24dp.svg</normaloff>:/TabIcons/Filled/filter_black_24dp.svg</iconset>
        </attribute>
        <attribute name="title">
@@ -122,7 +253,7 @@
       </widget>
       <widget class="ResultsWidget" name="tab_results">
        <attribute name="icon">
-        <iconset>
+        <iconset resource="../Resources/UI_Icons.qrc">
          <normaloff>:/TabIcons/Filled/Tab_Results_Icon.svg</normaloff>:/TabIcons/Filled/Tab_Results_Icon.svg</iconset>
        </attribute>
        <attribute name="title">
@@ -131,7 +262,7 @@
       </widget>
       <widget class="AutomationWidget" name="tab_automation">
        <attribute name="icon">
-        <iconset>
+        <iconset resource="../Resources/UI_Icons.qrc">
          <normaloff>:/TabIcons/Filled/batch_prediction_black_24dp.svg</normaloff>:/TabIcons/Filled/batch_prediction_black_24dp.svg</iconset>
        </attribute>
        <attribute name="title">

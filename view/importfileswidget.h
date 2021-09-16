@@ -7,11 +7,8 @@
 #define IMPORTFILESWIDGET_H
 
 #include <QWidget>
-#include <QValidator>
-#include <QFontMetricsF>
 #include <QStringBuilder>
 #include <QFileDialog>
-#include <QMessageBox>
 
 namespace Ui {
 class ImportFilesWidget;
@@ -48,7 +45,7 @@ public:
      * @brief setAvailablePlugins sets the image loader plugins present in the UI
      * @param pluginNames the image loader plugin to be shown in the UI
      */
-    void setAvailablePlugins(QStringList pluginNames);
+    void setAvailablePlugins(const QStringList &pluginNames);
 
     /**
      * @brief updateProgressBar updates the status of the progress bar in the UI
@@ -60,19 +57,19 @@ public:
      * @brief updateStatusText sets the Text of the label above the statusbar to the input text
      * @param status the text to set
      */
-    void updateStatusText(QString status);
+    void updateStatusText(const QString &status);
 
     /**
      * @brief addModels adds a list of model names to the corresponding view element
      * @param modelNames a list of model names
      */
-    void addModels(QStringList modelNames);
+    void addModels(const QStringList &modelNames);
 
     /**
      * @brief addNewModel adds a new model to the corresponding view element
      * @param modelName the name of the model to identify it
      */
-    void addNewModel(QString modelName);
+    void addNewModel(const QString &modelName);
 
     /**
      * @brief deletes the current list of model names
@@ -87,14 +84,18 @@ private:
     void retranslateUi();
 
 private slots:
+
     //slots correspond with the identically named button in the UI
     [[maybe_unused]] void on_pushButton_clearTags_clicked();
 
     [[maybe_unused]] void on_pushButton_addModel_clicked();
+
     [[maybe_unused]] void on_pushButton_removeModel_clicked();
+
     [[maybe_unused]] void on_pushButton_loadModel_clicked();
 
     [[maybe_unused]] void on_pushButton_loadImages_clicked();
+
     [[maybe_unused]] void on_horizontalSlider_valueChanged(int value);
 
 
@@ -103,6 +104,7 @@ private slots:
     [[maybe_unused]] void on_pushButton_abortLoading_clicked();
 
 signals:
+
     /**
      * @brief sig_newModel emitted when the UI to create a new model is to be opened
      */
