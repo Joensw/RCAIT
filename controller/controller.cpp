@@ -2,7 +2,6 @@
 
 Controller::Controller(QObject *parent)
         : QObject(parent),
-          mDataManager(&DataManager::getInstance()),
           mConfigurationController(new ConfigurationController(this)) {
 
     connect(&*mConfigurationController, &ConfigurationController::sig_configurationComplete, this,
@@ -11,8 +10,10 @@ Controller::Controller(QObject *parent)
 
 }
 
-void Controller::slot_configurationComplete() {
+void Controller::slot_configurationComplete(){
     mConfigurationController.reset();
+
+    mDataManager = &DataManager::getInstance();
 
     mMainWindow.reset(new MainWindow);
 

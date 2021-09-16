@@ -24,8 +24,8 @@ void ConfigurationDialog::closeEvent(QCloseEvent *event)
         event->accept();
     }
     else{
-        int ret = QMessageBox::question(this, tr("Quit confirmation"),
-                                        tr("Are you sure you want to quit?\n" "The application will terminate"),
+        int ret = QMessageBox::question(this, QUIT_DIALOG_TITLE,
+                                        QUIT_MSG,
                                         QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel);
         switch (ret) {
         case QMessageBox::Ok:
@@ -47,7 +47,7 @@ void ConfigurationDialog::reject()
 
 void ConfigurationDialog::showError()
 {
-    ui->label_error->setText(tr("Please specifiy all paths uniquely before proceeding."));
+    ui->label_error->setText(MISSING_PATHS_MSG);
     ui->label_error->show();
 }
 
@@ -61,19 +61,19 @@ void ConfigurationDialog::confirm()
 //Todo empty string
 void ConfigurationDialog::slot_setProjectDir()
 {
-    mProjectDir = QFileDialog::getExistingDirectory(this, tr("Select project directory"));
+    mProjectDir = QFileDialog::getExistingDirectory(this, PROJECT_SELECT_MSG);
     ui->label_projectsDir->setText(mProjectDir);
 }
 
 void ConfigurationDialog::slot_setClassificationPluginsDir()
 {
-    mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select classification plugin directory"));
+    mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, CLASSIFICATION_SELECT_MSG);
     ui->label_classificationDir->setText(mClassificationPluginsDir);
 }
 
 void ConfigurationDialog::slot_setImageLoaderPluginsDir()
 {
-    mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, tr("Select image-loader plugin directory"));
+    mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, LOADER_SELECT_MSG);
     ui->label_imageLoaderDir->setText(mImageLoaderPluginsDir);
 }
 

@@ -112,9 +112,9 @@ void ImportFilesWidget::on_horizontalSlider_valueChanged(int value) {
     ui->label_splitPercent->setText(QString::number(value) % "%");
 }
 
-
 [[maybe_unused]] void ImportFilesWidget::on_pushButton_loadLabelsFromFile_clicked() {
-    QString path = QFileDialog::getOpenFileName(this, tr("Select .txt file"), "", "*.txt");
+    QString path = QFileDialog::getOpenFileName(this, DIALOG_CAPTION, "", "*.txt");
+
     if (path.isEmpty()) return;
 
     QFile inputFile(path);

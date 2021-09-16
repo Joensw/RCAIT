@@ -16,6 +16,7 @@ void ImageLoader::loadInputImages(int count, QStringList labels, QString pluginN
 void ImageLoader::slot_handleResults() {
     emit sig_progress(100);
     emit sig_imagesReady();
+    disconnect(this, &ImageLoader::sig_pluginFinished, this, &ImageLoader::slot_handleResults);
     //if this object is not deleted threads never die and the signal operate starts all created threads
     qDebug() << "Plugin finished and thread deleted";
 }

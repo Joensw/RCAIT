@@ -67,7 +67,7 @@ public:
      *
      * @param pathList list of image paths
      */
-    void concurrentAddImages(const QStringList &pathList);
+    void concurrentAddImages(const QStringList &imageList);
 
     /**
      * @brief addImage adds an image to gallery.

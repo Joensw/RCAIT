@@ -36,7 +36,11 @@ signals:
 
 
 private:
+    static constexpr auto MODEL_NAME_PLACEHOLDER = "&lt;name&gt;";
+
     Ui::RemoveModelDialog *ui;
+
+
 
     QString mToRemove;
 private slots:

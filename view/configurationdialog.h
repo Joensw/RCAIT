@@ -57,6 +57,14 @@ signals:
     void sig_directoriesSpecified(QString projectsDir, QString classificationPluginsDir, QString imageLoaderPluginsDir);
 
 private:
+    static constexpr auto QUIT_DIALOG_TITLE = QT_TR_NOOP("Quit confirmation");
+    static constexpr auto QUIT_MSG = QT_TR_NOOP("Are you sure you want to quit?\n The application will terminate");
+    static constexpr auto MISSING_PATHS_MSG = QT_TR_NOOP("Please specifiy all paths uniquely before proceeding.");
+
+    static constexpr auto PROJECT_SELECT_MSG = QT_TR_NOOP("Select project directory");
+    static constexpr auto CLASSIFICATION_SELECT_MSG = QT_TR_NOOP("Select classification plugin directory");
+    static constexpr auto LOADER_SELECT_MSG = QT_TR_NOOP("Select image loader plugin directory");
+
     Ui::ConfigurationDialog *ui;
 
     QString mProjectDir;

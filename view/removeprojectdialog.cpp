@@ -7,7 +7,7 @@ RemoveProjectDialog::RemoveProjectDialog(QWidget *parent, QString toRemove) :
 {
     ui->setupUi(this);
     mToRemove = toRemove;
-    QString message = ui->label->text().replace("&lt;name&gt;", toRemove);
+    QString message = ui->label->text().replace(PROJECT_NAME_PLACEHOLDER, toRemove);
     ui->label->setText(message);
 }
 

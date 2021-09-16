@@ -44,7 +44,7 @@ private:
 
     SettingsManager *mSettingsManager;
 
-    DataManager *mDataManager;
+
 };
 
 #endif // CONFIGURATIONCONTROLLER_H
