@@ -110,12 +110,6 @@ Select a project to get started</string>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QGroupBox" name="groupBox">
-         <property name="styleSheet">
-          <string notr="true">QGroupBox {
-                          border: 2px solid rgb(218,218,218);
-                          border-radius: 10px;
-                          }</string>
-         </property>
          <property name="title">
           <string/>
          </property>

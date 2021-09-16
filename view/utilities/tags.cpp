@@ -168,7 +168,7 @@ struct Tags::Impl {
                                               ((i_r.height() - ifce->fontMetrics().height()) / 2.0));
 
             // drag tag rect
-            QColor const blue(0, 96, 255, 150);
+            QColor const blue(1, 109, 255, 150);
             QPainterPath path;
             path.addRoundedRect(i_r, 10, 10);
             p.fillPath(path, blue);

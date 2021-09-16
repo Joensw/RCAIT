@@ -94,7 +94,7 @@ void ImportFilesWidget::setAvailablePlugins(const QStringList &pluginNames) {
 
 void ImportFilesWidget::updateProgressBar(int progress) {
     ui->progressBar_images->setValue(progress);
-    if (progress == 100) {
+    if (progress == ui->progressBar_images->maximum()) {
         ui->pushButton_loadImages->setEnabled(true);
         ui->pushButton_abortLoading->setEnabled(false);
     }

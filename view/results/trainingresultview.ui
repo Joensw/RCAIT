@@ -39,12 +39,19 @@
         </property>
         <item>
          <widget class="Canvas" name="graphicsView_accuracycurve">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
+             <property name="minimumSize">
+                 <size>
+                     <width>0</width>
+                     <height>0</height>
+                 </size>
+             </property>
+             <property name="styleSheet">
+                 <string notr="true">selection-color: rgb(0, 0, 0);
+                     selection-background-color: rgb(255, 255, 255);
+                     background-color: none;
+                     border: 2px rgb(0, 0, 0);
+                 </string>
+             </property>
          </widget>
         </item>
        </layout>
@@ -62,9 +69,17 @@
         <string>Most Misclassified Images</string>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="ImageGallery" name="imageGallery_mostMisclassifiedImages" native="true"/>
-        </item>
+           <item>
+               <widget class="ImageGallery" name="imageGallery_mostMisclassifiedImages" native="true">
+                   <property name="styleSheet">
+                       <string notr="true">selection-color: rgb(0, 0, 0);
+                           selection-background-color: rgb(255, 255, 255);
+                           background-color: none;
+                           border: 2px rgb(0, 0, 0);
+                       </string>
+                   </property>
+               </widget>
+           </item>
        </layout>
       </widget>
      </item>
@@ -81,17 +96,24 @@
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <widget class="Canvas" name="graphicsView_confusionmatrix">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="renderHints">
-           <set>QPainter::Antialiasing|QPainter::LosslessImageRendering|QPainter::TextAntialiasing</set>
-          </property>
-         </widget>
+            <widget class="Canvas" name="graphicsView_confusionmatrix">
+                <property name="minimumSize">
+                    <size>
+                        <width>0</width>
+                        <height>0</height>
+                    </size>
+                </property>
+                <property name="styleSheet">
+                    <string notr="true">selection-color: rgb(0, 0, 0);
+                        selection-background-color: rgb(255, 255, 255);
+                        background-color: none;
+                        border: 2px rgb(0, 0, 0);
+                    </string>
+                </property>
+                <property name="renderHints">
+                    <set>QPainter::Antialiasing|QPainter::LosslessImageRendering|QPainter::TextAntialiasing</set>
+                </property>
+            </widget>
         </item>
        </layout>
       </widget>

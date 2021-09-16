@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
     QApplication::setPalette(palette);
 
     //Font
-    QFont inter("Inter", 9);
+    QFont inter("Inter", 8);
     inter.setHintingPreference(QFont::HintingPreference::PreferNoHinting);
     QApplication::setFont(inter);
 

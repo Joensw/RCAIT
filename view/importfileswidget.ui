@@ -13,80 +13,26 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
-   <item>
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="title">
-      <string>Import Images</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4" rowstretch="0,0,0,0">
-      <item row="3" column="0">
-       <widget class="QPushButton" name="pushButton_loadImages">
-           <property name="font">
-               <font>
-                   <family>Inter</family>
-                   <pointsize>8</pointsize>
-               </font>
-           </property>
-           <property name="layoutDirection">
-               <enum>Qt::RightToLeft</enum>
-           </property>
-           <property name="text">
-               <string>Load Images</string>
-           </property>
-           <property name="icon">
-               <iconset resource="../Resources/UI_Icons.qrc">
-                   <normaloff>:/UISymbols/UI_Download_Icon.svg</normaloff>:/UISymbols/UI_Download_Icon.svg
-               </iconset>
-           </property>
-           <property name="iconSize">
-               <size>
-                   <width>16</width>
-                   <height>15</height>
-               </size>
-           </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <spacer name="verticalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="2" column="2">
-       <widget class="QLabel" name="label_pluginStatus">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="2">
-       <widget class="QProgressBar" name="progressBar_images">
-        <property name="value">
-         <number>0</number>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="3">
-       <layout class="QGridLayout" name="gridLayout_12">
-        <item row="0" column="1">
-         <widget class="Tags" name="lineEdit_labels">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
+  <layout class="QHBoxLayout" name="horizontalLayout" stretch="4,3">
+      <item>
+          <widget class="QGroupBox" name="groupBox_2">
+              <property name="enabled">
+                  <bool>true</bool>
+              </property>
+              <property name="title">
+                  <string>Import Images</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_4" rowstretch="0,0,0,0,0">
+                  <item row="0" column="0" colspan="3">
+                      <layout class="QGridLayout" name="gridLayout_12">
+                          <item row="0" column="1">
+                              <widget class="Tags" name="lineEdit_labels">
+                                  <property name="sizePolicy">
+                                      <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                                          <horstretch>0</horstretch>
+                                          <verstretch>0</verstretch>
+                                      </sizepolicy>
+                                  </property>
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -138,16 +84,16 @@
            <widget class="QPushButton" name="pushButton_clearTags">
             <property name="minimumSize">
              <size>
-              <width>30</width>
-              <height>0</height>
+                 <width>30</width>
+                 <height>0</height>
              </size>
             </property>
-            <property name="maximumSize">
-             <size>
-                 <width>8</width>
-                 <height>29</height>
-             </size>
-            </property>
+               <property name="maximumSize">
+                   <size>
+                       <width>8</width>
+                       <height>29</height>
+                   </size>
+               </property>
                <property name="text">
                    <string/>
                </property>
@@ -167,27 +113,27 @@
                </property>
            </widget>
           </item>
-          <item>
-              <widget class="QPushButton" name="pushButton_loadLabelsFromFile">
-                  <property name="text">
-                      <string/>
-                  </property>
-                  <property name="icon">
-                      <iconset>
-                          <normaloff>:UISymbols/UI_File_Icon.svg</normaloff>:UISymbols/UI_File_Icon.svg
-                      </iconset>
-                  </property>
-                  <property name="iconSize">
-                      <size>
-                          <width>19</width>
-                          <height>20</height>
-                      </size>
-                  </property>
-                  <property name="flat">
-                      <bool>true</bool>
-                  </property>
-              </widget>
-          </item>
+             <item>
+                 <widget class="QPushButton" name="pushButton_loadLabelsFromFile">
+                     <property name="text">
+                         <string/>
+                     </property>
+                     <property name="icon">
+                         <iconset>
+                             <normaloff>:UISymbols/UI_File_Icon.svg</normaloff>:UISymbols/UI_File_Icon.svg
+                         </iconset>
+                     </property>
+                     <property name="iconSize">
+                         <size>
+                             <width>19</width>
+                             <height>20</height>
+                         </size>
+                     </property>
+                     <property name="flat">
+                         <bool>true</bool>
+                     </property>
+                 </widget>
+             </item>
          </layout>
         </item>
         <item row="5" column="0">
@@ -254,51 +200,122 @@
          </spacer>
         </item>
         <item row="7" column="1">
-         <widget class="QSlider" name="horizontalSlider">
-          <property name="maximum">
-           <number>100</number>
-          </property>
-          <property name="pageStep">
-           <number>1</number>
-          </property>
-             <property name="value">
-                 <number>40</number>
-             </property>
-             <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="tickPosition">
-                 <enum>QSlider::TicksBothSides</enum>
-             </property>
-             <property name="tickInterval">
-                 <number>5</number>
-             </property>
-         </widget>
+            <widget class="QSlider" name="horizontalSlider">
+                <property name="maximum">
+                    <number>100</number>
+                </property>
+                <property name="pageStep">
+                    <number>1</number>
+                </property>
+                <property name="value">
+                    <number>40</number>
+                </property>
+                <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="tickPosition">
+                    <enum>QSlider::TicksBothSides</enum>
+                </property>
+                <property name="tickInterval">
+                    <number>5</number>
+                </property>
+            </widget>
         </item>
-       </layout>
-      </item>
-      <item row="3" column="1">
-          <widget class="QPushButton" name="pushButton_abortLoading">
-              <property name="enabled">
-                  <bool>false</bool>
-              </property>
-              <property name="text">
-                  <string>Cancel</string>
-              </property>
-              <property name="icon">
-                  <iconset resource="../Resources/UI_Icons.qrc">
-                      <normaloff>:/UISymbols/UI_Cancel_Icon.svg</normaloff>:/UISymbols/UI_Cancel_Icon.svg
-                  </iconset>
-              </property>
-              <property name="iconSize">
-                  <size>
-                      <width>16</width>
-                      <height>15</height>
-                  </size>
-              </property>
-          </widget>
-      </item>
-     </layout>
+                      </layout>
+                  </item>
+                  <item row="2" column="0" colspan="3">
+                      <layout class="QVBoxLayout" name="verticalLayout">
+                          <item>
+                              <spacer name="verticalSpacer_3">
+                                  <property name="orientation">
+                                      <enum>Qt::Vertical</enum>
+                                  </property>
+                                  <property name="sizeHint" stdset="0">
+                                      <size>
+                                          <width>20</width>
+                                          <height>40</height>
+                                      </size>
+                                  </property>
+                              </spacer>
+                          </item>
+                          <item>
+                              <widget class="QLabel" name="label_pluginStatus">
+                                  <property name="text">
+                                      <string/>
+                                  </property>
+                              </widget>
+                          </item>
+                          <item>
+                              <widget class="QProgressBar" name="progressBar_images">
+                                  <property name="value">
+                                      <number>0</number>
+                                  </property>
+                              </widget>
+                          </item>
+                      </layout>
+                  </item>
+                  <item row="4" column="0">
+                      <widget class="QPushButton" name="pushButton_loadImages">
+                          <property name="sizePolicy">
+                              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                              </sizepolicy>
+                          </property>
+                          <property name="font">
+                              <font>
+                                  <family>Inter</family>
+                                  <pointsize>8</pointsize>
+                              </font>
+                          </property>
+                          <property name="layoutDirection">
+                              <enum>Qt::RightToLeft</enum>
+                          </property>
+                          <property name="text">
+                              <string>Load Images</string>
+                          </property>
+                          <property name="icon">
+                              <iconset resource="../Resources/UI_Icons.qrc">
+                                  <normaloff>:/UISymbols/UI_Download_Icon.svg</normaloff>
+                                  :/UISymbols/UI_Download_Icon.svg
+                              </iconset>
+                          </property>
+                          <property name="iconSize">
+                              <size>
+                                  <width>40</width>
+                                  <height>15</height>
+                              </size>
+                          </property>
+                      </widget>
+                  </item>
+                  <item row="4" column="2">
+                      <widget class="QPushButton" name="pushButton_abortLoading">
+                          <property name="enabled">
+                              <bool>false</bool>
+                          </property>
+                          <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                              </sizepolicy>
+                          </property>
+                          <property name="text">
+                              <string>Cancel</string>
+                          </property>
+                          <property name="icon">
+                              <iconset resource="../Resources/UI_Icons.qrc">
+                                  <normaloff>:/UISymbols/UI_Cancel_Icon.svg</normaloff>:/UISymbols/UI_Cancel_Icon.svg
+                              </iconset>
+                          </property>
+                          <property name="iconSize">
+                              <size>
+                                  <width>16</width>
+                                  <height>15</height>
+                              </size>
+                          </property>
+                      </widget>
+                  </item>
+              </layout>
     </widget>
    </item>
    <item>
@@ -308,42 +325,35 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_17">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-           <item>
-               <widget class="QGroupBox" name="groupBox">
-                   <property name="styleSheet">
-                       <string notr="true">QGroupBox {
-                           border: 2px solid rgb(218,218,218);
-                           border-radius: 10px;
-                           }
-                       </string>
-                   </property>
-                   <property name="title">
-                       <string/>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout">
-                       <item row="0" column="0">
-                           <widget class="CustomListWidget" name="listWidget_modelNames">
-                               <property name="font">
-                                   <font>
-                                       <family>Inter</family>
-                                       <pointsize>8</pointsize>
-                                       <weight>50</weight>
-                                       <bold>false</bold>
-                                   </font>
-                               </property>
-                               <property name="styleSheet">
-                                   <string notr="true">selection-color: rgb(0, 0, 0);
-                                       selection-background-color: rgb(255, 255, 255);
-                                       background-color: none;
-                                       border: 2px rgb(0, 0, 0);
-                                   </string>
-                               </property>
-                           </widget>
-                       </item>
-                   </layout>
-               </widget>
-           </item>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+              <item>
+                  <widget class="QGroupBox" name="groupBox">
+                      <property name="title">
+                          <string/>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout">
+                          <item row="0" column="0">
+                              <widget class="CustomListWidget" name="listWidget_modelNames">
+                                  <property name="font">
+                                      <font>
+                                          <family>Inter</family>
+                                          <pointsize>8</pointsize>
+                                          <weight>50</weight>
+                                          <bold>false</bold>
+                                      </font>
+                                  </property>
+                                  <property name="styleSheet">
+                                      <string notr="true">selection-color: rgb(0, 0, 0);
+                                          selection-background-color: rgb(255, 255, 255);
+                                          background-color: none;
+                                          border: 2px rgb(0, 0, 0);
+                                      </string>
+                                  </property>
+                              </widget>
+                          </item>
+                      </layout>
+                  </widget>
+              </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_16">
           <item>
@@ -359,14 +369,53 @@
             </property>
            </spacer>
           </item>
+             <item>
+                 <widget class="QPushButton" name="pushButton_addModel">
+                     <property name="text">
+                         <string>Add</string>
+                     </property>
+                     <property name="icon">
+                         <iconset>
+                             <normaloff>:UISymbols/UI_Add_Icon.svg</normaloff>:UISymbols/UI_Add_Icon.svg
+                         </iconset>
+                     </property>
+                     <property name="iconSize">
+                         <size>
+                             <width>16</width>
+                             <height>15</height>
+                         </size>
+                     </property>
+                 </widget>
+             </item>
+             <item>
+                 <widget class="QPushButton" name="pushButton_removeModel">
+                     <property name="text">
+                         <string>Remove</string>
+                     </property>
+                     <property name="icon">
+                         <iconset>
+                             <normaloff>:UISymbols/UI_Delete_Item.svg</normaloff>:UISymbols/UI_Delete_Item.svg
+                         </iconset>
+                     </property>
+                     <property name="iconSize">
+                         <size>
+                             <width>16</width>
+                             <height>15</height>
+                         </size>
+                     </property>
+                 </widget>
+             </item>
           <item>
-              <widget class="QPushButton" name="pushButton_addModel">
+              <widget class="QPushButton" name="pushButton_loadModel">
+                  <property name="layoutDirection">
+                      <enum>Qt::RightToLeft</enum>
+                  </property>
                   <property name="text">
-                      <string>Add</string>
+                      <string>Load</string>
                   </property>
                   <property name="icon">
                       <iconset>
-                          <normaloff>:UISymbols/UI_Add_Icon.svg</normaloff>:UISymbols/UI_Add_Icon.svg
+                          <normaloff>:UISymbols/UI_Arrow_Forward.svg</normaloff>:UISymbols/UI_Arrow_Forward.svg
                       </iconset>
                   </property>
                   <property name="iconSize">
@@ -376,45 +425,6 @@
                       </size>
                   </property>
               </widget>
-          </item>
-          <item>
-              <widget class="QPushButton" name="pushButton_removeModel">
-                  <property name="text">
-                      <string>Remove</string>
-                  </property>
-                  <property name="icon">
-                      <iconset>
-                          <normaloff>:UISymbols/UI_Delete_Item.svg</normaloff>:UISymbols/UI_Delete_Item.svg
-                      </iconset>
-                  </property>
-                  <property name="iconSize">
-                      <size>
-                          <width>16</width>
-                          <height>15</height>
-                      </size>
-                  </property>
-              </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_loadModel">
-               <property name="layoutDirection">
-                   <enum>Qt::RightToLeft</enum>
-               </property>
-               <property name="text">
-                   <string>Load</string>
-               </property>
-               <property name="icon">
-                   <iconset>
-                       <normaloff>:UISymbols/UI_Arrow_Forward.svg</normaloff>:UISymbols/UI_Arrow_Forward.svg
-                   </iconset>
-               </property>
-               <property name="iconSize">
-                   <size>
-                       <width>16</width>
-                       <height>15</height>
-                   </size>
-               </property>
-           </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_9">
@@ -438,18 +448,18 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-      <class>CustomListWidget</class>
-      <extends>QListWidget</extends>
-      <header>customlistwidget.h</header>
-  </customwidget>
-     <customwidget>
-         <class>Tags</class>
-         <extends>QLineEdit</extends>
-         <header>tags.hpp</header>
-     </customwidget>
- </customwidgets>
+    <customwidgets>
+        <customwidget>
+            <class>CustomListWidget</class>
+            <extends>QListWidget</extends>
+            <header>customlistwidget.h</header>
+        </customwidget>
+        <customwidget>
+            <class>Tags</class>
+            <extends>QLineEdit</extends>
+            <header>tags.hpp</header>
+        </customwidget>
+    </customwidgets>
     <resources>
         <include location="../Resources/UI_Icons.qrc"/>
     </resources>

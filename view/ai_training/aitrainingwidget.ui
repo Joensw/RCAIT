@@ -44,19 +44,6 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="styleSheet">
-             <string notr="true">QGroupBox {
- border: 2px solid rgb(218,218,218);
- border-radius: 10px;
- margin-top: 6px;
- }
-QGroupBox::title {
-subcontrol-origin: margin;
-left: 12px;
-padding: 0px 3px 0px 3px;
-}
-                            </string>
-            </property>
             <property name="title">
              <string>Data Augmentation</string>
             </property>
@@ -68,13 +55,6 @@ padding: 0px 3px 0px 3px;
               <widget class="QScrollArea" name="scrollArea_augmentation">
                <property name="autoFillBackground">
                 <bool>false</bool>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">selection-color: rgb(0, 0, 0);
-selection-background-color: rgb(255, 255, 255);
-background-color: none;
-border: 2px rgb(0, 0, 0);
-                                        </string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::NoFrame</enum>
@@ -172,20 +152,6 @@ border: 2px rgb(0, 0, 0);
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="styleSheet">
-             <string notr="true">QGroupBox {
-                          border: 2px solid rgb(218,218,218);
-                          border-radius: 10px;
-                          margin-top: 6px;
-                          }
-                          QGroupBox::title {
-                          subcontrol-origin: margin;
-                          left: 12px;
-                          padding: 0px 3px 0px 3px;
-
-                          }
-                      </string>
-            </property>
             <property name="title">
              <string>Configuration</string>
             </property>
@@ -197,13 +163,6 @@ border: 2px rgb(0, 0, 0);
               <widget class="QScrollArea" name="scrollArea_configuration">
                <property name="autoFillBackground">
                 <bool>false</bool>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">selection-color: rgb(0, 0, 0);
-                                      selection-background-color: rgb(255, 255, 255);
-                                      background-color: none;
-                                      border: 2px rgb(0, 0, 0);
-                                  </string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::NoFrame</enum>
@@ -242,20 +201,6 @@ border: 2px rgb(0, 0, 0);
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QGroupBox {
-                       border: 2px solid rgb(218,218,218);
-                       border-radius: 10px;
-                       margin-top: 6px;
-                       }
-                       QGroupBox::title {
-                       subcontrol-origin: margin;
-                       left: 12px;
-                       padding: 0px 3px 0px 3px;
-
-                       }
-                   </string>
          </property>
          <property name="title">
           <string>Run Model Training</string>
