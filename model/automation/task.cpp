@@ -39,15 +39,13 @@ Task::Task(QVariantMap map, QList<Command*> commandList)
 
     if (commands.contains("training")) {
         QString workingDir = mDataManager.createNewWorkSubDir(map.value("modelName").toString());
-        mDataManager.saveLastWorkingDirectoryOfModel(map.value("projectName").toString(), map.value("modelName").toString(), workingDir);
         TrainingCommand* command = new TrainingCommand(map, mDataManager.getProjectDataSetTrainSubdir(), mDataManager.getProjectDataSetValSubdir(), workingDir, this);
         mCommandList.append(command);
         connect(command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
     }
 
     if (commands.contains("classification")) {
-        QString workingDir =  mDataManager.recallLastWorkingDirectoryOfModel(map.value("projectName").toString(), map.value("modelName").toString());
-        ClassificationCommand* command = new ClassificationCommand(map, mDataManager.getProjectDataSetTrainSubdir(), workingDir, this);
+        ClassificationCommand* command = new ClassificationCommand(map, mDataManager.getProjectDataSetTrainSubdir(), this);
         mCommandList.append(command);
         connect(command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
     }

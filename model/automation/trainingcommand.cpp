@@ -6,6 +6,7 @@
 
 TrainingCommand::TrainingCommand(QVariantMap map,const QString &trainDataSetPath, const QString &validationDataSetPath,const QString &workingDir, ProgressablePlugin* receiver)
 {
+    mProjectName = map.value("projectName").toString();
     mAiPluginName = map.value("aiPluginName").toString();
     mModelName = map.value("modelName").toString();
     mBaseModel = map.value("baseModel").toString();
@@ -61,6 +62,8 @@ bool TrainingCommand::execute()
     if (!mResult->isValid()){
         return false;
     }
+    mDataManager.saveLastWorkingDirectoryOfModel(mProjectName, mModelName, mWorkingDir);
+
     emit sig_saveResult(mResult);
     return true;
 }

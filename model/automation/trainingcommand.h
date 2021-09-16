@@ -56,6 +56,7 @@ private:
     QWidget* mAugmentationWidget;
     bool parsingFailed = false;
 
+    QString mProjectName;
     QString mImagePath;
     QString mModelName;
     QString mBaseModel;
