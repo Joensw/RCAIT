@@ -86,6 +86,7 @@ void ImageController::updateNewDatasetDisplay() {
     m_imageInspectionModel.loadNewData(m_dataManager->getProjectImageTempDir(), m_split);
     m_imageinspectionwidget->setNewTrainImages(m_imageInspectionModel.getTrainNewData());
     m_imageinspectionwidget->setNewValidationImages(m_imageInspectionModel.getValidationNewData());
+    disconnect(&m_imageLoader, &ImageLoader::sig_imagesReady, this, &ImageController::slot_imagesReady);
 }
 
 void ImageController::slot_remove(int treeWidgetIndex, const QMap<QString, QList<int>> &removedImages) {
