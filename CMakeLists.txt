@@ -72,12 +72,14 @@ file(GLOB TS_FILES
 # Use qt_create_translation for finding new translatable strings.
 # Use qt_add_translation otherwise (much faster)
 # Reload CMake Project if you changed this. Change it back later (!)
-option(CREATE_NEW_TRANSLATIONS "Find new strings and put them in ts files" OFF)
+set(CREATE_NEW_TRANSLATIONS OFF)
 
 if (CREATE_NEW_TRANSLATIONS)
     qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+    message("Creating new translations...")
 else ()
     qt_add_translation(QM_FILES ${TS_FILES})
+    message("Not creating new translations...")
 endif (CREATE_NEW_TRANSLATIONS)
 
 add_executable(${PROJECT_NAME}
