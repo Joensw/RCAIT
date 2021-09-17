@@ -13,8 +13,7 @@ SettingsManager::SettingsManager()
 QStringList SettingsManager::getPluginNames() {
     QStringList loaderPlugins = mImageLoaderPluginManager->getNamesOfPlugins();
     QStringList classifierPlugins = mClassificationPluginManager->getNamesOfPlugins();
-    loaderPlugins.append(classifierPlugins);
-    return loaderPlugins;
+    return loaderPlugins + classifierPlugins;
 }
 
 QStringList SettingsManager::getClassificationPluginNames() {
@@ -22,7 +21,7 @@ QStringList SettingsManager::getClassificationPluginNames() {
     return classifierPlugins;
 }
 
-QStringList SettingsManager::getClassificationPluginBase(QString plugin) {
+QStringList SettingsManager::getClassificationPluginBase(const QString& plugin) {
     return mClassificationPluginManager->getClassificationPluginBases(plugin);
 }
 
@@ -42,8 +41,8 @@ bool SettingsManager::verifyDirectories() {
     return false;
 }
 
-bool SettingsManager::verifyPaths(QString projectsDirectory, QString classificationPluginDirectory,
-                                  QString imageLoaderDirectory) {
+bool SettingsManager::verifyPaths(const QString& projectsDirectory, const QString& classificationPluginDirectory,
+                                  const QString& imageLoaderDirectory) {
     if (projectsDirectory == classificationPluginDirectory ||
         projectsDirectory == imageLoaderDirectory ||
         classificationPluginDirectory == imageLoaderDirectory) {
@@ -65,7 +64,7 @@ bool SettingsManager::verifyPaths(QString projectsDirectory, QString classificat
     return false;
 }
 
-bool SettingsManager::verifyPath(QString path) {
+bool SettingsManager::verifyPath(const QString& path) {
     //Null and empty string are not valid paths
     if (path.isEmpty()) {
         return false;
@@ -78,8 +77,8 @@ bool SettingsManager::verifyPath(QString path) {
     return false;
 }
 
-void SettingsManager::configureSettingsFile(QString projectsDirectory, QString classificationPluginDirectory,
-                                            QString imageLoaderDirectory) {
+void SettingsManager::configureSettingsFile(const QString& projectsDirectory, const QString& classificationPluginDirectory,
+                                            const QString& imageLoaderDirectory) {
     mGlobalSettings->setValue(projectDirectoryIdentifier, projectsDirectory);
     mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, classificationPluginDirectory);
     mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, imageLoaderDirectory);
@@ -100,7 +99,7 @@ QList<QWidget *> SettingsManager::getPluginSettings() {
 
 void SettingsManager::savePluginSettings(int index) {
     QStringList loaderPlugins = mImageLoaderPluginManager->getNamesOfPlugins();
-    int loaderSize = loaderPlugins.size();
+    qsizetype loaderSize = loaderPlugins.size();
     QStringList classifierPlugins = mClassificationPluginManager->getNamesOfPlugins();
     loaderPlugins.append(classifierPlugins);
     QString name = loaderPlugins.at(index);
@@ -111,7 +110,7 @@ void SettingsManager::savePluginSettings(int index) {
         mClassificationPluginManager->saveConfiguration(name);
 }
 
-void SettingsManager::saveProjectsDir(QString dir) {
+void SettingsManager::saveProjectsDir(const QString& dir) {
     mGlobalSettings->setValue(projectDirectoryIdentifier, dir);
 }
 
@@ -119,7 +118,7 @@ QString SettingsManager::getProjectsDir() {
     return mGlobalSettings->value(projectDirectoryIdentifier).toString();
 }
 
-void SettingsManager::saveClassificationPluginDir(QString dir) {
+void SettingsManager::saveClassificationPluginDir(const QString& dir) {
     mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, dir);
     mClassificationPluginManager->loadPlugins(dir);
 }
@@ -128,7 +127,7 @@ QString SettingsManager::getClassificationPluginDir() {
     return mGlobalSettings->value(classificationPluginDirectoryIdentifier).toString();
 }
 
-void SettingsManager::saveImageLoaderPluginDir(QString dir) {
+void SettingsManager::saveImageLoaderPluginDir(const QString& dir) {
     mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, dir);
     mImageLoaderPluginManager->loadPlugins(dir);
 }
@@ -138,7 +137,7 @@ QString SettingsManager::getImageLoaderPluginDir() {
 }
 
 bool
-SettingsManager::applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
+SettingsManager::applyGlobalSettings(const QString& projectsDir, const QString& classificationPluginDir, const QString& imageLoaderPluginDir,
                                      QString *error, int *pathsChanged) {
 
     int pathsChangedCounter = 0;

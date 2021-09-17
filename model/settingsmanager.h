@@ -54,7 +54,7 @@ public:
      * @brief saveProjectsDir sets the value of the projects directory
      * @param dir the absolute path to the new projects directory
      */
-    void saveProjectsDir(QString dir);
+    void saveProjectsDir(const QString& dir);
 
     /**
      * @return the absolute path to the current projects directory
@@ -65,7 +65,7 @@ public:
      * @brief saveClassificationPluginDir set the value of the classification plugin directory
      * @param dir the absolute path to the new projects directory
      */
-    void saveClassificationPluginDir(QString dir);
+    void saveClassificationPluginDir(const QString& dir);
 
     /**
      * @return the absolute path to the curent classifcation plugin directory
@@ -76,7 +76,7 @@ public:
      * @brief saveImageLoaderPluginDir set the value of the image loader plugin directory
      * @param dir the absolute path to the new projects directory
      */
-    void saveImageLoaderPluginDir(QString dir);
+    void saveImageLoaderPluginDir(const QString& dir);
 
     /**
      * @return the absolute path to the current image loader plugin directory
@@ -92,7 +92,7 @@ public:
      * @param pathChanged optional argument, the amount of paths updated will be written here
      * @return true if the new paths could be applied, false otherwise
      */
-    bool applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
+    bool applyGlobalSettings(const QString& projectsDir, const QString& classificationPluginDir, const QString& imageLoaderPluginDir,
                              QString *error = nullptr, int *pathsChanged = nullptr);
 
     /**
@@ -109,7 +109,7 @@ public:
      * @param basesOf the classification plugin
      * @return list of the bases of a particular classification plugin
      */
-    QStringList getClassificationPluginBase(QString plugin);
+    QStringList getClassificationPluginBase(const QString& plugin);
 
     /**
      * The paths are valid, when they are not empty ie. "" or the nullstring, when they are not identical, and actually exist.
@@ -130,14 +130,14 @@ public:
      * @param imageLoaderDirectory absolute path to the image loader plugin directory
      * @return true if valid, false otherwise
      */
-    bool verifyPaths(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory);
+    static bool verifyPaths(const QString& projectsDirectory, const QString& classificationPluginDirectory, const QString& imageLoaderDirectory);
 
     /**
      * @brief verifyPath check if a single path would be considered valid on it own
      * @param path the absolute path
      * @return true if valid, false otherwise
      */
-    bool verifyPath(QString path);
+    static bool verifyPath(const QString& path);
 
     /** Used by the configuration controller, to set paths for further program use
      * @brief configureSettingsFile set the paths in the settings file
@@ -145,8 +145,8 @@ public:
      * @param classificationPluginDirectory absolute path the the classification plugin directory
      * @param imageLoaderDirectory absolute path to the image loader plugin directory
      */
-    void configureSettingsFile(QString projectsDirectory, QString classificationPluginDirectory,
-                               QString imageLoaderDirectory);
+    void configureSettingsFile(const QString& projectsDirectory, const QString& classificationPluginDirectory,
+                               const QString& imageLoaderDirectory);
     /**
      * @brief reload manually prompt the plugin managers to reload the plugins from the current directories
      */
