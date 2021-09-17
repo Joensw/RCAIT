@@ -116,11 +116,11 @@ QWidget *MMClassificationPlugin::getInputWidget() {
 
 void MMClassificationPlugin::init() {
     pluginSettings = new MMClassificationSettings();
-    dataAugmentationInput = new MMClassificiationDataAugmentationInput();
+    dataAugmentationInput = new MMClassificationDataAugmentationInput();
     inputOptions = new MMClassificationInputOptions();
     initBaseModels();
     m_mmClassificationConfigFileBuilder.setPathToMMClassification(m_mmClassificationSettings.getMMClassificationPath());
-    m_mmclassificiationdataaugmentationinput = qobject_cast<MMClassificiationDataAugmentationInput *>(
+    m_mmclassificationdataaugmentationinput = qobject_cast<MMClassificationDataAugmentationInput *>(
             dataAugmentationInput);
     m_mmClassificationInput = qobject_cast<MMClassificationInputOptions *>(inputOptions);
     m_watcher = new QFileSystemWatcher();
@@ -286,13 +286,13 @@ MMClassificationPlugin::getAugmentationPreview(QString modelName, QString inputP
 
     // Change config file according to input
 
-    auto albuTransformType = m_mmclassificiationdataaugmentationinput->getAlbuTransformType();
-    auto randomResizedCropSize = m_mmclassificiationdataaugmentationinput->getRandomResizedCropSize();
-    auto randomFlipProb = m_mmclassificiationdataaugmentationinput->getRandomFlipProb();
-    auto randomFlipDirection = m_mmclassificiationdataaugmentationinput->getRandomFlipDirection();
-    auto randomErasing = m_mmclassificiationdataaugmentationinput->getRandomErasing();
-    auto resize = m_mmclassificiationdataaugmentationinput->getResize();
-    auto centerCropSize = m_mmclassificiationdataaugmentationinput->getCenterCropSize();
+    auto albuTransformType = m_mmclassificationdataaugmentationinput->getAlbuTransformType();
+    auto randomResizedCropSize = m_mmclassificationdataaugmentationinput->getRandomResizedCropSize();
+    auto randomFlipProb = m_mmclassificationdataaugmentationinput->getRandomFlipProb();
+    auto randomFlipDirection = m_mmclassificationdataaugmentationinput->getRandomFlipDirection();
+    auto randomErasing = m_mmclassificationdataaugmentationinput->getRandomErasing();
+    auto resize = m_mmclassificationdataaugmentationinput->getResize();
+    auto centerCropSize = m_mmclassificationdataaugmentationinput->getCenterCropSize();
     MMClassificationConfigFileBuilder::changeDataAugmentationOptions(datasetConfigPath, albuTransformType,
                                                                      randomResizedCropSize, randomFlipProb,
                                                                      randomFlipDirection, randomErasing, resize,
@@ -359,13 +359,13 @@ MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QStri
     QString datasetConfigPath = loadModel(modelName).getDatasetConfigPath();
 
     // Change config file according to input
-    QString albuTransformType = m_mmclassificiationdataaugmentationinput->getAlbuTransformType();
-    int randomResizedCropSize = m_mmclassificiationdataaugmentationinput->getRandomResizedCropSize();
-    double randomFlipProb = m_mmclassificiationdataaugmentationinput->getRandomFlipProb();
-    QString randomFlipDirection = m_mmclassificiationdataaugmentationinput->getRandomFlipDirection();
-    bool randomErasing = m_mmclassificiationdataaugmentationinput->getRandomErasing();
-    int resize = m_mmclassificiationdataaugmentationinput->getResize();
-    int centerCropSize = m_mmclassificiationdataaugmentationinput->getCenterCropSize();
+    QString albuTransformType = m_mmclassificationdataaugmentationinput->getAlbuTransformType();
+    int randomResizedCropSize = m_mmclassificationdataaugmentationinput->getRandomResizedCropSize();
+    double randomFlipProb = m_mmclassificationdataaugmentationinput->getRandomFlipProb();
+    QString randomFlipDirection = m_mmclassificationdataaugmentationinput->getRandomFlipDirection();
+    bool randomErasing = m_mmclassificationdataaugmentationinput->getRandomErasing();
+    int resize = m_mmclassificationdataaugmentationinput->getResize();
+    int centerCropSize = m_mmclassificationdataaugmentationinput->getCenterCropSize();
 
     MMClassificationConfigFileBuilder::changeDataAugmentationOptions(datasetConfigPath, albuTransformType,
                                                                      randomResizedCropSize, randomFlipProb,

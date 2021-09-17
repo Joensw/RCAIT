@@ -50,4 +50,13 @@ QString FlickrSettings::getAPISecret()
     return m_settings.value(m_apiSecret).toString();
 }
 
+void FlickrSettings::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::LanguageChange) {
+        // this event is sent if a translator is loaded
+        ui->retranslateUi(this);
+    }
+    //Call to parent class
+    QWidget::changeEvent(event);
+}
+
 

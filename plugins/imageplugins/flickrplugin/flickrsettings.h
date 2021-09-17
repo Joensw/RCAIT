@@ -21,6 +21,15 @@ class FlickrSettings : public QWidget
 {
     Q_OBJECT
 
+protected:
+
+    /**
+     * @brief changeEvent event handler
+     *
+     * @param event incoming event
+     */
+    void changeEvent(QEvent *event) override;
+
 public:
     /**
      * @brief FlickrSettings constructor

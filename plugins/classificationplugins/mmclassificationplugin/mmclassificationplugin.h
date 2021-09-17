@@ -17,7 +17,7 @@
 #include "progressableplugin.h"
 #include "classificationplugin.h"
 #include "mmclassificationsettings.h"
-#include "mmclassificiationdataaugmentationinput.h"
+#include "mmclassificationdataaugmentationinput.h"
 #include "mmclassificationinputoptions.h"
 #include "basemodel.h"
 #include "model.h"
@@ -53,7 +53,7 @@ private:
 
     MMClassificationSettings m_mmClassificationSettings;
     MMClassificationConfigFileBuilder m_mmClassificationConfigFileBuilder;
-    MMClassificiationDataAugmentationInput *m_mmclassificiationdataaugmentationinput;
+    MMClassificationDataAugmentationInput *m_mmclassificationdataaugmentationinput;
     MMClassificationInputOptions *m_mmClassificationInput;
     MMClassificationJsonResultReader m_jsonReader;
 

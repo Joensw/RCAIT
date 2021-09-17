@@ -16,6 +16,15 @@ class MMClassificationSettings : public QWidget
 {
     Q_OBJECT
 
+protected:
+
+    /**
+     * @brief changeEvent event handler
+     *
+     * @param event incoming event
+     */
+    void changeEvent(QEvent *event) override;
+
 public:
     /**
      * @brief MMClassificationSettings creates a new instance of this class

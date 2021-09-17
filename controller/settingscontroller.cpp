@@ -13,6 +13,7 @@ SettingsController::SettingsController(QObject *parent, DataManager *dataManager
 
 void SettingsController::slot_openSettings() {
     mSettingsView->show();
+    mSettingsView->retranslateUi();
     mSettingsView->setCurrentProjectDirectory(mDataManager->getProjectsDir());
     mSettingsView->setCurrentClassificationPluginDirectory(mDataManager->getClassificationPluginDir());
     mSettingsView->setCurrentImageLoaderPluginDirectory(mDataManager->getImageLoaderPluginDir());

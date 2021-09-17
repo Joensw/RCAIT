@@ -89,7 +89,6 @@ void GlobalSettingsWidget::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         // this event is sent if a translator is loaded
         ui->retranslateUi(this);
-        setWindowTitle(tr(PLUGIN_NAME));
     }
 
     //Call to parent class

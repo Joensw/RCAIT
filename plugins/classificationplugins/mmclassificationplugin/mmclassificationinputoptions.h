@@ -16,6 +16,15 @@ class MMClassificationInputOptions : public QWidget
     Q_PROPERTY(int m_max_iters READ getMaxIters WRITE setMaxIters)
     Q_PROPERTY(int m_cuda_device READ getCudaDevice WRITE setCudaDevice)
 
+protected:
+
+    /**
+     * @brief changeEvent event handler
+     *
+     * @param event incoming event
+     */
+    void changeEvent(QEvent *event) override;
+
 public:
     /**
      * @brief MMClassificationInputOptions creates a new instance of this class

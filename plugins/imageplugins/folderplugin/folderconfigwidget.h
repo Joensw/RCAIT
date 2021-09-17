@@ -22,6 +22,15 @@ class FolderConfigwidget : public QWidget
     Q_PROPERTY(QString imageFolder READ getImageFolder WRITE setImageFolder);
     Q_PROPERTY(int loadMode READ getLoadMode WRITE setLoadMode);
 
+protected:
+
+    /**
+     * @brief changeEvent event handler
+     *
+     * @param event incoming event
+     */
+    void changeEvent(QEvent *event) override;
+
 public:
 
     /**

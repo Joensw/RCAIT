@@ -120,7 +120,6 @@ private:
     static constexpr auto STYLESHEET_GREEN = "QLabel { color : green; }";
     static constexpr auto STYLESHEET_BLUE = "QLabel { color : blue; }";
 
-    static constexpr auto PLUGIN_NAME = QT_TR_NOOP("Global Settings");
     static constexpr auto SUCCESS_UPDATED_PATHS_MSG = QT_TR_NOOP("Success. Updated %1 path(s)");
     static constexpr auto NO_CHANGES_MSG = QT_TR_NOOP("No changes were made");
 
