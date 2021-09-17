@@ -101,8 +101,7 @@ Select a project to get started</string>
          <property name="icon">
           <iconset resource="../Resources/UI_Icons.qrc">
            <normaloff>:/UISymbols/UI_Language_Icon.svg</normaloff>
-           <disabledoff>:/UISymbols/UI_Language_Icon.svg</disabledoff>:/UISymbols/UI_Language_Icon.svg
-          </iconset>
+           <disabledoff>:/UISymbols/UI_Language_Icon.svg</disabledoff>:/UISymbols/UI_Language_Icon.svg</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -148,6 +147,9 @@ Select a project to get started</string>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QGroupBox" name="groupBox">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
          <property name="title">
           <string/>
          </property>
@@ -163,7 +165,7 @@ Select a project to get started</string>
             <property name="styleSheet">
              <string notr="true">selection-color: rgb(0, 0, 0);
 selection-background-color: rgb(255, 255, 255);
-background-color: none;
+background-color: transparent;
 border: 2px rgb(0, 0, 0);
                                   </string>
             </property>

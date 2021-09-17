@@ -25,40 +25,31 @@
   <property name="windowTitle">
    <string>Settings</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#SettingsView {
+          border: 2px solid rgb(218,218,218);
+          border-radius: 10px;
+          margin-top: 6px;
+          }
+
+QStackedWidget {
+          border: 2px solid rgb(218,218,218);
+          border-radius: 10px;
+          margin-top: 6px;
+          }
+QGroupBox {
+          border: 2px solid rgb(218,218,218);
+          border-radius: 10px;
+          margin-top: 6px;
+          }
+QGroupBox::title {
+          subcontrol-origin: margin;
+          left: 12px;
+          padding: 0px 3px 0px 3px;
+          }</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QListWidget" name="pluginList">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-       <horstretch>1</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>10</width>
-       <height>10</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QStackedWidget" name="pluginWidget">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>2</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Panel</enum>
-     </property>
-     <property name="currentIndex">
-      <number>-1</number>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="2">
+   <item row="1" column="1" colspan="2">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <spacer name="horizontalSpacer">
@@ -83,8 +74,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>:UISymbols/UI_Cancel_Icon.svg</normaloff>:UISymbols/UI_Cancel_Icon.svg
-        </iconset>
+         <normaloff>:UISymbols/UI_Cancel_Icon.svg</normaloff>:UISymbols/UI_Cancel_Icon.svg</iconset>
        </property>
       </widget>
      </item>
@@ -104,8 +94,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>:UISymbols/UI_Save_Icon.svg</normaloff>:UISymbols/UI_Save_Icon.svg
-        </iconset>
+         <normaloff>:UISymbols/UI_Save_Icon.svg</normaloff>:UISymbols/UI_Save_Icon.svg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -117,12 +106,62 @@
      </item>
     </layout>
    </item>
+   <item row="0" column="2">
+    <widget class="QStackedWidget" name="pluginWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>2</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="currentIndex">
+      <number>-1</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QListWidget" name="pluginList">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>10</width>
+          <height>10</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">          selection-color: rgb(0, 0, 0);
+          selection-background-color: rgb(255, 255, 255);
+          background-color: transparent;
+          border: 2px rgb(0, 0, 0);</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
   </layout>
  </widget>
- <resources>
-  <include location="../Resources/UI_Icons.qrc"/>
-  <include location="../Resources/UI_Icons.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>pluginList</sender>
