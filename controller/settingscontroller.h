@@ -54,7 +54,7 @@ public slots:
 signals:
 
     /**
-     * @brief sig_projectDirectoryChanged emitted when project directory is changed.
+     * @brief sig_projectDirectoryChanged emitted when project directory is updated
      *
      */
     void sig_projectDirectoryChanged(const QString& newDirectory);

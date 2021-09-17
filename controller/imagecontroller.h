@@ -102,12 +102,6 @@ public slots:
 
 signals:
 
-    /**
-     * @brief sig_imagesLoaded signals completion of image loading.
-     *
-     */
-    void sig_imagesLoaded();
-
 
     /**
      * @brief sig_imagesUpdated signals completion of image loading.
