@@ -5,13 +5,13 @@
 #include <QMap>
 
 namespace Ui {
-class MMClassificiationDataAugmentationInput;
+class MMClassificationDataAugmentationInput;
 }
 
 /**
- * @brief The MMClassificiationDataAugmentationInput class makes plugin specific, data augmentation input parameters accessible
+ * @brief The MMClassificationDataAugmentationInput class makes plugin specific, data augmentation input parameters accessible
  */
-class MMClassificiationDataAugmentationInput : public QWidget
+class MMClassificationDataAugmentationInput : public QWidget
 {
     Q_OBJECT
     Q_PROPERTY(QString m_albu_transform_type READ getAlbuTransformType WRITE setAlbuTransformType)
@@ -21,14 +21,23 @@ class MMClassificiationDataAugmentationInput : public QWidget
     Q_PROPERTY(int m_resize READ getResize WRITE setResize)
     Q_PROPERTY(int m_center_crop_size READ getCenterCropSize WRITE setCenterCropSize)
 
+protected:
+
+    /**
+     * @brief changeEvent event handler
+     *
+     * @param event incoming event
+     */
+    void changeEvent(QEvent *event) override;
+
 public:
     /**
-     * @brief MMClassificiationDataAugmentationInput creates a new instance of this class
+     * @brief MMClassificationDataAugmentationInput creates a new instance of this class
      * @param parent parent the parent widget of this widget
      */
-    explicit MMClassificiationDataAugmentationInput(QWidget *parent = nullptr);
+    explicit MMClassificationDataAugmentationInput(QWidget *parent = nullptr);
 
-    ~MMClassificiationDataAugmentationInput();
+    ~MMClassificationDataAugmentationInput();
 
     /**
      * @brief getAlbuTransformType returns the specified albu transform type
@@ -129,7 +138,7 @@ private:
     void connectCheckboxes();
     void connectInputElements();
 
-    Ui::MMClassificiationDataAugmentationInput *ui;
+    Ui::MMClassificationDataAugmentationInput *ui;
 
     QString m_albu_transform_type = "ColorJitter";
     int m_random_resized_crop_size = 224;
