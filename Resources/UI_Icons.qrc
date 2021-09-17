@@ -59,5 +59,6 @@
         <file>UISymbols/UI_Triangle_Bottom.svg</file>
         <file>UISymbols/UI_Triangle_Top.svg</file>
         <file>UISymbols/UI_Language_Icon.svg</file>
+        <file>UISymbols/UI_Configuration_Icon.svg</file>
     </qresource>
 </RCC>

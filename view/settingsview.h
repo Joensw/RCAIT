@@ -132,6 +132,9 @@ private slots:
     void slot_setImageLoaderPluginsDir();
 
 private:
+    static constexpr auto PLUGIN_ICON = ":/UISymbols/UI_Plugin_Icon.svg";
+    static constexpr auto CONFIGURATION_ICON = ":/UISymbols/UI_Configuration_Icon.svg";
+
     static constexpr auto PROJECT_SELECT_MSG = QT_TR_NOOP("Select project directory");
     static constexpr auto CLASSIFICATION_SELECT_MSG = QT_TR_NOOP("Select classification plugin directory");
     static constexpr auto LOADER_SELECT_MSG = QT_TR_NOOP("Select image loader plugin directory");

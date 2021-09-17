@@ -16,7 +16,8 @@ SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames,
     mGlobalSettingsWidget(new GlobalSettingsWidget(this)) {
     ui->setupUi(this);
 
-    ui->pluginList->addItem(mGlobalSettingsWidget->windowTitle());
+    auto globalSettingsEntry = new QListWidgetItem(QIcon(CONFIGURATION_ICON), mGlobalSettingsWidget->windowTitle());
+    ui->pluginList->addItem(globalSettingsEntry);
 
     connect(&*mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setProjectDir, this, &SettingsView::slot_setProjectDir);
     connect(&*mGlobalSettingsWidget, &GlobalSettingsWidget::sig_setClassificationPluginsDir, this,
@@ -43,7 +44,8 @@ void SettingsView::addPluginWidgets(QStringList pluginNames, QList<QWidget *> pl
     assert(pluginNames.size() == pluginConfigurationWidgets.size());
 
     for (int i = 0; i < pluginNames.size(); i++) {
-        ui->pluginList->addItem(pluginNames[i]);
+        auto pluginEntry = new QListWidgetItem(QIcon(PLUGIN_ICON), pluginNames[i]);
+        ui->pluginList->addItem(pluginEntry);
         ui->pluginWidget->addWidget(pluginConfigurationWidgets[i]);
     }
 }
