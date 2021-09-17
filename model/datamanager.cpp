@@ -1,3 +1,10 @@
+/**
+ * @file datamanager.cpp
+ *
+ * @brief fuctions for managing a classification dataset on disk
+ *
+ * @author various
+ */
 #include "datamanager.h"
 
 DataManager::DataManager()

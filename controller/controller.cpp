@@ -1,3 +1,10 @@
+/**
+ * @file controller.cpp
+ *
+ * @brief holds and connects all the other controllers
+ *
+ * @author various
+ */
 #include "controller.h"
 
 Controller::Controller(QObject *parent)

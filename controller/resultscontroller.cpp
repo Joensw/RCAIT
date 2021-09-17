@@ -1,3 +1,10 @@
+/**
+ * @file resultscontroller.cpp
+ *
+ * @brief The ResultsController class mediates between the results logic and UI.
+ *
+ * @author Paul Schaarschmidt
+ */
 #include <resultsexporter.h>
 #include "resultscontroller.h"
 

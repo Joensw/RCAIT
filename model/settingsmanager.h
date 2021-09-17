@@ -1,3 +1,11 @@
+/**
+ * @file settingsmanager.h
+ *
+ * @brief functions for managing application and plugin settings
+ *
+ * @author Jonas Wille
+ *
+ */
 #ifndef SETTINGSMANAGER_H
 #define SETTINGSMANAGER_H
 
@@ -8,10 +16,6 @@
 #include <classificationpluginmanager.h>
 #include <imageloaderpluginmanager.h>
 
-extern const QString projectDirectoryIdentifier;
-extern const QString classificationPluginDirectoryIdentifier;
-extern const QString imageLoaderPluginDirectoryIdentifier;
-
 /**
  * The SettingsManager contains logic for global settings of the application as well as plugin specific settings
  * @brief The SettingsManager class contains the logic for for the settings UI
@@ -20,7 +24,15 @@ class SettingsManager : public QObject {
 Q_OBJECT
 public:
 
+    /**
+     * @brief SettingsManager deleted copy constructor
+     */
+
     SettingsManager(const SettingsManager &) = delete;
+
+    /**
+     * @brief operator = deleted assingment operator
+     */
 
     SettingsManager &operator=(const SettingsManager &) = delete;
 

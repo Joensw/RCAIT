@@ -1,3 +1,10 @@
+/**
+ * @file projectmanager.cpp
+ *
+ * @brief functions for managing project directories on disk
+ *
+ * @author Jonas Wille
+ */
 #include "projectmanager.h"
 
 const QVector<QString> ProjectManager::UNWANTED_NAME_SEQUENCES = {"/", "\\"};

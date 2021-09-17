@@ -1,4 +1,15 @@
+/**
+ * @file tabcontroller.h
+ *
+ * @brief manage the available tabs of the applications
+ *
+ * @author Jonas Wille
+ */
 #include "tabcontroller.h"
+
+/**
+ * @brief The tabs enum assings variables representing the tabs of the mainwindow their respective number
+ */
 
 enum tabs {
     $BEGIN = -1,

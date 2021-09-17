@@ -1,3 +1,10 @@
+/**
+ * @file tabcontroller.h
+ *
+ * @brief manage the available tabs of the applications
+ *
+ * @author Jonas Wille
+ */
 #ifndef TABCONTROLLER_H
 #define TABCONTROLLER_H
 

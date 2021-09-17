@@ -1,3 +1,10 @@
+/**
+ * @file datamanager.h
+ *
+ * @brief fuctions for managing a classification dataset on disk
+ *
+ * @author various
+ */
 #ifndef DATAMANAGER_H
 #define DATAMANAGER_H
 
@@ -10,9 +17,21 @@
 #include "trainingresult.h"
 #include "classificationresult.h"
 
+/**
+ * @brief The DataManager class a facade to tie all the managers together and delegate to these
+ */
 class DataManager {
 public:
+
+    /**
+     * @brief DataManager deleted copy constructor
+     */
+
     DataManager(const DataManager&) = delete;
+
+    /**
+     * @brief operator = deleted assingment operator
+     */
 
     DataManager& operator=(const DataManager&) = delete;
 
@@ -186,9 +205,14 @@ public:
      */
     QString recallLastWorkingDirectoryOfModel(QString projectName, QString modelName);
 
+    /**
+     * @brief recallPluginNameOfModell find the plugin a certain model was derived from
+     * @param projectName name of the project to search in
+     * @param modelName name of the model to search by
+     * @return name of the originating plugin
+     */
 
     QString recallPluginNameOfModell(QString projectName, QString modelName);
-
 
 
     /**

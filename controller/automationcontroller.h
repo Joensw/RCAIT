@@ -1,3 +1,10 @@
+/**
+ * @file automationcontroller.h
+ *
+ * @brief connects the automation interface with the automation logic
+ *
+ * @author Adrian Nelson
+ */
 #ifndef AUTOMATIONCONTROLLER_H
 #define AUTOMATIONCONTROLLER_H
 

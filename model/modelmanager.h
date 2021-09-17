@@ -1,3 +1,10 @@
+/**
+ * @file modelmanager.h
+ *
+ * @brief functions for managing models of image classification plugins
+ *
+ * @author Andreas Ott
+ */
 #ifndef MODELMANAGER_H
 #define MODELMANAGER_H
 
@@ -17,7 +24,15 @@ class ModelManager
 {
 public:
 
+    /**
+     * @brief ModelManager deleted copy constructor
+     */
+
     ModelManager(const ModelManager &) = delete;
+
+    /**
+     * @brief operator = deleted assingment operator
+     */
 
     ModelManager &operator=(const ModelManager &) = delete;
 
@@ -104,6 +119,12 @@ public:
      */
     QString recallLastWorkingDirectoryOfModel(QString projectName, QString modelName);
 
+    /**
+     * @brief recallPluginNameOfModell find the plugin a certain model was derived from
+     * @param projectName name of the project to search in
+     * @param modelName name of the model to search by
+     * @return name of the originating plugin
+     */
 
     QString recallPluginNameOfModell(QString projectName, QString modelName);
 

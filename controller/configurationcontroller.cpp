@@ -1,3 +1,10 @@
+/**
+ * @file configurationcontroller.cpp
+ *
+ * @brief insures program vital information is present before use of the applications
+ *
+ * @author Jonas Wille
+ */
 #include "configurationcontroller.h"
 
 

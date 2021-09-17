@@ -1,3 +1,10 @@
+/**
+ * @file settingscontroller.h
+ *
+ * @brief connects the logic of the settings with the visual user interface
+ *
+ * @author Jonas Wille
+ */
 #ifndef SETTINGSCONTROLLER_H
 #define SETTINGSCONTROLLER_H
 

@@ -1,3 +1,10 @@
+/**
+ * @file controller.h
+ *
+ * @brief holds and connects all the other controllers
+ *
+ * @author various
+ */
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
