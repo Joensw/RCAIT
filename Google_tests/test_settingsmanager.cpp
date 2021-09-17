@@ -3,7 +3,7 @@
 #include <QDir>
 #include <settingsmanager.h>
 
-QString temporaryDirectory = "../projectsForTests";
+QString temporaryDirectory = "../smTest";
 
 TEST(SettingsManagerTest, invalidPathsTrivial){
     SettingsManager * sm = &SettingsManager::getInstance();
@@ -36,9 +36,9 @@ TEST(SettingsManagerTest, nonExistentPaths){
 
 TEST(SettingsManagerTest, genuinePaths){
     //create directories prior so they can be found
-    QString genuineDir1 = temporaryDirectory % "testDir1";
-    QString genuineDir2 = temporaryDirectory % "testDir2";
-    QString genuineDir3 = temporaryDirectory % "testDir3";
+    QString genuineDir1 = temporaryDirectory % "/" % "testDir1";
+    QString genuineDir2 = temporaryDirectory % "/" % "testDir2";
+    QString genuineDir3 = temporaryDirectory % "/" % "testDir3";
 
     QDir dir (temporaryDirectory);
     dir.mkpath(genuineDir1);
@@ -48,6 +48,26 @@ TEST(SettingsManagerTest, genuinePaths){
     //check if settingsManager sees them as valid
     SettingsManager * sm = &SettingsManager::getInstance();
     EXPECT_TRUE(sm->verifyPaths(genuineDir1, genuineDir2, genuineDir3));
+    dir.removeRecursively();
+}
+
+TEST (SettingsManagerTest, applySettingsValid){
+    QString genuineDir1 = temporaryDirectory % "/" % "testDir1";
+    QString genuineDir2 = temporaryDirectory % "/" % "testDir2";
+    QString genuineDir3 = temporaryDirectory % "/" % "testDir3";
+
+    QDir dir (temporaryDirectory);
+
+    dir.mkpath(genuineDir1);
+    dir.mkpath(genuineDir2);
+    dir.mkpath(genuineDir3);
+
+    SettingsManager * sm = &SettingsManager::getInstance();
+    int counter = 0;
+    QString error;
+    EXPECT_TRUE(sm->applyGlobalSettings(genuineDir1, genuineDir2, genuineDir3, &error, &counter));
+    EXPECT_TRUE(counter == 3);
+
     dir.removeRecursively();
 }
 
