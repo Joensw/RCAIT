@@ -76,10 +76,11 @@ set(CREATE_NEW_TRANSLATIONS OFF)
 
 if (CREATE_NEW_TRANSLATIONS)
     qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+    qt_add_translation(QM_FILES ${TS_FILES})
     message("Creating new translations...")
 else ()
     qt_add_translation(QM_FILES ${TS_FILES})
-    message("Not creating new translations...")
+    message("Not creating new translations... (default)")
 endif (CREATE_NEW_TRANSLATIONS)
 
 add_executable(${PROJECT_NAME}
