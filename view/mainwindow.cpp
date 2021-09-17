@@ -8,7 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     centralWidget()->layout()->setContentsMargins(EDGE,EDGE,EDGE,EDGE);
-    statusBar()->hide();
 
     //Spawn in screen center
     move(screen()->geometry().center() - frameGeometry().center());
