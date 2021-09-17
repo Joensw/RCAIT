@@ -10,7 +10,7 @@ TEST(ImageGalleryTest, testAddImage){
     char *argv[1];
     QApplication a(argc, argv);
     QString path = QDir::current().path();
-    path += "/test_imagefolder_Auto/images";
+    path += "/test_imagefolder/Auto/images";
     ImageGallery* gallery = new ImageGallery();
 
     //start imageload
@@ -31,7 +31,7 @@ TEST(ImageGalleryTest, testAddImages){
     char *argv[1];
     QApplication a(argc, argv);
     QString path = QDir::current().path();
-    path += "/test_imagefolder_Auto/";
+    path += "/test_imagefolder/Auto/";
     QList<QImage> imgList;
     imgList.append(QImage(path + "images"));
     imgList.append(QImage(path + "images_1"));

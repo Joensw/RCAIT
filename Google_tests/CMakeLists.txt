@@ -138,10 +138,15 @@ set(Sources
         ../view/utilities/imagegallery.h
         ../view/utilities/imagegallery.cpp
 
+        ../view/utilities/imagegallerytree.h
+        ../view/utilities/imagegallerytree.cpp
+
         ../view/utilities/customtablewidget.h
         ../view/utilities/customtablewidget.cpp
 
         test_imagegallery.cpp
+
+        test_imagegallerytree.cpp
 
         test_settingsmanager.cpp
         )
