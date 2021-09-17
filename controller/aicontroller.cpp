@@ -1,3 +1,10 @@
+/**
+ * @file aicontroller.cpp
+ *
+ * @brief connects the ai classifcation and training logic with the user interface
+ *
+ * @author Andreas Ott
+ */
 #include "aicontroller.h"
 #include "imagegallery.h"
 

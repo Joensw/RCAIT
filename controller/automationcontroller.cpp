@@ -1,3 +1,10 @@
+/**
+ * @file automationcontroller.cpp
+ *
+ * @brief connects the automation interface with the automation logic
+ *
+ * @author Adrian Nelson
+ */
 #include "automationcontroller.h"
 
 AutomationController::AutomationController(AutomationWidget *automationWidget)

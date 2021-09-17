@@ -35,7 +35,6 @@ TEST(ProjectManagerTest, createValidProject){
     QFile projFile(tempProjectsDir % "/" % testProjectName % "/" % testProjectName % ".ini");
     EXPECT_TRUE(projFile.exists());
 
-    //QDir testDir("../projects/testProject1");
     QDir testDir(tempProjectsDir % "/" % testProjectName);
     EXPECT_TRUE(testDir.removeRecursively());
 

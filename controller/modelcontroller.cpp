@@ -1,3 +1,10 @@
+/**
+ * @file modelcontroller.cpp
+ *
+ * @brief connects the logic of the model management with the user interface
+ *
+ * @author Andreas Ott
+ */
 #include "modelcontroller.h"
 
 ModelController::ModelController(QObject *parent, DataManager *dataManager, ImportFilesWidget *importFilesWidget)

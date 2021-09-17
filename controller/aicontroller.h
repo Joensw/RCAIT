@@ -1,3 +1,10 @@
+/**
+ * @file aicontroller.h
+ *
+ * @brief connects the ai classifcation and training logic with the user interface
+ *
+ * @author Andreas Ott
+ */
 #ifndef AICONTROLLER_H
 #define AICONTROLLER_H
 

@@ -1,3 +1,10 @@
+/**
+ * @file modelcontroller.h
+ *
+ * @brief connects the logic of the model management with the user interface
+ *
+ * @author Andreas Ott
+ */
 #ifndef MODELCONTROLLER_H
 #define MODELCONTROLLER_H
 
@@ -14,7 +21,15 @@ class ModelController : public QObject
 {
     Q_OBJECT
 public:
+
+    /**
+     * @brief ModelController constructs a model controller
+     * @param parent optional parent argument
+     * @param dataManager datamanager argument
+     * @param importFilesWidget widget to be controlled and updated
+     */
     explicit ModelController(QObject *parent = nullptr, DataManager *dataManager = nullptr, ImportFilesWidget *importFilesWidget = nullptr);
+
 public slots:
 
     /**
@@ -53,9 +68,17 @@ public slots:
      */
     void slot_pluginSelected(const QString &pluginName);
 
+    /**
+     * @brief slot_projectPathUpdated gets called when the project path has changed
+     */
+
     void slot_projectPathUpdated();
 
 signals:
+
+    /**
+     * @brief sig_modelLoaded emitted when a new model is loaded
+     */
 
     void sig_modelLoaded();
 

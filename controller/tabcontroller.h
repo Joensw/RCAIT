@@ -1,3 +1,10 @@
+/**
+ * @file tabcontroller.h
+ *
+ * @brief manage the available tabs of the applications
+ *
+ * @author Jonas Wille
+ */
 #ifndef TABCONTROLLER_H
 #define TABCONTROLLER_H
 
@@ -21,18 +28,13 @@ public slots:
      */
     void slot_openProject();
     /**
-     * @brief slot_imagesLoaded called when images are loaded, unlocks the imageInspectionTab
-     */
-    void slot_imagesLoaded();
-    /**
      * @brief slot_modelLoaded called when a model is loaded, unlocks the inputImages- and AITrainingTab
      */
     void slot_modelLoaded();
-    //void slot_modelTrained(); not yet
-    //void slot_Classified(); not yet
-    //void slot_showResults(); not yet
+
+    void slot_showResults();
 private:
-    void disableTemporaryTabs();
+    void disableDependentTabs();
 
     CustomTabWidget * m_tabWidget;
 };

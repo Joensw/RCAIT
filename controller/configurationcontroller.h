@@ -1,3 +1,10 @@
+/**
+ * @file configurationcontroller.h
+ *
+ * @brief insures program vital information is present before use of the applications
+ *
+ * @author Jonas Wille
+ */
 #ifndef CONFIGURATIONCONTROLLER_H
 #define CONFIGURATIONCONTROLLER_H
 

@@ -1,3 +1,10 @@
+/**
+ * @file modelmanager.cpp
+ *
+ * @brief functions for managing models of image classification plugins
+ *
+ * @author Andreas Ott
+ */
 #include "modelmanager.h"
 
 ModelManager::ModelManager()

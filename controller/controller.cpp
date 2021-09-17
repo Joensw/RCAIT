@@ -1,3 +1,10 @@
+/**
+ * @file controller.cpp
+ *
+ * @brief holds and connects all the other controllers
+ *
+ * @author various
+ */
 #include "controller.h"
 
 Controller::Controller(QObject *parent)
@@ -42,8 +49,6 @@ void Controller::slot_configurationComplete(){
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_normalizeWindow, &*mMainWindow,
             &MainWindow::slot_normalizeWindow);
 
-    connect(&*mImageController, &ImageController::sig_imagesLoaded, &*mTabController,
-            &TabController::slot_imagesLoaded);
     connect(&*mModelController, &ModelController::sig_modelLoaded, &*mTabController, &TabController::slot_modelLoaded);
 
     connect(&*mModelController, &ModelController::sig_modelLoaded, &*mAiController, &AIController::slot_modelLoaded);
@@ -81,6 +86,11 @@ void Controller::slot_configurationComplete(){
             &AIController::slot_classificationResultUpdated);
     connect(&*mAutomationController, &AutomationController::sig_projectDirectoryChanged, &*mProjectController,
             &ProjectController::slot_projectDirectoryChanged);
+
+    connect(&*mAiController, &AIController::sig_trainingResultUpdated, &*mTabController,
+            &TabController::slot_showResults);
+    connect(&*mAiController, &AIController::sig_classificationResultUpdated, &*mTabController,
+            &TabController::slot_showResults);
 
     mMainWindow->show();
 }

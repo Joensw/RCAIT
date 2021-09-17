@@ -1,3 +1,10 @@
+/**
+ * @file projectcontroller.cpp
+ *
+ * @brief connects the logic of the project management with the user interface
+ *
+ * @author Jonas Wille
+ */
 #include "projectcontroller.h"
 
 ProjectController::ProjectController(QObject *parent, DataManager *dataManager, StartWidget *startWidget)

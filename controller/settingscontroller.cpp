@@ -1,3 +1,10 @@
+/**
+ * @file settingscontroller.cpp
+ *
+ * @brief connects the logic of the settings with the visual user interface
+ *
+ * @author Jonas Wille
+ */
 #include "settingscontroller.h"
 
 

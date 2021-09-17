@@ -1,3 +1,10 @@
+/**
+ * @file resultscontroller.h
+ *
+ * @brief connects the logic of the results processing and handling with the visual user interface
+ *
+ * @author Paul Schaarschmidt
+ */
 #ifndef RESULTSCONTROLLER_H
 #define RESULTSCONTROLLER_H
 
@@ -13,7 +20,11 @@
 #include <classificationresultswidget.h>
 
 /**
+ * @file resultscontroller.h
+ *
  * @brief The ResultsController class mediates between the results logic and UI.
+ *
+ * @author Paul Schaarschmidt
  */
 class ResultsController : public QObject {
 

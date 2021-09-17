@@ -1,3 +1,10 @@
+/**
+ * @file projectcontroller.h
+ *
+ * @brief connects the logic of the project management with the user interface
+ *
+ * @author Jonas Wille
+ */
 #ifndef PROJECTCONTROLLER_H
 #define PROJECTCONTROLLER_H
 
@@ -17,6 +24,13 @@ class ProjectController : public QObject
 {
     Q_OBJECT
 public:
+
+    /**
+     * @brief ProjectController constructs a project controller
+     * @param parent optional parent argument
+     * @param dataManager datamanager argument
+     * @param startWidget widget to be controlled and updated
+     */
     explicit ProjectController(QObject *parent = nullptr, DataManager *dataManager = nullptr, StartWidget *startWidget = nullptr);
 
     /**
@@ -25,6 +39,11 @@ public:
     void refresh();
 
 signals:
+
+    /**
+     * @brief sig_projectPathUpdated emitted when a project is opened
+     */
+
     void sig_projectPathUpdated();
 
 public slots:

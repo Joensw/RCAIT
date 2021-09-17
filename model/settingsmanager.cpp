@@ -1,3 +1,10 @@
+/**
+ * @file settingsmanager.cpp
+ *
+ * @brief functions for managing application and plugin settings
+ *
+ * @author Jonas Wille
+ */
 #include "settingsmanager.h"
 
 SettingsManager::SettingsManager()

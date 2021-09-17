@@ -1,3 +1,10 @@
+/**
+ * @file projectmanager.h
+ *
+ * @brief functions for managing project directories on disk
+ *
+ * @author Jonas Wille
+ */
 #ifndef PROJECTMANAGER_H
 #define PROJECTMANAGER_H
 
@@ -19,8 +26,16 @@
 class ProjectManager : public QObject {
 Q_OBJECT
 public:
-    //Threadsafe Singleton pattern
+
+    /**
+     * @brief ProjectManager deleted copy constructor
+     */
+
     ProjectManager(ProjectManager const &) = delete;
+
+    /**
+     * @brief operator = deleted assingment operator
+     */
 
     void operator=(ProjectManager const &) = delete;
 
