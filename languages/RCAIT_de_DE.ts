@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <TS version="2.1" language="de_DE">
 <context>
     <name>AITrainingWidget</name>
@@ -194,22 +195,12 @@
         <translation>Zum Beenden bestätigen</translation>
     </message>
     <message>
-        <source>Are you sure you want to quit?
-                The application will terminate
-            </source>
-        <translation type="vanished">Sind Sie sicher, dass Sie die Anwendung beenden möchten?</translation>
-    </message>
-    <message>
         <source>Select project directory</source>
         <translation type="unfinished">Projektverzeichnis wählen</translation>
     </message>
     <message>
         <source>Select classification plugin directory</source>
         <translation type="unfinished">Klassifizierungspluginverzeichnis wählen</translation>
-    </message>
-    <message>
-        <source>Select image-loader plugin directory</source>
-        <translation type="vanished">Wählen Sie das Image-Loader-Plugin-Verzeichnis</translation>
     </message>
     <message>
         <source>Please specifiy all paths uniquely before proceeding.</source>
@@ -305,7 +296,7 @@
     </message>
     <message>
         <source>Saved changes.</source>
-        <translation>Ã„nderungen gespeichert.</translation>
+        <translation>Änderungen gespeichert.</translation>
     </message>
     <message>
         <source>Select image directory</source>
@@ -318,6 +309,10 @@
     <message>
         <source>FolderPlugin</source>
         <translation>Ordner-Plugin</translation>
+    </message>
+    <message>
+        <source>Folder Loader Plugin</source>
+        <translation>Ordner-Lade-Plugin</translation>
     </message>
 </context>
 <context>
@@ -346,10 +341,6 @@
         <translation type="unfinished">Globale Einstellungen</translation>
     </message>
     <message>
-        <source>path(s)</source>
-        <translation type="obsolete">Pfad(e) wurden erfolgreich aktualisiert</translation>
-    </message>
-    <message>
         <source>Project Directory</source>
         <translation>Projektverzeichnis</translation>
     </message>
@@ -371,7 +362,7 @@
     </message>
     <message>
         <source>No changes were made</source>
-        <translation>Es wurden keine Ã„nderungen vorgenommen</translation>
+        <translation>Es wurden keine Änderungen vorgenommen</translation>
     </message>
     <message>
         <source>Global Settings</source>
@@ -405,7 +396,7 @@
     </message>
     <message>
         <source>Current dataset validation images</source>
-        <translation type="unfinished">Aktueller Datensatz Validierungsbilder</translation>
+        <translation type="unfinished">Aktuelle Validierungsbilder aus dem Datensatz</translation>
     </message>
     <message>
         <source>Current dataset training images</source>
@@ -511,44 +502,6 @@
     </message>
 </context>
 <context>
-    <name>MMClassificationInputOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished">Form</translation>
-    </message>
-    <message>
-        <source>CUDA GPU Device</source>
-        <translation>CUDA GPU-Gerät</translation>
-    </message>
-    <message>
-        <source>Number of Iterations</source>
-        <translation>Anzahl der Iterationen</translation>
-    </message>
-</context>
-<context>
-    <name>MMClassificationSettings</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished">Form</translation>
-    </message>
-    <message>
-        <source>MMClassification path</source>
-        <translation>MMClassification-Pfad</translation>
-    </message>
-    <message>
-        <source>mmcls path</source>
-        <translation>mmcls-Pfad</translation>
-    </message>
-    <message>
-        <source>Python Path</source>
-        <translation>Python-Pfad</translation>
-    </message>
-    <message>
-        <source>MMClassification</source>
-        <translation>MMClassification</translation>
-    </message>
-</context>
-<context>
     <name>MMClassificationDataAugmentationInput</name>
     <message>
         <source>Form</source>
@@ -616,6 +569,115 @@
     </message>
 </context>
 <context>
+    <name>MMClassificationInputOptions</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>CUDA GPU Device</source>
+        <translation>CUDA GPU-Gerät</translation>
+    </message>
+    <message>
+        <source>Number of Iterations</source>
+        <translation>Anzahl der Iterationen</translation>
+    </message>
+</context>
+<context>
+    <name>MMClassificationSettings</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>MMClassification path</source>
+        <translation>MMClassification-Pfad</translation>
+    </message>
+    <message>
+        <source>mmcls path</source>
+        <translation>mmcls-Pfad</translation>
+    </message>
+    <message>
+        <source>Python Path</source>
+        <translation>Python-Pfad</translation>
+    </message>
+    <message>
+        <source>MMClassification</source>
+        <translation>MMClassification</translation>
+    </message>
+    <message>
+        <source>MMClassification Plugin</source>
+        <translation type="unfinished">MMClassification Plugin</translation>
+    </message>
+</context>
+<context>
+    <name>MMClassificiationDataAugmentationInput</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Test Pipeline</source>
+        <translation type="unfinished">Test-Pipeline</translation>
+    </message>
+    <message>
+        <source>224</source>
+        <translation type="unfinished">224</translation>
+    </message>
+    <message>
+        <source>256</source>
+        <translation type="unfinished">256</translation>
+    </message>
+    <message>
+        <source>Resize</source>
+        <translation type="unfinished">Größe ändern</translation>
+    </message>
+    <message>
+        <source>Center Crop Size</source>
+        <translation type="unfinished">Ausschnittgröße</translation>
+    </message>
+    <message>
+        <source>Train Pipeline</source>
+        <translation type="unfinished">Trainings-Pipeline</translation>
+    </message>
+    <message>
+        <source>horizontal</source>
+        <translation type="unfinished">horizontal</translation>
+    </message>
+    <message>
+        <source>vertical</source>
+        <translation type="unfinished">vertikal</translation>
+    </message>
+    <message>
+        <source>Random Flip Probability</source>
+        <translation type="unfinished">Zufällige Spiegelungs-Wahrscheinlichkeit</translation>
+    </message>
+    <message>
+        <source>0,5000</source>
+        <translation type="unfinished">0,5000</translation>
+    </message>
+    <message>
+        <source>ColorJitter</source>
+        <translation type="unfinished">Farbschwankungen</translation>
+    </message>
+    <message>
+        <source>Albu Transform Type</source>
+        <translation type="unfinished">Albu Transformationstyp</translation>
+    </message>
+    <message>
+        <source>Random Resized Crop Size</source>
+        <translation type="unfinished">Zufällige Ausschnittsgröße</translation>
+    </message>
+    <message>
+        <source>Random Flip Direction</source>
+        <translation type="unfinished">Zufällige Spiegelungs-Richtung</translation>
+    </message>
+    <message>
+        <source>RandomErasing</source>
+        <translation type="unfinished">Zufällige Löschung</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Home</source>
@@ -650,23 +712,7 @@
         <source>Rapid Classification AI Trainer</source>
         <translation>Rapid Classification AI Trainer</translation>
     </message>
-    <message>
-        <source>MainWindow</source>
-        <translation type="vanished">Hauptfenster</translation>
-    </message>
-    <message>
-        <source>Remove selected images</source>
-        <translation type="obsolete">Entferne ausgewählte Bilder</translation>
-    </message>
-    <message>
-        <source>Input images</source>
-        <translation type="vanished">Eingabebilder</translation>
-    </message>
-    <message>
-        <source>Training images</source>
-        <translation type="obsolete">Trainingsbilder</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>NewModelDialog</name>
     <message>
@@ -724,11 +770,6 @@
         <translation>Der Name sollte mehr als nur Leerzeichen (" ") enthalten</translation>
     </message>
     <message>
-        <source>Name may not contain the "/" or "\" characters</source>
-        <translation type="vanished">Der Name darf nicht die Zeichen "/" oder "\" enthalten
-            </translation>
-    </message>
-    <message>
         <source>A project with this name already exists in the project directory</source>
         <translation>Ein Projekt mit diesem Namen existiert bereits im Projektverzeichnis</translation>
     </message>
@@ -761,7 +802,7 @@
     </message>
     <message>
         <source>Load a file to compare...</source>
-        <translation>Laden Sie eine Datei zum Vergleich...</translation>
+        <translation>Lade eine Datei zum Vergleich...</translation>
     </message>
 </context>
 <context>
@@ -769,17 +810,6 @@
     <message>
         <source>Remove Model</source>
         <translation>Modell löschen</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are
-                you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
-                item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-            </source>
-        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style="
-                font-size:12pt;
-                font-weight:600;"&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das
-                Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-            </translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -791,16 +821,6 @@
     <message>
         <source>Remove Project</source>
         <translation>Projekt löschen</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; font-weight:600;"&gt;Are
-            you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
-            item will be deleted immediately. You can't undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-        </source>
-        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt;
-            font-weight:600;"&gt;Willst du wirklich &amp;quot;&amp;lt;name&amp;gt;&amp;quot; löschen?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Das
-            Modell wird sofort gelöscht. Dies kann nicht rückgängig gemacht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-        </translation>
     </message>
     <message>
         <source>Remove associated Models</source>
@@ -828,14 +848,6 @@
 </context>
 <context>
     <name>SettingsManager</name>
-    <message>
-        <source>Settings have not been updated, there is a conflict.
-                Paths may not be identical and must exist, this includes new and unchanged paths.
-            </source>
-        <translation type="vanished">Die Einstellungen wurden nicht aktualisiert, es besteht ein Konflikt.
-                Pfade dürfen nicht identisch sein und müssen existieren, dies schließt neue und unveränderte Pfade ein.
-            </translation>
-    </message>
     <message>
         <source>Settings have not been updated, there is a conflict. 
  Paths may not be identical and must exist, this includes new and unchanged paths.</source>
