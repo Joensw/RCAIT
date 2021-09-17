@@ -33,14 +33,14 @@ public:
      * @param label label of images
      * @param images images to add
      */
-    void addLabel(QString label, QStringList images);
+    void addLabel(const QString &label, const QStringList &images);
 
     /**
      * @brief addLabels adds multiple labels with images.
      *
      * @param labelToPathsMap map of labels and image path lists
      */
-    void addLabels(QMap<QString, QStringList> labelToPathsMap);
+    void addLabels(const QMap<QString, QStringList> &labelToPathsMap);
 
     /**
      * @brief removeSelected remove images selected in the UI

@@ -65,7 +65,7 @@ void TestGui::testTagField()
 
     std::vector<QString> tags = tagfield->tags();
 
-    foreach (auto tag, tags) {
+    for (auto tag: tags) {
         QVERIFY(tag == tag1 || tag == tag2);
         qDebug() << "tag is " << tag;
     }

@@ -46,7 +46,7 @@ public:
      *
      * @param imageList list of images
      */
-    void addImages(QList<QImage> imageList);
+    void addImages(const QList<QImage> &imageList);
 
     /**
      * @brief concurrentAddImages adds images of directory concurrently.

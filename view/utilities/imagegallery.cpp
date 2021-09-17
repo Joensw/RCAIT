@@ -43,21 +43,18 @@ QList<int> ImageGallery::removeselected() {
 }
 
 void ImageGallery::addImages(const QStringList &imageDirectory) {
-            foreach(QString imageName, imageDirectory) {
-            addImage(QImage(imageName));
-        }
+    for (const QString &imageName: imageDirectory) addImage(QImage(imageName));
 }
 
-void ImageGallery::addImages(QList<QImage> imageList) {
-            foreach(QImage image, imageList) {
-            addImage(image);
-        }
+void ImageGallery::addImages(const QList<QImage> &imageList) {
+    for (const QImage &image: imageList) addImage(image);
 }
 
 void ImageGallery::concurrentAddImages(const QString &path) {
     QStringList images;
     QDir imgDir(path);
-    foreach(QString imageName, imgDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.jpeg" << "*.png", QDir::Files)){
+    for (const QString &imageName:
+            imgDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.jpeg" << "*.png", QDir::Files)) {
         images.append(imgDir.absoluteFilePath(imageName));
     }
     concurrentAddImages(images);
@@ -70,9 +67,9 @@ void ImageGallery::concurrentAddImages(const QList<QImage> &imageList) {
 
 void ImageGallery::concurrentAddImages(const QList<QString> &imageList) {
     //Auto deletes old pointer if that exists.
-    running.reset( new addImagesTask(this, imageList));
+    running.reset(new addImagesTask(this, imageList));
 
-    connect(this, &ImageGallery::sig_stopLoading, (addImagesTask*) &*running, &addImagesTask::quit);
+    connect(this, &ImageGallery::sig_stopLoading, (addImagesTask *) &*running, &addImagesTask::quit);
     connect(&*running, &QThread::finished, this, &ImageGallery::slot_isReady);
 
     if (count() != 0) clear();

@@ -205,12 +205,12 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
 
     static QRegularExpression noSpacesEx(REGEX_ONLY_SPACE);
     QRegularExpressionMatch match = noSpacesEx.match(projectName);
-    if (match.hasMatch()){
+    if (match.hasMatch()) {
         error->append(ERROR_ONLY_SPACE);
         return false;
     }
-    foreach(QString charSequence, UNWANTED_NAME_SEQUENCES){
-        if(projectName.contains(charSequence)){
+    for (const QString &charSequence: UNWANTED_NAME_SEQUENCES) {
+        if (projectName.contains(charSequence)) {
             error->append(ERROR_ILLEGAL_CHAR);
             return false;
         }

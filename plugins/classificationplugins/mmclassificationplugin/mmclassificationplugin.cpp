@@ -546,8 +546,7 @@ MMClassificationPlugin::classify(QString inputImageDirPath, QString trainDataset
         QDir inputImageSubDirectory(item.absoluteFilePath());
         inputImageSubDirectory.setNameFilters(QStringList() << "*.jpg" << "*.png");
         inputImageSubDirectory.setFilter(QDir::Files);
-        foreach(QString imageFile, inputImageSubDirectory.entryList())
-        {
+        for (const QString &imageFile: inputImageSubDirectory.entryList()) {
             inputImageFilePaths.append(inputImageDirPath + "/" + item.baseName() + "/" + imageFile);
         }
     }
@@ -590,9 +589,10 @@ void MMClassificationPlugin::slot_checkForLogFile(QString path)
     QDir directory(m_workDir);
     QStringList logFiles = directory.entryList(QStringList() << "*.log.json",QDir::Files);
     if (!logFiles.isEmpty()) {
-        foreach(QString filename, logFiles) {
+        for (const QString &filename: logFiles) {
             // disconnect due to found log file and monitor file directly
-            QObject::disconnect(m_watcher, &QFileSystemWatcher::directoryChanged, this, &MMClassificationPlugin::slot_checkForLogFile);
+            QObject::disconnect(m_watcher, &QFileSystemWatcher::directoryChanged, this,
+                                &MMClassificationPlugin::slot_checkForLogFile);
             const QString logFilePath = m_workDir + "/" + filename;
             connectFileWatcher(logFilePath);
         }
