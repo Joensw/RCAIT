@@ -6,6 +6,7 @@ SettingsView::SettingsView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SettingsView) {
     ui->setupUi(this);
+    retranslateUi();
 }
 
 SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames,
@@ -135,7 +136,7 @@ void SettingsView::changeEvent(QEvent *event) {
 
 void SettingsView::retranslateUi() {
     for (int i = 0; i < ui->pluginList->count(); i++) {
-        auto text = ui->pluginWidget->widget(i)->windowTitle();
+        auto text = ui->pluginWidget->widget(i)->accessibleName();
         ui->pluginList->item(i)->setText(text);
     }
 }

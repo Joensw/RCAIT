@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MMClassification</string>
   </property>
+  <property name="accessibleName">
+   <string>MMClassification Plugin</string>
+  </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">

@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Bing API Plugin</string>
   </property>
+  <property name="accessibleName">
+   <string>Bing API Plugin</string>
+  </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">

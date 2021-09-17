@@ -20,7 +20,6 @@ class SettingsView : public QWidget
 {
     Q_OBJECT
 
-
 public:
     /**
      * @brief SettingsView constructor creates a SettingsView.
@@ -90,6 +89,11 @@ public:
      */
     void addPluginWidgets(QStringList pluginNames, QList<QWidget *> pluginConfigurationWidgets);
 
+    /**
+     * @brief This method is used to update translated plugin list.
+     */
+    void retranslateUi();
+
 signals:
     /**
      * @brief sig_applyGlobalSettings send when global settings should be applied.
@@ -114,7 +118,7 @@ protected:
      *
      * @param event incoming event
      */
-    void changeEvent(QEvent *event);
+    void changeEvent(QEvent *event) override;
 
 private slots:
 
@@ -140,11 +144,6 @@ private:
     QString mProjectDir;
     QString mClassificationPluginsDir;
     QString mImageLoaderPluginsDir;
-
-    /**
-     * @brief This method is used to update translated plugin list.
-     */
-    void retranslateUi();
 
 };
 
