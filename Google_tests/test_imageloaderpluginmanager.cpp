@@ -1,6 +1,7 @@
 #include "imageloaderpluginmanager.h"
 #include "imageloaderpluginmock.h"
 #include <gtest/gtest.h>
+#include <qapplication.h>
 
 
 class ImageLoaderPluginManagerTest : public testing::Test {
@@ -10,6 +11,7 @@ class ImageLoaderPluginManagerTest : public testing::Test {
     static void SetUpTestSuite() {
 
 
+
     }
 
       static void TearDownTestSuite() {
@@ -17,12 +19,16 @@ class ImageLoaderPluginManagerTest : public testing::Test {
       }
 
     void SetUp() override {
+        int argc;
+        char *argv[1];
+        QApplication a(argc, argv);
         pluginDir = QDir::current().path();
         testee.loadPlugins(pluginDir);
+
     }
 
     void TearDown() override {
-
+        QApplication::exit();
     }
 
     ImageLoaderPluginManager& testee = ImageLoaderPluginManager::getInstance();
@@ -38,6 +44,7 @@ TEST_F(ImageLoaderPluginManagerTest, testLoadPlugins){
 }
 
 TEST_F(ImageLoaderPluginManagerTest, testCallMethods){
+
     testee.getConfigurationWidget(ImageLoaderPluginMock::PLUGIN_NAME);
     testee.getInputWidget(ImageLoaderPluginMock::PLUGIN_NAME);
     testee.getConfigurationWidgets();
