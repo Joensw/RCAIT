@@ -32,6 +32,9 @@ public slots:
      */
     void slot_modelLoaded();
 
+    /**
+     * @brief slot_showResults called when the results tab is to be shown in the ui
+     */
     void slot_showResults();
 private:
     void disableDependentTabs();

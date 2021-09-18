@@ -19,6 +19,10 @@ public:
      * @param parent optional parent argument
      */
     explicit NewProjectDialog(QWidget *parent = nullptr);
+
+    /**
+     * @brief destructor
+     */
     ~NewProjectDialog();
 
     /**

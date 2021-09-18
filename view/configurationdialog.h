@@ -21,7 +21,17 @@ class ConfigurationDialog : public QDialog
     Q_OBJECT
 
 public:
+
+    /**
+     * @brief ConfigurationDialog creates a new ConfigurationDialog
+     * @param parent optional parent argument
+     */
     explicit ConfigurationDialog(QWidget *parent = nullptr);
+
+    /**
+     * @brief destructor
+     */
+
     ~ConfigurationDialog();
 
     /**

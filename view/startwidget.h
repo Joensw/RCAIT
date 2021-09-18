@@ -24,6 +24,10 @@ public:
      * @param parent optional parent arugment
      */
     explicit StartWidget(QWidget *parent = nullptr);
+
+    /**
+     * @brief destructor
+     */
     ~StartWidget();
 
     /**
@@ -49,9 +53,21 @@ public:
     void clearProjectList();
 
 public slots:
+
+    /**
+     * @brief slot_changedWindowState called when the window state has change, sets the ui to reflect this
+     * @param flags the new state the window has
+     */
     void slot_changedWindowState(Qt::WindowStates flags);
 
+    /**
+     * @brief slot_imagesUpdated called when an image loading process has finished
+     */
     void slot_imagesUpdated();
+
+    /**
+     * @brief slot_startLoading called when an image loading process is started to prevent the selection of a new project
+     */
     void slot_startLoading();
 
 private:

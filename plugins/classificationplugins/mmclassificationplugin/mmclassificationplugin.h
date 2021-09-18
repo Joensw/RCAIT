@@ -85,6 +85,10 @@ private:
 
 public:
 
+    /**
+     * @brief destructor
+     */
+
     ~MMClassificationPlugin();
 
     /**

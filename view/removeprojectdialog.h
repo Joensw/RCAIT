@@ -21,6 +21,11 @@ public:
      * @param toRemove name of the project that is to be removed
      */
     explicit RemoveProjectDialog(QWidget *parent = nullptr, QString toRemove = "");
+
+    /**
+     * @brief destructor
+     */
+
     ~RemoveProjectDialog();
 
     /**

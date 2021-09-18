@@ -32,6 +32,10 @@ public:
      */
     explicit MMClassificationSettings(QWidget *parent = nullptr);
 
+    /**
+     * @brief destructor
+     */
+
     ~MMClassificationSettings();
 
     /**

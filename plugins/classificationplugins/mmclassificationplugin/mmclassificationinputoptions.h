@@ -31,6 +31,10 @@ public:
      * @param parent the parent widget of this widget
      */
     explicit MMClassificationInputOptions(QWidget *parent = nullptr);
+
+    /**
+     * @brief destructor
+     */
     ~MMClassificationInputOptions();
 
     /**

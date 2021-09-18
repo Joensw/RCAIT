@@ -37,6 +37,10 @@ public:
      */
     explicit MMClassificationDataAugmentationInput(QWidget *parent = nullptr);
 
+    /**
+     * @brief destructor
+     */
+
     ~MMClassificationDataAugmentationInput();
 
     /**

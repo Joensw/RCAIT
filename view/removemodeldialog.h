@@ -21,6 +21,10 @@ public:
      * @param toRemove name of the model to be removed
      */
     explicit RemoveModelDialog(QWidget *parent = nullptr, QString toRemove = "");
+
+    /**
+     * @brief destructor
+     */
     ~RemoveModelDialog();
 
     /**

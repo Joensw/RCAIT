@@ -20,12 +20,8 @@
 #include <classificationresultswidget.h>
 
 /**
- * @file resultscontroller.h
- *
  * @brief The ResultsController class mediates between the results logic and UI.
- *
- * @author Paul Schaarschmidt
- */
+*/
 class ResultsController : public QObject {
 
 Q_OBJECT

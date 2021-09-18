@@ -20,6 +20,10 @@ public:
      * @param classificationPlugins names of the classification plugins that are shown in the UI for selection
      */
     explicit NewModelDialog(QWidget *parent = nullptr, QStringList classificationPlugins = QStringList());
+
+    /**
+     * @brief destructor
+     */
     ~NewModelDialog();
 
     /**

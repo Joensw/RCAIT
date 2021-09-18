@@ -36,7 +36,7 @@ public:
      */
     ImageLoaderPluginManager(ImageLoaderPluginManager const &) = delete;
     /**
-     * @brief operator = delete
+     * @brief operator = delete deleted assingment operator
      */
     void operator=(ImageLoaderPluginManager const &) = delete;
 

@@ -51,7 +51,7 @@ TEST(SettingsManagerTest, genuinePaths){
     dir.removeRecursively();
 }
 
-TEST (SettingsManagerTest, applySettingsValid){
+TEST(SettingsManagerTest, applySettingsValid){
     QString genuineDir1 = temporaryDirectory % "/" % "testDir1";
     QString genuineDir2 = temporaryDirectory % "/" % "testDir2";
     QString genuineDir3 = temporaryDirectory % "/" % "testDir3";
