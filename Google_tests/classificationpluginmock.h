@@ -8,6 +8,8 @@
 #include <QProcessEnvironment>
 #include "classificationplugin.h"
 #include "progressableplugin.h"
+#include "trainingresult.h"
+#include "classificationresult.h"
 
 class ClassificationPluginMock : public QObject, ClassificationPlugin
 {

@@ -156,7 +156,8 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DI
 
 #imageloaderplugin used for testing created here
 add_library(ImageLoaderPluginMock MODULE imageloaderpluginmock.h imageloaderpluginmock.cpp)
-add_library(ClassificationPluginMock MODULE classificationpluginmock.h classificationpluginmock.cpp)
+add_library(ClassificationPluginMock MODULE classificationpluginmock.h classificationpluginmock.cpp  ../plugins/results/trainingresult.cpp   ../plugins/results/classificationresult.cpp ../plugins/results/result.cpp ../model/results/accuracycurve.cpp  ../model/results/confusionmatrix.cpp ../model/results/genericresultgraphics.cpp ../model/results/classificationgraphics.cpp ../view/results/genericgraphicsview.cpp)
+
 
 #add executables
 add_executable(Google_Tests_run ${Sources})
