@@ -8,14 +8,29 @@
 #include <json_toolbox.h>
 #include <codeeditor.h>
 #include "ce_string.h"
+#include <QtConcurrent/QtConcurrent>
 
 
+/**
+ * @brief This class can create a diff of two files. It makes use of pythons <code>difflib</code>.
+ * The diff code is formatted and inserted as <code>HTML</code> into a supported CodeEditor widget.
+ */
 class FileDiff : public QObject {
 Q_OBJECT
 
 public:
+    /**
+     * @brief Constructs a FileDiff object.
+     * @param left shared pointer to a CodeEditor to display diff data to the left
+     * @param right shared pointer to a CodeEditor to display diff data to the right
+     */
     FileDiff(const QSharedPointer<CodeEditor> &left, const QSharedPointer<CodeEditor> &right);
 
+    /**
+     * @brief Launches diff creation by making use of pythons <code>difflib</code>
+     * @param file1 first file to compare
+     * @param file2 second file to compare to
+     */
     void diff(const QString &file1, const QString &file2);
 
 private:
@@ -41,6 +56,10 @@ private slots:
 
 signals:
 
+    /**
+     * @brief This signal is emitted when the diff creation has finished.
+     * @param longestLine longest line encountered when creating the diff.
+     */
     void sig_diffFinished(qsizetype longestLine);
 };
 

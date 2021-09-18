@@ -40,6 +40,9 @@ public:
      */
     explicit FolderConfigwidget(QWidget *parent = nullptr);
 
+    /**
+     * @brief Destructor of this class.
+     */
     ~FolderConfigwidget();
 
     /**
