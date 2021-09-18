@@ -32,7 +32,7 @@
     <message>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_aitrainingwidget.h" line="325"/>
         <source>Normalize</source>
-        <translation>Нормализация</translation>
+        <translation>Нормализовать</translation>
     </message>
     <message>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_aitrainingwidget.h" line="326"/>
@@ -176,7 +176,7 @@
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_aitrainingwidget.h" line="269"/>
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_aitrainingwidget.h" line="269"/>
         <source>Compare Configuration Files</source>
-        <translation>Сравнение Файлов Конфигурации</translation>
+        <translation>Сравнение файлов конфигурации</translation>
     </message>
 </context>
 <context>
@@ -300,7 +300,7 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_configurationdialog.h" line="232"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_configurationdialog.h" line="232"/>
         <source>Project Directory</source>
-        <translation>Папка проекта</translation>
+        <translation>Директория проекта</translation>
     </message>
     <message>
         <location filename="../view/configurationdialog.ui" line="61"/>
@@ -324,7 +324,7 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_configurationdialog.h" line="236"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_configurationdialog.h" line="236"/>
         <source>Classification Plugin Directory</source>
-        <translation>Папка плагинов классификации</translation>
+        <translation>Директория плагина классификации</translation>
     </message>
     <message>
         <location filename="../view/configurationdialog.ui" line="136"/>
@@ -332,7 +332,7 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_configurationdialog.h" line="240"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_configurationdialog.h" line="240"/>
         <source>Imageloader Plugin Directory</source>
-        <translation>Папка плагинов загрузки изображений</translation>
+        <translation>Директория плагина загрузки изображений</translation>
     </message>
     <message>
         <location filename="../view/configurationdialog.ui" line="196"/>
@@ -547,7 +547,7 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_globalsettingswidget.h" line="294"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_globalsettingswidget.h" line="291"/>
         <source>Project Directory</source>
-        <translation>Папка проекта</translation>
+        <translation>Директория проекта</translation>
     </message>
     <message>
         <location filename="../view/globalsettingswidget.ui" line="63"/>
@@ -587,7 +587,7 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_globalsettingswidget.h" line="301"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_globalsettingswidget.h" line="298"/>
         <source>Classification Plugin Directory</source>
-        <translation>Папка плагинов классификации</translation>
+        <translation>Директория плагина классификации</translation>
     </message>
     <message>
         <location filename="../view/globalsettingswidget.ui" line="222"/>
@@ -595,7 +595,7 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_globalsettingswidget.h" line="307"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_globalsettingswidget.h" line="304"/>
         <source>Imageloader Plugin Directory</source>
-        <translation>Папка плагинов загрузки изображений</translation>
+        <translation>Директория плагина загрузки изображений</translation>
     </message>
     <message>
         <location filename="../view/globalsettingswidget.ui" line="17"/>
@@ -711,7 +711,7 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_importfileswidget.h" line="338"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_importfileswidget.h" line="275"/>
         <source>Import Images</source>
-        <translation>Импорт изображений</translation>
+        <translation>Импортировать изображений</translation>
     </message>
     <message>
         <location filename="../view/importfileswidget.ui" line="275"/>
@@ -774,7 +774,7 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_importfileswidget.h" line="349"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_importfileswidget.h" line="284"/>
         <source>Load Model</source>
-        <translation>Текущая загрузка</translation>
+        <translation>Загрузить модель</translation>
     </message>
     <message>
         <location filename="../view/importfileswidget.ui" line="375"/>
@@ -798,7 +798,7 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_importfileswidget.h" line="353"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_importfileswidget.h" line="287"/>
         <source>Load</source>
-        <translation>Готово</translation>
+        <translation>Загрузить</translation>
     </message>
     <message>
         <location filename="../view/importfileswidget.h" line="80"/>
@@ -1118,7 +1118,7 @@
         <location filename="../cmake-build-release-mingw-coverage/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="282"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="282"/>
         <source>Test Pipeline</source>
-        <translation>Тестировочный пайплай</translation>
+        <translation>Тестировочный пайплайн</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="275"/>
@@ -1162,7 +1162,7 @@
         <location filename="../cmake-build-release-mingw-coverage/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="263"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="263"/>
         <source>Train Pipeline</source>
-        <translation>Тренировочный пайплай</translation>
+        <translation>Тренировочный пайплайн</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="282"/>
@@ -1360,7 +1360,7 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_newmodeldialog.h" line="117"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_newmodeldialog.h" line="125"/>
         <source>Name</source>
-        <translation>Название</translation>
+        <translation>Имя</translation>
     </message>
 </context>
 <context>
