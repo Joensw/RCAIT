@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">3</td>
-            <td class="headerCovTableEntry">4</td>
-            <td class="headerCovTableEntryMed">75.0 %</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-18 16:34:24</td>
+            <td class="headerValue">2021-09-18 20:22:19</td>
             <td></td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -68,7 +68,7 @@
 <a name="10"><span class="lineNum">      10 </span>            :  * @brief The SplitCommand class splits loaded images between training- and validation-images.</a>
 <a name="11"><span class="lineNum">      11 </span>            :  */</a>
 <a name="12"><span class="lineNum">      12 </span>            : class SplitCommand : public Command</a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">          1 : {</span></a>
+<a name="13"><span class="lineNum">      13 </span>            : {</a>
 <a name="14"><span class="lineNum">      14 </span>            :     Q_OBJECT</a>
 <a name="15"><span class="lineNum">      15 </span>            : public:</a>
 <a name="16"><span class="lineNum">      16 </span>            :     /**</a>
@@ -89,17 +89,22 @@
 <a name="31"><span class="lineNum">      31 </span><span class="lineCov">          1 :     bool execute() override;</span></a>
 <a name="32"><span class="lineNum">      32 </span>            : </a>
 <a name="33"><span class="lineNum">      33 </span>            : signals:</a>
-<a name="34"><span class="lineNum">      34 </span><span class="lineNoCov">          0 :     void sig_progress(int progress);</span></a>
-<a name="35"><span class="lineNum">      35 </span>            : </a>
-<a name="36"><span class="lineNum">      36 </span>            : private:</a>
-<a name="37"><span class="lineNum">      37 </span>            :     int mSplit;</a>
-<a name="38"><span class="lineNum">      38 </span>            :     QString mTempPath;</a>
-<a name="39"><span class="lineNum">      39 </span>            :     QString mTrainPath;</a>
-<a name="40"><span class="lineNum">      40 </span>            :     QString mValidationPath;</a>
-<a name="41"><span class="lineNum">      41 </span>            :     QScopedPointer&lt;ImageInspectionModel&gt; mImageModel;</a>
-<a name="42"><span class="lineNum">      42 </span>            : };</a>
-<a name="43"><span class="lineNum">      43 </span>            : </a>
-<a name="44"><span class="lineNum">      44 </span>            : #endif // SPLITCOMMAND_H</a>
+<a name="34"><span class="lineNum">      34 </span>            : </a>
+<a name="35"><span class="lineNum">      35 </span>            :     /**</a>
+<a name="36"><span class="lineNum">      36 </span>            :      * @brief sig_progress signals progress</a>
+<a name="37"><span class="lineNum">      37 </span>            :      * @param progress progress in percent</a>
+<a name="38"><span class="lineNum">      38 </span>            :      */</a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">          1 :     void sig_progress(int progress);</span></a>
+<a name="40"><span class="lineNum">      40 </span>            : </a>
+<a name="41"><span class="lineNum">      41 </span>            : private:</a>
+<a name="42"><span class="lineNum">      42 </span>            :     int mSplit;</a>
+<a name="43"><span class="lineNum">      43 </span>            :     QString mTempPath;</a>
+<a name="44"><span class="lineNum">      44 </span>            :     QString mTrainPath;</a>
+<a name="45"><span class="lineNum">      45 </span>            :     QString mValidationPath;</a>
+<a name="46"><span class="lineNum">      46 </span>            :     QScopedPointer&lt;ImageInspectionModel&gt; mImageModel;</a>
+<a name="47"><span class="lineNum">      47 </span>            : };</a>
+<a name="48"><span class="lineNum">      48 </span>            : </a>
+<a name="49"><span class="lineNum">      49 </span>            : #endif // SPLITCOMMAND_H</a>
 </pre>
       </td>
     </tr>
