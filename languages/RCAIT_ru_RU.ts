@@ -1110,7 +1110,7 @@
         <location filename="../cmake-build-release-mingw-coverage/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="262"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="262"/>
         <source>Form</source>
-        <translation type="unfinished">Форма</translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="274"/>
@@ -1118,7 +1118,7 @@
         <location filename="../cmake-build-release-mingw-coverage/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="282"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="282"/>
         <source>Test Pipeline</source>
-        <translation>Тестировочный пайплайн</translation>
+        <translation>Тестировочный пайплай</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="275"/>
@@ -1162,7 +1162,7 @@
         <location filename="../cmake-build-release-mingw-coverage/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="263"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="263"/>
         <source>Train Pipeline</source>
-        <translation>Тренировочный пайплайн</translation>
+        <translation>Тренировочный пайплай</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="282"/>
@@ -1174,7 +1174,7 @@
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="275"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="278"/>
         <source>horizontal</source>
-        <translation type="unfinished">по горизонтали</translation>
+        <translation>по горизонтали</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="283"/>
@@ -1182,7 +1182,7 @@
         <location filename="../cmake-build-release-mingw-coverage/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="276"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="276"/>
         <source>vertical</source>
-        <translation type="unfinished">по вертикали</translation>
+        <translation>по вертикали</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="288"/>
@@ -1190,7 +1190,7 @@
         <location filename="../cmake-build-release-mingw-coverage/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="280"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="280"/>
         <source>Random Flip Probability</source>
-        <translation type="unfinished">Вероятность случайного поворота</translation>
+        <translation>Вероятность случайного поворота</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="290"/>
@@ -1198,7 +1198,7 @@
         <location filename="../cmake-build-release-mingw-coverage/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="274"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="274"/>
         <source>0,5000</source>
-        <translation type="unfinished">40% {0,5000?}</translation>
+        <translation>0,5000</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="292"/>
@@ -1210,7 +1210,7 @@
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="268"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="270"/>
         <source>ColorJitter</source>
-        <translation type="unfinished">ColorJitter</translation>
+        <translation>ColorJitter</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="295"/>
@@ -1218,7 +1218,7 @@
         <location filename="../cmake-build-release-mingw-coverage/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="267"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="267"/>
         <source>Albu Transform Type</source>
-        <translation type="unfinished">Тип преобразования Albu</translation>
+        <translation>Тип преобразования Albu</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="296"/>
@@ -1226,7 +1226,7 @@
         <location filename="../cmake-build-release-mingw-coverage/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="266"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="266"/>
         <source>Random Resized Crop Size</source>
-        <translation type="unfinished">Случайное изменение обрезки</translation>
+        <translation>Случайное изменение обрезки</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="297"/>
@@ -1234,7 +1234,7 @@
         <location filename="../cmake-build-release-mingw-coverage/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="279"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="279"/>
         <source>Random Flip Direction</source>
-        <translation type="unfinished">Случайное направление поворота</translation>
+        <translation>Случайное направление поворота</translation>
     </message>
     <message>
         <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="299"/>
@@ -1242,7 +1242,7 @@
         <location filename="../cmake-build-release-mingw-coverage/plugins/classificationplugins/MMClassificationPlugin/mmclassificationplugin_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="265"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_mmclassificiationdataaugmentationinput.h" line="265"/>
         <source>RandomErasing</source>
-        <translation type="unfinished">Случайное стирание</translation>
+        <translation>Случайное стирание</translation>
     </message>
 </context>
 <context>
@@ -1395,27 +1395,27 @@
     <message>
         <location filename="../model/projectmanager.h" line="179"/>
         <source>Name must contain at least 1 character</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя должно содержать не менее 1 символа</translation>
     </message>
     <message>
         <location filename="../model/projectmanager.h" line="180"/>
         <source>Name should contain more than only space (&quot; &quot;) characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя должно содержать не только символы пробела (&quot; &quot;)</translation>
     </message>
     <message>
         <location filename="../model/projectmanager.h" line="181"/>
         <source>Name may not contain the  &quot;/&quot; or &quot;\&quot; characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя не может содержать символы &quot;/&quot; или &quot;\&quot;</translation>
     </message>
     <message>
         <location filename="../model/projectmanager.h" line="182"/>
         <source>A project with this name already exists in the project directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Проект с таким именем уже существует в папке проекта</translation>
     </message>
     <message>
         <location filename="../model/projectmanager.h" line="184"/>
         <source>The operating system cannot support this name</source>
-        <translation type="unfinished"></translation>
+        <translation>Операционная система не может поддерживать это имя</translation>
     </message>
 </context>
 <context>
@@ -1425,7 +1425,7 @@
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_pythonconfigdiffwidget.h" line="163"/>
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_pythonconfigdiffwidget.h" line="161"/>
         <source>Form</source>
-        <translation type="unfinished">Форма</translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../view/ai_training/pythonconfigdiffwidget.ui" line="20"/>
@@ -1433,26 +1433,26 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_pythonconfigdiffwidget.h" line="162"/>
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_pythonconfigdiffwidget.h" line="163"/>
         <source>Load a file to compare...</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузить файл для сравнения...</translation>
     </message>
     <message>
         <location filename="../view/ai_training/pythonconfigdiffwidget.ui" line="120"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_pythonconfigdiffwidget.h" line="165"/>
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_pythonconfigdiffwidget.h" line="165"/>
         <source>Load right file</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузить правый файл</translation>
     </message>
     <message>
         <location filename="../view/ai_training/pythonconfigdiffwidget.ui" line="175"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_pythonconfigdiffwidget.h" line="166"/>
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_pythonconfigdiffwidget.h" line="166"/>
         <source>Load left file</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузить левый файл</translation>
     </message>
     <message>
         <location filename="../view/ai_training/pythonconfigdiffwidget.cpp" line="76"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть файл</translation>
     </message>
 </context>
 <context>
