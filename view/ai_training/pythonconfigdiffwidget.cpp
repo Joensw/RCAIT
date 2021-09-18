@@ -34,20 +34,11 @@ PythonConfigDiffWidget::~PythonConfigDiffWidget() {
 
 
 [[maybe_unused]] void PythonConfigDiffWidget::on_pushButton_loadLeftFile_clicked() {
-    auto fileName = openFile(ui->codeEditor_left);
-    if (!fileName.isEmpty()) {
-        m_leftFilePath = fileName;
-        ui->groupBox_leftFile->setTitle(m_leftFilePath);
-    }
+    loadFileHelper(m_leftFilePath);
 }
 
-
 [[maybe_unused]] void PythonConfigDiffWidget::on_pushButton_loadRightFile_clicked() {
-    auto fileName = openFile(ui->codeEditor_right);
-    if (!fileName.isEmpty()) {
-        m_rightFilePath = fileName;
-        ui->groupBox_rightFile->setTitle(m_rightFilePath);
-    }
+    loadFileHelper(m_rightFilePath);
 }
 
 
@@ -55,36 +46,55 @@ PythonConfigDiffWidget::~PythonConfigDiffWidget() {
     m_leftCodeEditor->reset();
     m_rightCodeEditor->reset();
     m_fileDiff->diff(m_leftFilePath, m_rightFilePath);
+    ui->pushButton_startDiff->setEnabled(false);
 }
 
 void PythonConfigDiffWidget::slot_diffFinished(qsizetype longestLine) {
+    //Add a line with spaces as long as the longest line encountered in both files.
+    //This ensures that horizontal scrollbars are synchronized.
     QString placeholder;
     placeholder.fill(' ', longestLine);
     m_leftCodeEditor->appendPlaceholder(placeholder);
     m_rightCodeEditor->appendPlaceholder(placeholder);
 
-    //Scroll to first line
+    //Scroll up to first line
     m_leftCodeEditor->moveCursor(QTextCursor::Start);
     m_rightCodeEditor->moveCursor(QTextCursor::Start);
     m_leftCodeEditor->ensureCursorVisible();
     m_rightCodeEditor->ensureCursorVisible();
 }
 
-QString PythonConfigDiffWidget::openFile(CodeEditor *codeView) {
-    Q_ASSERT(codeView);
+bool PythonConfigDiffWidget::openFile(QString& fileName) {
 
-    auto fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
+    auto openedFile = QFileDialog::getOpenFileName(this, tr("Open File"),
                                                  "", "Python Files (*.py)");
 
-    if (fileName.isEmpty()) return {};
+    if (!openedFile.isEmpty()){
+        fileName = openedFile;
+        return true;
+    }
+    return false;
+}
+
+bool PythonConfigDiffWidget::openFileHelper(CodeEditor *codeView, QGroupBox *box, const QString &fileName) {
+    if (fileName.isEmpty()) return false;
 
     QFile file(fileName);
     if (file.open(QFile::ReadOnly | QFile::Text)) {
         codeView->reset();
         codeView->setPlainText(file.readAll());
-        return fileName;
+        box->setTitle(fileName);
+        return true;
     }
-    return {};
+    return false;
+}
+
+void PythonConfigDiffWidget::loadFileHelper(QString &fileName) {
+    if (openFile(fileName)){
+        ui->pushButton_startDiff->setEnabled(!m_leftFilePath.isEmpty() && !m_rightFilePath.isEmpty());
+        openFileHelper(ui->codeEditor_left,ui->groupBox_leftFile,m_leftFilePath);
+        openFileHelper(ui->codeEditor_right,ui->groupBox_rightFile,m_rightFilePath);
+    }
 }
 
 void PythonConfigDiffWidget::changeEvent(QEvent *event) {

@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include <QFile>
 #include <filediff.h>
+#include <QGroupBox>
 #include "codeeditor.h"
 
 namespace Ui {
@@ -48,7 +49,11 @@ private:
     QString m_leftFilePath;
     QString m_rightFilePath;
 
-    QString openFile(CodeEditor *codeView);
+    bool openFile(QString& fileName);
+
+    static bool openFileHelper(CodeEditor *codeView, QGroupBox *box,const QString &fileName);
+
+    void loadFileHelper(QString &fileName);
 };
 
 #endif // PYTHONCONFIGDIFFWIDGET_H
