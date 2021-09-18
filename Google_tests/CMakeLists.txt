@@ -62,6 +62,10 @@ set(Sources
         ../model/pluginusage/progressable.h
         ../model/pluginusage/imageloader.h
         ../model/pluginusage/imageloader.cpp
+        ../model/pluginusage/classifier.h
+        ../model/pluginusage/classifier.cpp
+        ../model/pluginusage/trainer.h
+        ../model/pluginusage/trainer.cpp
         ../model/automation/command.h
         ../model/automation/command.cpp
         ../model/automation/classificationcommand.h
@@ -150,6 +154,9 @@ set(Sources
         test_imagegallerytree.cpp
 
         test_settingsmanager.cpp
+
+        test_classificationcommand.cpp
+        test_trainingcommand.cpp
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
