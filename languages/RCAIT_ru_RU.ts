@@ -1471,7 +1471,7 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_removemodeldialog.h" line="112"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_removemodeldialog.h" line="112"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Вы уверены, что хотите удалить &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Этот элемент будет немедленно удален. Вы не cможете отменить это действие.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -1490,7 +1490,7 @@
         <location filename="../cmake-build-release-mingw/RCAIT_autogen/include/ui_removeprojectdialog.h" line="139"/>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_removeprojectdialog.h" line="139"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Вы уверены, что хотите удалить &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Этот элемент будет немедленно удален. Вы не cможете отменить это действие.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../view/removeprojectdialog.ui" line="126"/>
@@ -1534,7 +1534,8 @@
         <location filename="../model/settingsmanager.h" line="161"/>
         <source>Settings have not been updated, there is a conflict. 
  Paths may not be identical and must exist, this includes new and unchanged paths.</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки не были обновлены всвязи с конфликтом. 
+ Пути не могут быть идентичными и должны существовать, это относится и к новым, и к неизмененным путям.</translation>
     </message>
 </context>
 <context>
@@ -1580,7 +1581,7 @@
     <message>
         <location filename="../cmake-build-release-mingw-coverage/RCAIT_autogen/include/ui_settingsview.h" line="117"/>
         <source>Save </source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить</translation>
     </message>
 </context>
 <context>
@@ -1601,7 +1602,8 @@
         <source>Welcome to RCAIT!
 Select a project to get started</source>
         <comment>welcome_label</comment>
-        <translation type="unfinished"></translation>
+        <translation>Добро пожаловать в RCAIT!
+Выберите проект для начала работы</translation>
     </message>
     <message>
         <location filename="../view/startwidget.ui" line="210"/>
