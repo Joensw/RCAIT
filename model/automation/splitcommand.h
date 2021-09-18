@@ -31,6 +31,11 @@ public:
     bool execute() override;
 
 signals:
+
+    /**
+     * @brief sig_progress signals progress
+     * @param progress progress in percent
+     */
     void sig_progress(int progress);
 
 private:
