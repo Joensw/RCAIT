@@ -27,7 +27,8 @@ public:
 
 private:
 
-   QWidget *pluginSettings;
+   QWidget *pluginSettings = new QWidget();
+   QWidget *inputWidget = new QWidget();
    QScopedPointer<QProcess> m_process;
    ProgressablePlugin* m_receiver;
    bool m_success = true;

@@ -10,7 +10,7 @@ bool ImageLoaderPluginMock::loadImages(QString path, ProgressablePlugin *receive
 
 QWidget *ImageLoaderPluginMock::getConfigurationWidget()
 {
-    return nullptr;
+    return pluginSettings;
 }
 
 void ImageLoaderPluginMock::saveConfiguration()
@@ -30,7 +30,7 @@ QString ImageLoaderPluginMock::getName()
 
 QWidget *ImageLoaderPluginMock::getInputWidget()
 {
-    return nullptr;
+    return inputWidget;
 }
 
 void ImageLoaderPluginMock::slot_abort()

@@ -87,6 +87,7 @@ set(Sources
 
         test_imageloadcommand.cpp
 
+
         test_folderplugin.cpp
         ../plugins/imageplugins/folderplugin/folderplugin.h
         ../plugins/imageplugins/folderplugin/folderplugin.cpp
@@ -187,3 +188,4 @@ add_test(ImageLoaderPluginManagerTest COMMAND ImageLoaderPluginManagerTest)
 add_test(GUITest COMMAND GUITest)
 
 add_dependencies(ImageLoaderPluginManagerTest ImageLoaderPluginMock)
+add_dependencies(Google_Tests_run ImageLoaderPluginMock)
