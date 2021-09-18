@@ -25,8 +25,14 @@ private:
     QMap<QString, QStringList> m_validationNewData;
     QMap<QString, QStringList> m_trainNewData;
     QMap<QString, QStringList> m_validationDataset;
+    inline static const QRegularExpression re = QRegularExpression("\\d+");
 
 public:
+    /**
+     * @brief ImageInspectionModel constructor
+     */
+    ImageInspectionModel();
+
     /**
      * @brief loadDataSet loads validation and training data from the given folders. Format in the training/validation folder has to be e.g.
      * /training
