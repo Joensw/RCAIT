@@ -157,6 +157,9 @@ set(Sources
 
         test_classificationcommand.cpp
         test_trainingcommand.cpp
+
+        test_classifier.cpp
+        test_trainer.cpp
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
