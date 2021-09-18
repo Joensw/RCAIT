@@ -155,6 +155,7 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DI
 
 #imageloaderplugin used for testing created here
 add_library(ImageLoaderPluginMock MODULE imageloaderpluginmock.h imageloaderpluginmock.cpp)
+add_library(ClassificationPluginMock MODULE classificationpluginmock.h classificationpluginmock.cpp)
 
 #add executables
 add_executable(Google_Tests_run ${Sources})
@@ -166,6 +167,7 @@ add_executable(GUITest testgui.cpp testgui.h  ../view/importfileswidget.h ../vie
 target_include_directories(Google_Tests_run PUBLIC ${MY_INCLUDE_DIRECTORIES})
 target_include_directories(ImageInspectionModelTest PUBLIC ${MY_INCLUDE_DIRECTORIES})
 target_include_directories(ImageLoaderPluginMock PUBLIC ${MY_INCLUDE_DIRECTORIES})
+target_include_directories(ClassificationPluginMock PUBLIC ${MY_INCLUDE_DIRECTORIES})
 target_include_directories(ImageLoaderPluginManagerTest PUBLIC ${MY_INCLUDE_DIRECTORIES})
 target_include_directories(GUITest PUBLIC ${MY_INCLUDE_DIRECTORIES})
 
@@ -173,6 +175,7 @@ target_include_directories(GUITest PUBLIC ${MY_INCLUDE_DIRECTORIES})
 target_link_libraries(Google_Tests_run gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(ImageInspectionModelTest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(ImageLoaderPluginMock gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
+target_link_libraries(ClassificationPluginMock gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(ImageLoaderPluginManagerTest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(GUITest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 
