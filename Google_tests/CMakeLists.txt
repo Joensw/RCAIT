@@ -180,6 +180,57 @@ add_executable(Google_Tests_run ${Sources})
 add_executable(ImageInspectionModelTest test_imageinspectionmodel.cpp ../model/imageinspectionmodel.h  ../model/imageinspectionmodel.cpp ../model/utilities/mapadapt.h)
 add_executable(ImageLoaderPluginManagerTest test_imageloaderpluginmanager.cpp ../plugins/imageplugins/imageloaderpluginmanager.cpp ../plugins/imageplugins/imageloaderpluginmanager.h)
 add_executable(GUITest testgui.cpp testgui.h  ../view/importfileswidget.h ../view/importfileswidget.cpp ../view/utilities/tags.hpp ../view/utilities/tags.cpp ../view/utilities/customlistwidget.cpp ../view/utilities/customlistwidget.h)
+add_executable(SettingsManagerTest settingsmanagertest.cpp settingsmanagertest.h  ../model/settingsmanager.h ../model/settingsmanager.cpp
+
+    ../plugins/results/classificationresult.cpp
+    ../plugins/results/classificationresult.h
+    ../plugins/results/trainingresult.cpp
+    ../plugins/results/trainingresult.h
+    ../plugins/results/result.cpp
+    ../plugins/results/result.h
+
+    ../model/results/confusionmatrix.cpp
+    ../model/results/confusionmatrix.h
+    ../model/results/accuracycurve.cpp
+    ../model/results/accuracycurve.h
+    ../model/results/genericresultgraphics.cpp
+    ../model/results/genericresultgraphics.h
+    ../model/results/classificationgraphics.h
+    ../model/results/classificationgraphics.cpp
+    ../view/results/topaccuraciesview.h
+    ../view/results/topaccuraciesview.cpp
+    ../model/results/topaccuraciesgraphics.h
+    ../model/results/topaccuraciesgraphics.cpp
+
+    ../model/results/resultsprocessor.h
+    ../model/results/resultsprocessor.cpp
+
+    ../view/results/trainingresultview.h
+    ../view/results/trainingresultview.cpp
+
+    ../view/results/classificationresultview.h
+    ../view/results/classificationresultview.cpp
+
+    ../view/results/genericgraphicsview.h
+    ../view/results/genericgraphicsview.cpp
+
+    ../view/utilities/canvas.h
+    ../view/utilities/canvas.cpp
+
+    ../view/utilities/imagegallery.h
+    ../view/utilities/imagegallery.cpp
+
+    ../view/utilities/imagegallerytree.h
+    ../view/utilities/imagegallerytree.cpp
+
+    ../view/utilities/customtablewidget.h
+    ../view/utilities/customtablewidget.cpp
+
+    ../plugins/classificationplugins/classificationpluginmanager.h
+    ../plugins/classificationplugins/classificationpluginmanager.cpp
+
+    ../plugins/imageplugins/imageloaderpluginmanager.h
+    ../plugins/imageplugins/imageloaderpluginmanager.cpp)
 
 #add include directory
 target_include_directories(Google_Tests_run PUBLIC ${MY_INCLUDE_DIRECTORIES})
@@ -188,6 +239,8 @@ target_include_directories(ImageLoaderPluginMock PUBLIC ${MY_INCLUDE_DIRECTORIES
 target_include_directories(ClassificationPluginMock PUBLIC ${MY_INCLUDE_DIRECTORIES})
 target_include_directories(ImageLoaderPluginManagerTest PUBLIC ${MY_INCLUDE_DIRECTORIES})
 target_include_directories(GUITest PUBLIC ${MY_INCLUDE_DIRECTORIES})
+target_include_directories(SettingsManagerTest PUBLIC ${MY_INCLUDE_DIRECTORIES})
+
 
 #add test libaries
 target_link_libraries(Google_Tests_run gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
@@ -196,6 +249,8 @@ target_link_libraries(ImageLoaderPluginMock gtest gtest_main ${REQUIRED_LIBS_QUA
 target_link_libraries(ClassificationPluginMock gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(ImageLoaderPluginManagerTest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(GUITest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
+target_link_libraries(SettingsManagerTest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
+
 
 
 enable_testing()
@@ -203,6 +258,8 @@ add_test(Google_Tests_run COMMAND Google_Tests_run)
 add_test(ImageInspectionModelTest COMMAND ImageInspectionModelTest)
 add_test(ImageLoaderPluginManagerTest COMMAND ImageLoaderPluginManagerTest)
 add_test(GUITest COMMAND GUITest)
+add_test(SettingsManagerTest COMMAND GUITest)
+
 
 add_dependencies(ImageLoaderPluginManagerTest ImageLoaderPluginMock)
 add_dependencies(Google_Tests_run ImageLoaderPluginMock ClassificationPluginMock)
