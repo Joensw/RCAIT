@@ -9,8 +9,8 @@
 //check if trainer works with correct training
 TEST(TrainerTest, testTraining){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     auto* mngr = &DataManager::getInstance();
@@ -37,8 +37,8 @@ TEST(TrainerTest, testTraining){
 //check if trainer works with incorrect training
 TEST(TrainerTest, testTrainingFailed){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     auto* mngr = &DataManager::getInstance();
@@ -69,8 +69,8 @@ TEST(TrainerTest, testTrainingFailed){
 //check if trainer works with data augmentation
 TEST(TrainerTest, testAugmentation){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     auto* mngr = &DataManager::getInstance();

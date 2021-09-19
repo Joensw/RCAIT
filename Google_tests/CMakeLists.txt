@@ -166,9 +166,13 @@ set(Sources
 
         test_imageloaderpluginmanager.cpp
 
+        test_classificationpluginmanager.cpp
+
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/../plugins/imageplugins/flickrplugin/flickrapi_photosearch.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/../plugins/imageplugins/bingplugin/bingapi_photosearch.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 #imageloaderplugin used for testing created here
 add_library(ImageLoaderPluginMock MODULE imageloaderpluginmock.h imageloaderpluginmock.cpp)
@@ -232,6 +236,32 @@ add_executable(SettingsManagerTest settingsmanagertest.cpp settingsmanagertest.h
     ../plugins/imageplugins/imageloaderpluginmanager.h
     ../plugins/imageplugins/imageloaderpluginmanager.cpp)
 
+#Flickrplugin test, cannot be in same executable as other imageloaderplugin because of QT Plugin definition
+add_executable(FlickrPluginTest test_flickrplugin.cpp
+    ../plugins/imageplugins/flickrplugin/flickrplugin.h
+    ../plugins/imageplugins/flickrplugin/flickrplugin.cpp
+    ../plugins/imageplugins/flickrplugin/flickrsettings.h
+    ../plugins/imageplugins/flickrplugin/flickrsettings.cpp
+    ../model/pluginusage/progressableplugin.h
+    ../model/pluginusage/progressable.h
+    ../model/pluginusage/imageloader.h
+    ../model/pluginusage/imageloader.cpp
+    ../plugins/imageplugins/imageloaderpluginmanager.cpp
+    ../plugins/imageplugins/imageloaderpluginmanager.h)
+
+#Bingplugin test, cannot be in same executable as other imageloaderplugin because of QT Plugin definition
+add_executable(BingPluginTest test_bingplugin.cpp
+    ../plugins/imageplugins/bingplugin/bingplugin.cpp
+    ../plugins/imageplugins/bingplugin/bingplugin.h
+    ../plugins/imageplugins/bingplugin/bingsettings.h
+    ../plugins/imageplugins/bingplugin/bingsettings.cpp
+    ../model/pluginusage/progressableplugin.h
+    ../model/pluginusage/progressable.h
+    ../model/pluginusage/imageloader.h
+    ../model/pluginusage/imageloader.cpp
+    ../plugins/imageplugins/imageloaderpluginmanager.cpp
+    ../plugins/imageplugins/imageloaderpluginmanager.h)
+
 #add include directory
 target_include_directories(Google_Tests_run PUBLIC ${MY_INCLUDE_DIRECTORIES})
 target_include_directories(ImageInspectionModelTest PUBLIC ${MY_INCLUDE_DIRECTORIES})
@@ -240,6 +270,8 @@ target_include_directories(ClassificationPluginMock PUBLIC ${MY_INCLUDE_DIRECTOR
 target_include_directories(ImageLoaderPluginManagerTest PUBLIC ${MY_INCLUDE_DIRECTORIES})
 target_include_directories(GUITest PUBLIC ${MY_INCLUDE_DIRECTORIES})
 target_include_directories(SettingsManagerTest PUBLIC ${MY_INCLUDE_DIRECTORIES})
+target_include_directories(FlickrPluginTest PUBLIC ${MY_INCLUDE_DIRECTORIES})
+target_include_directories(BingPluginTest PUBLIC ${MY_INCLUDE_DIRECTORIES})
 
 
 #add test libaries
@@ -250,6 +282,8 @@ target_link_libraries(ClassificationPluginMock gtest gtest_main ${REQUIRED_LIBS_
 target_link_libraries(ImageLoaderPluginManagerTest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(GUITest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(SettingsManagerTest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
+target_link_libraries(FlickrPluginTest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
+target_link_libraries(BingPluginTest gtest gtest_main ${REQUIRED_LIBS_QUALIFIED})
 
 
 
@@ -259,6 +293,8 @@ add_test(ImageInspectionModelTest COMMAND ImageInspectionModelTest)
 add_test(ImageLoaderPluginManagerTest COMMAND ImageLoaderPluginManagerTest)
 add_test(GUITest COMMAND GUITest)
 add_test(SettingsManagerTest COMMAND GUITest)
+add_test(FlickrPluginTest COMMAND FlickrPluginTest)
+add_test(BingPluginTest COMMAND BingPluginTest)
 
 
 add_dependencies(ImageLoaderPluginManagerTest ImageLoaderPluginMock)

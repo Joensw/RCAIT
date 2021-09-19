@@ -9,8 +9,8 @@
 //check if imageLoader works
 TEST(ImageLoaderTest, testImageLoad){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     auto* mngr = &DataManager::getInstance();

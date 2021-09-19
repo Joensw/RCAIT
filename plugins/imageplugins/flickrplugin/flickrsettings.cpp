@@ -40,6 +40,21 @@ QString FlickrSettings::getPythonPath(){
     return m_settings.value(m_pythonPath).toString();
 }
 
+void FlickrSettings::setAPIKey(QString key)
+{
+    m_settings.setValue(m_apiKey,key);
+}
+
+void FlickrSettings::setAPISecret(QString key)
+{
+    m_settings.setValue(m_apiSecret, key);
+}
+
+void FlickrSettings::setPythonPath(QString path)
+{
+    m_settings.setValue(m_pythonPath, path);
+}
+
 
 QString FlickrSettings::getAPIKey() {
     return m_settings.value(m_apiKey).toString();

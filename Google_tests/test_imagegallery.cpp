@@ -6,8 +6,8 @@
 //check if adding image works
 TEST(ImageGalleryTest, testAddImage){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     path += "/test_imagefolder/Auto/images";
@@ -27,8 +27,8 @@ TEST(ImageGalleryTest, testAddImage){
 //check if adding images from image list works
 TEST(ImageGalleryTest, testAddImages){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     path += "/test_imagefolder/Auto/";
@@ -52,8 +52,8 @@ TEST(ImageGalleryTest, testAddImages){
 //check if adding images from path list works
 TEST(ImageGalleryTest, testAddPathImages){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     path += "/test_imagefolder/Auto/";
@@ -77,8 +77,8 @@ TEST(ImageGalleryTest, testAddPathImages){
 //check if adding images dir works
 TEST(ImageGalleryTest, testConcurrentAddDir){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     path += "/test_imagefolder/Auto/";
@@ -102,8 +102,8 @@ TEST(ImageGalleryTest, testConcurrentAddDir){
 //check if stopping load works
 TEST(ImageGalleryTest, testStopConcurrentAddImages){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     path += "/test_imagefolder/label_names/";
@@ -133,8 +133,8 @@ TEST(ImageGalleryTest, testStopConcurrentAddImages){
 //check if clear and stop works
 TEST(ImageGalleryTest, testClearAndStop){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     path += "/test_imagefolder/Auto/";

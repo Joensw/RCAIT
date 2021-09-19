@@ -35,6 +35,11 @@ QString BingSettings::getPythonPath(){
     return m_settings.value(m_pythonPath).toString();
 }
 
+void BingSettings::setPythonPath(QString path)
+{
+    m_settings.setValue(m_pythonPath,path);
+}
+
 void BingSettings::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         // this event is sent if a translator is loaded
