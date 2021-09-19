@@ -1,0 +1,35 @@
+{
+    "additionalResults": [
+    ],
+    "classification_data": [
+        {
+            "confidence": [
+                0.9036933779716492,
+                0.08761390298604965,
+                0.008692776784300804
+            ],
+            "image_path": "/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg"
+        },
+        {
+            "confidence": [
+                0.00022739091946277767,
+                0.9996374845504761,
+                0.00013512987061403692
+            ],
+            "image_path": "/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/boat/boat_18.jpg"
+        },
+        {
+            "confidence": [
+                0.00011773077858379111,
+                2.8792054962423208e-08,
+                0.9998822212219238
+            ],
+            "image_path": "/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bread/bread_75.jpg"
+        }
+    ],
+    "labels": [
+        "bank",
+        "boat",
+        "bread"
+    ]
+}

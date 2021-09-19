@@ -6,6 +6,7 @@
 #include "trainingresultswidget.h"
 #include <QWidget>
 #include <QtTest/QSignalSpy>
+#include "resultsexporter.h"
 
 
 
@@ -21,6 +22,7 @@ class ResultsImporterTest : public testing::Test {
 
     void SetUp() override {
 
+        classiResultsDir = QDir::current().path() + "/classresults";
         resultsDir = QDir::current().path() + "/results";
 
     }
@@ -31,6 +33,7 @@ class ResultsImporterTest : public testing::Test {
 
 
     QString resultsDir;
+    QString classiResultsDir;
     QString tempProjectsDir = "./projectsForTests";
     QString testProjectName = "testProject";
     QString f = "training_run.json";
@@ -65,36 +68,53 @@ TEST_F(ResultsImporterTest, testCallMethods){
     char *argv[1];
     QApplication a(argc, argv);
 
+    ResultsExporter resultsExporter;
     ResultsImporter resultsImporter;
     ProjectManager * pm = &ProjectManager::getInstance();
     pm->setProjectsDirectory(tempProjectsDir);
     QString error;
     bool out = pm->createNewProject(testProjectName, &error);
-    //EXPECT_TRUE(out);
-    qDebug() << error;
+
 
     pm->loadProject(testProjectName);
     QString TrainingResultsDir = pm->getTrainingResultsDir();
     QDir trResDir(TrainingResultsDir);
 
+    QString classResultsDir = pm->getClassificationResultsDir();
+    QDir clResDir(classResultsDir);
+
     copyPath(resultsDir,trResDir.absolutePath());
+    copyPath(classiResultsDir,clResDir.absolutePath());
 
     //EXPECT_TRUE(QFile::copy(fDir,tarDir));
     resultsImporter.updateResultFolderPaths();
+    resultsExporter.updateResultFolderPaths();
+
     SavableResultsWidget* savaBleResultswidget = new TrainingResultsWidget();
     TrainingResultView* trainingResultView = new TrainingResultView(savaBleResultswidget);
 
+    SavableResultsWidget* savaBleResultswidget2 = new TrainingResultsWidget();
+    ClassificationResultView* classificationResultView = new ClassificationResultView(savaBleResultswidget2);
 
-    //qRegisterMetaType<TrainingResult>();
+     qRegisterMetaType<TrainingResult>();
+     qRegisterMetaType<ClassificationResult>();
     //qRegisterMetaType<TrainingResultView>();
-    //QSignalSpy spy(&resultsImporter, &ResultsImporter::sig_normal_loadTrainingResultData);
+    QSignalSpy spy(&resultsImporter, &ResultsImporter::sig_normal_loadTrainingResultData);
+    QSignalSpy spy2(&resultsImporter, &ResultsImporter::sig_normal_loadClassificationResultData);
     resultsImporter.slot_comparison_loadTrainingResultData(trainingResultView,"run");
+    resultsImporter.slot_comparison_loadClassificationResultData(classificationResultView,"fun");
 
-
-    //spy.wait(1000);
+    spy2.wait(1000);
+    spy.wait(1000);
     //QList<QVariant> arguments = spy.takeFirst();
     //TrainingResultView resultView = qvariant_cast<TrainingResultView>(spy.at(0).at(0));
-    //TrainingResult result = qvariant_cast<TrainingResult>(spy.at(0).at(1));
+    TrainingResult* result = spy.at(0).at(1).value<TrainingResult*>();
+    ClassificationResult* result2 = spy2.at(0).at(1).value<ClassificationResult*>();
+
+    bool success;
+    resultsExporter.slot_save_TrainingResult(result, success);
+    resultsExporter.slot_save_ClassificationResult(result2, success);
+
 
     //TearDown
     QDir projectsDir(tempProjectsDir);
