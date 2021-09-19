@@ -199,4 +199,5 @@ add_test(ImageLoaderPluginManagerTest COMMAND ImageLoaderPluginManagerTest)
 add_test(GUITest COMMAND GUITest)
 
 add_dependencies(ImageLoaderPluginManagerTest ImageLoaderPluginMock)
-add_dependencies(Google_Tests_run ImageLoaderPluginMock)
+add_dependencies(Google_Tests_run ImageLoaderPluginMock ClassificationPluginMock)
+

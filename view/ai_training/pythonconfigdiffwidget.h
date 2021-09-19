@@ -13,6 +13,10 @@ namespace Ui {
     class PythonConfigDiffWidget;
 }
 
+/**
+ * @brief This widget is used to compare ("diff") two config files in <code>.py</code> format,
+ * used to configure model parameters.
+ */
 class PythonConfigDiffWidget : public QWidget {
 Q_OBJECT
 
@@ -25,8 +29,15 @@ protected:
     void changeEvent(QEvent *event) override;
 
 public:
+    /**
+     * @brief Constructs a PythonConfigDiffWidget
+     * @param parent parent widget (optional)
+     */
     explicit PythonConfigDiffWidget(QWidget *parent = nullptr);
 
+    /**
+     * @brief Destructor of this class.
+     */
     ~PythonConfigDiffWidget() override;
 
 private slots:

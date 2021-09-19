@@ -108,8 +108,16 @@ signals:
      */
     void sig_openProject(QString projectName);
 
+    /**
+     * @brief This signal is emitted when the main window has been maximized.
+     * It is used for a button to control the size of the main window.
+     */
     void sig_maximizeWindow();
 
+    /**
+     * @brief This signal is emitted when the main window has been normalized.
+     * It is used for a button to control the size of the main window.
+     */
     void sig_normalizeWindow();
 };
 

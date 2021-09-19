@@ -60,6 +60,9 @@ Folgende Tasks sind möglich:
 	"taskType": ["training"],
 	"projectName": "string",
 
+	// Name des Basismodells
+	"baseModel": "string",
+
 	// Name des ausgewählten Modells
 	"modelName": "string",
 
@@ -109,11 +112,11 @@ Plugin spezifische Einstellungen:
 
 
 	MMClassification:
-		// alle folgendenen Eigenschaften haben einen Standardwert
-
-		// Input Widget Optionen 
+		// Input Widget Optionen (müssen für Training angegeben werden)
 		"m_max_iters": int,
 		"m_cuda_device": int,
+
+		// alle folgendenen Eigenschaften haben einen Standardwert (also optional)
 
 		// Data Augmentation Optionen
 		"m_albu_transform_type" = "string",

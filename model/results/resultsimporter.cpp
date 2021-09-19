@@ -1,5 +1,10 @@
 #include "resultsimporter.h"
 
+/**
+ * @brief This enum contains all types of graphics supported for import.
+ * New result types can be inserted here,
+ * along with the specification of how to import these results.
+ */
 enum GraphicsType {
     CLASSIFICATION,
     ACCURACYCURVE,
