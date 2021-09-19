@@ -51,7 +51,7 @@ void TabController::slot_modelLoaded() {
 
 void TabController::slot_showResults()
 {
-    m_tabWidget->setEnabled(RESULTS);
+    m_tabWidget->setTabEnabled(RESULTS, true);
 }
 
 void TabController::disableDependentTabs() {
