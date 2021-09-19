@@ -3,7 +3,10 @@
 #include <QDir>
 #include <settingsmanager.h>
 
+
 QString temporaryDirectory = "../smTest";
+QStringList sampleCPluginNames = {"CPL1", "CPL2", "CPL3"};
+
 
 TEST(SettingsManagerTest, invalidPathsTrivial){
     SettingsManager * sm = &SettingsManager::getInstance();
@@ -69,5 +72,24 @@ TEST(SettingsManagerTest, applySettingsValid){
     EXPECT_TRUE(counter == 3);
 
     dir.removeRecursively();
+}
+
+TEST(SettingsManagerTest, initialisationChecks){
+    SettingsManager * sm = &SettingsManager::getInstance();
+
+    QStringList allNames = sm->getPluginNames();
+    QStringList cNames = sm->getClassificationPluginNames();
+    QStringList cBases = sm->getClassificationPluginBase("nonExistantPlugin");
+    QStringList iNames = sm->getImageLoaderPluginNames();
+    QList<QWidget*> widgets = sm->getPluginSettings();
+
+    EXPECT_TRUE(allNames.isEmpty());
+    EXPECT_TRUE(cNames.isEmpty());
+    EXPECT_TRUE(cBases.isEmpty());
+    EXPECT_TRUE(iNames.isEmpty());
+    EXPECT_TRUE(widgets.isEmpty());
+
+    EXPECT_FALSE(sm->verifyDirectories());
+
 }
 

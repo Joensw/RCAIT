@@ -46,7 +46,7 @@ void ProjectManager::createNewProject(QString projectName)
 
     //make temp, results and data subdirectories
     QDir dir;
-    dir.mkpath(absolute %  "/" %  datasetDirectoryName);
+    dir.mkpath(absolute % "/" %  datasetDirectoryName);
     dir.mkpath(absolute % "/" % tempImagesDirectoryName);
     dir.mkpath(absolute % "/" % tempDataAugDirectoryName);
     dir.mkpath(absolute % "/" %  resultsDirectoryName);
@@ -222,12 +222,6 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
             return false;
         }
     }
-    /*
-    if (projectName.contains("/") || projectName.contains("\\")) {
-        error->append(ERROR_ILLEGAL_CHAR);
-        return false;
-    }
-    */
     //check if name is already taken
     QDir projectsDir(mProjectsDirectory);
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);

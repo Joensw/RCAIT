@@ -16,7 +16,8 @@ ImageLoadCommand::ImageLoadCommand(QVariantMap map, QString imagePath, Progressa
         return;
     }
 
-    mInputWidget = mPluginManager.getConfigurationWidget(mPluginName);
+    mInputWidget = mPluginManager.getInputWidget(mPluginName);
+    if (!mInputWidget) return;
 
     auto end = map.end();
     for(auto it = map.begin(); it != end; ++it){

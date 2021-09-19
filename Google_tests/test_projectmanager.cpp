@@ -19,12 +19,21 @@ TEST(ProjectManagerTest, createValidProject){
     QString error;
     bool out = pm->createNewProject(testProjectName, &error);
     EXPECT_TRUE(out);
+    qDebug() << error;
 
-    QDir testDataDir(pm->getProjectDataSetDir() );
-    QDir testTempDir(pm->getProjectImageTempDir());
-    QDir testResultsDir(pm->getResultsDir());
+    QDir testDataDir(pm->getProjectDataSetDir());
+    QDir testDataTrainDir(pm->getProjectDataSetTrainSubdir());
+    QDir testDataValDir(pm->getProjectDataSetValSubdir());
+    EXPECT_TRUE(testDataTrainDir.exists());
+    EXPECT_TRUE(testDataValDir.exists());
     EXPECT_TRUE(testDataDir.exists());
-    EXPECT_TRUE(testTempDir.exists());
+
+    QDir testTempImageDir(pm->getProjectImageTempDir());
+    QDir testTempAugDir(pm->getProjectAugTempDir());
+    QDir testResultsDir(pm->getResultsDir());
+
+    EXPECT_TRUE(testTempImageDir.exists());
+    EXPECT_TRUE(testTempAugDir.exists());
     EXPECT_TRUE(testResultsDir.exists());
 
     QDir testClassResultsDir(pm->getTrainingResultsDir());
@@ -70,7 +79,9 @@ TEST(ProjectManagerTest, loadProject){
     bool out = pm->createNewProject(testProjectName, &error);
     EXPECT_TRUE(out);
 
+
     pm->loadProject(testProjectName);
+    EXPECT_TRUE(pm->getProjectName() == testProjectName);
 
     QDir projectDir(tempProjectsDir % "/" % testProjectName);
     QString projectPath = projectDir.absolutePath();
@@ -97,6 +108,60 @@ TEST(ProjectManagerTest, getProjects){
 
     EXPECT_TRUE(l.contains(testProjectName));
     EXPECT_TRUE(l.contains("anotherTestProject"));
+
+    //TearDown
+    projectsDir.removeRecursively();
+}
+
+TEST (ProjectManagerTest, trainingReults) {
+    QDir projectsDir(tempProjectsDir);
+    QString absolutePath = projectsDir.absolutePath();
+    //SetUP
+    ProjectManager * pm = &ProjectManager::getInstance();
+    pm->setProjectsDirectory(absolutePath);
+    QString error;
+    bool out = pm->createNewProject(testProjectName, &error);
+    EXPECT_TRUE(out);
+
+    pm->loadProject(testProjectName);
+    EXPECT_TRUE(pm->getProjectName() == testProjectName);
+
+    QString trainingResultsDir = pm->getTrainingResultsDir();
+    qDebug() << trainingResultsDir;
+    EXPECT_FALSE(trainingResultsDir.isEmpty());
+
+    QString path = pm->getTrainingResultsDir();
+
+    QFile file(path + "/" + "NewFile.txt");
+    file.open(QIODevice::WriteOnly);
+
+    QStringList results = pm->getNamesOfSavedTrainingResults();
+    EXPECT_TRUE(results.length() == 1);
+    EXPECT_TRUE(results.contains("NewFile"));
+
+    file.close();
+
+    //TearDown
+    projectsDir.removeRecursively();
+}
+
+TEST (ProjectManagerTest, workDirSubFolder){
+    QDir projectsDir(tempProjectsDir);
+    QString absolutePath = projectsDir.absolutePath();
+    //SetUP
+    ProjectManager * pm = &ProjectManager::getInstance();
+    pm->setProjectsDirectory(absolutePath);
+    QString error;
+    bool out = pm->createNewProject(testProjectName, &error);
+    EXPECT_TRUE(out);
+
+    pm->loadProject(testProjectName);
+    EXPECT_TRUE(pm->getProjectName() == testProjectName);
+
+    QString path = pm->createWorkDirSubfolder("GenericName");
+
+    QDir workDirNewSub(path);
+    EXPECT_TRUE(workDirNewSub.exists());
 
     //TearDown
     projectsDir.removeRecursively();
