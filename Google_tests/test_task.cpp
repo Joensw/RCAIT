@@ -25,8 +25,8 @@ private:
 //check if running task and percentage signals work
 TEST(TaskTest, testruncompleted){
     //set up
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QVariantMap map = QVariantMap();
     map.insert("taskName", "example");
@@ -62,8 +62,8 @@ TEST(TaskTest, testruncompleted){
 //check if canceling task works
 TEST(TaskTest, testruncanceledreset){
     //set up
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QVariantMap map = QVariantMap();
     map.insert("taskName", "example");
@@ -107,8 +107,8 @@ TEST(TaskTest, testruncanceledreset){
 //check if isValid works
 TEST(TaskTest, testisvalid){
     //set up
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QVariantMap map = QVariantMap();
     map.insert("taskName", "example");

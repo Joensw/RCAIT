@@ -9,8 +9,8 @@
 //check if valid commands work
 TEST(ClassificationCommandTest, testClassification){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     auto* mngr = &DataManager::getInstance();
@@ -44,8 +44,8 @@ TEST(ClassificationCommandTest, testClassification){
 //check if invalid commands are handled properly
 TEST(ClassificationCommandTest, testCommandFail){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     DataManager* mngr = &DataManager::getInstance();
