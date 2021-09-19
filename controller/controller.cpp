@@ -80,10 +80,16 @@ void Controller::slot_configurationComplete(){
     connect(&*mAiController, &AIController::sig_classificationResultUpdated, &*mResultsController,
             &ResultsController::slot_addClassificationResult);
 
-    connect(&*mAutomationController, &AutomationController::sig_trainingResultUpdated, &*mAiController,
-            &AIController::slot_trainingResultUpdated);
-    connect(&*mAutomationController, &AutomationController::sig_classificationResultUpdated, &*mAiController,
-            &AIController::slot_classificationResultUpdated);
+    connect(&*mAutomationController, &AutomationController::sig_trainingResultUpdated, &*mResultsController,
+            &ResultsController::slot_addTrainingResult);
+    connect(&*mAutomationController, &AutomationController::sig_classificationResultUpdated, &*mResultsController,
+            &ResultsController::slot_addClassificationResult);
+    connect(&*mAutomationController, &AutomationController::sig_trainingResultUpdated, &*mTabController,
+            &TabController::slot_showResults);
+    connect(&*mAutomationController, &AutomationController::sig_classificationResultUpdated, &*mTabController,
+            &TabController::slot_showResults);
+    connect(&*mAutomationController, &AutomationController::sig_projectDirectoryChanged, &*mResultsController,
+            &ResultsController::slot_projectPathUpdated);
     connect(&*mAutomationController, &AutomationController::sig_projectDirectoryChanged, &*mProjectController,
             &ProjectController::slot_projectDirectoryChanged);
 

@@ -7,8 +7,8 @@
 //check if loading labeled dataset imagefilepaths work
 TEST(AutomatorTest, testAddTask){
     //set up
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     DataManager* manager = &DataManager::getInstance();
     manager->saveProjectsDir(QDir::current().path());
@@ -42,8 +42,8 @@ TEST(AutomatorTest, testAddTask){
 //tests if queueing/unqueuing work as expected
 TEST(AutomatorTest, testUnQueueTask){
     //set up
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     DataManager* manager = &DataManager::getInstance();
     manager->saveProjectsDir(QDir::current().path());
@@ -92,8 +92,8 @@ TEST(AutomatorTest, testUnQueueTask){
 
 TEST(AutomatorTest, testRemove){
     //set up
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     DataManager* manager = &DataManager::getInstance();
     manager->saveProjectsDir(QDir::current().path());
@@ -127,8 +127,8 @@ TEST(AutomatorTest, testRemove){
 
 TEST(AutomatorTest, testPerformTasks){
     //set up
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     DataManager* manager = &DataManager::getInstance();
     manager->saveProjectsDir(QDir::current().path());
