@@ -8,7 +8,7 @@
 #include "tabcontroller.h"
 
 /**
- * @brief The tabs enum assings variables representing the tabs of the mainwindow their respective number
+ * @brief The tabs enum assigns variables representing the tabs of the mainwindow their respective number
  */
 
 enum tabs {
