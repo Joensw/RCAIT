@@ -53,6 +53,7 @@ CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/utilities/difflibparser.py ${CM
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/utilities/filediff.py ${CMAKE_CURRENT_BINARY_DIR}/filediff.py COPYONLY)
 
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/accuracycurve.py ${CMAKE_CURRENT_BINARY_DIR}/accuracycurve.py COPYONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/confusionmatrix.py ${CMAKE_CURRENT_BINARY_DIR}/confusionmatrix.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/topaccuraciesgraphics.py ${CMAKE_CURRENT_BINARY_DIR}/topaccuraciesgraphics.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/classificationgraphics.py ${CMAKE_CURRENT_BINARY_DIR}/classificationgraphics.py COPYONLY)
 
