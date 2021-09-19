@@ -3,6 +3,12 @@
 #include <QStyleFactory>
 #include <controller.h>
 
+/**
+ * @brief Main method and entry point of the application
+ * @param argc contains the launch command as int
+ * @param argv contains the launch arguments as an array
+ * @return exit code of the application
+ */
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 

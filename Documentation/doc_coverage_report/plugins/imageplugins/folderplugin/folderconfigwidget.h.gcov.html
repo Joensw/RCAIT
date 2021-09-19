@@ -31,13 +31,13 @@
             <td class="headerValue">doc-coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">6</td>
             <td class="headerCovTableEntry">7</td>
-            <td class="headerCovTableEntryMed">85.7 %</td>
+            <td class="headerCovTableEntry">7</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-18 20:22:19</td>
+            <td class="headerValue">2021-09-19 11:22:25</td>
             <td></td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -98,49 +98,52 @@
 <a name="40"><span class="lineNum">      40 </span>            :      */</a>
 <a name="41"><span class="lineNum">      41 </span><span class="lineCov">          1 :     explicit FolderConfigwidget(QWidget *parent = nullptr);</span></a>
 <a name="42"><span class="lineNum">      42 </span>            : </a>
-<a name="43"><span class="lineNum">      43 </span><span class="lineNoCov">          0 :     ~FolderConfigwidget();</span></a>
-<a name="44"><span class="lineNum">      44 </span>            : </a>
-<a name="45"><span class="lineNum">      45 </span>            :     /**</a>
-<a name="46"><span class="lineNum">      46 </span>            :      * @brief getLoadMode gets load mode.</a>
-<a name="47"><span class="lineNum">      47 </span>            :      *</a>
-<a name="48"><span class="lineNum">      48 </span>            :      * @return load mode</a>
-<a name="49"><span class="lineNum">      49 </span>            :      */</a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">          1 :     int getLoadMode();</span></a>
-<a name="51"><span class="lineNum">      51 </span>            : </a>
-<a name="52"><span class="lineNum">      52 </span>            :     /**</a>
-<a name="53"><span class="lineNum">      53 </span>            :      * @brief setLoadMode sets load mode.</a>
-<a name="54"><span class="lineNum">      54 </span>            :      *</a>
-<a name="55"><span class="lineNum">      55 </span>            :      * @param mode new load mode.</a>
-<a name="56"><span class="lineNum">      56 </span>            :      */</a>
-<a name="57"><span class="lineNum">      57 </span><span class="lineCov">          1 :     void setLoadMode(int mode);</span></a>
-<a name="58"><span class="lineNum">      58 </span>            : </a>
-<a name="59"><span class="lineNum">      59 </span>            :     /**</a>
-<a name="60"><span class="lineNum">      60 </span>            :      * @brief getImageFolder gets source image folder.</a>
-<a name="61"><span class="lineNum">      61 </span>            :      *</a>
-<a name="62"><span class="lineNum">      62 </span>            :      * @return image folder path</a>
-<a name="63"><span class="lineNum">      63 </span>            :      */</a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">          1 :     QString getImageFolder();</span></a>
-<a name="65"><span class="lineNum">      65 </span>            : </a>
-<a name="66"><span class="lineNum">      66 </span>            :     /**</a>
-<a name="67"><span class="lineNum">      67 </span>            :      * @brief setImageFolder sets source image folder.</a>
-<a name="68"><span class="lineNum">      68 </span>            :      *</a>
-<a name="69"><span class="lineNum">      69 </span>            :      * @param folder new source image folder path</a>
-<a name="70"><span class="lineNum">      70 </span>            :      */</a>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">          1 :     void setImageFolder(QString folder);</span></a>
-<a name="72"><span class="lineNum">      72 </span>            : </a>
-<a name="73"><span class="lineNum">      73 </span>            : </a>
-<a name="74"><span class="lineNum">      74 </span>            : private slots:</a>
-<a name="75"><span class="lineNum">      75 </span>            :     void on_loadFolderButton_clicked();</a>
+<a name="43"><span class="lineNum">      43 </span>            :     /**</a>
+<a name="44"><span class="lineNum">      44 </span>            :      * @brief Destructor of this class.</a>
+<a name="45"><span class="lineNum">      45 </span>            :      */</a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">          1 :     ~FolderConfigwidget();</span></a>
+<a name="47"><span class="lineNum">      47 </span>            : </a>
+<a name="48"><span class="lineNum">      48 </span>            :     /**</a>
+<a name="49"><span class="lineNum">      49 </span>            :      * @brief getLoadMode gets load mode.</a>
+<a name="50"><span class="lineNum">      50 </span>            :      *</a>
+<a name="51"><span class="lineNum">      51 </span>            :      * @return load mode</a>
+<a name="52"><span class="lineNum">      52 </span>            :      */</a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">          1 :     int getLoadMode();</span></a>
+<a name="54"><span class="lineNum">      54 </span>            : </a>
+<a name="55"><span class="lineNum">      55 </span>            :     /**</a>
+<a name="56"><span class="lineNum">      56 </span>            :      * @brief setLoadMode sets load mode.</a>
+<a name="57"><span class="lineNum">      57 </span>            :      *</a>
+<a name="58"><span class="lineNum">      58 </span>            :      * @param mode new load mode.</a>
+<a name="59"><span class="lineNum">      59 </span>            :      */</a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">          1 :     void setLoadMode(int mode);</span></a>
+<a name="61"><span class="lineNum">      61 </span>            : </a>
+<a name="62"><span class="lineNum">      62 </span>            :     /**</a>
+<a name="63"><span class="lineNum">      63 </span>            :      * @brief getImageFolder gets source image folder.</a>
+<a name="64"><span class="lineNum">      64 </span>            :      *</a>
+<a name="65"><span class="lineNum">      65 </span>            :      * @return image folder path</a>
+<a name="66"><span class="lineNum">      66 </span>            :      */</a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">          1 :     QString getImageFolder();</span></a>
+<a name="68"><span class="lineNum">      68 </span>            : </a>
+<a name="69"><span class="lineNum">      69 </span>            :     /**</a>
+<a name="70"><span class="lineNum">      70 </span>            :      * @brief setImageFolder sets source image folder.</a>
+<a name="71"><span class="lineNum">      71 </span>            :      *</a>
+<a name="72"><span class="lineNum">      72 </span>            :      * @param folder new source image folder path</a>
+<a name="73"><span class="lineNum">      73 </span>            :      */</a>
+<a name="74"><span class="lineNum">      74 </span><span class="lineCov">          1 :     void setImageFolder(QString folder);</span></a>
+<a name="75"><span class="lineNum">      75 </span>            : </a>
 <a name="76"><span class="lineNum">      76 </span>            : </a>
-<a name="77"><span class="lineNum">      77 </span>            :     void on_comboBox_currentIndexChanged(int index);</a>
-<a name="78"><span class="lineNum">      78 </span>            : </a>
-<a name="79"><span class="lineNum">      79 </span>            : private:</a>
-<a name="80"><span class="lineNum">      80 </span>            :     Ui::FolderConfigwidget *ui;</a>
-<a name="81"><span class="lineNum">      81 </span>            :     QString imageFolder;</a>
-<a name="82"><span class="lineNum">      82 </span>            :     int loadMode;</a>
-<a name="83"><span class="lineNum">      83 </span>            : };</a>
-<a name="84"><span class="lineNum">      84 </span>            : </a>
-<a name="85"><span class="lineNum">      85 </span>            : #endif // FOLDERCONFIGWIDGET_H</a>
+<a name="77"><span class="lineNum">      77 </span>            : private slots:</a>
+<a name="78"><span class="lineNum">      78 </span>            :     void on_loadFolderButton_clicked();</a>
+<a name="79"><span class="lineNum">      79 </span>            : </a>
+<a name="80"><span class="lineNum">      80 </span>            :     void on_comboBox_currentIndexChanged(int index);</a>
+<a name="81"><span class="lineNum">      81 </span>            : </a>
+<a name="82"><span class="lineNum">      82 </span>            : private:</a>
+<a name="83"><span class="lineNum">      83 </span>            :     Ui::FolderConfigwidget *ui;</a>
+<a name="84"><span class="lineNum">      84 </span>            :     QString imageFolder;</a>
+<a name="85"><span class="lineNum">      85 </span>            :     int loadMode;</a>
+<a name="86"><span class="lineNum">      86 </span>            : };</a>
+<a name="87"><span class="lineNum">      87 </span>            : </a>
+<a name="88"><span class="lineNum">      88 </span>            : #endif // FOLDERCONFIGWIDGET_H</a>
 </pre>
       </td>
     </tr>

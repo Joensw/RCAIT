@@ -1,11 +1,14 @@
-#include <QtConcurrent/QtConcurrent>
 #include "filediff.h"
 
-enum GraphicsType {
-    SIMILAR = 0,         // line hasn't changed between the files, its diff starts with '  '
-    RIGHTONLY = 1,       // line exists in the right file only, its diff starts with '+ '
-    LEFTONLY = 2,        // line exists in the left file only, its diff starts with '- '
-    CHANGED = 3,         // line has incremental changes on the left file, the diff is represented
+/**
+ * @brief Every line in a diff gets a change code.
+ * This enum contains these codes and their meanings.
+ */
+enum DiffCode {
+    SIMILAR = 0,         /// line hasn't changed between the files, its diff starts with '  '
+    RIGHTONLY = 1,       /// line exists in the right file only, its diff starts with '+ '
+    LEFTONLY = 2,        /// line exists in the left file only, its diff starts with '- '
+    CHANGED = 3,         /// line has incremental changes on the left file, the diff is represented
 };
 
 FileDiff::FileDiff(const QSharedPointer<CodeEditor> &left, const QSharedPointer<CodeEditor> &right)

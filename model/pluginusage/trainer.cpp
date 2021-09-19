@@ -9,6 +9,7 @@ void Trainer::train(const QString &pluginName, const QString &modelName, const Q
         mRecentWorkingDir = workingDirectory;
         auto watcher = new QFutureWatcher<TrainingResult*>;
         connect(watcher, &QFutureWatcher<TrainingResult*>::finished, this, &Trainer::slot_handleTrainingsResult);
+        connect(watcher, &QFutureWatcher<TrainingResult*>::finished, watcher, &QFutureWatcher<TrainingResult*>::deleteLater);
         m_trainingResult = QtConcurrent::run(&ClassificationPluginManager::train, &mManager, pluginName, modelName, trainDatasetPath, validationDatasetPath, workingDirectory, this);
         watcher->setFuture(m_trainingResult);
         emit sig_progress(0);
@@ -19,6 +20,7 @@ void Trainer::getAugmentationPreview(const QString &pluginName, const QString &m
     mRecentTargetPath = targetPath;
     auto watcher = new QFutureWatcher<bool>;
     connect(watcher, &QFutureWatcher<bool>::finished, this, &Trainer::slot_handleAugmentationResult);
+    connect(watcher, &QFutureWatcher<bool>::finished, watcher, &QFutureWatcher<bool>::deleteLater);
     mAugmentationSuccess = QtConcurrent::run(&ClassificationPluginManager::getAugmentationPreview, &mManager, pluginName, modelName, inputPath, targetPath, amount);
     watcher->setFuture(mAugmentationSuccess);
 }

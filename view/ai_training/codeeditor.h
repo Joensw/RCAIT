@@ -66,21 +66,49 @@ QT_END_NAMESPACE
 
 class LineNumberArea;
 
+/**
+ * @brief This class is used for displaying code files in a widget with line numbering
+ * as well as formatting support.
+ */
 class CodeEditor : public QPlainTextEdit {
 Q_OBJECT
 
 public:
+    /**
+     * @brief Constructs a CodeEditor
+     * @param parent parent widget (optional)
+     */
     explicit CodeEditor(QWidget *parent = nullptr);
 
+    /**
+     * @brief Triggered when a line number has to be painted.
+     * @param event incoming paint event
+     */
     void lineNumberAreaPaintEvent(QPaintEvent *event);
 
+    /**
+     * @brief Gets the width of the line number area.
+     * @return width of the line number area as an int.
+     */
     int lineNumberAreaWidth();
 
+    /**
+     * @brief Appends a placeholder line and marks it as such.
+     * Can be empty as well.
+     * @param placeholder string to be inserted in the placeholder line (default empty)
+     */
     void appendPlaceholder(const QString &placeholder = {});
 
+    /**
+     * @brief Completely resets the code editor widget.
+     */
     void reset();
 
 protected:
+    /**
+     * @brief Triggered when the widget was resized. Rescales its contents then.
+     * @param event incoming resize event
+     */
     void resizeEvent(QResizeEvent *event) override;
 
 private slots:
@@ -96,15 +124,31 @@ private:
     using QPlainTextEdit::clear;
 };
 
+/**
+ * @brief Helper class for the line numbers in a CodeEditor.
+ */
 class LineNumberArea : public QWidget {
 public:
+    /**
+     * @brief Constructs a LineNumberArea
+     * @param editor code editor to put line numbers on
+     */
     explicit LineNumberArea(CodeEditor *editor) : QWidget(editor), codeEditor(editor) {}
 
+    /**
+     * @brief Gets a size hint used to calculate the painting area size.
+     * @return size as a QSize object
+     */
     [[nodiscard]] QSize sizeHint() const override {
         return {codeEditor->lineNumberAreaWidth(), 0};
     }
 
 protected:
+    /**
+     * @brief Triggered when repainting of the line numbers is necessary,
+     * for example after scrolling.
+     * @param event incoming paint event
+     */
     void paintEvent(QPaintEvent *event) override {
         codeEditor->lineNumberAreaPaintEvent(event);
     }

@@ -160,6 +160,12 @@ set(Sources
 
         test_classifier.cpp
         test_trainer.cpp
+        test_imageloader.cpp
+
+        test_imageinspectionmodel.cpp
+
+        test_imageloaderpluginmanager.cpp
+
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
@@ -199,4 +205,5 @@ add_test(ImageLoaderPluginManagerTest COMMAND ImageLoaderPluginManagerTest)
 add_test(GUITest COMMAND GUITest)
 
 add_dependencies(ImageLoaderPluginManagerTest ImageLoaderPluginMock)
-add_dependencies(Google_Tests_run ImageLoaderPluginMock)
+add_dependencies(Google_Tests_run ImageLoaderPluginMock ClassificationPluginMock)
+
