@@ -66,6 +66,24 @@ public:
      */
     QString getPythonPath();
 
+    /**
+     * @brief setAPIKey
+     * @param key
+     */
+    void setAPIKey(QString key);
+
+    /**
+     * @brief setAPISecret
+     * @param key
+     */
+    void setAPISecret(QString key);
+
+    /**
+     * @brief setPythonPath
+     * @param path
+     */
+    void setPythonPath(QString path);
+
 private:
     Ui::FlickrSettings *ui;
     QString m_apiKey = "API Key";
