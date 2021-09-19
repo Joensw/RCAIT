@@ -160,9 +160,17 @@ set(Sources
 
         test_classifier.cpp
         test_trainer.cpp
+
+        test_resultgraphics.cpp
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/../Resources/Fonts/Inter-Regular.otf ${CMAKE_CURRENT_BINARY_DIR}/Inter-Regular.otf COPYONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/../model/results/confusionmatrix.py ${CMAKE_CURRENT_BINARY_DIR}/confusionmatrix.py COPYONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/../model/results/accuracycurve.py ${CMAKE_CURRENT_BINARY_DIR}/accuracycurve.py COPYONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/../model/results/topaccuraciesgraphics.py ${CMAKE_CURRENT_BINARY_DIR}/topaccuraciesgraphics.py COPYONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/../model/results/classificationgraphics.py ${CMAKE_CURRENT_BINARY_DIR}/classificationgraphics.py COPYONLY)
 
 #imageloaderplugin used for testing created here
 add_library(ImageLoaderPluginMock MODULE imageloaderpluginmock.h imageloaderpluginmock.cpp)
