@@ -166,7 +166,7 @@ set(Sources
 
         test_imageloaderpluginmanager.cpp
 
-
+        test_classificationpluginmanager.cpp
 
         )
 
