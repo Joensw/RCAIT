@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 #include <QSignalSpy>
 #include <qapplication.h>
-#include <mutex>
 #include <QDir>
 #include <QGraphicsItem>
 #include <accuracycurve.h>

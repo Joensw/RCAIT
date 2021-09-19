@@ -185,11 +185,19 @@ set(Sources
 
 
         test_resultgraphics.cpp
+        test_filediff.cpp
+        ../model/utilities/filediff.h
+        ../model/utilities/filediff.cpp
+        ../view/utilities/codeeditor.h
+        ../view/utilities/codeeditor.cpp
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/../plugins/imageplugins/flickrplugin/flickrapi_photosearch.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/../plugins/imageplugins/bingplugin/bingapi_photosearch.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/../model/utilities/difflibparser.py ${CMAKE_CURRENT_BINARY_DIR}/difflibparser.py COPYONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/../model/utilities/filediff.py ${CMAKE_CURRENT_BINARY_DIR}/filediff.py COPYONLY)
 
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/../Resources/Fonts/Inter-Regular.otf ${CMAKE_CURRENT_BINARY_DIR}/Inter-Regular.otf COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/../model/results/confusionmatrix.py ${CMAKE_CURRENT_BINARY_DIR}/confusionmatrix.py COPYONLY)
