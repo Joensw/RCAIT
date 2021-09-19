@@ -53,7 +53,11 @@ public:
      */
     QString getPythonPath();
 
-
+    /**
+     * @brief setPythonPath sets the Python path
+     * @param path the path
+     */
+    void setPythonPath(QString path);
 
 
 

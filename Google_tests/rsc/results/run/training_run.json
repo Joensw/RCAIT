@@ -1,0 +1,33 @@
+{
+    "accuracy_data": [
+        {
+            "iteration": 100,
+            "train": 75,
+            "validation": 64.28571
+        },
+        {
+            "iteration": 200,
+            "train": 85.08065,
+            "validation": 82.14286
+        }
+    ],
+    "additionalResults": [
+    ],
+    "class_labels": [
+        "Flugzeug",
+        "Zug"
+    ],
+    "confusionmatrix": [
+        9,
+        5,
+        0,
+        14
+    ],
+    "most_misclassified_images": [
+        "path/one/",
+		"path/two/",
+		"path/three/"
+    ],
+    "top1": 82.14285714285714,
+    "top5": 100
+}

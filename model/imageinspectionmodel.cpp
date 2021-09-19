@@ -8,6 +8,7 @@
 #include "imageinspectionmodel.h"
 #include "model/utilities/mapadapt.h"
 
+
 void ImageInspectionModel::loadDataSet(const QString &trainingPath, const QString &validationPath) {
     //reset maps
     m_trainDataset.clear();
@@ -190,7 +191,7 @@ int ImageInspectionModel::getFreeImageNumber(const QStringList &paths, const QSt
     for (const QString &path: paths) {
         QDir dir(path);
         dir.setNameFilters({label + "_*"});
-        fileList << dir.entryList();
+        fileList.append(dir.entryList());
     }
 
     if (fileList.empty()) { return res; }
@@ -210,7 +211,7 @@ int ImageInspectionModel::getFreeImageNumber(const QStringList &paths, const QSt
 
 bool ImageInspectionModel::compareNames(const QString &s1, const QString &s2) {
 
-    QRegularExpression re("\\d+");
+
     QRegularExpressionMatch match1 = re.match(s1);
     QRegularExpressionMatch match2 = re.match(s2);
     int matched1Number = 0;
@@ -229,3 +230,9 @@ bool ImageInspectionModel::compareNames(const QString &s1, const QString &s2) {
 }
 
 
+
+ImageInspectionModel::ImageInspectionModel() : m_trainDataset(),
+    m_validationNewData(),
+    m_trainNewData(),
+    m_validationDataset()
+{}

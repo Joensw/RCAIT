@@ -6,8 +6,8 @@
 //check if adding labels works
 TEST(ImageGalleryTreeTest, testAddLabels){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     path += "/test_imagefolder/";
@@ -39,8 +39,8 @@ TEST(ImageGalleryTreeTest, testAddLabels){
 //check if resetting images from image list works
 TEST(ImageGalleryTreeTest, testResetTree){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     path += "/test_imagefolder/";
@@ -64,8 +64,8 @@ TEST(ImageGalleryTreeTest, testResetTree){
 //check if removing images works
 TEST(ImageGalleryTreeTest, testAddPathImages){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     path += "/test_imagefolder/";

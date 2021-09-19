@@ -21,15 +21,18 @@ TrainingCommand::TrainingCommand(QVariantMap map,const QString &trainDataSetPath
     }
 
     mInputWidget = mPluginManager.getInputWidget(mAiPluginName);
-    // getting all property names of input widget
     auto end = map.end();
-    for(auto it = map.begin(); it != end; ++it){
-        if (mInputWidget->property(it.key().toUtf8().data()).isValid()){
-            mInputOptions.insert(it.key(), it.value());
+    if (mInputWidget){
+        // getting all property names of input widget
+        for(auto it = map.begin(); it != end; ++it){
+            if (mInputWidget->property(it.key().toUtf8().data()).isValid()){
+                mInputOptions.insert(it.key(), it.value());
+            }
         }
     }
 
     mAugmentationWidget = mPluginManager.getDataAugmentationInputWidget(mAiPluginName);
+    if (!mAugmentationWidget) return;
     // getting all property names of augmentation widget
     for(auto it = map.begin(); it != end; ++it){
         if (mAugmentationWidget->property(it.key().toUtf8().data()).isValid()){

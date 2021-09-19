@@ -86,7 +86,6 @@ void FlickrPlugin::slot_readOutPut() {
 void FlickrPlugin::slot_pluginFinished() {
     m_process->close();
     m_process.reset();
-    emit m_receiver->sig_pluginFinished();
 }
 
 void FlickrPlugin::slot_abort() {

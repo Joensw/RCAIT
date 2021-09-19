@@ -9,8 +9,8 @@ QString testDir = "foldertest";
 //check if loading folders as labels works
 TEST(FolderPluginTest, testFoldersAsLabels){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     QDir dir(path);
@@ -53,8 +53,8 @@ TEST(FolderPluginTest, testFoldersAsLabels){
 //check if loading with names as labels works
 TEST(FolderPluginTest, testNamesAsLabels){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     QDir dir(path);
@@ -95,8 +95,8 @@ TEST(FolderPluginTest, testNamesAsLabels){
 //check if loading with single folder as label works
 TEST(FolderPluginTest, testFolderAsLabel){
     //setup
-    int argc;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
     QDir dir(path);
