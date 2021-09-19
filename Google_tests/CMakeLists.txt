@@ -136,9 +136,19 @@ set(Sources
         ../view/results/genericgraphicsview.h
         ../view/results/genericgraphicsview.cpp
 
+         ../view/results/trainingresultswidget.cpp
+         ../view/results/trainingresultswidget.h
+
+         ../view/results/genericcomparisonwidget.h
+         ../view/results/genericcomparisonwidget.cpp
+         ../view/results/savableresultswidget.h
+
 
         ../view/utilities/canvas.h
         ../view/utilities/canvas.cpp
+
+         ../view/utilities/popupmenu.h
+         ../view/utilities/popupmenu.cpp
 
         ../view/utilities/imagegallery.h
         ../view/utilities/imagegallery.cpp
@@ -167,6 +177,11 @@ set(Sources
         test_imageloaderpluginmanager.cpp
 
         test_classificationpluginmanager.cpp
+
+        test_resultsimporter.cpp
+
+        ../model/results/resultsimporter.h
+        ../model/results/resultsimporter.cpp
 
         )
 

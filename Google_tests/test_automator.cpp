@@ -2,6 +2,7 @@
 #include <QSignalSpy>
 #include <qapplication.h>
 #include "../model/automation/automator.h"
+#include <QWidget>
 
 //check if loading labeled dataset imagefilepaths work
 TEST(AutomatorTest, testAddTask){
