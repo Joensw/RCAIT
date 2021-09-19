@@ -160,6 +160,7 @@ set(Sources
 
         test_classifier.cpp
         test_trainer.cpp
+        test_imageloader.cpp
 
         test_imageinspectionmodel.cpp
 
