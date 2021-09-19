@@ -160,6 +160,11 @@ set(Sources
 
         test_classifier.cpp
         test_trainer.cpp
+
+        test_imageinspectionmodel.cpp
+
+        test_imageloaderpluginmanager.cpp
+
         )
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/rsc/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
