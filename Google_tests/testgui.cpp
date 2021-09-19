@@ -80,5 +80,41 @@ void TestGui::testTagField()
 
 }
 
+void TestGui::testLoadLabelsFromTxt()
+{
+    ImportFilesWidget importFilesWidget;
+    QPushButton* pushButton_loadLabels = importFilesWidget.findChild<QPushButton*>("pushButton_loadLabelsFromFile");
+    Tags* tagField = importFilesWidget.findChild<Tags*>("lineEdit_labels");
+
+    //a test String
+    QString testString = "I am a label!";
+
+    //adding a test folder
+    QDir dir(QDir::current().path());
+    QString testPath = dir.path() + "/testLoadLabelsFromTxt";
+
+    //adding a test .txt file to the test folder
+    QString fileName = testPath + "/test.txt";
+    QFile testFile(fileName);
+
+    //write test string into file
+    if (testFile.open(QIODevice::WriteOnly)) {
+        testFile.write(testString.toUtf8());
+        testFile.close();
+    }
+
+
+    QTest::mouseClick(pushButton_loadLabels,Qt::LeftButton);
+    //somehow simulate choosing a file (?)
+
+
+    //compare tagField
+    std::vector<QString> tags = tagField->tags();
+    QCOMPARE(tags.front(), testString);
+
+    //remove test files
+    QDir(testPath).removeRecursively();
+}
+
 
 QTEST_MAIN(TestGui);

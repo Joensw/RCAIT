@@ -15,6 +15,8 @@ class TestGui : public QObject
 private slots:
     void testImportFilesWidget();
     void testTagField();
+    void testLoadLabelsFromTxt();
+
 
 };
 
