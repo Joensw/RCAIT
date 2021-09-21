@@ -79,8 +79,8 @@ class BingPluginTest : public testing::Test {
 //check if downloading images from flickrapi works, returns 1 either way, should not be executed too often
 TEST_F(BingPluginTest, testLoadImages){
     //set up bingPlugin
-    int argc = 0;
-    char *argv[1] = {0};
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     BingPlugin bingPlugin;
     BingSettings* bingSettings;

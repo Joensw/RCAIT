@@ -64,8 +64,8 @@ class ResultsImporterTest : public testing::Test {
 
 TEST_F(ResultsImporterTest, testCallMethods){
 
-    int argc = 0;
-    char *argv[1];
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
 
     ResultsExporter resultsExporter;
