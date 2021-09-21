@@ -63,6 +63,7 @@ void ImageGalleryTree::addLabel(const QString &label, const QStringList &images)
     auto *imageGalleryItem = new QTreeWidgetItem(name);
     auto *gallery = new ImageGallery(this);
     gallery->setDragDropEnabled(false);
+    gallery->setImageSize((this->width() - 153) / 2);
     gallery->concurrentAddImages(images);
     galleries << gallery;
     setItemWidget(imageGalleryItem, 0, gallery);

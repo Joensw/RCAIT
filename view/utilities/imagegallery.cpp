@@ -13,11 +13,10 @@ ImageGallery::ImageGallery(QWidget *parent) :
     setMovement(QListView::Static);
     setViewMode(ViewMode::IconMode);
     setSelectionMode(QListView::MultiSelection);
-    setIconSize(QSize(100, 100));
     setFlow(QListWidget::LeftToRight);
     setResizeMode(QListWidget::Adjust);
     setUniformItemSizes(true);
-
+    setIconSize(QSize(200,200));
     setDefaultDropAction(Qt::MoveAction);
     setDragDropEnabled(false);
 
@@ -94,7 +93,7 @@ void ImageGallery::addImage(const QImage &image) {
     }
     auto *item = new QListWidgetItem();
     QPixmap tempImage = QPixmap::fromImage(copy);
-    item->setData(Qt::DecorationRole, tempImage.scaled(200, 200, Qt::KeepAspectRatio));
+    item->setData(Qt::DecorationRole, tempImage.scaled(mImageSize, mImageSize, Qt::KeepAspectRatio));
 
 
     addItem(item);
@@ -103,6 +102,12 @@ void ImageGallery::addImage(const QImage &image) {
 void ImageGallery::setDragDropEnabled(bool var) {
     setDragEnabled(var);
     setAcceptDrops(var);
+}
+
+void ImageGallery::setImageSize(int size)
+{
+    mImageSize = size;
+    setIconSize(QSize(mImageSize, mImageSize));
 }
 
 /*!

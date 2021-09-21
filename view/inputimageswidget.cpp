@@ -36,6 +36,7 @@ void InputImagesWidget::on_selectFolderButton_clicked()
              imagePaths.append(imgSubDir.absoluteFilePath(imageName));
          }
      }
+     ui->preview->setImageSize((this->width() - 94) / 5);
      ui->preview->clearAndStop();
      ui->preview->setEnabled(true);
      ui->preview->concurrentAddImages(imagePaths);
