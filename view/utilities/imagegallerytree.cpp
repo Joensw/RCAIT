@@ -30,6 +30,9 @@ QMap<QString, QList<int>> ImageGalleryTree::removeSelected() {
     QMap<QString, QList<int>> removed;
     for (int i = this->topLevelItemCount() - 1; i >= 0; i--) {
         qDebug() << this->topLevelItem(i)->text(0);
+        if (this->topLevelItem(i)->isSelected()) {
+            galleries.at(i)->selectAll();
+        }
         QList<int> selectedIdx = galleries.at(i)->removeselected();
         removed.insert(this->topLevelItem(i)->text(0), selectedIdx);
         if (galleries.at(i)->count() == 0) {
