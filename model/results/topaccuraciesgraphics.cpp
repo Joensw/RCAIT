@@ -33,7 +33,7 @@ QString TopAccuraciesGraphics::labelsToPyText() {
 }
 
 void TopAccuraciesGraphics::addDataRow(const QString &identifier, const QList<double> &data) {
-    m_data << qMakePair(identifier, data);
+    m_data.append({identifier, data});
 }
 
 void TopAccuraciesGraphics::removeDataRow(const QString &identifier) {
