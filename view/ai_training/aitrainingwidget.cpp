@@ -17,9 +17,6 @@ AITrainingWidget::~AITrainingWidget()
 void AITrainingWidget::slot_progress(int progress)
 {
     ui->progressBar->setValue(progress);
-    if (progress == 100){
-        ui->resultsButton->setEnabled(true);
-    }
 }
 
 [[maybe_unused]] void AITrainingWidget::on_startButton_clicked()
