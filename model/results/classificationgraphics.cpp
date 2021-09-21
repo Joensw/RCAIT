@@ -67,9 +67,8 @@ bool ClassificationGraphics::operator!=(const ClassificationGraphics &other) con
 void ClassificationGraphics::generateGraphicsInternal(const QString &fullFilePath) {
     // python script.py <classification data> <classification labels> <output file name>
     auto pyScript = QFileInfo("classificationgraphics.py");
-    QStringList params =
-            QStringList() << pyScript.absoluteFilePath() << dataToPyText() << imagePathsToPyText()
-                          << classLabelsToPyText() << fullFilePath;
+    auto params = {pyScript.absoluteFilePath(), dataToPyText(), imagePathsToPyText(), classLabelsToPyText(),
+                   fullFilePath};
     GenericResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 
