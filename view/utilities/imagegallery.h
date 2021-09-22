@@ -84,6 +84,13 @@ public:
     void setDragDropEnabled(bool var);
 
     /**
+     * @brief setImageSize sets size of images.
+     *
+     * @param size desired size
+     */
+    void setImageSize(int size);
+
+    /**
      * @brief minimumSizeHint gets minimum size of gallery.
      *
      * @return size hint
@@ -186,6 +193,8 @@ private:
     // used for resizing images with fixed-sized lists
     QList<QImage> mImageList;
     int mRows = -1;
+
+    int mImageSize = 200;
 
 };
 

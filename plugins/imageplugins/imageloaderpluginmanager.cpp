@@ -36,20 +36,36 @@ void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
 }
 
 QWidget *ImageLoaderPluginManager::getConfigurationWidget(QString pluginName) {
+    if (!m_plugins.contains(pluginName)) {
+        qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
+        return new QWidget();
+    }
     return m_pluginsSharedPointer.value(pluginName)->getConfigurationWidget();
 }
 
 void ImageLoaderPluginManager::saveConfiguration(QString pluginName) {
+    if (!m_plugins.contains(pluginName)) {
+        qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
+        return;
+    }
     m_pluginsSharedPointer.value(pluginName)->saveConfiguration();
 }
 
 QWidget *ImageLoaderPluginManager::getInputWidget(QString pluginName) {
+    if (!m_plugins.contains(pluginName)) {
+        qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
+        return new QWidget();
+    }
     if(m_pluginsSharedPointer.isEmpty()) return new QWidget();
     return m_pluginsSharedPointer.value(pluginName)->getConfigurationWidget();
 }
 
 bool ImageLoaderPluginManager::loadImages(QString path, ProgressablePlugin *receiver, QString pluginName, int count,
                                           QStringList labels) {
+    if (!m_plugins.contains(pluginName)) {
+        qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
+        return false;
+    }
    return m_pluginsSharedPointer.value(pluginName)->loadImages(path, receiver, count, labels);;
 }
 

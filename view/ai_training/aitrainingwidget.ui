@@ -16,6 +16,9 @@
   <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>
     <widget class="QTabWidget" name="tab_aitraining">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -264,16 +267,6 @@
                 </property>
                </widget>
               </item>
-              <item>
-               <widget class="QPushButton" name="resultsButton">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="text">
-                 <string>Results</string>
-                </property>
-               </widget>
-              </item>
              </layout>
             </item>
            </layout>
@@ -284,6 +277,9 @@
       </layout>
      </widget>
      <widget class="ImageGallery" name="tab_preview">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <attribute name="title">
        <string>Data Augmentation Preview</string>
       </attribute>

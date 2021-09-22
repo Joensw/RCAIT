@@ -7,6 +7,7 @@ AITrainingWidget::AITrainingWidget(QWidget *parent) :
     ui(new Ui::AITrainingWidget)
 {
     ui->setupUi(this);
+    ui->tab_aitraining->setTabEnabled(1, false);
 }
 
 AITrainingWidget::~AITrainingWidget()
@@ -17,9 +18,6 @@ AITrainingWidget::~AITrainingWidget()
 void AITrainingWidget::slot_progress(int progress)
 {
     ui->progressBar->setValue(progress);
-    if (progress == 100){
-        ui->resultsButton->setEnabled(true);
-    }
 }
 
 [[maybe_unused]] void AITrainingWidget::on_startButton_clicked()
@@ -71,6 +69,7 @@ void AITrainingWidget::changeEvent(QEvent *event) {
 }
 
 void AITrainingWidget::showImages(const QString& path){
+    ui->tab_aitraining->setTabEnabled(1, true);
     ui->tab_preview->clearAndStop();
     ui->tab_preview->setEnabled(true);
     ui->tab_preview->concurrentAddImages(path);
