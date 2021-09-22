@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(bingplugin LANGUAGES CXX)
+project(googleplugin LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -20,13 +20,13 @@ find_package(Qt6 COMPONENTS Widgets)
 #add_subdirectory(test)
 
 
-add_library(bingplugin MODULE
-    bingplugin.cpp bingplugin.h bingsettings.cpp bingsettings.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressable.h
+add_library(googleplugin MODULE
+    googleplugin.cpp googleplugin.h googlesettings.cpp googlesettings.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressable.h
 )
 
-set_target_properties(bingplugin PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../plugins)
+set_target_properties(googleplugin PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../plugins)
 
-target_include_directories(bingplugin PUBLIC
+target_include_directories(googleplugin PUBLIC
     ../
     ../../
     ../../../model/pluginusage
@@ -36,7 +36,7 @@ target_include_directories(bingplugin PUBLIC
 
 
 
-target_link_libraries(bingplugin PUBLIC
+target_link_libraries(googleplugin PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Widgets
