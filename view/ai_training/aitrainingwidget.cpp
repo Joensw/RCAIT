@@ -7,6 +7,7 @@ AITrainingWidget::AITrainingWidget(QWidget *parent) :
     ui(new Ui::AITrainingWidget)
 {
     ui->setupUi(this);
+    ui->tab_aitraining->setTabEnabled(1, false);
 }
 
 AITrainingWidget::~AITrainingWidget()
@@ -68,6 +69,7 @@ void AITrainingWidget::changeEvent(QEvent *event) {
 }
 
 void AITrainingWidget::showImages(const QString& path){
+    ui->tab_aitraining->setTabEnabled(1, true);
     ui->tab_preview->clearAndStop();
     ui->tab_preview->setEnabled(true);
     ui->tab_preview->concurrentAddImages(path);
