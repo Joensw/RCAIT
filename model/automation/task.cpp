@@ -8,8 +8,8 @@
 
 
 Task::Task(QVariantMap map, QList<Command*> commandList)
+    : mName(map.value("taskName").toString())
 {
-    mName = map.value("taskName").toString();
 
     if (!commandList.isEmpty()){
         mCommandList = commandList;

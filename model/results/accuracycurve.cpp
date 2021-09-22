@@ -9,7 +9,7 @@ AccuracyCurve::AccuracyCurve(const QString &directory, const QString &identifier
 void AccuracyCurve::generateGraphicsInternal(const QString &fullFilePath) {
     // python script.py <acc curve data> <output file name>
     auto pyScript = QFileInfo("accuracycurve.py");
-    QStringList params = QStringList() << pyScript.absoluteFilePath() << valuesToPyText() << fullFilePath;
+    auto params = {pyScript.absoluteFilePath(), valuesToPyText(), fullFilePath};
     GenericResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 

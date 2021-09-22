@@ -19,8 +19,8 @@ class ImageLoaderPluginManagerTest : public testing::Test {
       }
 
     void SetUp() override {
-        int argc;
-        char *argv[1];
+        int argc = 1;
+        char *argv[1] = {new char('a')};
         QApplication a(argc, argv);
         pluginDir = QDir::current().path();
         testee.loadPlugins(pluginDir);

@@ -48,7 +48,7 @@ public:
      * @param label list of labels to download images of
      * @return
      */
-    bool loadImages(QString path, ProgressablePlugin* receiver ,int imageCount,  QStringList label) override;
+    bool loadImages(const QString &path, ProgressablePlugin* receiver ,int imageCount, const QStringList &label) override;
     /**
      * @brief getConfigurationWidget returns a widget in which the Plugin can be configured
      * @return the configuration widget

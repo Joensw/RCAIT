@@ -81,7 +81,7 @@ private:
     void adjustCheckpointCreation(const QString& runtimeConfigPath, int max_iters);
 
     void connectIt();
-    void connectFileWatcher(QString path);
+    void connectFileWatcher(const QString &path);
 
 public:
 
@@ -131,7 +131,7 @@ public:
      * @param baseModel the name of a base model of this plugin
      * @return false on error, true otherwise
      */
-    bool createNewModel(QString modelName, QString baseModel) override;
+    bool createNewModel(QString modelName, QString baseModelName) override;
 
     /**
      * @brief removeModel removes the given model with all its files
@@ -150,7 +150,7 @@ public:
      * @param amount the number of pictures to generate
      * @return false on error, true otherwise
      */
-    bool getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount) override;
+    bool getAugmentationPreview(const QString &modelName, const QString &inputPath, const QString &targetPath, int amount) override;
 
     /**
      * @brief train trains a model, reports the process while doing so and extracts the relevant results in a TrainingResult object
@@ -161,7 +161,7 @@ public:
      * @param receiver a Progressable plugin to report the progress to the main application
      * @return a pointer to a TrainingResult object with the relevant data
      */
-    TrainingResult* train(QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver) override;
+    TrainingResult* train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectoryPath, ProgressablePlugin *receiver) override;
 
     /**
      * @brief classify classifies the given images with the given model and extracts the relevant results in a ClassificationResult object
@@ -172,7 +172,7 @@ public:
      * @param receiver a Progressable plugin to report the progress to the main application
      * @return a pointer to a ClassificationResult object with the relevant data
      */
-    ClassificationResult* classify(QString inputImageDirPath,QString trainDatasetPath, QString workingDirPath, QString modelName, ProgressablePlugin *receiver) override;
+    ClassificationResult* classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath, const QString &modelName, ProgressablePlugin *receiver) override;
 
     /**
      * @brief getDataAugmentationInputWidget returns a widget to specify additional, plugin specific data augmentation input for the getAugmentationPreview and the train method

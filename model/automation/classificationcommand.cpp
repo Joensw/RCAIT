@@ -4,14 +4,13 @@
 
 
 ClassificationCommand::ClassificationCommand(QVariantMap map, const QString &trainDataSetPath, ProgressablePlugin* receiver)
+    : mProjectName(map.value("projectName").toString()),
+      mImagePath(map.value("classificationImagePath").toString()),
+      mModelName(map.value("modelName").toString()),
+      mAiPluginName(map.value("aiPluginName").toString()),
+      mTrainDataSetPath(trainDataSetPath),
+      mReceiver(receiver)
 {
-    mProjectName = map.value("projectName").toString();
-    mImagePath = map.value("classificationImagePath").toString();
-    mModelName = map.value("modelName").toString();
-    mAiPluginName = map.value("aiPluginName").toString();
-    mTrainDataSetPath = trainDataSetPath;
-    mReceiver = receiver;
-
     if (mImagePath.isNull() || mModelName.isNull() || mAiPluginName.isNull()){
         parsingFailed = true;
         return;

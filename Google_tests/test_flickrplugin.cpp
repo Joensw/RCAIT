@@ -79,8 +79,8 @@ class FlickrPluginTest : public testing::Test {
 //check if downloading images from flickrapi works, returns 1 either way, should not be executed too often
 TEST_F(FlickrPluginTest, testLoadImages){
     //set up flickrplugin
-    int argc = 0;
-    char *argv[1] = {0};
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     FlickrPlugin flickrPlugin;
     FlickrSettings* flickrSettings;

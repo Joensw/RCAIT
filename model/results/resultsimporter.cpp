@@ -129,7 +129,7 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
         int train = obj["train"].toInt();
         int validation = obj["validation"].toInt();
 
-        accuracy_data[iteration] = qMakePair(train, validation);
+        accuracy_data[iteration] = {train, validation};
     }
 
     auto class_labels = QJsonArray_toList<QString>(json_class_labels);

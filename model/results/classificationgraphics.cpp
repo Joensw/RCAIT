@@ -44,7 +44,7 @@ QString ClassificationGraphics::classLabelsToPyText() {
     return '"' % ('[' % results.join(',') % ']') % '"';
 }
 
-[[maybe_unused]] void ClassificationGraphics::addClassificationEntry(const QString &identifier, QList<double> &data) {
+[[maybe_unused]] void ClassificationGraphics::addClassificationEntry(const QString &identifier, const QList<double> &data) {
     m_data.insert(identifier, data);
 }
 
@@ -67,9 +67,8 @@ bool ClassificationGraphics::operator!=(const ClassificationGraphics &other) con
 void ClassificationGraphics::generateGraphicsInternal(const QString &fullFilePath) {
     // python script.py <classification data> <classification labels> <output file name>
     auto pyScript = QFileInfo("classificationgraphics.py");
-    QStringList params =
-            QStringList() << pyScript.absoluteFilePath() << dataToPyText() << imagePathsToPyText()
-                          << classLabelsToPyText() << fullFilePath;
+    auto params = {pyScript.absoluteFilePath(), dataToPyText(), imagePathsToPyText(), classLabelsToPyText(),
+                   fullFilePath};
     GenericResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 

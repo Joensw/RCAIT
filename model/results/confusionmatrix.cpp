@@ -25,9 +25,7 @@ ConfusionMatrix::ConfusionMatrix(const QString &directory,
 void ConfusionMatrix::generateGraphicsInternal(const QString &fullFilePath) {
     // python script.py <matrix data> <matrix labels> <output file name> (<normalized>)
     auto file = QFileInfo("confusionmatrix.py");
-    QStringList params =
-            QStringList() << file.absoluteFilePath() << valuesToPyText() << labelsToPyText() << fullFilePath
-                          << "--normalized";
+    QStringList params = {file.absoluteFilePath(), valuesToPyText(), labelsToPyText(), fullFilePath, "--normalized"};
     GenericResultGraphics::launch_externalGraphicsGenerator("python", params);
 }
 
@@ -38,7 +36,7 @@ double ConfusionMatrix::operator()(int row, int column) const {
 
 QString ConfusionMatrix::labelsToPyText() {
     QStringList labels;
-    for (auto &item : m_classLabels) {
+    for (auto &item: m_classLabels) {
         labels << "'" % item % "'";
     }
     //Add "" around string so that dashes are not recognized as new arguments
@@ -69,7 +67,7 @@ bool ConfusionMatrix::operator==(const ConfusionMatrix &other) const {
     return true;
 }
 
-bool ConfusionMatrix::operator!=(const ConfusionMatrix& other) const {
+bool ConfusionMatrix::operator!=(const ConfusionMatrix &other) const {
     return !(*this == other);
 }
 

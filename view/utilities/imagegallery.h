@@ -39,7 +39,7 @@ public:
      *
      * @param pathList list of image paths
      */
-    void addImages(const QStringList &pathList);
+    void addImages(const QStringList &imageDirectory);
 
     /**
      * @brief addImages adds images from an imagelist to gallery.
@@ -82,6 +82,13 @@ public:
      * @param var true or false
      */
     void setDragDropEnabled(bool var);
+
+    /**
+     * @brief setImageSize sets size of images.
+     *
+     * @param size desired size
+     */
+    void setImageSize(int size);
 
     /**
      * @brief minimumSizeHint gets minimum size of gallery.
@@ -186,6 +193,8 @@ private:
     // used for resizing images with fixed-sized lists
     QList<QImage> mImageList;
     int mRows = -1;
+
+    int mImageSize = 200;
 
 };
 

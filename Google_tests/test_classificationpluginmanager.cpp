@@ -35,8 +35,8 @@ class ClassificationPluginManagerTest : public testing::Test {
 
 
 TEST_F(ClassificationPluginManagerTest, testLoadPlugins){
-    int argc = 0;
-    char *argv[1] = {0};
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     ClassificationPluginManager& testee = ClassificationPluginManager::getInstance();
     testee.loadPlugins(pluginDir);
@@ -47,8 +47,8 @@ TEST_F(ClassificationPluginManagerTest, testLoadPlugins){
 }
 
 TEST_F(ClassificationPluginManagerTest, testCallMethodsWithPluginLoaded){
-    int argc = 0;
-    char *argv[1] = {0};
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     ClassificationPluginManager& testee = ClassificationPluginManager::getInstance();
     testee.loadPlugins(pluginDir);
@@ -66,8 +66,8 @@ TEST_F(ClassificationPluginManagerTest, testCallMethodsWithPluginLoaded){
 }
 
 TEST_F(ClassificationPluginManagerTest, testCallMethodsWithOutPluginLoaded){
-    int argc = 0;
-    char *argv[1] = {0};
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     ClassificationPluginManager& testee = ClassificationPluginManager::getInstance();
     testee.loadPlugins(pluginDir + "/dataset");

@@ -5,16 +5,15 @@
 
 
 TrainingCommand::TrainingCommand(QVariantMap map,const QString &trainDataSetPath, const QString &validationDataSetPath,const QString &workingDir, ProgressablePlugin* receiver)
+    : mProjectName(map.value("projectName").toString()),
+      mAiPluginName(map.value("aiPluginName").toString()),
+      mModelName(map.value("modelName").toString()),
+      mBaseModel(map.value("baseModel").toString()),
+      mTrainDataSetPath(trainDataSetPath),
+      mValidationDataSetPath(validationDataSetPath),
+      mWorkingDir(workingDir),
+      mReceiver(receiver)
 {
-    mProjectName = map.value("projectName").toString();
-    mAiPluginName = map.value("aiPluginName").toString();
-    mModelName = map.value("modelName").toString();
-    mBaseModel = map.value("baseModel").toString();
-    mTrainDataSetPath = trainDataSetPath;
-    mValidationDataSetPath = validationDataSetPath;
-    mWorkingDir = workingDir;
-    mReceiver = receiver;
-
     if (mModelName.isNull() || mAiPluginName.isNull()){
         parsingFailed = true;
         return;

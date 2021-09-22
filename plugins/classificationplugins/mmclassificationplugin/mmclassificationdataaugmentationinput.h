@@ -55,7 +55,7 @@ public:
      * @param type the albu transform type to use with albumnations,
      *        an empty QString, if this parameter is not to be used
      */
-    void setAlbuTransformType(QString type);
+    void setAlbuTransformType(const QString &type);
 
     /**
      * @brief getRandomResizedCropSize returns the specified random resized crop size
@@ -95,7 +95,7 @@ public:
      * @param direction the new direction,
      *        an empty QString, if this parameter is not to be used
      */
-    void setRandomFlipDirection(QString direction);
+    void setRandomFlipDirection(const QString &direction);
 
     /**
      * @brief getRandomErasing returns if random erasing should be used
@@ -160,10 +160,10 @@ private slots:
     void slot_resizeChecked(bool isChecked);
     void slot_centerCropSizeChecked(bool isChecked);
 
-    void slot_albuTransformChanged(QString type);
+    void slot_albuTransformChanged(const QString &type);
     void slot_randomResizedCropSizeChanged(int size);
     void slot_randomFlipProbChanged(double probability);
-    void slot_randomFlipDirectionChanged(QString direction);
+    void slot_randomFlipDirectionChanged(const QString &direction);
     void slot_resizeChanged(int size);
     void slot_centerCropSizeChanged(int size);
 };

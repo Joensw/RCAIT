@@ -3,13 +3,15 @@
 
 
 ImageLoadCommand::ImageLoadCommand(QVariantMap map, QString imagePath, ProgressablePlugin* receiver)
-{   bool ok;
+    : mPluginName(map.value("imagePluginName").toString()),
+      mLabels(map.value("labels").toStringList()),
+      mPath(imagePath),
+      mReceiver(receiver)
 
-    mPluginName = map.value("imagePluginName").toString();
+{
+    bool ok;
+
     mCount  = map.value("count").toInt(&ok);
-    mLabels = map.value("labels").toStringList();
-    mPath = imagePath;
-    mReceiver = receiver;
 
     if (imagePath.isNull() || mPluginName.isNull() || !ok || mLabels.isEmpty()){
         parsingFailed = true;

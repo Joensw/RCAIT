@@ -1,14 +1,15 @@
 #include "model.h"
 
-Model::Model(QString name, QString baseModelName, QString mainConfigPath, QString modelConfigPath, QString datasetConfigPath, QString scheduleConfigPath, QString runtimeConfigPath)
+Model::Model(const QString &name, const QString &baseModelName, const QString &mainConfigPath, const QString &modelConfigPath, const QString &datasetConfigPath, const QString &scheduleConfigPath, const QString &runtimeConfigPath)
+    :m_name(name),
+     m_baseModelName(baseModelName),
+     m_mainConfigPath(mainConfigPath),
+     m_modelConfigPath(modelConfigPath),
+     m_datasetConfigPath(datasetConfigPath),
+     m_scheduleConfigPath(scheduleConfigPath),
+     m_runtimeConfigPath(runtimeConfigPath)
 {
-    m_name = name;
-    m_baseModelName = baseModelName;
-    m_mainConfigPath = mainConfigPath;
-    m_modelConfigPath = modelConfigPath;
-    m_datasetConfigPath = datasetConfigPath;
-    m_scheduleConfigPath = scheduleConfigPath;
-    m_runtimeConfigPath = runtimeConfigPath;
+
 }
 
 QString Model::getName()
