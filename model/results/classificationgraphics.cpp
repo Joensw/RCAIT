@@ -44,7 +44,7 @@ QString ClassificationGraphics::classLabelsToPyText() {
     return '"' % ('[' % results.join(',') % ']') % '"';
 }
 
-[[maybe_unused]] void ClassificationGraphics::addClassificationEntry(const QString &identifier, QList<double> &data) {
+[[maybe_unused]] void ClassificationGraphics::addClassificationEntry(const QString &identifier, const QList<double> &data) {
     m_data.insert(identifier, data);
 }
 

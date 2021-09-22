@@ -208,7 +208,7 @@ bool MMClassificationPlugin::removeModel(QString modelName) {
 }
 
 bool
-MMClassificationPlugin::getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount) {
+MMClassificationPlugin::getAugmentationPreview(const QString &modelName, const QString &inputPath, const QString &targetPath, int amount) {
     if (!checkDataAugmentationPreviewInput(modelName, inputPath, targetPath, amount)) {
         qWarning() << "Invalid Input";
         return false;
@@ -339,7 +339,7 @@ MMClassificationPlugin::getAugmentationPreview(QString modelName, QString inputP
 }
 
 TrainingResult *
-MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QString validationDatasetPath,
+MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath,
                               QString workingDirectoryPath, ProgressablePlugin *receiver) {
     m_receiver = receiver;
 
@@ -492,8 +492,8 @@ MMClassificationPlugin::train(QString modelName, QString trainDatasetPath, QStri
 }
 
 ClassificationResult *
-MMClassificationPlugin::classify(QString inputImageDirPath, QString trainDatasetPath, QString workingDirPath,
-                                 QString modelName, ProgressablePlugin *receiver) {
+MMClassificationPlugin::classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath,
+                                 const QString &modelName, ProgressablePlugin *receiver) {
     m_receiver = receiver;
     QDir workingDir(workingDirPath);
 
@@ -640,7 +640,7 @@ void MMClassificationPlugin::connectIt()
    connect(m_watcher, &QFileSystemWatcher::directoryChanged, this, &MMClassificationPlugin::slot_checkForLogFile);
 }
 
-void MMClassificationPlugin::connectFileWatcher(const QString path)
+void MMClassificationPlugin::connectFileWatcher(const QString &path)
 {
     QFileInfo info(path);
     m_watcher->removePath(m_workDir);

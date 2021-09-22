@@ -16,7 +16,7 @@ public:
      * @return the confusionmatrix is a square matrix of dimension number of labels/classes and lines are one behind the other,
      *         returns an empty QVector on error
      */
-    QVector<int> readConfusionMatrixFromJsonFile(QString filePath);
+    QVector<int> readConfusionMatrixFromJsonFile(const QString &filePath);
 
     /**
      * @brief getAccuracyCurve reads the .log.json file and returns the accuracy curve
@@ -40,7 +40,7 @@ public:
      * @param pathToJsonResult the path to a json file containing the classification results with the validation dataset, made by not specifying a specific metric
      * @return requiredNumber many most missclassified images, returns an empty QStringList on error
      */
-    QStringList generateMostMissclassifiedImages(int requiredNumber, QString pathToValTxt, QString pathToJsonResult);
+    QStringList generateMostMissclassifiedImages(int requiredNumber, const QString &pathToValTxt, const QString &pathToJsonResult);
 
     /**
      * @brief readConfidenceScores reads the confidence scores of the appropiate json file

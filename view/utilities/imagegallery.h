@@ -39,7 +39,7 @@ public:
      *
      * @param pathList list of image paths
      */
-    void addImages(const QStringList &pathList);
+    void addImages(const QStringList &imageDirectory);
 
     /**
      * @brief addImages adds images from an imagelist to gallery.

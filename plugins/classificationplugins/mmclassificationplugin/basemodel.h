@@ -15,7 +15,7 @@ public:
      * @param relConfigFilePath is the relative path to the config file using the config hierarchy of MMClassification
      * @param checkpointFileName is the name of the with ImageNet pretrained checkpoint file and its extension
      */
-    explicit BaseModel(QString name, QString relConfigFilePath, QString checkpointFileName);
+    explicit BaseModel(const QString &name, const QString &relConfigFilePath, const QString &checkpointFileName);
 
     /**
      * @brief getName returns the name of the base model

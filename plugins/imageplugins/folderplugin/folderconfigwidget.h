@@ -71,7 +71,7 @@ public:
      *
      * @param folder new source image folder path
      */
-    void setImageFolder(QString folder);
+    void setImageFolder(const QString &folder);
 
 
 private slots:

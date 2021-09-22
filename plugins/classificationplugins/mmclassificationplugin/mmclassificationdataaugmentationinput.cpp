@@ -40,7 +40,7 @@ QString MMClassificationDataAugmentationInput::getAlbuTransformType()
     return m_albu_transform_type;
 }
 
-void MMClassificationDataAugmentationInput::setAlbuTransformType(QString type)
+void MMClassificationDataAugmentationInput::setAlbuTransformType(const QString &type)
 {
     m_albu_transform_type = type;
 }
@@ -70,7 +70,7 @@ QString MMClassificationDataAugmentationInput::getRandomFlipDirection()
     return m_random_flip_direction;
 }
 
-void MMClassificationDataAugmentationInput::setRandomFlipDirection(QString direction)
+void MMClassificationDataAugmentationInput::setRandomFlipDirection(const QString &direction)
 {
     m_random_flip_direction = direction;
 }
@@ -161,7 +161,7 @@ void MMClassificationDataAugmentationInput::slot_centerCropSizeChecked(bool isCh
     }
 }
 
-void MMClassificationDataAugmentationInput::slot_albuTransformChanged(QString type)
+void MMClassificationDataAugmentationInput::slot_albuTransformChanged(const QString &type)
 {
     setAlbuTransformType(type);
 }
@@ -176,7 +176,7 @@ void MMClassificationDataAugmentationInput::slot_randomFlipProbChanged(double pr
     setRandomFlipProb(probability);
 }
 
-void MMClassificationDataAugmentationInput::slot_randomFlipDirectionChanged(QString direction)
+void MMClassificationDataAugmentationInput::slot_randomFlipDirectionChanged(const QString &direction)
 {
     setRandomFlipDirection(direction);
 }

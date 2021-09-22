@@ -20,7 +20,7 @@ public:
      * @param scheduleConfigPath the path of the schedule config of this model
      * @param runtimeConfigPath the path to the runtimeConfig of this model
      */
-    explicit Model(QString name, QString baseModelName, QString mainConfigPath, QString modelConfigPath, QString datasetConfigPath, QString scheduleConfigPath, QString runtimeConfigPath);
+    explicit Model(const QString &name, const QString &baseModelName, const QString &mainConfigPath, const QString &modelConfigPath, const QString &datasetConfigPath, const QString &scheduleConfigPath, const QString &runtimeConfigPath);
 
     /**
      * @brief getName returns the name of this model, serving as a identifier

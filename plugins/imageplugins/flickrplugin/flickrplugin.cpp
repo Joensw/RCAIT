@@ -7,7 +7,7 @@
 #include "flickrplugin.h"
 
 
-bool FlickrPlugin::loadImages(QString path, ProgressablePlugin *receiver, int imageCount, QStringList label) {
+bool FlickrPlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) {
     m_receiver = receiver;
     QString fullCommand = createCommandlineString(path, imageCount, label);
     qDebug() << fullCommand;

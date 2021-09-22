@@ -7,7 +7,7 @@
 #include <QJsonValue>
 #include <QFileInfo>
 
-QVector<int> MMClassificationJsonResultReader::readConfusionMatrixFromJsonFile(const QString filePath) {
+QVector<int> MMClassificationJsonResultReader::readConfusionMatrixFromJsonFile(const QString &filePath) {
     QFileInfo jsonFile = QFileInfo(filePath);
     QFile inFile(jsonFile.absoluteFilePath());
 
@@ -106,7 +106,7 @@ QPair<double, double> MMClassificationJsonResultReader::readTopValuesFromJson(QS
     return topValues;
 }
 
-QStringList MMClassificationJsonResultReader::generateMostMissclassifiedImages(const int requiredNumber, const QString pathToValTxt, const QString pathToJsonResult) {
+QStringList MMClassificationJsonResultReader::generateMostMissclassifiedImages(const int requiredNumber, const QString &pathToValTxt, const QString &pathToJsonResult) {
     QVector<int> selectedMissclassifiedImageIndices = {};
     QStringList outputValidationFiles = {};
     QVector<QString> validiationFiles = {};

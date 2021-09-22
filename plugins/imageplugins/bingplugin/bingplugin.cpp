@@ -6,7 +6,7 @@
 #include "bingplugin.h"
 
 
-bool BingPlugin::loadImages(QString path, ProgressablePlugin *receiver, int imageCount, QStringList label) {
+bool BingPlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) {
     connect(receiver, &ProgressablePlugin::sig_pluginAborted, this, &BingPlugin::slot_abort);
     m_receiver = receiver;
     QString fullCommand = createCommandlineString(path, imageCount, label);

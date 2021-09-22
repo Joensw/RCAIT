@@ -38,7 +38,7 @@ QString FolderConfigwidget::getImageFolder()
     return imageFolder;
 }
 
-void FolderConfigwidget::setImageFolder(QString folder)
+void FolderConfigwidget::setImageFolder(const QString &folder)
 {
     imageFolder = folder;
 }

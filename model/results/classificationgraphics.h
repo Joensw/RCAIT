@@ -35,7 +35,7 @@ public:
      * @param identifier path to an image file
      * @param data confidence scores for that particular image file
      */
-    [[maybe_unused]] void addClassificationEntry(const QString &identifier, QList<double> &data);
+    [[maybe_unused]] void addClassificationEntry(const QString &identifier, const QList<double> &data);
 
     /**
      * @brief Remove a classification entry from retention

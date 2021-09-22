@@ -111,7 +111,7 @@ public:
      * @param resize the size to resize the input pictures
      * @param centerCropSize size of the from center cropped pictures
      */
-    static void changeDataAugmentationOptions(const QString& datasetConfigPath, const QString& albuTransform, int randomResizedCropSize, double randomFlipProb, const QString& randomFlipDirection, bool RandomErasing, int resize, int centerCropSize);
+    static void changeDataAugmentationOptions(const QString& datasetConfigPath, const QString& albuTransform, int randomResizedCropSize, double randomFlipProb, const QString& randomFlipDirection, bool randomErasing, int resize, int centerCropSize);
 
     /**
      * @brief changeDatasetPaths changes the absolute paths of the train, validation and test dataset in the given dataset config
@@ -120,7 +120,7 @@ public:
      * @param validatinoSetPath the absolute path of the validation dataset
      * @param testSetPath the absolute path of the test dataset
      */
-    void changeDatasetPaths(const QString& datasetConfigPath, const QString& trainingSetPath, const QString& validatinoSetPath, const QString& testSetPath);
+    void changeDatasetPaths(const QString& datasetConfigPath, const QString& trainingSetPath, const QString& validationSetPath, const QString& testSetPath);
 
     /**
      * @brief changeTestPath changes the test dataset path in the given dataset config file
@@ -147,9 +147,9 @@ private:
 
     QString createConfigFile(const QString& name, const QString& defaultFilePath);
     static QStringList readFileLines(const QString& pathToFile);
-    static bool readAndReplaceLinesInOrder(const QString& pathToFile, QVector<QString> regularExpressions, QVector<QString> replaceWith, int caputureGroupIndex);
+    static bool readAndReplaceLinesInOrder(const QString& pathToFile, QVector<QString> regularExpression, QVector<QString> replaceWith, int caputureGroupIndex);
     static void writeBack(const QString& pathToFile, const QStringList& data);
-    static QString replaceText(QString data, const QString& regularExpressionText, int captureGroupIndex, const QString& replacementText);
+    static QString replaceText(QString content, const QString& regularExpressionText, int captureGroupIndex, const QString& replacementText);
 
     QString m_pathToMMClassification = "";
 
