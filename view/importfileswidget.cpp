@@ -79,7 +79,7 @@ void ImportFilesWidget::clearModelList() {
     ui->pushButton_abortLoading->setEnabled(true);
 
     std::vector<QString> labelsVector = ui->lineEdit_labels->tags();
-    QStringList labelsList((qsizetype) labelsVector.size());
+    QStringList labelsList;
     for (const QString &label: labelsVector) labelsList << label;
 
     emit sig_loadInputImages(ui->comboBox_plugins->currentText(), ui->spinBox_amount->value(),

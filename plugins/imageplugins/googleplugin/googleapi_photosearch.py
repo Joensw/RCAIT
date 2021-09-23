@@ -2,6 +2,9 @@ from argparse import ArgumentParser
 #see https://pypi.org/project/Google-Images-Search/ 
 #for instructions
 from google_images_search import GoogleImagesSearch
+import shutil
+import requests
+from pathlib import Path
 
 progress = 0
 
@@ -35,15 +38,28 @@ for label in args_dict['labels']:
     'q': label,
     'num': args_dict['imagecount'],
     'safe': 'medium',
-    'fileType': 'jpg',
-    'imgType': 'photo',
+    'fileType': 'png',
+    #'imgType': 'photo',
     'imgSize': 'MEDIUM',
     'imgDominantColor': 'brown',
     'imgColorType': 'color',
     'rights': 'cc_sharealike'
     }
 
-    gis.search(search_params=_search_params, path_to_dir=args_dict['path'] + '/' + label)
+    gis.search(search_params=_search_params)#, path_to_dir=args_dict['path'] + '/' + label)
+    Path(args_dict['path'] + '/' + label).mkdir(parents=True, exist_ok=True)
+
+    fotonumber = 0
+    for image in gis.results():
+        print(image.url)
+        r = requests.get(image.url, stream=True)
+        with open(args_dict['path'] + '/' + label + '/' + label + '_' + str(fotonumber), 'wb') as out_file:
+            shutil.copyfileobj(r.raw, out_file)
+        del r
+        fotonumber+=1
+    
+    
+    
     
     progress+= labelProgress
     print(int(progress), flush=True)
