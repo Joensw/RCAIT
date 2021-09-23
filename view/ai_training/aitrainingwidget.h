@@ -69,10 +69,6 @@ signals:
      */
     void sig_abortTraining();
 
-    /**
-     * @brief sig_results emitted when the results are to be shown
-     */
-    void sig_results();
 
 
 protected:
@@ -90,8 +86,6 @@ private slots:
     [[maybe_unused]] void on_startButton_clicked();
 
     [[maybe_unused]] void on_cancelButton_clicked();
-
-    [[maybe_unused]]void on_resultsButton_clicked();
 
     [[maybe_unused]]void on_previewButton_clicked();
 
