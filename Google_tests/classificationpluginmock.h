@@ -27,11 +27,11 @@ public:
     inline static const QString PLUGIN_NAME = "testplugin";
     QStringList getAssociatedModels() override;
     bool createNewModel(QString modelName, QString baseModel) override;
-    bool getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount) override;
+    bool getAugmentationPreview(const QString &modelName, const QString &inputPath, const QString &targetPath, int amount) override;
     QWidget *getDataAugmentationInputWidget() override;
     bool removeModel(QString modelName) override;
-    TrainingResult *train(QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver) override;
-    ClassificationResult *classify(QString inputImageDirPath, QString trainDatasetPath, QString workingDirPath, QString modelName, ProgressablePlugin *receiver) override;
+    TrainingResult *train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver) override;
+    ClassificationResult *classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath, const QString &modelName, ProgressablePlugin *receiver) override;
 
 private:
 

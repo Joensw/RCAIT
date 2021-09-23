@@ -45,7 +45,9 @@ list(FILTER SOURCE_FILES EXCLUDE REGEX "/test/.*")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "/flickrplugin/.*")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "/folderplugin/.*")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "/bingplugin/.*")
+list(FILTER SOURCE_FILES EXCLUDE REGEX "/googleplugin/.*")
 list(FILTER SOURCE_FILES EXCLUDE REGEX "/mmclassificationplugin/.*")
+
 
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/Resources/Fonts/Inter-Regular.otf ${CMAKE_CURRENT_BINARY_DIR}/Inter-Regular.otf COPYONLY)
 
@@ -59,6 +61,7 @@ CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/model/results/classificationgraphics.
 
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/flickrplugin/flickrapi_photosearch.py ${CMAKE_CURRENT_BINARY_DIR}/flickrapi_photosearch.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/bingplugin/bingapi_photosearch.py ${CMAKE_CURRENT_BINARY_DIR}/bingapi_photosearch.py COPYONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/googleplugin/googleapi_photosearch.py ${CMAKE_CURRENT_BINARY_DIR}/googleapi_photosearch.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/imageplugins/flickrplugin/test.py ${CMAKE_CURRENT_BINARY_DIR}/test.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/classificationplugins/mmclassificationplugin/mmclassification_preview_pipeline.py ${CMAKE_CURRENT_BINARY_DIR}/mmclassification_preview_pipeline.py COPYONLY)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/plugins/classificationplugins/mmclassificationplugin/mmclassification_test.py ${CMAKE_CURRENT_BINARY_DIR}/mmclassification_test.py COPYONLY)
@@ -103,5 +106,6 @@ endif ()
 add_subdirectory(Google_tests)
 add_subdirectory(plugins/imageplugins/flickrplugin)
 add_subdirectory(plugins/imageplugins/bingplugin)
+add_subdirectory(plugins/imageplugins/googleplugin)
 add_subdirectory(plugins/imageplugins/folderplugin)
 add_subdirectory(plugins/classificationplugins/mmclassificationplugin)

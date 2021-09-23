@@ -3,7 +3,7 @@
 
 
 
-bool ImageLoaderPluginMock::loadImages(QString path, ProgressablePlugin *receiver, int imageCount, QStringList label)
+bool ImageLoaderPluginMock::loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label)
 {
     return true;
 }

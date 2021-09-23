@@ -59,6 +59,18 @@ public:
      */
     void setPythonPath(QString path);
 
+    /**
+     * @brief getAPIKey gets the API Key
+     * @return the API Key
+     */
+    QString getAPIKey();
+
+    /**
+     * @brief getProjectCX gets the Project CX of the Google API, see https://cse.google.com/cse/all
+     * @return the project CX
+     */
+    QString getProjectCX();
+
 
 
 private:

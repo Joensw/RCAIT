@@ -39,7 +39,7 @@ bool ClassificationPluginMock::createNewModel(QString modelName, QString baseMod
     return true;
 }
 
-bool ClassificationPluginMock::getAugmentationPreview(QString modelName, QString inputPath, QString targetPath, int amount)
+bool ClassificationPluginMock::getAugmentationPreview(const QString &modelName, const QString &inputPath, const QString &targetPath, int amount)
 {
     return true;
 }
@@ -54,7 +54,7 @@ bool ClassificationPluginMock::removeModel(QString modelName)
     return true;
 }
 
-TrainingResult *ClassificationPluginMock::train(QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver)
+TrainingResult *ClassificationPluginMock::train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver)
 {
     if (modelName == "true"){
         // valid result, to make handling valid results testable
@@ -63,7 +63,7 @@ TrainingResult *ClassificationPluginMock::train(QString modelName, QString train
     return new TrainingResult({},{},{},{},{},{},{});
 }
 
-ClassificationResult *ClassificationPluginMock::classify(QString inputImageDirPath, QString trainDatasetPath, QString workingDirPath, QString modelName, ProgressablePlugin *receiver)
+ClassificationResult *ClassificationPluginMock::classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath, const QString &modelName, ProgressablePlugin *receiver)
 {
     if (inputImageDirPath == "true"){
         // valid result, to make handling valid results testable

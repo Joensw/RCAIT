@@ -7,7 +7,7 @@
 #include "folderplugin.h"
 
 
-bool FolderPlugin::loadImages(QString path, ProgressablePlugin *receiver, int /*imageCount*/, QStringList /*label*/) {
+bool FolderPlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int /*imageCount*/, const QStringList &/*label*/) {
     abort = false;
     connect(receiver, &ProgressablePlugin::sig_pluginAborted, this, &FolderPlugin::slot_abort);
     QDir output(path);

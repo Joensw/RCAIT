@@ -17,7 +17,7 @@ class ImageLoaderPluginMock : public QObject, ImageLoaderPlugin
 
 public:
 
-    bool loadImages(QString path, ProgressablePlugin* receiver ,int imageCount,  QStringList label) override;
+    bool loadImages(const QString &path, ProgressablePlugin* receiver ,int imageCount, const QStringList &label) override;
     QWidget* getConfigurationWidget() override;
     void saveConfiguration() override;
     void init() override;

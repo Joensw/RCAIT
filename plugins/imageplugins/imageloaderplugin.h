@@ -34,7 +34,7 @@ public:
      * @param labels list of image labels
      * @return true if loading was successful, false otherwise
      */
-    virtual bool loadImages(QString path, ProgressablePlugin* receiver, int count, QStringList labels) = 0;
+    virtual bool loadImages(const QString &path, ProgressablePlugin* receiver, int count, const QStringList &labels) = 0;
 };
 
 QT_BEGIN_NAMESPACE

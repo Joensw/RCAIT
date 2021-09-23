@@ -39,7 +39,7 @@ public:
      * @param label ignored by this plugin
      * @return true if loading was successful
      */
-    bool loadImages(QString path, ProgressablePlugin *receiver, int /*imageCount*/, QStringList /*label*/) override;
+    bool loadImages(const QString &path, ProgressablePlugin *receiver, int /*imageCount*/, const QStringList &/*label*/) override;
 
     /**
      * @brief getConfigurationWidget gets config widget of plugin.

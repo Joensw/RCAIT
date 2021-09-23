@@ -6,7 +6,7 @@
 #include "googleplugin.h"
 
 
-bool GooglePlugin::loadImages(QString path, ProgressablePlugin *receiver, int imageCount, QStringList label) {
+bool GooglePlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) {
     connect(receiver, &ProgressablePlugin::sig_pluginAborted, this, &GooglePlugin::slot_abort);
     m_receiver = receiver;
     QString fullCommand = createCommandlineString(path, imageCount, label);
@@ -27,10 +27,12 @@ QString GooglePlugin::createCommandlineString(const QString &path, int imageCoun
     //get and format command line parameters for python script call
     auto downloadPath = QString("-p ").append(path);
     auto imageCountStr = QString("-c ").append(QString::number(imageCount));
-    auto pythonfile = QFileInfo("Googleapi_photosearch.py");
+    auto pythonfile = QFileInfo("googleapi_photosearch.py");
 
     QString scriptPath = pythonfile.absoluteFilePath();
     QString command = m_googleSettings.getPythonPath();
+    QString APIKey = QString("-k ").append(m_googleSettings.getAPIKey());
+    QString projectCX = QString("-x ").append(m_googleSettings.getProjectCX());
     QString labelConcat = "-l";
 
     for (const auto &i: label) labelConcat.append(" " % ('"' % i % '"'));
