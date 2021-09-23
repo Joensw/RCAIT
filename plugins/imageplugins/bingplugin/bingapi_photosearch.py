@@ -24,7 +24,6 @@ args = parser.parse_args()
 args_dict = vars(args)
 
 numLabels = len(args_dict['labels'])
-labelProgress = 100 / numLabels
 
 for label in args_dict['labels']:
     print("[%] Downloading Images for label " + label, flush=True)
