@@ -36,12 +36,6 @@ void AITrainingWidget::on_cancelButton_clicked()
     ui->cancelButton->setEnabled(false);
 }
 
-
-void AITrainingWidget::on_resultsButton_clicked()
-{
-    emit sig_results();
-}
-
 void AITrainingWidget::setDataAugWidget(QWidget *replacement)
 {
     //ui->gridLayout_dataAug->replaceWidget(ui->dataAugWidget, replacement);
