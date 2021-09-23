@@ -66,7 +66,7 @@ bool ImageLoaderPluginManager::loadImages(QString path, ProgressablePlugin *rece
         qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
         return false;
     }
-   return m_pluginsSharedPointer.value(pluginName)->loadImages(path, receiver, count, labels);;
+   return m_pluginsSharedPointer.value(pluginName)->loadImages(path, receiver, count, labels);
 }
 
 QStringList ImageLoaderPluginManager::getNamesOfPlugins()
