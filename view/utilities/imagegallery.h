@@ -90,19 +90,19 @@ public:
      */
     void setImageSize(int size);
 
-    /**
-     * @brief minimumSizeHint gets minimum size of gallery.
-     *
-     * @return size hint
-     */
-    QSize minimumSizeHint() const override;
+//    /**
+//     * @brief minimumSizeHint gets minimum size of gallery.
+//     *
+//     * @return size hint
+//     */
+//    QSize minimumSizeHint() const override;
 
-    /**
-     * @brief sizeHint gets preferred size of gallery.
-     *
-     * @return size hint
-     */
-    QSize sizeHint() const override;
+//    /**
+//     * @brief sizeHint gets preferred size of gallery.
+//     *
+//     * @return size hint
+//     */
+//    QSize sizeHint() const override;
 
     /**
      * @brief clearAndStop clears a gallery and stops all concurrent load tasks.

@@ -10,7 +10,8 @@
 ImageGalleryTree::ImageGalleryTree(QWidget *parent) {
     // Add full touch compliance
     QScroller::grabGesture(this, QScroller::TouchGesture);
-
+    connect(this, &QTreeWidget::itemExpanded, this, &ImageGalleryTree::expandItem);
+    connect(this, &QTreeWidget::itemCollapsed, this, &ImageGalleryTree::collapseItem);
     setDragEnabled(false);
     setAcceptDrops(false);
     setHeaderHidden(true);
@@ -19,7 +20,6 @@ ImageGalleryTree::ImageGalleryTree(QWidget *parent) {
     root->setFlags(root->flags() ^ Qt::ItemIsDropEnabled);
 
     verticalScrollBar()->grabGesture(Qt::GestureType::SwipeGesture, Qt::GestureFlag::ReceivePartialGestures);
-
     QFont f(font());
     f.setPointSize(10);
     setFont(f);
@@ -43,6 +43,28 @@ QMap<QString, QList<int>> ImageGalleryTree::removeSelected() {
     }
 
     return removed;
+}
+
+void ImageGalleryTree::expandItem(QTreeWidgetItem *item)
+{
+    //blockieren funktioniert nicht richtig, mal genauer anschauen
+//    if (mExpanded) {
+//        this->blockSignals(true);
+//        collapseItem(item);
+//        this->blockSignals(false);
+//        return;
+//    }
+//    mExpanded = true;
+    galleries.at(indexOfTopLevelItem(item))->setMinimumHeight(this->height() - 17);
+    scrollToItem(item, QAbstractItemView::ScrollHint::PositionAtTop);
+    QTreeWidget::expandItem(item);
+}
+
+void ImageGalleryTree::collapseItem(QTreeWidgetItem *item)
+{
+//
+//    mExpanded = false;
+    QTreeWidget::collapseItem(item);
 }
 
 

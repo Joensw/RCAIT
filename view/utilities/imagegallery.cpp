@@ -110,21 +110,21 @@ void ImageGallery::setImageSize(int size)
     setIconSize(QSize(mImageSize, mImageSize));
 }
 
-/*!
-\reimp
-*/
-QSize ImageGallery::minimumSizeHint() const {
-    QSize size(parentWidget()->size());
-    size.setHeight(size.height() - 60);
-    return size;
-}
+///*!
+//\reimp
+//*/
+//QSize ImageGallery::minimumSizeHint() const {
+//    QSize size(parentWidget()->size());
+//    size.setHeight(size.height() - 60);
+//    return size;
+//}
 
-/*!
-\reimp
-*/
-QSize ImageGallery::sizeHint() const {
-    return minimumSizeHint();
-}
+///*!
+//\reimp
+//*/
+//QSize ImageGallery::sizeHint() const {
+//    return minimumSizeHint();
+//}
 
 void ImageGallery::clearAndStop() {
     emit sig_stopLoading();
