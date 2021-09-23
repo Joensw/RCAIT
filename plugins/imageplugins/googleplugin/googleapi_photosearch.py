@@ -6,6 +6,7 @@ import shutil
 import requests
 from pathlib import Path
 
+headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"}
 progress = 0
 
 parser = ArgumentParser()
@@ -37,26 +38,27 @@ for label in args_dict['labels']:
     _search_params = {
     'q': label,
     'num': args_dict['imagecount'],
-    'safe': 'medium',
+    'safe': 'off',
     'fileType': 'png',
-    #'imgType': 'photo',
-    'imgSize': 'MEDIUM',
-    'imgDominantColor': 'brown',
+    'imgType': 'photo',
+    'imgSize': 'LARGE',
+    #'imgDominantColor': 'brown',
     'imgColorType': 'color',
-    'rights': 'cc_sharealike'
+    'rights': 'cc_publicdomain'
     }
 
     gis.search(search_params=_search_params)#, path_to_dir=args_dict['path'] + '/' + label)
     Path(args_dict['path'] + '/' + label).mkdir(parents=True, exist_ok=True)
-
+    fotoProgress = labelProgress/args_dict['imagecount']
     fotonumber = 0
     for image in gis.results():
         print(image.url)
-        r = requests.get(image.url, stream=True)
+        r = requests.get(image.url, stream=True,headers=headers)
         with open(args_dict['path'] + '/' + label + '/' + label + '_' + str(fotonumber), 'wb') as out_file:
             shutil.copyfileobj(r.raw, out_file)
         del r
         fotonumber+=1
+        
     
     
     
