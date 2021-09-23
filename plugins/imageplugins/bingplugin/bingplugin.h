@@ -30,24 +30,28 @@ class BingPlugin : public QObject, ImageLoaderPlugin
 
 
 private:
-   BingSettings m_bingSettings;
-   QWidget *pluginSettings;
-   QScopedPointer<QProcess> m_process;
-   ProgressablePlugin* m_receiver;
-   // in case something goes wrong (could be read from command line)
-   bool m_success = true;
+    BingSettings m_bingSettings;
+    QWidget *pluginSettings;
+    QScopedPointer<QProcess> m_process;
+    ProgressablePlugin *m_receiver;
+    // in case something goes wrong (could be read from command line)
+    bool m_success = true;
+    int m_imageCount;
+    QStringList m_labels;
+
+    int m_progress = 0;
 
     QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
 
 public:
-   /**
-     * @brief loadImages loads images through the Bing API
-     * @param path to save the images to
-     * @param receiver takes status updates
-     * @param imageCount count of images to download
-     * @param label list of labels to download images of
-     * @return
-     */
+    /**
+      * @brief loadImages loads images through the Bing API
+      * @param path to save the images to
+      * @param receiver takes status updates
+      * @param imageCount count of images to download
+      * @param label list of labels to download images of
+      * @return
+      */
     bool loadImages(const QString &path, ProgressablePlugin* receiver ,int imageCount, const QStringList &label) override;
     /**
      * @brief getConfigurationWidget returns a widget in which the Plugin can be configured
