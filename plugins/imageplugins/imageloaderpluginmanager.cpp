@@ -36,7 +36,7 @@ void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
 }
 
 QWidget *ImageLoaderPluginManager::getConfigurationWidget(QString pluginName) {
-    if (!m_plugins.contains(pluginName)) {
+    if (!m_pluginsSharedPointer.contains(pluginName)) {
         qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
         return new QWidget();
     }
@@ -44,7 +44,7 @@ QWidget *ImageLoaderPluginManager::getConfigurationWidget(QString pluginName) {
 }
 
 void ImageLoaderPluginManager::saveConfiguration(QString pluginName) {
-    if (!m_plugins.contains(pluginName)) {
+    if (!m_pluginsSharedPointer.contains(pluginName)) {
         qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
         return;
     }
@@ -62,7 +62,7 @@ QWidget *ImageLoaderPluginManager::getInputWidget(QString pluginName) {
 
 bool ImageLoaderPluginManager::loadImages(QString path, ProgressablePlugin *receiver, QString pluginName, int count,
                                           QStringList labels) {
-    if (!m_plugins.contains(pluginName)) {
+    if (!m_pluginsSharedPointer.contains(pluginName)) {
         qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
         return false;
     }

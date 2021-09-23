@@ -38,7 +38,7 @@ QString GooglePlugin::createCommandlineString(const QString &path, int imageCoun
     for (const auto &i: label) labelConcat.append(" " % ('"' % i % '"'));
 
     //set the -u flag to write directly to standardoutput without buffering
-    QString fullCommand = command % " -u " % scriptPath % " " % downloadPath % " " % imageCountStr % " " % labelConcat;
+    QString fullCommand = command % " -u " % scriptPath % " " % projectCX % " " % APIKey % " " % downloadPath % " " % imageCountStr % " " % labelConcat;
     return fullCommand;
 
 }
