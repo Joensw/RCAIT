@@ -47,24 +47,16 @@ QMap<QString, QList<int>> ImageGalleryTree::removeSelected() {
 
 void ImageGalleryTree::expandItem(QTreeWidgetItem *item)
 {
-    //blockieren funktioniert nicht richtig, mal genauer anschauen
-//    if (mExpanded) {
-//        this->blockSignals(true);
-//        collapseItem(item);
-//        this->blockSignals(false);
-//        return;
-//    }
-//    mExpanded = true;
     galleries.at(indexOfTopLevelItem(item))->setMinimumHeight(this->height() - 17);
     scrollToItem(item, QAbstractItemView::ScrollHint::PositionAtTop);
     QTreeWidget::expandItem(item);
+    verticalScrollBar()->setEnabled(false);
 }
 
 void ImageGalleryTree::collapseItem(QTreeWidgetItem *item)
 {
-//
-//    mExpanded = false;
     QTreeWidget::collapseItem(item);
+    verticalScrollBar()->setEnabled(true);
 }
 
 
@@ -99,5 +91,4 @@ void ImageGalleryTree::addLabels(const QMap<QString, QStringList> &labelToPathsM
     for (const auto &[path, images]: MapAdapt(labelToPathsMap)) {
         addLabel(path, images);
     }
-
 }
