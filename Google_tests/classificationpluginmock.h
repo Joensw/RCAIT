@@ -24,7 +24,6 @@ public:
     void init() override;
     QString getName() override;
     QWidget*  getInputWidget() override;
-    inline static const QString PLUGIN_NAME = "testplugin";
     QStringList getAssociatedModels() override;
     bool createNewModel(QString modelName, QString baseModel) override;
     bool getAugmentationPreview(const QString &modelName, const QString &inputPath, const QString &targetPath, int amount) override;
@@ -35,6 +34,7 @@ public:
 
 private:
 
+    static constexpr auto PLUGIN_NAME = "testplugin";
 
 };
 

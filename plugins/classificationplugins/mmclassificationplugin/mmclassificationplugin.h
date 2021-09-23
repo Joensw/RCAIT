@@ -35,7 +35,7 @@ class MMClassificationPlugin : public QObject, ClassificationPlugin
     Q_INTERFACES(ClassificationPlugin)
 private:
 
-    const QString m_name = "MMClassification";
+    const QString m_name = "MMClassification Plugin";
     const QString m_modelNameKey = "name";
     const QString m_baseModelNameKey = "baseModel";
     const QString m_mainConfigPathKey = "configPath";

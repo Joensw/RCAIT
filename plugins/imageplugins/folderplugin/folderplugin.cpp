@@ -88,7 +88,7 @@ void FolderPlugin::init() {
 }
 
 QString FolderPlugin::getName() {
-    return "FolderPlugin";
+    return "Folder Loader Plugin";
 }
 
 QWidget *FolderPlugin::getInputWidget() {
