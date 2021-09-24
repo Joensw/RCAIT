@@ -18,7 +18,7 @@ class ClassificationPluginManager : public PluginManager {
 private:
     ClassificationPluginManager();
 
-    QMap<QString, ClassificationPlugin *> m_plugins;
+    QMap<QString, QSharedPointer<ClassificationPlugin>> m_plugins;
 
 public:
 

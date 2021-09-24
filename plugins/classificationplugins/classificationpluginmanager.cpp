@@ -20,7 +20,7 @@ void ClassificationPluginManager::loadPlugins(QString pluginDir) {
         if (classificationPlugin) {
             classificationPlugin->init();
             m_pluginConfigurationWidgets << classificationPlugin->getConfigurationWidget();
-            m_plugins[classificationPlugin->getName()] = classificationPlugin;
+            m_plugins[classificationPlugin->getName()] = QSharedPointer<ClassificationPlugin>(classificationPlugin);
         }
     }
 }
