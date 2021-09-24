@@ -54,7 +54,7 @@ QSharedPointer<QWidget> BingPlugin::getConfigurationWidget() {
 }
 
 void BingPlugin::saveConfiguration() {
-    qobject_cast<BingSettings *>(pluginSettings)->saveSettings();
+    pluginSettings->saveSettings();
 }
 
 void BingPlugin::init() {
