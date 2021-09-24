@@ -48,8 +48,7 @@ private:
     const int m_numberOfMissClassifiedImages = 9;
     const QString m_annotationFileName = "val.txt";
 
-    //TODO remove *
-    QList<BaseModel> *m_baseModels;
+    QList<BaseModel> m_baseModels;
     QSettings m_models = {"MMClassificationModels", QSettings::IniFormat};
 
     MMClassificationConfigFileBuilder m_mmClassificationConfigFileBuilder;
@@ -83,12 +82,6 @@ private:
     void connectFileWatcher(const QString &path);
 
 public:
-
-    /**
-     * @brief destructor
-     */
-
-    ~MMClassificationPlugin() override;
 
     /**
      * @brief getName returns the name of this plugin
@@ -180,9 +173,11 @@ public:
     QSharedPointer<QWidget> getDataAugmentationInputWidget() override;
 
 private slots:
+
     void slot_readClassifyOutput();
 
-    void slot_checkForLogFile(QString path);
-    void slot_readChangeInLogFile(QString path);
+    void slot_checkForLogFile(const QString &path);
+
+    void slot_readChangeInLogFile(const QString &path);
 };
 #endif // MMCLASSIFICATIONPLUGIN_H

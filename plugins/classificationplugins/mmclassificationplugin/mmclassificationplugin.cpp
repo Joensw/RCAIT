@@ -1,29 +1,20 @@
 #include "mmclassificationplugin.h"
 
-MMClassificationPlugin::~MMClassificationPlugin() {
-    delete m_baseModels;
-}
-
 void MMClassificationPlugin::initBaseModels() {
-    m_baseModels = new QList<BaseModel>;
     auto *resnet50 = new BaseModel("ResNet-50", "resnet50.py", "resnet50_batch256_imagenet_20200708-cfb998bf.pth");
-    m_baseModels->append(*resnet50);
+    m_baseModels.append(*resnet50);
     auto *resnet101 = new BaseModel("ResNet-101", "resnet101.py",
                                     "resnet101_batch256_imagenet_20200708-753f3608.pth");
-    m_baseModels->append(*resnet101);
+    m_baseModels.append(*resnet101);
     auto *resNeXt32x8d101 = new BaseModel("ResNeXt-32x8d-101", "resnext101_32x8d.py",
                                           "resnext101_32x8d_b32x8_imagenet_20210506-23a247d5.pth");
-    m_baseModels->append(*resNeXt32x8d101);
+    m_baseModels.append(*resNeXt32x8d101);
     auto *sEResNet50 = new BaseModel("SE-ResNet-50", "seresnet50.py",
                                      "se-resnet50_batch256_imagenet_20200804-ae206104.pth");
-    m_baseModels->append(*sEResNet50);
+    m_baseModels.append(*sEResNet50);
     auto *mobileNetV3Large = new BaseModel("MobileNetV3 Large", "mobilenet_v3_large_imagenet.py",
                                            "mobilenet_v3_large-3ea3c186.pth");
-    m_baseModels->append(*mobileNetV3Large);
-}
-
-void MMClassificationPlugin::deleteBaseModels() {
-    delete m_baseModels;
+    m_baseModels.append(*mobileNetV3Large);
 }
 
 void MMClassificationPlugin::saveModel(Model model) {
@@ -125,7 +116,7 @@ void MMClassificationPlugin::init() {
 
 QStringList MMClassificationPlugin::getAssociatedModels() {
     QStringList modelNames;
-    for (BaseModel model: *m_baseModels) {
+    for (BaseModel model: m_baseModels) {
         modelNames << model.getName();
     }
     return modelNames;
@@ -143,15 +134,14 @@ bool MMClassificationPlugin::createNewModel(QString modelName, QString baseModel
     bool validBaseModel = false;
     QString baseModelPath;
     QString checkpointFileName;
-    QList<BaseModel> baseModels = *m_baseModels;
-    for (BaseModel baseModel: baseModels) {
+    for (BaseModel baseModel: m_baseModels) {
         int compareResult = QString::compare(baseModel.getName(), baseModelName);
-        if (compareResult == 0) {
-            validBaseModel = true;
-            baseModelPath = baseModel.getRelConfigFilePath();
-            checkpointFileName = baseModel.getCheckpointFileName();
-            break;
-        }
+        if (compareResult != 0) continue;
+
+        validBaseModel = true;
+        baseModelPath = baseModel.getRelConfigFilePath();
+        checkpointFileName = baseModel.getCheckpointFileName();
+        break;
     }
     if (!validBaseModel) return false;
 
@@ -581,7 +571,7 @@ void MMClassificationPlugin::slot_readClassifyOutput() {
     }
 }
 
-void MMClassificationPlugin::slot_checkForLogFile(QString /*path*/) {
+void MMClassificationPlugin::slot_checkForLogFile(const QString & /*path*/) {
     QDir directory(m_workDir);
     QStringList logFiles = directory.entryList(QStringList() << "*.log.json", QDir::Files);
     if (!logFiles.isEmpty()) {
@@ -595,7 +585,7 @@ void MMClassificationPlugin::slot_checkForLogFile(QString /*path*/) {
     }
 }
 
-void MMClassificationPlugin::slot_readChangeInLogFile(QString path) {
+void MMClassificationPlugin::slot_readChangeInLogFile(const QString &path) {
     const QString modeForProgress = "train";
     QFileInfo jsonLogFile = QFileInfo(path);
     QFile inFile(jsonLogFile.absoluteFilePath());
