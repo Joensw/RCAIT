@@ -47,8 +47,13 @@ public:
      */
     QMap<QString, QList<int>> removeSelected();
 
+public slots:
+    void expandItem(QTreeWidgetItem *item);
+    void collapseItem(QTreeWidgetItem *item);
+
 private:
     QList<ImageGallery*> galleries;
+   // bool mExpanded = false;
 
 };
 

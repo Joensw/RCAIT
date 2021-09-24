@@ -8,6 +8,7 @@
 
 #include "imagegallery.h"
 #include "imagegallerytree.h"
+#include <QKeyEvent>
 #include <QWidget>
 
 namespace Ui {
@@ -26,6 +27,14 @@ protected:
      * @param event incoming event
      */
     void changeEvent(QEvent *event) override;
+
+    /**
+     * @brief keyPressEvent is used for handling keypress
+     *
+     * @param event key press
+     */
+    void keyPressEvent(QKeyEvent *event) override;
+
 
 public:
     /**

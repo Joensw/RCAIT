@@ -25,16 +25,16 @@ void Controller::slot_configurationComplete(){
     mMainWindow.reset(new MainWindow);
 
     //Set member variables
-    mSettingsController.reset(new SettingsController(this, &*mDataManager));
-    mProjectController.reset(new ProjectController(this, &*mDataManager, mMainWindow->getStartWidget()));
-    mModelController.reset(new ModelController(this, &*mDataManager, mMainWindow->getImportFilesWidget()));
-    mAiController.reset(new AIController(&*mDataManager, mMainWindow->getInputImagesWidget(),
+    mSettingsController.reset(new SettingsController(this, mDataManager));
+    mProjectController.reset(new ProjectController(this, mDataManager, mMainWindow->getStartWidget()));
+    mModelController.reset(new ModelController(this, mDataManager, mMainWindow->getImportFilesWidget()));
+    mAiController.reset(new AIController(mDataManager, mMainWindow->getInputImagesWidget(),
                                          mMainWindow->getAITrainingWidget()));
     mAutomationController.reset(new AutomationController(mMainWindow->getAutomationWidget()));
-    mResultsController.reset(new ResultsController(&*mDataManager, mMainWindow->getResultsWidget()));
+    mResultsController.reset(new ResultsController(mDataManager, mMainWindow->getResultsWidget()));
     mImageController.reset(
             new ImageController(mMainWindow->getImageInspectionWidget(), mMainWindow->getImportFilesWidget(),
-                                &*mDataManager));
+                                mDataManager));
     mTabController.reset(new TabController(mMainWindow->getTabWidget()));
 
     //Connect Signals/Slots

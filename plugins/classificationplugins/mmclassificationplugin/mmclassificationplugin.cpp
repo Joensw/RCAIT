@@ -520,7 +520,7 @@ MMClassificationPlugin::classify(const QString &inputImageDirPath, const QString
     auto pythonfile = QFileInfo("mmclassification_test.py");
     auto scriptPath = pythonfile.absoluteFilePath();
 
-    auto fullCommand = command % " " % scriptPath % " "
+    QString fullCommand = command % " " % scriptPath % " "
                        % mainConfigPath % " " % checkpointPath % " "
                        % outputConfidenceScoreConsoleArgumentName % "=" % pathToConfidenceScoreResultFile;
 

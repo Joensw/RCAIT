@@ -110,8 +110,10 @@ void CodeEditor::appendPlaceholder(const QString &placeholder) {
 
 void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event) {
     QPainter painter(lineNumberArea);
-    QColor background("#EEEEEE");
-    QColor separator("#979797");
+    //QColor background("#EEEEEE");
+    QColor background(238, 238, 238);
+    //QColor separator("#979797");
+    QColor separator(151, 151, 151);
     painter.fillRect(event->rect(), background);
     painter.setPen(QPen(separator));
     painter.drawLine(event->rect().topRight(), event->rect().bottomRight());
