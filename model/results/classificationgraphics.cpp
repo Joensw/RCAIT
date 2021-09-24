@@ -12,7 +12,7 @@ ClassificationGraphics::ClassificationGraphics(const QString &directory, const Q
 QString ClassificationGraphics::dataToPyText() {
     QStringList result;
 
-    for (const auto &row_data: m_data) {
+    for (const auto &row_data: qAsConst(m_data)) {
         //List for each row, which shall be joined in a single QString
         QStringList rowList;
 

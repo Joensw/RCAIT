@@ -44,7 +44,9 @@ TEST_F(ImageLoaderPluginManagerTest, testLoadPlugins){
 }
 
 TEST_F(ImageLoaderPluginManagerTest, testCallMethods){
-
+    int argc = 1;
+    char *argv[1] = {new char('a')};
+    QApplication a(argc, argv);
     testee.getConfigurationWidget(ImageLoaderPluginMock::PLUGIN_NAME);
     testee.getInputWidget(ImageLoaderPluginMock::PLUGIN_NAME);
     testee.getConfigurationWidgets();

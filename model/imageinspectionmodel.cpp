@@ -172,7 +172,7 @@ void ImageInspectionModel::moveFile(const QString &imagePath, const QString &lab
     QDir folder(fileInfo.absoluteDir());
 
     auto dir = QDir(trainOrValidate);
-    QString newPath = dir.absoluteFilePath(label);
+    //QString newPath = dir.absoluteFilePath(label);
     if (!dir.exists(label)) { dir.mkpath(label); }
     dir.cd(label);
     auto newFile = QString("%1_%2.%3").arg(label, QString::number(fileNumber), suffix);
