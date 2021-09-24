@@ -24,7 +24,7 @@ public:
     /**
      * @brief destructor
      */
-    ~GlobalSettingsWidget();
+    ~GlobalSettingsWidget() override;
 
     /**
      * @brief setNewProjectPath sets the path to the directory where the applications manages its projects
@@ -104,7 +104,7 @@ protected:
      *
      * @param event incoming event
      */
-    void changeEvent(QEvent *event);
+    void changeEvent(QEvent *event) override;
 
 private slots:
 
@@ -120,7 +120,7 @@ private:
     static constexpr auto STYLESHEET_GREEN = "QLabel { color : green; }";
     static constexpr auto STYLESHEET_BLUE = "QLabel { color : blue; }";
 
-    static constexpr auto SUCCESS_UPDATED_PATHS_MSG = QT_TR_NOOP("Success. Updated %1 path(s)");
+    static constexpr auto SUCCESS_UPDATED_PATHS_MSG = QT_TR_NOOP("Updated %1 path(s) successfully");
     static constexpr auto NO_CHANGES_MSG = QT_TR_NOOP("No changes were made");
 
     Ui::GlobalSettingsWidget *ui;
