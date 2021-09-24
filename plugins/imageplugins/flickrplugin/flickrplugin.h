@@ -20,7 +20,6 @@
 #include "QRegularExpression"
 
 
-
 /**
  * @brief The FlickrPlugin for downloading images via the Flickr API
  */

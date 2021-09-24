@@ -47,7 +47,8 @@ public:
      * @param amount number of augmented images
      * @return true if successful
      */
-    virtual bool getAugmentationPreview(const QString &modelName, const QString &inputPath, const QString &targetPath, int amount) = 0;
+    virtual bool getAugmentationPreview(const QString &modelName, const QString &inputPath, const QString &targetPath,
+                                        int amount) = 0;
 
     /**
      * @brief getDataAugmentationInputWidget gets widget for augmentation config.
@@ -62,7 +63,7 @@ public:
      * @param modelName name of model
      * @return true if removal was successful
      */
-    virtual bool removeModel(QString modelName)= 0;
+    virtual bool removeModel(QString modelName) = 0;
 
     /**
      * @brief train starts a training with the given arguments.
@@ -74,7 +75,9 @@ public:
      * @param receiver receives progress of training
      * @return result data of training
      */
-    virtual TrainingResult* train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver)= 0;
+    virtual TrainingResult *
+    train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory,
+          ProgressablePlugin *receiver) = 0;
 
     /**
      * @brief classify starts a classification with the given arguments.
@@ -86,7 +89,9 @@ public:
      * @param receiver receives classification progress
      * @return result data of classification
      */
-    virtual ClassificationResult* classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath, const QString &modelName, ProgressablePlugin *receiver)= 0;
+    virtual ClassificationResult *
+    classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath,
+             const QString &modelName, ProgressablePlugin *receiver) = 0;
 
     /**
      * @brief init initializes plugin.
@@ -100,6 +105,7 @@ QT_BEGIN_NAMESPACE
 #define ClassificationPlugin_iid "de.Fraunhofer.IOSB.RCAIT.ClassificationPlugin"
 
 Q_DECLARE_INTERFACE(ClassificationPlugin, ClassificationPlugin_iid)
+
 QT_END_NAMESPACE
 
 #endif

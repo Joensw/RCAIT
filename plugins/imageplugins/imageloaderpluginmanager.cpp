@@ -16,18 +16,13 @@ void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
         if (!QLibrary::isLibrary(fileName)) continue;
 
         QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
-        QObject *plugin = pluginLoader.instance();
 
-        if (!plugin) continue;
-
-        auto *imageLoaderPlugin = qobject_cast<ImageLoaderPlugin *>(plugin);
+        auto *imageLoaderPlugin = qobject_cast<ImageLoaderPlugin *>(pluginLoader.instance());
         if (imageLoaderPlugin) {
-            imageLoaderPlugin->init(); //ToDo: call init function if necessary
+            imageLoaderPlugin->init();
             m_pluginConfigurationWidgets << imageLoaderPlugin->getConfigurationWidget();
-            m_plugins[imageLoaderPlugin->getName()] = QSharedPointer<ImageLoaderPlugin>(imageLoaderPlugin);
+            m_plugins[imageLoaderPlugin->getName()] = imageLoaderPlugin;
         }
-        //pluginLoader.unload(); //ToDo: Maybe use this
-
     }
 
 

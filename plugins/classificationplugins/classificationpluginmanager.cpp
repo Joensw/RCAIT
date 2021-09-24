@@ -15,16 +15,13 @@ void ClassificationPluginManager::loadPlugins(QString pluginDir) {
     for (const QString &fileName: entries) {
         if (!QLibrary::isLibrary(fileName)) continue;
         QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
-        QObject *plugin = pluginLoader.instance();
-        if (!plugin) continue;
 
-        auto *classificationPlugin = qobject_cast<ClassificationPlugin *>(plugin);
+        auto *classificationPlugin = qobject_cast<ClassificationPlugin *>(pluginLoader.instance());
         if (classificationPlugin) {
             classificationPlugin->init();
             m_pluginConfigurationWidgets << classificationPlugin->getConfigurationWidget();
-            m_plugins[classificationPlugin->getName()] = QSharedPointer<ClassificationPlugin>(classificationPlugin);
+            m_plugins[classificationPlugin->getName()] = classificationPlugin;
         }
-        //pluginLoader.unload(); //ToDo: Maybe use this
     }
 }
 
