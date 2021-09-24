@@ -239,7 +239,7 @@ public:
     /**
      * @return the input UI's of all the plugins
      */
-    QList<QWidget*> getPluginSettings();
+    QList<QSharedPointer<QWidget>> getPluginSettings();
 
     /**
      * @brief savePluginSettings saves the settings of the plugin specified in the UI at the current index
@@ -304,12 +304,12 @@ public:
     /**
      * @return the input UI of the current classification plugin that is to be shown
      */
-    QWidget *getInputWidget();
+    QSharedPointer<QWidget> getInputWidget();
 
     /**
      * @return the input UI of the current classification plugins data augmentation settings that are to be shown
      */
-    QWidget * getDataAugmentationInputWidget();
+    QSharedPointer<QWidget> getDataAugmentationInputWidget();
     
 private:
     ProjectManager* mProjectManager;

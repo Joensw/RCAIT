@@ -46,7 +46,7 @@ public:
      *
      * @return config widget
      */
-    QWidget *getConfigurationWidget() override;
+    QSharedPointer<QWidget> getConfigurationWidget() override;
 
     /**
      * @brief saveConfiguration saves settings of config widget.
@@ -72,13 +72,13 @@ public:
      *
      * @return input widget
      */
-    QWidget*  getInputWidget() override;
+    QSharedPointer<QWidget> getInputWidget() override;
 
 private slots:
     void slot_abort();
 
 private:
-    FolderConfigwidget* mConfigWidget;
+    QSharedPointer<FolderConfigwidget> mConfigWidget;
     int mode = 0;
     QString imageDir;
     bool abort = false;

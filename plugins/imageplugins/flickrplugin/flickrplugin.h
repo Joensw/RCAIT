@@ -24,33 +24,39 @@
 /**
  * @brief The FlickrPlugin for downloading images via the Flickr API
  */
-class FlickrPlugin : public QObject, ImageLoaderPlugin
-{
-    Q_OBJECT
+class FlickrPlugin : public QObject, ImageLoaderPlugin {
+Q_OBJECT
     Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.FlickrPlugin" FILE "FlickrPlugin.json")
     Q_INTERFACES(ImageLoaderPlugin)
 
 public:
-    bool loadImages( const QString &path, ProgressablePlugin* receiver ,int imageCount,  const QStringList &label) override;
-    QWidget* getConfigurationWidget() override;
+    bool
+    loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) override;
+
+    QSharedPointer<QWidget> getConfigurationWidget() override;
+
     void saveConfiguration() override;
+
     void init() override;
+
     QString getName() override;
-    QWidget*  getInputWidget() override;
 
 private:
-   FlickrSettings m_flickrSettings;
-   QWidget *pluginSettings;
-   QScopedPointer<QProcess> m_process;
-   ProgressablePlugin* m_receiver;
-   // in case something goes wrong (could be read from command line)
-   bool m_success = true;
+    FlickrSettings m_flickrSettings;
+    QSharedPointer<FlickrSettings> pluginSettings;
+    QScopedPointer<QProcess> m_process;
+    ProgressablePlugin *m_receiver;
+    // in case something goes wrong (could be read from command line)
+    bool m_success = true;
 
     QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
 
 private slots:
+
     void slot_abort();
+
     void slot_readOutPut();
+
     void slot_pluginFinished();
 
 };

@@ -2,6 +2,7 @@
 #define IMAGELOADCOMMAND_H
 
 #include "command.h"
+#include <mapadapt.h>
 
 #include <imageloaderpluginmanager.h>
 
@@ -21,7 +22,7 @@ public:
      * @param imagePath load pictures into path.
      * @param receiver object to receive progress.
      */
-    ImageLoadCommand(QVariantMap map, QString imagePath, ProgressablePlugin* receiver);
+    ImageLoadCommand(QVariantMap map, const QString &imagePath, ProgressablePlugin *receiver);
 
     /**
      * @brief execute executes the command.
@@ -34,7 +35,7 @@ private:
     ImageLoaderPluginManager& mPluginManager =  ImageLoaderPluginManager::getInstance();
     ProgressablePlugin* mReceiver;
     QVariantMap mWidgetOptions;
-    QWidget* mInputWidget;
+    QSharedPointer<QWidget> mInputWidget;
     bool parsingFailed = false;
     int mCount;
     QStringList mLabels;

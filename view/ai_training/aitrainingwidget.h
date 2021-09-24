@@ -29,13 +29,13 @@ public:
      * @brief setDataAugWidget replace the current widget in the Data augmentation group with the one given
      */
 
-    void setDataAugWidget(QWidget *replacement);
+    void setDataAugWidget(const QSharedPointer<QWidget> &replacement);
 
     /**
      * @brief setAIConfigWidget replace the current widget in the configuration group with the one given
      */
 
-    void setAIConfigWidget(QWidget *replacement);
+    void setAIConfigWidget(const QSharedPointer<QWidget> &replacement);
 
     /**
      * @brief showImages update Augmentation Preview tab with images from folder

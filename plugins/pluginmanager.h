@@ -24,7 +24,7 @@ public:
      * @param pluginName name of plugin
      * @return configuration widget of plugin
      */
-    virtual QWidget* getConfigurationWidget(QString pluginName) = 0;
+    virtual QSharedPointer<QWidget> getConfigurationWidget(QString pluginName) = 0;
 
     /**
      * @brief loadPlugins loads plugins from a directory.
@@ -39,7 +39,7 @@ public:
      * @param pluginName name of plugin
      * @return input widget of plugin
      */
-    virtual QWidget* getInputWidget(QString pluginName) = 0;
+    virtual QSharedPointer<QWidget> getInputWidget(QString pluginName) = 0;
 
     /**
      * @brief getNamesOfPlugins gets names of all loaded plugins.

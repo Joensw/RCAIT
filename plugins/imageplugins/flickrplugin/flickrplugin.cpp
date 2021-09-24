@@ -7,7 +7,8 @@
 #include "flickrplugin.h"
 
 
-bool FlickrPlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) {
+bool
+FlickrPlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) {
     m_receiver = receiver;
     QString fullCommand = createCommandlineString(path, imageCount, label);
     qDebug() << fullCommand;
@@ -45,24 +46,20 @@ QString FlickrPlugin::createCommandlineString(const QString &path, int imageCoun
 }
 
 
-QWidget *FlickrPlugin::getConfigurationWidget() {
+QSharedPointer<QWidget> FlickrPlugin::getConfigurationWidget() {
     return pluginSettings;
 }
 
 void FlickrPlugin::saveConfiguration() {
-    qobject_cast<FlickrSettings *>(pluginSettings)->saveSettings();
+    pluginSettings->saveSettings();
 }
 
 void FlickrPlugin::init() {
-    pluginSettings = new FlickrSettings();
+    pluginSettings.reset(new FlickrSettings, &QObject::deleteLater);
 }
 
 QString FlickrPlugin::getName() {
     return "Flickr API Plugin";
-}
-
-QWidget *FlickrPlugin::getInputWidget() {
-    return nullptr;
 }
 
 void FlickrPlugin::slot_readOutPut() {
@@ -77,8 +74,7 @@ void FlickrPlugin::slot_readOutPut() {
         if (ok)
             m_receiver->slot_makeProgress(progress);
         else
-            emit
-        m_receiver->sig_statusUpdate(parsedProgress);
+                emit m_receiver->sig_statusUpdate(parsedProgress);
 
     }
 }

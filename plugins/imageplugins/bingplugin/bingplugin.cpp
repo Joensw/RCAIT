@@ -38,7 +38,7 @@ QString BingPlugin::createCommandlineString(const QString &path, int imageCount,
     auto pythonfile = QFileInfo("bingapi_photosearch.py");
 
     QString scriptPath = pythonfile.absoluteFilePath();
-    QString command = m_bingSettings.getPythonPath();
+    QString command = pluginSettings->getPythonPath();
     QString labelConcat = "-l";
 
     for (const auto &i: label) labelConcat.append(" " % ('"' % i % '"'));
@@ -46,11 +46,10 @@ QString BingPlugin::createCommandlineString(const QString &path, int imageCount,
     //set the -u flag to write directly to standardoutput without buffering
     QString fullCommand = command % " -u " % scriptPath % " " % downloadPath % " " % imageCountStr % " " % labelConcat;
     return fullCommand;
-
 }
 
 
-QWidget *BingPlugin::getConfigurationWidget() {
+QSharedPointer<QWidget> BingPlugin::getConfigurationWidget() {
     return pluginSettings;
 }
 
@@ -59,15 +58,11 @@ void BingPlugin::saveConfiguration() {
 }
 
 void BingPlugin::init() {
-    pluginSettings = new BingSettings();
+    pluginSettings.reset(new BingSettings, &QObject::deleteLater);
 }
 
 QString BingPlugin::getName() {
     return "Bing API Plugin";
-}
-
-QWidget *BingPlugin::getInputWidget() {
-    return nullptr;
 }
 
 void BingPlugin::slot_readOutPut() {

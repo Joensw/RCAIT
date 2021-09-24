@@ -30,8 +30,7 @@ class BingPlugin : public QObject, ImageLoaderPlugin
 
 
 private:
-    BingSettings m_bingSettings;
-    QWidget *pluginSettings;
+    QSharedPointer<BingSettings> pluginSettings;
     QScopedPointer<QProcess> m_process;
     ProgressablePlugin *m_receiver;
     // in case something goes wrong (could be read from command line)
@@ -52,30 +51,30 @@ public:
       * @param label list of labels to download images of
       * @return
       */
-    bool loadImages(const QString &path, ProgressablePlugin* receiver ,int imageCount, const QStringList &label) override;
+    bool
+    loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) override;
+
     /**
      * @brief getConfigurationWidget returns a widget in which the Plugin can be configured
      * @return the configuration widget
      */
-    QWidget* getConfigurationWidget() override;
+    QSharedPointer<QWidget> getConfigurationWidget() override;
+
     /**
      * @brief saveConfiguration saves the configuration in the widget to the settings object
      */
     void saveConfiguration() override;
+
     /**
      * @brief init initializes the plugin
      */
     void init() override;
+
     /**
      * @brief getName returns the name of the plugin
      * @return the plugin name
      */
     QString getName() override;
-    /**
-     * @brief getInputWidget is not implemented
-     * @return null
-     */
-    QWidget*  getInputWidget() override;
 
 private slots:
     void slot_abort();

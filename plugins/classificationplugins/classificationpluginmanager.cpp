@@ -16,50 +16,48 @@ void ClassificationPluginManager::loadPlugins(QString pluginDir) {
         if (!QLibrary::isLibrary(fileName)) continue;
         QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
         QObject *plugin = pluginLoader.instance();
-        if (plugin) {
-            ClassificationPlugin *classificationPlugin = qobject_cast<ClassificationPlugin *>(plugin);
-            if (classificationPlugin) {
-                classificationPlugin->init();
-                m_pluginConfigurationWidgets.append(classificationPlugin->getConfigurationWidget());
-                m_plugins.insert(classificationPlugin->getName(), classificationPlugin);
+        if (!plugin) continue;
 
-            }
-            //pluginLoader.unload(); //ToDo: Maybe use this
+        auto *classificationPlugin = qobject_cast<ClassificationPlugin *>(plugin);
+        if (classificationPlugin) {
+            classificationPlugin->init();
+            m_pluginConfigurationWidgets << classificationPlugin->getConfigurationWidget();
+            m_plugins[classificationPlugin->getName()] = QSharedPointer<ClassificationPlugin>(classificationPlugin);
         }
+        //pluginLoader.unload(); //ToDo: Maybe use this
     }
 }
 
 
-QWidget *ClassificationPluginManager::getConfigurationWidget(QString pluginName) {
-    if (!m_plugins.contains(pluginName)) {
-        qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
-        return new QWidget();
-    }
-    return m_plugins.value(pluginName)->getConfigurationWidget();
+QSharedPointer<QWidget> ClassificationPluginManager::getConfigurationWidget(QString pluginName) {
+    if (m_plugins.contains(pluginName))
+        return m_plugins[pluginName]->getConfigurationWidget();
+
+    qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
+    return {new QWidget, &QObject::deleteLater};
 }
 
 void ClassificationPluginManager::saveConfiguration(QString pluginName) {
-    if (!m_plugins.contains(pluginName)) {
+    if (m_plugins.contains(pluginName))
+        m_plugins[pluginName]->saveConfiguration();
+    else
         qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
-        return;
-    }
-    m_plugins.value(pluginName)->saveConfiguration();
 }
 
-QWidget *ClassificationPluginManager::getInputWidget(QString pluginName) {
-    if (!m_plugins.contains(pluginName)) {
-        qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
-        return new QWidget();
-    }
-    return m_plugins.value(pluginName)->getInputWidget();
+QSharedPointer<QWidget> ClassificationPluginManager::getInputWidget(QString pluginName) {
+    if (m_plugins.contains(pluginName))
+        return m_plugins[pluginName]->getInputWidget();
+
+    qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
+    return {new QWidget(), &QObject::deleteLater};
 }
 
-QWidget *ClassificationPluginManager::getDataAugmentationInputWidget(const QString &pluginName) {
-    if (!m_plugins.contains(pluginName)) {
-        qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
-        return new QWidget();
-    }
-    return m_plugins.value(pluginName)->getDataAugmentationInputWidget();
+QSharedPointer<QWidget> ClassificationPluginManager::getDataAugmentationInputWidget(const QString &pluginName) {
+    if (m_plugins.contains(pluginName))
+        return m_plugins[pluginName]->getDataAugmentationInputWidget();
+
+    qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
+    return {new QWidget, &QObject::deleteLater};
 }
 
 QStringList ClassificationPluginManager::getModelNames(const QString &pluginName) {
@@ -81,14 +79,15 @@ bool ClassificationPluginManager::createNewModel(QString modelName, const QStrin
 }
 
 bool
-ClassificationPluginManager::getAugmentationPreview(const QString &pluginName, QString modelName, QString inputPath,
-                                                    QString targetPath, int amount) {
+ClassificationPluginManager::getAugmentationPreview(const QString &pluginName, const QString &modelName,
+                                                    const QString &inputPath,
+                                                    const QString &targetPath, int amount) {
     if (!m_plugins.contains(pluginName)) {
         qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
         return false;
     }
-    return m_plugins.value(pluginName)->getAugmentationPreview(std::move(modelName), std::move(inputPath),
-                                                               std::move(targetPath), amount);
+    return m_plugins.value(pluginName)->getAugmentationPreview(modelName, inputPath,
+                                                               targetPath, amount);
 }
 
 bool ClassificationPluginManager::removeModel(QString modelName, const QString &pluginName) {
@@ -100,40 +99,42 @@ bool ClassificationPluginManager::removeModel(QString modelName, const QString &
 }
 
 TrainingResult *
-ClassificationPluginManager::train(const QString &pluginName, QString modelName, QString trainDatasetPath,
+ClassificationPluginManager::train(const QString &pluginName, const QString &modelName, QString trainDatasetPath,
                                    QString validationDatasetPath, QString workingDirectory,
                                    ProgressablePlugin *receiver) {
     if (!m_plugins.contains(pluginName)) {
         qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
         return new TrainingResult(workingDirectory, {}, {}, {}, {}, 0, 0);
     }
-    return m_plugins.value(pluginName)->train(std::move(modelName), std::move(trainDatasetPath),
+    return m_plugins.value(pluginName)->train(modelName, std::move(trainDatasetPath),
                                               std::move(validationDatasetPath), std::move(workingDirectory),
                                               receiver);
 }
 
 ClassificationResult *
-ClassificationPluginManager::classify(const QString &pluginName, QString inputImageDirPath, QString trainDatasetPath,
-                                      QString workingDirectory, QString modelName, ProgressablePlugin *receiver) {
+ClassificationPluginManager::classify(const QString &pluginName, const QString &inputImageDirPath,
+                                      const QString &trainDatasetPath,
+                                      const QString &workingDirectory, const QString &modelName,
+                                      ProgressablePlugin *receiver) {
     if (!m_plugins.contains(pluginName)) {
         qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
         return new ClassificationResult({}, {}, {});
     }
-    return m_plugins.value(pluginName)->classify(std::move(inputImageDirPath), std::move(trainDatasetPath),
-                                                 std::move(workingDirectory), std::move(modelName),
-                                                 receiver);
+    return m_plugins[pluginName]->classify(inputImageDirPath, trainDatasetPath,
+                                           workingDirectory, modelName,
+                                           receiver);
 }
 
-QList<QWidget *> ClassificationPluginManager::getConfigurationWidgets() {
+QList<QSharedPointer<QWidget>> ClassificationPluginManager::getConfigurationWidgets() {
     return m_pluginConfigurationWidgets;
 }
 
 QStringList ClassificationPluginManager::getClassificationPluginBases(const QString &pluginName) {
-    if (!m_plugins.contains(pluginName)) {
-        qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
-        return {};
-    }
-    return m_plugins.value(pluginName)->getAssociatedModels();
+    if (m_plugins.contains(pluginName))
+        return m_plugins[pluginName]->getAssociatedModels();
+
+    qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
+    return {};
 }
 
 QStringList ClassificationPluginManager::getNamesOfPlugins() {

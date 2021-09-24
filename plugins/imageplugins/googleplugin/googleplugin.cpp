@@ -30,40 +30,38 @@ QString GooglePlugin::createCommandlineString(const QString &path, int imageCoun
     auto pythonfile = QFileInfo("googleapi_photosearch.py");
 
     QString scriptPath = pythonfile.absoluteFilePath();
-    QString command = m_googleSettings.getPythonPath();
-    QString APIKey = QString("-k ").append(m_googleSettings.getAPIKey());
-    QString projectCX = QString("-x ").append(m_googleSettings.getProjectCX());
+    QString command = pluginSettings->getPythonPath();
+    QString APIKey = QString("-k ").append(pluginSettings->getAPIKey());
+    QString projectCX = QString("-x ").append(pluginSettings->getProjectCX());
     QString labelConcat = "-l";
 
-    for (const auto &i: label){
+    for (const auto &i: label) {
         labelConcat.append(" " % ('"' % i % '"'));
     }
 
     //set the -u flag to write directly to standardoutput without buffering
-    QString fullCommand = command % " -u " % scriptPath % " " % projectCX % " " % APIKey % " " % downloadPath % " " % imageCountStr % " " % labelConcat;
+    QString fullCommand =
+            command % " -u " % scriptPath % " " % projectCX % " " % APIKey % " " % downloadPath % " " % imageCountStr %
+            " " % labelConcat;
     return fullCommand;
 
 }
 
 
-QWidget *GooglePlugin::getConfigurationWidget() {
+QSharedPointer<QWidget> GooglePlugin::getConfigurationWidget() {
     return pluginSettings;
 }
 
 void GooglePlugin::saveConfiguration() {
-    qobject_cast<GoogleSettings *>(pluginSettings)->saveSettings();
+    pluginSettings->saveSettings();
 }
 
 void GooglePlugin::init() {
-    pluginSettings = new GoogleSettings();
+    pluginSettings.reset(new GoogleSettings, &QObject::deleteLater);
 }
 
 QString GooglePlugin::getName() {
     return "Google API Plugin";
-}
-
-QWidget *GooglePlugin::getInputWidget() {
-    return nullptr;
 }
 
 void GooglePlugin::slot_readOutPut() {

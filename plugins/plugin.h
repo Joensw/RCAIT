@@ -31,7 +31,7 @@ public:
      *
      * @return plugin configuration widget
      */
-    virtual QWidget*  getConfigurationWidget() = 0;
+    virtual QSharedPointer<QWidget> getConfigurationWidget() = 0;
 
     /**
      * @brief saveConfiguration saves changes on config widget.
@@ -40,11 +40,13 @@ public:
     virtual void saveConfiguration() = 0;
 
     /**
-     * @brief getInputWidget returns input widget of plugin.
+     * @brief getInputWidget returns input widget of plugin (optional).
      *
      * @return plugin input widget
      */
-    virtual QWidget*  getInputWidget() = 0;
+    virtual QSharedPointer<QWidget> getInputWidget() {
+        return {};
+    };
 
 };
 

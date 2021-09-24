@@ -8,8 +8,7 @@ bool ImageLoaderPluginMock::loadImages(const QString &path, ProgressablePlugin *
     return true;
 }
 
-QWidget *ImageLoaderPluginMock::getConfigurationWidget()
-{
+QSharedPointer<QWidget> ImageLoaderPluginMock::getConfigurationWidget() {
     return pluginSettings;
 }
 
@@ -28,8 +27,7 @@ QString ImageLoaderPluginMock::getName()
     return PLUGIN_NAME;
 }
 
-QWidget *ImageLoaderPluginMock::getInputWidget()
-{
+QSharedPointer<QWidget> ImageLoaderPluginMock::getInputWidget() {
     return inputWidget;
 }
 

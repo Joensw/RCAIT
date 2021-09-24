@@ -10,7 +10,7 @@ SettingsView::SettingsView(QWidget *parent) :
 }
 
 SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames,
-                           const QList<QWidget *> &pluginConfigurationWidgets) :
+                           const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets) :
         QWidget(parent),
         ui(new Ui::SettingsView),
         mGlobalSettingsWidget(new GlobalSettingsWidget(this)) {
@@ -33,7 +33,8 @@ SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames,
     ui->pluginList->setCurrentRow(0);
 }
 
-void SettingsView::addPluginWidgets(QStringList pluginNames, QList<QWidget *> pluginConfigurationWidgets) {
+void SettingsView::addPluginWidgets(QStringList pluginNames,
+                                    const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets) {
     for (int i = ui->pluginWidget->count() - 1; i >= 1; --i) {
         delete (ui->pluginList->takeItem(i));
         QWidget *widget = ui->pluginWidget->widget(i);
@@ -50,7 +51,7 @@ void SettingsView::addPluginWidgets(QStringList pluginNames, QList<QWidget *> pl
                           : pluginConfigurationWidgets[i]->accessibleName();
         auto pluginEntry = new QListWidgetItem(QIcon(PLUGIN_ICON), pluginName);
         ui->pluginList->addItem(pluginEntry);
-        ui->pluginWidget->addWidget(pluginConfigurationWidgets[i]);
+        ui->pluginWidget->addWidget(&*pluginConfigurationWidgets[i]);
     }
 }
 

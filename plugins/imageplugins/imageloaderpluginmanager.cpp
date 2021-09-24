@@ -5,76 +5,72 @@
  */
 #include "imageloaderpluginmanager.h"
 
-ImageLoaderPluginManager::ImageLoaderPluginManager() {
-
-}
+ImageLoaderPluginManager::ImageLoaderPluginManager() = default;
 
 void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
-    m_pluginsSharedPointer.clear();
+    m_plugins.clear();
     m_pluginConfigurationWidgets.clear();
 
     QDir pluginsDir(pluginDir);
-    const QStringList entries = pluginsDir.entryList(QDir::Files);
-    for (const QString &fileName : entries) {
+    for (const QString &fileName: pluginsDir.entryList(QDir::Files)) {
         if (!QLibrary::isLibrary(fileName)) continue;
+
         QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
         QObject *plugin = pluginLoader.instance();
-        if (plugin) {
-            ImageLoaderPlugin* imageLoaderPlugin = qobject_cast<ImageLoaderPlugin *>(plugin);
-            if (imageLoaderPlugin){
-                imageLoaderPlugin->init(); //ToDo: call init function if necessary
-                m_pluginConfigurationWidgets.append(imageLoaderPlugin->getConfigurationWidget());
-                m_pluginsSharedPointer.insert( imageLoaderPlugin->getName(), imageLoaderPlugin);
 
-            }
-            //pluginLoader.unload(); //ToDo: Maybe use this
+        if (!plugin) continue;
+
+        auto *imageLoaderPlugin = qobject_cast<ImageLoaderPlugin *>(plugin);
+        if (imageLoaderPlugin) {
+            imageLoaderPlugin->init(); //ToDo: call init function if necessary
+            m_pluginConfigurationWidgets << imageLoaderPlugin->getConfigurationWidget();
+            m_plugins[imageLoaderPlugin->getName()] = QSharedPointer<ImageLoaderPlugin>(imageLoaderPlugin);
         }
+        //pluginLoader.unload(); //ToDo: Maybe use this
 
     }
 
 
 }
 
-QWidget *ImageLoaderPluginManager::getConfigurationWidget(QString pluginName) {
-    if (!m_pluginsSharedPointer.contains(pluginName)) {
+QSharedPointer<QWidget> ImageLoaderPluginManager::getConfigurationWidget(QString pluginName) {
+    if (!m_plugins.contains(pluginName)) {
         qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
-        return new QWidget();
+        return {new QWidget, &QObject::deleteLater};
     }
-    return m_pluginsSharedPointer.value(pluginName)->getConfigurationWidget();
+    return m_plugins[pluginName]->getConfigurationWidget();
 }
 
 void ImageLoaderPluginManager::saveConfiguration(QString pluginName) {
-    if (!m_pluginsSharedPointer.contains(pluginName)) {
+    if (m_plugins.contains(pluginName))
+        m_plugins[pluginName]->saveConfiguration();
+    else
         qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
-        return;
-    }
-    m_pluginsSharedPointer.value(pluginName)->saveConfiguration();
+
 }
 
-QWidget *ImageLoaderPluginManager::getInputWidget(QString pluginName) {
-    if (!m_plugins.contains(pluginName)) {
-        qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
-        return new QWidget();
-    }
-    if(m_pluginsSharedPointer.isEmpty()) return new QWidget();
-    return m_pluginsSharedPointer.value(pluginName)->getConfigurationWidget();
+QSharedPointer<QWidget> ImageLoaderPluginManager::getInputWidget(QString pluginName) {
+    if (m_plugins.contains(pluginName))
+        return m_plugins[pluginName]->getConfigurationWidget();
+
+    qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
+    return {new QWidget, &QObject::deleteLater};
 }
 
-bool ImageLoaderPluginManager::loadImages(QString path, ProgressablePlugin *receiver, QString pluginName, int count,
-                                          QStringList labels) {
-    if (!m_pluginsSharedPointer.contains(pluginName)) {
-        qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
-        return false;
-    }
-   return m_pluginsSharedPointer.value(pluginName)->loadImages(path, receiver, count, labels);
+bool ImageLoaderPluginManager::loadImages(const QString &path, ProgressablePlugin *receiver, const QString &pluginName,
+                                          int count,
+                                          const QStringList &labels) {
+    if (m_plugins.contains(pluginName))
+        return m_plugins[pluginName]->loadImages(path, receiver, count, labels);
+
+    qWarning() << "No Image Loader Plugin with the name " << pluginName << " found!";
+    return false;
 }
 
-QStringList ImageLoaderPluginManager::getNamesOfPlugins()
-{
-    return m_pluginsSharedPointer.keys();
+QStringList ImageLoaderPluginManager::getNamesOfPlugins() {
+    return m_plugins.keys();
 }
 
-QList<QWidget *> ImageLoaderPluginManager::getConfigurationWidgets()
-{
+QList<QSharedPointer<QWidget>> ImageLoaderPluginManager::getConfigurationWidgets() {
     return m_pluginConfigurationWidgets;
 }

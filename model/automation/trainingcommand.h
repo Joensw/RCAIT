@@ -51,9 +51,9 @@ private:
     TrainingResult* mResult;
     ProgressablePlugin* mReceiver;
     QVariantMap mInputOptions;
-    QWidget* mInputWidget;
+    QSharedPointer<QWidget> mInputWidget;
     QVariantMap mAugmentationOptions;
-    QWidget* mAugmentationWidget;
+    QSharedPointer<QWidget> mAugmentationWidget;
     bool parsingFailed = false;
 
     QString mProjectName;
@@ -67,4 +67,4 @@ private:
     QString mWorkingDir;
 };
 
-#endif // TRAININGTASK_H
+#endif // TRAININGCOMMAND_H

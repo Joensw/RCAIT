@@ -54,7 +54,7 @@ public:
      *
      * @return data augmentation input widget
      */
-    virtual QWidget* getDataAugmentationInputWidget() = 0;
+    virtual QSharedPointer<QWidget> getDataAugmentationInputWidget() = 0;
 
     /**
      * @brief removeModel removes model with specified name.

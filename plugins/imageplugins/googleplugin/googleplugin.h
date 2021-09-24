@@ -30,9 +30,8 @@ class GooglePlugin : public QObject, ImageLoaderPlugin
 
 
 private:
-   GoogleSettings m_googleSettings;
-   QWidget *pluginSettings;
-   QScopedPointer<QProcess> m_process;
+   QSharedPointer<GoogleSettings> pluginSettings;
+    QScopedPointer<QProcess> m_process;
    ProgressablePlugin* m_receiver;
    // in case something goes wrong (could be read from command line)
    bool m_success = true;
@@ -40,20 +39,23 @@ private:
     QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
 
 public:
-   /**
-     * @brief loadImages loads images through the google API
-     * @param path to save the images to
-     * @param receiver takes status updates
-     * @param imageCount count of images to download
-     * @param label list of labels to download images of
-     * @return
-     */
-    bool loadImages(const QString &path, ProgressablePlugin* receiver ,int imageCount, const QStringList &label) override;
+    /**
+      * @brief loadImages loads images through the google API
+      * @param path to save the images to
+      * @param receiver takes status updates
+      * @param imageCount count of images to download
+      * @param label list of labels to download images of
+      * @return
+      */
+    bool
+    loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) override;
+
     /**
      * @brief getConfigurationWidget returns a widget in which the Plugin can be configured
      * @return the configuration widget
      */
-    QWidget* getConfigurationWidget() override;
+    QSharedPointer<QWidget> getConfigurationWidget() override;
+
     /**
      * @brief saveConfiguration saves the configuration in the widget to the settings object
      */
@@ -67,11 +69,6 @@ public:
      * @return the plugin name
      */
     QString getName() override;
-    /**
-     * @brief getInputWidget is not implemented
-     * @return null
-     */
-    QWidget*  getInputWidget() override;
 
 private slots:
     void slot_abort();

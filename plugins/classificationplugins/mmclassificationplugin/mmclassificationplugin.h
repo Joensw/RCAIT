@@ -48,27 +48,26 @@ private:
     const int m_numberOfMissClassifiedImages = 9;
     const QString m_annotationFileName = "val.txt";
 
-    QList<BaseModel>* m_baseModels;
+    //TODO remove *
+    QList<BaseModel> *m_baseModels;
     QSettings m_models = {"MMClassificationModels", QSettings::IniFormat};
 
-    MMClassificationSettings m_mmClassificationSettings;
     MMClassificationConfigFileBuilder m_mmClassificationConfigFileBuilder;
-    MMClassificationDataAugmentationInput *m_mmclassificationdataaugmentationinput;
-    MMClassificationInputOptions *m_mmClassificationInput;
     MMClassificationJsonResultReader m_jsonReader;
 
-    QWidget *pluginSettings;
-    QWidget *dataAugmentationInput;
-    QWidget *inputOptions;
+    QSharedPointer<MMClassificationSettings> pluginSettings;
+    QSharedPointer<MMClassificationDataAugmentationInput> dataAugmentationInput;
+    QSharedPointer<MMClassificationInputOptions> inputOptions;
 
     QScopedPointer<QProcess> m_process;
-    ProgressablePlugin* m_receiver;
+    ProgressablePlugin *m_receiver;
 
-    QFileSystemWatcher *m_watcher;
+    QScopedPointer<QFileSystemWatcher> m_watcher;
     QString m_workDir;
     int m_maxIters;
 
     void initBaseModels();
+
     void deleteBaseModels();
     void saveModel(Model model);
     Model loadModel(const QString& name);
@@ -89,7 +88,7 @@ public:
      * @brief destructor
      */
 
-    ~MMClassificationPlugin();
+    ~MMClassificationPlugin() override;
 
     /**
      * @brief getName returns the name of this plugin
@@ -99,9 +98,9 @@ public:
 
     /**
      * @brief getConfigurationWidget returns a widget to make configurations of this plugin accessible
-     * @return a widget to make plugin specfific configurations
+     * @return a widget to make plugin specific configurations
      */
-    QWidget* getConfigurationWidget() override;
+    QSharedPointer<QWidget> getConfigurationWidget() override;
 
     /**
      * @brief saveConfiguration saves the changes made in the configuration widget
@@ -112,7 +111,7 @@ public:
      * @brief getInputWidget returns a widget to specify additional, plugin specific input for the train method
      * @return a widget to specify plugin specific input, which is not data augmentation input
      */
-    QWidget* getInputWidget() override;
+    QSharedPointer<QWidget> getInputWidget() override;
 
     /**
      * @brief init initialize the needed classes and settings of this plugin, must be called once before using this plugin
@@ -178,7 +177,7 @@ public:
      * @brief getDataAugmentationInputWidget returns a widget to specify additional, plugin specific data augmentation input for the getAugmentationPreview and the train method
      * @return a widget to specify plugin specific data augmentation input
      */
-    QWidget* getDataAugmentationInputWidget() override;
+    QSharedPointer<QWidget> getDataAugmentationInputWidget() override;
 
 private slots:
     void slot_readClassifyOutput();

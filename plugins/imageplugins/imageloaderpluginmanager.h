@@ -25,10 +25,9 @@ class ImageLoaderPluginManager : public PluginManager{
 
 private:
     ImageLoaderPluginManager();
-    QMap<QString, ImageLoaderPlugin*> m_plugins;
+    QMap<QString, QSharedPointer<ImageLoaderPlugin>> m_plugins;
     QSharedPointer<ImageLoaderPlugin> test;
-    QMap<QString, ImageLoaderPlugin*> m_pluginsSharedPointer;
-    QList<QWidget*> m_pluginConfigurationWidgets;
+    QList<QSharedPointer<QWidget>> m_pluginConfigurationWidgets;
 
 public:
     /**
@@ -65,7 +64,7 @@ public:
      * @param pluginName name of plugin
      * @return configuration widget of plugin
      */
-    QWidget* getConfigurationWidget(QString pluginName) override;
+    QSharedPointer<QWidget> getConfigurationWidget(QString pluginName) override;
 
     /**
      * @brief saveConfiguration saves configuration of specified plugin.
@@ -80,7 +79,7 @@ public:
      * @param pluginName name of plugin
      * @return input widget of plugin
      */
-    QWidget* getInputWidget(QString pluginName) override;
+    QSharedPointer<QWidget> getInputWidget(QString pluginName) override;
 
 
     /**
@@ -100,14 +99,15 @@ public:
      * @param labels list of image labels
      * @return true if loading was successful, false otherwise
      */
-    bool loadImages(QString path, ProgressablePlugin* receiver, QString pluginName, int count, QStringList labels);
+    bool loadImages(const QString &path, ProgressablePlugin *receiver, const QString &pluginName, int count,
+                    const QStringList &labels);
 
     /**
      * @brief getConfigurationWidgets gets config widget of all loaded plugins.
      *
      * @return list of all config widgets
      */
-    QList<QWidget*> getConfigurationWidgets();
+    QList<QSharedPointer<QWidget>> getConfigurationWidgets();
 
 };
 

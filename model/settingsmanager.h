@@ -54,7 +54,7 @@ public:
     /**
      * @return the input UI's of all the plugins
      */
-    QList<QWidget *> getPluginSettings();
+    QList<QSharedPointer<QWidget>> getPluginSettings();
 
     /**
      * @brief savePluginSettings saves the settings of the plugin specified in the UI at the current index

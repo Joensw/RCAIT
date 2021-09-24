@@ -2,11 +2,11 @@
 #include "imageloaderpluginmanager.h"
 
 
-ImageLoadCommand::ImageLoadCommand(QVariantMap map, QString imagePath, ProgressablePlugin* receiver)
-    : mPluginName(map.value("imagePluginName").toString()),
-      mLabels(map.value("labels").toStringList()),
-      mPath(imagePath),
-      mReceiver(receiver)
+ImageLoadCommand::ImageLoadCommand(QVariantMap map, const QString &imagePath, ProgressablePlugin *receiver)
+        : mPluginName(map.value("imagePluginName").toString()),
+          mLabels(map.value("labels").toStringList()),
+          mPath(imagePath),
+          mReceiver(receiver)
 
 {
     bool ok;
@@ -29,12 +29,12 @@ ImageLoadCommand::ImageLoadCommand(QVariantMap map, QString imagePath, Progressa
     }
 }
 
-bool ImageLoadCommand::execute(){
-    if(parsingFailed) return false;
+bool ImageLoadCommand::execute() {
+    if (parsingFailed) return false;
 
     auto end = mWidgetOptions.end();
-    for (auto it = mWidgetOptions.begin(); it != end; ++it){
-        mInputWidget->setProperty(it.key().toUtf8().data(), it.value());
+    for (const auto &[key, value]: MapAdapt(mWidgetOptions)) {
+        mInputWidget->setProperty(key.toUtf8().data(), value);
     }
     mPluginManager.saveConfiguration(mPluginName);
 
