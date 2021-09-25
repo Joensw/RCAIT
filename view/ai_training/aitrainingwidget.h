@@ -29,13 +29,13 @@ public:
      * @brief setDataAugWidget replace the current widget in the Data augmentation group with the one given
      */
 
-    void setDataAugWidget(QWidget *replacement);
+    void setDataAugWidget(const QSharedPointer<QWidget> &replacement);
 
     /**
      * @brief setAIConfigWidget replace the current widget in the configuration group with the one given
      */
 
-    void setAIConfigWidget(QWidget *replacement);
+    void setAIConfigWidget(const QSharedPointer<QWidget> &replacement);
 
     /**
      * @brief showImages update Augmentation Preview tab with images from folder
@@ -69,10 +69,6 @@ signals:
      */
     void sig_abortTraining();
 
-    /**
-     * @brief sig_results emitted when the results are to be shown
-     */
-    void sig_results();
 
 
 protected:
@@ -90,8 +86,6 @@ private slots:
     [[maybe_unused]] void on_startButton_clicked();
 
     [[maybe_unused]] void on_cancelButton_clicked();
-
-    [[maybe_unused]]void on_resultsButton_clicked();
 
     [[maybe_unused]]void on_previewButton_clicked();
 

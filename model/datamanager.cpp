@@ -132,7 +132,7 @@ QStringList DataManager::getPluginBases(QString plugin) {
 }
 
 
-QList<QWidget *> DataManager::getPluginSettings() {
+QList<QSharedPointer<QWidget>> DataManager::getPluginSettings() {
     return mSettingsManager->getPluginSettings();
 }
 
@@ -169,11 +169,11 @@ QStringList DataManager::getNamesOfSavedTrainingResults() {
     return mProjectManager->getNamesOfSavedTrainingResults();
 }
 
-QWidget *DataManager::getInputWidget() {
+QSharedPointer<QWidget> DataManager::getInputWidget() {
     return mModelManager->getInputWidget();
 }
 
-QWidget *DataManager::getDataAugmentationInputWidget() {
+QSharedPointer<QWidget> DataManager::getDataAugmentationInputWidget() {
     return mModelManager->getDataAugmentationInputWidget();
 }
 

@@ -109,24 +109,11 @@ QPair<double, double> MMClassificationJsonResultReader::readTopValuesFromJson(QS
 QStringList MMClassificationJsonResultReader::generateMostMissclassifiedImages(const int requiredNumber, const QString &pathToValTxt, const QString &pathToJsonResult) {
     QVector<int> selectedMissclassifiedImageIndices = {};
     QStringList outputValidationFiles = {};
-    QVector<QString> validiationFiles = {};
-    QVector<int> matchingClasses = {};
-    // first read val.txt file to match validation images with their corresponding class
-    QFileInfo valAnnotationFile = QFileInfo(pathToValTxt);
-    QFile absoluteValAnnotationFile(valAnnotationFile.absoluteFilePath());
-    absoluteValAnnotationFile.open(QIODevice::ReadOnly|QIODevice::Text);
 
-    QTextStream in(&absoluteValAnnotationFile);
-    QString line = "";
-    while (!line.isNull()) {
-        line = in.readLine();
-        QStringList list = line.split(QRegularExpression("\\s"));
-        if (list.size() == 2) {
-            validiationFiles.append(list[0]);
-            matchingClasses.append(list[1].toInt());
-        }
-    }
-    absoluteValAnnotationFile.close();
+    // first read val.txt file to match validation images with their corresponding class
+    QPair<QVector<QString>, QVector<int>> annotationFileData = readAnnotationFile(pathToValTxt);
+    QVector<QString> absoluteImagePaths = annotationFileData.first;
+    QVector<int> matchingClasses = annotationFileData.second;
 
     QFileInfo jsonFile = QFileInfo(pathToJsonResult);
     QFile inFile(jsonFile.absoluteFilePath());
@@ -172,7 +159,7 @@ QStringList MMClassificationJsonResultReader::generateMostMissclassifiedImages(c
                 selectedMissclassifiedImageIndices = missclassifiedImageIndices;
             }
             for (int n = 0; n < selectedMissclassifiedImageIndices.size(); n++) {
-                outputValidationFiles.append(validiationFiles[selectedMissclassifiedImageIndices[n]]);
+                outputValidationFiles.append(absoluteImagePaths[selectedMissclassifiedImageIndices[n]]);
             }
         }
     } else {
@@ -213,4 +200,29 @@ QMap<QString, QList<double>> MMClassificationJsonResultReader::readConfidenceSco
         valuesPerClass.clear();
     }
     return confidenceScorePerImage;
+}
+
+QPair<QVector<QString>, QVector<int>> MMClassificationJsonResultReader::readAnnotationFile(const QString &annotationFilePath)
+{
+    QPair<QVector<QString>, QVector<int>> annotationFileData = {};
+    QVector<QString> absoluteImagePaths = {};
+    QVector<int> matchingClasses = {};
+    // first read val.txt file to match images with their corresponding class
+    QFileInfo valAnnotationFile = QFileInfo(annotationFilePath);
+    QFile absoluteValAnnotationFile(valAnnotationFile.absoluteFilePath());
+    absoluteValAnnotationFile.open(QIODevice::ReadOnly|QIODevice::Text);
+    QTextStream in(&absoluteValAnnotationFile);
+    QString line = "";
+    while (!line.isNull()) {
+        line = in.readLine();
+        QStringList list = line.split(QRegularExpression("\\s"));
+        if (list.size() == 2) {
+            absoluteImagePaths.append(list[0]);
+            matchingClasses.append(list[1].toInt());
+        }
+    }
+    absoluteValAnnotationFile.close();
+    annotationFileData.first = absoluteImagePaths;
+    annotationFileData.second = matchingClasses;
+    return annotationFileData;
 }

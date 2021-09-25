@@ -5,20 +5,28 @@
  */
 #include "bingplugin.h"
 
-
-bool BingPlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) {
-    connect(receiver, &ProgressablePlugin::sig_pluginAborted, this, &BingPlugin::slot_abort);
+bool
+BingPlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) {
+    //Setup variables
+    m_progress = 0;
     m_receiver = receiver;
-    QString fullCommand = createCommandlineString(path, imageCount, label);
-    qDebug() << fullCommand;
+    m_imageCount = imageCount;
+    m_labels = label;
     m_process.reset(new QProcess);
-    m_process->setReadChannel(QProcess::StandardOutput);
+
+    //Connect signals/slots
+    connect(receiver, &ProgressablePlugin::sig_pluginAborted, this, &BingPlugin::slot_abort);
     connect(&*m_process, &QProcess::readyReadStandardOutput, this, &BingPlugin::slot_readOutPut);
     connect(&*m_process, &QProcess::finished, this, &BingPlugin::slot_pluginFinished);
 
+    QString fullCommand = createCommandlineString(path, imageCount, label);
+    qDebug() << qPrintable(fullCommand);
+
+    m_process->setReadChannel(QProcess::StandardOutput);
     m_process->startCommand(fullCommand);
     m_process->waitForStarted();
     m_process->waitForFinished(-1);
+
     return m_success;
 }
 
@@ -30,7 +38,7 @@ QString BingPlugin::createCommandlineString(const QString &path, int imageCount,
     auto pythonfile = QFileInfo("bingapi_photosearch.py");
 
     QString scriptPath = pythonfile.absoluteFilePath();
-    QString command = m_bingSettings.getPythonPath();
+    QString command = pluginSettings->getPythonPath();
     QString labelConcat = "-l";
 
     for (const auto &i: label) labelConcat.append(" " % ('"' % i % '"'));
@@ -38,57 +46,52 @@ QString BingPlugin::createCommandlineString(const QString &path, int imageCount,
     //set the -u flag to write directly to standardoutput without buffering
     QString fullCommand = command % " -u " % scriptPath % " " % downloadPath % " " % imageCountStr % " " % labelConcat;
     return fullCommand;
-
 }
 
 
-QWidget *BingPlugin::getConfigurationWidget() {
+QSharedPointer<QWidget> BingPlugin::getConfigurationWidget() {
     return pluginSettings;
 }
 
 void BingPlugin::saveConfiguration() {
-    qobject_cast<BingSettings *>(pluginSettings)->saveSettings();
+    pluginSettings->saveSettings();
 }
 
 void BingPlugin::init() {
-    pluginSettings = new BingSettings();
+    pluginSettings.reset(new BingSettings, &QObject::deleteLater);
 }
 
 QString BingPlugin::getName() {
     return "Bing API Plugin";
 }
 
-QWidget *BingPlugin::getInputWidget() {
-    return nullptr;
-}
-
 void BingPlugin::slot_readOutPut() {
-    static QRegularExpression lineBreak("[\r\n]");
-    static QRegularExpression progressUpdate(QRegularExpression::escape("[%] Downloading Image"));
-    static QRegularExpression errorUpdate(QRegularExpression::escape("[!] Issue getting"));
+    static QRegularExpression lineBreakRegex("[\r\n]");
+    static QRegularExpression downloadRegex(QRegularExpression::escape("[%] Downloading Image"));
+    static QRegularExpression successRegex(QRegularExpression::escape("[%] File Downloaded !"));
+    static QRegularExpression errorRegex(QRegularExpression::escape("[!] Issue getting"));
 
     while (m_process->canReadLine()) {
         QString line = QString::fromLocal8Bit(m_process->readLine());
-        QString parsedProgress = line.remove(lineBreak);
+        QString strippedLine = line.remove(lineBreakRegex);
 
-        auto updateMatch = progressUpdate.match(parsedProgress, 0,
-                                                QRegularExpression::PartialPreferCompleteMatch);
-        if (updateMatch.hasMatch()) {
-            qDebug() << parsedProgress;
-            emit m_receiver->sig_statusUpdate(parsedProgress);
-        } else {
-            auto errorMatch = errorUpdate.match(parsedProgress, 0,
-                                                QRegularExpression::PartialPreferCompleteMatch);
-            if (errorMatch.hasMatch()) {
-                qDebug() << parsedProgress;
-                emit m_receiver->sig_statusUpdate(parsedProgress);
-            }
+        auto downloadMatch = downloadRegex.match(strippedLine, 0,
+                                                 QRegularExpression::PartialPreferCompleteMatch);
+        auto successMatch = successRegex.match(strippedLine, 0,
+                                               QRegularExpression::PartialPreferCompleteMatch);
+        auto errorMatch = errorRegex.match(strippedLine, 0,
+                                           QRegularExpression::PartialPreferCompleteMatch);
+
+        if (downloadMatch.hasMatch() || errorMatch.hasMatch()) {
+            emit m_receiver->sig_statusUpdate(strippedLine);
+            qDebug() << strippedLine;
         }
 
-        bool ok;
-        int progress = parsedProgress.toInt(&ok, 10);
-        if (ok) m_receiver->slot_makeProgress(progress);
-
+        if (successMatch.hasMatch()) {
+            auto total = m_imageCount * m_labels.size();
+            auto progress = ++m_progress * 100.0 / (double) total;
+            m_receiver->slot_makeProgress((int) progress);
+        }
     }
 }
 

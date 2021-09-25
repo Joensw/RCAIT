@@ -19,21 +19,22 @@ class ClassificationPluginMock : public QObject, ClassificationPlugin
 
 public:
 
-    QWidget* getConfigurationWidget() override;
+    QSharedPointer<QWidget> getConfigurationWidget() override;
     void saveConfiguration() override;
     void init() override;
     QString getName() override;
-    QWidget*  getInputWidget() override;
-    inline static const QString PLUGIN_NAME = "testplugin";
+    QSharedPointer<QWidget> getInputWidget() override;
     QStringList getAssociatedModels() override;
     bool createNewModel(QString modelName, QString baseModel) override;
     bool getAugmentationPreview(const QString &modelName, const QString &inputPath, const QString &targetPath, int amount) override;
-    QWidget *getDataAugmentationInputWidget() override;
+    QSharedPointer<QWidget> getDataAugmentationInputWidget() override;
     bool removeModel(QString modelName) override;
     TrainingResult *train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver) override;
     ClassificationResult *classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath, const QString &modelName, ProgressablePlugin *receiver) override;
 
+    static constexpr auto PLUGIN_NAME = "testplugin";
 private:
+
 
 
 };

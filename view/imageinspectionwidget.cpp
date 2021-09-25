@@ -75,3 +75,12 @@ void ImageInspectionWidget::changeEvent(QEvent *event) {
     QWidget::changeEvent(event);
 }
 
+void ImageInspectionWidget::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Delete){
+        this->on_pushButton_removeImages_clicked();
+    }
+
+    QWidget::keyPressEvent(event);
+}
+

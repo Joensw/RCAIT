@@ -14,11 +14,11 @@
 /**
  * @brief The ClassificationPluginManager class is responsible for loading and managing classification plugins.
  */
-class ClassificationPluginManager : public PluginManager{
-private: ClassificationPluginManager();
-QMap<QString, ClassificationPlugin*> m_plugins;
+class ClassificationPluginManager : public PluginManager {
+private:
+    ClassificationPluginManager();
 
-
+    QMap<QString, QSharedPointer<ClassificationPlugin>> m_plugins;
 
 public:
 
@@ -56,7 +56,7 @@ public:
      * @param pluginName name of plugin
      * @return config widget
      */
-    QWidget * getConfigurationWidget(QString pluginName) override;
+    QSharedPointer<QWidget> getConfigurationWidget(QString pluginName) override;
 
     /**
      * @brief saveConfiguration saves changes in config widget of specified plugin.
@@ -71,7 +71,7 @@ public:
      * @param pluginName name of plugin
      * @return input widget of plugin
      */
-    QWidget * getInputWidget(QString pluginName) override;
+    QSharedPointer<QWidget> getInputWidget(QString pluginName) override;
 
     /**
      * @brief getDataAugmentationInputWidget gets widget for augmentation config of a specified plugin.
@@ -79,7 +79,7 @@ public:
      * @param pluginName name of plugin
      * @return data augmentation input widget
      */
-    QWidget * getDataAugmentationInputWidget(const QString& pluginName);
+    QSharedPointer<QWidget> getDataAugmentationInputWidget(const QString &pluginName);
 
     /**
      * @brief getNamesOfPlugins gets names of all loaded plugins.
@@ -94,7 +94,7 @@ public:
      * @param pluginName name of plugin
      * @return list of model names
      */
-    QStringList getModelNames(const QString& pluginName);
+    QStringList getModelNames(const QString &pluginName);
 
     /**
      * @brief createNewModel creates a new model with a name from a base model and plugin.
@@ -104,7 +104,7 @@ public:
      * @param baseModel base model of new model
      * @return true if creation was successful
      */
-    bool createNewModel(QString modelName, const QString& pluginName, QString baseModel);
+    bool createNewModel(QString modelName, const QString &pluginName, QString baseModel);
 
     /**
      * @brief getAugmentationPreview loads a preview of augmented images into a folder.
@@ -116,7 +116,9 @@ public:
      * @param amount number of augmented images
      * @return true if successful
      */
-    bool getAugmentationPreview(const QString& pluginName, QString modelName, QString inputPath, QString targetPath, int amount);
+    bool getAugmentationPreview(const QString &pluginName, const QString &modelName, const QString &inputPath,
+                                const QString &targetPath,
+                                int amount);
 
     /**
      * @brief removeModel removes model with specified name and plugin.
@@ -125,7 +127,7 @@ public:
      * @param pluginName name of plugin
      * @return true if removal was successful
      */
-    bool removeModel(QString modelName, const QString& pluginName);
+    bool removeModel(QString modelName, const QString &pluginName);
 
     /**
      * @brief train starts a training with a selected plugin.
@@ -138,7 +140,9 @@ public:
      * @param receiver receives progress of training
      * @return result data of training
      */
-    TrainingResult * train (const QString& pluginName, QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin * receiver);
+    TrainingResult *
+    train(const QString &pluginName, const QString &modelName, QString trainDatasetPath, QString validationDatasetPath,
+          QString workingDirectory, ProgressablePlugin *receiver);
 
     /**
      * @brief classify starts a classification with a selected plugin.
@@ -151,14 +155,17 @@ public:
      * @param receiver receives classification progress
      * @return result data of classification
      */
-    ClassificationResult * classify(const QString& pluginName, QString inputImageDirPath, QString trainDatasetPath, QString workingDirectory, QString modelName, ProgressablePlugin * receiver);
+    ClassificationResult *
+    classify(const QString &pluginName, const QString &inputImageDirPath, const QString &trainDatasetPath,
+             const QString &workingDirectory,
+             const QString &modelName, ProgressablePlugin *receiver);
 
     /**
      * @brief getConfigurationWidgets gets config widgets of all classification plugins.
      *
      * @return list of config widgets
      */
-    QList<QWidget*> getConfigurationWidgets();
+    QList<QSharedPointer<QWidget>> getConfigurationWidgets();
 
     /**
      * @brief getClassificationPluginBases gets base models of plugin.
@@ -166,11 +173,10 @@ public:
      * @param pluginName name of plugin
      * @return list of plugin bases
      */
-    QStringList getClassificationPluginBases(const QString& pluginName);
+    QStringList getClassificationPluginBases(const QString &pluginName);
 
 private:
-    ClassificationPluginManager * instance;
-    QList<QWidget*> m_pluginConfigurationWidgets;
+    QList<QSharedPointer<QWidget>> m_pluginConfigurationWidgets;
 
 };
 

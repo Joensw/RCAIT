@@ -21,7 +21,7 @@ TEST(FolderPluginTest, testFoldersAsLabels){
     plugin.init();
 
     //set image path and mode
-    QWidget* config = plugin.getInputWidget();
+    QWidget* config = plugin.getInputWidget().get();
     config->setProperty("imageFolder", path + "/test_imagefolder");
     config->setProperty("loadMode", 0);
     plugin.saveConfiguration();
@@ -65,7 +65,7 @@ TEST(FolderPluginTest, testNamesAsLabels){
     plugin.init();
 
     //set image path and mode
-    QWidget* config = plugin.getInputWidget();
+    QWidget* config = plugin.getInputWidget().get();
     config->setProperty("imageFolder", path + "/test_imagefolder/label_names");
     config->setProperty("loadMode", 1);
     plugin.saveConfiguration();
@@ -107,7 +107,7 @@ TEST(FolderPluginTest, testFolderAsLabel){
     plugin.init();
 
     //set image path and mode
-    QWidget* config = plugin.getInputWidget();
+    QWidget* config = plugin.getInputWidget().get();
     config->setProperty("imageFolder", path + "/test_imagefolder/label_names");
     config->setProperty("loadMode", 2);
     plugin.saveConfiguration();

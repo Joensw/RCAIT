@@ -67,7 +67,6 @@ set(Sources
         ../model/pluginusage/trainer.h
         ../model/pluginusage/trainer.cpp
         ../model/automation/command.h
-        ../model/automation/command.cpp
         ../model/automation/classificationcommand.h
         ../model/automation/classificationcommand.cpp
         ../model/automation/imageloadcommand.h

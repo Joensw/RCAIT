@@ -2,18 +2,15 @@
 #include "imageloaderpluginmanager.h"
 
 
-ImageLoadCommand::ImageLoadCommand(QVariantMap map, QString imagePath, ProgressablePlugin* receiver)
-    : mPluginName(map.value("imagePluginName").toString()),
-      mLabels(map.value("labels").toStringList()),
-      mPath(imagePath),
-      mReceiver(receiver)
-
-{
+ImageLoadCommand::ImageLoadCommand(QVariantMap map, const QString &imagePath, ProgressablePlugin *receiver)
+        : mPluginName(map["imagePluginName"].toString()),
+          mLabels(map["labels"].toStringList()),
+          mPath(imagePath),
+          mReceiver(receiver) {
     bool ok;
+    mCount = map["count"].toInt(&ok);
 
-    mCount  = map.value("count").toInt(&ok);
-
-    if (imagePath.isNull() || mPluginName.isNull() || !ok || mLabels.isEmpty()){
+    if (imagePath.isNull() || mPluginName.isNull() || !ok || mLabels.isEmpty()) {
         parsingFailed = true;
         return;
     }
@@ -21,20 +18,18 @@ ImageLoadCommand::ImageLoadCommand(QVariantMap map, QString imagePath, Progressa
     mInputWidget = mPluginManager.getInputWidget(mPluginName);
     if (!mInputWidget) return;
 
-    auto end = map.end();
-    for(auto it = map.begin(); it != end; ++it){
-        if (mInputWidget->property(it.key().toUtf8().data()).isValid()){
-            mWidgetOptions.insert(it.key(), it.value());
+    for (const auto &[key, value]: MapAdapt(map)) {
+        if (mInputWidget->property(key.toUtf8().data()).isValid()) {
+            mWidgetOptions[key] = value;
         }
     }
 }
 
-bool ImageLoadCommand::execute(){
-    if(parsingFailed) return false;
+bool ImageLoadCommand::execute() {
+    if (parsingFailed) return false;
 
-    auto end = mWidgetOptions.end();
-    for (auto it = mWidgetOptions.begin(); it != end; ++it){
-        mInputWidget->setProperty(it.key().toUtf8().data(), it.value());
+    for (const auto &[key, value]: MapAdapt(mWidgetOptions)) {
+        mInputWidget->setProperty(key.toUtf8().data(), value);
     }
     mPluginManager.saveConfiguration(mPluginName);
 

@@ -4,9 +4,9 @@
 
 
 
-QWidget *ClassificationPluginMock::getConfigurationWidget()
+QSharedPointer<QWidget> ClassificationPluginMock::getConfigurationWidget()
 {
-    return new QWidget;
+    return QSharedPointer<QWidget>();
 }
 
 void ClassificationPluginMock::saveConfiguration()
@@ -24,9 +24,9 @@ QString ClassificationPluginMock::getName()
     return PLUGIN_NAME;
 }
 
-QWidget *ClassificationPluginMock::getInputWidget()
+ QSharedPointer<QWidget> ClassificationPluginMock::getInputWidget()
 {
-    return new QWidget;
+    return QSharedPointer<QWidget>();
 }
 
 QStringList ClassificationPluginMock::getAssociatedModels()
@@ -44,9 +44,9 @@ bool ClassificationPluginMock::getAugmentationPreview(const QString &modelName, 
     return true;
 }
 
-QWidget *ClassificationPluginMock::getDataAugmentationInputWidget()
+QSharedPointer<QWidget> ClassificationPluginMock::getDataAugmentationInputWidget()
 {
-    return new QWidget;
+    return QSharedPointer<QWidget>();
 }
 
 bool ClassificationPluginMock::removeModel(QString modelName)

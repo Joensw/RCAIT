@@ -10,7 +10,8 @@
 ImageGalleryTree::ImageGalleryTree(QWidget *parent) {
     // Add full touch compliance
     QScroller::grabGesture(this, QScroller::TouchGesture);
-
+    connect(this, &QTreeWidget::itemExpanded, this, &ImageGalleryTree::expandItem);
+    connect(this, &QTreeWidget::itemCollapsed, this, &ImageGalleryTree::collapseItem);
     setDragEnabled(false);
     setAcceptDrops(false);
     setHeaderHidden(true);
@@ -19,7 +20,6 @@ ImageGalleryTree::ImageGalleryTree(QWidget *parent) {
     root->setFlags(root->flags() ^ Qt::ItemIsDropEnabled);
 
     verticalScrollBar()->grabGesture(Qt::GestureType::SwipeGesture, Qt::GestureFlag::ReceivePartialGestures);
-
     QFont f(font());
     f.setPointSize(10);
     setFont(f);
@@ -43,6 +43,20 @@ QMap<QString, QList<int>> ImageGalleryTree::removeSelected() {
     }
 
     return removed;
+}
+
+void ImageGalleryTree::expandItem(QTreeWidgetItem *item)
+{
+    galleries.at(indexOfTopLevelItem(item))->setMinimumHeight(this->height() - 17);
+    scrollToItem(item, QAbstractItemView::ScrollHint::PositionAtTop);
+    QTreeWidget::expandItem(item);
+    verticalScrollBar()->setEnabled(false);
+}
+
+void ImageGalleryTree::collapseItem(QTreeWidgetItem *item)
+{
+    QTreeWidget::collapseItem(item);
+    verticalScrollBar()->setEnabled(true);
 }
 
 
@@ -77,5 +91,4 @@ void ImageGalleryTree::addLabels(const QMap<QString, QStringList> &labelToPathsM
     for (const auto &[path, images]: MapAdapt(labelToPathsMap)) {
         addLabel(path, images);
     }
-
 }

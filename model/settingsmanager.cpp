@@ -97,11 +97,10 @@ void SettingsManager::reload()
     mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 }
 
-QList<QWidget *> SettingsManager::getPluginSettings() {
-    QList<QWidget *> loaderPluginsWidgets = mImageLoaderPluginManager->getConfigurationWidgets();
-    QList<QWidget *> classifierPluginsWidgets = mClassificationPluginManager->getConfigurationWidgets();
-    loaderPluginsWidgets.append(classifierPluginsWidgets);
-    return loaderPluginsWidgets;
+QList<QSharedPointer<QWidget>> SettingsManager::getPluginSettings() {
+    auto loaderPluginsWidgets = mImageLoaderPluginManager->getConfigurationWidgets();
+    auto classifierPluginsWidgets = mClassificationPluginManager->getConfigurationWidgets();
+    return loaderPluginsWidgets + classifierPluginsWidgets;
 }
 
 void SettingsManager::savePluginSettings(int index) {

@@ -36,22 +36,14 @@ void AITrainingWidget::on_cancelButton_clicked()
     ui->cancelButton->setEnabled(false);
 }
 
-
-void AITrainingWidget::on_resultsButton_clicked()
-{
-    emit sig_results();
-}
-
-void AITrainingWidget::setDataAugWidget(QWidget *replacement)
-{
+void AITrainingWidget::setDataAugWidget(const QSharedPointer<QWidget> &replacement) {
     //ui->gridLayout_dataAug->replaceWidget(ui->dataAugWidget, replacement);
-    ui->scrollArea_augmentation->setWidget(replacement);
+    ui->scrollArea_augmentation->setWidget(&*replacement);
 }
 
-void AITrainingWidget::setAIConfigWidget(QWidget *replacement)
-{
+void AITrainingWidget::setAIConfigWidget(const QSharedPointer<QWidget> &replacement) {
     //ui->gridLayout_AIconfig->replaceWidget(ui->AIConfigWidget, replacement);
-    ui->scrollArea_configuration->setWidget(replacement);
+    ui->scrollArea_configuration->setWidget(&*replacement);
 }
 
 void AITrainingWidget::on_previewButton_clicked()

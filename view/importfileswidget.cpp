@@ -79,8 +79,7 @@ void ImportFilesWidget::clearModelList() {
     ui->pushButton_abortLoading->setEnabled(true);
 
     std::vector<QString> labelsVector = ui->lineEdit_labels->tags();
-    QStringList labelsList((qsizetype) labelsVector.size());
-    for (const QString &label: labelsVector) labelsList << label;
+    QStringList labelsList(labelsVector.begin(), labelsVector.end());
 
     emit sig_loadInputImages(ui->comboBox_plugins->currentText(), ui->spinBox_amount->value(),
                              labelsList, ui->horizontalSlider->value());
@@ -113,7 +112,7 @@ void ImportFilesWidget::on_horizontalSlider_valueChanged(int value) {
 }
 
 [[maybe_unused]] void ImportFilesWidget::on_pushButton_loadLabelsFromFile_clicked() {
-    QString path = QFileDialog::getOpenFileName(this, DIALOG_CAPTION, "", "*.txt");
+    QString path = QFileDialog::getOpenFileName(this, tr(DIALOG_CAPTION), "", "*.txt");
 
     if (path.isEmpty()) return;
 

@@ -3,17 +3,17 @@
 
 
 SettingsView::SettingsView(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::SettingsView) {
+        QWidget(parent),
+        ui(new Ui::SettingsView) {
     ui->setupUi(this);
     retranslateUi();
 }
 
 SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames,
-                           const QList<QWidget *> &pluginConfigurationWidgets) :
-    QWidget(parent),
-    ui(new Ui::SettingsView),
-    mGlobalSettingsWidget(new GlobalSettingsWidget(this)) {
+                           const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets) :
+        QWidget(parent),
+        ui(new Ui::SettingsView),
+        mGlobalSettingsWidget(new GlobalSettingsWidget(this)) {
     ui->setupUi(this);
 
     auto globalSettingsEntry = new QListWidgetItem(QIcon(CONFIGURATION_ICON), mGlobalSettingsWidget->windowTitle());
@@ -33,7 +33,8 @@ SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames,
     ui->pluginList->setCurrentRow(0);
 }
 
-void SettingsView::addPluginWidgets(QStringList pluginNames, QList<QWidget *> pluginConfigurationWidgets) {
+void SettingsView::addPluginWidgets(QStringList pluginNames,
+                                    const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets) {
     for (int i = ui->pluginWidget->count() - 1; i >= 1; --i) {
         delete (ui->pluginList->takeItem(i));
         QWidget *widget = ui->pluginWidget->widget(i);
@@ -44,9 +45,13 @@ void SettingsView::addPluginWidgets(QStringList pluginNames, QList<QWidget *> pl
     assert(pluginNames.size() == pluginConfigurationWidgets.size());
 
     for (int i = 0; i < pluginNames.size(); i++) {
-        auto pluginEntry = new QListWidgetItem(QIcon(PLUGIN_ICON), pluginNames[i]);
+        //Use translatable accessible name, fall back to codename (english) if needed
+        auto pluginName = pluginConfigurationWidgets[i]->accessibleName().isEmpty()
+                          ? pluginNames[i]
+                          : pluginConfigurationWidgets[i]->accessibleName();
+        auto pluginEntry = new QListWidgetItem(QIcon(PLUGIN_ICON), pluginName);
         ui->pluginList->addItem(pluginEntry);
-        ui->pluginWidget->addWidget(pluginConfigurationWidgets[i]);
+        ui->pluginWidget->addWidget(&*pluginConfigurationWidgets[i]);
     }
 }
 

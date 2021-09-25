@@ -107,10 +107,10 @@ QString ModelManager::recallPluginNameOfModell(QString projectName, QString mode
 
 }
 
-QWidget *ModelManager::getInputWidget() {
+QSharedPointer<QWidget> ModelManager::getInputWidget() {
     return mClassificationPluginManager->getInputWidget(mCurrentPlugin);
 }
 
-QWidget *ModelManager::getDataAugmentationInputWidget() {
+QSharedPointer<QWidget> ModelManager::getDataAugmentationInputWidget() {
     return mClassificationPluginManager->getDataAugmentationInputWidget(mCurrentPlugin);
 }

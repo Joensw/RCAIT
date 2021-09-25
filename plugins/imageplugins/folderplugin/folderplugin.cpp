@@ -74,7 +74,7 @@ bool FolderPlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
 
 }
 
-QWidget *FolderPlugin::getConfigurationWidget() {
+QSharedPointer<QWidget> FolderPlugin::getConfigurationWidget() {
     return mConfigWidget;
 }
 
@@ -84,14 +84,14 @@ void FolderPlugin::saveConfiguration() {
 }
 
 void FolderPlugin::init() {
-    mConfigWidget = new FolderConfigwidget();
+    mConfigWidget.reset(new FolderConfigwidget, &QObject::deleteLater);
 }
 
 QString FolderPlugin::getName() {
-    return "FolderPlugin";
+    return "Folder Loader Plugin";
 }
 
-QWidget *FolderPlugin::getInputWidget() {
+QSharedPointer<QWidget> FolderPlugin::getInputWidget() {
     return mConfigWidget;
 }
 

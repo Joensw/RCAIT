@@ -77,12 +77,12 @@ public:
     /**
      * @return the input UI of the current classification plugin that is to be shown
      */
-    QWidget * getInputWidget();
+    QSharedPointer<QWidget> getInputWidget();
 
     /**
      * @return the input UI of the current classification plugins data augmentation settings that are to be shown
      */
-    QWidget * getDataAugmentationInputWidget();
+    QSharedPointer<QWidget> getDataAugmentationInputWidget();
 
     /**
      * @return the currently loaded model
