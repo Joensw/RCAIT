@@ -1,7 +1,7 @@
 /**
  * @file imageinspectionmodel.cpp
  *
- * @brief fuctions for managing a classification dataset on disk
+ * @brief functions for managing a classification dataset on disk
  *
  * @author Sascha Rolinger
  */
@@ -47,13 +47,10 @@ void ImageInspectionModel::mergeDataSets(const QString &trainingPath, const QStr
     m_validationNewData.clear();
 }
 
-void ImageInspectionModel::mergeMap(const QMap<QString, QStringList> &mergeIn, const QMap<QString, QStringList> &mergeFrom) {
-    for (const auto &[label, value]: MapAdapt(mergeFrom)) {
-        if (mergeIn.contains(label))
-            mergeIn[label] << value;
-        else
-            mergeIn[label] = value;
-    }
+void
+ImageInspectionModel::mergeMap(const QMap<QString, QStringList> &mergeIn, const QMap<QString, QStringList> &mergeFrom) {
+    for (const auto &[label, value]: MapAdapt(mergeFrom))
+        mergeIn[label] << value;
 }
 
 
@@ -61,15 +58,15 @@ void ImageInspectionModel::removeImage(int selectionIndex, const QMap<QString, Q
     switch (selectionIndex) {
         case 2:
             removeImageWithIndex(m_validationDataset, removedImages);
-        break;
+            break;
         case 3:
             removeImageWithIndex(m_trainDataset, removedImages);
-        break;
+            break;
         case 0:
             removeImageWithIndex(m_validationNewData, removedImages);
         case 1:
             removeImageWithIndex(m_trainNewData, removedImages);
-        break;
+            break;
         default:
             qWarning() << "Unknown selectionIndex: " << selectionIndex;
     }
@@ -121,7 +118,7 @@ void ImageInspectionModel::insertLabeledImagePaths(QMap<QString, QStringList> &i
 
     for (const auto &item: labeledImages.entryInfoList()) {
         QDir currDir = QDir(item.absoluteFilePath());
-        if (currDir.exists() && currDir.isEmpty()){
+        if (currDir.exists() && currDir.isEmpty()) {
             currDir.removeRecursively();
             continue;
         }
@@ -135,15 +132,15 @@ void ImageInspectionModel::removeImageWithIndex(const QMap<QString, QStringList>
     for (const auto &[label, values]: MapAdapt(removedImages)) {
         for (auto i = values.count() - 1; i >= 0; i--) {
             if (!values.contains(i)) continue;
-                QFile file(removeTarget[label][i]);
-                QDir currDir = QFileInfo(file).absoluteDir();
-                auto newList = removeTarget[label];
-                newList.removeAt(i);
-                removeTarget[label] = newList;
-                file.remove();
-                if (currDir.exists() && currDir.isEmpty()){
-                    currDir.removeRecursively();
-                }
+            QFile file(removeTarget[label][i]);
+            QDir currDir = QFileInfo(file).absoluteDir();
+            auto newList = removeTarget[label];
+            newList.removeAt(i);
+            removeTarget[label] = newList;
+            file.remove();
+            if (currDir.exists() && currDir.isEmpty()) {
+                currDir.removeRecursively();
+            }
         }
     }
 }
@@ -186,18 +183,18 @@ void ImageInspectionModel::moveFile(const QString &imagePath, const QString &lab
 }
 
 int ImageInspectionModel::getFreeImageNumber(const QStringList &paths, const QString &label) {
+    static QRegularExpression re("\\d+");
     int res = 1;
     QStringList fileList;
     for (const QString &path: paths) {
         QDir dir(path);
         dir.setNameFilters({label + "_*"});
-        fileList.append(dir.entryList());
+        fileList << dir.entryList();
     }
 
     if (fileList.empty()) { return res; }
 
     std::sort(fileList.begin(), fileList.end(), compareNames);
-    QRegularExpression re("\\d+");
     QRegularExpressionMatch match = re.match(fileList.last());
     if (match.hasMatch()) {
         bool ok;
@@ -212,27 +209,27 @@ int ImageInspectionModel::getFreeImageNumber(const QStringList &paths, const QSt
 bool ImageInspectionModel::compareNames(const QString &s1, const QString &s2) {
 
 
-    QRegularExpressionMatch match1 = re.match(s1);
-    QRegularExpressionMatch match2 = re.match(s2);
+    QRegularExpressionMatch match1 = REGEX.match(s1);
+    QRegularExpressionMatch match2 = REGEX.match(s2);
     int matched1Number = 0;
     int matched2Number = 0;
     if (match1.hasMatch()) {
         QString matched1 = match1.captured(0);
-        matched1Number = matched1.toInt(nullptr, 10);
+        matched1Number = matched1.toInt();
     }
 
     if (match2.hasMatch()) {
         QString matched2 = match2.captured(0);
-        matched2Number = matched2.toInt(nullptr, 10);
+        matched2Number = matched2.toInt();
     }
 
     return matched1Number <= matched2Number;
 }
 
 
-
-ImageInspectionModel::ImageInspectionModel() : m_trainDataset(),
-    m_validationNewData(),
-    m_trainNewData(),
-    m_validationDataset()
-{}
+ImageInspectionModel::ImageInspectionModel() :
+        m_trainDataset(),
+        m_validationNewData(),
+        m_trainNewData(),
+        m_validationDataset() {
+}
