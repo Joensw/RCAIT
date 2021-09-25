@@ -466,9 +466,8 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
 
     auto accuracyCurveData = m_jsonReader.getAccuracyCurve(absoluteLogFilePath);
 
-    QDir datasetDirectory(trainDatasetPath);
-    datasetDirectory.cdUp();
-    auto validationAnnotationFilePath = datasetDirectory.absoluteFilePath(m_annotationFileName);
+    QDir validationDatasetDirectory(validationDatasetPath);
+    auto validationAnnotationFilePath = validationDatasetDirectory.absoluteFilePath(m_annotationFileName);
 
     auto mostMisclassifiedImages =
             m_jsonReader.generateMostMissclassifiedImages(m_numberOfMissClassifiedImages,
