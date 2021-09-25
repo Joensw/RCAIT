@@ -56,7 +56,7 @@ public:
     QString getAPIKey();
 
     /**
-     * @brief getAPISecret get the API secret
+     * @brief getAPISecret gets the API secret
      * @return the API secret
      */
     QString getAPISecret();
@@ -67,20 +67,20 @@ public:
     QString getPythonPath();
 
     /**
-     * @brief setAPIKey
-     * @param key
+     * @brief setAPIKey sets the API Key
+     * @param key API Key
      */
     void setAPIKey(QString key);
 
     /**
-     * @brief setAPISecret
-     * @param key
+     * @brief setAPISecret sets the API secret
+     * @param key API Key
      */
     void setAPISecret(QString key);
 
     /**
-     * @brief setPythonPath
-     * @param path
+     * @brief setPythonPath sets the Python path
+     * @param path the path
      */
     void setPythonPath(QString path);
 
