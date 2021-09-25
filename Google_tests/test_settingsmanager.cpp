@@ -81,7 +81,7 @@ TEST(SettingsManagerTest, initialisationChecks){
     QStringList cNames = sm->getClassificationPluginNames();
     QStringList cBases = sm->getClassificationPluginBase("nonExistantPlugin");
     QStringList iNames = sm->getImageLoaderPluginNames();
-    QList<QWidget*> widgets = sm->getPluginSettings();
+    QList<QSharedPointer<QWidget>> widgets = sm->getPluginSettings();
 
     EXPECT_TRUE(allNames.isEmpty());
     EXPECT_TRUE(cNames.isEmpty());
