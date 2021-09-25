@@ -527,17 +527,10 @@ MMClassificationPlugin::classify(const QString &inputImageDirPath, const QString
 
     QStringList inputImageFilePaths = {};
 
-    // read subdirectories and take image paths
-    QDir imageRootDir(inputImageDirPath);
-    imageRootDir.setFilter(QDir::Dirs);
-    for (const auto &item: imageRootDir.entryInfoList()) {
-        QDir inputImageSubDirectory(item.absoluteFilePath());
-        inputImageSubDirectory.setNameFilters(QStringList() << "*.jpg" << "*.png");
-        inputImageSubDirectory.setFilter(QDir::Files);
-        for (const QString &imageFile: inputImageSubDirectory.entryList()) {
-            inputImageFilePaths.append(inputImageDirPath + "/" + item.baseName() + "/" + imageFile);
-        }
-    }
+    QDir inputDirectory(inputImageDirPath);
+    QString pathToValTxt = inputDirectory.absoluteFilePath(m_annotationFileName);
+    QPair<QVector<QString>, QVector<int>> annotationFileData = m_jsonReader.readAnnotationFile(pathToValTxt);
+    inputImageFilePaths = annotationFileData.first;
 
     QMap<QString, QList<double>> data;
     QList<QString> labels = getLabels(trainDatasetPath);
