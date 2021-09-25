@@ -16,14 +16,12 @@
 #include "configurationdialog.h"
 
 
-
 /**
  * @brief The SettingsController class mediates between the settings logic and settings UI.
  *
  */
-class SettingsController : public QObject
-{
-    Q_OBJECT
+class SettingsController : public QObject {
+Q_OBJECT
 public:
 
     /**
@@ -55,8 +53,10 @@ public slots:
      * @param projectDir projectsDir selected project directory.
      * @param classificationPluginDir selected classification plugin directory.
      * @param imageLoaderPluginsDir selected imageloader plugin directory.
+     * @param pythonPath selected path to python executable
      */
-    void slot_applyGlobalSettings(QString projectDir, QString classificationPluginDir, QString imageLoaderPluginDir);
+    void slot_applyGlobalSettings(QString projectDir, QString classificationPluginDir, QString imageLoaderPluginDir,
+                                  QString pythonPath);
 
 signals:
 
@@ -64,21 +64,21 @@ signals:
      * @brief sig_projectDirectoryChanged emitted when project directory is updated
      *
      */
-    void sig_projectDirectoryChanged(const QString& newDirectory);
+    void sig_projectDirectoryChanged(const QString &newDirectory);
 
 
     /**
      * @brief sig_imgagePluginsChanged emitted when image plugins directory is changed.
      *
      */
-    void sig_imagePluginsDirectoryChanged(const QString& newDirectory);
+    void sig_imagePluginsDirectoryChanged(const QString &newDirectory);
 
 
     /**
      * @brief sig_classificationDirectoryChanged emmitted when classification plugin directory is changed.
      * @param newDirectory
      */
-    void sig_classificationDirectoryChanged(const QString& newDirectory);
+    void sig_classificationDirectoryChanged(const QString &newDirectory);
 
 private:
     QScopedPointer<SettingsView> mSettingsView;

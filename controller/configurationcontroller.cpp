@@ -22,7 +22,7 @@ ConfigurationController::ConfigurationController(QObject *parent)
 void
 ConfigurationController::slot_directoriesSpecified(const QString &projectDir, const QString &classificationPluginDir,
                                                    const QString &imageLoaderPluginsDir) {
-    if (mSettingsManager->verifyPaths(projectDir, classificationPluginDir, imageLoaderPluginsDir)) {
+    if (SettingsManager::verifyPaths({projectDir, classificationPluginDir, imageLoaderPluginsDir})) {
         mSettingsManager->configureSettingsFile(projectDir, classificationPluginDir, imageLoaderPluginsDir);
         mConfigurationDialog->confirm();
         mSettingsManager->reload();

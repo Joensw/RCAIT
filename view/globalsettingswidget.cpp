@@ -31,10 +31,17 @@ void GlobalSettingsWidget::setNewImageLoaderPath(const QString &path) {
     ui->label_imageLoaderDir_new->setText(text);
 }
 
+void GlobalSettingsWidget::setNewPythonPath(const QString &path) {
+    QFontMetrics metrics(ui->label_pythonPath_new->font());
+    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
+    ui->label_pythonPath_new->setText(text);
+}
+
 void GlobalSettingsWidget::clearNewPaths() {
     ui->label_projectsDir_new->clear();
     ui->label_classificationDir_new->clear();
     ui->label_imageLoaderDir_new->clear();
+    ui->label_pythonPath_new->clear();
 }
 
 void GlobalSettingsWidget::showUpdate(int amount) {
@@ -72,6 +79,12 @@ void GlobalSettingsWidget::setCurrentImageLoaderDir(const QString &path) {
     ui->label_imageLoaderDir_current->setText(text);
 }
 
+void GlobalSettingsWidget::setCurrentPythonPath(const QString &path) {
+    QFontMetrics metrics(ui->label_imageLoaderDir_current->font());
+    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
+    ui->label_imageLoaderDir_current->setText(text);
+}
+
 void GlobalSettingsWidget::on_pushButton_project_clicked() {
     emit sig_setProjectDir();
 }
@@ -84,6 +97,9 @@ void GlobalSettingsWidget::on_pushButton_imageLoader_clicked() {
     emit sig_setImageLoaderPluginsDir();
 }
 
+void GlobalSettingsWidget::on_pushButton_python_clicked(){
+    emit sig_setGeneralPythonPath();
+}
 
 void GlobalSettingsWidget::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
@@ -94,3 +110,4 @@ void GlobalSettingsWidget::changeEvent(QEvent *event) {
     //Call to parent class
     QWidget::changeEvent(event);
 }
+

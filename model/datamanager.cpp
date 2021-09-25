@@ -73,13 +73,8 @@ bool DataManager::verifyDirectories() {
     return mSettingsManager->verifyDirectories();
 }
 
-bool DataManager::verifyPaths(QString projectsDirectory, QString classificationPluginDirectory,
-                              QString imageLoaderDirectory) {
-    return mSettingsManager->verifyPaths(projectsDirectory, classificationPluginDirectory, imageLoaderDirectory);
-}
-
-bool DataManager::verifyPath(QString path) {
-    return mSettingsManager->verifyPath(path);
+bool DataManager::verifyPaths(const QStringList& paths) {
+    return mSettingsManager->verifyPaths(paths);
 }
 
 void DataManager::createNewModel(QString modelName, QString pluginName, QString baseModel) {
@@ -110,7 +105,7 @@ QString DataManager::recallLastWorkingDirectoryOfModel(QString projectName, QStr
     return mModelManager->recallLastWorkingDirectoryOfModel(projectName, modelName);
 }
 
-QString DataManager::recallPluginNameOfModell(QString projectName, QString modelName) {
+QString DataManager::recallPluginNameOfModel(QString projectName, QString modelName) {
     return mModelManager->recallPluginNameOfModell(projectName, modelName);
 }
 
@@ -184,8 +179,9 @@ QStringList DataManager::getImageLoaderPluginNames() {
 
 bool
 DataManager::applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
+                                 QString pythonPath,
                                  QString *error, int *pathsChanged) {
-    if (mSettingsManager->applyGlobalSettings(projectsDir, classificationPluginDir, imageLoaderPluginDir, error,
+    if (mSettingsManager->applyGlobalSettings(projectsDir, classificationPluginDir, imageLoaderPluginDir, pythonPath, error,
                                               pathsChanged)) {
         mProjectManager->setProjectsDirectory(getProjectsDir());
         return true;

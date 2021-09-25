@@ -45,7 +45,13 @@ public:
     void setNewImageLoaderPath(const QString& path);
 
     /**
-     * Called when temporary paths have been accepeted or denied
+     * @brief setNewPythonPath set the path to the python executable to used in general
+     * @param path the new absolute path to use
+     */
+    void setNewPythonPath(const QString& path);
+
+    /**
+     * Called when temporary paths have been accepted or denied
      * @brief clearNewPaths clear the new paths shown in the UI
      */
     void clearNewPaths();
@@ -80,6 +86,11 @@ public:
      */
     void setCurrentImageLoaderDir(const QString& path);
 
+    /**
+     * @brief setCurrentPythonPath set the current path to the python executable
+     * @param path path to be shown
+     */
+    void setCurrentPythonPath(const QString& path);
 
 signals:
     /**
@@ -97,6 +108,11 @@ signals:
      */
     void sig_setImageLoaderPluginsDir();
 
+    /**
+     * @brief sig_setGeneralPythonPath emitted when a file dialog is to be opened to choose a new path to the python executable
+     */
+    void sig_setGeneralPythonPath();
+
 protected:
 
     /**
@@ -113,7 +129,9 @@ private slots:
 
     [[maybe_unused]] void on_pushButton_classification_clicked();
 
-    [[maybe_unused]]void on_pushButton_imageLoader_clicked();
+    [[maybe_unused]] void on_pushButton_imageLoader_clicked();
+
+    [[maybe_unused]] void on_pushButton_python_clicked();
 
 private:
     static constexpr auto STYLESHEET_RED = "QLabel { color : red; }";

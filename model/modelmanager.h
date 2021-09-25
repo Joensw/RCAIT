@@ -120,7 +120,7 @@ public:
     QString recallLastWorkingDirectoryOfModel(QString projectName, QString modelName);
 
     /**
-     * @brief recallPluginNameOfModell find the plugin a certain model was derived from
+     * @brief recallPluginNameOfModel find the plugin a certain model was derived from
      * @param projectName name of the project to search in
      * @param modelName name of the model to search by
      * @return name of the originating plugin

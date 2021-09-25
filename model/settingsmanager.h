@@ -31,7 +31,7 @@ public:
     SettingsManager(const SettingsManager &) = delete;
 
     /**
-     * @brief operator = deleted assingment operator
+     * @brief operator = deleted assignment operator
      */
 
     SettingsManager &operator=(const SettingsManager &) = delete;
@@ -66,7 +66,7 @@ public:
      * @brief saveProjectsDir sets the value of the projects directory
      * @param dir the absolute path to the new projects directory
      */
-    void saveProjectsDir(const QString& dir);
+    void saveProjectsDir(const QString &dir);
 
     /**
      * @return the absolute path to the current projects directory
@@ -77,10 +77,10 @@ public:
      * @brief saveClassificationPluginDir set the value of the classification plugin directory
      * @param dir the absolute path to the new projects directory
      */
-    void saveClassificationPluginDir(const QString& dir);
+    void saveClassificationPluginDir(const QString &dir);
 
     /**
-     * @return the absolute path to the curent classifcation plugin directory
+     * @return the absolute path to the current classification plugin directory
      */
     QString getClassificationPluginDir();
 
@@ -88,7 +88,13 @@ public:
      * @brief saveImageLoaderPluginDir set the value of the image loader plugin directory
      * @param dir the absolute path to the new projects directory
      */
-    void saveImageLoaderPluginDir(const QString& dir);
+    void saveImageLoaderPluginDir(const QString &dir);
+
+    /**
+     * @brief savePythonPath set the value of the python executable path
+     * @param path the absolute path to the new python executable
+     */
+    void savePythonPath(const QString &path);
 
     /**
      * @return the absolute path to the current image loader plugin directory
@@ -96,16 +102,23 @@ public:
     QString getImageLoaderPluginDir();
 
     /**
-     * @brief applyGlobalSettings changes the program paths acording to parameters, if they are resolvable.
+     * @return the absolute path to the currently set python executable
+     */
+    QString getPythonExecutablePath();
+
+    /**
+     * @brief applyGlobalSettings changes the program paths according to parameters, if they are resolvable.
      * @param projectsDir the new projects directory
      * @param classificationPluginDir the new classification plugin directory
-     * @param imageLoaderPluginDir the new image loader pluign directory
+     * @param imageLoaderPluginDir the new image loader plugin directory
+     * @param pythonPath the new path to the python executable
      * @param error optional argument, if an error occurs it will be written to here
      * @param pathChanged optional argument, the amount of paths updated will be written here
      * @return true if the new paths could be applied, false otherwise
      */
-    bool applyGlobalSettings(const QString& projectsDir, const QString& classificationPluginDir, const QString& imageLoaderPluginDir,
-                             QString *error = nullptr, int *pathsChanged = nullptr);
+    bool applyGlobalSettings(const QString &projectsDir, const QString &classificationPluginDir,
+                             const QString &imageLoaderPluginDir,
+                             const QString &pythonPath, QString *error = nullptr, int *pathsChanged = nullptr);
 
     /**
      * @return the names of all loaded image loader plugins
@@ -121,7 +134,7 @@ public:
      * @param basesOf the classification plugin
      * @return list of the bases of a particular classification plugin
      */
-    QStringList getClassificationPluginBase(const QString& plugin);
+    QStringList getClassificationPluginBase(const QString &plugin);
 
     /**
      * The paths are valid, when they are not empty ie. "" or the nullstring, when they are not identical, and actually exist.
@@ -137,19 +150,10 @@ public:
      * If the paths provided arent absolute there is no guarantee for whether the check passes or fails.
      *
      * @brief verifyPaths check if the the specified directories would be considered valid by the application
-     * @param projectsDirectory absolute path to the projects directory
-     * @param classificationPluginDirectory absolute path the the classification plugin directory
-     * @param imageLoaderDirectory absolute path to the image loader plugin directory
+     * @param paths list of paths to check for validity
      * @return true if valid, false otherwise
      */
-    static bool verifyPaths(const QString& projectsDirectory, const QString& classificationPluginDirectory, const QString& imageLoaderDirectory);
-
-    /**
-     * @brief verifyPath check if a single path would be considered valid on it own
-     * @param path the absolute path
-     * @return true if valid, false otherwise
-     */
-    static bool verifyPath(const QString& path);
+    static bool verifyPaths(const QStringList &paths);
 
     /** Used by the configuration controller, to set paths for further program use
      * @brief configureSettingsFile set the paths in the settings file
@@ -157,8 +161,9 @@ public:
      * @param classificationPluginDirectory absolute path the the classification plugin directory
      * @param imageLoaderDirectory absolute path to the image loader plugin directory
      */
-    void configureSettingsFile(const QString& projectsDirectory, const QString& classificationPluginDirectory,
-                               const QString& imageLoaderDirectory);
+    void configureSettingsFile(const QString &projectsDirectory, const QString &classificationPluginDirectory,
+                               const QString &imageLoaderDirectory);
+
     /**
      * @brief reload manually prompt the plugin managers to reload the plugins from the current directories
      */
@@ -169,6 +174,7 @@ private:
     static constexpr auto projectDirectoryIdentifier = "ProjectDirectory";
     static constexpr auto classificationPluginDirectoryIdentifier = "ClassificationPluginPath";
     static constexpr auto imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
+    static constexpr auto pythonExecutablePathIdentifier = "pythonPath";
 
     static constexpr auto ERROR_CONFLICT = QT_TR_NOOP(
             "Settings have not been updated, there is a conflict. \n Paths may not be identical and must exist, this includes new and unchanged paths.");
