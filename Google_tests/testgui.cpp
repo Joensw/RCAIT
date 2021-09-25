@@ -82,6 +82,7 @@ void TestGui::testTagField()
 
 void TestGui::testLoadLabelsFromTxt()
 {
+    QSKIP("skipping GUI test because it opens a file dialog");
     ImportFilesWidget importFilesWidget;
     QPushButton* pushButton_loadLabels = importFilesWidget.findChild<QPushButton*>("pushButton_loadLabelsFromFile");
     Tags* tagField = importFilesWidget.findChild<Tags*>("lineEdit_labels");

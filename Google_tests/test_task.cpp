@@ -30,21 +30,22 @@ TEST(TaskTest, testruncompleted){
     QApplication a(argc, argv);
     QVariantMap map = QVariantMap();
     map.insert("taskName", "example");
-    QList<Command*> cmdList;
+    QList<QSharedPointer<Command>> sharedCmdList;
     for (int i = 0; i < 3; i++){
-        cmdList.append(new MockCommand());
+        sharedCmdList.append(QSharedPointer<Command>(new MockCommand()));
+
     }
     DataManager* mngr = &DataManager::getInstance();
 
     //init task
-    Task* task = new Task(map, cmdList);
+    Task* task = new Task(map, sharedCmdList);
     EXPECT_TRUE(task->isValid());
 
     QSignalSpy spy(task, &Task::sig_progress);
 
     //register progressable
     for (int i = 0; i < 3; i++){
-        ((MockCommand*)cmdList.at(i))->setProgressable(task);
+        (qSharedPointerCast<MockCommand>)(sharedCmdList.at(i))->setProgressable(task);
     }
 
     //test for correct state, then run
@@ -67,20 +68,21 @@ TEST(TaskTest, testruncanceledreset){
     QApplication a(argc, argv);
     QVariantMap map = QVariantMap();
     map.insert("taskName", "example");
-    QList<Command*> cmdList;
-    for (int i = 0; i < 3; i++){
-        cmdList.append(new MockCommand());
+
+    QList<QSharedPointer<Command>> sharedCmdList;
+    for (int i = 0; i < 3; i++){  
+        sharedCmdList.append(QSharedPointer<Command>(new MockCommand()));
     }
     DataManager* mngr = &DataManager::getInstance();
 
     //init task
-    Task* task = new Task(map, cmdList);
+    Task* task = new Task(map, sharedCmdList);
     QSignalSpy spy(task, &Task::sig_stateChanged);
     EXPECT_TRUE(task->getName() == "example");
 
     //register progressable
     for (int i = 0; i < 3; i++){
-        ((MockCommand*)cmdList.at(i))->setProgressable(task);
+        (qSharedPointerCast<MockCommand>)(sharedCmdList.at(i))->setProgressable(task);
     }
 
     //test for correct state, then run
