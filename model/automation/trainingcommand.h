@@ -26,7 +26,8 @@ public:
      * @param workingDir working dir path
      * @param receiver object to receive progress.
      */
-    TrainingCommand(QVariantMap map, const QString &trainDataSetPath, const QString &validationDataSetPath, const QString &workingDir, ProgressablePlugin* receiver);
+    TrainingCommand(QVariantMap map, QString trainDataSetPath, const QString &validationDataSetPath,
+                    const QString &workingDir, ProgressablePlugin *receiver);
 
     /**
      * @brief execute executes the command.
@@ -46,14 +47,14 @@ signals:
 
 private:
 
-    ClassificationPluginManager& mPluginManager =  ClassificationPluginManager::getInstance();
-    DataManager& mDataManager = DataManager::getInstance();
-    TrainingResult* mResult;
-    ProgressablePlugin* mReceiver;
-    QVariantMap mInputOptions;
+    ClassificationPluginManager &mPluginManager = ClassificationPluginManager::getInstance();
+    DataManager &mDataManager = DataManager::getInstance();
+    TrainingResult *mResult;
+    ProgressablePlugin *mReceiver;
     QSharedPointer<QWidget> mInputWidget;
-    QVariantMap mAugmentationOptions;
     QSharedPointer<QWidget> mAugmentationWidget;
+    QVariantMap mInputOptions;
+    QVariantMap mAugmentationOptions;
     bool parsingFailed = false;
 
     QString mProjectName;

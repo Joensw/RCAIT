@@ -36,7 +36,7 @@ signals:
      *
      * @param progress progress message
      */
-    void sig_progress(int progress);
+    virtual void sig_progress(int progress);
 
     /**
      * @brief sig_statusUpdate signals status update

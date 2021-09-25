@@ -5,6 +5,7 @@
 
 #include <imageinspectionmodel.h>
 #include <progressableplugin.h>
+#include <utility>
 
 /**
  * @brief The SplitCommand class splits loaded images between training- and validation-images.
@@ -20,7 +21,7 @@ public:
      * @param dataSetPath path of dataset.
      * @param receiver object to receive progress.
      */
-    SplitCommand(const QString &tempPath, const QString &trainPath,  const QString &validationPath, int split, ProgressablePlugin* receiver);
+    SplitCommand(QString tempPath, QString trainPath, QString validationPath, int split, ProgressablePlugin *receiver);
 
 
     /**

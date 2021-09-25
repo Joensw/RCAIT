@@ -6,6 +6,7 @@
 #include <classificationpluginmanager.h>
 #include <datamanager.h>
 #include <progressableplugin.h>
+#include <utility>
 
 /**
  * @brief The ClassificationCommand class starts a classification with information derived from a map.
@@ -24,7 +25,7 @@ public:
      * @param workingDir working directory path
      * @param receiver object to receive progress.
      */
-    ClassificationCommand(QVariantMap map, const QString &trainDataSetPath, ProgressablePlugin* receiver);
+    ClassificationCommand(QVariantMap map, QString trainDataSetPath, ProgressablePlugin *receiver);
 
     /**
      * @brief execute executes the command.
@@ -44,21 +45,20 @@ signals:
 
 private:
 
-   ClassificationPluginManager& mPluginManager =  ClassificationPluginManager::getInstance();
-   DataManager& mDataManager = DataManager::getInstance();
-   ClassificationResult* mResult;
-   ProgressablePlugin* mReceiver;
-   bool parsingFailed = false;
+    ClassificationPluginManager &mPluginManager = ClassificationPluginManager::getInstance();
+    DataManager &mDataManager = DataManager::getInstance();
+    ClassificationResult *mResult{};
+    ProgressablePlugin *mReceiver;
+    bool parsingFailed = false;
 
-   QString mProjectName;
-   QString mImagePath;
-   QString mModelName;
-   QString mAiPluginName;
-   QString mTrainDataSetPath;
-   QString mWorkingDir;
-
+    QString mProjectName;
+    QString mImagePath;
+    QString mModelName;
+    QString mAiPluginName;
+    QString mTrainDataSetPath;
+    QString mWorkingDir;
 
 
 };
 
-#endif // CLASSIFICATIONTASK_H
+#endif // CLASSIFICATIONCOMMAND_H

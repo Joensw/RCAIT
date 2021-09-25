@@ -12,30 +12,38 @@
  * @brief The TaskState enum is an enumeration of task states.
  *
  */
-enum TaskState
-{
+enum TaskState {
+    NOT_SCHEDULED,
     SCHEDULED,
     PERFORMING,
     FAILED,
     COMPLETED
 };
 
+static constexpr CE_String StateMap[] = {
+        "Not_Scheduled",
+        "Scheduled",
+        "Performing",
+        "Failed",
+        "Completed"
+};
+
+
 /**
  * @brief The Task class is responsible for executing (multiple) commands.
  *
  */
-class Task : public ProgressablePlugin
-{
-    Q_OBJECT
+class Task : public ProgressablePlugin {
+Q_OBJECT
 public:
 
     /**
      * @brief Task constructs a Task.
      *
      * @param map stores information for commands.
-     * @param dataManager source of general information.
+     * @param commandList list of the supplied commands.
      */
-    Task(QVariantMap map, QList<Command*> commandList = {});
+    explicit Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList = {});
 
     /**
      * @brief getName returns name of the Task.
@@ -67,9 +75,9 @@ public:
     /**
      * @brief isValid returns validity of Task.
      *
-     * @return true if task is valid (parsing successfull), else false.
+     * @return true if task is valid (parsing successful), else false.
      */
-    bool isValid();
+    [[nodiscard]] bool isValid() const;
 
     /**
      * @brief abort aborts the Task.
@@ -114,33 +122,32 @@ signals:
      *
      * @param progress number in percent.
      */
-    void sig_progress(int progress);
+    void sig_progress(int progress) override;
 
     /**
      * @brief sig_trainingResultUpdated signals new training result from automation.
      *
      * @param result training result
      */
-    void sig_trainingResultUpdated(TrainingResult* result);
+    void sig_trainingResultUpdated(TrainingResult *result);
 
     /**
      * @brief sig_classificationResultUpdated signals new classification result from automation.
      *
      * @param result classification result
      */
-    void sig_classificationResultUpdated(ClassificationResult* result);
-
+    void sig_classificationResultUpdated(ClassificationResult *result);
 
 
 private:
-    const int DEFAULT_SPLIT = 30;
+    static constexpr auto DEFAULT_SPLIT = 30;
 
     QString mName;
     TaskState mState = SCHEDULED;
     QString mProjectPath;
-    DataManager& mDataManager = DataManager::getInstance();;
-    QList<Command*> mCommandList;
-    ResultsExporter* mExporter;
+    DataManager &mDataManager = DataManager::getInstance();
+    QList<QSharedPointer<Command>> mCommandList;
+    QScopedPointer<ResultsExporter> mExporter;
 
     bool valid = true;
     bool mAbort = false;

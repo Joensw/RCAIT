@@ -2,10 +2,9 @@
 #define AUTOMATOR_H
 
 #include "task.h"
-
 #include <datamanager.h>
-
 #include <pluginusage/progressable.h>
+#include <QJsonDocument>
 
 
 /**
@@ -41,7 +40,7 @@ public:
      *
      * @param path path to file.
      */
-    void addTasks(QString path);
+    void addTasks(const QString &path);
 
     /**
      * @brief remove removes task at index from non-scheduled queue.
@@ -69,14 +68,14 @@ public:
      *
      * @return size of non-scheduled queue.
      */
-    int getUnqueuedSize();
+    qsizetype getUnqueuedSize();
 
     /**
      * @brief getQueuedSize returns size of scheduled queue.
      *
      * @return size of scheduled queue.
      */
-    int getQueuedSize();
+    qsizetype getQueuedSize();
 
 public slots:
 
@@ -108,7 +107,7 @@ signals:
     void sig_taskUpdate(QString name, QString state);
 
     /**
-     * @brief sig_taskAdded signals successfull addition of task to non-scheduled queue.
+     * @brief sig_taskAdded signals successful addition of task to non-scheduled queue.
      *
      * @param name task name.
      */
@@ -139,7 +138,7 @@ signals:
      *
      * @param result classification result
      */
-    void sig_classificationResultUpdated(ClassificationResult* result);
+    void sig_classificationResultUpdated(ClassificationResult *result);
 
     /**
      * @brief sig_projectCreated signals potential creation of new project.
@@ -149,9 +148,9 @@ signals:
 
 
 private:
-    QList<Task*> mUnqueuedTasks;
-    QList<Task*> mQueuedTasks;
-    QList<Task*>::iterator mRunningTask;
+    QList<QSharedPointer<Task>> mUnqueuedTasks;
+    QList<QSharedPointer<Task>> mQueuedTasks;
+    QList<QSharedPointer<Task>>::iterator mRunningTask;
 
     bool stop = false;
     int tasksCompleted = 0;

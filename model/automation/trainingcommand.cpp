@@ -1,69 +1,66 @@
 #include "trainingcommand.h"
 
 #include <classificationpluginmanager.h>
-#include <datamanager.h>
+
+#include <utility>
 
 
-TrainingCommand::TrainingCommand(QVariantMap map,const QString &trainDataSetPath, const QString &validationDataSetPath,const QString &workingDir, ProgressablePlugin* receiver)
-    : mProjectName(map.value("projectName").toString()),
-      mAiPluginName(map.value("aiPluginName").toString()),
-      mModelName(map.value("modelName").toString()),
-      mBaseModel(map.value("baseModel").toString()),
-      mTrainDataSetPath(trainDataSetPath),
-      mValidationDataSetPath(validationDataSetPath),
-      mWorkingDir(workingDir),
-      mReceiver(receiver)
-{
-    if (mModelName.isNull() || mAiPluginName.isNull()){
+TrainingCommand::TrainingCommand(QVariantMap map, QString trainDataSetPath, const QString &validationDataSetPath,
+                                 const QString &workingDir, ProgressablePlugin *receiver)
+        : mProjectName(map["projectName"].toString()),
+          mAiPluginName(map["aiPluginName"].toString()),
+          mModelName(map["modelName"].toString()),
+          mBaseModel(map["baseModel"].toString()),
+          mTrainDataSetPath(std::move(trainDataSetPath)),
+          mValidationDataSetPath(validationDataSetPath),
+          mWorkingDir(workingDir),
+          mReceiver(receiver) {
+
+    if (mModelName.isNull() || mAiPluginName.isNull()) {
         parsingFailed = true;
         return;
     }
 
     mInputWidget = mPluginManager.getInputWidget(mAiPluginName);
-    auto end = map.end();
-    if (mInputWidget){
+    if (mInputWidget) {
         // getting all property names of input widget
-        for(auto it = map.begin(); it != end; ++it){
-            if (mInputWidget->property(it.key().toUtf8().data()).isValid()){
-                mInputOptions.insert(it.key(), it.value());
-            }
+        for (const auto &[key, value]: MapAdapt(map)) {
+            if (mInputWidget->property(key.toUtf8().data()).isValid())
+                mInputOptions[key] = value;
         }
     }
 
     mAugmentationWidget = mPluginManager.getDataAugmentationInputWidget(mAiPluginName);
     if (!mAugmentationWidget) return;
     // getting all property names of augmentation widget
-    for(auto it = map.begin(); it != end; ++it){
-        if (mAugmentationWidget->property(it.key().toUtf8().data()).isValid()){
-            mAugmentationOptions.insert(it.key(), it.value());
-        }
+    for (const auto &[key, value]: MapAdapt(map)) {
+        if (mAugmentationWidget->property(key.toUtf8().data()).isValid())
+            mAugmentationOptions[key] = value;
     }
 }
 
-bool TrainingCommand::execute()
-{
-    if(parsingFailed) return false;
+bool TrainingCommand::execute() {
+    if (parsingFailed) return false;
 
     // creating/loading model
-    if (!mBaseModel.isNull()){
+    if (!mBaseModel.isNull()) {
         mDataManager.createNewModel(mModelName, mAiPluginName, mBaseModel);
     }
     mDataManager.loadModel(mModelName, mAiPluginName);
 
     // setting properties
-    auto endInput = mInputOptions.end();
-    for (auto it = mInputOptions.begin(); it != endInput; ++it){
-        mInputWidget->setProperty(it.key().toUtf8().data(), it.value());
+    for (const auto &[key, value]: MapAdapt(mInputOptions)) {
+        mInputWidget->setProperty(key.toUtf8().data(), value);
     }
-    auto endAutomation = mAugmentationOptions.end();
-    for (auto it = mAugmentationOptions.begin(); it != endAutomation; ++it){
-        mAugmentationWidget->setProperty(it.key().toUtf8().data(), it.value());
+    for (const auto &[key, value]: MapAdapt(mAugmentationOptions)) {
+        mAugmentationWidget->setProperty(key.toUtf8().data(), value);
     }
 
-    mResult = mPluginManager.train(mAiPluginName, mModelName, mTrainDataSetPath, mValidationDataSetPath, mWorkingDir, mReceiver);
-    if (!mResult->isValid()){
-        return false;
-    }
+    mResult = mPluginManager.train(mAiPluginName, mModelName, mTrainDataSetPath, mValidationDataSetPath, mWorkingDir,
+                                   mReceiver);
+
+    if (!mResult->isValid()) return false;
+
     mDataManager.saveLastWorkingDirectoryOfModel(mProjectName, mModelName, mWorkingDir);
 
     emit sig_saveResult(mResult);

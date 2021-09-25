@@ -7,122 +7,108 @@
 #include <QApplication>
 
 
-Task::Task(QVariantMap map, QList<Command*> commandList)
-    : mName(map.value("taskName").toString())
-{
+Task::Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList)
+        : mName(map["taskName"].toString()) {
 
-    if (!commandList.isEmpty()){
+    if (!commandList.isEmpty()) {
         mCommandList = commandList;
         return;
     }
 
-    QStringList commands = map.value("taskType").toStringList();
+    QStringList commands = map["taskType"].toStringList();
 
-    if (commands.contains("addProject")){
-        mDataManager.createNewProject(map.value("projectName").toString());
+    if (commands.contains("addProject")) {
+        mDataManager.createNewProject(map["projectName"].toString());
     }
-    mDataManager.loadProject(map.value("projectName").toString());
+    mDataManager.loadProject(map["projectName"].toString());
 
     if (commands.contains("imageLoad")) {
-        ImageLoadCommand* command = new ImageLoadCommand(map, mDataManager.getProjectImageTempDir(), this);
-        mCommandList.append(command);
+        auto command = new ImageLoadCommand(map, mDataManager.getProjectImageTempDir(), this);
+        QSharedPointer<Command>(command, &QObject::deleteLater);
     }
 
     if (commands.contains("split")) {
         bool ok;
-        int split = map.value("split").toInt(&ok);
-        if(!ok) split = DEFAULT_SPLIT;
+        int split = map["split"].toInt(&ok);
+        if (!ok) split = DEFAULT_SPLIT;
 
-        SplitCommand* command = new SplitCommand(mDataManager.getProjectImageTempDir(),mDataManager.getProjectDataSetTrainSubdir(), mDataManager.getProjectDataSetValSubdir(), split, this);
-        mCommandList.append(command);
+        auto command = new SplitCommand(mDataManager.getProjectImageTempDir(),
+                                        mDataManager.getProjectDataSetTrainSubdir(),
+                                        mDataManager.getProjectDataSetValSubdir(), split, this);
+        mCommandList << QSharedPointer<Command>(command, &QObject::deleteLater);
     }
 
     if (commands.contains("training")) {
-        QString workingDir = mDataManager.createNewWorkSubDir(map.value("modelName").toString());
-        TrainingCommand* command = new TrainingCommand(map, mDataManager.getProjectDataSetTrainSubdir(), mDataManager.getProjectDataSetValSubdir(), workingDir, this);
-        mCommandList.append(command);
+        QString workingDir = mDataManager.createNewWorkSubDir(map["modelName"].toString());
+        auto command = new TrainingCommand(map, mDataManager.getProjectDataSetTrainSubdir(),
+                                           mDataManager.getProjectDataSetValSubdir(), workingDir, this);
+        mCommandList << QSharedPointer<Command>(command, &QObject::deleteLater);
         connect(command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
     }
 
     if (commands.contains("classification")) {
-        ClassificationCommand* command = new ClassificationCommand(map, mDataManager.getProjectDataSetTrainSubdir(), this);
-        mCommandList.append(command);
+        auto command = new ClassificationCommand(map, mDataManager.getProjectDataSetTrainSubdir(), this);
+        mCommandList << QSharedPointer<Command>(command, &QObject::deleteLater);
         connect(command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
     }
-    if(mCommandList.isEmpty() && !commands.contains("addProject")) valid = false;
+    if (mCommandList.isEmpty() && !commands.contains("addProject")) valid = false;
 
 }
 
-void Task::run()
-{
-    mState = PERFORMING;
-    emit sig_stateChanged(mName, mState);
-    for (commandsDone = 0; commandsDone < mCommandList.count(); commandsDone++){
-        emit sig_progress((commandsDone * 100) / (mCommandList.size()));
-        if (mAbort){
-            mState = FAILED;
-            emit sig_stateChanged(mName, mState);
-            return;
-        }
-        if (!mCommandList.at(commandsDone)->execute()) {
-            mState = FAILED;
-            emit sig_stateChanged(mName, mState);
+void Task::run() {
+    emit sig_stateChanged(mName, mState = PERFORMING);
+
+    for (commandsDone = 0; commandsDone < mCommandList.count(); commandsDone++) {
+        auto progress = (commandsDone * 100) / mCommandList.size();
+        emit sig_progress((int) progress);
+
+        if (mAbort || !mCommandList[commandsDone]->execute()) {
+            emit sig_stateChanged(mName, mState = FAILED);
             return;
         }
     }
 
-    mState = COMPLETED;
-    emit sig_stateChanged(mName, mState);
+    emit sig_stateChanged(mName, mState = COMPLETED);
     emit sig_progress(100);
 }
 
-
-
-QString Task::getName()
-{
+QString Task::getName() {
     return mName;
 }
 
-TaskState Task::getState()
-{
+TaskState Task::getState() {
     return mState;
 }
 
-void Task::resetTask()
-{
+void Task::resetTask() {
     mState = SCHEDULED;
     mAbort = false;
 }
 
-bool Task::isValid()
-{
+bool Task::isValid() const {
     return valid;
 }
 
-void Task::abort()
-{
+void Task::abort() {
     mAbort = true;
     emit sig_pluginAborted();
     emit sig_progress(100);
-    while (true){
+    forever {
         if (mState == FAILED || mState == COMPLETED || mState == SCHEDULED) return;
         QApplication::processEvents();
         QThread::sleep(1);
     }
 }
 
-void Task::slot_makeProgress(int progress)
-{
-    int localProgress = (commandsDone * 100 + progress) / (mCommandList.size());
-    emit sig_progress(localProgress);
+void Task::slot_makeProgress(int progress) {
+    auto localProgress = (commandsDone * 100 + progress) / (mCommandList.size());
+    emit sig_progress((int) localProgress);
 }
 
-void Task::slot_saveTrainingResult(TrainingResult *result)
-{
+void Task::slot_saveTrainingResult(TrainingResult *result) {
     emit sig_trainingResultUpdated(result);
 }
 
-void Task::slot_saveClassificationResult(ClassificationResult *result)
-{
+void Task::slot_saveClassificationResult(ClassificationResult *result) {
     emit sig_classificationResultUpdated(result);
 }
