@@ -29,15 +29,36 @@ Q_OBJECT
     Q_INTERFACES(ImageLoaderPlugin)
 
 public:
-    bool
-    loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) override;
+    /**
+     * @brief loadImages loads images through the Flickr Plugin
+     * @param path to save the images to
+     * @param receiver receiver takes status updates
+     * @param imageCount count of images to download
+     * @param label list of labels to download images of
+     * @return
+     */
+    bool loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) override;
 
+    /**
+     * @brief getConfigurationWidget returns a widget in which the Plugin can be configured
+     * @return the configuration widget of the Flickr Plugin
+     */
     QSharedPointer<QWidget> getConfigurationWidget() override;
 
+    /**
+     * @brief saveConfiguration saves the configuration in the widget to the settings object
+     */
     void saveConfiguration() override;
 
+    /**
+     * @brief init initializes the plugin
+     */
     void init() override;
 
+    /**
+     * @brief getName returns the name of the plugin
+     * @return the plugin name
+     */
     QString getName() override;
 
 private:

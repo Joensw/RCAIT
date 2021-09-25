@@ -9,11 +9,13 @@
 
 bool
 FlickrPlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) {
+    //Setup variables
     m_receiver = receiver;
     QString fullCommand = createCommandlineString(path, imageCount, label);
     qDebug() << fullCommand;
     m_process.reset(new QProcess);
     m_process->setReadChannel(QProcess::StandardOutput);
+    //Connect signals/slots
     connect(&*m_process, &QProcess::readyReadStandardOutput, this, &FlickrPlugin::slot_readOutPut);
     connect(&*m_process, &QProcess::finished, this, &FlickrPlugin::slot_pluginFinished);
 
