@@ -136,6 +136,10 @@ QList<QSharedPointer<QWidget>> DataManager::getPluginSettings() {
     return mSettingsManager->getPluginSettings();
 }
 
+QList<QSharedPointer<QIcon>> DataManager::getPluginIcons() {
+    return mSettingsManager->getPluginIcons();
+}
+
 void DataManager::savePluginSettings(int index) {
     mSettingsManager->savePluginSettings(index);
 }

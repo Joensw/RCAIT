@@ -39,9 +39,10 @@ public:
      * @param parent parent widget.
      * @param pluginNames list of plugins.
      * @param pluginConfigurationWidgets list of settings widgets provided by plugins.
+     * @param pluginIcons list of icons of the plugins
      */
     SettingsView(QWidget *parent, const QStringList &pluginNames,
-                 const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets);
+                 const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets, const QList<QSharedPointer<QIcon>> &pluginIcons);
 
     /**
      * @brief pathsUpdated shows according text based on amount parameter.
@@ -87,8 +88,9 @@ public:
      * @brief addPluginWidgets adds plugin widgets to SettingsView.
      * @param pluginNames names of plugins.
      * @param pluginConfigurationWidgets config widgets of plugins.
+     * @param pluginIcons the plugin icons
      */
-    void addPluginWidgets(QStringList pluginNames, const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets);
+    void addPluginWidgets(QStringList pluginNames, const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets, const QList<QSharedPointer<QIcon>> &pluginIcons);
 
     /**
      * @brief This method is used to update translated plugin list.

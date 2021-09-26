@@ -21,6 +21,7 @@ void ClassificationPluginManager::loadPlugins(QString pluginDir) {
             classificationPlugin->init();
             m_pluginConfigurationWidgets << classificationPlugin->getConfigurationWidget();
             m_plugins[classificationPlugin->getName()] = QSharedPointer<ClassificationPlugin>(classificationPlugin);
+            m_pluginIcons << classificationPlugin->getPluginIcon();
         }
     }
 }
@@ -132,6 +133,11 @@ QStringList ClassificationPluginManager::getClassificationPluginBases(const QStr
 
     qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
     return {};
+}
+
+QList<QSharedPointer<QIcon>> ClassificationPluginManager::getPluginIcons()
+{
+    return m_pluginIcons;
 }
 
 QStringList ClassificationPluginManager::getNamesOfPlugins() {

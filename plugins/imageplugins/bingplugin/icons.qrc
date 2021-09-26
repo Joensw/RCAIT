@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>bingicon.png</file>
+    </qresource>
+</RCC>

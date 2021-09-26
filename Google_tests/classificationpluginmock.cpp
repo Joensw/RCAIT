@@ -72,3 +72,8 @@ ClassificationResult *ClassificationPluginMock::classify(const QString &inputIma
     return new ClassificationResult({},{},{});
 }
 
+QSharedPointer<QIcon> ClassificationPluginMock::getPluginIcon()
+{
+    return QSharedPointer<QIcon> (new QIcon());
+}
+

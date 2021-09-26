@@ -32,6 +32,8 @@ public:
 
     static constexpr auto PLUGIN_NAME = "testplugin";
 
+    QSharedPointer<QIcon> getPluginIcon() override;
+
 private:
     QSharedPointer<QWidget> pluginSettings = {new QWidget, &QObject::deleteLater};
     QSharedPointer<QWidget> inputWidget = {new QWidget, &QObject::deleteLater};

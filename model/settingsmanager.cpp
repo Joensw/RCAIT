@@ -97,6 +97,13 @@ void SettingsManager::reload()
     mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 }
 
+QList<QSharedPointer<QIcon> > SettingsManager::getPluginIcons()
+{
+    auto loaderPluginsWidgets = mImageLoaderPluginManager->getPluginIcons();
+    auto classifierPluginsWidgets = mClassificationPluginManager->getPluginIcons();
+    return loaderPluginsWidgets + classifierPluginsWidgets;
+}
+
 QList<QSharedPointer<QWidget>> SettingsManager::getPluginSettings() {
     auto loaderPluginsWidgets = mImageLoaderPluginManager->getConfigurationWidgets();
     auto classifierPluginsWidgets = mClassificationPluginManager->getConfigurationWidgets();

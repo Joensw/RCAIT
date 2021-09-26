@@ -55,6 +55,12 @@ public:
      */
     virtual void saveConfiguration(QString pluginName) = 0;
 
+    /**
+     * @brief getPluginIcon gets the icons of the plugins
+     * @return the icon
+     */
+    virtual QList<QSharedPointer<QIcon>> getPluginIcons() = 0;
+
 };
 
 

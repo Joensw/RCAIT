@@ -96,6 +96,7 @@ TEST_F(BingPluginTest, testLoadImages){
     //bingPlugin.getInputWidget();
     bingPlugin.saveConfiguration();
     bingPlugin.getName();
+    bingPlugin.getPluginIcon();
     bingSettings->saveSettings();
     EXPECT_TRUE(true);
     //EXPECT_TRUE(spy.wait(1000));

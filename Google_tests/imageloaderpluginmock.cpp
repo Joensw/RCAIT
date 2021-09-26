@@ -31,6 +31,11 @@ QSharedPointer<QWidget> ImageLoaderPluginMock::getInputWidget() {
     return inputWidget;
 }
 
+QSharedPointer<QIcon> ImageLoaderPluginMock::getPluginIcon()
+{
+    return QSharedPointer<QIcon>(new QIcon());
+}
+
 void ImageLoaderPluginMock::slot_abort()
 {
 

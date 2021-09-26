@@ -17,7 +17,7 @@
 #include "bingsettings.h"
 #include "progressableplugin.h"
 #include "QRegularExpression"
-
+#include <QIcon>
 
 /**
  * @brief The BingPlugin class is used for downloading images from the bing web search and saving to disk
@@ -27,7 +27,6 @@ class BingPlugin : public QObject, ImageLoaderPlugin
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.BingPlugin" FILE "BingPlugin.json")
     Q_INTERFACES(ImageLoaderPlugin)
-
 
 private:
     QSharedPointer<BingSettings> pluginSettings;
@@ -39,7 +38,7 @@ private:
     QStringList m_labels;
 
     int m_progress = 0;
-
+    static constexpr auto PLUGIN_ICON = ":/bingicon.png";
     QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
 
 public:
@@ -75,6 +74,12 @@ public:
      * @return the plugin name
      */
     QString getName() override;
+
+    /**
+     * @brief getPluginIcon returns the Icon of the Plugin
+     * @return the plugin Icon
+     */
+    QSharedPointer<QIcon> getPluginIcon() override;
 
 private slots:
     void slot_abort();

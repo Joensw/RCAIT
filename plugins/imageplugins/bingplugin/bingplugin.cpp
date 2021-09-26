@@ -65,6 +65,11 @@ QString BingPlugin::getName() {
     return "Bing API Plugin";
 }
 
+QSharedPointer<QIcon> BingPlugin::getPluginIcon()
+{
+    return QSharedPointer<QIcon>(new QIcon(PLUGIN_ICON));
+}
+
 void BingPlugin::slot_readOutPut() {
     static QRegularExpression lineBreakRegex("[\r\n]");
     static QRegularExpression downloadRegex(QRegularExpression::escape("[%] Downloading Image"));

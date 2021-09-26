@@ -18,6 +18,7 @@
 #include <QtWidgets/QWidget>
 #include <QtPlugin>
 #include <QStringBuilder>
+#include <QIcon>
 
 /**
  * @brief The FolderPlugin class is an ImageLoaderPlugin that uses existing folders as image sources.
@@ -74,6 +75,13 @@ public:
      */
     QSharedPointer<QWidget> getInputWidget() override;
 
+
+    /**
+     * @brief getPluginIcon returns the Icon of the Plugin
+     * @return the plugin Icon
+     */
+    QSharedPointer<QIcon> getPluginIcon() override;
+
 private slots:
     void slot_abort();
 
@@ -82,6 +90,7 @@ private:
     int mode = 0;
     QString imageDir;
     bool abort = false;
+    static constexpr auto PLUGIN_ICON = ":/foldericon.svg";
 
     [[nodiscard]] bool addLabel(const QStringList &images, const QDir &in, QDir out) const;
 

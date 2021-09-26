@@ -175,8 +175,15 @@ public:
      */
     QStringList getClassificationPluginBases(const QString &pluginName);
 
+    /**
+     * @brief getPluginIcons gets the Icon of the plugin
+     * @return the icons
+     */
+    QList<QSharedPointer<QIcon>> getPluginIcons() override;
+
 private:
     QList<QSharedPointer<QWidget>> m_pluginConfigurationWidgets;
+    QList<QSharedPointer<QIcon>> m_pluginIcons;
 
 };
 

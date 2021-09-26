@@ -12,6 +12,7 @@
 #include <QString>
 #include <QWidget>
 #include <QSettings>
+#include <QIcon>
 
 #include <classificationpluginmanager.h>
 #include <imageloaderpluginmanager.h>
@@ -163,6 +164,12 @@ public:
      * @brief reload manually prompt the plugin managers to reload the plugins from the current directories
      */
     void reload();
+
+    /**
+     * @brief getPluginIcons gets the icons of the plugins
+     * @return the icons
+     */
+    QList<QSharedPointer<QIcon>> getPluginIcons();
 
 private:
     //Keys for the QSettings Settings object

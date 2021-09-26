@@ -31,7 +31,7 @@ public:
     bool removeModel(QString modelName) override;
     TrainingResult *train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver) override;
     ClassificationResult *classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath, const QString &modelName, ProgressablePlugin *receiver) override;
-
+    QSharedPointer<QIcon> getPluginIcon() override;
     static constexpr auto PLUGIN_NAME = "testplugin";
 private:
 

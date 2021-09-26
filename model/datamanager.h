@@ -310,6 +310,12 @@ public:
      * @return the input UI of the current classification plugins data augmentation settings that are to be shown
      */
     QSharedPointer<QWidget> getDataAugmentationInputWidget();
+
+    /**
+     * @brief getPluginIcons gets the icons of the plugins
+     * @return the icons
+     */
+    QList<QSharedPointer<QIcon>> getPluginIcons();
     
 private:
     ProjectManager* mProjectManager;
