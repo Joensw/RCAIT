@@ -21,13 +21,9 @@ public:
      * @brief TrainingCommand constructs a TrainingCommand by parsing from a map.
      *
      * @param map contains necessary information for command.
-     * @param trainDataSetPath
-     * @param validationDataSetPath
-     * @param workingDir working dir path
      * @param receiver object to receive progress.
      */
-    TrainingCommand(QVariantMap map, QString trainDataSetPath, const QString &validationDataSetPath,
-                    const QString &workingDir, ProgressablePlugin *receiver);
+    TrainingCommand(QVariantMap map, ProgressablePlugin *receiver);
 
     /**
      * @brief execute executes the command.

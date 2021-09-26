@@ -5,6 +5,7 @@
 #include <mapadapt.h>
 
 #include <imageloaderpluginmanager.h>
+#include <datamanager.h>
 
 
 /**
@@ -19,10 +20,9 @@ public:
      * @brief ImageLoadCommand constructs a ImageLoadCommand by parsing from a map.
      *
      * @param map contains necessary information for command.
-     * @param imagePath load pictures into path.
      * @param receiver object to receive progress.
      */
-    ImageLoadCommand(QVariantMap map, const QString &imagePath, ProgressablePlugin *receiver);
+    ImageLoadCommand(QVariantMap map, ProgressablePlugin *receiver);
 
     /**
      * @brief execute executes the command.
@@ -33,6 +33,7 @@ public:
 
 private:
     ImageLoaderPluginManager& mPluginManager =  ImageLoaderPluginManager::getInstance();
+    DataManager& mDataManager = DataManager::getInstance();
     ProgressablePlugin* mReceiver;
     QVariantMap mWidgetOptions;
     QSharedPointer<QWidget> mInputWidget;

@@ -6,6 +6,7 @@
 #include <imageinspectionmodel.h>
 #include <progressableplugin.h>
 #include <utility>
+#include <datamanager.h>
 
 /**
  * @brief The SplitCommand class splits loaded images between training- and validation-images.
@@ -14,14 +15,14 @@ class SplitCommand : public Command
 {
     Q_OBJECT
 public:
+
     /**
      * @brief SplitCommand constructs a SplitCommand with given split.
      *
-     * @param tempPath path of temp images.
-     * @param dataSetPath path of dataset.
-     * @param receiver object to receive progress.
+     * @param map map with split info
+     * @param receiver rececives progress
      */
-    SplitCommand(QString tempPath, QString trainPath, QString validationPath, int split, ProgressablePlugin *receiver);
+    SplitCommand(QVariantMap map, ProgressablePlugin *receiver);
 
 
     /**
@@ -40,7 +41,8 @@ signals:
     void sig_progress(int progress);
 
 private:
-    int mSplit;
+    int mSplit = 40;
+    DataManager &mDataManager = DataManager::getInstance();
     QString mTempPath;
     QString mTrainPath;
     QString mValidationPath;

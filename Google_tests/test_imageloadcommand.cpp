@@ -27,7 +27,7 @@ TEST(ImageLoadCommandTest, testImageLoad){
     map.insert("imageFolder", path + "/dataset/Train/Mann");
 
     //construct and execute command
-    ImageLoadCommand cmd(map, mngr->getProjectImageTempDir(), new ImageLoader());
+    ImageLoadCommand cmd(map, new ImageLoader());
     EXPECT_TRUE(cmd.execute());
 
     //check if image is copied to temp folder
@@ -66,7 +66,7 @@ TEST(ImageLoadCommandTest, testImageLoadFail){
     map.insert("imageFolder", path + "/dataset/Train/Mann");
 
     //construct and execute command
-    ImageLoadCommand cmd(map, mngr->getProjectImageTempDir(), new ImageLoader());
+    ImageLoadCommand cmd(map, new ImageLoader());
     EXPECT_FALSE(cmd.execute());
 
     //check if temp image dir is empty

@@ -5,15 +5,14 @@
 #include <utility>
 
 
-TrainingCommand::TrainingCommand(QVariantMap map, QString trainDataSetPath, const QString &validationDataSetPath,
-                                 const QString &workingDir, ProgressablePlugin *receiver)
+TrainingCommand::TrainingCommand(QVariantMap map, ProgressablePlugin *receiver)
         : mProjectName(map["projectName"].toString()),
           mAiPluginName(map["aiPluginName"].toString()),
           mModelName(map["modelName"].toString()),
           mBaseModel(map["baseModel"].toString()),
-          mTrainDataSetPath(std::move(trainDataSetPath)),
-          mValidationDataSetPath(validationDataSetPath),
-          mWorkingDir(workingDir),
+          mTrainDataSetPath(mDataManager.getProjectDataSetTrainSubdir()),
+          mValidationDataSetPath(mDataManager.getProjectDataSetValSubdir()),
+          mWorkingDir(mDataManager.createNewWorkSubDir(map["modelName"].toString())),
           mReceiver(receiver) {
 
     if (mModelName.isNull() || mAiPluginName.isNull()) {

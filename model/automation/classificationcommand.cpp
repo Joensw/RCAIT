@@ -2,12 +2,12 @@
 
 #include <classificationpluginmanager.h>
 
-ClassificationCommand::ClassificationCommand(QVariantMap map, QString trainDataSetPath, ProgressablePlugin *receiver)
+ClassificationCommand::ClassificationCommand(QVariantMap map, ProgressablePlugin *receiver)
         : mProjectName(map["projectName"].toString()),
           mImagePath(map["classificationImagePath"].toString()),
           mModelName(map["modelName"].toString()),
           mAiPluginName(map["aiPluginName"].toString()),
-          mTrainDataSetPath(std::move(trainDataSetPath)),
+          mTrainDataSetPath(mDataManager.getProjectDataSetTrainSubdir()),
           mReceiver(receiver) {
 
     if (mImagePath.isNull() || mModelName.isNull() || mAiPluginName.isNull()) {

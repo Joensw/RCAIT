@@ -28,13 +28,13 @@ TEST(TrainingCommandTest, testClassification){
 
 
     //construct and execute command
-    TrainingCommand cmd(map, mngr->getProjectDataSetTrainSubdir(), mngr->getProjectDataSetValSubdir(), path + "/trainingcmd_test", new Trainer());
+    TrainingCommand cmd(map, new Trainer());
     EXPECT_TRUE(cmd.execute());
 
     //construct command that should return false
     map.remove("modelName");
     map.insert("modelName", "");
-    TrainingCommand cmd2(map, mngr->getProjectDataSetTrainSubdir(), mngr->getProjectDataSetValSubdir(), path + "/trainingcmd_test", new Trainer());
+    TrainingCommand cmd2(map, new Trainer());
     EXPECT_FALSE(cmd2.execute());
 
     //remove project dir
@@ -63,7 +63,7 @@ TEST(TrainingCommandTest, testCommandFail){
     map.insert("projectName", "name");
 
     //construct and execute command
-    TrainingCommand cmd(map, mngr->getProjectDataSetTrainSubdir(), mngr->getProjectDataSetValSubdir(), path + "/trainingcmd_test", new Trainer());
+    TrainingCommand cmd(map, new Trainer());
     EXPECT_FALSE(cmd.execute());
 
     //remove project dir
