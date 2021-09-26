@@ -2,15 +2,15 @@
 #include "imageloaderpluginmanager.h"
 
 
-ImageLoadCommand::ImageLoadCommand(QVariantMap map, const QString &imagePath, ProgressablePlugin *receiver)
+ImageLoadCommand::ImageLoadCommand(QVariantMap map, ProgressablePlugin *receiver)
         : mPluginName(map["imagePluginName"].toString()),
           mLabels(map["labels"].toStringList()),
-          mPath(imagePath),
+          mPath(mDataManager.getProjectImageTempDir()),
           mReceiver(receiver) {
     bool ok;
     mCount = map["count"].toInt(&ok);
 
-    if (imagePath.isNull() || mPluginName.isNull() || !ok || mLabels.isEmpty()) {
+    if (mPath.isNull() || mPluginName.isNull() || !ok || mLabels.isEmpty()) {
         parsingFailed = true;
         return;
     }

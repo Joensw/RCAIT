@@ -6,6 +6,18 @@
 
 #include <QApplication>
 
+/**
+ * @brief This enum contains all types of supported commands.
+ *
+ * New command types can be inserted here.
+ */
+enum CommandType {
+    IMAGELOAD,
+    SPLIT,
+    TRAINING,
+    CLASSIFICATION,
+    $COUNT
+};
 
 Task::Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList)
         : mName(map["taskName"].toString()) {
@@ -22,37 +34,44 @@ Task::Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList)
     }
     mDataManager.loadProject(map["projectName"].toString());
 
-    if (commands.contains("imageLoad")) {
-        auto command = new ImageLoadCommand(map, mDataManager.getProjectImageTempDir(), this);
-        QSharedPointer<Command>(command, &QObject::deleteLater);
+    static std::array<QString, $COUNT> COMMANDTYPE2STRING = {
+        "imageLoad",
+        "split",
+        "training",
+        "classification"
+    };
+
+    for (int i = 0; i < $COUNT; i++){
+        if (commands.contains(COMMANDTYPE2STRING[i])){
+            insertCommand(i, map);
+        }
     }
 
-    if (commands.contains("split")) {
-        bool ok;
-        int split = map["split"].toInt(&ok);
-        if (!ok) split = DEFAULT_SPLIT;
-
-        auto command = new SplitCommand(mDataManager.getProjectImageTempDir(),
-                                        mDataManager.getProjectDataSetTrainSubdir(),
-                                        mDataManager.getProjectDataSetValSubdir(), split, this);
-        mCommandList << QSharedPointer<Command>(command, &QObject::deleteLater);
-    }
-
-    if (commands.contains("training")) {
-        QString workingDir = mDataManager.createNewWorkSubDir(map["modelName"].toString());
-        auto command = new TrainingCommand(map, mDataManager.getProjectDataSetTrainSubdir(),
-                                           mDataManager.getProjectDataSetValSubdir(), workingDir, this);
-        mCommandList << QSharedPointer<Command>(command, &QObject::deleteLater);
-        connect(command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
-    }
-
-    if (commands.contains("classification")) {
-        auto command = new ClassificationCommand(map, mDataManager.getProjectDataSetTrainSubdir(), this);
-        mCommandList << QSharedPointer<Command>(command, &QObject::deleteLater);
-        connect(command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
-    }
     if (mCommandList.isEmpty() && !commands.contains("addProject")) valid = false;
+}
 
+void Task::insertCommand(int type, QVariantMap map){
+    Command* command;
+    switch (type) {
+        case IMAGELOAD:
+            command = new ImageLoadCommand(map, this);
+            break;
+        case SPLIT:
+            command = new SplitCommand(map, this);
+            break;
+        case TRAINING:
+            command = new TrainingCommand(map, this);
+            connect((TrainingCommand*) command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
+            break;
+        case CLASSIFICATION:
+            command = new ClassificationCommand(map, this);
+            connect((ClassificationCommand*) command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
+            break;
+        default:
+            qDebug() << "Attempted to set unknown command type";
+            break;
+    }
+    mCommandList << QSharedPointer<Command>(command, &QObject::deleteLater);
 }
 
 void Task::run() {
