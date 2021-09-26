@@ -141,8 +141,7 @@ QString SettingsManager::getPythonExecutablePath() {
 bool
 SettingsManager::applyGlobalSettings(const QString &projectsDir, const QString &classificationPluginDir,
                                      const QString &imageLoaderPluginDir, const QString &pythonPath,
-                                     QString *error, int *pathsChanged) {
-
+                                     QString &error, int &pathsChanged) {
     int pathsChangedCounter = 0;
     QString tempProjectsDir = getProjectsDir();
     QString tempClassificationPluginDir = getClassificationPluginDir();
@@ -174,18 +173,15 @@ SettingsManager::applyGlobalSettings(const QString &projectsDir, const QString &
         saveImageLoaderPluginDir(tempImageLoaderPluginDir);
         savePythonPath(tempPythonPath);
 
-        if (pathsChanged != nullptr) {
-            *pathsChanged = pathsChangedCounter;
-        }
+        pathsChanged = pathsChangedCounter;
+
         return true;
 
     }
-    if (error != nullptr) {
-        *error = ERROR_CONFLICT;
-    }
-    if (pathsChanged != nullptr) {
-        *pathsChanged = 0;
-    }
+
+    error = ERROR_CONFLICT;
+    pathsChanged = 0;
+
     return false;
 }
 
