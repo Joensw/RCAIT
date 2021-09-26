@@ -38,13 +38,13 @@ for label in args_dict['labels']:
     _search_params = {
     'q': label,
     'num': args_dict['imagecount'],
-    'safe': 'off',
+    #'safe': 'off',
     'fileType': 'png',
-    'imgType': 'photo',
-    'imgSize': 'LARGE',
+    #'imgType': 'stock',
+    #'imgSize': 'LARGE',
     #'imgDominantColor': 'brown',
-    'imgColorType': 'color',
-    'rights': 'cc_publicdomain'
+    #'imgColorType': 'color',
+    #'rights': 'cc_publicdomain'
     }
 
     gis.search(search_params=_search_params)#, path_to_dir=args_dict['path'] + '/' + label)
