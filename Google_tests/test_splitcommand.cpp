@@ -13,17 +13,14 @@ class SplitCommandTest : public testing::Test {
     void SetUp() override {
         testProjectName = "testProjectSplit";
         QDir dir(QDir::current().path());
-        QString path = QDir::current().path();
         auto* mngr = &DataManager::getInstance();
-        mngr->saveProjectsDir(path);
+        mngr->saveProjectsDir(dir.path());
         mngr->createNewProject(testProjectName);
         mngr->loadProject(testProjectName);
 
         //current dataset, and a temp copy for testing
         dataSetPath = dir.path() + "/test_imagefolder/Auto";
         testDatasetPath = mngr->getProjectImageTempDir();
-
-
 
         copyPath(dataSetPath, testDatasetPath);
 
@@ -40,22 +37,16 @@ class SplitCommandTest : public testing::Test {
         QDir dir(src);
         if (! dir.exists())
             return;
-
-        for (const QString &d: dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-            QString dst_path = dst + QDir::separator() + d;
-            dir.mkpath(dst_path);
-            copyPath(src + QDir::separator() + d, dst_path);
-        }
+        QDir destDir(dst);
+        destDir.mkdir(dir.dirName());
 
         for (const QString &f: dir.entryList(QDir::Files)) {
-            QFile::copy(src + QDir::separator() + f, dst + QDir::separator() + f);
+            QFile::copy(src + QDir::separator() + f, dst + QDir::separator() + dir.dirName() + QDir::separator() + f);
         }
     }
 
     QString dataSetPath;
     QString testDatasetPath;
-    QString newData;
-    QString testNewData;
     QString testProjectName;
 
 };
@@ -65,9 +56,6 @@ class SplitCommandTest : public testing::Test {
 TEST_F(SplitCommandTest, testSplit){
     QString path = QDir::current().path();
     auto* mngr = &DataManager::getInstance();
-    mngr->saveProjectsDir(path);
-    mngr->createNewProject(testProjectName);
-    mngr->loadProject(testProjectName);
     QVariantMap map = {{"split", 50}};
     SplitCommand cmd(map, new ImageLoader());
     EXPECT_TRUE(cmd.execute());
