@@ -8,10 +8,10 @@
  */
 struct CE_String : public QLatin1String {
     /**
-     * @brief Constructs a CE_String
+     * @brief Constructs a CE_String with implicit conversion from standard C string
      * @param s C string to construct from
      */
-    constexpr CE_String(const char *const s) :
+    /* implicit */ constexpr CE_String(const char *const s) : // NOLINT(google-explicit-constructor)
             QLatin1String(s, static_cast<int>(std::char_traits<char>::length(s))) {}
 };
 
