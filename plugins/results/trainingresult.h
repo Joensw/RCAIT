@@ -2,11 +2,8 @@
 #define TRAININGRESULT_H
 
 
-#include <QVector>
-#include <QAbstractTableModel>
 #include <confusionmatrix.h>
 #include <accuracycurve.h>
-#include <projectmanager.h>
 #include "result.h"
 
 /**
