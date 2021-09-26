@@ -8,10 +8,10 @@
 #include "settingsmanager.h"
 
 SettingsManager::SettingsManager()
-        : mClassificationPluginManager(&ClassificationPluginManager::getInstance()),
+        : ConfigurationManager(),
+          mClassificationPluginManager(&ClassificationPluginManager::getInstance()),
           mImageLoaderPluginManager(&ImageLoaderPluginManager::getInstance()) {
 
-    mGlobalSettings.reset(new QSettings);
     if (!getClassificationPluginDir().isEmpty() && !getImageLoaderPluginDir().isEmpty()) {
         reload();
     }
@@ -32,54 +32,12 @@ QStringList SettingsManager::getClassificationPluginBase(const QString &plugin) 
     return mClassificationPluginManager->getClassificationPluginBases(plugin);
 }
 
-bool SettingsManager::verifyDirectories() {
-    if (mGlobalSettings->contains(projectDirectoryIdentifier)
-        && mGlobalSettings->contains(classificationPluginDirectoryIdentifier)
-        && mGlobalSettings->contains(imageLoaderPluginDirectoryIdentifier)
-        && mGlobalSettings->contains(pythonExecutablePathIdentifier)) {
-        //All keys exist and have values
-
-        QString projectPath = mGlobalSettings->value(projectDirectoryIdentifier).toString();
-        QString classificationPath = mGlobalSettings->value(classificationPluginDirectoryIdentifier).toString();
-        QString imageLoaderPath = mGlobalSettings->value(imageLoaderPluginDirectoryIdentifier).toString();
-        QString pythonPath = mGlobalSettings->value(pythonExecutablePathIdentifier).toString();
-
-        return verifyPaths({projectPath, classificationPath, imageLoaderPath, pythonPath});
-    }
-    //Settings file wasn't complete
-    return false;
-}
-
-bool SettingsManager::verifyPaths(const QStringList &paths) {
-    //Check for duplicates
-    if (QSet<QString>(paths.begin(), paths.end()).size() != paths.size()) return false;
-
-    //QDir treats the "" directory as "." and will always return true on .exists();
-    if (paths.contains("")) return false;
-
-
-    //Check if all paths exist
-    return std::all_of(paths.begin(), paths.end(), [](const QString &path) { return QDir(path).exists() || QFile(path).exists(); });
-}
-
-void
-SettingsManager::configureSettingsFile(const QString &projectsDirectory, const QString &classificationPluginDirectory,
-                                       const QString &imageLoaderDirectory, const QString &pythonPath) {
-    mGlobalSettings->setValue(projectDirectoryIdentifier, projectsDirectory);
-    mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, classificationPluginDirectory);
-    mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, imageLoaderDirectory);
-    mGlobalSettings->setValue(pythonExecutablePathIdentifier, pythonPath);
-
-    qDebug() << pythonPath;
-}
-
 void SettingsManager::reload() {
     mClassificationPluginManager->loadPlugins(getClassificationPluginDir());
     mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 }
 
-QList<QSharedPointer<QIcon> > SettingsManager::getPluginIcons()
-{
+QList<QSharedPointer<QIcon> > SettingsManager::getPluginIcons() {
     auto loaderPluginsWidgets = mImageLoaderPluginManager->getPluginIcons();
     auto classifierPluginsWidgets = mClassificationPluginManager->getPluginIcons();
     return loaderPluginsWidgets + classifierPluginsWidgets;
@@ -102,40 +60,6 @@ void SettingsManager::savePluginSettings(int index) {
         mImageLoaderPluginManager->saveConfiguration(name);
     } else
         mClassificationPluginManager->saveConfiguration(name);
-}
-
-void SettingsManager::saveProjectsDir(const QString &dir) {
-    mGlobalSettings->setValue(projectDirectoryIdentifier, dir);
-}
-
-QString SettingsManager::getProjectsDir() {
-    return mGlobalSettings->value(projectDirectoryIdentifier).toString();
-}
-
-void SettingsManager::saveClassificationPluginDir(const QString &dir) {
-    mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, dir);
-    mClassificationPluginManager->loadPlugins(dir);
-}
-
-QString SettingsManager::getClassificationPluginDir() {
-    return mGlobalSettings->value(classificationPluginDirectoryIdentifier).toString();
-}
-
-void SettingsManager::saveImageLoaderPluginDir(const QString &dir) {
-    mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, dir);
-    mImageLoaderPluginManager->loadPlugins(dir);
-}
-
-void SettingsManager::savePythonPath(const QString &path) {
-    mGlobalSettings->setValue(pythonExecutablePathIdentifier, path);
-}
-
-QString SettingsManager::getImageLoaderPluginDir() {
-    return mGlobalSettings->value(imageLoaderPluginDirectoryIdentifier).toString();
-}
-
-QString SettingsManager::getPythonExecutablePath() {
-    return mGlobalSettings->value(pythonExecutablePathIdentifier).toString();
 }
 
 bool
@@ -187,4 +111,14 @@ SettingsManager::applyGlobalSettings(const QString &projectsDir, const QString &
 
 QStringList SettingsManager::getImageLoaderPluginNames() {
     return mImageLoaderPluginManager->getNamesOfPlugins();
+}
+
+void SettingsManager::saveClassificationPluginDir(const QString &dir) {
+    ConfigurationManager::saveClassificationPluginDir(dir);
+    SettingsManager::mClassificationPluginManager->loadPlugins(dir);
+}
+
+void SettingsManager::saveImageLoaderPluginDir(const QString &dir) {
+    ConfigurationManager::saveImageLoaderPluginDir(dir);
+    SettingsManager::mImageLoaderPluginManager->loadPlugins(dir);
 }
