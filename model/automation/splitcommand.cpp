@@ -1,14 +1,14 @@
 #include "splitcommand.h"
 
-SplitCommand::SplitCommand(QString tempPath, QString trainPath, QString validationPath, int split,
-                           ProgressablePlugin *receiver)
-        : mSplit(split),
-          mTempPath(std::move(tempPath)),
-          mTrainPath(std::move(trainPath)),
-          mValidationPath(std::move(validationPath)),
+SplitCommand::SplitCommand(QVariantMap map, ProgressablePlugin *receiver)
+        : mTempPath(mDataManager.getProjectImageTempDir()),
+          mTrainPath(mDataManager.getProjectDataSetTrainSubdir()),
+          mValidationPath(mDataManager.getProjectDataSetValSubdir()),
           mImageModel(new ImageInspectionModel) {
+    bool ok;
+    int split = map["split"].toInt(&ok);
+    if (ok && split > 0 && split < 100) mSplit = split;
     connect(this, &SplitCommand::sig_progress, receiver, &Progressable::slot_makeProgress);
-
 }
 
 bool SplitCommand::execute() {

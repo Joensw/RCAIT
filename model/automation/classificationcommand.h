@@ -21,11 +21,9 @@ public:
      * @brief ClassificationCommand constructs a ClassificationCommand by parsing from a map.
      *
      * @param map contains necessary information for command.
-     * @param trainDataSetPath path of training images
-     * @param workingDir working directory path
      * @param receiver object to receive progress.
      */
-    ClassificationCommand(QVariantMap map, QString trainDataSetPath, ProgressablePlugin *receiver);
+    ClassificationCommand(QVariantMap map, ProgressablePlugin *receiver);
 
     /**
      * @brief execute executes the command.

@@ -27,13 +27,13 @@ TEST(ClassificationCommandTest, testClassification){
 
 
     //construct and execute command
-    ClassificationCommand cmd(map, mngr->getProjectDataSetTrainSubdir(), new Classifier());
+    ClassificationCommand cmd(map, new Classifier());
     EXPECT_TRUE(cmd.execute());
 
     //construct command that should return false
     map.remove("classificationImagePath");
     map.insert("classificationImagePath", "");
-    ClassificationCommand cmd2(map, mngr->getProjectDataSetTrainSubdir(), new Classifier());
+    ClassificationCommand cmd2(map, new Classifier());
     EXPECT_FALSE(cmd2.execute());
 
     //remove project dir
@@ -61,7 +61,7 @@ TEST(ClassificationCommandTest, testCommandFail){
     map.insert("projectName", "name");
 
     //construct and execute command
-    ClassificationCommand cmd(map, mngr->getProjectDataSetTrainSubdir(), new Classifier());
+    ClassificationCommand cmd(map, new Classifier());
     EXPECT_FALSE(cmd.execute());
 
     //remove project dir

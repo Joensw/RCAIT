@@ -11,30 +11,25 @@ class SplitCommandTest : public testing::Test {
 
     //copy test files to new directory
     void SetUp() override {
+        testProjectName = "testProjectSplit";
         QDir dir(QDir::current().path());
+        auto* mngr = &DataManager::getInstance();
+        mngr->saveProjectsDir(dir.path());
+        mngr->createNewProject(testProjectName);
+        mngr->loadProject(testProjectName);
 
         //current dataset, and a temp copy for testing
-        dataSetPath = dir.path() + "/dataset";
-        testDatasetPath = dir.path() + "/temp_test_imageload_dataset";
-
-        //new data to include in dataset and a temp_test copy for testing
-        newData = dir.path() + "/temp_dataset";
-        testNewData = dir.path() + "/temp_test_dataset";;
-
+        dataSetPath = dir.path() + "/test_imagefolder/Auto";
+        testDatasetPath = mngr->getProjectImageTempDir();
 
         copyPath(dataSetPath, testDatasetPath);
-        copyPath(newData, testNewData);
 
     }
 
     //delete testfiles
     void TearDown() override {
-
-        QDir testNewDataDir = QDir(testNewData);
-        QDir testDataSetDir = QDir(testDatasetPath);
-
-        testDataSetDir.removeRecursively();
-        testNewDataDir.removeRecursively();
+        auto* mngr = &DataManager::getInstance();
+        mngr->removeProject(testProjectName);
     }
 
     void copyPath(QString src, QString dst)
@@ -42,36 +37,34 @@ class SplitCommandTest : public testing::Test {
         QDir dir(src);
         if (! dir.exists())
             return;
-
-        for (const QString &d: dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-            QString dst_path = dst + QDir::separator() + d;
-            dir.mkpath(dst_path);
-            copyPath(src + QDir::separator() + d, dst_path);
-        }
+        QDir destDir(dst);
+        destDir.mkdir(dir.dirName());
 
         for (const QString &f: dir.entryList(QDir::Files)) {
-            QFile::copy(src + QDir::separator() + f, dst + QDir::separator() + f);
+            QFile::copy(src + QDir::separator() + f, dst + QDir::separator() + dir.dirName() + QDir::separator() + f);
         }
     }
 
     QString dataSetPath;
     QString testDatasetPath;
-    QString newData;
-    QString testNewData;
+    QString testProjectName;
 
 };
 
 
-//check if loading labeled dataset imagefilepaths work
+//check if loading labeled dataset imagefilepaths work TODO mak
 TEST_F(SplitCommandTest, testSplit){
     QString path = QDir::current().path();
-    SplitCommand cmd(testNewData, testDatasetPath + "/training", testDatasetPath + "/validation", 50, new ImageLoader());
+    auto* mngr = &DataManager::getInstance();
+    QVariantMap map = {{"split", 50}};
+    SplitCommand cmd(map, new ImageLoader());
     EXPECT_TRUE(cmd.execute());
 
     //check if image is in each folder
-    QDir dir(testDatasetPath + "/training/Auto");
+    QDir dir(mngr->getProjectDataSetTrainSubdir() + "/Auto");
     EXPECT_TRUE(!dir.isEmpty());
-    dir = QDir(testDatasetPath + "/validation/Auto");
+    dir = QDir(mngr->getProjectDataSetValSubdir() + "/Auto");
     EXPECT_TRUE(!dir.isEmpty());
+
 }
 

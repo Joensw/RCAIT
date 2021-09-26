@@ -119,7 +119,7 @@ public:
      */
     bool applyGlobalSettings(const QString &projectsDir, const QString &classificationPluginDir,
                              const QString &imageLoaderPluginDir,
-                             const QString &pythonPath, QString *error = nullptr, int *pathsChanged = nullptr);
+                             const QString &pythonPath, QString &error, int &pathsChanged);
 
     /**
      * @return the names of all loaded image loader plugins

@@ -51,7 +51,9 @@ void GlobalSettingsWidget::showUpdate(int amount) {
         ui->label_information->setText(tr(NO_CHANGES_MSG));
     } else {
         ui->label_information->setStyleSheet(STYLESHEET_GREEN);
-        ui->label_information->setText(tr(SUCCESS_UPDATED_PATHS_MSG, "", amount));
+        QString message = SUCCESS_UPDATED_PATHS_MSG;
+        ui->label_information->setText(message.arg(amount));
+
     }
 }
 

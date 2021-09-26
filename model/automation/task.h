@@ -140,7 +140,7 @@ signals:
 
 
 private:
-    static constexpr auto DEFAULT_SPLIT = 30;
+    void insertCommand(int type, QVariantMap map);
 
     QString mName;
     TaskState mState = SCHEDULED;

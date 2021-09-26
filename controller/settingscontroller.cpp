@@ -34,10 +34,10 @@ void SettingsController::slot_applySettings(int index) {
 void SettingsController::slot_applyGlobalSettings(QString projectDir, QString classificationPluginDir,
                                                   QString imageLoaderPluginDir, QString pythonPath) {
     QString errorMessage;
-    int successfulUpdates = 0;
+    int successfulUpdates;
     if (mDataManager->applyGlobalSettings(std::move(projectDir), std::move(classificationPluginDir),
-                                          std::move(imageLoaderPluginDir), std::move(pythonPath), &errorMessage,
-                                          &successfulUpdates)) {
+                                          std::move(imageLoaderPluginDir), std::move(pythonPath), errorMessage,
+                                          successfulUpdates)) {
         mSettingsView->setCurrentProjectDirectory(mDataManager->getProjectsDir());
         mSettingsView->setCurrentClassificationPluginDirectory(mDataManager->getClassificationPluginDir());
         mSettingsView->setCurrentImageLoaderPluginDirectory(mDataManager->getImageLoaderPluginDir());

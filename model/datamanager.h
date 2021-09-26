@@ -292,9 +292,9 @@ public:
      * @param pathChanged optional argument, the amount of paths updated will be written here
      * @return true if the new paths could be applied, false otherwise
      */
-    bool applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
-                             QString pythonPath,
-                             QString *error = nullptr, int *pathsChanged = nullptr);
+    bool applyGlobalSettings(const QString &projectsDir, const QString &classificationPluginDir, const QString &imageLoaderPluginDir,
+                             const QString &pythonPath,
+                             QString &error, int &pathsChanged);
 
     /**
      * @return return list of the training results that have been saved
