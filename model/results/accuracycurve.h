@@ -9,7 +9,8 @@
 #include <QStringBuilder>
 #include <mapadapt.h>
 #include <trainingresultview.h>
-#include "genericresultgraphics.h"
+#include <genericresultgraphics.h>
+#include <configurationmanager.h>
 
 /**
  * @brief Accuracy curves are used to visualize the accuracy values over a period in iterations

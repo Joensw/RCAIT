@@ -5,7 +5,8 @@
 #include <QGraphicsSvgItem>
 #include <QStringBuilder>
 #include <genericgraphicsview.h>
-#include "genericresultgraphics.h"
+#include <configurationmanager.h>
+#include <genericresultgraphics.h>
 
 /**
  * @brief Top Accuracies Graphics are used to display

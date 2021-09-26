@@ -8,6 +8,7 @@
 #include <json_toolbox.h>
 #include <codeeditor.h>
 #include "ce_string.h"
+#include <configurationmanager.h>
 #include <QtConcurrent/QtConcurrent>
 
 
