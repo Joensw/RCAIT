@@ -9,16 +9,15 @@
 #include "globalsettingswidget.h"
 
 namespace Ui {
-class SettingsView;
+    class SettingsView;
 }
 
 /**
  * @brief The SettingsView class is an UI class for changing programm settings.
  *
  */
-class SettingsView : public QWidget
-{
-    Q_OBJECT
+class SettingsView : public QWidget {
+Q_OBJECT
 
 public:
     /**
@@ -85,6 +84,13 @@ public:
     void setCurrentImageLoaderPluginDirectory(const QString &path);
 
     /**
+     * @brief setCurrentPythonExecutablePath sets the path to the python executable.
+     *
+     * @param path to the python executable.
+     */
+    void setCurrentPythonExecutablePath(const QString &path);
+
+    /**
      * @brief addPluginWidgets adds plugin widgets to SettingsView.
      * @param pluginNames names of plugins.
      * @param pluginConfigurationWidgets config widgets of plugins.
@@ -98,14 +104,17 @@ public:
     void retranslateUi();
 
 signals:
+
     /**
      * @brief sig_applyGlobalSettings send when global settings should be applied.
      *
      * @param projectsDir selected project directory.
      * @param classificationPluginsDir selected classification plugin directory.
      * @param imageLoaderPluginsDir selected imageloader plugin directory.
+     * @param pythonPath selected path to python executable.
      */
-    void sig_applyGlobalSettings(QString projectsDir, QString classificationPluginsDir, QString imageLoaderPluginsDir);
+    void sig_applyGlobalSettings(QString projectsDir, QString classificationPluginsDir, QString imageLoaderPluginsDir,
+                                 QString pythonPath);
 
     /**
      * @brief sig_applySettings send when settings at index should be applied.
@@ -130,9 +139,12 @@ private slots:
     [[maybe_unused]] void on_cancelButton_clicked();
 
     void slot_setProjectDir();
+
     void slot_setClassificationPluginsDir();
 
     void slot_setImageLoaderPluginsDir();
+
+    void slot_setGeneralPythonPath();
 
 private:
     static constexpr auto PLUGIN_ICON = ":/UISymbols/UI_Plugin_Icon.svg";
@@ -141,6 +153,7 @@ private:
     static constexpr auto PROJECT_SELECT_MSG = QT_TR_NOOP("Select project directory");
     static constexpr auto CLASSIFICATION_SELECT_MSG = QT_TR_NOOP("Select classification plugin directory");
     static constexpr auto LOADER_SELECT_MSG = QT_TR_NOOP("Select image loader plugin directory");
+    static constexpr auto PYTHON_SELECT_MSG = QT_TR_NOOP("Select python executable path");
 
     static constexpr auto EMPTY_PATH = "";
 
@@ -150,6 +163,7 @@ private:
     QString mProjectDir;
     QString mClassificationPluginsDir;
     QString mImageLoaderPluginsDir;
+    QString mPythonExecutablePath;
 
 };
 

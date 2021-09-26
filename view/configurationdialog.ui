@@ -9,14 +9,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>373</width>
-    <height>292</height>
+    <width>382</width>
+    <height>362</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Configuration</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_5">
+  <layout class="QGridLayout" name="gridLayout_6">
    <item row="0" column="0">
     <widget class="QFrame" name="frame">
      <property name="frameShape">
@@ -40,7 +40,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="UI_Icons.qrc">
+              <iconset resource="../Resources/UI_Icons.qrc">
                <normaloff>:/UISymbols/UI_Folder_Icon.svg</normaloff>:/UISymbols/UI_Folder_Icon.svg</iconset>
              </property>
             </widget>
@@ -91,7 +91,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="UI_Icons.qrc">
+              <iconset resource="../Resources/UI_Icons.qrc">
                <normaloff>:/UISymbols/UI_Folder_Icon.svg</normaloff>:/UISymbols/UI_Folder_Icon.svg</iconset>
              </property>
             </widget>
@@ -148,7 +148,7 @@
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="UI_Icons.qrc">
+              <iconset resource="../Resources/UI_Icons.qrc">
                <normaloff>:/UISymbols/UI_Folder_Icon.svg</normaloff>:/UISymbols/UI_Folder_Icon.svg</iconset>
              </property>
             </widget>
@@ -172,6 +172,63 @@
                </item>
                <item>
                 <widget class="QLabel" name="label_imageLoaderDir">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="title">
+           <string>Python Path</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,0">
+           <item row="0" column="1">
+            <widget class="QPushButton" name="pushButton_pythonPath">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../Resources/UI_Icons.qrc">
+               <normaloff>:/UISymbols/UI_Folder_Icon.svg</normaloff>:/UISymbols/UI_Folder_Icon.svg</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_14">
+               <item>
+                <widget class="QLabel" name="label_selectedPath4">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Selected path:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_pythonPath">
                  <property name="text">
                   <string/>
                  </property>
@@ -229,8 +286,8 @@
   </layout>
  </widget>
  <resources>
-  <include location="UI_Icons.qrc"/>
-  <include location="UI_Icons.qrc"/>
+  <include location="../Resources/UI_Icons.qrc"/>
+  <include location="../Resources/UI_Icons.qrc"/>
  </resources>
  <connections/>
 </ui>

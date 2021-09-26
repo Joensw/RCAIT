@@ -57,7 +57,7 @@ void ModelController::slot_removeModelConfirm() {
 
 void ModelController::slot_loadModel(const QString &modelName) {
     auto projectName = mDataManager->getProjectName();
-    auto pluginName = mDataManager->recallPluginNameOfModell(projectName, modelName);
+    auto pluginName = mDataManager->recallPluginNameOfModel(projectName, modelName);
     mDataManager->loadModel(modelName, pluginName);
     emit sig_modelLoaded();
 }

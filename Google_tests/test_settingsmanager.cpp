@@ -13,9 +13,9 @@ TEST(SettingsManagerTest, invalidPathsTrivial){
     QString emptyString = "";
     QString nullString;
 
-    EXPECT_FALSE(sm->verifyPath(nullString));
-    EXPECT_FALSE(sm->verifyPath(emptyString));
-    EXPECT_FALSE(sm->verifyPaths(nullString, emptyString, nullString));
+    EXPECT_FALSE(sm->verifyPaths({nullString}));
+    EXPECT_FALSE(sm->verifyPaths({emptyString}));
+    EXPECT_FALSE(sm->verifyPaths({nullString, emptyString, nullString}));
 }
 
 TEST(SettingsManagerTest, duplicatePaths){
@@ -24,7 +24,7 @@ TEST(SettingsManagerTest, duplicatePaths){
     QString copySamplePath = samplePath;
     QString differentSamplePath = "../different/generic/strucutre";
 
-    EXPECT_FALSE(sm->verifyPaths(samplePath, copySamplePath, differentSamplePath));
+    EXPECT_FALSE(sm->verifyPaths({samplePath, copySamplePath, differentSamplePath}));
 }
 
 TEST(SettingsManagerTest, nonExistentPaths){
@@ -33,8 +33,8 @@ TEST(SettingsManagerTest, nonExistentPaths){
     QString genericDir3 = "testDir3";
     SettingsManager * sm = &SettingsManager::getInstance();
 
-    EXPECT_FALSE(sm->verifyPath(genericDir1));
-    EXPECT_FALSE(sm->verifyPaths(genericDir1, genericDir2, genericDir3));
+    EXPECT_FALSE(sm->verifyPaths({genericDir1}));
+    EXPECT_FALSE(sm->verifyPaths({genericDir1, genericDir2, genericDir3}));
 }
 
 TEST(SettingsManagerTest, genuinePaths){
@@ -50,7 +50,7 @@ TEST(SettingsManagerTest, genuinePaths){
 
     //check if settingsManager sees them as valid
     SettingsManager * sm = &SettingsManager::getInstance();
-    EXPECT_TRUE(sm->verifyPaths(genuineDir1, genuineDir2, genuineDir3));
+    EXPECT_TRUE(sm->verifyPaths({genuineDir1, genuineDir2, genuineDir3}));
     dir.removeRecursively();
 }
 
@@ -58,18 +58,20 @@ TEST(SettingsManagerTest, applySettingsValid){
     QString genuineDir1 = temporaryDirectory % "/" % "testDir1";
     QString genuineDir2 = temporaryDirectory % "/" % "testDir2";
     QString genuineDir3 = temporaryDirectory % "/" % "testDir3";
+    QString genuineDir4 = temporaryDirectory % "/" % "testDir4";
 
     QDir dir (temporaryDirectory);
 
     dir.mkpath(genuineDir1);
     dir.mkpath(genuineDir2);
     dir.mkpath(genuineDir3);
+    dir.mkpath(genuineDir4);
 
     SettingsManager * sm = &SettingsManager::getInstance();
     int counter = 0;
     QString error;
-    EXPECT_TRUE(sm->applyGlobalSettings(genuineDir1, genuineDir2, genuineDir3, &error, &counter));
-    EXPECT_TRUE(counter == 3);
+    EXPECT_TRUE(sm->applyGlobalSettings(genuineDir1, genuineDir2, genuineDir3, genuineDir4, &error, &counter));
+    EXPECT_TRUE(counter == 4);
 
     dir.removeRecursively();
 }

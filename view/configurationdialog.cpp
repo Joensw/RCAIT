@@ -9,6 +9,8 @@ ConfigurationDialog::ConfigurationDialog(QWidget *parent) :
     connect(ui->pushButton_projectDir, &QPushButton::clicked, this, &ConfigurationDialog::slot_setProjectDir);
     connect(ui->pushButton_classificationDir, &QPushButton::clicked, this, &ConfigurationDialog::slot_setClassificationPluginsDir);
     connect(ui->pushButton_imageLoaderDir, &QPushButton::clicked, this, &ConfigurationDialog::slot_setImageLoaderPluginsDir);
+    connect(ui->pushButton_pythonPath, &QPushButton::clicked, this, &ConfigurationDialog::slot_setPythonPath);
+
     ui->label_error->hide();
     mIsCloseable = false;
 }
@@ -57,8 +59,6 @@ void ConfigurationDialog::confirm()
     this->close();
 }
 
-
-//Todo empty string
 void ConfigurationDialog::slot_setProjectDir()
 {
     mProjectDir = QFileDialog::getExistingDirectory(this, PROJECT_SELECT_MSG);
@@ -77,6 +77,12 @@ void ConfigurationDialog::slot_setImageLoaderPluginsDir()
     ui->label_imageLoaderDir->setText(mImageLoaderPluginsDir);
 }
 
+void ConfigurationDialog::slot_setPythonPath()
+{
+    mPythonPath = QFileDialog::getOpenFileName(this, PYTHON_SELECT_MSG);
+    ui->label_pythonPath->setText(mPythonPath);
+}
+
 void ConfigurationDialog::on_pushButton_apply_clicked(){
-    emit sig_directoriesSpecified(mProjectDir, mClassificationPluginsDir, mImageLoaderPluginsDir);
+    emit sig_directoriesSpecified(mProjectDir, mClassificationPluginsDir, mImageLoaderPluginsDir, mPythonPath);
 }

@@ -5,7 +5,7 @@
 
 class MockCommand : public Command {
  public:
-    MockCommand(){}
+    MockCommand()= default;
     bool execute() override{
         for (int i = 1; i <= 100; i++) {
             mProgressable->slot_makeProgress(i);
@@ -13,12 +13,12 @@ class MockCommand : public Command {
         return true;
     }
 
-    void setProgressable(ProgressablePlugin* progr){
-        mProgressable = progr;
+    void setProgressable(ProgressablePlugin* progressablePlugin){
+        mProgressable = progressablePlugin;
     }
 
 private:
-    ProgressablePlugin* mProgressable;
+    ProgressablePlugin* mProgressable{};
 };
 
 
@@ -30,22 +30,21 @@ TEST(TaskTest, testruncompleted){
     QApplication a(argc, argv);
     QVariantMap map = QVariantMap();
     map.insert("taskName", "example");
-    QList<QSharedPointer<Command>> sharedCmdList;
+    QList<QSharedPointer<Command>> cmdList;
     for (int i = 0; i < 3; i++){
-        sharedCmdList.append(QSharedPointer<Command>(new MockCommand()));
-
+        cmdList <<QSharedPointer<Command>(new MockCommand);
     }
-    DataManager* mngr = &DataManager::getInstance();
+    [[maybe_unused]] DataManager* mngr = &DataManager::getInstance();
 
     //init task
-    Task* task = new Task(map, sharedCmdList);
+    auto task = QScopedPointer<Task>(new Task(map, cmdList));
     EXPECT_TRUE(task->isValid());
 
-    QSignalSpy spy(task, &Task::sig_progress);
+    QSignalSpy spy(&*task, &Task::sig_progress);
 
     //register progressable
     for (int i = 0; i < 3; i++){
-        (qSharedPointerCast<MockCommand>)(sharedCmdList.at(i))->setProgressable(task);
+        cmdList[i].dynamicCast<MockCommand>()->setProgressable(&*task);
     }
 
     //test for correct state, then run
@@ -57,7 +56,7 @@ TEST(TaskTest, testruncompleted){
     EXPECT_TRUE(task->getState() == TaskState::COMPLETED);
 
     //tear down
-    a.exit();
+    QApplication::exit();
 }
 
 //check if canceling task works
@@ -68,21 +67,20 @@ TEST(TaskTest, testruncanceledreset){
     QApplication a(argc, argv);
     QVariantMap map = QVariantMap();
     map.insert("taskName", "example");
-
-    QList<QSharedPointer<Command>> sharedCmdList;
-    for (int i = 0; i < 3; i++){  
-        sharedCmdList.append(QSharedPointer<Command>(new MockCommand()));
+    QList<QSharedPointer<Command>> cmdList;
+    for (int i = 0; i < 3; i++){
+        cmdList <<QSharedPointer<Command>(new MockCommand);
     }
-    DataManager* mngr = &DataManager::getInstance();
+    [[maybe_unused]] DataManager* mngr = &DataManager::getInstance();
 
     //init task
-    Task* task = new Task(map, sharedCmdList);
-    QSignalSpy spy(task, &Task::sig_stateChanged);
+    auto task = QScopedPointer<Task>(new Task(map, cmdList));
+    QSignalSpy spy(&*task, &Task::sig_stateChanged);
     EXPECT_TRUE(task->getName() == "example");
 
-    //register progressable
+    //register progressbar
     for (int i = 0; i < 3; i++){
-        (qSharedPointerCast<MockCommand>)(sharedCmdList.at(i))->setProgressable(task);
+        cmdList[i].dynamicCast<MockCommand>()->setProgressable(&*task);
     }
 
     //test for correct state, then run
@@ -91,7 +89,7 @@ TEST(TaskTest, testruncanceledreset){
     task->run();
     EXPECT_EQ(task->getState(), TaskState::FAILED);
 
-    //test if task can be reset and run successfuly
+    //test if task can be reset and run successfully
     task->resetTask();
     EXPECT_EQ(task->getState(), TaskState::SCHEDULED);
     task->run();
@@ -103,7 +101,7 @@ TEST(TaskTest, testruncanceledreset){
     EXPECT_EQ(spy.at(3).at(1).toInt(), TaskState::COMPLETED);
 
     //tear down
-    a.exit();
+    QApplication::exit();
 }
 
 //check if isValid works
@@ -119,14 +117,14 @@ TEST(TaskTest, testisvalid){
     mngr->saveProjectsDir(QDir::current().path());
 
     //init invalid task
-    Task* task = new Task(map);
+    auto task = QScopedPointer<Task>(new Task(map));
     EXPECT_FALSE(task->isValid());
 
     //add elements to map
     map.insert("taskType", QStringList() << "addProject");
 
     //init valid task
-    task = new Task(map);
+    task.reset(new Task(map));
     EXPECT_TRUE(task->isValid());
 
     //add unknown task type as only task type
@@ -134,12 +132,12 @@ TEST(TaskTest, testisvalid){
     map.insert("taskType", QStringList() << "unknownCommand");
 
     //init invalid task
-    task = new Task(map);
+    task.reset(new Task(map));
     EXPECT_FALSE(task->isValid());
 
     //remove created folder
     mngr->removeProject("test");
 
     //tear down
-    a.exit();
+    QApplication::exit();
 }

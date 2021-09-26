@@ -1,7 +1,7 @@
 /**
  * @file datamanager.h
  *
- * @brief fuctions for managing a classification dataset on disk
+ * @brief functions for managing a classification dataset on disk
  *
  * @author various
  */
@@ -27,13 +27,13 @@ public:
      * @brief DataManager deleted copy constructor
      */
 
-    DataManager(const DataManager&) = delete;
+    DataManager(const DataManager &) = delete;
 
     /**
-     * @brief operator = deleted assingment operator
+     * @brief operator = deleted assignment operator
      */
 
-    DataManager& operator=(const DataManager&) = delete;
+    DataManager &operator=(const DataManager &) = delete;
 
     /**
      * @brief getInstance returns the only instance of the DataManager class
@@ -44,7 +44,7 @@ public:
         // Instantiated on first use.
         return instance;
     }
-    
+
     /**
      * @return list of all directories in the projects directory
      */
@@ -63,7 +63,7 @@ public:
      * @param error pointer to where error messages can be written
      * @return true if a new project was created, false if there was an error
      */
-    bool createNewProject(QString projectName, QString * error);
+    bool createNewProject(QString projectName, QString *error);
 
     /**
      * @brief removeProject deleted the project sub directory from the current projects directory.
@@ -91,7 +91,7 @@ public:
 
     /**
      * @brief getProjectDataSetDir will return null string if no project is opened
-     * @return absoulute path to the data set directory of the currently opened project
+     * @return absolute path to the data set directory of the currently opened project
      */
     QString getProjectDataSetDir();
 
@@ -128,7 +128,6 @@ public:
     QString createNewWorkSubDir(const QString &name);
 
 
-
     /**
      * The paths are valid, when they are not empty ie. "" or the nullstring, when they are not identical, and actually exist.
      * If the paths provided arent absolute there is no guarantee for whether the check passes or fails.
@@ -144,19 +143,10 @@ public:
      * If the paths provided arent absolute there is no guarantee for whether the check passes or fails.
      *
      * @brief verifyPaths check if the the specified directories would be considered valid by the application
-     * @param projectsDirectory absolute path to the projects directory
-     * @param classificationPluginDirectory absolute path the the classification plugin directory
-     * @param imageLoaderDirectory absolute path to the image loader plugin directory
+     * @param paths list of paths to be verified
      * @return true if valid, false otherwise
      */
-    bool verifyPaths(QString projectsDirectory, QString classificationPluginDirectory, QString imageLoaderDirectory);
-
-    /**
-     * @brief verifyPath check if a single path would be considered valid on it own
-     * @param path the absolute path
-     * @return true if valid, false otherwise
-     */
-    bool verifyPath(QString path);
+    bool verifyPaths(const QStringList& paths);
 
     /**
      * @brief createNewModel created a new model with the specified parameters
@@ -206,13 +196,13 @@ public:
     QString recallLastWorkingDirectoryOfModel(QString projectName, QString modelName);
 
     /**
-     * @brief recallPluginNameOfModell find the plugin a certain model was derived from
+     * @brief recallPluginNameOfModel find the plugin a certain model was derived from
      * @param projectName name of the project to search in
      * @param modelName name of the model to search by
      * @return name of the originating plugin
      */
 
-    QString recallPluginNameOfModell(QString projectName, QString modelName);
+    QString recallPluginNameOfModel(QString projectName, QString modelName);
 
 
     /**
@@ -265,7 +255,7 @@ public:
     void saveClassificationPluginDir(QString dir);
 
     /**
-     * @return the absolute path to the curent classifcation plugin directory
+     * @return the absolute path to the current classification plugin directory
      */
     QString getClassificationPluginDir();
 
@@ -280,22 +270,32 @@ public:
      */
     QString getImageLoaderPluginDir();
 
+
+    /**
+     * @return the absolute path to the current pythonge executable
+     */
+
+    QString getPythonExecutablePath();
+
     /**
      * @return the names of all loaded image loader plugins
      */
     QStringList getImageLoaderPluginNames();
 
     /**
-     * @brief applyGlobalSettings changes the program paths acording to parameters, if they are resolvable.
+     * @brief applyGlobalSettings changes the program paths according to parameters, if they are resolvable.
      * @param projectsDir the new projects directory
      * @param classificationPluginDir the new classification plugin directory
-     * @param imageLoaderPluginDir the new image loader pluign directory
+     * @param imageLoaderPluginDir the new image loader plugin directory
+     * @param pythonPath the new python executable path
      * @param error optional argument, if an error occurs it will be written to here
      * @param pathChanged optional argument, the amount of paths updated will be written here
      * @return true if the new paths could be applied, false otherwise
      */
     bool applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
-                             QString * error = nullptr, int * pathsChanged = nullptr);
+                             QString pythonPath,
+                             QString *error = nullptr, int *pathsChanged = nullptr);
+
     /**
      * @return return list of the training results that have been saved
      */
@@ -318,9 +318,9 @@ public:
     QList<QSharedPointer<QIcon>> getPluginIcons();
     
 private:
-    ProjectManager* mProjectManager;
-    ModelManager* mModelManager;
-    SettingsManager* mSettingsManager;
+    ProjectManager *mProjectManager;
+    ModelManager *mModelManager;
+    SettingsManager *mSettingsManager;
 
     DataManager();
 };

@@ -28,71 +28,52 @@ QStringList SettingsManager::getClassificationPluginNames() {
     return classifierPlugins;
 }
 
-QStringList SettingsManager::getClassificationPluginBase(const QString& plugin) {
+QStringList SettingsManager::getClassificationPluginBase(const QString &plugin) {
     return mClassificationPluginManager->getClassificationPluginBases(plugin);
 }
 
 bool SettingsManager::verifyDirectories() {
     if (mGlobalSettings->contains(projectDirectoryIdentifier)
         && mGlobalSettings->contains(classificationPluginDirectoryIdentifier)
-        && mGlobalSettings->contains(imageLoaderPluginDirectoryIdentifier)) {
+        && mGlobalSettings->contains(imageLoaderPluginDirectoryIdentifier)
+        && mGlobalSettings->contains(pythonExecutablePathIdentifier)) {
         //All keys exist and have values
 
         QString projectPath = mGlobalSettings->value(projectDirectoryIdentifier).toString();
         QString classificationPath = mGlobalSettings->value(classificationPluginDirectoryIdentifier).toString();
         QString imageLoaderPath = mGlobalSettings->value(imageLoaderPluginDirectoryIdentifier).toString();
+        QString pythonPath = mGlobalSettings->value(pythonExecutablePathIdentifier).toString();
 
-        return verifyPaths(projectPath, classificationPath, imageLoaderPath);
+        return verifyPaths({projectPath, classificationPath, imageLoaderPath, pythonPath});
     }
-    //Settings file wasnt complete
+    //Settings file wasn't complete
     return false;
 }
 
-bool SettingsManager::verifyPaths(const QString& projectsDirectory, const QString& classificationPluginDirectory,
-                                  const QString& imageLoaderDirectory) {
-    if (projectsDirectory == classificationPluginDirectory ||
-        projectsDirectory == imageLoaderDirectory ||
-        classificationPluginDirectory == imageLoaderDirectory) {
-        return false;
-    }
+bool SettingsManager::verifyPaths(const QStringList &paths) {
+    //Check for duplicates
+    if (QSet<QString>(paths.begin(), paths.end()).size() != paths.size()) return false;
 
     //QDir treats the "" directory as "." and will always return true on .exists();
-    if (projectsDirectory.isEmpty() || classificationPluginDirectory.isEmpty() || imageLoaderDirectory.isEmpty()) {
-        return false;
-    }
+    if (paths.contains("")) return false;
 
-    QDir projectDir = QDir(projectsDirectory);
-    QDir classificationDir = QDir(classificationPluginDirectory);
-    QDir imageLoaderDir = QDir(imageLoaderDirectory);
 
-    if (projectDir.exists() && classificationDir.exists() && imageLoaderDir.exists()) {
-        return true;
-    }
-    return false;
+    //Check if all paths exist
+    return std::all_of(paths.begin(), paths.end(), [](const QString &path) { return QDir(path).exists() || QFile(path).exists(); });
 }
 
-bool SettingsManager::verifyPath(const QString& path) {
-    //Null and empty string are not valid paths
-    if (path.isEmpty()) {
-        return false;
-    }
-    QDir directory = QDir(path);
-
-    if (directory.exists()) {
-        return true;
-    }
-    return false;
-}
-
-void SettingsManager::configureSettingsFile(const QString& projectsDirectory, const QString& classificationPluginDirectory,
-                                            const QString& imageLoaderDirectory) {
+void
+SettingsManager::configureSettingsFile(const QString &projectsDirectory, const QString &classificationPluginDirectory,
+                                       const QString &imageLoaderDirectory, const QString &pythonPath) {
     mGlobalSettings->setValue(projectDirectoryIdentifier, projectsDirectory);
     mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, classificationPluginDirectory);
     mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, imageLoaderDirectory);
+    mGlobalSettings->setValue(pythonExecutablePathIdentifier, pythonPath);
+
+    qDebug() << pythonPath;
 }
 
-void SettingsManager::reload()
-{
+void SettingsManager::reload() {
     mClassificationPluginManager->loadPlugins(getClassificationPluginDir());
     mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 }
@@ -123,7 +104,7 @@ void SettingsManager::savePluginSettings(int index) {
         mClassificationPluginManager->saveConfiguration(name);
 }
 
-void SettingsManager::saveProjectsDir(const QString& dir) {
+void SettingsManager::saveProjectsDir(const QString &dir) {
     mGlobalSettings->setValue(projectDirectoryIdentifier, dir);
 }
 
@@ -131,7 +112,7 @@ QString SettingsManager::getProjectsDir() {
     return mGlobalSettings->value(projectDirectoryIdentifier).toString();
 }
 
-void SettingsManager::saveClassificationPluginDir(const QString& dir) {
+void SettingsManager::saveClassificationPluginDir(const QString &dir) {
     mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, dir);
     mClassificationPluginManager->loadPlugins(dir);
 }
@@ -140,23 +121,33 @@ QString SettingsManager::getClassificationPluginDir() {
     return mGlobalSettings->value(classificationPluginDirectoryIdentifier).toString();
 }
 
-void SettingsManager::saveImageLoaderPluginDir(const QString& dir) {
+void SettingsManager::saveImageLoaderPluginDir(const QString &dir) {
     mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, dir);
     mImageLoaderPluginManager->loadPlugins(dir);
+}
+
+void SettingsManager::savePythonPath(const QString &path) {
+    mGlobalSettings->setValue(pythonExecutablePathIdentifier, path);
 }
 
 QString SettingsManager::getImageLoaderPluginDir() {
     return mGlobalSettings->value(imageLoaderPluginDirectoryIdentifier).toString();
 }
 
+QString SettingsManager::getPythonExecutablePath() {
+    return mGlobalSettings->value(pythonExecutablePathIdentifier).toString();
+}
+
 bool
-SettingsManager::applyGlobalSettings(const QString& projectsDir, const QString& classificationPluginDir, const QString& imageLoaderPluginDir,
+SettingsManager::applyGlobalSettings(const QString &projectsDir, const QString &classificationPluginDir,
+                                     const QString &imageLoaderPluginDir, const QString &pythonPath,
                                      QString *error, int *pathsChanged) {
 
     int pathsChangedCounter = 0;
     QString tempProjectsDir = getProjectsDir();
     QString tempClassificationPluginDir = getClassificationPluginDir();
     QString tempImageLoaderPluginDir = getImageLoaderPluginDir();
+    QString tempPythonPath = getPythonExecutablePath();
 
     //Check if there is an actual update to any of the paths
     if (!projectsDir.isEmpty()) {
@@ -171,12 +162,17 @@ SettingsManager::applyGlobalSettings(const QString& projectsDir, const QString& 
         pathsChangedCounter++;
         tempImageLoaderPluginDir = imageLoaderPluginDir;
     }
+    if (!pythonPath.isEmpty()) {
+        pathsChangedCounter++;
+        tempPythonPath = pythonPath;
+    }
 
     //check if all paths are allowed and if any of them are overlapping
-    if (verifyPaths(tempProjectsDir, tempClassificationPluginDir, tempImageLoaderPluginDir)) {
+    if (verifyPaths({tempProjectsDir, tempClassificationPluginDir, tempImageLoaderPluginDir, tempPythonPath})) {
         saveProjectsDir(tempProjectsDir);
         saveClassificationPluginDir(tempClassificationPluginDir);
         saveImageLoaderPluginDir(tempImageLoaderPluginDir);
+        savePythonPath(tempPythonPath);
 
         if (pathsChanged != nullptr) {
             *pathsChanged = pathsChangedCounter;
