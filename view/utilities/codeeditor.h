@@ -118,10 +118,13 @@ private slots:
     void updateLineNumberArea(const QRect &rect, int dy);
 
 private:
+    using QPlainTextEdit::clear;
+
     QWidget *lineNumberArea;
     QSet<int> m_placeholderLines;
 
-    using QPlainTextEdit::clear;
+    static constexpr QColor BACKGROUND = QColorConstants::Svg::gainsboro;
+    static constexpr QColor SEPARATOR = QColorConstants::Svg::darkgrey;
 };
 
 /**

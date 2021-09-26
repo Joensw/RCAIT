@@ -110,12 +110,8 @@ void CodeEditor::appendPlaceholder(const QString &placeholder) {
 
 void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event) {
     QPainter painter(lineNumberArea);
-    //QColor background("#EEEEEE");
-    QColor background(238, 238, 238);
-    //QColor separator("#979797");
-    QColor separator(151, 151, 151);
-    painter.fillRect(event->rect(), background);
-    painter.setPen(QPen(separator));
+    painter.fillRect(event->rect(), BACKGROUND);
+    painter.setPen(QPen(SEPARATOR));
     painter.drawLine(event->rect().topRight(), event->rect().bottomRight());
 
     QTextBlock block = firstVisibleBlock();
@@ -129,7 +125,7 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event) {
         if (block.isVisible() && !placeholder && bottom >= event->rect().top()) {
             QString number = QString::number(lineNumber + 1);
             painter.setPen(Qt::black);
-            painter.setFont(font());
+            painter.setFont(this->font());
             painter.drawText(0, top, lineNumberArea->width(), fontMetrics().height(),
                              Qt::AlignRight, number.append(" "));
         }
