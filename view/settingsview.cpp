@@ -53,7 +53,7 @@ void SettingsView::addPluginWidgets(QStringList pluginNames,
         auto pluginName = pluginConfigurationWidgets[i]->accessibleName().isEmpty()
                           ? pluginNames[i]
                           : pluginConfigurationWidgets[i]->accessibleName();
-        pluginIcons[i];
+
         QListWidgetItem *pluginEntry;
         if (pluginIcons[i]->isNull()) {
             pluginEntry = new QListWidgetItem(QIcon(PLUGIN_ICON), pluginName);

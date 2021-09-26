@@ -8,6 +8,7 @@ ClassificationPluginManager::ClassificationPluginManager() = default;
 void ClassificationPluginManager::loadPlugins(QString pluginDir) {
     m_plugins.clear();
     m_pluginConfigurationWidgets.clear();
+    m_pluginIcons.clear();
 
     QDir pluginsDir(pluginDir);
     const QStringList entries = pluginsDir.entryList(QDir::Files);
