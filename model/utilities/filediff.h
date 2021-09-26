@@ -35,6 +35,8 @@ public:
 
 private:
     static constexpr CE_String HIGHLIGHTED_TEXT_TEMPLATE = "<span style=\"background-color:%1\">%2</span>";
+    //Calculated String length when %1 is filled with a Hex Code and %2 with a char (length = 1)
+    //This String length will always be the same and can be reserved to prevent an allocation of more space
     static constexpr auto HIGHLIGHTED_TEXT_TEMPLATE_LENGTH = HIGHLIGHTED_TEXT_TEMPLATE.size() + 4;
 
     static constexpr QColor GREEN = QColorConstants::Svg::palegreen;
