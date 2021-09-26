@@ -10,6 +10,7 @@ ImageLoaderPluginManager::ImageLoaderPluginManager() = default;
 void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
     m_plugins.clear();
     m_pluginConfigurationWidgets.clear();
+    m_pluginIcons.clear();
 
     QDir pluginsDir(pluginDir);
     for (const QString &fileName: pluginsDir.entryList(QDir::Files)) {
