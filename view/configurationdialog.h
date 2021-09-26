@@ -64,7 +64,7 @@ signals:
      * @param classificationPluginsDir the specifed classification plugin directory
      * @param imageLoaderPluginsDir the specifed image loader plugin directory
      */
-    void sig_directoriesSpecified(QString projectsDir, QString classificationPluginsDir, QString imageLoaderPluginsDir);
+    void sig_directoriesSpecified(QString projectsDir, QString classificationPluginsDir, QString imageLoaderPluginsDir, QString pythonPath);
 
 private:
     static constexpr auto QUIT_DIALOG_TITLE = QT_TR_NOOP("Quit confirmation");
@@ -74,12 +74,14 @@ private:
     static constexpr auto PROJECT_SELECT_MSG = QT_TR_NOOP("Select project directory");
     static constexpr auto CLASSIFICATION_SELECT_MSG = QT_TR_NOOP("Select classification plugin directory");
     static constexpr auto LOADER_SELECT_MSG = QT_TR_NOOP("Select image loader plugin directory");
+    static constexpr auto PYTHON_SELECT_MSG = QT_TR_NOOP("Select Python path");
 
     Ui::ConfigurationDialog *ui;
 
     QString mProjectDir;
     QString mClassificationPluginsDir;
     QString mImageLoaderPluginsDir;
+    QString mPythonPath;
 
     bool mIsCloseable;
 private slots:
@@ -102,6 +104,11 @@ private slots:
      * @brief slot_setImageLoaderPluginsDir shows the user selected image loader plugin directory path from a file dialog in the UI
      */
     [[maybe_unused]] void slot_setImageLoaderPluginsDir();
+
+    /**
+     * @brief slot_setPythonPath shows the user selected python path from a file dialog in the ui
+     */
+    void slot_setPythonPath();
 };
 
 #endif // CONFIGURATIONDIALOG_H

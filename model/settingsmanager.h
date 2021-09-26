@@ -162,7 +162,7 @@ public:
      * @param imageLoaderDirectory absolute path to the image loader plugin directory
      */
     void configureSettingsFile(const QString &projectsDirectory, const QString &classificationPluginDirectory,
-                               const QString &imageLoaderDirectory);
+                               const QString &imageLoaderDirectory, const QString &pythonPath);
 
     /**
      * @brief reload manually prompt the plugin managers to reload the plugins from the current directories
@@ -174,7 +174,7 @@ private:
     static constexpr auto projectDirectoryIdentifier = "ProjectDirectory";
     static constexpr auto classificationPluginDirectoryIdentifier = "ClassificationPluginPath";
     static constexpr auto imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
-    static constexpr auto pythonExecutablePathIdentifier = "pythonPath";
+    static constexpr auto pythonExecutablePathIdentifier = "PythonPath";
 
     static constexpr auto ERROR_CONFLICT = QT_TR_NOOP(
             "Settings have not been updated, there is a conflict. \n Paths may not be identical and must exist, this includes new and unchanged paths.");

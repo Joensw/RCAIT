@@ -270,6 +270,13 @@ public:
      */
     QString getImageLoaderPluginDir();
 
+
+    /**
+     * @return the absolute path to the current pythonge executable
+     */
+
+    QString getPythonExecutablePath();
+
     /**
      * @return the names of all loaded image loader plugins
      */

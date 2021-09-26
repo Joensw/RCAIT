@@ -80,9 +80,9 @@ void GlobalSettingsWidget::setCurrentImageLoaderDir(const QString &path) {
 }
 
 void GlobalSettingsWidget::setCurrentPythonPath(const QString &path) {
-    QFontMetrics metrics(ui->label_imageLoaderDir_current->font());
+    QFontMetrics metrics(ui->label_pythonPath_current->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
-    ui->label_imageLoaderDir_current->setText(text);
+    ui->label_pythonPath_current->setText(text);
 }
 
 void GlobalSettingsWidget::on_pushButton_project_clicked() {

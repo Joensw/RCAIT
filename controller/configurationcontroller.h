@@ -40,7 +40,7 @@ public slots:
      * @param imageLoaderPluginsDir selected image loader plugin directory
      */
     void slot_directoriesSpecified(const QString &projectDir, const QString &classificationPluginDir,
-                                   const QString &imageLoaderPluginsDir);
+                                   const QString &imageLoaderPluginsDir, const QString &pythonPath);
 signals:
     /**
      * @brief sig_configurationComplete emitted when the configuration is accepted

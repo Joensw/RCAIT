@@ -57,16 +57,20 @@ bool SettingsManager::verifyPaths(const QStringList &paths) {
     //QDir treats the "" directory as "." and will always return true on .exists();
     if (paths.contains("")) return false;
 
+
     //Check if all paths exist
-    return std::all_of(paths.begin(), paths.end(), [](const QString &path) { return QDir(path).exists(); });
+    return std::all_of(paths.begin(), paths.end(), [](const QString &path) { return QDir(path).exists() || QFile(path).exists(); });
 }
 
 void
 SettingsManager::configureSettingsFile(const QString &projectsDirectory, const QString &classificationPluginDirectory,
-                                       const QString &imageLoaderDirectory) {
+                                       const QString &imageLoaderDirectory, const QString &pythonPath) {
     mGlobalSettings->setValue(projectDirectoryIdentifier, projectsDirectory);
     mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, classificationPluginDirectory);
     mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, imageLoaderDirectory);
+    mGlobalSettings->setValue(pythonExecutablePathIdentifier, pythonPath);
+
+    qDebug() << pythonPath;
 }
 
 void SettingsManager::reload() {

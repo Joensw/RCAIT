@@ -21,9 +21,9 @@ ConfigurationController::ConfigurationController(QObject *parent)
 
 void
 ConfigurationController::slot_directoriesSpecified(const QString &projectDir, const QString &classificationPluginDir,
-                                                   const QString &imageLoaderPluginsDir) {
-    if (SettingsManager::verifyPaths({projectDir, classificationPluginDir, imageLoaderPluginsDir})) {
-        mSettingsManager->configureSettingsFile(projectDir, classificationPluginDir, imageLoaderPluginsDir);
+                                                   const QString &imageLoaderPluginsDir, const QString &pythonPath) {
+    if (SettingsManager::verifyPaths({projectDir, classificationPluginDir, imageLoaderPluginsDir, pythonPath})) {
+        mSettingsManager->configureSettingsFile(projectDir, classificationPluginDir, imageLoaderPluginsDir, pythonPath);
         mConfigurationDialog->confirm();
         mSettingsManager->reload();
         emit sig_configurationComplete();

@@ -24,6 +24,7 @@ void SettingsController::slot_openSettings() {
     mSettingsView->setCurrentProjectDirectory(mDataManager->getProjectsDir());
     mSettingsView->setCurrentClassificationPluginDirectory(mDataManager->getClassificationPluginDir());
     mSettingsView->setCurrentImageLoaderPluginDirectory(mDataManager->getImageLoaderPluginDir());
+    mSettingsView->setCurrentPythonExecutablePath(mDataManager->getPythonExecutablePath());
 }
 
 void SettingsController::slot_applySettings(int index) {
@@ -40,7 +41,7 @@ void SettingsController::slot_applyGlobalSettings(QString projectDir, QString cl
         mSettingsView->setCurrentProjectDirectory(mDataManager->getProjectsDir());
         mSettingsView->setCurrentClassificationPluginDirectory(mDataManager->getClassificationPluginDir());
         mSettingsView->setCurrentImageLoaderPluginDirectory(mDataManager->getImageLoaderPluginDir());
-        mSettingsView->setCurrentPythonExecutablePath(mDataManager->getImageLoaderPluginDir());
+        mSettingsView->setCurrentPythonExecutablePath(mDataManager->getPythonExecutablePath());
         mSettingsView->pathsUpdated(successfulUpdates);
         mSettingsView->clearPaths();
         emit sig_projectDirectoryChanged(mDataManager->getProjectsDir());

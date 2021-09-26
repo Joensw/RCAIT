@@ -160,6 +160,10 @@ QString DataManager::getImageLoaderPluginDir() {
     return mSettingsManager->getImageLoaderPluginDir();
 }
 
+QString DataManager::getPythonExecutablePath() {
+    return mSettingsManager->getPythonExecutablePath();
+}
+
 QStringList DataManager::getNamesOfSavedTrainingResults() {
     return mProjectManager->getNamesOfSavedTrainingResults();
 }
