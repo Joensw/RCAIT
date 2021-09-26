@@ -10,7 +10,8 @@ SettingsView::SettingsView(QWidget *parent) :
 }
 
 SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames,
-                           const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets, const QList<QSharedPointer<QIcon>> &pluginIcons) :
+                           const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets,
+                           const QList<QSharedPointer<QIcon>> &pluginIcons) :
         QWidget(parent),
         ui(new Ui::SettingsView),
         mGlobalSettingsWidget(new GlobalSettingsWidget(this)) {
@@ -53,8 +54,8 @@ void SettingsView::addPluginWidgets(QStringList pluginNames,
                           ? pluginNames[i]
                           : pluginConfigurationWidgets[i]->accessibleName();
         pluginIcons[i];
-        QListWidgetItem* pluginEntry;
-        if(pluginIcons[i]->isNull()){
+        QListWidgetItem *pluginEntry;
+        if (pluginIcons[i]->isNull()) {
             pluginEntry = new QListWidgetItem(QIcon(PLUGIN_ICON), pluginName);
         } else {
             pluginEntry = new QListWidgetItem(*pluginIcons[i], pluginName);
@@ -100,7 +101,8 @@ void SettingsView::setCurrentPythonExecutablePath(const QString &path) {
     int index = ui->pluginList->currentIndex().row();
 
     if (index == 0) {
-        emit sig_applyGlobalSettings(mProjectDir, mClassificationPluginsDir, mImageLoaderPluginsDir, mPythonExecutablePath);
+        emit sig_applyGlobalSettings(mProjectDir, mClassificationPluginsDir, mImageLoaderPluginsDir,
+                                     mPythonExecutablePath);
     } else {
         // -1 because 0th entry is Global settings
         emit sig_applySettings(index - 1);
@@ -114,38 +116,22 @@ void SettingsView::setCurrentPythonExecutablePath(const QString &path) {
 //private slots for global settings widget
 void SettingsView::slot_setProjectDir() {
     mProjectDir = QFileDialog::getExistingDirectory(this, PROJECT_SELECT_MSG);
-    if (!mProjectDir.isEmpty()) {
-        mGlobalSettingsWidget->setNewProjectPath(mProjectDir);
-        return;
-    }
-    mGlobalSettingsWidget->setNewProjectPath(EMPTY_PATH);
+    mGlobalSettingsWidget->setNewProjectPath(mProjectDir);
 }
 
 void SettingsView::slot_setClassificationPluginsDir() {
     mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, CLASSIFICATION_SELECT_MSG);
-    if (!mClassificationPluginsDir.isEmpty()) {
-        mGlobalSettingsWidget->setNewClassificationPluginPath(mClassificationPluginsDir);
-        return;
-    }
-    mGlobalSettingsWidget->setNewClassificationPluginPath(EMPTY_PATH);
+    mGlobalSettingsWidget->setNewClassificationPluginPath(mClassificationPluginsDir);
 }
 
 void SettingsView::slot_setImageLoaderPluginsDir() {
     mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, LOADER_SELECT_MSG);
-    if (!mImageLoaderPluginsDir.isEmpty()) {
-        mGlobalSettingsWidget->setNewImageLoaderPath(mImageLoaderPluginsDir);
-        return;
-    }
-    mGlobalSettingsWidget->setNewImageLoaderPath(EMPTY_PATH);
+    mGlobalSettingsWidget->setNewImageLoaderPath(mImageLoaderPluginsDir);
 }
 
 void SettingsView::slot_setGeneralPythonPath() {
     mPythonExecutablePath = QFileDialog::getOpenFileName(this, PYTHON_SELECT_MSG);
-    if (!mPythonExecutablePath.isEmpty()) {
-        mGlobalSettingsWidget->setNewPythonPath(mPythonExecutablePath);
-        return;
-    }
-    mGlobalSettingsWidget->setNewPythonPath(EMPTY_PATH);
+    mGlobalSettingsWidget->setNewPythonPath(mPythonExecutablePath);
 }
 
 
