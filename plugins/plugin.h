@@ -10,6 +10,7 @@
 
 #include <QTextStream>
 #include <QWidget>
+#include <QIcon>
 
 /**
  * @brief The Plugin class is an interface for all plugins.
@@ -47,6 +48,13 @@ public:
     virtual QSharedPointer<QWidget> getInputWidget() {
         return {};
     };
+
+
+    /**
+     * @brief getPluginIcon returns the Icon of the Plugin
+     * @return the plugin Icon
+     */
+    virtual QSharedPointer<QIcon> getPluginIcon() = 0;
 
 };
 

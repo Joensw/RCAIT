@@ -18,6 +18,7 @@
 #include "flickrsettings.h"
 #include "progressableplugin.h"
 #include "QRegularExpression"
+#include <QIcon>
 
 
 /**
@@ -61,6 +62,12 @@ public:
      */
     QString getName() override;
 
+    /**
+     * @brief getPluginIcon returns the Icon of the Plugin
+     * @return the plugin Icon
+     */
+    QSharedPointer<QIcon> getPluginIcon() override;
+
 private:
     FlickrSettings m_flickrSettings;
     QSharedPointer<FlickrSettings> pluginSettings;
@@ -68,7 +75,7 @@ private:
     ProgressablePlugin *m_receiver;
     // in case something goes wrong (could be read from command line)
     bool m_success = true;
-
+    static constexpr auto PLUGIN_ICON = ":/flickricon.png";
     QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
 
 private slots:

@@ -8,6 +8,17 @@
 #include "imageinspectionmodel.h"
 #include "model/utilities/mapadapt.h"
 
+/**
+ * @brief This enum maps the index of the dataset type used for input parameters of public functions to a name
+ *
+ */
+enum DataSetType {
+    TRAINING_SET = 3,
+    VALIDATION_SET = 2,
+    TRAINING_NEW = 1,
+    VALIDATION_NEW = 0
+};
+
 
 void ImageInspectionModel::loadDataSet(const QString &trainingPath, const QString &validationPath) {
     //reset maps
@@ -56,20 +67,21 @@ ImageInspectionModel::mergeMap(const QMap<QString, QStringList> &mergeIn, const 
 
 void ImageInspectionModel::removeImage(int selectionIndex, const QMap<QString, QList<int>> &removedImages) {
     switch (selectionIndex) {
-        case 2:
+        case VALIDATION_SET:
             removeImageWithIndex(m_validationDataset, removedImages);
             break;
-        case 3:
+        case TRAINING_SET:
             removeImageWithIndex(m_trainDataset, removedImages);
             break;
-        case 0:
+        case VALIDATION_NEW:
             removeImageWithIndex(m_validationNewData, removedImages);
-        case 1:
+        case TRAINING_NEW:
             removeImageWithIndex(m_trainNewData, removedImages);
             break;
         default:
             qWarning() << "Unknown selectionIndex: " << selectionIndex;
     }
+
 
 }
 

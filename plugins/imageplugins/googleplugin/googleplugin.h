@@ -17,7 +17,7 @@
 #include "googlesettings.h"
 #include "progressableplugin.h"
 #include "QRegularExpression"
-
+#include <QIcon>
 
 /**
  * @brief The GooglePlugin class is used for downloading images from the google web search and saving to disk
@@ -35,6 +35,7 @@ private:
    ProgressablePlugin* m_receiver;
    // in case something goes wrong (could be read from command line)
    bool m_success = true;
+   static constexpr auto PLUGIN_ICON = ":/googleicon.png";
 
     QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
 
@@ -69,6 +70,12 @@ public:
      * @return the plugin name
      */
     QString getName() override;
+
+    /**
+     * @brief getPluginIcon returns the Icon of the Plugin
+     * @return the plugin Icon
+     */
+    QSharedPointer<QIcon> getPluginIcon() override;
 
 private slots:
     void slot_abort();

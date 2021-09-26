@@ -22,6 +22,7 @@ void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
             imageLoaderPlugin->init();
             m_pluginConfigurationWidgets << imageLoaderPlugin->getConfigurationWidget();
             m_plugins[imageLoaderPlugin->getName()] = imageLoaderPlugin;
+            m_pluginIcons << imageLoaderPlugin->getPluginIcon();
         }
     }
 
@@ -68,4 +69,9 @@ QStringList ImageLoaderPluginManager::getNamesOfPlugins() {
 
 QList<QSharedPointer<QWidget>> ImageLoaderPluginManager::getConfigurationWidgets() {
     return m_pluginConfigurationWidgets;
+}
+
+QList<QSharedPointer<QIcon>> ImageLoaderPluginManager::getPluginIcons()
+{
+    return m_pluginIcons;
 }

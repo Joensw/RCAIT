@@ -311,6 +311,12 @@ public:
      */
     QSharedPointer<QWidget> getDataAugmentationInputWidget();
 
+    /**
+     * @brief getPluginIcons gets the icons of the plugins
+     * @return the icons
+     */
+    QList<QSharedPointer<QIcon>> getPluginIcons();
+    
 private:
     ProjectManager *mProjectManager;
     ModelManager *mModelManager;

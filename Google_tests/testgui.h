@@ -15,7 +15,7 @@ class TestGui : public QObject
 private slots:
     void testImportFilesWidget();
     void testTagField();
-    void testLoadLabelsFromTxt();
+    void testLoadLabelsFromTxt(); //test not included in standard testrun because it opens a file dialog
 
 
 };

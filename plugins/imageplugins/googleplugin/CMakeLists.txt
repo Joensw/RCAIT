@@ -21,7 +21,7 @@ find_package(Qt6 COMPONENTS Widgets)
 
 
 add_library(googleplugin MODULE
-    googleplugin.cpp googleplugin.h googlesettings.cpp googlesettings.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressable.h
+    googleplugin.cpp googleplugin.h googlesettings.cpp googlesettings.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressable.h icons.qrc
 )
 
 set_target_properties(googleplugin PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../plugins)

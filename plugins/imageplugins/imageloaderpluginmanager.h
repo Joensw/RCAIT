@@ -28,6 +28,7 @@ private:
     QMap<QString, ImageLoaderPlugin *> m_plugins;
     QSharedPointer<ImageLoaderPlugin> test;
     QList<QSharedPointer<QWidget>> m_pluginConfigurationWidgets;
+    QList<QSharedPointer<QIcon>> m_pluginIcons;
 
 public:
     /**
@@ -108,6 +109,12 @@ public:
      * @return list of all config widgets
      */
     QList<QSharedPointer<QWidget>> getConfigurationWidgets();
+
+    /**
+     * @brief getPluginIcons gets the Icon of the plugins
+     * @return the icons
+     */
+    QList<QSharedPointer<QIcon>> getPluginIcons() override;
 
 };
 

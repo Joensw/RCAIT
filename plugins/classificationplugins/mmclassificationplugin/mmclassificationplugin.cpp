@@ -547,6 +547,11 @@ QSharedPointer<QWidget> MMClassificationPlugin::getDataAugmentationInputWidget()
     return dataAugmentationInput;
 }
 
+QSharedPointer<QIcon> MMClassificationPlugin::getPluginIcon()
+{
+    return QSharedPointer<QIcon>(new QIcon(PLUGIN_ICON));
+}
+
 void MMClassificationPlugin::slot_readClassifyOutput() {
     const QString proportionRegularExpressionText = "[0-9]+\\/[0-9]+";
     QString line = QString::fromLocal8Bit(m_process->readLine());

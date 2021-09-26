@@ -17,7 +17,7 @@ find_package(Qt6 COMPONENTS Widgets)
 
 
 add_library(folderplugin MODULE
-  folderconfigwidget.h folderconfigwidget.cpp folderconfigwidget.ui folderplugin.cpp folderplugin.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressable.h
+  folderconfigwidget.h folderconfigwidget.cpp folderconfigwidget.ui folderplugin.cpp folderplugin.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressable.h icons.qrc
 )
 
 set_target_properties(folderplugin PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../plugins)

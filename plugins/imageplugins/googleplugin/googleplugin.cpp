@@ -103,4 +103,10 @@ void GooglePlugin::slot_abort() {
     m_process->kill();
 }
 
+
+QSharedPointer<QIcon> GooglePlugin::getPluginIcon()
+{
+    return QSharedPointer<QIcon>(new QIcon(PLUGIN_ICON));
+}
+
 //! [0]

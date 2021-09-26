@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>googleicon.png</file>
+    </qresource>
+</RCC>

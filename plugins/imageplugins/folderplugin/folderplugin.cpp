@@ -99,6 +99,11 @@ void FolderPlugin::slot_abort() {
     abort = true;
 }
 
+QSharedPointer<QIcon> FolderPlugin::getPluginIcon()
+{
+    return QSharedPointer<QIcon>(new QIcon(PLUGIN_ICON));
+}
+
 bool FolderPlugin::addLabel(const QStringList &images, const QDir &in, QDir out) const {
     out.mkdir(in.dirName());
     if (!out.cd(in.dirName())) return false;

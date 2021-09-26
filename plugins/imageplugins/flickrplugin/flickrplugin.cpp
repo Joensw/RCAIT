@@ -90,4 +90,9 @@ void FlickrPlugin::slot_abort() {
     m_process->kill();
 }
 
+QSharedPointer<QIcon> FlickrPlugin::getPluginIcon()
+{
+    return QSharedPointer<QIcon>(new QIcon(PLUGIN_ICON));
+}
+
 //! [0]

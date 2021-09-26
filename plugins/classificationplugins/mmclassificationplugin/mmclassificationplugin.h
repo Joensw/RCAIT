@@ -11,6 +11,7 @@
 #include <QProcessEnvironment>
 #include <QFileSystemModel>
 #include <QStringBuilder>
+#include <QIcon>
 
 #include "trainingresult.h"
 #include "classificationresult.h"
@@ -34,6 +35,8 @@ class MMClassificationPlugin : public QObject, ClassificationPlugin
     Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.MMClassificationPlugin" FILE "MMClassificationPlugin.json")
     Q_INTERFACES(ClassificationPlugin)
 private:
+
+    static constexpr auto PLUGIN_ICON = ":/mmclsicon.png";
 
     const QString m_name = "MMClassification Plugin";
     const QString m_modelNameKey = "name";
@@ -171,6 +174,12 @@ public:
      * @return a widget to specify plugin specific data augmentation input
      */
     QSharedPointer<QWidget> getDataAugmentationInputWidget() override;
+
+    /**
+     * @brief getPluginIcon returns the Icon of the Plugin
+     * @return the plugin Icon
+     */
+    QSharedPointer<QIcon> getPluginIcon() override;
 
 private slots:
 

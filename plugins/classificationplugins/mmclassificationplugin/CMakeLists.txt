@@ -39,6 +39,7 @@ add_library(mmclassificationplugin MODULE
         ../../../view/utilities/imagegallery.h ../../../view/utilities/imagegallery.cpp
 
         ../../../view/utilities/customtablewidget.h ../../../view/utilities/customtablewidget.cpp
+        icons.qrc
 
 )
 

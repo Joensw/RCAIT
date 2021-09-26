@@ -12,7 +12,7 @@ SettingsController::SettingsController(QObject *parent, DataManager *dataManager
         : QObject(parent),
           mDataManager(dataManager) {
 
-    mSettingsView.reset(new SettingsView(nullptr, mDataManager->getPluginNames(), mDataManager->getPluginSettings()));
+    mSettingsView.reset(new SettingsView(nullptr, mDataManager->getPluginNames(), mDataManager->getPluginSettings(), mDataManager->getPluginIcons()));
     connect(&*mSettingsView, &SettingsView::sig_applyGlobalSettings, this,
             &SettingsController::slot_applyGlobalSettings);
     connect(&*mSettingsView, &SettingsView::sig_applySettings, this, &SettingsController::slot_applySettings);
@@ -46,7 +46,7 @@ void SettingsController::slot_applyGlobalSettings(QString projectDir, QString cl
         mSettingsView->clearPaths();
         emit sig_projectDirectoryChanged(mDataManager->getProjectsDir());
         emit sig_imagePluginsDirectoryChanged(mDataManager->getImageLoaderPluginDir());
-        mSettingsView->addPluginWidgets(mDataManager->getPluginNames(), mDataManager->getPluginSettings());
+        mSettingsView->addPluginWidgets(mDataManager->getPluginNames(), mDataManager->getPluginSettings(), mDataManager->getPluginIcons());
         return;
     }
     mSettingsView->setGlobalSettingsError(errorMessage);

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>flickricon.png</file>
+    </qresource>
+</RCC>
