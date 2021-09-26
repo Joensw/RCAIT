@@ -70,7 +70,7 @@ TEST(SettingsManagerTest, applySettingsValid){
     SettingsManager * sm = &SettingsManager::getInstance();
     int counter = 0;
     QString error;
-    EXPECT_TRUE(sm->applyGlobalSettings(genuineDir1, genuineDir2, genuineDir3, genuineDir4, &error, &counter));
+    EXPECT_TRUE(sm->applyGlobalSettings(genuineDir1, genuineDir2, genuineDir3, genuineDir4, error, counter));
     EXPECT_TRUE(counter == 4);
 
     dir.removeRecursively();

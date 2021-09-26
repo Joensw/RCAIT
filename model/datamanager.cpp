@@ -186,9 +186,8 @@ QStringList DataManager::getImageLoaderPluginNames() {
 
 
 bool
-DataManager::applyGlobalSettings(QString projectsDir, QString classificationPluginDir, QString imageLoaderPluginDir,
-                                 QString pythonPath,
-                                 QString *error, int *pathsChanged) {
+DataManager::applyGlobalSettings(const QString &projectsDir, const QString &classificationPluginDir, const QString &imageLoaderPluginDir,
+                                 const QString &pythonPath, QString &error, int &pathsChanged) {
     if (mSettingsManager->applyGlobalSettings(projectsDir, classificationPluginDir, imageLoaderPluginDir, pythonPath, error,
                                               pathsChanged)) {
         mProjectManager->setProjectsDirectory(getProjectsDir());
