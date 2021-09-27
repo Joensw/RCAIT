@@ -64,16 +64,14 @@ void PythonConfigDiffWidget::slot_diffFinished(qsizetype longestLine) {
     m_rightCodeEditor->ensureCursorVisible();
 }
 
-bool PythonConfigDiffWidget::openFile(QString& fileName) {
+bool PythonConfigDiffWidget::openFile(QString &fileName) {
 
     auto openedFile = QFileDialog::getOpenFileName(this, tr("Open File"),
-                                                 "", "Python Files (*.py)");
+                                                   "", tr("Python Files (*.py)"));
 
-    if (!openedFile.isEmpty()){
-        fileName = openedFile;
-        return true;
-    }
-    return false;
+    if (openedFile.isEmpty()) return false;
+    fileName = openedFile;
+    return true;
 }
 
 bool PythonConfigDiffWidget::openFileHelper(CodeEditor *codeView, QGroupBox *box, const QString &fileName) {
@@ -82,6 +80,8 @@ bool PythonConfigDiffWidget::openFileHelper(CodeEditor *codeView, QGroupBox *box
     QFile file(fileName);
     if (file.open(QFile::ReadOnly | QFile::Text)) {
         codeView->reset();
+        //Check if diff view was reset including leftover html colours
+        Q_ASSERT(codeView->document()->isEmpty());
         codeView->setPlainText(file.readAll());
         box->setTitle(fileName);
         return true;
@@ -90,10 +90,10 @@ bool PythonConfigDiffWidget::openFileHelper(CodeEditor *codeView, QGroupBox *box
 }
 
 void PythonConfigDiffWidget::loadFileHelper(QString &fileName) {
-    if (openFile(fileName)){
+    if (openFile(fileName)) {
         ui->pushButton_startDiff->setEnabled(!m_leftFilePath.isEmpty() && !m_rightFilePath.isEmpty());
-        openFileHelper(ui->codeEditor_left,ui->groupBox_leftFile,m_leftFilePath);
-        openFileHelper(ui->codeEditor_right,ui->groupBox_rightFile,m_rightFilePath);
+        openFileHelper(ui->codeEditor_left, ui->groupBox_leftFile, m_leftFilePath);
+        openFileHelper(ui->codeEditor_right, ui->groupBox_rightFile, m_rightFilePath);
     }
 }
 

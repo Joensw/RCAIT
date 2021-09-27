@@ -81,7 +81,8 @@ void CodeEditor::updateLineNumberAreaWidth(int /* newBlockCount */) {
 
 void CodeEditor::reset() {
     m_placeholderLines.clear();
-    QPlainTextEdit::clear();
+    clear();
+    document()->clear();
 }
 
 void CodeEditor::updateLineNumberArea(const QRect &rect, int dy) {
