@@ -185,20 +185,18 @@ private:
             //prints the error to the debug console. Will not impact performance because it's only called on error
             QImageReader reader(imageName);
             QImage img = reader.read();
-            qDebug() << "Error loading " << imageName << " " << QImageReader(imageName).errorString();
+            qDebug() << "Error loading " << imageName << " " << reader.errorString();
 
             //setup the error image
-            int width = 200;
-            int height = 200;
-            QPixmap pix(width, height);
-            pix.fill();
-            QImage image = pix.toImage();
-            QString text = "Image " + imageName + " could not be loaded. Please check if it is valid.";
-            QPainter p(&image);
+            QImage naImg(":/Logos/imageerror.png");
+            //change format so that we can draw on it
+            QImage paintFormat = naImg.convertToFormat(QImage::Format_ARGB8565_Premultiplied);
+            QString text = "Error: " + reader.errorString() + ". Image " + imageName + " could not be loaded. Please check if it is valid.";
+            QPainter p(&paintFormat);
             p.setPen(QPen(Qt::red));
             p.setFont(QFont("Times", 12));
-            p.drawText(image.rect(), Qt::TextWordWrap | Qt::AlignCenter, text);
-            return image;
+            p.drawText(paintFormat.rect(), Qt::TextWordWrap | Qt::AlignCenter, text);
+            return paintFormat;
         }
 
     private:
