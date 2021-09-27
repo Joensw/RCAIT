@@ -69,7 +69,7 @@ void ClassificationGraphics::generateGraphicsInternal(const QString &fullFilePat
     auto pyScript = QFileInfo("classificationgraphics.py");
     auto params = {pyScript.absoluteFilePath(), dataToPyText(), imagePathsToPyText(), classLabelsToPyText(),
                    fullFilePath};
-    auto command = ConfigurationManager::getInstance().getPythonExecutablePath();
+    auto command = ConfigurationManager::getInstance()->getPythonExecutablePath();
     GenericResultGraphics::launch_externalGraphicsGenerator(command, params);
 }
 

@@ -10,15 +10,15 @@ void AccuracyCurve::generateGraphicsInternal(const QString &fullFilePath) {
     // python script.py <acc curve data> <output file name>
     auto pyScript = QFileInfo("accuracycurve.py");
     auto params = {pyScript.absoluteFilePath(), valuesToPyText(), fullFilePath};
-    auto command = ConfigurationManager::getInstance().getPythonExecutablePath();
+    auto command = ConfigurationManager::getInstance()->getPythonExecutablePath();
     GenericResultGraphics::launch_externalGraphicsGenerator(command, params);
 }
 
 QString AccuracyCurve::valuesToPyText() {
     QStringList result;
 
-    for (const auto&[key, _]: MapAdapt(m_data)) {
-        auto &[train, val] = m_data[key];
+    for (const auto&[key, value]: MapAdapt(m_data)) {
+        auto &[train, val] = value;
 
         //Convert to QString with precision of 2 digits
         auto trainStr = QString::number(train, 'f', 2);

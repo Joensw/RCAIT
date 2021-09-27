@@ -37,7 +37,7 @@ void ModelManager::removeModel(QString projectName, QString modelName) {
             m_userModelNamesPerProject.endGroup();
         }
     } else {
-        qWarning() << "The model " + modelName + " could not be deleted";
+        qWarning() << "The model " << modelName << " could not be deleted";
     }
 }
 

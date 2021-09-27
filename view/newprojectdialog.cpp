@@ -23,7 +23,7 @@ void NewProjectDialog::hideErrorMessage(){
     ui->label_invalidname->hide();
 }
 
-void NewProjectDialog::setErrorMessage(QString error){
+void NewProjectDialog::setErrorMessage(const QString &error){
     ui->label_invalidname->setText(error);
 }
 

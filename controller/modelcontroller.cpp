@@ -48,11 +48,15 @@ void ModelController::slot_removeModel(const QString &modelName) {
 }
 
 void ModelController::slot_removeModelConfirm() {
-    auto modelName = mRemoveModelDialog->getModelName();
-    mDataManager->removeModel(modelName);
-    mImportFilesWidget->clearModelList();
-    mImportFilesWidget->addModels(mDataManager->getModelNamesOfCurrentProject());
-    mRemoveModelDialog->close();
+    QString modelName = mRemoveModelDialog->getModelName();
+    if (!(mDataManager->getCurrentModel() == modelName)){
+        mDataManager->removeModel(modelName);
+        mImportFilesWidget->clearModelList();
+        mImportFilesWidget->addModels(mDataManager->getModelNamesOfCurrentProject());
+        mRemoveModelDialog->close();
+        return;
+    }
+    mRemoveModelDialog->setErrorMessage(OPEN_MODEL_ERROR);
 }
 
 void ModelController::slot_loadModel(const QString &modelName) {

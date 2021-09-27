@@ -1,8 +1,14 @@
-import argparse
-import json
-import os
-
-from difflibparser import *
+# Check imports
+try:
+    import argparse
+    import json
+    import os
+    from difflibparser import *
+    
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
 
 
 def file_path(string):

@@ -6,19 +6,32 @@
 #include <classifier.h>
 #include "classificationpluginmock.h"
 
-//check if valid commands work
-TEST(ClassificationCommandTest, testClassification){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    auto* mngr = &DataManager::getInstance();
+class ClassificationCommandTest : public testing::Test {
+    protected:
 
-    mngr->saveClassificationPluginDir(path);
-    mngr->saveProjectsDir(QDir::current().path());
-    mngr->createNewProject("classificationcmd_test");
-    mngr->loadProject("classificationcmd_test");
+    void SetUp() override {
+        int argc = 1;
+        char *argv[1] = {new char('a')};
+        QApplication a(argc, argv);
+        QString path = QDir::current().path();
+
+        mngr.saveClassificationPluginDir(path);
+        mngr.saveProjectsDir(QDir::current().path());
+        mngr.createNewProject("classificationcmd_test");
+        mngr.loadProject("classificationcmd_test");
+    }
+
+    //delete testfiles
+    void TearDown() override {
+        mngr.removeProject("classificationcmd_test");
+        QApplication::exit();
+    }
+    DataManager& mngr = DataManager::getInstance();
+};
+
+
+//check if valid commands work
+TEST_F(ClassificationCommandTest, testClassification){
     QVariantMap map = QVariantMap();
     map.insert("aiPluginName", ClassificationPluginMock::PLUGIN_NAME);
     map.insert("modelName", "true");
@@ -35,25 +48,10 @@ TEST(ClassificationCommandTest, testClassification){
     map.insert("classificationImagePath", "");
     ClassificationCommand cmd2(map, new Classifier());
     EXPECT_FALSE(cmd2.execute());
-
-    //remove project dir
-    mngr->removeProject("classificationcmd_test");
-    QApplication::exit();
 }
 
 //check if invalid commands are handled properly
-TEST(ClassificationCommandTest, testCommandFail){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    DataManager* mngr = &DataManager::getInstance();
-
-    mngr->saveImageLoaderPluginDir(path);
-    mngr->saveProjectsDir(QDir::current().path());
-    mngr->createNewProject("classificationcmd_test");
-    mngr->loadProject("classificationcmd_test");
+TEST_F(ClassificationCommandTest, testCommandFail){
     QVariantMap map = QVariantMap();
     map.insert("aiPluginName", ClassificationPluginMock::PLUGIN_NAME);
 //    map.insert("modelName", "true"); should fail without these
@@ -63,8 +61,4 @@ TEST(ClassificationCommandTest, testCommandFail){
     //construct and execute command
     ClassificationCommand cmd(map, new Classifier());
     EXPECT_FALSE(cmd.execute());
-
-    //remove project dir
-    mngr->removeProject("classificationcmd_tests");
-    QApplication::exit();
 }

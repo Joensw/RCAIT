@@ -82,8 +82,9 @@ void FileDiff::slot_processFinished(int exitCode, QProcess::ExitStatus exitStatu
 void FileDiff::diff(const QString &file1, const QString &file2) {
     m_maxLineWidth = 0;
     auto pythonScript = QFileInfo("filediff.py");
-    auto command = ConfigurationManager::getInstance().getPythonExecutablePath();
-    auto args = {pythonScript.absoluteFilePath(), file1, file2};
+    const auto MANAGER = ConfigurationManager::getInstance();
+    auto command = MANAGER->getPythonExecutablePath();
+    QStringList args = {pythonScript.absoluteFilePath(), file1, file2};
 
     m_process.reset(new QProcess);
 
@@ -92,5 +93,6 @@ void FileDiff::diff(const QString &file1, const QString &file2) {
 
     m_process->setReadChannel(QProcess::StandardOutput);
 
+    qDebug() << command % " " % args.join(" ") % "\n";
     m_process->start(command, args);
 }

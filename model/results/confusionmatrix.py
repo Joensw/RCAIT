@@ -1,10 +1,13 @@
 # Check imports
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+
 try:
     import argparse
     import sys
     import ast
     import os
 
+    from textwrap import wrap
     import itertools
     import matplotlib.pyplot as plt
     import numpy as np
@@ -20,31 +23,61 @@ plt.ioff()
 
 
 def plot_confusion_matrix(cm, lbl, file, normalize, cmap=plt.cm.get_cmap('magma_r')):
+    # Calculate chart area size
+    leftmargin = 0.5  # inches
+    rightmargin = 0.5  # inches
+    categorysize = 0.5  # inches
+    figwidth = leftmargin + rightmargin + (len(lbl) * categorysize)
+
+    f = plt.figure(figsize=(figwidth, figwidth))
+
+    # Create an axes instance and adjust the subplot size
+    ax = f.add_subplot(111)
+    ax.set_aspect(1)
+    f.subplots_adjust(left=leftmargin / figwidth, right=1 - rightmargin / figwidth, top=0.94, bottom=0.1)
+
+    # Label auto wrapping and scaling
+    lbl = ['\n'.join(wrap(label, 15)) for label in lbl]
+    lbl_fontsize = plt.rcParams['font.size']
+    lbl_fontsize -= max(label.count('\n') for label in lbl)
+    lbl_fontsize = max(lbl_fontsize, 1)
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label', labelpad=20)
+    ax.xaxis.set_label_position('top')
+
+    # Axis labels and ticks
+    ax.set_xticks(range(len(lbl)))
+    ax.set_yticks(range(len(lbl)))
+    labels = ax.set_xticklabels(lbl, rotation=45, ha='right', fontsize=lbl_fontsize)
+    ax.set_yticklabels(lbl, fontsize=lbl_fontsize)
+
+    # create an axis on the right side of ax. The width of cax will be 5%
+    # of ax and the padding between cax and ax will be fixed at 0.1 inch.
+    divider = make_axes_locatable(ax)
+    cax = divider.append_axes("right", size="5%", pad=0.1)
+
+    # Configure normalized and non-normalized mode
     if normalize:
         cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis] * 100
         print("Normalized confusion matrix")
-        plt.imshow(cm, interpolation='nearest', cmap=cmap, vmin=0, vmax=100)
-        plt.colorbar(format=PercentFormatter(100))
+        res = ax.imshow(cm, interpolation='nearest', cmap=cmap, vmin=0, vmax=100)
+        plt.colorbar(res, cax=cax, format=PercentFormatter(100))
         decimal = '.1f'
     else:
         print('Confusion matrix, without normalization')
-        plt.imshow(cm, interpolation='nearest', cmap=cmap)
-        plt.colorbar()
-        decimal = '.0f'
+        res = plt.imshow(cm, interpolation='nearest', cmap=cmap)
+        plt.colorbar(res, cax=cax)
+        decimal = 'd'
     print(cm)
-    plt.xticks(range(len(lbl)), lbl, rotation=45)
-    plt.yticks(range(len(lbl)), lbl)
 
+    # Matrix values formatting
     thresh = cm.max() / 2.
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, format(cm[i, j], decimal),
-                 horizontalalignment="center",
-                 verticalalignment="center",
-                 color="white" if cm[i, j] > thresh else "black")
+        ax.text(j, i, format(cm[i, j], decimal),
+                horizontalalignment="center", verticalalignment="center",
+                color="white" if cm[i, j] > thresh else "black")
 
-    plt.tight_layout()
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')
+    # Save graphics
     plt.savefig(file, format="svg", bbox_inches="tight")
 
 

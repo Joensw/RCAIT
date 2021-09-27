@@ -38,23 +38,23 @@ private:
 
     static constexpr auto PLUGIN_ICON = ":/mmclsicon.png";
 
-    const QString m_name = "MMClassification Plugin";
-    const QString m_modelNameKey = "name";
-    const QString m_baseModelNameKey = "baseModel";
-    const QString m_mainConfigPathKey = "configPath";
-    const QString m_modelConfigPathKey = "modelConfig";
-    const QString m_datasetConfigPathKey = "datasetPath";
-    const QString m_scheduleConfigPathKey = "schedulePath";
-    const QString m_runtimeConfigPathKey = "runtimePath";
+    static constexpr auto m_name = "MMClassification Plugin";
+    static constexpr auto m_modelNameKey = "name";
+    static constexpr auto m_baseModelNameKey = "baseModel";
+    static constexpr auto m_mainConfigPathKey = "configPath";
+    static constexpr auto m_modelConfigPathKey = "modelConfig";
+    static constexpr auto m_datasetConfigPathKey = "datasetPath";
+    static constexpr auto m_scheduleConfigPathKey = "schedulePath";
+    static constexpr auto m_runtimeConfigPathKey = "runtimePath";
 
-    const QString m_subfolder_checkpoints = "checkpoints";
-    const int m_numberOfMissClassifiedImages = 9;
-    const QString m_annotationFileName = "val.txt";
+    static constexpr auto m_subfolder_checkpoints = "checkpoints";
+    static constexpr auto m_numberOfMissClassifiedImages = 9;
+    static constexpr auto m_annotationFileName = "val.txt";
 
-    QList<BaseModel> m_baseModels;
+    QMap<QString, QSharedPointer<BaseModel>> m_baseModelsMap;
     QSettings m_models = {"MMClassificationModels", QSettings::IniFormat};
 
-    MMClassificationConfigFileBuilder m_mmClassificationConfigFileBuilder;
+    MMClassificationConfigFileBuilder m_configFileBuilder;
     MMClassificationJsonResultReader m_jsonReader;
 
     QSharedPointer<MMClassificationSettings> pluginSettings;
@@ -70,18 +70,16 @@ private:
 
     void initBaseModels();
 
-    void deleteBaseModels();
     void saveModel(Model model);
     Model loadModel(const QString& name);
 
     static QStringList getLabels(const QString& datasetPath);
 
     bool checkDataAugmentationPreviewInput(const QString& modelName, const QString& inputPath, const QString& targetPath, int amount);
-    static bool checkTrainMethodInput(const QStringList& labels, const QString& mainConfigPath, const QString& trainDatasetPath, const QString& validationDatasetPath, const QString& workingDirectoryPath);
+    static bool checkTrainMethodInput(const QStringList &labels, const QStringList &paths);
 
     void adjustCheckpointCreation(const QString& runtimeConfigPath, int max_iters);
 
-    void connectIt();
     void connectFileWatcher(const QString &path);
 
 public:

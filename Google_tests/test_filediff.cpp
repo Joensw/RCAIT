@@ -4,6 +4,7 @@
 #include <QDir>
 #include <codeeditor.h>
 #include <filediff.h>
+#include <settingsmanager.h>
 
 
 class FileDiffTests : public testing::Test {
@@ -18,7 +19,7 @@ protected:
         qInstallMessageHandler(myMessageHandler);
         dir = QDir(QDir::current().path());
         EXPECT_TRUE(dir.exists());
-        
+
         file_left = dir.absoluteFilePath("configs/MobilNetTest_main.py");
         diff_left = dir.absoluteFilePath("configs/MobilNetTest_main_diff_nocolor.txt");
         file_right = dir.absoluteFilePath("configs/res666_main.py");
@@ -27,6 +28,8 @@ protected:
         EXPECT_TRUE(QFile(file_right).exists());
         EXPECT_TRUE(QFile(diff_left).exists());
         EXPECT_TRUE(QFile(diff_right).exists());
+
+        [[maybe_unused]] const auto MANAGER = &SettingsManager::getInstance();
     }
 
     static void myMessageHandler(QtMsgType type, const QMessageLogContext &, const QString &msg) {
@@ -72,31 +75,38 @@ TEST_F(FileDiffTests, testDiffTool) {
 
     QString text_diff_left, text_diff_right;
     QString result_diff_left, result_diff_right;
-    
+
     result_diff_left = codeEditor_left->toPlainText();
     result_diff_right = codeEditor_right->toPlainText();
 
     QFile inputFile_l(diff_left);
     inputFile_l.open(QIODevice::ReadOnly);
-
-    EXPECT_TRUE(inputFile_l.isOpen());
-    QTextStream stream_l(&inputFile_l);
-
-    //Every line of pythons <<difflib>> generated result should be in the diff created here.
-    for (auto line = stream_l.readLine(); !line.isNull(); line = stream_l.readLine()) {
-        EXPECT_TRUE(result_diff_left.contains(line));
-    }
-
     QFile inputFile_r(diff_right);
     inputFile_r.open(QIODevice::ReadOnly);
 
+    EXPECT_TRUE(inputFile_l.isOpen());
+    QTextStream stream_l(&inputFile_l);
+    QTextStream result_stream_l(&result_diff_left);
     EXPECT_TRUE(inputFile_r.isOpen());
     QTextStream stream_r(&inputFile_r);
+    QTextStream result_stream_r(&result_diff_right);
 
     //Every line of pythons <<difflib>> generated result should be in the diff created here.
-    for (auto line = stream_r.readLine(); !line.isNull(); line = stream_r.readLine()) {
-        EXPECT_TRUE(result_diff_right.contains(line));
-    }
+
+    //Verify left side
+    QString line, line_result;
+    do {
+        EXPECT_TRUE(line == line_result);
+        line = stream_l.readLine();
+        line_result = result_stream_l.readLine();
+    } while (!line.isNull() && !line_result.isNull());
+
+    // Verify right side
+    do {
+        EXPECT_TRUE(line == line_result);
+        line = stream_r.readLine();
+        line_result = result_stream_r.readLine();
+    } while (!line.isNull() && !line_result.isNull());
 
     //Signal should be emitted only once
     EXPECT_EQ(spy.count(), 1);
