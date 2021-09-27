@@ -17,88 +17,84 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="TrainImagesTab">
       <attribute name="title">
        <string>Training Images</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="1" column="0">
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0">
-           <widget class="ImageGalleryTree" name="newTrainImages">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">selection-color: rgb(0, 0, 0);
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QGroupBox" name="groupBox">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255)</string>
+           </property>
+           <property name="title">
+            <string>New training images</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="0" column="0">
+             <widget class="ImageGalleryTree" name="newTrainImages">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">selection-color: rgb(0, 0, 0);
               selection-background-color: rgb(255, 255, 255);
-              background-color: none;
+              background-color: transparent;
               border: 2px rgb(0, 0, 0);
              </string>
-            </property>
-            <property name="rootIsDecorated">
-             <bool>true</bool>
-            </property>
-            <attribute name="headerVisible">
-             <bool>false</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </column>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>New training images</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="0" column="0">
-           <widget class="ImageGalleryTree" name="datasetTrainImages">
-            <property name="styleSheet">
-             <string notr="true">selection-color: rgb(0, 0, 0);
+              </property>
+              <property name="rootIsDecorated">
+               <bool>true</bool>
+              </property>
+              <attribute name="headerVisible">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string notr="true">1</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_2">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255)</string>
+           </property>
+           <property name="title">
+            <string>Current dataset training images</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="0" column="0">
+             <widget class="ImageGalleryTree" name="datasetTrainImages">
+              <property name="styleSheet">
+               <string notr="true">selection-color: rgb(0, 0, 0);
               selection-background-color: rgb(255, 255, 255);
-              background-color: none;
+              background-color: transparent;
               border: 2px rgb(0, 0, 0);
              </string>
-            </property>
-            <attribute name="headerVisible">
-             <bool>false</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </column>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>Current dataset training images</string>
-         </property>
-        </widget>
+              </property>
+              <attribute name="headerVisible">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string notr="true">1</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -106,76 +102,72 @@
       <attribute name="title">
        <string>Validation Images</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="1" column="0">
-        <widget class="QGroupBox" name="groupBox_3">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_5">
-          <item row="0" column="0">
-           <widget class="ImageGalleryTree" name="newValidationImages">
-            <property name="styleSheet">
-             <string notr="true">selection-color: rgb(0, 0, 0);
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QGroupBox" name="groupBox_3">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255)</string>
+           </property>
+           <property name="title">
+            <string>New validation images</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="0" column="0">
+             <widget class="ImageGalleryTree" name="newValidationImages">
+              <property name="styleSheet">
+               <string notr="true">selection-color: rgb(0, 0, 0);
               selection-background-color: rgb(255, 255, 255);
-              background-color: none;
+              background-color: transparent;
               border: 2px rgb(0, 0, 0);
              </string>
-            </property>
-            <attribute name="headerVisible">
-             <bool>false</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </column>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>New validation images</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QGroupBox" name="groupBox_4">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="0">
-           <widget class="ImageGalleryTree" name="datasetValidationImages">
-            <property name="styleSheet">
-             <string notr="true">selection-color: rgb(0, 0, 0);
+              </property>
+              <attribute name="headerVisible">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string notr="true">1</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_4">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255)</string>
+           </property>
+           <property name="title">
+            <string>Current dataset validation images</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_6">
+            <item row="0" column="0">
+             <widget class="ImageGalleryTree" name="datasetValidationImages">
+              <property name="styleSheet">
+               <string notr="true">selection-color: rgb(0, 0, 0);
               selection-background-color: rgb(255, 255, 255);
-              background-color: none;
+              background-color: transparent;
               border: 2px rgb(0, 0, 0);
              </string>
-            </property>
-            <attribute name="headerVisible">
-             <bool>false</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </column>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Current dataset validation images</string>
-         </property>
-        </widget>
+              </property>
+              <attribute name="headerVisible">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string notr="true">1</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -222,8 +214,7 @@
         </property>
         <property name="icon">
          <iconset resource="../Resources/UI_Icons.qrc">
-          <normaloff>:/UISymbols/UI_Merge_Icon.svg</normaloff>:/UISymbols/UI_Merge_Icon.svg
-         </iconset>
+          <normaloff>:/UISymbols/UI_Merge_Icon.svg</normaloff>:/UISymbols/UI_Merge_Icon.svg</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -278,8 +269,7 @@
         </property>
         <property name="icon">
          <iconset resource="../Resources/UI_Icons.qrc">
-          <normaloff>:/UISymbols/UI_Delete_Alt_Icon.svg</normaloff>:/UISymbols/UI_Delete_Alt_Icon.svg
-         </iconset>
+          <normaloff>:/UISymbols/UI_Delete_Alt_Icon.svg</normaloff>:/UISymbols/UI_Delete_Alt_Icon.svg</iconset>
         </property>
         <property name="iconSize">
          <size>
