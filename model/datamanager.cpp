@@ -7,6 +7,8 @@
  */
 #include "datamanager.h"
 
+#include <utility>
+
 DataManager::DataManager()
         : mSettingsManager(&SettingsManager::getInstance()),
           mProjectManager(&ProjectManager::getInstance()),
@@ -20,19 +22,19 @@ QStringList DataManager::getProjects() {
 }
 
 void DataManager::createNewProject(QString projectName) {
-    mProjectManager->createNewProject(projectName);
+    mProjectManager->createNewProject(std::move(projectName));
 }
 
-bool DataManager::createNewProject(QString projectName, QString *error) {
+bool DataManager::createNewProject(const QString& projectName, QString *error) {
     return mProjectManager->createNewProject(projectName, error);
 }
 
-void DataManager::removeProject(QString projectName) {
+void DataManager::removeProject(const QString& projectName) {
     mProjectManager->removeProject(projectName);
     mModelManager->removeAllModelsOfProject(projectName);
 }
 
-void DataManager::loadProject(QString projectName) {
+void DataManager::loadProject(const QString& projectName) {
     mProjectManager->loadProject(projectName);
 }
 
@@ -74,19 +76,19 @@ bool DataManager::verifyDirectories() {
 }
 
 bool DataManager::verifyPaths(const QStringList& paths) {
-    return mSettingsManager->verifyPaths(paths);
+    return SettingsManager::verifyPaths(paths);
 }
 
 void DataManager::createNewModel(QString modelName, QString pluginName, QString baseModel) {
-    mModelManager->createNewModel(getProjectName(), modelName, pluginName, baseModel);
+    mModelManager->createNewModel(getProjectName(), std::move(modelName), std::move(pluginName), std::move(baseModel));
 }
 
 void DataManager::removeModel(QString modelName) {
-    mModelManager->removeModel(getProjectName(), modelName);
+    mModelManager->removeModel(getProjectName(), std::move(modelName));
 }
 
 void DataManager::loadModel(QString modelName, QString pluginName) {
-    mModelManager->loadModel(modelName, pluginName);
+    mModelManager->loadModel(std::move(modelName), std::move(pluginName));
 }
 
 QStringList DataManager::getModelNamesOfCurrentProject() {
@@ -97,16 +99,16 @@ QString DataManager::getCurrentModel() {
     return mModelManager->getCurrentModel();
 }
 
-void DataManager::saveLastWorkingDirectoryOfModel(QString projectName, QString modelName, QString workingDirectory) {
+void DataManager::saveLastWorkingDirectoryOfModel(const QString& projectName, const QString& modelName, const QString& workingDirectory) {
     mModelManager->saveLastWorkingDirectoryOfModel(projectName, modelName, workingDirectory);
 }
 
 QString DataManager::recallLastWorkingDirectoryOfModel(QString projectName, QString modelName) {
-    return mModelManager->recallLastWorkingDirectoryOfModel(projectName, modelName);
+    return mModelManager->recallLastWorkingDirectoryOfModel(std::move(projectName), std::move(modelName));
 }
 
 QString DataManager::recallPluginNameOfModel(QString projectName, QString modelName) {
-    return mModelManager->recallPluginNameOfModell(projectName, modelName);
+    return mModelManager->recallPluginNameOfModell(std::move(projectName), std::move(modelName));
 }
 
 QString DataManager::getCurrentClassificationPlugin() {
@@ -122,7 +124,7 @@ QStringList DataManager::getClassificationPluginNames() {
     return mSettingsManager->getClassificationPluginNames();
 }
 
-QStringList DataManager::getPluginBases(QString plugin) {
+QStringList DataManager::getPluginBases(const QString& plugin) {
     return mSettingsManager->getClassificationPluginBase(plugin);
 }
 
@@ -139,7 +141,7 @@ void DataManager::savePluginSettings(int index) {
     mSettingsManager->savePluginSettings(index);
 }
 
-void DataManager::saveProjectsDir(QString dir) {
+void DataManager::saveProjectsDir(const QString& dir) {
     mSettingsManager->saveProjectsDir(dir);
     mProjectManager->setProjectsDirectory(dir);
 }
@@ -148,7 +150,7 @@ QString DataManager::getProjectsDir() {
     return mSettingsManager->getProjectsDir();
 }
 
-void DataManager::saveClassificationPluginDir(QString dir) {
+void DataManager::saveClassificationPluginDir(const QString& dir) {
     mSettingsManager->saveClassificationPluginDir(dir);
 }
 
@@ -156,7 +158,7 @@ QString DataManager::getClassificationPluginDir() {
     return mSettingsManager->getClassificationPluginDir();
 }
 
-void DataManager::saveImageLoaderPluginDir(QString dir) {
+void DataManager::saveImageLoaderPluginDir(const QString& dir) {
     mSettingsManager->saveImageLoaderPluginDir(dir);
 }
 

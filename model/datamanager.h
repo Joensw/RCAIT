@@ -63,19 +63,19 @@ public:
      * @param error pointer to where error messages can be written
      * @return true if a new project was created, false if there was an error
      */
-    bool createNewProject(QString projectName, QString *error);
+    bool createNewProject(const QString& projectName, QString *error);
 
     /**
      * @brief removeProject deleted the project sub directory from the current projects directory.
      * @param projectName name of the project
      */
-    void removeProject(QString projectName);
+    void removeProject(const QString& projectName);
 
     /**
      * @brief loadProject loads the information of a project with a given name into the class so it can be accessed later.
      * @param projectName name of the project
      */
-    void loadProject(QString projectName);
+    void loadProject(const QString& projectName);
 
     /**
      * @brief getProjectPath will return null string if no project is opened
@@ -146,7 +146,7 @@ public:
      * @param paths list of paths to be verified
      * @return true if valid, false otherwise
      */
-    bool verifyPaths(const QStringList& paths);
+    static bool verifyPaths(const QStringList& paths);
 
     /**
      * @brief createNewModel created a new model with the specified parameters
@@ -185,7 +185,7 @@ public:
      * @param modelName the name of the model to which the working directory belongs
      * @param workingDirectory the working directory to save
      */
-    void saveLastWorkingDirectoryOfModel(QString projectName, QString modelName, QString workingDirectory);
+    void saveLastWorkingDirectoryOfModel(const QString& projectName, const QString& modelName, const QString& workingDirectory);
 
     /**
      * @brief recallLastWorkingDirectoryOfModel returns the saved working directory of the given model
@@ -224,7 +224,7 @@ public:
      * @param plugin the classification plugin
      * @return list of the bases of a particular classification plugin
      */
-    QStringList getPluginBases(QString plugin);
+    QStringList getPluginBases(const QString& plugin);
 
     /**
      * @return the input UI's of all the plugins
@@ -241,7 +241,7 @@ public:
      * @brief saveProjectsDir sets the value of the projects directory
      * @param dir the absolute path to the new projects directory
      */
-    void saveProjectsDir(QString dir);
+    void saveProjectsDir(const QString& dir);
 
     /**
      * @return the absolute path to the current projects directory
@@ -252,7 +252,7 @@ public:
      * @brief saveClassificationPluginDir set the value of the classification plugin directory
      * @param dir the absolute path to the new projects directory
      */
-    void saveClassificationPluginDir(QString dir);
+    void saveClassificationPluginDir(const QString& dir);
 
     /**
      * @return the absolute path to the current classification plugin directory
@@ -263,7 +263,7 @@ public:
      * @brief saveImageLoaderPluginDir set the value of the image loader plugin directory
      * @param dir the absolute path to the new projects directory
      */
-    void saveImageLoaderPluginDir(QString dir);
+    void saveImageLoaderPluginDir(const QString& dir);
 
     /**
      * @return the absolute path to the current image loader plugin directory
