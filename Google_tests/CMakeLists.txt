@@ -57,6 +57,8 @@ set(Sources
         ../model/datamanager.cpp
         ../model/settingsmanager.h
         ../model/settingsmanager.cpp
+        ../model/configurationmanager.h
+        ../model/configurationmanager.cpp
         ../model/modelmanager.h
         ../model/modelmanager.cpp
         ../model/pluginusage/progressable.h
@@ -206,7 +208,7 @@ CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/../model/results/classificationgraphi
 
 #imageloaderplugin used for testing created here
 add_library(ImageLoaderPluginMock MODULE imageloaderpluginmock.h imageloaderpluginmock.cpp)
-add_library(ClassificationPluginMock MODULE classificationpluginmock.h classificationpluginmock.cpp  ../plugins/results/trainingresult.cpp   ../plugins/results/classificationresult.cpp ../plugins/results/result.cpp ../model/results/accuracycurve.cpp  ../model/results/confusionmatrix.cpp ../model/results/genericresultgraphics.cpp ../model/results/classificationgraphics.cpp ../view/results/genericgraphicsview.cpp)
+add_library(ClassificationPluginMock MODULE classificationpluginmock.h classificationpluginmock.cpp  ../plugins/results/trainingresult.cpp   ../plugins/results/classificationresult.cpp ../plugins/results/result.cpp ../model/results/accuracycurve.cpp  ../model/results/confusionmatrix.cpp ../model/results/genericresultgraphics.cpp ../model/results/classificationgraphics.cpp ../view/results/genericgraphicsview.cpp ../model/configurationmanager.cpp ../model/configurationmanager.h)
 
 
 #add executables
@@ -264,7 +266,10 @@ add_executable(SettingsManagerTest settingsmanagertest.cpp settingsmanagertest.h
     ../plugins/classificationplugins/classificationpluginmanager.cpp
 
     ../plugins/imageplugins/imageloaderpluginmanager.h
-    ../plugins/imageplugins/imageloaderpluginmanager.cpp)
+    ../plugins/imageplugins/imageloaderpluginmanager.cpp
+
+    ../model/configurationmanager.cpp
+    ../model/configurationmanager.h)
 
 #Flickrplugin test, cannot be in same executable as other imageloaderplugin because of QT Plugin definition
 add_executable(FlickrPluginTest test_flickrplugin.cpp

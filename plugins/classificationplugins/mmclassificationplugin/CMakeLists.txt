@@ -31,6 +31,8 @@ add_library(mmclassificationplugin MODULE
         ../../../model/results/genericresultgraphics.h
         ../../../model/projectmanager.h
         ../../../model/projectmanager.cpp
+        ../../../model/configurationmanager.h
+        ../../../model/configurationmanager.cpp
 
     ../../../view/results/classificationresultview.h ../../../view/results/classificationresultview.cpp
 
