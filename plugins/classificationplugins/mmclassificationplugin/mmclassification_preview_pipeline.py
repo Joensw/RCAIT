@@ -1,11 +1,17 @@
-import argparse
+# Check imports
+try:
+    import argparse
 
-from mmcls.datasets.pipelines.compose import Compose
-import os
-from pathlib import Path
+    from mmcls.datasets.pipelines.compose import Compose
+    import os
+    from pathlib import Path
 
-import mmcv
-from mmcv import Config
+    import mmcv
+    from mmcv import Config
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
 
 
 def parse_args():

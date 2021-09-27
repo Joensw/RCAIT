@@ -22,6 +22,13 @@ QString RemoveModelDialog::getModelName()
     return mToRemove;
 }
 
+void RemoveModelDialog::setErrorMessage(const QString &error)
+{
+
+    ui->label_error->setText(error);
+
+}
+
 void RemoveModelDialog::on_buttonBox_accepted()
 {
     emit sig_removeModelConfirm();

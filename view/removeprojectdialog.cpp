@@ -21,6 +21,11 @@ QString RemoveProjectDialog::getProjectName()
     return mToRemove;
 }
 
+void RemoveProjectDialog::setErrorMessage(const QString &error)
+{
+    ui->label_error->setText(error);
+}
+
 void RemoveProjectDialog::on_buttonBox_accepted()
 {
     emit sig_removeProjectConfirm();

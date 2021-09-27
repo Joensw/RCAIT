@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
-import xml.etree.ElementTree
+# Check imports
+try:
+    import xml.etree.ElementTree
 
-import sys
-from ftfy import fix_encoding
+    import sys
+    from ftfy import fix_encoding
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
 
 if __name__ == "__main__":
 

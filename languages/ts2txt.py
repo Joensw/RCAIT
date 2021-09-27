@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
-import sys
-import codecs
+try:
+    import sys
+    import codecs
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
 
 if __name__ == '__main__':
     

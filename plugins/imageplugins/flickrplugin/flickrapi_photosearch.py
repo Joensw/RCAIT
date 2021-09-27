@@ -1,8 +1,14 @@
-import flickrapi
-from argparse import ArgumentParser
-import shutil
-import requests
-from pathlib import Path
+# Check imports
+try:
+    import flickrapi
+    from argparse import ArgumentParser
+    import shutil
+    import requests
+    from pathlib import Path
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
 
 #C:/Python3/python.exe c:/RC/plugins/imageplugins/flickrplugin/flickrapi_photosearch.py -p C:\RC\FlickrPlugin -c 10 -l "house" "car" -k 3391c68aa039902833f0c7bb1e0755ae -s 6acffd9f01ca35c8
 #Licenses: https://www.flickr.com/creativecommons/

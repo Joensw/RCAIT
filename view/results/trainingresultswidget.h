@@ -9,6 +9,7 @@
 #include <confusionmatrix.h>
 #include <projectmanager.h>
 #include <topaccuraciesgraphics.h>
+#include <trainingresult.h>
 #include "topaccuraciesview.h"
 #include "trainingresultview.h"
 #include "genericcomparisonwidget.h"
