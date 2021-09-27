@@ -4,14 +4,35 @@
 #include "../model/automation/automator.h"
 #include <QWidget>
 
+class AutomatorTest : public testing::Test {
+    protected:
+
+    void SetUp() override {
+        int argc = 1;
+        char *argv[1] = {new char('a')};
+        QApplication a(argc, argv);
+        DataManager* manager = &DataManager::getInstance();
+        manager->saveProjectsDir(QDir::current().path());
+        QDir tempdir(QDir::current().path());
+        tempdir.cd("tasks");
+        dir = tempdir;
+    }
+
+    //delete testfiles
+    void TearDown() override {
+        auto* mngr = &DataManager::getInstance();
+        for (int i = 0; i < mngr->getProjects().size(); i++){
+            mngr->removeProject("test" + QString::number(i + 1));
+        }
+        QApplication::exit();
+    }
+
+    QDir dir;
+
+};
+
 //check if loading labeled dataset imagefilepaths work
-TEST(AutomatorTest, testAddTask){
-    //set up
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    DataManager* manager = &DataManager::getInstance();
-    manager->saveProjectsDir(QDir::current().path());
+TEST_F(AutomatorTest, testAddTask){
     Automator* automator = new Automator();
     QDir dir(QDir::current().path());
     dir.cd("tasks");
@@ -31,26 +52,12 @@ TEST(AutomatorTest, testAddTask){
     //try adding second valid task
     automator->addTasks(dir.path() + "/task2.json");
     EXPECT_EQ(automator->getUnqueuedSize(), 2);
-
-    //delete created folders
-    for (int i = 0; i < 2; i++){
-        manager->removeProject("test" + QString::number(i + 1));
-    }
-    a.exit();
 }
 
 //tests if queueing/unqueuing work as expected
-TEST(AutomatorTest, testUnQueueTask){
-    //set up
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    DataManager* manager = &DataManager::getInstance();
-    manager->saveProjectsDir(QDir::current().path());
+TEST_F(AutomatorTest, testUnQueueTask){
     Automator* automator = new Automator();
     QSignalSpy spy(automator, &Automator::sig_taskUpdate);
-    QDir dir(QDir::current().path());
-    dir.cd("tasks");
     automator->addTasks(dir.path() + "/task1.json");
     automator->addTasks(dir.path() + "/task2.json");
     automator->addTasks(dir.path() + "/task3.json");
@@ -83,23 +90,10 @@ TEST(AutomatorTest, testUnQueueTask){
     EXPECT_EQ(spy.at(5).at(0).toString(), "task3");
     EXPECT_EQ(spy.at(5).at(1).toString(), "Not_Scheduled");
 
-    //delete created folders
-    for (int i = 0; i < 3; i++){
-        manager->removeProject("test" + QString::number(i + 1));
-    }
-    a.exit();
 }
 
-TEST(AutomatorTest, testRemove){
-    //set up
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    DataManager* manager = &DataManager::getInstance();
-    manager->saveProjectsDir(QDir::current().path());
+TEST_F(AutomatorTest, testRemove){
     Automator* automator = new Automator();
-    QDir dir(QDir::current().path());
-    dir.cd("tasks");
 
     //invalid index should crash program
     EXPECT_DEATH(automator->remove(0), "");
@@ -116,26 +110,12 @@ TEST(AutomatorTest, testRemove){
     EXPECT_EQ(automator->getUnqueuedSize(), 1);
     automator->remove(0);
     EXPECT_EQ(automator->getUnqueuedSize(), 0);
-
-    //delete created folders
-    for (int i = 0; i < 3; i++){
-        manager->removeProject("test" + QString::number(i + 1));
-    }
-    a.exit();
 }
 
 
-TEST(AutomatorTest, testPerformTasks){
-    //set up
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    DataManager* manager = &DataManager::getInstance();
-    manager->saveProjectsDir(QDir::current().path());
+TEST_F(AutomatorTest, testPerformTasks){
     Automator* automator = new Automator();
     QSignalSpy spy(automator, &Automator::sig_progress);
-    QDir dir(QDir::current().path());
-    dir.cd("tasks");
     for (int i = 0; i < 3; i++){
         automator->addTasks(dir.path() + "/task" + QString::number(i + 1) + ".json");
         automator->queue(0);
@@ -160,10 +140,4 @@ TEST(AutomatorTest, testPerformTasks){
     EXPECT_EQ(taskStateSpy.at(3).at(1).toString(), "Completed");
     EXPECT_EQ(taskStateSpy.at(4).at(1).toString(), "Performing");
     EXPECT_EQ(taskStateSpy.at(5).at(1).toString(), "Completed");
-
-    //delete created folders
-    for (int i = 0; i < 3; i++){
-        manager->removeProject("test" + QString::number(i + 1));
-    }
-    a.exit();
 }
