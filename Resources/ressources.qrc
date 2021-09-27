@@ -6,5 +6,6 @@
         <file>Logos/tool.png</file>
         <file>Logos/mmcls-logo.png</file>
         <file>Logos/Tensorflow.png</file>
+        <file>Logos/imageerror.png</file>
     </qresource>
 </RCC>

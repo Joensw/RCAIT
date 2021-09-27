@@ -6,19 +6,32 @@
 #include <qapplication.h>
 #include "imageloaderpluginmock.h"
 
-//check if load images command work
-TEST(ImageLoadCommandTest, testImageLoad){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    auto* mngr = &DataManager::getInstance();
+class ImageLoadCommandTest : public testing::Test {
+    protected:
 
-    mngr->saveImageLoaderPluginDir(path);
-    mngr->saveProjectsDir(QDir::current().path());
-    mngr->createNewProject("imageload_test");
-    mngr->loadProject("imageload_test");
+    void SetUp() override {
+        int argc = 1;
+        char *argv[1] = {new char('a')};
+        QApplication a(argc, argv);
+        path = QDir::current().path();
+
+        mngr.saveImageLoaderPluginDir(path);
+        mngr.saveProjectsDir(QDir::current().path());
+        mngr.createNewProject("imageload_test");
+        mngr.loadProject("imageload_test");
+    }
+
+    //delete testfiles
+    void TearDown() override {
+        mngr.removeProject("imageload_test");
+        QApplication::exit();
+    }
+    DataManager& mngr = DataManager::getInstance();
+    QString path;
+};
+
+//check if load images command work
+TEST_F(ImageLoadCommandTest, testImageLoad){
     QVariantMap map = QVariantMap();
     map.insert("imagePluginName", ImageLoaderPluginMock::PLUGIN_NAME);
     map.insert("count", 100);
@@ -29,34 +42,10 @@ TEST(ImageLoadCommandTest, testImageLoad){
     //construct and execute command
     ImageLoadCommand cmd(map, new ImageLoader());
     EXPECT_TRUE(cmd.execute());
-
-    //check if image is copied to temp folder
-    /**QDir dir(path);
-    EXPECT_TRUE(dir.cd("imageload_test/temp_Images/Mann"));
-    QStringList entries = dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
-    EXPECT_EQ(entries.size(), 0);
-    entries = dir.entryList(QDir::Files);
-    EXPECT_EQ(entries.size(), 1);
-    EXPECT_EQ(entries.at(0), "thumb.png");
-    */
-    //remove project dir
-    mngr->removeProject("imageload_test");
-    QApplication::exit();
 }
 
 //check if invalid commands are handled properly
-TEST(ImageLoadCommandTest, testImageLoadFail){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    DataManager* mngr = &DataManager::getInstance();
-
-    mngr->saveImageLoaderPluginDir(path);
-    mngr->saveProjectsDir(QDir::current().path());
-    mngr->createNewProject("imageload_test");
-    mngr->loadProject("imageload_test");
+TEST_F(ImageLoadCommandTest, testImageLoadFail){
     QVariantMap map = QVariantMap();
     map.insert("imagePluginName", ImageLoaderPluginMock::PLUGIN_NAME);
     map.insert("count", 100);
@@ -68,12 +57,4 @@ TEST(ImageLoadCommandTest, testImageLoadFail){
     //construct and execute command
     ImageLoadCommand cmd(map, new ImageLoader());
     EXPECT_FALSE(cmd.execute());
-
-    //check if temp image dir is empty
-    QDir dir(path);
-    EXPECT_FALSE(dir.cd("imageload_test/temp_Images/Mann"));
-
-    //remove project dir
-    mngr->removeProject("imageload_test");
-    QApplication::exit();
 }

@@ -7,14 +7,23 @@
 #include <QSettings>
 #include <QIcon>
 #include <QDir>
-
+/**
+ * @brief The ConfigurationManager class contains the logic for configuration of the working directoris and paths to plugins.
+ */
 class ConfigurationManager : public QObject {
 
 Q_OBJECT
 public:
 
+    /**
+     * @brief ConfigurationManager deleted copy constructor
+     */
     ConfigurationManager(const ConfigurationManager &) = delete;
 
+    /**
+     * @brief operator = deleted assingment operator
+     * @return
+     */
     ConfigurationManager &operator=(const ConfigurationManager &) = delete;
 
     /**
