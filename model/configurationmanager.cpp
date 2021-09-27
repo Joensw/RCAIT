@@ -77,5 +77,6 @@ QString ConfigurationManager::getImageLoaderPluginDir() {
 }
 
 QString ConfigurationManager::getPythonExecutablePath() {
-    return mGlobalSettings->value(pythonExecutablePathIdentifier).toString();
+    auto value = mGlobalSettings->value(pythonExecutablePathIdentifier);
+    return value.isNull() ? PYTHON_FALLBACK : value.toString();
 }

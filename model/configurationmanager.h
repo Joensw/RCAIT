@@ -13,15 +13,21 @@ class ConfigurationManager : public QObject {
 Q_OBJECT
 public:
 
+    ConfigurationManager(const ConfigurationManager &) = delete;
+
+    ConfigurationManager &operator=(const ConfigurationManager &) = delete;
+
     /**
      * @brief getInstance returns the only instance of the ConfigurationManager class
      * @return instance
      */
-    static ConfigurationManager &getInstance() {
+    static QSharedPointer<ConfigurationManager> getInstance() {
         // Guaranteed to be destroyed.
         // Initialize instance if that did not already happen
-        if (!INSTANCE) INSTANCE.reset(new ConfigurationManager);
-        return *INSTANCE;
+        if (!INSTANCE)
+            INSTANCE.reset(new ConfigurationManager);
+
+        return INSTANCE;
     }
 
     /**
@@ -93,6 +99,8 @@ public:
 
     /**
      * @return the absolute path to the currently set python executable
+     * @fallback Uses "python" instead of an actual path in the case of no path being set.
+     * This will prevent potential crashes.
      */
     QString getPythonExecutablePath();
 
@@ -102,6 +110,7 @@ private:
     static constexpr auto classificationPluginDirectoryIdentifier = "ClassificationPluginPath";
     static constexpr auto imageLoaderPluginDirectoryIdentifier = "ImageLoaderPluginPath";
     static constexpr auto pythonExecutablePathIdentifier = "PythonPath";
+    static constexpr auto PYTHON_FALLBACK = "python";
     QScopedPointer<QSettings> mGlobalSettings;
 
     // Instantiated on first use.
