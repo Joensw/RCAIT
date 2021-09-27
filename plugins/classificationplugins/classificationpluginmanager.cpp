@@ -60,7 +60,7 @@ QSharedPointer<QWidget> ClassificationPluginManager::getDataAugmentationInputWid
 }
 
 QStringList ClassificationPluginManager::getModelNames(const QString &pluginName) {
-    // return m_plugins.value(pluginName)->getAssociatedModels();
+    // return m_plugins[pluginName]->getAssociatedModels();
     // the user created models to show depends on the chosen project and not on the chosen classification plugin
     // but user created models known to the main application must be removed,
     // if the plugin containing its corresponding base models isn't present
@@ -74,7 +74,7 @@ bool ClassificationPluginManager::createNewModel(QString modelName, const QStrin
         qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
         return false;
     }
-    return m_plugins.value(pluginName)->createNewModel(std::move(modelName), std::move(baseModel));
+    return m_plugins[pluginName]->createNewModel(std::move(modelName), std::move(baseModel));
 }
 
 bool
@@ -85,7 +85,7 @@ ClassificationPluginManager::getAugmentationPreview(const QString &pluginName, c
         qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
         return false;
     }
-    return m_plugins.value(pluginName)->getAugmentationPreview(modelName, inputPath,
+    return m_plugins[pluginName]->getAugmentationPreview(modelName, inputPath,
                                                                targetPath, amount);
 }
 
@@ -94,7 +94,7 @@ bool ClassificationPluginManager::removeModel(QString modelName, const QString &
         qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
         return false;
     }
-    return m_plugins.value(pluginName)->removeModel(std::move(modelName));
+    return m_plugins[pluginName]->removeModel(std::move(modelName));
 }
 
 TrainingResult *
@@ -105,7 +105,7 @@ ClassificationPluginManager::train(const QString &pluginName, const QString &mod
         qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
         return new TrainingResult(workingDirectory, {}, {}, {}, {}, 0, 0);
     }
-    return m_plugins.value(pluginName)->train(modelName, std::move(trainDatasetPath),
+    return m_plugins[pluginName]->train(modelName, std::move(trainDatasetPath),
                                               std::move(validationDatasetPath), std::move(workingDirectory),
                                               receiver);
 }
