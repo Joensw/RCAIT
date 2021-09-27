@@ -7,6 +7,7 @@
 #include <classificationgraphics.h>
 #include <confusionmatrix.h>
 #include <topaccuraciesgraphics.h>
+#include <settingsmanager.h>
 
 
 class MockGraphicsView : public GenericGraphicsView {
@@ -37,15 +38,16 @@ private:
 
     void mock_handle() {
         EXPECT_TRUE(m_graphicsFile.exists());
-        std::cerr << "\nGraphics generated. Check out graphics manually at "
-                  << qPrintable(m_filePath) << "\n" << std::endl;
+        if (m_graphicsFile.exists())
+            std::cerr << "\nGraphics generated. Check out graphics manually at "
+                      << qPrintable(m_filePath) << "\n" << std::endl;
     }
 
     const QString &m_filePath;
     const QFile m_graphicsFile;
 };
 
-static volatile std::atomic_bool runOnce = true;
+static volatile std::atomic_bool firstRun = true;
 
 class ResultGraphicsTests : public testing::Test {
 
@@ -60,13 +62,15 @@ protected:
         dir.cd("TEMP");
         EXPECT_TRUE(dir.exists());
 
-        if (runOnce) {
+        if (firstRun) {
             //Cleanup
             for (const auto &item: dir.entryList()) {
                 dir.remove(item);
             }
+            [[maybe_unused]] const auto MANAGER = &SettingsManager::getInstance();
+
             EXPECT_TRUE(dir.isEmpty());
-            runOnce = false;
+            firstRun = false;
         }
     }
 
