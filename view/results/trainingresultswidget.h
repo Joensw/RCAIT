@@ -12,6 +12,7 @@
 #include "topaccuraciesview.h"
 #include "trainingresultview.h"
 #include "genericcomparisonwidget.h"
+#include "trainingresult.h"
 
 /**
  * @brief The TrainingResultWidget is used for displaying and comparing training results.
