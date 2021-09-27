@@ -52,12 +52,13 @@ for label in args_dict['labels']:
     fotoProgress = labelProgress/args_dict['imagecount']
     fotonumber = 0
     for image in gis.results():
-        print(image.url)
+        print("[%] Downloading Image " + image.url)
         r = requests.get(image.url, stream=True,headers=headers)
         with open(args_dict['path'] + '/' + label + '/' + label + '_' + str(fotonumber), 'wb') as out_file:
             shutil.copyfileobj(r.raw, out_file)
         del r
         fotonumber+=1
+        print("[%] File Downloaded ! " + image.url)
         
     
     
