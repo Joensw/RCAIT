@@ -99,6 +99,19 @@
          </layout>
         </item>
         <item>
+         <widget class="QLabel" name="label_error">
+          <property name="styleSheet">
+           <string notr="true">QLabel { color : red; }</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QDialogButtonBox" name="buttonBox">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>

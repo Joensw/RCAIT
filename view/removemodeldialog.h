@@ -32,6 +32,12 @@ public:
      */
     QString getModelName();
 
+    /**
+     * @brief setErrorMessage sets the displayed error message in the UI
+     * @param error the error message to be shown in the UI
+     */
+    void setErrorMessage(const QString &error);
+
 signals:
     /**
      * @brief sig_removeModelConfirm emitted when the model removal is confirmed

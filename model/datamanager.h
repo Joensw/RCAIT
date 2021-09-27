@@ -175,7 +175,7 @@ public:
     QStringList getModelNamesOfCurrentProject();
 
     /**
-     * @return the classification plugin the current model is from
+     * @return the currently loaded model
      */
     QString getCurrentModel();
 

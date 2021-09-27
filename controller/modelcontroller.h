@@ -87,6 +87,8 @@ private:
     NewModelDialog *mNewModelDialog{};
     RemoveModelDialog *mRemoveModelDialog{};
     ImportFilesWidget *mImportFilesWidget;
+
+    static auto constexpr OPEN_MODEL_ERROR = QT_TR_NOOP("Cannot delete the currently loaded model!");
 };
 
 #endif // MODELCONTROLLER_H
