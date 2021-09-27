@@ -26,7 +26,8 @@ void ConfusionMatrix::generateGraphicsInternal(const QString &fullFilePath) {
     // python script.py <matrix data> <matrix labels> <output file name> (<normalized>)
     auto file = QFileInfo("confusionmatrix.py");
     QStringList params = {file.absoluteFilePath(), valuesToPyText(), labelsToPyText(), fullFilePath, "--normalized"};
-    GenericResultGraphics::launch_externalGraphicsGenerator("python", params);
+    auto command = ConfigurationManager::getInstance().getPythonExecutablePath();
+    GenericResultGraphics::launch_externalGraphicsGenerator(command, params);
 }
 
 double ConfusionMatrix::operator()(int row, int column) const {

@@ -286,9 +286,7 @@ MMClassificationPlugin::getAugmentationPreview(const QString &modelName, const Q
                                                                      randomFlipDirection, randomErasing, resize,
                                                                      centerCropSize);
 
-    //QString command = m_mmClassificationSettings.getPythonPath();
-    //TODO Use python from global settings
-    QString command = "python";
+    QString command = pluginSettings->getPythonPath();
 
     QFileInfo pythonfile = QFileInfo("mmclassification_preview_pipeline.py");
     QString scriptPath = pythonfile.absoluteFilePath();
@@ -372,8 +370,7 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
 
     int cudaDeviceNumber = inputOptions->getCudaDevice();
 
-    //TODO: Use python executable from global settings
-    QString command = "python";
+    QString command = pluginSettings->getPythonPath();
     auto pythonTrainFile = QFileInfo("mmclassification_train.py");
     auto trainScriptPath = pythonTrainFile.absoluteFilePath();
     const auto workDirConsoleArgument = "--work-dir";
@@ -504,8 +501,7 @@ MMClassificationPlugin::classify(const QString &inputImageDirPath, const QString
         return new ClassificationResult({}, {}, {});
     }
 
-    //TODO Use python from global settings
-    QString command = "python";
+    QString command = pluginSettings->getPythonPath();
     auto pythonfile = QFileInfo("mmclassification_test.py");
     auto scriptPath = pythonfile.absoluteFilePath();
 

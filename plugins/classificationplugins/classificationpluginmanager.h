@@ -4,9 +4,7 @@
 #include <QString>
 #include <QWidget>
 #include <QMap>
-#include "trainingresult.h"
 #include "progressableplugin.h"
-#include "classificationresult.h"
 #include "classificationplugin.h"
 #include "pluginmanager.h"
 
