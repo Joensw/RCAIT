@@ -26,9 +26,10 @@ public:
     ~NewProjectDialog();
 
     /**
+     * @brief setErrorMessage sets the displayed error message in the UI
      * @param error the error message to be shown in the UI
      */
-    void setErrorMessage(QString error);
+    void setErrorMessage(const QString &error);
 
     /**
      * @brief showErrorMessage show the label that houses the error message

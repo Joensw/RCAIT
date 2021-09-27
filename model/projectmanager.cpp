@@ -104,20 +104,6 @@ void ProjectManager::loadProject(const QString &projectName) {
 
     mProjectWorkingDir = mProjectPath % "/" % projectfile.value(projectWorkingDirIdentifier).toString();
 
-    /*
-    qDebug() << mProjectName;
-    qDebug() << mProjectPath;
-    qDebug() << mProjectDataSetDir;
-    qDebug() << mProjectDataSetValSubdir;
-    qDebug() << mProjectDataSetTrainSubdir;
-    qDebug() << mProjectImagesTempDir;
-    qDebug() << mProjectAugTempDir;
-    qDebug() << mProjectResultsDir;
-    qDebug() << mProjectTrainingResultsDir;
-    qDebug() << mProjectClassificationResultsDir;
-    qDebug() << mProjectWorkingDir;
-    */
-
 }
 QString ProjectManager::getProjectPath() {
     return mProjectPath;

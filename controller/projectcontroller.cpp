@@ -62,8 +62,12 @@ void ProjectController::slot_newProjectConfirm(QString projectName) {
 }
 
 void ProjectController::slot_removeProjectConfirm() {
-    mDataManager->removeProject(mRemoveProjectDialog->getProjectName());
-    mStartWidget->clearProjectList();
-    mStartWidget->addProjects(mDataManager->getProjects());
-    mRemoveProjectDialog->close();
+    if (!(mRemoveProjectDialog->getProjectName() == mDataManager->getProjectName())){
+        mDataManager->removeProject(mRemoveProjectDialog->getProjectName());
+        mStartWidget->clearProjectList();
+        mStartWidget->addProjects(mDataManager->getProjects());
+        mRemoveProjectDialog->close();
+        return;
+    }
+    mRemoveProjectDialog->setErrorMessage(OPEN_PROJECT_ERROR);
 }

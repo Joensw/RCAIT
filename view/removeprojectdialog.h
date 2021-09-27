@@ -33,6 +33,11 @@ public:
      */
     QString getProjectName();
 
+    /**
+     * @brief setErrorMessage sets the displayed error message in the UI
+     * @param error the error message to be shown in the UI
+     */
+    void setErrorMessage(const QString &error);
 signals:
 
     /**

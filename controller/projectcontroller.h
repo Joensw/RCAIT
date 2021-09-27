@@ -86,6 +86,8 @@ private:
     RemoveProjectDialog *mRemoveProjectDialog{};
     StartWidget *mStartWidget;
 
+    static auto constexpr OPEN_PROJECT_ERROR = QT_TR_NOOP("Cannot remove the currently opened project!");
+
 };
 
 #endif // PROJECTCONTROLLER_H

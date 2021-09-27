@@ -84,7 +84,7 @@ public:
     QString getProjectPath();
 
     /**
-     * @brief getProjectName will return null string if no project is opened
+     * @brief getProjectName get the name of the currently openend project, will return null string if no project is opened
      * @return name of the currently opened project
      */
     QString getProjectName();
