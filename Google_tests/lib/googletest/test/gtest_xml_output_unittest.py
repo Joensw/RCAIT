@@ -30,16 +30,21 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Unit test for the gtest_xml_output module"""
+# Check imports
+try:
+  import datetime
+  import errno
+  import os
+  import re
+  import sys
+  from xml.dom import minidom, Node
 
-import datetime
-import errno
-import os
-import re
-import sys
-from xml.dom import minidom, Node
-
-import gtest_test_utils
-import gtest_xml_test_utils
+  import gtest_test_utils
+  import gtest_xml_test_utils
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
 
 GTEST_FILTER_FLAG = '--gtest_filter'
 GTEST_LIST_TESTS_FLAG = '--gtest_list_tests'
