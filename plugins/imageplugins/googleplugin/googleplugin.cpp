@@ -7,6 +7,10 @@
 
 
 bool GooglePlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int imageCount, const QStringList &label) {
+    m_progress = 0;
+    m_imageCount = imageCount;
+    m_labels = label;
+
     connect(receiver, &ProgressablePlugin::sig_pluginAborted, this, &GooglePlugin::slot_abort);
     m_receiver = receiver;
     QString fullCommand = createCommandlineString(path, imageCount, label);
@@ -65,32 +69,32 @@ QString GooglePlugin::getName() {
 }
 
 void GooglePlugin::slot_readOutPut() {
-    static QRegularExpression lineBreak("[\r\n]");
-    static QRegularExpression progressUpdate(QRegularExpression::escape("[%] Downloading Image"));
-    static QRegularExpression errorUpdate(QRegularExpression::escape("[!] Issue getting"));
+    static QRegularExpression lineBreakRegex("[\r\n]");
+    static QRegularExpression downloadRegex(QRegularExpression::escape("[%] Downloading Image"));
+    static QRegularExpression successRegex(QRegularExpression::escape("[%] File Downloaded !"));
+    static QRegularExpression errorRegex(QRegularExpression::escape("[!] Issue getting"));
 
     while (m_process->canReadLine()) {
         QString line = QString::fromLocal8Bit(m_process->readLine());
-        QString parsedProgress = line.remove(lineBreak);
+        QString strippedLine = line.remove(lineBreakRegex);
 
-        auto updateMatch = progressUpdate.match(parsedProgress, 0,
-                                                QRegularExpression::PartialPreferCompleteMatch);
-        if (updateMatch.hasMatch()) {
-            qDebug() << parsedProgress;
-            emit m_receiver->sig_statusUpdate(parsedProgress);
-        } else {
-            auto errorMatch = errorUpdate.match(parsedProgress, 0,
-                                                QRegularExpression::PartialPreferCompleteMatch);
-            if (errorMatch.hasMatch()) {
-                qDebug() << parsedProgress;
-                emit m_receiver->sig_statusUpdate(parsedProgress);
-            }
+        auto downloadMatch = downloadRegex.match(strippedLine, 0,
+                                                 QRegularExpression::PartialPreferCompleteMatch);
+        auto successMatch = successRegex.match(strippedLine, 0,
+                                               QRegularExpression::PartialPreferCompleteMatch);
+        auto errorMatch = errorRegex.match(strippedLine, 0,
+                                           QRegularExpression::PartialPreferCompleteMatch);
+
+        if (downloadMatch.hasMatch() || errorMatch.hasMatch()) {
+            emit m_receiver->sig_statusUpdate(strippedLine);
+            qDebug() << strippedLine;
         }
 
-        bool ok;
-        int progress = parsedProgress.toInt(&ok, 10);
-        if (ok) m_receiver->slot_makeProgress(progress);
-
+        if (successMatch.hasMatch()) {
+            auto total = m_imageCount * m_labels.size();
+            auto progress = ++m_progress * 100.0 / (double) total;
+            m_receiver->slot_makeProgress((int) progress);
+        }
     }
 }
 
