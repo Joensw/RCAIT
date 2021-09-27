@@ -14,27 +14,19 @@ GlobalSettingsWidget::~GlobalSettingsWidget() {
 }
 
 void GlobalSettingsWidget::setNewProjectPath(const QString &path) {
-    QFontMetrics metrics(ui->label_projectsDir_new->font());
-    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
-    ui->label_projectsDir_new->setText(text);
+    setText(path, ui->label_projectsDir_new);
 }
 
 void GlobalSettingsWidget::setNewClassificationPluginPath(const QString &path) {
-    QFontMetrics metrics(ui->label_classificationDir_new->font());
-    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
-    ui->label_classificationDir_new->setText(text);
+    setText(path, ui->label_classificationDir_new);
 }
 
 void GlobalSettingsWidget::setNewImageLoaderPath(const QString &path) {
-    QFontMetrics metrics(ui->label_imageLoaderDir_new->font());
-    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
-    ui->label_imageLoaderDir_new->setText(text);
+    setText(path, ui->label_imageLoaderDir_new);
 }
 
 void GlobalSettingsWidget::setNewPythonPath(const QString &path) {
-    QFontMetrics metrics(ui->label_pythonPath_new->font());
-    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
-    ui->label_pythonPath_new->setText(text);
+    setText(path, ui->label_pythonPath_new);
 }
 
 void GlobalSettingsWidget::clearNewPaths() {
@@ -64,27 +56,19 @@ void GlobalSettingsWidget::setError(const QString &error) {
 }
 
 void GlobalSettingsWidget::setCurrentProjectsDir(const QString &path) {
-    QFontMetrics metrics(ui->label_projectsDir_current->font());
-    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
-    ui->label_projectsDir_current->setText(text);
+    setText(path, ui->label_projectsDir_current);
 }
 
 void GlobalSettingsWidget::setCurrentClassificationDir(const QString &path) {
-    QFontMetrics metrics(ui->label_classificationDir_current->font());
-    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
-    ui->label_classificationDir_current->setText(text);
+    setText(path, ui->label_classificationDir_current);
 }
 
 void GlobalSettingsWidget::setCurrentImageLoaderDir(const QString &path) {
-    QFontMetrics metrics(ui->label_imageLoaderDir_current->font());
-    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
-    ui->label_imageLoaderDir_current->setText(text);
+    setText(path, ui->label_imageLoaderDir_current);
 }
 
 void GlobalSettingsWidget::setCurrentPythonPath(const QString &path) {
-    QFontMetrics metrics(ui->label_pythonPath_current->font());
-    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
-    ui->label_pythonPath_current->setText(text);
+    setText(path, ui->label_pythonPath_current);
 }
 
 void GlobalSettingsWidget::on_pushButton_project_clicked() {
@@ -101,6 +85,14 @@ void GlobalSettingsWidget::on_pushButton_imageLoader_clicked() {
 
 void GlobalSettingsWidget::on_pushButton_python_clicked(){
     emit sig_setGeneralPythonPath();
+}
+
+void GlobalSettingsWidget::setText(const QString &path, QLabel *label)
+{
+    QFontMetrics metrics(label->font());
+    QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
+    label->setText(text);
+
 }
 
 void GlobalSettingsWidget::changeEvent(QEvent *event) {

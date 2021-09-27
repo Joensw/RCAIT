@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QString>
+#include <QLabel>
 
 namespace Ui {
 class GlobalSettingsWidget;
@@ -134,6 +135,9 @@ private slots:
     [[maybe_unused]] void on_pushButton_python_clicked();
 
 private:
+
+    void setText(const QString &path, QLabel* label);
+
     static constexpr auto STYLESHEET_RED = "QLabel { color : red; }";
     static constexpr auto STYLESHEET_GREEN = "QLabel { color : green; }";
     static constexpr auto STYLESHEET_BLUE = "QLabel { color : blue; }";
