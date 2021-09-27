@@ -22,18 +22,32 @@ private:
 };
 
 
-//check if running task and percentage signals work
-TEST(TaskTest, testruncompleted){
-    //set up
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QVariantMap map = QVariantMap();
-    map.insert("taskName", "example");
-    QList<QSharedPointer<Command>> cmdList;
-    for (int i = 0; i < 3; i++){
-        cmdList <<QSharedPointer<Command>(new MockCommand);
+class TaskTest : public testing::Test {
+    protected:
+
+    void SetUp() override {
+        int argc = 1;
+        char *argv[1] = {new char('a')};
+        QApplication a(argc, argv);
+        map.insert("taskName", "example");
+        for (int i = 0; i < 3; i++){
+            cmdList <<QSharedPointer<Command>(new MockCommand);
+        }
     }
+
+    //delete testfiles
+    void TearDown() override {
+        QApplication::exit();
+        cmdList.clear();
+        map.clear();
+    }
+    DataManager& mngr = DataManager::getInstance();
+    QVariantMap map = QVariantMap();
+    QList<QSharedPointer<Command>> cmdList;
+};
+
+//check if running task and percentage signals work
+TEST_F(TaskTest, testruncompleted){
     [[maybe_unused]] DataManager* mngr = &DataManager::getInstance();
 
     //init task
@@ -54,23 +68,10 @@ TEST(TaskTest, testruncompleted){
     EXPECT_EQ(spy.at(151).at(0).toInt(), 50);
     EXPECT_TRUE(task->getName() == "example");
     EXPECT_TRUE(task->getState() == TaskState::COMPLETED);
-
-    //tear down
-    QApplication::exit();
 }
 
 //check if canceling task works
-TEST(TaskTest, testruncanceledreset){
-    //set up
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QVariantMap map = QVariantMap();
-    map.insert("taskName", "example");
-    QList<QSharedPointer<Command>> cmdList;
-    for (int i = 0; i < 3; i++){
-        cmdList <<QSharedPointer<Command>(new MockCommand);
-    }
+TEST_F(TaskTest, testruncanceledreset){
     [[maybe_unused]] DataManager* mngr = &DataManager::getInstance();
 
     //init task
@@ -99,19 +100,10 @@ TEST(TaskTest, testruncanceledreset){
     EXPECT_EQ(spy.at(1).at(1).toInt(), TaskState::FAILED);
     EXPECT_EQ(spy.at(2).at(1).toInt(), TaskState::PERFORMING);
     EXPECT_EQ(spy.at(3).at(1).toInt(), TaskState::COMPLETED);
-
-    //tear down
-    QApplication::exit();
 }
 
 //check if isValid works
-TEST(TaskTest, testisvalid){
-    //set up
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QVariantMap map = QVariantMap();
-    map.insert("taskName", "example");
+TEST_F(TaskTest, testisvalid){
     map.insert("projectName", "test");
     DataManager* mngr = &DataManager::getInstance();
     mngr->saveProjectsDir(QDir::current().path());
@@ -137,7 +129,4 @@ TEST(TaskTest, testisvalid){
 
     //remove created folder
     mngr->removeProject("test");
-
-    //tear down
-    QApplication::exit();
 }
