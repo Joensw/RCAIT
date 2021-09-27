@@ -37,12 +37,17 @@ where BUILD/DIR contains the built googletest-output-test_ file.
 googletest_output_test.py --gengolden
 googletest_output_test.py
 """
-
-import difflib
-import os
-import re
-import sys
-import gtest_test_utils
+# Check imports
+try:
+  import difflib
+  import os
+  import re
+  import sys
+  import gtest_test_utils
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
 
 
 # The flag for generating the golden file
