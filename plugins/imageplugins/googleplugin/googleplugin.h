@@ -36,6 +36,9 @@ private:
    // in case something goes wrong (could be read from command line)
    bool m_success = true;
    static constexpr auto PLUGIN_ICON = ":/googleicon.png";
+   int m_imageCount;
+   QStringList m_labels;
+   int m_progress = 0;
 
     QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
 

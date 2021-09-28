@@ -138,12 +138,20 @@ void ImageInspectionModel::insertLabeledImagePaths(QMap<QString, QStringList> &i
     }
 }
 
-void ImageInspectionModel::removeImageWithIndex(const QMap<QString, QStringList> &removeTarget,
+void ImageInspectionModel::removeImageWithIndex(QMap<QString, QStringList> &removeTarget,
                                                 const QMap<QString, QList<int>> &removedImages) {
 
     for (const auto &[label, values]: MapAdapt(removedImages)) {
-        for (auto i = values.count() - 1; i >= 0; i--) {
-            if (!values.contains(i)) continue;
+        if(values.isEmpty()){
+            continue;
+        }
+        //iterate from front to back so we delete images with largest index first.
+        //otherwise the removetarget indices are reduced by one after the deleted index
+        //and our next deletion will not hit the correct filepath in the removetarget
+        QListIterator<int> iter(values);
+        iter.toBack();
+        while (iter.hasPrevious()){
+            int i = iter.previous();
             QFile file(removeTarget[label][i]);
             QDir currDir = QFileInfo(file).absoluteDir();
             auto newList = removeTarget[label];
