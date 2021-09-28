@@ -32,7 +32,11 @@ Task::Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList)
     if (commands.contains("addProject")) {
         mDataManager.createNewProject(map["projectName"].toString());
     }
-    mDataManager.loadProject(map["projectName"].toString());
+    if (!mDataManager.loadProject(map["projectName"].toString())){
+        valid = false;
+        qWarning() << "Could not load project of task!";
+        return;
+    }
 
     static std::array<QString, $COUNT> COMMANDTYPE2STRING = {
         "imageLoad",
