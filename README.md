@@ -4,8 +4,8 @@ Rapid Classification AI Trainer
 
 ## Welcome to RCAIT!
 
-This is the repository for the </br>_Rapid Classification AI Trainer Project_ (PSE SS 2021) </br> developed for _
-Fraunhofer IOSB_.
+This is the repository for the </br>_Rapid Classification AI Trainer Project_ (PSE SS 2021) </br> developed for
+_Fraunhofer IOSB_.
 
 ### Description
 
@@ -14,12 +14,13 @@ training data can take a lot of time and resources. The goal of the **Rapid-Clas
 desktop application that uses various search terms to load images from the Internet and starts training a deep learning
 model with them. Using the search terms, the images already have a class assignment and no longer need to be annotated.
 A central requirement of the project is a high degree of modularity. Both the loading of the images and the AI training
-are to be implemented via plug-ins, so that new data sources and new training methods can be added later. The
-implementation will take place in **C⁺⁺** and **Qt**. **Git** is used for code management.
+are to be implemented via plug-ins, so that new data sources and new training methods can be added later.
+
+The implementation will take place in **C⁺⁺** and **Qt**. **Git** is used for code management.
 
 ## Getting Started
 
-![](Resources/README_Resources/tabbar.png) 
+![](Resources/README_Resources/tabbar.png)
 
 The program's tab structure guides you through the process. Not all steps have to be taken. The main steps are:
 
