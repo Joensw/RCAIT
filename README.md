@@ -32,6 +32,42 @@ The program's tab structure guides you through the process. Not all steps have t
 * Classify some images.
 * Check training and classification results.
 
+## Fullfilled Criteria
+
+### Required Criteria
+
+- [x] Create and/or select a project.
+- [x] Delete an existing project.
+- [x] Add a pre-trained model.
+- [x] Add a user-defined model.
+- [x] Delete an existing model.
+- [x] Import additional images using keywords/labels.
+- [x] Load keywords/labels from the .txt file.
+- [x] Load some images for training and/or validation.
+- [x] Inspect the images.
+- [x] Configurate and execute a data augmentation.
+- [x] Start a training.
+- [x] Check and save training results.
+- [x] Load some images for classification.
+- [x] Classify the images.
+- [x] Check and save classification results.
+- [x] See and analyse automatically generated: 
+  - confusion matrix
+  - loss curve
+  - 10 the most misclassified images
+  - top 1 and top 5 accuracy
+- [x] Add new plugin(s).
+- [x] Set and/or select a Classification plugin.
+- [x] Set and/or select an Imageloader plugin.
+
+### Optional Criteria
+
+- [x] Select the interface language (English, German or Russian).
+- [x] Check data augmentation preview.
+- [x] Compare configuration files.
+- [x] Compare 2 (or more) results.
+- [x] Save the vector graphics images for all results.
+
 ## Included plugins
 
 ### Disclaimer
