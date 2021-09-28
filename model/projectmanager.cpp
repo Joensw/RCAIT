@@ -84,10 +84,22 @@ void ProjectManager::removeProject(const QString &projectName) {
     targetDir.removeRecursively();
 }
 
-void ProjectManager::loadProject(const QString &projectName) {
+bool ProjectManager::loadProject(const QString &projectName) {
     QString loadProjectPath = mProjectsDirectory % "/" % projectName % "/" % projectName % projectFileType;
 
     QSettings projectfile(loadProjectPath, QSettings::IniFormat);
+
+    //check if the file exists / and is configured properly
+    QStringList keys = {projectNameIdentifier, projectDatasetDirectoryIdentifier, projectValidationDatasetIdentifier, projectTrainingDatasetIdentifier,
+                        projectTempImagesDirectoryIdentifier, projectTempDataAugDirectoryIdentifier, projectResultsDirectoryIdentifier,
+                        projectTrainingsResultsDirectoryIdentifer, projectClassificationResultsDirectoryIdentifier, projectWorkingDirIdentifier};
+
+    for (QString &key: keys){
+        if (!projectfile.allKeys().contains(key)) {
+            return false;
+        }
+    }
+
 
     mProjectName = projectfile.value(projectNameIdentifier).toString();
     mProjectPath = mProjectsDirectory % "/" % projectName;
@@ -103,6 +115,9 @@ void ProjectManager::loadProject(const QString &projectName) {
     mProjectClassificationResultsDir = mProjectResultsDir % "/" % projectfile.value(projectClassificationResultsDirectoryIdentifier).toString();
 
     mProjectWorkingDir = mProjectPath % "/" % projectfile.value(projectWorkingDirIdentifier).toString();
+    return true;
+
+
 
 }
 QString ProjectManager::getProjectPath() {
