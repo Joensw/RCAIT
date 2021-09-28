@@ -61,5 +61,6 @@
         <file>UISymbols/UI_Language_Icon.svg</file>
         <file>UISymbols/UI_Configuration_Icon.svg</file>
         <file>UISymbols/Python_Icon.svg</file>
+		<file>UISymbols/UI_Warning_icon.svg</file>
     </qresource>
 </RCC>

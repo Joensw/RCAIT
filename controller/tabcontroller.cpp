@@ -54,6 +54,11 @@ void TabController::slot_showResults()
     m_tabWidget->setTabEnabled(RESULTS, true);
 }
 
+void TabController::slot_settingsSaved()
+{
+    m_tabWidget->setTabEnabled(AI_TRAINING, false);
+}
+
 void TabController::disableDependentTabs() {
     for (int i = AI_TRAINING; i < RESULTS; i++) {
         m_tabWidget->setTabEnabled(i, false);

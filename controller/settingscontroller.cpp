@@ -46,6 +46,7 @@ void SettingsController::slot_applyGlobalSettings(QString projectDir, QString cl
         mSettingsView->clearPaths();
         emit sig_projectDirectoryChanged(mDataManager->getProjectsDir());
         emit sig_imagePluginsDirectoryChanged(mDataManager->getImageLoaderPluginDir());
+        emit sig_settingsApplied();
         mSettingsView->addPluginWidgets(mDataManager->getPluginNames(), mDataManager->getPluginSettings(), mDataManager->getPluginIcons());
         return;
     }

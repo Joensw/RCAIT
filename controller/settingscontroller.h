@@ -80,6 +80,11 @@ signals:
      */
     void sig_classificationDirectoryChanged(const QString &newDirectory);
 
+    /**
+     * @brief sig_settingsApplied emitted when the global settings have been applied
+     */
+    void sig_settingsApplied();
+
 private:
     QScopedPointer<SettingsView> mSettingsView;
 

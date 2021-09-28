@@ -75,7 +75,12 @@ public:
      * @brief loadProject loads the information of a project with a given name into the class so it can be accessed later.
      * @param projectName name of the project
      */
-    void loadProject(const QString& projectName);
+    /**
+     * @brief loadProject loads the information of a project with a given name into the class so it can be accessed later.
+     * @param projectName name of the project
+     * @return true if the project could be loaded, false otherwise
+     */
+    bool loadProject(const QString& projectName);
 
     /**
      * @brief getProjectPath will return null string if no project is opened

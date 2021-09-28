@@ -34,8 +34,8 @@ void DataManager::removeProject(const QString& projectName) {
     mModelManager->removeAllModelsOfProject(projectName);
 }
 
-void DataManager::loadProject(const QString& projectName) {
-    mProjectManager->loadProject(projectName);
+bool DataManager::loadProject(const QString& projectName) {
+    return mProjectManager->loadProject(projectName);
 }
 
 QString DataManager::getProjectPath() {

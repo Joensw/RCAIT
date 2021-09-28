@@ -68,8 +68,9 @@ public:
     /**
      * @brief loadProject loads the information of a project with a given name into the class so it can be accessed later.
      * @param projectName name of the project
+     * @return true if it could be loaded, false otherwise
      */
-    void loadProject(const QString &projectName);
+    bool loadProject(const QString &projectName);
 
     /**
      * @return list of all directories in the projects directory
@@ -190,8 +191,7 @@ private:
     static constexpr auto ERROR_NOCHAR = QT_TR_NOOP("Name must contain at least 1 character");
     static constexpr auto ERROR_ONLY_SPACE = QT_TR_NOOP("Name should contain more than only space (\" \") characters");
     static constexpr auto ERROR_ILLEGAL_CHAR = QT_TR_NOOP("Name may not contain the  \"/\" or \"\\\" characters");
-    static constexpr auto ERROR_DUPLICATE = QT_TR_NOOP(
-            "A project with this name already exists in the project directory");
+    static constexpr auto ERROR_DUPLICATE = QT_TR_NOOP( "A project with this name already exists in the project directory");
     static constexpr auto ERROR_OS_SUPPORT = QT_TR_NOOP("The operating system cannot support this name");
 
     //Regex to match String with consisting of only spaces
