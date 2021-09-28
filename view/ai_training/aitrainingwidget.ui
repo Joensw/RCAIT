@@ -47,6 +47,9 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255,255,255);</string>
+            </property>
             <property name="title">
              <string>Data Augmentation</string>
             </property>
@@ -58,6 +61,11 @@
               <widget class="QScrollArea" name="scrollArea_augmentation">
                <property name="autoFillBackground">
                 <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QScrollArea { background: transparent; }
+QScrollArea &gt; QWidget &gt; QWidget { background: transparent; }
+QScrollArea &gt; QWidget &gt; QScrollBar { background: palette(base); }</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::NoFrame</enum>
@@ -155,6 +163,9 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255,255,255);</string>
+            </property>
             <property name="title">
              <string>Configuration</string>
             </property>
@@ -166,6 +177,11 @@
               <widget class="QScrollArea" name="scrollArea_configuration">
                <property name="autoFillBackground">
                 <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QScrollArea { background: transparent; }
+QScrollArea &gt; QWidget &gt; QWidget { background: transparent; }
+QScrollArea &gt; QWidget &gt; QScrollBar { background: palette(base); }</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::NoFrame</enum>
@@ -297,7 +313,7 @@
   <customwidget>
    <class>ImageGallery</class>
    <extends>QWidget</extends>
-   <header location="global">imagegallery.h</header>
+   <header>imagegallery.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

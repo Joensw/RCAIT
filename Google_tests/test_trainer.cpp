@@ -6,17 +6,26 @@
 #include <classificationpluginmock.h>
 #include <datamanager.h>
 
+class TrainerTest : public testing::Test {
+    protected:
+
+    void SetUp() override {
+        int argc = 1;
+        char *argv[1] = {new char('a')};
+        QApplication a(argc, argv);
+        QString path = QDir::current().path();
+        auto* mngr = &DataManager::getInstance();
+        mngr->saveClassificationPluginDir(path);
+    }
+
+    //delete testfiles
+    void TearDown() override {
+        QApplication::exit();
+    }
+};
+
 //check if trainer works with correct training
-TEST(TrainerTest, testTraining){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    auto* mngr = &DataManager::getInstance();
-    mngr->saveClassificationPluginDir(path);
-
-
+TEST_F(TrainerTest, testTraining){
     //construct trainer
     Trainer* trnr = new Trainer;
     QSignalSpy spy(trnr, &Trainer::sig_trainingResultUpdated);
@@ -29,22 +38,10 @@ TEST(TrainerTest, testTraining){
     //check if trainingresults are sent
     trnr->slot_handleTrainingsResult();
     EXPECT_EQ(spy.size(), 1);
-
-    //tear down
-    QApplication::exit();
 }
 
 //check if trainer works with incorrect training
-TEST(TrainerTest, testTrainingFailed){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    auto* mngr = &DataManager::getInstance();
-    mngr->saveClassificationPluginDir(path);
-
-
+TEST_F(TrainerTest, testTrainingFailed){
     //construct trainer
     Trainer* trnr = new Trainer;
     QSignalSpy spy(trnr, &Trainer::sig_trainingResultUpdated);
@@ -61,21 +58,10 @@ TEST(TrainerTest, testTrainingFailed){
     //and progress is reported nonetheless
     EXPECT_EQ(spyProgress.size(), 2);
     EXPECT_EQ(spyProgress.at(1).at(0).toInt(), 100);
-
-    //tear down
-    QApplication::exit();
 }
 
 //check if trainer works with data augmentation
-TEST(TrainerTest, testAugmentation){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    auto* mngr = &DataManager::getInstance();
-    mngr->saveClassificationPluginDir(path);
-
+TEST_F(TrainerTest, testAugmentation){
     //construct trainer
     Trainer* trnr = new Trainer;
     QSignalSpy spy(trnr, &Trainer::sig_augmentationPreviewReady);
@@ -89,7 +75,4 @@ TEST(TrainerTest, testAugmentation){
     trnr->slot_handleAugmentationResult();
     EXPECT_EQ(spy.size(), 1);
     EXPECT_TRUE(spy.at(0).at(0).toBool());
-
-    //tear down
-    QApplication::exit();
 }

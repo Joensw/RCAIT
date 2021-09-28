@@ -38,7 +38,7 @@ void GenericResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
 }
 
 void GenericResultGraphics::launch_externalGraphicsGenerator(const QString &command, const QStringList &args) {
-    auto commandWithArgs = command + " " + args.join(" ");
+    auto commandWithArgs = QString("\"%1\" %2").arg(command, args.join(" "));
 
     QProcess process;
     process.startCommand(commandWithArgs);

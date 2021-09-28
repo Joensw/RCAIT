@@ -6,17 +6,26 @@
 #include <classificationpluginmock.h>
 #include <datamanager.h>
 
+class ClassifierTest : public testing::Test {
+    protected:
+
+    void SetUp() override {
+        int argc = 1;
+        char *argv[1] = {new char('a')};
+        QApplication a(argc, argv);
+        QString path = QDir::current().path();
+        auto* mngr = &DataManager::getInstance();
+        mngr->saveClassificationPluginDir(path);
+    }
+
+    //delete testfiles
+    void TearDown() override {
+        QApplication::exit();
+    }
+};
+
 //check if classifier works with correct classification
-TEST(ClassifierTest, testClassification){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    auto* mngr = &DataManager::getInstance();
-    mngr->saveClassificationPluginDir(path);
-
-
+TEST_F(ClassifierTest, testClassification){
     //construct classifier
     Classifier* cls = new Classifier;
     QSignalSpy spy(cls, &Classifier::sig_classificationResultUpdated);
@@ -29,22 +38,10 @@ TEST(ClassifierTest, testClassification){
     //check if classificationresults are sent
     cls->slot_handleClassificationResult();
     EXPECT_EQ(spy.size(), 1);
-
-    //tear down
-    QApplication::exit();
 }
 
 //check if classifier works with incorrect classification
-TEST(ClassifierTest, testClassificationFailed){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    auto* mngr = &DataManager::getInstance();
-    mngr->saveClassificationPluginDir(path);
-
-
+TEST_F(ClassifierTest, testClassificationFailed){
     //construct classifier
     Classifier* cls = new Classifier;
     QSignalSpy spy(cls, &Classifier::sig_classificationResultUpdated);
@@ -61,7 +58,4 @@ TEST(ClassifierTest, testClassificationFailed){
     //and progress is reported nonetheless
     EXPECT_EQ(spyProgress.size(), 2);
     EXPECT_EQ(spyProgress.at(1).at(0).toInt(), 100);
-
-    //tear down
-    QApplication::exit();
 }
