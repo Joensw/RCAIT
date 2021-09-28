@@ -4,19 +4,33 @@
 #include <QDir>
 #include <folderplugin/folderplugin.h>
 
-QString testDir = "foldertest";
+
+class FolderPluginTest : public testing::Test {
+    protected:
+
+    void SetUp() override {
+        int argc = 1;
+        char *argv[1] = {new char('a')};
+        QApplication a(argc, argv);
+        path = QDir::current().path();
+        dir = QDir(path);
+        EXPECT_TRUE(dir.mkdir(testDir));
+        EXPECT_TRUE(dir.cd(testDir));
+    }
+
+    void TearDown() override {
+        dir = QDir(path + "/" + testDir);
+        EXPECT_TRUE(dir.exists());
+        dir.removeRecursively();
+        QApplication::exit();
+    }
+    QDir dir;
+    QString testDir = "foldertest";
+    QString path = QDir::current().path();
+};
 
 //check if loading folders as labels works
-TEST(FolderPluginTest, testFoldersAsLabels){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    QDir dir(path);
-    EXPECT_TRUE(dir.mkdir(testDir));
-    EXPECT_TRUE(dir.cd(testDir));
-
+TEST_F(FolderPluginTest, testFoldersAsLabels){
     FolderPlugin plugin;
     plugin.init();
 
@@ -42,25 +56,10 @@ TEST(FolderPluginTest, testFoldersAsLabels){
     EXPECT_TRUE(dir.cd("Truck"));
     EXPECT_EQ(dir.count(), 2 + 2 );
     dir.cdUp();
-
-    //TearDown
-    dir = QDir(path + "/" + testDir);
-    EXPECT_TRUE(dir.exists());
-    dir.removeRecursively();
-    a.exit();
 }
 
 //check if loading with names as labels works
-TEST(FolderPluginTest, testNamesAsLabels){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    QDir dir(path);
-    EXPECT_TRUE(dir.mkdir(testDir));
-    EXPECT_TRUE(dir.cd(testDir));
-
+TEST_F(FolderPluginTest, testNamesAsLabels){
     FolderPlugin plugin;
     plugin.init();
 
@@ -84,25 +83,10 @@ TEST(FolderPluginTest, testNamesAsLabels){
     EXPECT_TRUE(dir.cd("label3"));
     EXPECT_EQ(dir.count(), 2 + 2);
     dir.cdUp();
-
-    //TearDown
-    dir = QDir(path + "/" + testDir);
-    EXPECT_TRUE(dir.exists());
-    dir.removeRecursively();
-    a.exit();
 }
 
 //check if loading with single folder as label works
-TEST(FolderPluginTest, testFolderAsLabel){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    QDir dir(path);
-    EXPECT_TRUE(dir.mkdir(testDir));
-    EXPECT_TRUE(dir.cd(testDir));
-
+TEST_F(FolderPluginTest, testFolderAsLabel){
     FolderPlugin plugin;
     plugin.init();
 
@@ -119,10 +103,4 @@ TEST(FolderPluginTest, testFolderAsLabel){
     EXPECT_EQ(dir.count(), 1 + 2);
     EXPECT_TRUE(dir.cd("label_names"));
     EXPECT_EQ(dir.count(), 8 + 2);
-
-    //TearDown
-    dir = QDir(path + "/" + testDir);
-    EXPECT_TRUE(dir.exists());
-    dir.removeRecursively();
-    a.exit();
 }
