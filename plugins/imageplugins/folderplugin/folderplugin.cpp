@@ -17,9 +17,8 @@ bool FolderPlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
         return false;
     }
 
-    //TODO: Enum for case numbers
     switch (mode) {
-        case 0: {
+        case SUBFOLDERS: {
             auto imageFolders = folder.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
             int i = 0;
             for (const QString &folderName: imageFolders) {
@@ -39,8 +38,7 @@ bool FolderPlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
             receiver->slot_makeProgress(100);
             return true;
         }
-
-        case 1: {
+        case NAMES: {
             // syntax for labels by filename is "label_image.png"
             auto images = folder.entryList({"*_*.JPG", "*_*.jpg", "*_*.jpeg", "*_*.png"}, QDir::Files);
 
@@ -61,7 +59,7 @@ bool FolderPlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
             receiver->slot_makeProgress(100);
             return true;
         }
-        case 2: {
+        case FOLDER: {
             auto images = folder.entryList({"*.JPG", "*.jpg", "*.jpeg", "*.png"}, QDir::Files);
             bool success = addLabel(images, folder, output);
             receiver->slot_makeProgress(100);
