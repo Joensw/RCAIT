@@ -3,14 +3,25 @@
 #include "imagegallerytree.h"
 #include <qapplication.h>
 
+class ImageGalleryTreeTest : public testing::Test {
+    protected:
+
+    void SetUp() override {
+        int argc = 1;
+        char *argv[1] = {new char('a')};
+        QApplication a(argc, argv);
+        path = QDir::current().path();
+        path += "/test_imagefolder/";
+    }
+
+    void TearDown() override {
+        QApplication::exit();
+    }
+    QString path;
+};
+
 //check if adding labels works
-TEST(ImageGalleryTreeTest, testAddLabels){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    path += "/test_imagefolder/";
+TEST_F(ImageGalleryTreeTest, testAddLabels){
     ImageGalleryTree* tree = new ImageGalleryTree(nullptr);
 
     QStringList labels = {"Auto", "Flugzeug"};
@@ -31,19 +42,10 @@ TEST(ImageGalleryTreeTest, testAddLabels){
     EXPECT_EQ(g->count(), 2);
     g = static_cast<ImageGallery *> (tree->itemWidget(tree->topLevelItem(1)->child(0),0));
     EXPECT_EQ(g->count(), 2);
-
-    //tear down
-    a.exit();
 }
 
 //check if resetting images from image list works
-TEST(ImageGalleryTreeTest, testResetTree){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    path += "/test_imagefolder/";
+TEST_F(ImageGalleryTreeTest, testResetTree){
     ImageGalleryTree* tree = new ImageGalleryTree(nullptr);
 
     QStringList labels = {"Auto", "Flugzeug"};
@@ -56,19 +58,12 @@ TEST(ImageGalleryTreeTest, testResetTree){
 
     //check if tree is resetted
     EXPECT_EQ(tree->topLevelItemCount(), 0);
-
-    //tear down
-    a.exit();
 }
 
 //check if removing images works
-TEST(ImageGalleryTreeTest, testAddPathImages){
+TEST_F(ImageGalleryTreeTest, testAddPathImages){
     //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
-    path += "/test_imagefolder/";
+
     ImageGalleryTree* tree = new ImageGalleryTree(nullptr);
 
     QStringList labels = {"Auto", "Flugzeug"};
@@ -90,8 +85,5 @@ TEST(ImageGalleryTreeTest, testAddPathImages){
     tree->removeSelected();
     EXPECT_EQ(tree->topLevelItemCount(), 1);
     EXPECT_EQ(g->count(), 0);
-
-    //tear down
-    a.exit();
 }
 

@@ -3,13 +3,24 @@
 #include "imagegallery.h"
 #include <qapplication.h>
 
+class ImageGalleryTest : public testing::Test {
+    protected:
+
+    void SetUp() override {
+        int argc = 1;
+        char *argv[1] = {new char('a')};
+        QApplication a(argc, argv);
+        path = QDir::current().path();
+    }
+
+    void TearDown() override {
+        QApplication::exit();
+    }
+    QString path;
+};
+
 //check if adding image works
-TEST(ImageGalleryTest, testAddImage){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
+TEST_F(ImageGalleryTest, testAddImage){
     path += "/test_imagefolder/Auto/images";
     ImageGallery* gallery = new ImageGallery();
 
@@ -19,18 +30,10 @@ TEST(ImageGalleryTest, testAddImage){
     //check if image is loaded
     EXPECT_EQ(gallery->count(), 1);
     EXPECT_TRUE(gallery->item(0)->data(Qt::DecorationRole).isValid());
-
-    //tear down
-    a.exit();
 }
 
 //check if adding images from image list works
-TEST(ImageGalleryTest, testAddImages){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
+TEST_F(ImageGalleryTest, testAddImages){
     path += "/test_imagefolder/Auto/";
     QList<QImage> imgList;
     imgList.append(QImage(path + "images"));
@@ -44,18 +47,10 @@ TEST(ImageGalleryTest, testAddImages){
     EXPECT_EQ(gallery->count(), 2);
     EXPECT_TRUE(gallery->item(0)->data(Qt::DecorationRole).isValid());
     EXPECT_TRUE(gallery->item(1)->data(Qt::DecorationRole).isValid());
-
-    //tear down
-    a.exit();
 }
 
 //check if adding images from path list works
-TEST(ImageGalleryTest, testAddPathImages){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
+TEST_F(ImageGalleryTest, testAddPathImages){
     path += "/test_imagefolder/Auto/";
     QList<QString> imgList;
     imgList.append(path + "images");
@@ -69,18 +64,10 @@ TEST(ImageGalleryTest, testAddPathImages){
     EXPECT_EQ(gallery->count(), 2);
     EXPECT_TRUE(gallery->item(0)->data(Qt::DecorationRole).isValid());
     EXPECT_TRUE(gallery->item(1)->data(Qt::DecorationRole).isValid());
-
-    //tear down
-    a.exit();
 }
 
 //check if adding images dir works
-TEST(ImageGalleryTest, testConcurrentAddDir){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
+TEST_F(ImageGalleryTest, testConcurrentAddDir){
     path += "/test_imagefolder/Auto/";
     ImageGallery* gallery = new ImageGallery();
 
@@ -94,18 +81,10 @@ TEST(ImageGalleryTest, testConcurrentAddDir){
     EXPECT_EQ(gallery->count(), 2);
     EXPECT_TRUE(gallery->item(0)->data(Qt::DecorationRole).isValid());
     EXPECT_TRUE(gallery->item(1)->data(Qt::DecorationRole).isValid());
-
-    //tear down
-    a.exit();
 }
 
 //check if stopping load works
-TEST(ImageGalleryTest, testStopConcurrentAddImages){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
+TEST_F(ImageGalleryTest, testStopConcurrentAddImages){
     path += "/test_imagefolder/label_names/";
     QList<QString> imgList;
     imgList.append(path + "label1_1");
@@ -127,16 +106,10 @@ TEST(ImageGalleryTest, testStopConcurrentAddImages){
     //tear down
     using namespace std::chrono_literals;
     std::this_thread::sleep_for(2s);
-    a.exit();
 }
 
 //check if clear and stop works
-TEST(ImageGalleryTest, testClearAndStop){
-    //setup
-    int argc = 1;
-    char *argv[1] = {new char('a')};
-    QApplication a(argc, argv);
-    QString path = QDir::current().path();
+TEST_F(ImageGalleryTest, testClearAndStop){
     path += "/test_imagefolder/Auto/";
     QList<QImage> imgList;
     imgList.append(QImage(path + "images"));
@@ -154,5 +127,4 @@ TEST(ImageGalleryTest, testClearAndStop){
     //tear down
     using namespace std::chrono_literals;
     std::this_thread::sleep_for(1ms);
-    a.exit();
 }
