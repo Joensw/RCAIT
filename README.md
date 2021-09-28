@@ -1,4 +1,4 @@
-# RCAIT<img style="float: right;" height="100" src="D:\Users\Paul\Documents\CLion_Projekte\RCAIT\Resources\RCAIT.svg" width="100"/>
+# RCAIT <img height="100" src="Resources/RCAIT.svg" width="100"/>
 
 Rapid Classification AI Trainer
 
@@ -60,7 +60,7 @@ Can be obtained by running `pip install bing-image-downloader`
 
 ### Folder Plugin
 
-Loads images from a specified folder into the project. Folders are specified in the settings.
+Load images from a specified folder into the project. Folders are specified in the settings.
 
 ### Google Plugin
 
