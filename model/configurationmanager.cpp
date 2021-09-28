@@ -1,8 +1,15 @@
+/**
+ * @file configurationmanager.cpp
+ *
+ * @brief functions for managing (basic) application and plugin settings
+ *
+ * @author Jonas Wille
+ */
 #include "configurationmanager.h"
 
 ConfigurationManager::ConfigurationManager()
         : mGlobalSettings(new QSettings) {
-    INSTANCE.reset(this);
+    INSTANCE.reset(this, &QObject::deleteLater);
 }
 
 bool ConfigurationManager::verifyDirectories() {

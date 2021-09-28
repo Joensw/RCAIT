@@ -32,7 +32,10 @@ public:
 
     SettingsManager(const SettingsManager &) = delete;
 
-    ~SettingsManager();
+    /**
+     * Default destructor.
+     */
+    ~SettingsManager() override = default;
 
     /**
      * @brief operator = deleted assignment operator

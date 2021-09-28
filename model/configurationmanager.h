@@ -8,7 +8,7 @@
 #include <QIcon>
 #include <QDir>
 /**
- * @brief The ConfigurationManager class contains the logic for configuration of the working directoris and paths to plugins.
+ * @brief The ConfigurationManager class contains the logic for configuration of the working directories and paths to plugins.
  */
 class ConfigurationManager : public QObject {
 
@@ -21,7 +21,7 @@ public:
     ConfigurationManager(const ConfigurationManager &) = delete;
 
     /**
-     * @brief operator = deleted assingment operator
+     * @brief operator = deleted assignment operator
      * @return
      */
     ConfigurationManager &operator=(const ConfigurationManager &) = delete;
@@ -34,7 +34,7 @@ public:
         // Guaranteed to be destroyed.
         // Initialize instance if that did not already happen
         if (!INSTANCE)
-            INSTANCE.reset(new ConfigurationManager);
+            INSTANCE.reset(new ConfigurationManager, &QObject::deleteLater);
 
         return INSTANCE;
     }
@@ -112,6 +112,11 @@ public:
      * This will prevent potential crashes.
      */
     QString getPythonExecutablePath();
+
+    /**
+     * @brief Default destructor.
+     */
+    ~ConfigurationManager() override = default;
 
 private:
     //Keys for the QSettings Settings object

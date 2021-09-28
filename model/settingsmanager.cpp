@@ -17,12 +17,6 @@ SettingsManager::SettingsManager()
     }
 }
 
-SettingsManager::~SettingsManager()
-{
-    delete mClassificationPluginManager;
-    delete mImageLoaderPluginManager;
-}
-
 QStringList SettingsManager::getPluginNames() {
     QStringList loaderPlugins = mImageLoaderPluginManager->getNamesOfPlugins();
     QStringList classifierPlugins = mClassificationPluginManager->getNamesOfPlugins();
@@ -43,10 +37,10 @@ void SettingsManager::reload() {
     mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 }
 
-QList<QSharedPointer<QIcon> > SettingsManager::getPluginIcons() {
-    auto loaderPluginsWidgets = mImageLoaderPluginManager->getPluginIcons();
-    auto classifierPluginsWidgets = mClassificationPluginManager->getPluginIcons();
-    return loaderPluginsWidgets + classifierPluginsWidgets;
+QList<QSharedPointer<QIcon>> SettingsManager::getPluginIcons() {
+    auto loaderPluginsIcons = mImageLoaderPluginManager->getPluginIcons();
+    auto classifierPluginsIcons = mClassificationPluginManager->getPluginIcons();
+    return loaderPluginsIcons + classifierPluginsIcons;
 }
 
 QList<QSharedPointer<QWidget>> SettingsManager::getPluginSettings() {
