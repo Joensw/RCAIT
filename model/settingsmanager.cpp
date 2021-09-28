@@ -17,12 +17,6 @@ SettingsManager::SettingsManager()
     }
 }
 
-SettingsManager::~SettingsManager()
-{
-    delete mClassificationPluginManager;
-    delete mImageLoaderPluginManager;
-}
-
 QStringList SettingsManager::getPluginNames() {
     QStringList loaderPlugins = mImageLoaderPluginManager->getNamesOfPlugins();
     QStringList classifierPlugins = mClassificationPluginManager->getNamesOfPlugins();

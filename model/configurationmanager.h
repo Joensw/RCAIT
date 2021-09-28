@@ -34,7 +34,7 @@ public:
         // Guaranteed to be destroyed.
         // Initialize instance if that did not already happen
         if (!INSTANCE)
-            INSTANCE.reset(new ConfigurationManager);
+            INSTANCE.reset(new ConfigurationManager, &QObject::deleteLater);
 
         return INSTANCE;
     }
@@ -112,6 +112,11 @@ public:
      * This will prevent potential crashes.
      */
     QString getPythonExecutablePath();
+
+    /**
+     * @brief Default destructor.
+     */
+    ~ConfigurationManager() override = default;
 
 private:
     //Keys for the QSettings Settings object

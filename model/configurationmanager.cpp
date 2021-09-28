@@ -2,7 +2,7 @@
 
 ConfigurationManager::ConfigurationManager()
         : mGlobalSettings(new QSettings) {
-    INSTANCE.reset(this);
+    INSTANCE.reset(this, &QObject::deleteLater);
 }
 
 bool ConfigurationManager::verifyDirectories() {
