@@ -32,6 +32,8 @@ public:
 
     SettingsManager(const SettingsManager &) = delete;
 
+    ~SettingsManager();
+
     /**
      * @brief operator = deleted assignment operator
      */
