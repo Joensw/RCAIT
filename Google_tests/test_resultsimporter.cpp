@@ -108,8 +108,8 @@ TEST_F(ResultsImporterTest, testCallMethods){
     spy.wait(1000);
     //QList<QVariant> arguments = spy.takeFirst();
     //TrainingResultView resultView = qvariant_cast<TrainingResultView>(spy.at(0).at(0));
-    TrainingResult* result = spy.at(0).at(1).value<TrainingResult*>();
-    ClassificationResult* result2 = spy2.at(0).at(1).value<ClassificationResult*>();
+    auto result = spy.at(0).at(1).value<QSharedPointer<TrainingResult>>();
+    auto result2 = spy2.at(0).at(1).value<QSharedPointer<ClassificationResult>>();
 
     bool success;
     resultsExporter.slot_save_TrainingResult(result, success);
