@@ -66,7 +66,7 @@ void SettingsManagerTest::verifyDirectories()
     int counter = 0;
     QString error;
     QVERIFY(sm->applyGlobalSettings(genuineDir1, genuineDir2, genuineDir3, genuineDir4, error, counter));
-    QVERIFY(counter == 3);
+    QVERIFY(counter == 4);
 
     QVERIFY(sm->verifyDirectories());
 
