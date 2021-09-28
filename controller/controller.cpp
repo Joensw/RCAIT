@@ -57,6 +57,11 @@ void Controller::slot_configurationComplete(){
             &ImageController::slot_imagePluginDirectoryChanged);
     connect(&*mProjectController, &ProjectController::sig_projectPathUpdated, &*mResultsController,
             &ResultsController::slot_projectPathUpdated);
+    connect(&*mSettingsController, &SettingsController::sig_settingsApplied, &*mTabController,
+            &TabController::slot_settingsSaved);
+
+
+
 
     connect(&*mProjectController, &ProjectController::sig_projectPathUpdated, &*mModelController,
             &ModelController::slot_projectPathUpdated);

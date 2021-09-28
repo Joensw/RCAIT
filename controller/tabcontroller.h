@@ -36,6 +36,11 @@ public slots:
      * @brief slot_showResults called when the results tab is to be shown in the ui
      */
     void slot_showResults();
+
+    /**
+     * @brief slot_settingsSaved called when the global settings are saved, as plugins might have changed.
+     */
+    void slot_settingsSaved();
 private:
     void disableDependentTabs();
 
