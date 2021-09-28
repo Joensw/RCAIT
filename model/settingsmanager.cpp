@@ -37,10 +37,10 @@ void SettingsManager::reload() {
     mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
 }
 
-QList<QSharedPointer<QIcon> > SettingsManager::getPluginIcons() {
-    auto loaderPluginsWidgets = mImageLoaderPluginManager->getPluginIcons();
-    auto classifierPluginsWidgets = mClassificationPluginManager->getPluginIcons();
-    return loaderPluginsWidgets + classifierPluginsWidgets;
+QList<QSharedPointer<QIcon>> SettingsManager::getPluginIcons() {
+    auto loaderPluginsIcons = mImageLoaderPluginManager->getPluginIcons();
+    auto classifierPluginsIcons = mClassificationPluginManager->getPluginIcons();
+    return loaderPluginsIcons + classifierPluginsIcons;
 }
 
 QList<QSharedPointer<QWidget>> SettingsManager::getPluginSettings() {

@@ -8,7 +8,7 @@
 #include <QIcon>
 #include <QDir>
 /**
- * @brief The ConfigurationManager class contains the logic for configuration of the working directoris and paths to plugins.
+ * @brief The ConfigurationManager class contains the logic for configuration of the working directories and paths to plugins.
  */
 class ConfigurationManager : public QObject {
 
@@ -21,7 +21,7 @@ public:
     ConfigurationManager(const ConfigurationManager &) = delete;
 
     /**
-     * @brief operator = deleted assingment operator
+     * @brief operator = deleted assignment operator
      * @return
      */
     ConfigurationManager &operator=(const ConfigurationManager &) = delete;

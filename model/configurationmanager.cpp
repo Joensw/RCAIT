@@ -1,3 +1,10 @@
+/**
+ * @file configurationmanager.cpp
+ *
+ * @brief functions for managing (basic) application and plugin settings
+ *
+ * @author Jonas Wille
+ */
 #include "configurationmanager.h"
 
 ConfigurationManager::ConfigurationManager()
