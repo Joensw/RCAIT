@@ -92,7 +92,14 @@ private:
     bool abort = false;
     static constexpr auto PLUGIN_ICON = ":/foldericon.svg";
 
+
     [[nodiscard]] bool addLabel(const QStringList &images, const QDir &in, QDir out) const;
+
+    enum {
+        SUBFOLDERS,
+        NAMES,
+        FOLDER
+    };
 
 };
 
