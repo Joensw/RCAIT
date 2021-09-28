@@ -37,7 +37,7 @@ public:
      * @brief Adds a new training result
      * @param result result to be added
      */
-    void addTrainingResult(TrainingResult *result);
+    void addTrainingResult(const QSharedPointer<TrainingResult>& result);
 
     /**
      * @brief Updates the folder path to check for results to compare.
@@ -53,7 +53,7 @@ private:
     ProjectManager *m_projectManager;
     QScopedPointer<TopAccuraciesView> m_topAccuraciesView;
     QSharedPointer<TopAccuraciesGraphics> m_topAccuraciesGraphics;
-    QMap<GenericGraphicsView *, TrainingResult *> m_mapResultsByTab;
+    QMap<GenericGraphicsView *, QSharedPointer<TrainingResult>> m_mapResultsByTab;
 
     void addComparisonResult(const QString &runNameToCompare) override;
 
@@ -86,7 +86,7 @@ signals:
      * @param view top accuracies tab to be filled with data
      * @param graphics contains the relevant data for parsing
      */
-    void sig_comparison_loadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+    void sig_comparison_loadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
                                          const QString &runNameToCompare);
 
     /**
@@ -95,7 +95,7 @@ signals:
      * @param graphics graphics to remove data from
      * @param runNameToCompare identifier to identify data
      */
-    void sig_comparison_unloadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+    void sig_comparison_unloadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
                                            const QString &runNameToCompare);
 
     /**
@@ -103,14 +103,14 @@ signals:
      * @param view tab to be filled with data
      * @param result contains the relevant data for parsing
      */
-    void sig_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result);
+    void sig_normal_loadTrainingResultData(TrainingResultView *view, const QSharedPointer<TrainingResult>& result);
 
     /**
      * @brief Signal is emitted when a result tab was created (after a training) and graphics are requested.
      * @param receiver tab that will display the graphics
      * @param result result that contains the relevant data
      */
-    void sig_normal_generateTrainingResultGraphics(GenericGraphicsView *receiver, TrainingResult *result);
+    void sig_normal_generateTrainingResultGraphics(GenericGraphicsView *receiver, const QSharedPointer<TrainingResult>& result);
 
 
     /**
@@ -119,21 +119,21 @@ signals:
      * @param graphics object to trigger generation of the graphics on
      */
     void sig_normal_requestTopAccuraciesGraphics(TopAccuraciesView *receiver,
-                                                 QSharedPointer<TopAccuraciesGraphics> graphics);
+                                                 const QSharedPointer<TopAccuraciesGraphics>& graphics);
 
     /**
      * @brief Signal is emitted when a top accuracies tab is saved.
      * @param graphics graphics to be saved
      * @param success bool to report success state back to the view component
      */
-    void sig_save_TopAccuracies(TopAccuraciesGraphics *graphics, bool &success);
+    void sig_save_TopAccuracies(const QSharedPointer<TopAccuraciesGraphics>& graphics, bool &success);
 
     /**
      * @brief Signal is emitted when a training result tab is saved.
      * @param result result to be saved
      * @param success bool to report success state back to the view component
      */
-    void sig_save_TrainingResult(TrainingResult *result, bool &success);
+    void sig_save_TrainingResult(const QSharedPointer<TrainingResult>& result, bool &success);
 
 private slots:
 

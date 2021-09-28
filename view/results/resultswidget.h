@@ -36,13 +36,13 @@ public:
      * @brief Add training result to the corresponding TrainingResultsWidget
      * @param result result to be added
      */
-    void addTrainingResult(TrainingResult *result);
+    void addTrainingResult(QSharedPointer<TrainingResult> result);
 
     /**
      * @brief Add training result to the corresponding ClassificationResultsWidget
      * @param result result to be added
      */
-    void addClassificationResult(ClassificationResult *result);
+    void addClassificationResult(QSharedPointer<ClassificationResult> result);
 
     /**
      * @brief Update the results folder of the specialised result widgets

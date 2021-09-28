@@ -154,7 +154,8 @@ public:
      * @param receiver a Progressable plugin to report the progress to the main application
      * @return a pointer to a TrainingResult object with the relevant data
      */
-    TrainingResult* train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectoryPath, ProgressablePlugin *receiver) override;
+    QSharedPointer<TrainingResult>
+    train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectoryPath, ProgressablePlugin *receiver) override;
 
     /**
      * @brief classify classifies the given images with the given model and extracts the relevant results in a ClassificationResult object
@@ -165,7 +166,8 @@ public:
      * @param receiver a Progressable plugin to report the progress to the main application
      * @return a pointer to a ClassificationResult object with the relevant data
      */
-    ClassificationResult* classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath, const QString &modelName, ProgressablePlugin *receiver) override;
+    QSharedPointer<ClassificationResult>
+    classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath, const QString &modelName, ProgressablePlugin *receiver) override;
 
     /**
      * @brief getDataAugmentationInputWidget returns a widget to specify additional, plugin specific data augmentation input for the getAugmentationPreview and the train method

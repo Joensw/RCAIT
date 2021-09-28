@@ -99,14 +99,14 @@ public slots:
      *
      * @param result training result.
      */
-    void slot_saveTrainingResult(TrainingResult *result);
+    void slot_saveTrainingResult(const QSharedPointer<TrainingResult> &result);
 
     /**
      * @brief slot_saveClassificationResult saves classification result.
      *
      * @param result classification result.
      */
-    void slot_saveClassificationResult(ClassificationResult *result);
+    void slot_saveClassificationResult(const QSharedPointer<ClassificationResult> &result);
 
 signals:
 
@@ -129,14 +129,14 @@ signals:
      *
      * @param result training result
      */
-    void sig_trainingResultUpdated(TrainingResult *result);
+    void sig_trainingResultUpdated(const QSharedPointer<TrainingResult> &result);
 
     /**
      * @brief sig_classificationResultUpdated signals new classification result from automation.
      *
      * @param result classification result
      */
-    void sig_classificationResultUpdated(ClassificationResult *result);
+    void sig_classificationResultUpdated(const QSharedPointer<ClassificationResult> &result);
 
 
 private:

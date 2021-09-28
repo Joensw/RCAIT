@@ -37,14 +37,14 @@ signals:
      * @param view result tab to load the result into
      * @param result imported result
      */
-    void sig_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result);
+    void sig_normal_loadTrainingResultData(TrainingResultView *view, QSharedPointer<TrainingResult> result);
 
     /**
      * @brief Emitted after ClassificationResult Data was loaded
      * @param view result tab to load the result into
      * @param result imported result
      */
-    void sig_normal_loadClassificationResultData(ClassificationResultView *view, ClassificationResult *result);
+    void sig_normal_loadClassificationResultData(ClassificationResultView *view, QSharedPointer<ClassificationResult> result);
 
 public slots:
 
@@ -55,7 +55,7 @@ public slots:
      * @param graphics graphics to provide the data to
      * @param runNameToCompare identifier of the result to import
      */
-    void slot_comparison_loadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+    void slot_comparison_loadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
                                           const QString &runNameToCompare);
 
     /**
@@ -64,7 +64,7 @@ public slots:
      * @param graphics graphics to unload the data from
      * @param runNameToCompare result identifier to unload
      */
-    static void slot_comparison_unloadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+    static void slot_comparison_unloadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
                                                    const QString &runNameToCompare);
 
     //Classification result slots

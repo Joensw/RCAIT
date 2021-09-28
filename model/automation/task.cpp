@@ -124,10 +124,10 @@ void Task::slot_makeProgress(int progress) {
     emit sig_progress((int) localProgress);
 }
 
-void Task::slot_saveTrainingResult(TrainingResult *result) {
+void Task::slot_saveTrainingResult(const QSharedPointer<TrainingResult> &result) {
     emit sig_trainingResultUpdated(result);
 }
 
-void Task::slot_saveClassificationResult(ClassificationResult *result) {
+void Task::slot_saveClassificationResult(const QSharedPointer<ClassificationResult> &result) {
     emit sig_classificationResultUpdated(result);
 }

@@ -46,15 +46,16 @@ public slots:
      * @brief Adds a new TrainingResult to the corresponding specialised widget
      * @param result result to be added
      */
-    void slot_addTrainingResult(TrainingResult *result);
+    void slot_addTrainingResult(const QSharedPointer<TrainingResult> &result);
 
     /**
      * @brief Adds a new ClassificationResult to the corresponding specialised widget
      * @param result result to be added
      */
-    void slot_addClassificationResult(ClassificationResult *result);
+    void slot_addClassificationResult(const QSharedPointer<ClassificationResult> &result);
 
 private:
+    //TODO unused
     DataManager *m_dataManager;
     ResultsWidget *m_resultsWidget;
     ResultsProcessor m_resultsProcessor;

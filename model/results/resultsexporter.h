@@ -44,21 +44,21 @@ public slots:
      * @param graphics graphics to be saved
      * @param success bool to report success state back to the view component
      */
-    void slot_save_TopAccuracies(TopAccuraciesGraphics *graphics, bool &success = SAVED);
+    void slot_save_TopAccuracies(const QSharedPointer<TopAccuraciesGraphics> &graphics, bool &success = SAVED);
 
     /**
      * @brief Saves a given training result.
      * @param result result to be saved
      * @param success bool to report success state back to the view component
      */
-    void slot_save_TrainingResult(TrainingResult *result, bool &success = SAVED);
+    void slot_save_TrainingResult(const QSharedPointer<TrainingResult>& result, bool &success = SAVED);
 
     /**
      * @brief Saves a given classification result.
      * @param result result to be saved
      * @param success bool to report success state back to the view component
      */
-    void slot_save_ClassificationResult(ClassificationResult *result, bool &success = SAVED);
+    void slot_save_ClassificationResult(const QSharedPointer<ClassificationResult> &result, bool &success = SAVED);
 
 private:
 
@@ -88,7 +88,7 @@ private:
      * @return filled QJsonObject
      */
     static QJsonObject
-    trainingResult2JSON(const TrainingResult *result);
+    trainingResult2JSON(const QSharedPointer<TrainingResult> &result);
 
     /**
      * @brief Convert a ClassificationResult into a QJsonObject
@@ -96,7 +96,7 @@ private:
      * @return filled QJsonObject
      */
     static QJsonObject
-    classificationResult2JSON(const ClassificationResult *result);
+    classificationResult2JSON(const QSharedPointer<ClassificationResult> &result);
 };
 
 #endif // RESULTSEXPORTER_H

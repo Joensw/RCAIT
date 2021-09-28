@@ -55,12 +55,12 @@ public slots:
     /**
      * @brief slot_trainingResultUpdated
      */
-    void slot_trainingResultUpdated(TrainingResult *trainingResult);
+    void slot_trainingResultUpdated(const QSharedPointer<TrainingResult>& trainingResult);
 
     /**
      * @brief slot_classificationResultUpdated
      */
-    void slot_classificationResultUpdated(ClassificationResult *classificationResult);
+    void slot_classificationResultUpdated(const QSharedPointer<ClassificationResult>& classificationResult);
 
     /**
      * @brief slot_startClassify starts classification when triggered.
@@ -95,13 +95,13 @@ signals:
      * @brief sig_trainingResultUpdated emitted when a new training result is available
      * @param trainingResult is the result of the last executed training
      */
-    void sig_trainingResultUpdated(TrainingResult *trainingResult);
+    void sig_trainingResultUpdated(const QSharedPointer<TrainingResult>& trainingResult);
 
     /**
      * @brief sig_classificationResultUpdated emitted when a new classification result is available
      * @param classificationResult is the result of the last executed classification
      */
-    void sig_classificationResultUpdated(ClassificationResult *classificationResult);
+    void sig_classificationResultUpdated(const QSharedPointer<ClassificationResult>& classificationResult);
 
 private:
     DataManager *mDataManager;

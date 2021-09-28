@@ -12,7 +12,7 @@ void GenericResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
     auto generateGraphicsTask = QtConcurrent::run([this, receiver] {
         this->generateGraphicsInternal('"' % m_fullPath % '"');
         this->passResultGraphics(receiver, m_fullPath);
-        emit sig_graphicsGenerated(receiver, this);
+        emit sig_graphicsGenerated(receiver, QSharedPointer<GenericResultGraphics>(this));
     });
     Q_UNUSED(generateGraphicsTask)
 }
