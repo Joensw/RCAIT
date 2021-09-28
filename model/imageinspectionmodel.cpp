@@ -142,15 +142,15 @@ void ImageInspectionModel::removeImageWithIndex(QMap<QString, QStringList> &remo
                                                 const QMap<QString, QList<int>> &removedImages) {
 
     for (const auto &[label, values]: MapAdapt(removedImages)) {
-        if(values.isEmpty()){
+        if (values.isEmpty()) {
             continue;
         }
-        //iterate from front to back so we delete images with largest index first.
-        //otherwise the removetarget indices are reduced by one after the deleted index
+        //iterate from front to back, so we delete images with the largest index first.
+        //otherwise, the removetarget indices are reduced by one after the deleted index
         //and our next deletion will not hit the correct filepath in the removetarget
         QListIterator<int> iter(values);
         iter.toBack();
-        while (iter.hasPrevious()){
+        while (iter.hasPrevious()) {
             int i = iter.previous();
             QFile file(removeTarget[label][i]);
             QDir currDir = QFileInfo(file).absoluteDir();
