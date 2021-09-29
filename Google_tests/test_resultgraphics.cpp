@@ -113,8 +113,10 @@ TEST_F(ResultGraphicsTests, testGraphics_AccuracyCurve) {
     }
 
     QApplication a(argc, argv);
-    QScopedPointer<AccuracyCurve> graphics(new AccuracyCurve(dir.absolutePath(), "test", curve_data));
-    QScopedPointer<MockGraphicsView> mockGraphicsView(new MockGraphicsView(graphics->getFullPath()));
+    QSharedPointer<AccuracyCurve> graphics(new AccuracyCurve(dir.absolutePath(), "test", curve_data),
+                                           &QObject::deleteLater);
+    QSharedPointer<MockGraphicsView> mockGraphicsView(new MockGraphicsView(graphics->getFullPath()),
+                                                      &QObject::deleteLater);
     graphics->generateGraphics(&*mockGraphicsView);
     QSignalSpy spy(&*graphics, &GenericResultGraphics::sig_graphicsGenerated);
 
@@ -142,10 +144,11 @@ TEST_F(ResultGraphicsTests, testGraphics_Classification) {
     static QStringList classification_labels = {"Auto", "Flugzeug"};
 
     QApplication a(argc, argv);
-    QScopedPointer<ClassificationGraphics> graphics(
+    QSharedPointer<ClassificationGraphics> graphics(
             new ClassificationGraphics(dir.absolutePath(), "test",
-                                       classification_data, classification_labels));
-    QScopedPointer<MockGraphicsView> mockGraphicsView(new MockGraphicsView(graphics->getFullPath()));
+                                       classification_data, classification_labels), &QObject::deleteLater);
+    QSharedPointer<MockGraphicsView> mockGraphicsView(new MockGraphicsView(graphics->getFullPath()),
+                                                      &QObject::deleteLater);
     graphics->generateGraphics(&*mockGraphicsView);
     QSignalSpy spy(&*graphics, &GenericResultGraphics::sig_graphicsGenerated);
 
@@ -179,9 +182,10 @@ TEST_F(ResultGraphicsTests, testGraphics_ConfusionMatrix) {
     }
 
     QApplication a(argc, argv);
-    QScopedPointer<ConfusionMatrix> graphics(
-            new ConfusionMatrix(dir.absolutePath(), "test", matrixLabels, matrixData));
-    QScopedPointer<MockGraphicsView> mockGraphicsView(new MockGraphicsView(graphics->getFullPath()));
+    QSharedPointer<ConfusionMatrix> graphics(
+            new ConfusionMatrix(dir.absolutePath(), "test", matrixLabels, matrixData), &QObject::deleteLater);
+    QSharedPointer<MockGraphicsView> mockGraphicsView(new MockGraphicsView(graphics->getFullPath()),
+                                                      &QObject::deleteLater);
     graphics->generateGraphics(&*mockGraphicsView);
     QSignalSpy spy(&*graphics, &GenericResultGraphics::sig_graphicsGenerated);
 
@@ -208,9 +212,10 @@ TEST_F(ResultGraphicsTests, testGraphics_TopAccuracies) {
     }
 
     QApplication a(argc, argv);
-    QScopedPointer<TopAccuraciesGraphics> graphics(
-            new TopAccuraciesGraphics(dir.absolutePath(), data));
-    QScopedPointer<MockGraphicsView> mockGraphicsView(new MockGraphicsView(graphics->getFullPath()));
+    QSharedPointer<TopAccuraciesGraphics> graphics(
+            new TopAccuraciesGraphics(dir.absolutePath(), data), &QObject::deleteLater);
+    QSharedPointer<MockGraphicsView> mockGraphicsView(new MockGraphicsView(graphics->getFullPath()),
+                                                      &QObject::deleteLater);
     graphics->generateGraphics(&*mockGraphicsView);
     QSignalSpy spy(&*graphics, &GenericResultGraphics::sig_graphicsGenerated);
 
