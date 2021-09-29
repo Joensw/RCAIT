@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>bingicon.png</file>
+        <file>bingicon.svg</file>
     </qresource>
 </RCC>

@@ -75,7 +75,7 @@ private:
     ProgressablePlugin *m_receiver;
     // in case something goes wrong (could be read from command line)
     bool m_success = true;
-    static constexpr auto PLUGIN_ICON = ":/flickricon.png";
+    static constexpr auto PLUGIN_ICON = ":/flickricon.svg";
     QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
 
 private slots:
