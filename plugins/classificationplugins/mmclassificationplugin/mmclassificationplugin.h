@@ -36,7 +36,7 @@ class MMClassificationPlugin : public QObject, ClassificationPlugin
     Q_INTERFACES(ClassificationPlugin)
 private:
 
-    static constexpr auto PLUGIN_ICON = ":/mmclsicon.png";
+    static constexpr auto PLUGIN_ICON = ":/mmclsicon.svg";
 
     static constexpr auto m_name = "MMClassification Plugin";
     static constexpr auto m_modelNameKey = "name";

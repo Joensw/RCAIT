@@ -35,7 +35,7 @@ private:
    ProgressablePlugin* m_receiver;
    // in case something goes wrong (could be read from command line)
    bool m_success = true;
-   static constexpr auto PLUGIN_ICON = ":/googleicon.png";
+   static constexpr auto PLUGIN_ICON = ":/googleicon.svg";
    int m_imageCount;
    QStringList m_labels;
    int m_progress = 0;

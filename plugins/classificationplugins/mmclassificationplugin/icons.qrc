@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>mmclsicon.png</file>
+        <file>mmclsicon.svg</file>
     </qresource>
 </RCC>

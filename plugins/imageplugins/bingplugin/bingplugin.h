@@ -38,7 +38,7 @@ private:
     QStringList m_labels;
 
     int m_progress = 0;
-    static constexpr auto PLUGIN_ICON = ":/bingicon.png";
+    static constexpr auto PLUGIN_ICON = ":/bingicon.svg";
     QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
 
 public:
