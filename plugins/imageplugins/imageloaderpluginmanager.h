@@ -25,7 +25,7 @@ class ImageLoaderPluginManager : public PluginManager{
 
 private:
     ImageLoaderPluginManager();
-    QMap<QString, ImageLoaderPlugin *> m_plugins;
+    QMap<QString, QSharedPointer<ImageLoaderPlugin>> m_plugins;
     QSharedPointer<ImageLoaderPlugin> test;
     QList<QSharedPointer<QWidget>> m_pluginConfigurationWidgets;
     QList<QSharedPointer<QIcon>> m_pluginIcons;

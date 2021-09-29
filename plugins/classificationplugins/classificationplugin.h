@@ -17,7 +17,7 @@ class ClassificationPlugin : public Plugin
 public:
 
     /**
-     * ClassificationPlugin constructor.
+     * ClassificationPlugin destructor.
      *
      */
     virtual ~ClassificationPlugin() = default;

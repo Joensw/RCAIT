@@ -22,7 +22,7 @@ void ImageLoaderPluginManager::loadPlugins(QString pluginDir) {
         if (imageLoaderPlugin) {
             imageLoaderPlugin->init();
             m_pluginConfigurationWidgets << imageLoaderPlugin->getConfigurationWidget();
-            m_plugins[imageLoaderPlugin->getName()] = imageLoaderPlugin;
+            m_plugins[imageLoaderPlugin->getName()] = QSharedPointer<ImageLoaderPlugin>(imageLoaderPlugin);
             m_pluginIcons << imageLoaderPlugin->getPluginIcon();
         }
     }

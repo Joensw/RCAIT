@@ -15,7 +15,7 @@
  * @brief The ImageLoaderPlugin class is an interface for all image loader plugins.
  *
  */
-class ImageLoaderPlugin : public Plugin{
+class ImageLoaderPlugin : public Plugin {
 
 public:
 
@@ -34,7 +34,13 @@ public:
      * @param labels list of image labels
      * @return true if loading was successful, false otherwise
      */
-    virtual bool loadImages(const QString &path, ProgressablePlugin* receiver, int count, const QStringList &labels) = 0;
+    virtual bool
+    loadImages(const QString &path, ProgressablePlugin *receiver, int count, const QStringList &labels) = 0;
+
+    /**
+     * ImageLoaderPlugin destructor.
+     */
+    virtual ~ImageLoaderPlugin() = default;
 };
 
 QT_BEGIN_NAMESPACE
@@ -43,6 +49,7 @@ QT_BEGIN_NAMESPACE
 #define ImageLoaderPlugin_iid "de.Fraunhofer.IOSB.RCAIT.ImageLoaderPlugin"
 
 Q_DECLARE_INTERFACE(ImageLoaderPlugin, ImageLoaderPlugin_iid)
+
 QT_END_NAMESPACE
 
 #endif //IMAGELOADERPLUGIN_H
