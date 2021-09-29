@@ -17,12 +17,13 @@
 #include <classificationpluginmanager.h>
 #include <imageloaderpluginmanager.h>
 #include <configurationmanager.h>
+#include <ostream>
 
 /**
  * The SettingsManager contains logic for global settings of the application as well as plugin specific settings
  * @brief The SettingsManager class contains the logic for for the settings UI
  */
-class SettingsManager : public ConfigurationManager {
+class SettingsManager : public QObject {
 Q_OBJECT
 public:
 
@@ -48,9 +49,9 @@ public:
      * @return instance
      */
     static SettingsManager &getInstance() {
-        static SettingsManager instance; // Guaranteed to be destroyed.
+        static SettingsManager INSTANCE; // Guaranteed to be destroyed.
         // Instantiated on first use.
-        return instance;
+        return INSTANCE;
     }
 
     /**
@@ -114,13 +115,13 @@ public:
      * @brief saveClassificationPluginDir set the value of the classification plugin directory
      * @param dir the absolute path to the new projects directory
      */
-    void saveClassificationPluginDir(const QString &dir) override;
+    void saveClassificationPluginDir(const QString &dir);
 
     /**
      * @brief saveImageLoaderPluginDir set the value of the image loader plugin directory
      * @param dir the absolute path to the new projects directory
      */
-    void saveImageLoaderPluginDir(const QString &dir) override;
+    void saveImageLoaderPluginDir(const QString &dir);
 
 private:
 
@@ -130,6 +131,7 @@ private:
 
     ClassificationPluginManager *mClassificationPluginManager;
     ImageLoaderPluginManager *mImageLoaderPluginManager;
+    ConfigurationManager *mConfigurationManager;
 
     SettingsManager();
 

@@ -11,7 +11,8 @@
 ConfigurationController::ConfigurationController(QObject *parent)
         : QObject(parent),
           mConfigurationDialog(new ConfigurationDialog),
-          mSettingsManager(&SettingsManager::getInstance()){
+          mSettingsManager(&SettingsManager::getInstance()),
+          mConfigurationManager(&ConfigurationManager::getInstance()) {
 
     mConfigurationDialog->setAttribute(Qt::WA_DeleteOnClose, true);
     mConfigurationDialog->setModal(true);
@@ -22,8 +23,9 @@ ConfigurationController::ConfigurationController(QObject *parent)
 void
 ConfigurationController::slot_directoriesSpecified(const QString &projectDir, const QString &classificationPluginDir,
                                                    const QString &imageLoaderPluginsDir, const QString &pythonPath) {
-    if (SettingsManager::verifyPaths({projectDir, classificationPluginDir, imageLoaderPluginsDir, pythonPath})) {
-        mSettingsManager->configureSettingsFile(projectDir, classificationPluginDir, imageLoaderPluginsDir, pythonPath);
+    if (ConfigurationManager::verifyPaths({projectDir, classificationPluginDir, imageLoaderPluginsDir, pythonPath})) {
+        mConfigurationManager->configureSettingsFile(projectDir, classificationPluginDir, imageLoaderPluginsDir,
+                                                     pythonPath);
         mConfigurationDialog->confirm();
         mSettingsManager->reload();
         emit sig_configurationComplete();
@@ -33,7 +35,7 @@ ConfigurationController::slot_directoriesSpecified(const QString &projectDir, co
 }
 
 void ConfigurationController::verify() {
-    if (!mSettingsManager->verifyDirectories()) {
+    if (!mConfigurationManager->verifyDirectories()) {
         mConfigurationDialog->open();
         return;
     }

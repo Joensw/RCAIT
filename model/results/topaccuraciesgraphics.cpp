@@ -71,7 +71,7 @@ void TopAccuraciesGraphics::generateGraphicsInternal(const QString &fullFilePath
     // python script.py <top acc data> <top acc row labels> <output file name>
     auto pyScript = QFileInfo("topaccuraciesgraphics.py");
     auto params = {pyScript.absoluteFilePath(), valuesToPyText(), labelsToPyText(), fullFilePath};
-    auto command = ConfigurationManager::getInstance()->getPythonExecutablePath();
+    auto command = ConfigurationManager::getInstance().getPythonExecutablePath();
     GenericResultGraphics::launch_externalGraphicsGenerator(command, params);
 }
 

@@ -50,6 +50,7 @@ private:
     QScopedPointer<ConfigurationDialog> mConfigurationDialog;
 
     SettingsManager *mSettingsManager;
+    ConfigurationManager *mConfigurationManager;
 
 
 };

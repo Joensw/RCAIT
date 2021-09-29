@@ -12,9 +12,10 @@
 DataManager::DataManager()
         : mSettingsManager(&SettingsManager::getInstance()),
           mProjectManager(&ProjectManager::getInstance()),
-          mModelManager(&ModelManager::getInstance()) {
+          mModelManager(&ModelManager::getInstance()),
+          mConfigurationManager(&ConfigurationManager::getInstance()) {
 
-    mProjectManager->setProjectsDirectory(mSettingsManager->getProjectsDir());
+    mProjectManager->setProjectsDirectory(mConfigurationManager->getProjectsDir());
 }
 
 QStringList DataManager::getProjects() {
@@ -72,11 +73,11 @@ QString DataManager::getProjectDataSetTrainSubdir() {
 }
 
 bool DataManager::verifyDirectories() {
-    return mSettingsManager->verifyDirectories();
+    return mConfigurationManager->verifyDirectories();
 }
 
 bool DataManager::verifyPaths(const QStringList& paths) {
-    return SettingsManager::verifyPaths(paths);
+    return ConfigurationManager::verifyPaths(paths);
 }
 
 void DataManager::createNewModel(QString modelName, QString pluginName, QString baseModel) {
@@ -142,12 +143,12 @@ void DataManager::savePluginSettings(int index) {
 }
 
 void DataManager::saveProjectsDir(const QString& dir) {
-    mSettingsManager->saveProjectsDir(dir);
+    mConfigurationManager->saveProjectsDir(dir);
     mProjectManager->setProjectsDirectory(dir);
 }
 
 QString DataManager::getProjectsDir() {
-    return mSettingsManager->getProjectsDir();
+    return mConfigurationManager->getProjectsDir();
 }
 
 void DataManager::saveClassificationPluginDir(const QString& dir) {
@@ -155,7 +156,7 @@ void DataManager::saveClassificationPluginDir(const QString& dir) {
 }
 
 QString DataManager::getClassificationPluginDir() {
-    return mSettingsManager->getClassificationPluginDir();
+    return mConfigurationManager->getClassificationPluginDir();
 }
 
 void DataManager::saveImageLoaderPluginDir(const QString& dir) {
@@ -163,11 +164,11 @@ void DataManager::saveImageLoaderPluginDir(const QString& dir) {
 }
 
 QString DataManager::getImageLoaderPluginDir() {
-    return mSettingsManager->getImageLoaderPluginDir();
+    return mConfigurationManager->getImageLoaderPluginDir();
 }
 
 QString DataManager::getPythonExecutablePath() {
-    return mSettingsManager->getPythonExecutablePath();
+    return mConfigurationManager->getPythonExecutablePath();
 }
 
 QStringList DataManager::getNamesOfSavedTrainingResults() {

@@ -9,32 +9,29 @@ QStringList sampleCPluginNames = {"CPL1", "CPL2", "CPL3"};
 
 
 TEST(SettingsManagerTest, invalidPathsTrivial){
-    SettingsManager * sm = &SettingsManager::getInstance();
     QString emptyString = "";
     QString nullString;
 
-    EXPECT_FALSE(sm->verifyPaths({nullString}));
-    EXPECT_FALSE(sm->verifyPaths({emptyString}));
-    EXPECT_FALSE(sm->verifyPaths({nullString, emptyString, nullString}));
+    EXPECT_FALSE(ConfigurationManager::verifyPaths({nullString}));
+    EXPECT_FALSE(ConfigurationManager::verifyPaths({emptyString}));
+    EXPECT_FALSE(ConfigurationManager::verifyPaths({nullString, emptyString, nullString}));
 }
 
-TEST(SettingsManagerTest, duplicatePaths){
-    SettingsManager * sm = &SettingsManager::getInstance();
+TEST(SettingsManagerTest, duplicatePaths) {
     QString samplePath = "../generic/path/structure";
     QString copySamplePath = samplePath;
     QString differentSamplePath = "../different/generic/strucutre";
 
-    EXPECT_FALSE(sm->verifyPaths({samplePath, copySamplePath, differentSamplePath}));
+    EXPECT_FALSE(ConfigurationManager::verifyPaths({samplePath, copySamplePath, differentSamplePath}));
 }
 
-TEST(SettingsManagerTest, nonExistentPaths){
+TEST(SettingsManagerTest, nonExistentPaths) {
     QString genericDir1 = "testDir1";
     QString genericDir2 = "testDir2";
     QString genericDir3 = "testDir3";
-    SettingsManager * sm = &SettingsManager::getInstance();
 
-    EXPECT_FALSE(sm->verifyPaths({genericDir1}));
-    EXPECT_FALSE(sm->verifyPaths({genericDir1, genericDir2, genericDir3}));
+    EXPECT_FALSE(ConfigurationManager::verifyPaths({genericDir1}));
+    EXPECT_FALSE(ConfigurationManager::verifyPaths({genericDir1, genericDir2, genericDir3}));
 }
 
 TEST(SettingsManagerTest, genuinePaths){
@@ -43,14 +40,13 @@ TEST(SettingsManagerTest, genuinePaths){
     QString genuineDir2 = temporaryDirectory % "/" % "testDir2";
     QString genuineDir3 = temporaryDirectory % "/" % "testDir3";
 
-    QDir dir (temporaryDirectory);
+    QDir dir(temporaryDirectory);
     dir.mkpath(genuineDir1);
     dir.mkpath(genuineDir2);
     dir.mkpath(genuineDir3);
 
     //check if settingsManager sees them as valid
-    SettingsManager * sm = &SettingsManager::getInstance();
-    EXPECT_TRUE(sm->verifyPaths({genuineDir1, genuineDir2, genuineDir3}));
+    EXPECT_TRUE(ConfigurationManager::verifyPaths({genuineDir1, genuineDir2, genuineDir3}));
     dir.removeRecursively();
 }
 
@@ -77,7 +73,8 @@ TEST(SettingsManagerTest, applySettingsValid){
 }
 
 TEST(SettingsManagerTest, initialisationChecks){
-    SettingsManager * sm = &SettingsManager::getInstance();
+    SettingsManager *sm = &SettingsManager::getInstance();
+    ConfigurationManager *cm = &ConfigurationManager::getInstance();
 
     QStringList allNames = sm->getPluginNames();
     QStringList cNames = sm->getClassificationPluginNames();
@@ -91,7 +88,7 @@ TEST(SettingsManagerTest, initialisationChecks){
     EXPECT_TRUE(iNames.isEmpty());
     EXPECT_TRUE(widgets.isEmpty());
 
-    EXPECT_FALSE(sm->verifyDirectories());
+    EXPECT_FALSE(cm->verifyDirectories());
 
 }
 

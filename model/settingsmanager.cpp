@@ -8,11 +8,12 @@
 #include "settingsmanager.h"
 
 SettingsManager::SettingsManager()
-        : ConfigurationManager(),
-          mClassificationPluginManager(&ClassificationPluginManager::getInstance()),
-          mImageLoaderPluginManager(&ImageLoaderPluginManager::getInstance()) {
+        : mClassificationPluginManager(&ClassificationPluginManager::getInstance()),
+          mImageLoaderPluginManager(&ImageLoaderPluginManager::getInstance()),
+          mConfigurationManager(&ConfigurationManager::getInstance()) {
 
-    if (!getClassificationPluginDir().isEmpty() && !getImageLoaderPluginDir().isEmpty()) {
+    if (!mConfigurationManager->getClassificationPluginDir().isEmpty() &&
+        !mConfigurationManager->getImageLoaderPluginDir().isEmpty()) {
         reload();
     }
 }
@@ -33,8 +34,8 @@ QStringList SettingsManager::getClassificationPluginBase(const QString &plugin) 
 }
 
 void SettingsManager::reload() {
-    mClassificationPluginManager->loadPlugins(getClassificationPluginDir());
-    mImageLoaderPluginManager->loadPlugins(getImageLoaderPluginDir());
+    mClassificationPluginManager->loadPlugins(mConfigurationManager->getClassificationPluginDir());
+    mImageLoaderPluginManager->loadPlugins(mConfigurationManager->getImageLoaderPluginDir());
 }
 
 QList<QSharedPointer<QIcon>> SettingsManager::getPluginIcons() {
@@ -67,10 +68,10 @@ SettingsManager::applyGlobalSettings(const QString &projectsDir, const QString &
                                      const QString &imageLoaderPluginDir, const QString &pythonPath,
                                      QString &error, int &pathsChanged) {
     int pathsChangedCounter = 0;
-    QString tempProjectsDir = getProjectsDir();
-    QString tempClassificationPluginDir = getClassificationPluginDir();
-    QString tempImageLoaderPluginDir = getImageLoaderPluginDir();
-    QString tempPythonPath = getPythonExecutablePath();
+    QString tempProjectsDir = mConfigurationManager->getProjectsDir();
+    QString tempClassificationPluginDir = mConfigurationManager->getClassificationPluginDir();
+    QString tempImageLoaderPluginDir = mConfigurationManager->getImageLoaderPluginDir();
+    QString tempPythonPath = mConfigurationManager->getPythonExecutablePath();
 
     //Check if there is an actual update to any of the paths
     if (!projectsDir.isEmpty()) {
@@ -91,11 +92,12 @@ SettingsManager::applyGlobalSettings(const QString &projectsDir, const QString &
     }
 
     //check if all paths are allowed and if any of them are overlapping
-    if (verifyPaths({tempProjectsDir, tempClassificationPluginDir, tempImageLoaderPluginDir, tempPythonPath})) {
-        saveProjectsDir(tempProjectsDir);
+    if (ConfigurationManager::verifyPaths(
+            {tempProjectsDir, tempClassificationPluginDir, tempImageLoaderPluginDir, tempPythonPath})) {
+        mConfigurationManager->saveProjectsDir(tempProjectsDir);
         saveClassificationPluginDir(tempClassificationPluginDir);
         saveImageLoaderPluginDir(tempImageLoaderPluginDir);
-        savePythonPath(tempPythonPath);
+        mConfigurationManager->savePythonPath(tempPythonPath);
 
         pathsChanged = pathsChangedCounter;
 
@@ -114,11 +116,11 @@ QStringList SettingsManager::getImageLoaderPluginNames() {
 }
 
 void SettingsManager::saveClassificationPluginDir(const QString &dir) {
-    ConfigurationManager::saveClassificationPluginDir(dir);
+    mConfigurationManager->saveClassificationPluginDir(dir);
     SettingsManager::mClassificationPluginManager->loadPlugins(dir);
 }
 
 void SettingsManager::saveImageLoaderPluginDir(const QString &dir) {
-    ConfigurationManager::saveImageLoaderPluginDir(dir);
+    mConfigurationManager->saveImageLoaderPluginDir(dir);
     SettingsManager::mImageLoaderPluginManager->loadPlugins(dir);
 }

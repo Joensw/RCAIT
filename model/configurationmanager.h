@@ -30,12 +30,9 @@ public:
      * @brief getInstance returns the only instance of the ConfigurationManager class
      * @return instance
      */
-    static QSharedPointer<ConfigurationManager> getInstance() {
+    static ConfigurationManager &getInstance() {
         // Guaranteed to be destroyed.
-        // Initialize instance if that did not already happen
-        if (!INSTANCE)
-            INSTANCE.reset(new ConfigurationManager, &QObject::deleteLater);
-
+        static ConfigurationManager INSTANCE;
         return INSTANCE;
     }
 
@@ -113,11 +110,6 @@ public:
      */
     QString getPythonExecutablePath();
 
-    /**
-     * @brief Default destructor.
-     */
-    ~ConfigurationManager() override = default;
-
 private:
     //Keys for the QSettings Settings object
     static constexpr auto projectDirectoryIdentifier = "ProjectDirectory";
@@ -127,10 +119,6 @@ private:
     static constexpr auto PYTHON_FALLBACK = "python";
     QScopedPointer<QSettings> mGlobalSettings;
 
-    // Instantiated on first use.
-    inline static QSharedPointer<ConfigurationManager> INSTANCE = {};
-
-protected:
     ConfigurationManager();
 };
 

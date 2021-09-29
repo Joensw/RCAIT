@@ -326,6 +326,7 @@ private:
     ProjectManager *mProjectManager;
     ModelManager *mModelManager;
     SettingsManager *mSettingsManager;
+    ConfigurationManager *mConfigurationManager;
 
     DataManager();
 };
