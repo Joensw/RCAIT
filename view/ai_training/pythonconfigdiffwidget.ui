@@ -40,10 +40,29 @@
                           <item row="0" column="1">
                               <widget class="CodeEditor" name="codeEditor_left">
                                   <property name="styleSheet">
-                                      <string notr="true">selection-color: rgb(0, 0, 0);
+                                      <string notr="true">QPlainTextEdit{
+                                          selection-color: rgb(0, 0, 0);
                                           selection-background-color: rgb(255, 255, 255);
                                           background-color: transparent;
                                           border: 2px rgb(0, 0, 0);
+                                          }
+
+                                          QScrollBar:horizontal
+                                          {
+                                          height: 15px;
+                                          margin: 3px 15px 3px 15px;
+                                          border: 1px transparent #2A2929;
+                                          border-radius: 4px;
+                                          background-color: #FAFAFA; /* white */
+                                          }
+                                          QScrollBar:vertical
+                                          {
+                                          background-color: #FAFAFA; /* white */
+                                          width: 15px;
+                                          margin: 15px 3px 15px 3px;
+                                          border: 1px transparent #2A2929;
+                                          border-radius: 4px;
+                                          }
                                       </string>
                                   </property>
                                   <property name="lineWrapMode">
@@ -87,10 +106,29 @@
                                       </sizepolicy>
                                   </property>
                                   <property name="styleSheet">
-                                      <string notr="true">selection-color: rgb(0, 0, 0);
+                                      <string notr="true">QPlainTextEdit{
+                                          selection-color: rgb(0, 0, 0);
                                           selection-background-color: rgb(255, 255, 255);
                                           background-color: transparent;
                                           border: 2px rgb(0, 0, 0);
+                                          }
+
+                                          QScrollBar:horizontal
+                                          {
+                                          height: 15px;
+                                          margin: 3px 15px 3px 15px;
+                                          border: 1px transparent #2A2929;
+                                          border-radius: 4px;
+                                          background-color: #FAFAFA; /* white */
+                                          }
+                                          QScrollBar:vertical
+                                          {
+                                          background-color: #FAFAFA; /* white */
+                                          width: 15px;
+                                          margin: 15px 3px 15px 3px;
+                                          border: 1px transparent #2A2929;
+                                          border-radius: 4px;
+                                          }
                                       </string>
                                   </property>
                                   <property name="lineWrapMode">
@@ -120,16 +158,17 @@
                           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                               <horstretch>0</horstretch>
                               <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="../../Resources/UI_Icons.qrc">
-         <normaloff>:/UISymbols/UI_Diff_Icon.svg</normaloff>:/UISymbols/UI_Diff_Icon.svg</iconset>
-       </property>
-       <property name="iconSize">
+                          </sizepolicy>
+                      </property>
+                      <property name="text">
+                          <string/>
+                      </property>
+                      <property name="icon">
+                          <iconset resource="../../Resources/UI_Icons.qrc">
+                              <normaloff>:/UISymbols/UI_Diff_Icon.svg</normaloff>:/UISymbols/UI_Diff_Icon.svg
+                          </iconset>
+                      </property>
+                      <property name="iconSize">
         <size>
          <width>40</width>
          <height>20</height>
