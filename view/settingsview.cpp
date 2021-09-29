@@ -43,7 +43,9 @@ void SettingsView::addPluginWidgets(QStringList pluginNames,
         delete (ui->pluginList->takeItem(i));
         QWidget *widget = ui->pluginWidget->widget(i);
         ui->pluginWidget->removeWidget(widget);
-        widget->deleteLater();
+        //we don't delete the widget here. If it is deleted, the shared pointer pointing to it cannot call the destructor and
+        //the program crashes. We let the shared pointer handle the destruction of the Widget, which is why we use it
+        //widget->deleteLater();
     }
 
     assert(pluginNames.size() == pluginConfigurationWidgets.size());
@@ -64,6 +66,7 @@ void SettingsView::addPluginWidgets(QStringList pluginNames,
         ui->pluginList->addItem(pluginEntry);
         ui->pluginWidget->addWidget(&*pluginConfigurationWidgets[i]);
     }
+
 }
 
 void SettingsView::pathsUpdated(int amount) {
