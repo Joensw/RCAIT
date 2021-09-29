@@ -64,9 +64,14 @@ The program's tab structure guides you through the process. Not all steps have t
 
 - [x] Select the interface language (English, German or Russian).
 - [x] Check data augmentation preview.
-- [x] Compare configuration files.
+- [x] Compare configuration files of two models.
 - [x] Compare 2 (or more) results.
 - [x] Save the vector graphics images for all results.
+- [x] Support more crawler plugins for several popular search engines.
+- [x] Separate validation and training data set.
+- [ ] Detect objects using MMDDetection. 
+- [ ] Log to prevent overuse of the API key.
+- [ ] Integrated storage management of data sets.
 
 ## Included plugins
 
@@ -127,3 +132,5 @@ loaded.
 RCAIT is released under the **LGPLv3** [License](LICENSE)
 
 _( GNU LESSER GENERAL PUBLIC LICENSE_ Version 3 _)_
+
+
