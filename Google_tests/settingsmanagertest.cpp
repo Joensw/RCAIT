@@ -13,16 +13,16 @@ void SettingsManagerTest::qSettingsSimple()
     QString testDir3 = temporaryDirectory % "/" % "testDir3";
     QString testDir4 = temporaryDirectory % "/" % "testDir4";
 
-    QDir dir (temporaryDirectory);
+    QDir dir(temporaryDirectory);
 
 
-    SettingsManager * sm = &SettingsManager::getInstance();
+    ConfigurationManager *cm = &ConfigurationManager::getInstance();
 
-    sm->configureSettingsFile(testDir1, testDir2, testDir3, testDir4);
-    QVERIFY(sm->getProjectsDir() == testDir1);
-    QVERIFY(sm->getClassificationPluginDir() == testDir2);
-    QVERIFY(sm->getImageLoaderPluginDir() == testDir3);
-    QVERIFY(sm->getPythonExecutablePath() == testDir4);
+    cm->configureSettingsFile(testDir1, testDir2, testDir3, testDir4);
+    QVERIFY(cm->getProjectsDir() == testDir1);
+    QVERIFY(cm->getClassificationPluginDir() == testDir2);
+    QVERIFY(cm->getImageLoaderPluginDir() == testDir3);
+    QVERIFY(cm->getPythonExecutablePath() == testDir4);
 
     dir.removeRecursively();
 }
@@ -37,15 +37,15 @@ void SettingsManagerTest::saveDirectories()
     QString testDir3 = temporaryDirectory % "/" % "testDir3";
 
 
-    SettingsManager * sm = &SettingsManager::getInstance();
+    ConfigurationManager *cm = &ConfigurationManager::getInstance();
 
-    sm->saveProjectsDir(testDir1);
-    sm->saveClassificationPluginDir(testDir2);
-    sm->saveImageLoaderPluginDir(testDir3);
+    cm->saveProjectsDir(testDir1);
+    cm->saveClassificationPluginDir(testDir2);
+    cm->saveImageLoaderPluginDir(testDir3);
 
-    QVERIFY(sm->getProjectsDir() == testDir1);
-    QVERIFY(sm->getClassificationPluginDir() == testDir2);
-    QVERIFY(sm->getImageLoaderPluginDir() == testDir3);
+    QVERIFY(cm->getProjectsDir() == testDir1);
+    QVERIFY(cm->getClassificationPluginDir() == testDir2);
+    QVERIFY(cm->getImageLoaderPluginDir() == testDir3);
 }
 
 void SettingsManagerTest::verifyDirectories()
@@ -62,13 +62,14 @@ void SettingsManagerTest::verifyDirectories()
     dir.mkpath(genuineDir3);
     dir.mkpath(genuineDir4);
 
-    SettingsManager * sm = &SettingsManager::getInstance();
+    ConfigurationManager *cm = &ConfigurationManager::getInstance();
+    SettingsManager *sm = &SettingsManager::getInstance();
     int counter = 0;
     QString error;
     QVERIFY(sm->applyGlobalSettings(genuineDir1, genuineDir2, genuineDir3, genuineDir4, error, counter));
     QVERIFY(counter == 4);
 
-    QVERIFY(sm->verifyDirectories());
+    QVERIFY(cm->verifyDirectories());
 
     dir.removeRecursively();
 }
