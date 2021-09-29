@@ -49,7 +49,7 @@ PythonConfigDiffWidget::~PythonConfigDiffWidget() {
     ui->pushButton_startDiff->setEnabled(false);
 }
 
-void PythonConfigDiffWidget::slot_diffFinished(qsizetype longestLine) {
+void PythonConfigDiffWidget::slot_diffFinished(qsizetype longestLine) const {
     //Add a line with spaces as long as the longest line encountered in both files.
     //This ensures that horizontal scrollbars are synchronized.
     QString placeholder;
@@ -77,13 +77,17 @@ bool PythonConfigDiffWidget::openFile(QString &fileName) {
 bool PythonConfigDiffWidget::openFileHelper(CodeEditor *codeView, QGroupBox *box, const QString &fileName) {
     if (fileName.isEmpty()) return false;
 
-    QFile file(fileName);
-    if (file.open(QFile::ReadOnly | QFile::Text)) {
+    if (QFile file(fileName); file.open(QFile::ReadOnly | QFile::Text)) {
         codeView->reset();
         //Check if diff view was reset including leftover html colours
         Q_ASSERT(codeView->document()->isEmpty());
         codeView->setPlainText(file.readAll());
-        box->setTitle(fileName);
+
+        //Elide too long filenames
+        QString title = fileName.right(MAX_TITLE_LENGTH);
+        if (fileName.size() > MAX_TITLE_LENGTH) title.prepend(ELIDE_TEXT);
+
+        box->setTitle(title);
         return true;
     }
     return false;
