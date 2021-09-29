@@ -7,9 +7,6 @@ class ImageGalleryTest : public testing::Test {
     protected:
 
     void SetUp() override {
-        int argc = 1;
-        char *argv[1] = {new char('a')};
-        QApplication a(argc, argv);
         path = QDir::current().path();
     }
 
@@ -17,10 +14,13 @@ class ImageGalleryTest : public testing::Test {
         QApplication::exit();
     }
     QString path;
+    int argc = 1;
+    char *argv[1] = {new char('a')};
 };
 
 //check if adding image works
 TEST_F(ImageGalleryTest, testAddImage){
+    QApplication a(argc, argv);
     path += "/test_imagefolder/Auto/images";
     ImageGallery* gallery = new ImageGallery();
 
@@ -34,6 +34,7 @@ TEST_F(ImageGalleryTest, testAddImage){
 
 //check if adding images from image list works
 TEST_F(ImageGalleryTest, testAddImages){
+    QApplication a(argc, argv);
     path += "/test_imagefolder/Auto/";
     QList<QImage> imgList;
     imgList.append(QImage(path + "images"));
@@ -51,6 +52,7 @@ TEST_F(ImageGalleryTest, testAddImages){
 
 //check if adding images from path list works
 TEST_F(ImageGalleryTest, testAddPathImages){
+    QApplication a(argc, argv);
     path += "/test_imagefolder/Auto/";
     QList<QString> imgList;
     imgList.append(path + "images");
@@ -68,6 +70,7 @@ TEST_F(ImageGalleryTest, testAddPathImages){
 
 //check if adding images dir works
 TEST_F(ImageGalleryTest, testConcurrentAddDir){
+    QApplication a(argc, argv);
     path += "/test_imagefolder/Auto/";
     ImageGallery* gallery = new ImageGallery();
 
@@ -85,6 +88,7 @@ TEST_F(ImageGalleryTest, testConcurrentAddDir){
 
 //check if stopping load works
 TEST_F(ImageGalleryTest, testStopConcurrentAddImages){
+    QApplication a(argc, argv);
     path += "/test_imagefolder/label_names/";
     QList<QString> imgList;
     imgList.append(path + "label1_1");
@@ -110,6 +114,7 @@ TEST_F(ImageGalleryTest, testStopConcurrentAddImages){
 
 //check if clear and stop works
 TEST_F(ImageGalleryTest, testClearAndStop){
+    QApplication a(argc, argv);
     path += "/test_imagefolder/Auto/";
     QList<QImage> imgList;
     imgList.append(QImage(path + "images"));

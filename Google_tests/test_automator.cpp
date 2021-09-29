@@ -8,9 +8,6 @@ class AutomatorTest : public testing::Test {
     protected:
 
     void SetUp() override {
-        int argc = 1;
-        char *argv[1] = {new char('a')};
-        QApplication a(argc, argv);
         DataManager* manager = &DataManager::getInstance();
         manager->saveProjectsDir(QDir::current().path());
         QDir tempdir(QDir::current().path());
@@ -26,13 +23,15 @@ class AutomatorTest : public testing::Test {
         }
         QApplication::exit();
     }
-
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QDir dir;
 
 };
 
 //check if loading labeled dataset imagefilepaths work
 TEST_F(AutomatorTest, testAddTask){
+    QApplication a(argc, argv);
     Automator* automator = new Automator();
     QDir dir(QDir::current().path());
     dir.cd("tasks");
@@ -56,6 +55,7 @@ TEST_F(AutomatorTest, testAddTask){
 
 //tests if queueing/unqueuing work as expected
 TEST_F(AutomatorTest, testUnQueueTask){
+    QApplication a(argc, argv);
     Automator* automator = new Automator();
     QSignalSpy spy(automator, &Automator::sig_taskUpdate);
     automator->addTasks(dir.path() + "/task1.json");
@@ -93,6 +93,7 @@ TEST_F(AutomatorTest, testUnQueueTask){
 }
 
 TEST_F(AutomatorTest, testRemove){
+    QApplication a(argc, argv);
     Automator* automator = new Automator();
 
     //invalid index should crash program
@@ -114,6 +115,7 @@ TEST_F(AutomatorTest, testRemove){
 
 
 TEST_F(AutomatorTest, testPerformTasks){
+    QApplication a(argc, argv);
     Automator* automator = new Automator();
     QSignalSpy spy(automator, &Automator::sig_progress);
     for (int i = 0; i < 3; i++){

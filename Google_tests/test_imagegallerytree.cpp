@@ -7,9 +7,6 @@ class ImageGalleryTreeTest : public testing::Test {
     protected:
 
     void SetUp() override {
-        int argc = 1;
-        char *argv[1] = {new char('a')};
-        QApplication a(argc, argv);
         path = QDir::current().path();
         path += "/test_imagefolder/";
     }
@@ -17,11 +14,14 @@ class ImageGalleryTreeTest : public testing::Test {
     void TearDown() override {
         QApplication::exit();
     }
+    int argc = 1;
+    char *argv[1] = {new char('a')};
     QString path;
 };
 
 //check if adding labels works
 TEST_F(ImageGalleryTreeTest, testAddLabels){
+    QApplication a(argc, argv);
     ImageGalleryTree* tree = new ImageGalleryTree(nullptr);
 
     QStringList labels = {"Auto", "Flugzeug"};
@@ -46,6 +46,7 @@ TEST_F(ImageGalleryTreeTest, testAddLabels){
 
 //check if resetting images from image list works
 TEST_F(ImageGalleryTreeTest, testResetTree){
+    QApplication a(argc, argv);
     ImageGalleryTree* tree = new ImageGalleryTree(nullptr);
 
     QStringList labels = {"Auto", "Flugzeug"};
@@ -62,8 +63,7 @@ TEST_F(ImageGalleryTreeTest, testResetTree){
 
 //check if removing images works
 TEST_F(ImageGalleryTreeTest, testAddPathImages){
-    //setup
-
+    QApplication a(argc, argv);
     ImageGalleryTree* tree = new ImageGalleryTree(nullptr);
 
     QStringList labels = {"Auto", "Flugzeug"};
