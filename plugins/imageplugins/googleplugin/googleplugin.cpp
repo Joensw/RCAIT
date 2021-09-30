@@ -20,6 +20,11 @@ bool GooglePlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
     connect(&*m_process, &QProcess::readyReadStandardOutput, this, &GooglePlugin::slot_readOutPut);
     connect(&*m_process, &QProcess::finished, this, &GooglePlugin::slot_pluginFinished);
 
+    //check settings
+    if(!pluginSettings->isConfigured()){
+        emit m_receiver->sig_statusUpdate(pluginSettings->getMissingConfigError());
+    }
+
     m_process->startCommand(fullCommand);
     m_process->waitForStarted();
     m_process->waitForFinished(-1);
@@ -112,5 +117,7 @@ QSharedPointer<QIcon> GooglePlugin::getPluginIcon()
 {
     return QSharedPointer<QIcon>(new QIcon(PLUGIN_ICON));
 }
+
+
 
 //! [0]

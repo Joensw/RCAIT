@@ -71,6 +71,17 @@ public:
      */
     QString getProjectCX();
 
+    /**
+     * @brief isConfigured checks if all settings have been set
+     * @return true if set
+     */
+    bool isConfigured();
+
+    /**
+     * @brief getConfigError returns a short error message for missing configuration
+     * @return the error message
+     */
+    QString getMissingConfigError();
 
 
 private:
@@ -79,6 +90,10 @@ private:
     QString m_projectCX = "Project CX";
     QString m_APIKey = "API Key";
     QSettings m_settings = {"Google Plugin",QSettings::IniFormat};
+    QString m_errorMessage;
+    inline static const QString ERROR_STRING = "Error: ";
+    inline static const QString ERROR_END = " not set.";
+    inline static const QString CONFIGURED_STRING = "All settings are set.";
 };
 
 #endif // GoogleSETTINGS_H

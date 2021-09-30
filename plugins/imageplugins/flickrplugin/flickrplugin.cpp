@@ -19,6 +19,11 @@ FlickrPlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int 
     connect(&*m_process, &QProcess::readyReadStandardOutput, this, &FlickrPlugin::slot_readOutPut);
     connect(&*m_process, &QProcess::finished, this, &FlickrPlugin::slot_pluginFinished);
 
+    //check settings
+    if(!pluginSettings->isConfigured()){
+        emit m_receiver->sig_statusUpdate(pluginSettings->getMissingConfigError());
+    }
+
     m_process->startCommand(fullCommand);
     m_process->waitForStarted();
     m_process->waitForFinished(-1);

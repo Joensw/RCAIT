@@ -19,6 +19,11 @@ BingPlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int im
     connect(&*m_process, &QProcess::readyReadStandardOutput, this, &BingPlugin::slot_readOutPut);
     connect(&*m_process, &QProcess::finished, this, &BingPlugin::slot_pluginFinished);
 
+    //check settings
+    if(!pluginSettings->isConfigured()){
+        emit m_receiver->sig_statusUpdate(pluginSettings->getMissingConfigError());
+    }
+
     QString fullCommand = createCommandlineString(path, imageCount, label);
     qDebug() << qPrintable(fullCommand);
 

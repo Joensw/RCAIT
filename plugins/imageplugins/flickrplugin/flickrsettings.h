@@ -84,12 +84,28 @@ public:
      */
     void setPythonPath(QString path);
 
+    /**
+     * @brief isConfigured checks if all settings have been set
+     * @return true if set
+     */
+    bool isConfigured();
+
+    /**
+     * @brief getConfigError returns a short error message for missing configuration
+     * @return the error message
+     */
+    QString getMissingConfigError();
+
 private:
     Ui::FlickrSettings *ui;
     QString m_apiKey = "API Key";
     QString m_apiSecret = "API Secret";
     QString m_pythonPath = "Python Path";
     QSettings m_settings = {"Flickr Plugin",QSettings::IniFormat};
+    QString m_errorMessage;
+    inline static const QString ERROR_STRING = "Error: ";
+    inline static const QString ERROR_END = " not set.";
+    inline static const QString CONFIGURED_STRING = "All settings are set.";
 
 };
 

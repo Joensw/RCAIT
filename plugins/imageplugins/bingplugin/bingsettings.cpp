@@ -10,6 +10,7 @@ BingSettings::BingSettings(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::BingSettings)
 {
+    m_errorMessage = CONFIGURED_STRING;
     ui->setupUi(this);
     loadSettings();
 }
@@ -38,6 +39,23 @@ QString BingSettings::getPythonPath(){
 void BingSettings::setPythonPath(QString path)
 {
     m_settings.setValue(m_pythonPath,path);
+}
+
+bool BingSettings::isConfigured()
+{
+    QString pythonPath = m_settings.value(m_pythonPath).toString();
+
+    if(pythonPath.isEmpty()){
+        m_errorMessage = NOT_CONFIGURED_STRING;
+        return false;
+    }
+
+    return true;
+}
+
+QString BingSettings::getMissingConfigError()
+{
+    return m_errorMessage;
 }
 
 void BingSettings::changeEvent(QEvent *event) {

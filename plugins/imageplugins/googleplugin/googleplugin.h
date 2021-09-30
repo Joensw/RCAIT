@@ -80,6 +80,8 @@ public:
      */
     QSharedPointer<QIcon> getPluginIcon() override;
 
+
+
 private slots:
     void slot_abort();
     void slot_readOutPut();
