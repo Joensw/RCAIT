@@ -34,14 +34,14 @@ public:
 private:
     ImageLoaderPluginManager& mPluginManager =  ImageLoaderPluginManager::getInstance();
     DataManager& mDataManager = DataManager::getInstance();
-    ProgressablePlugin* mReceiver;
     QVariantMap mWidgetOptions;
     QSharedPointer<QWidget> mInputWidget;
     bool parsingFailed = false;
     int mCount;
-    QStringList mLabels;
     QString mPluginName;
+    QStringList mLabels;
     QString mPath;
+    ProgressablePlugin *mReceiver;
 
 };
 

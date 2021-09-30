@@ -1,9 +1,7 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-#include <QVariantMap>
-
-
+#include <QObject>
 /**
  * @brief The Command class defines an interface for all commands in the application.
  *

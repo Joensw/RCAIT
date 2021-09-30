@@ -7,6 +7,7 @@
 #include <classificationpluginmanager.h>
 #include <datamanager.h>
 #include <progressableplugin.h>
+#include <utility>
 
 
 /**
@@ -54,13 +55,11 @@ private:
     bool parsingFailed = false;
 
     QString mProjectName;
-    QString mImagePath;
+    QString mAiPluginName;
     QString mModelName;
     QString mBaseModel;
-    QString mAiPluginName;
     QString mTrainDataSetPath;
     QString mValidationDataSetPath;
-    QString mClassificationDataSetPath;
     QString mWorkingDir;
 };
 

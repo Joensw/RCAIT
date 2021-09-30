@@ -68,14 +68,14 @@ public:
      *
      * @return size of non-scheduled queue.
      */
-    qsizetype getUnqueuedSize();
+    qsizetype getUnqueuedSize() const;
 
     /**
      * @brief getQueuedSize returns size of scheduled queue.
      *
      * @return size of scheduled queue.
      */
-    qsizetype getQueuedSize();
+    qsizetype getQueuedSize() const;
 
 public slots:
 

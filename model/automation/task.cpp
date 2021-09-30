@@ -16,7 +16,7 @@ enum CommandType {
     SPLIT,
     TRAINING,
     CLASSIFICATION,
-    $COUNT
+    $LENGTH
 };
 
 Task::Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList)
@@ -29,33 +29,33 @@ Task::Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList)
 
     QStringList commands = map["taskType"].toStringList();
 
-    if (commands.contains("addProject")) {
+    if (commands.contains(ADD_PROJECT_ENTRY)) {
         mDataManager.createNewProject(map["projectName"].toString());
     }
-    if (!mDataManager.loadProject(map["projectName"].toString())){
+    if (!mDataManager.loadProject(map["projectName"].toString())) {
         valid = false;
         qWarning() << "Could not load project of task!";
         return;
     }
 
-    static std::array<QString, $COUNT> COMMANDTYPE2STRING = {
-        "imageLoad",
-        "split",
-        "training",
-        "classification"
+    static constexpr std::array<CE_String, $LENGTH> COMMANDTYPE2STRING = {
+            "imageLoad",
+            "split",
+            "training",
+            "classification"
     };
 
-    for (int i = 0; i < $COUNT; i++){
-        if (commands.contains(COMMANDTYPE2STRING[i])){
+    for (int i = 0; i < $COUNT; i++) {
+        if (commands.contains(COMMANDTYPE2STRING[i])) {
             insertCommand(i, map);
         }
     }
 
-    if (mCommandList.isEmpty() && !commands.contains("addProject")) valid = false;
+    if (mCommandList.isEmpty() && !commands.contains(ADD_PROJECT_ENTRY)) valid = false;
 }
 
-void Task::insertCommand(int type, QVariantMap map){
-    Command* command;
+void Task::insertCommand(int type, const QVariantMap &map) {
+    Command *command;
     switch (type) {
         case IMAGELOAD:
             command = new ImageLoadCommand(map, this);
@@ -65,13 +65,16 @@ void Task::insertCommand(int type, QVariantMap map){
             break;
         case TRAINING:
             command = new TrainingCommand(map, this);
-            connect((TrainingCommand*) command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
+            connect((TrainingCommand *) command, &TrainingCommand::sig_saveResult, this,
+                    &Task::slot_saveTrainingResult);
             break;
         case CLASSIFICATION:
             command = new ClassificationCommand(map, this);
-            connect((ClassificationCommand*) command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
+            connect((ClassificationCommand *) command, &ClassificationCommand::sig_saveResult, this,
+                    &Task::slot_saveClassificationResult);
             break;
         default:
+            command = nullptr;
             qDebug() << "Attempted to set unknown command type";
             break;
     }
@@ -95,11 +98,11 @@ void Task::run() {
     emit sig_progress(100);
 }
 
-QString Task::getName() {
+QString Task::getName() const {
     return mName;
 }
 
-TaskState Task::getState() {
+TaskState Task::getState() const {
     return mState;
 }
 

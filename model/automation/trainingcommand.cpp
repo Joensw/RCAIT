@@ -1,9 +1,5 @@
 #include "trainingcommand.h"
 
-#include <classificationpluginmanager.h>
-
-#include <utility>
-
 
 TrainingCommand::TrainingCommand(QVariantMap map, ProgressablePlugin *receiver)
         : mProjectName(map["projectName"].toString()),
