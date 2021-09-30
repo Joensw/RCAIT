@@ -75,6 +75,7 @@ void ImageInspectionModel::removeImage(int selectionIndex, const QMap<QString, Q
             break;
         case VALIDATION_NEW:
             removeImageWithIndex(m_validationNewData, removedImages);
+            break;
         case TRAINING_NEW:
             removeImageWithIndex(m_trainNewData, removedImages);
             break;

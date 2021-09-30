@@ -65,11 +65,11 @@ void Task::insertCommand(int type, QVariantMap map){
             break;
         case TRAINING:
             command = new TrainingCommand(map, this);
-            connect((TrainingCommand*) command, &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
+            connect(static_cast<TrainingCommand*> (command), &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
             break;
         case CLASSIFICATION:
             command = new ClassificationCommand(map, this);
-            connect((ClassificationCommand*) command, &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
+            connect(static_cast<ClassificationCommand*> (command), &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
             break;
         default:
             qDebug() << "Attempted to set unknown command type";
