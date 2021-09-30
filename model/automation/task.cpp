@@ -45,7 +45,7 @@ Task::Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList)
             "classification"
     };
 
-    for (int i = 0; i < $COUNT; i++) {
+    for (int i = 0; i < $LENGTH; i++) {
         if (commands.contains(COMMANDTYPE2STRING[i])) {
             insertCommand(i, map);
         }
@@ -65,13 +65,11 @@ void Task::insertCommand(int type, const QVariantMap &map) {
             break;
         case TRAINING:
             command = new TrainingCommand(map, this);
-            connect((TrainingCommand *) command, &TrainingCommand::sig_saveResult, this,
-                    &Task::slot_saveTrainingResult);
+            connect(dynamic_cast<TrainingCommand*> (command), &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
             break;
         case CLASSIFICATION:
             command = new ClassificationCommand(map, this);
-            connect((ClassificationCommand *) command, &ClassificationCommand::sig_saveResult, this,
-                    &Task::slot_saveClassificationResult);
+            connect(dynamic_cast<ClassificationCommand*> (command), &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
             break;
         default:
             command = nullptr;

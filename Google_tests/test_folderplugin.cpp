@@ -9,9 +9,6 @@ class FolderPluginTest : public testing::Test {
     protected:
 
     void SetUp() override {
-        int argc = 1;
-        char *argv[1] = {new char('a')};
-        QApplication a(argc, argv);
         path = QDir::current().path();
         dir = QDir(path);
         EXPECT_TRUE(dir.mkdir(testDir));
@@ -27,10 +24,13 @@ class FolderPluginTest : public testing::Test {
     QDir dir;
     QString testDir = "foldertest";
     QString path = QDir::current().path();
+    int argc = 1;
+    char *argv[1] = {new char('a')};
 };
 
 //check if loading folders as labels works
 TEST_F(FolderPluginTest, testFoldersAsLabels){
+    QApplication a(argc, argv);
     FolderPlugin plugin;
     plugin.init();
 
@@ -60,6 +60,7 @@ TEST_F(FolderPluginTest, testFoldersAsLabels){
 
 //check if loading with names as labels works
 TEST_F(FolderPluginTest, testNamesAsLabels){
+    QApplication a(argc, argv);
     FolderPlugin plugin;
     plugin.init();
 
@@ -87,6 +88,7 @@ TEST_F(FolderPluginTest, testNamesAsLabels){
 
 //check if loading with single folder as label works
 TEST_F(FolderPluginTest, testFolderAsLabel){
+    QApplication a(argc, argv);
     FolderPlugin plugin;
     plugin.init();
 

@@ -20,7 +20,7 @@
 /**
  * @brief The DataManager class a facade to tie all the managers together and delegate to these
  */
-class DataManager {
+class DataManager final {
 public:
 
     /**

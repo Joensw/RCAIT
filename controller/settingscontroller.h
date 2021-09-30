@@ -20,7 +20,7 @@
  * @brief The SettingsController class mediates between the settings logic and settings UI.
  *
  */
-class SettingsController : public QObject {
+class SettingsController final : public QObject {
 Q_OBJECT
 public:
 
@@ -31,6 +31,11 @@ public:
      * @param dataManager source of general information.
      */
     explicit SettingsController(QObject *parent = nullptr, DataManager *dataManager = nullptr);
+
+    /**
+     * @brief operator = deleted assignment operator
+     */
+    SettingsController &operator=(const SettingsController &) = delete;
 
 
 public slots:

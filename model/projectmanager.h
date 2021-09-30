@@ -19,7 +19,7 @@
 /**
  * @brief The ProjectManager class contains the logic for manipulating the projects of the application
  */
-class ProjectManager : public QObject {
+class ProjectManager final : public QObject {
 Q_OBJECT
 public:
 

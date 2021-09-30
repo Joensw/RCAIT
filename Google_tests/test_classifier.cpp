@@ -10,9 +10,6 @@ class ClassifierTest : public testing::Test {
     protected:
 
     void SetUp() override {
-        int argc = 1;
-        char *argv[1] = {new char('a')};
-        QApplication a(argc, argv);
         QString path = QDir::current().path();
         auto* mngr = &DataManager::getInstance();
         mngr->saveClassificationPluginDir(path);
@@ -22,10 +19,13 @@ class ClassifierTest : public testing::Test {
     void TearDown() override {
         QApplication::exit();
     }
+    int argc = 1;
+    char *argv[1] = {new char('a')};
 };
 
 //check if classifier works with correct classification
 TEST_F(ClassifierTest, testClassification){
+    QApplication a(argc, argv);
     //construct classifier
     Classifier* cls = new Classifier;
     QSignalSpy spy(cls, &Classifier::sig_classificationResultUpdated);
@@ -42,6 +42,7 @@ TEST_F(ClassifierTest, testClassification){
 
 //check if classifier works with incorrect classification
 TEST_F(ClassifierTest, testClassificationFailed){
+    QApplication a(argc, argv);
     //construct classifier
     Classifier* cls = new Classifier;
     QSignalSpy spy(cls, &Classifier::sig_classificationResultUpdated);

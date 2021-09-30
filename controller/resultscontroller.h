@@ -22,7 +22,7 @@
 /**
  * @brief The ResultsController class mediates between the results logic and UI.
 */
-class ResultsController : public QObject {
+class ResultsController final : public QObject {
 
 Q_OBJECT
 public:
@@ -32,6 +32,12 @@ public:
      * @param resultsWidget UI component to display information
      */
     ResultsController(DataManager *manager, ResultsWidget *resultsWidget);
+
+    /**
+     * @brief operator = deleted assignment operator
+     * @return
+     */
+    ResultsController &operator=(const ResultsController &) = delete;
 
 public slots:
 

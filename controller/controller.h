@@ -25,7 +25,7 @@
 /**
  * @brief The Controller class creates and holds all the specific controllers and the application main window
  */
-class Controller : public QObject {
+class Controller final : public QObject {
 Q_OBJECT
 public:
     /**
@@ -33,6 +33,12 @@ public:
      * @param parent optional parent object
      */
     explicit Controller(QObject *parent = nullptr);
+
+    /**
+     * @brief operator = deleted assignment operator
+     */
+
+    Controller &operator=(const Controller &) = delete;
 
 public slots:
 

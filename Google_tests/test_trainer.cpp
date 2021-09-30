@@ -10,9 +10,6 @@ class TrainerTest : public testing::Test {
     protected:
 
     void SetUp() override {
-        int argc = 1;
-        char *argv[1] = {new char('a')};
-        QApplication a(argc, argv);
         QString path = QDir::current().path();
         auto* mngr = &DataManager::getInstance();
         mngr->saveClassificationPluginDir(path);
@@ -22,10 +19,13 @@ class TrainerTest : public testing::Test {
     void TearDown() override {
         QApplication::exit();
     }
+    int argc = 1;
+    char *argv[1] = {new char('a')};
 };
 
 //check if trainer works with correct training
 TEST_F(TrainerTest, testTraining){
+    QApplication a(argc, argv);
     //construct trainer
     Trainer* trnr = new Trainer;
     QSignalSpy spy(trnr, &Trainer::sig_trainingResultUpdated);
@@ -42,6 +42,7 @@ TEST_F(TrainerTest, testTraining){
 
 //check if trainer works with incorrect training
 TEST_F(TrainerTest, testTrainingFailed){
+    QApplication a(argc, argv);
     //construct trainer
     Trainer* trnr = new Trainer;
     QSignalSpy spy(trnr, &Trainer::sig_trainingResultUpdated);
@@ -62,6 +63,7 @@ TEST_F(TrainerTest, testTrainingFailed){
 
 //check if trainer works with data augmentation
 TEST_F(TrainerTest, testAugmentation){
+    QApplication a(argc, argv);
     //construct trainer
     Trainer* trnr = new Trainer;
     QSignalSpy spy(trnr, &Trainer::sig_augmentationPreviewReady);

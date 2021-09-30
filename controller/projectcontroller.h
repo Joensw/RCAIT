@@ -20,7 +20,7 @@
  * @brief The ProjectController class mediates between the project logic and project UI
  *
  */
-class ProjectController : public QObject
+class ProjectController final : public QObject
 {
     Q_OBJECT
 public:
@@ -32,6 +32,11 @@ public:
      * @param startWidget widget to be controlled and updated
      */
     explicit ProjectController(QObject *parent = nullptr, DataManager *dataManager = nullptr, StartWidget *startWidget = nullptr);
+
+    /**
+     * @brief operator = deleted assignment operator
+     */
+    ProjectController &operator=(const ProjectController &) = delete;
 
     /**
      * @brief refresh clears the project list in the UI and reloads the current projects

@@ -16,6 +16,7 @@ SettingsController::SettingsController(QObject *parent, DataManager *dataManager
     connect(&*mSettingsView, &SettingsView::sig_applyGlobalSettings, this,
             &SettingsController::slot_applyGlobalSettings);
     connect(&*mSettingsView, &SettingsView::sig_applySettings, this, &SettingsController::slot_applySettings);
+    mSettingsView->setAttribute(Qt::WA_QuitOnClose, false);
 }
 
 void SettingsController::slot_openSettings() {

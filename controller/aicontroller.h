@@ -21,7 +21,7 @@
 /**
  * @brief The AIController class mediates between ui elements and classification/training.
  */
-class AIController : public QObject
+class AIController final : public QObject
 
 {
     Q_OBJECT
@@ -34,6 +34,12 @@ public:
      * @param AITrainingWidget Source for additional information needed for training.
      */
     AIController(DataManager *dataManager, InputImagesWidget *inputImagesWidget, AITrainingWidget *AITrainingWidget);
+
+    /**
+     * @brief operator = deleted assignment operator
+     * @return
+     */
+    AIController &operator=(const AIController &) = delete;
 
 public slots:
 
