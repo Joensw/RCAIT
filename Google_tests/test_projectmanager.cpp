@@ -18,6 +18,7 @@ TEST(ProjectManagerTest, createValidProject){
     pm->setProjectsDirectory(tempProjectsDir);
     QString error;
     bool out = pm->createNewProject(testProjectName, &error);
+    EXPECT_TRUE(pm->loadProject(testProjectName));
     EXPECT_TRUE(out);
     qDebug() << error;
 
