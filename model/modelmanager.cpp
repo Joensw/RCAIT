@@ -12,21 +12,36 @@ ModelManager::ModelManager()
 
 }
 
-void ModelManager::createNewModel(QString projectName, QString modelName, QString pluginName, QString baseModel) {
-    if (mClassificationPluginManager->createNewModel(modelName, pluginName, baseModel)) {
-        // add the new model to the saved user models
-        QStringList modelSpecificData = {QString(), QString()};
-        modelSpecificData[pluginNamePosition] = pluginName;
-        m_userModelNamesPerProject.beginGroup(projectName);
-        m_userModelNamesPerProject.setValue(modelName, modelSpecificData);
-        m_userModelNamesPerProject.endGroup();
+bool ModelManager::createNewModel(QString projectName, QString modelName, QString pluginName, QString baseModel) {
+    m_userModelNamesPerProject.beginGroup(projectName);
+    QStringList modelsOfProject = m_userModelNamesPerProject.childKeys();
+    m_userModelNamesPerProject.endGroup();
+    if (modelsOfProject.contains(modelName)) {
+        qWarning() << "A model with this name already exists";
+        return false;
     } else {
-        qWarning() << "The new model could not be created";
+        if (mClassificationPluginManager->createNewModel(modelName, pluginName, baseModel)) {
+            // add the new model to the saved user models
+            QStringList modelSpecificData = {QString(), QString()};
+            modelSpecificData[pluginNamePosition] = pluginName;
+            m_userModelNamesPerProject.beginGroup(projectName);
+            m_userModelNamesPerProject.setValue(modelName, modelSpecificData);
+            m_userModelNamesPerProject.endGroup();
+            return true;
+        } else {
+            qWarning() << "The new model could not be created";
+            return false;
+        }
     }
 }
 
-void ModelManager::removeModel(QString projectName, QString modelName) {
+bool ModelManager::removeModel(QString projectName, QString modelName) {
     m_userModelNamesPerProject.beginGroup(projectName);
+    if (!m_userModelNamesPerProject.childKeys().contains(modelName)) {
+        m_userModelNamesPerProject.endGroup();
+        qWarning() << "There is no plugin with this name";
+        return false;
+    }
     QStringList modelSpecificData = m_userModelNamesPerProject.value(modelName).toStringList();
     QString pluginName = modelSpecificData.at(pluginNamePosition);
     m_userModelNamesPerProject.endGroup();
@@ -35,10 +50,14 @@ void ModelManager::removeModel(QString projectName, QString modelName) {
             m_userModelNamesPerProject.beginGroup(projectName);
             m_userModelNamesPerProject.remove(modelName);
             m_userModelNamesPerProject.endGroup();
+            return true;
+        } else {
+            qWarning() << "The model " << modelName << " could not be deleted in the plugin " << pluginName;
         }
     } else {
-        qWarning() << "The model " << modelName << " could not be deleted";
+        qWarning() << "The plugin was not found";
     }
+    return false;
 }
 
 void ModelManager::loadModel(QString modelName, QString pluginName) {
