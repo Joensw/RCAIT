@@ -32,6 +32,12 @@ public:
      * @brief verify checks if application critical paths are set correctly
      */
     void verify();
+
+    /**
+     * @brief operator = deleted assignment operator
+     * @return
+     */
+    ConfigurationController &operator=(const ConfigurationController &) = delete;
 public slots:
     /**
      * @brief slot_directoriesSpecified ports user specified paths into the application iff they are acceptable, otherwise shows on error message in the configuration UI

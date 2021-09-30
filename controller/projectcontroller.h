@@ -34,6 +34,11 @@ public:
     explicit ProjectController(QObject *parent = nullptr, DataManager *dataManager = nullptr, StartWidget *startWidget = nullptr);
 
     /**
+     * @brief operator = deleted assignment operator
+     */
+    ProjectController &operator=(const ProjectController &) = delete;
+
+    /**
      * @brief refresh clears the project list in the UI and reloads the current projects
      */
     void refresh();

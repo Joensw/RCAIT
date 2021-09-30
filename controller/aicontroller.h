@@ -35,6 +35,12 @@ public:
      */
     AIController(DataManager *dataManager, InputImagesWidget *inputImagesWidget, AITrainingWidget *AITrainingWidget);
 
+    /**
+     * @brief operator = deleted assignment operator
+     * @return
+     */
+    AIController &operator=(const AIController &) = delete;
+
 public slots:
 
     /**

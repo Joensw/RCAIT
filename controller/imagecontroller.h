@@ -36,6 +36,11 @@ public:
      */
     ImageController(ImageInspectionWidget* imageInspectionWidget, ImportFilesWidget* importFilesWidget, DataManager* dataManager);
 
+    /**
+     * @brief operator = deleted assignment operator
+     */
+    ImageController &operator=(const ImageController &) = delete;
+
 public slots:
 
     /**

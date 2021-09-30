@@ -31,6 +31,11 @@ public:
      */
     AutomationController(AutomationWidget *automationWidget);
 
+    /**
+     * @brief operator = deleted assignment operator
+     */
+    AutomationController &operator=(const AutomationController &) = delete;
+
 public slots:
 
     /**

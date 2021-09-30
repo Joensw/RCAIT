@@ -34,6 +34,12 @@ public:
      */
     explicit Controller(QObject *parent = nullptr);
 
+    /**
+     * @brief operator = deleted assignment operator
+     */
+
+    Controller &operator=(const Controller &) = delete;
+
 public slots:
 
     /**

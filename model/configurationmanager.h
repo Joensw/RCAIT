@@ -22,7 +22,6 @@ public:
 
     /**
      * @brief operator = deleted assignment operator
-     * @return
      */
     ConfigurationManager &operator=(const ConfigurationManager &) = delete;
 

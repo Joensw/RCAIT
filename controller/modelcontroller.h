@@ -30,6 +30,12 @@ public:
      */
     explicit ModelController(QObject *parent = nullptr, DataManager *dataManager = nullptr, ImportFilesWidget *importFilesWidget = nullptr);
 
+    /**
+     * @brief operator = deleted assignment operator
+     * @return
+     */
+    ModelController &operator=(const ModelController &) = delete;
+
 public slots:
 
     /**

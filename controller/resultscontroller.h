@@ -33,6 +33,12 @@ public:
      */
     ResultsController(DataManager *manager, ResultsWidget *resultsWidget);
 
+    /**
+     * @brief operator = deleted assignment operator
+     * @return
+     */
+    ResultsController &operator=(const ResultsController &) = delete;
+
 public slots:
 
     /**

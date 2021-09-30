@@ -32,6 +32,11 @@ public:
      */
     explicit SettingsController(QObject *parent = nullptr, DataManager *dataManager = nullptr);
 
+    /**
+     * @brief operator = deleted assignment operator
+     */
+    SettingsController &operator=(const SettingsController &) = delete;
+
 
 public slots:
 
