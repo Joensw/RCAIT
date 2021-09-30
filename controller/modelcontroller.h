@@ -17,7 +17,7 @@
 /**
  * @brief The ModelController class mediates between the model UI's and the model logic
  */
-class ModelController : public QObject
+class ModelController final : public QObject
 {
     Q_OBJECT
 public:

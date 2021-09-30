@@ -24,7 +24,7 @@
  * @brief The ImageController class mediates between the UI of ImageInspection, ImageLoading and their logic.
  *
  */
-class ImageController : public QObject{
+class ImageController final : public QObject{
     Q_OBJECT
 public:
     /**

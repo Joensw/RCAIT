@@ -22,7 +22,7 @@
 /**
  * @brief The ResultsController class mediates between the results logic and UI.
 */
-class ResultsController : public QObject {
+class ResultsController final : public QObject {
 
 Q_OBJECT
 public:

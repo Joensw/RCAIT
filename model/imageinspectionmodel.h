@@ -17,7 +17,7 @@
 /**
  * @brief The ImageInspectionModel class
  */
-class ImageInspectionModel {
+class ImageInspectionModel final {
 
 
 private:

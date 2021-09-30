@@ -21,7 +21,7 @@
 /**
  * @brief The AIController class mediates between ui elements and classification/training.
  */
-class AIController : public QObject
+class AIController final : public QObject
 
 {
     Q_OBJECT

@@ -13,7 +13,7 @@
 /**
  * @brief The TabController class controls which widgets are selectable at certain times during the programs execution
  */
-class TabController : public QObject
+class TabController final : public QObject
 {
      Q_OBJECT
 public:

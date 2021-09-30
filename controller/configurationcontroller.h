@@ -17,7 +17,7 @@
 /**
  * @brief The ConfigurationController class mediates between the configuration UI and the configuration logic
  */
-class ConfigurationController : public QObject
+class ConfigurationController final : public QObject
 {
     Q_OBJECT
 public:

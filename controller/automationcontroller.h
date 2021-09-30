@@ -19,7 +19,7 @@
  * @brief The AutomationController class mediates between ui elements and the batch processing of tasks.
  *
  */
-class AutomationController : public QObject {
+class AutomationController final : public QObject {
 Q_OBJECT
 public:
 

@@ -20,7 +20,7 @@
  * @brief The ProjectController class mediates between the project logic and project UI
  *
  */
-class ProjectController : public QObject
+class ProjectController final : public QObject
 {
     Q_OBJECT
 public:

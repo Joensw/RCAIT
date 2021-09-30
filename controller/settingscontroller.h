@@ -20,7 +20,7 @@
  * @brief The SettingsController class mediates between the settings logic and settings UI.
  *
  */
-class SettingsController : public QObject {
+class SettingsController final : public QObject {
 Q_OBJECT
 public:
 

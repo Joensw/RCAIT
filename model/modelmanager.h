@@ -20,7 +20,7 @@
 /**
  * @brief The ModelManager class contains logic for manipulating models of external classification plugins
  */
-class ModelManager
+class ModelManager final
 {
 public:
 
