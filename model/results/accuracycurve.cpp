@@ -14,7 +14,7 @@ void AccuracyCurve::generateGraphicsInternal(const QString &fullFilePath) {
     GenericResultGraphics::launch_externalGraphicsGenerator(command, params);
 }
 
-QString AccuracyCurve::valuesToPyText() {
+QString AccuracyCurve::valuesToPyText() const {
     QStringList result;
 
     for (const auto&[key, value]: MapAdapt(m_data)) {
@@ -44,7 +44,7 @@ bool AccuracyCurve::operator!=(const AccuracyCurve &other) const {
     return m_data != other.m_data;
 }
 
-[[maybe_unused]] QMap<int, QPair<double, double> > AccuracyCurve::getData() {
+[[maybe_unused]] QMap<int, QPair<double, double> > AccuracyCurve::getData() const {
     return m_data;
 }
 

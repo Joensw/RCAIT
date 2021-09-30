@@ -1,11 +1,13 @@
 #include "classificationgraphics.h"
 
+#include <utility>
+
 ClassificationGraphics::ClassificationGraphics(const QString &directory, const QString &identifier,
                                                const QMap<QString, QList<double>> &data,
-                                               const QStringList &classLabels)
+                                               QStringList classLabels)
         : GenericResultGraphics(directory, "classification_" % identifier, "svg"),
           m_data(data),
-          m_classLabels(classLabels) {
+          m_classLabels(std::move(classLabels)) {
 
 }
 
@@ -26,7 +28,7 @@ QString ClassificationGraphics::dataToPyText() {
     return '[' % result.join(',') % ']';
 }
 
-QString ClassificationGraphics::imagePathsToPyText() {
+QString ClassificationGraphics::imagePathsToPyText() const {
     QStringList results;
     for (const auto&[imagePath, _]: MapAdapt(m_data)) {
         results << "'" % imagePath % "'";
@@ -35,16 +37,17 @@ QString ClassificationGraphics::imagePathsToPyText() {
     return '"' % ('[' % results.join(',') % ']') % '"';
 }
 
-QString ClassificationGraphics::classLabelsToPyText() {
+QString ClassificationGraphics::classLabelsToPyText() const {
     QStringList results;
-    for (const auto &class_label: m_classLabels) {
+    for (const auto &class_label: qAsConst(m_classLabels)) {
         results << "'" % class_label % "'";
     }
     //Add "" around string so that dashes are not recognized as new arguments
     return '"' % ('[' % results.join(',') % ']') % '"';
 }
 
-[[maybe_unused]] void ClassificationGraphics::addClassificationEntry(const QString &identifier, const QList<double> &data) {
+[[maybe_unused]] void
+ClassificationGraphics::addClassificationEntry(const QString &identifier, const QList<double> &data) {
     m_data.insert(identifier, data);
 }
 

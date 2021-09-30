@@ -10,8 +10,8 @@ void ResultsExporter::updateResultFolderPaths() {
     m_classificationResultsDir = m_projectManager->getClassificationResultsDir();
 }
 
-void ResultsExporter::slot_save_TopAccuracies(const QSharedPointer<TopAccuraciesGraphics> &graphics, bool &success) {
-    const auto &fileName = graphics->getFullName();
+void
+ResultsExporter::slot_save_TopAccuracies(const QSharedPointer<TopAccuraciesGraphics> &graphics, bool &success) const {
     const auto &baseName = graphics->getBaseName();
     const auto &extension = graphics->getExtension();
     const auto &timestamp = Result::generateExtendedTimestamp();
@@ -25,7 +25,7 @@ void ResultsExporter::slot_save_TopAccuracies(const QSharedPointer<TopAccuracies
     success = saveFile(oldFilePath, newFilePath);
 }
 
-void ResultsExporter::slot_save_TrainingResult(const QSharedPointer<TrainingResult>& result, bool &success) {
+void ResultsExporter::slot_save_TrainingResult(const QSharedPointer<TrainingResult> &result, bool &success) const {
     success = true;
 
     const auto &identifier = result->getSavableIdentifier();
@@ -47,7 +47,8 @@ void ResultsExporter::slot_save_TrainingResult(const QSharedPointer<TrainingResu
 
 }
 
-void ResultsExporter::slot_save_ClassificationResult(const QSharedPointer<ClassificationResult> &result, bool &success) {
+void ResultsExporter::slot_save_ClassificationResult(const QSharedPointer<ClassificationResult> &result,
+                                                     bool &success) const {
     success = true;
 
     const auto &identifier = result->getSavableIdentifier();

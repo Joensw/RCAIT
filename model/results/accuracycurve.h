@@ -54,7 +54,7 @@ public:
      * @brief Get all the accuracy data points
      * @return Map of all data points
      */
-    [[maybe_unused]] QMap<int, QPair<double, double>> getData();
+    [[maybe_unused]] [[nodiscard]] QMap<int, QPair<double, double>> getData() const;
 
 private:
     QMap<int, QPair<double, double>> m_data;
@@ -63,7 +63,7 @@ private:
 
     void passResultGraphics(GenericGraphicsView *receiver, const QString &fullFilePath) override;
 
-    QString valuesToPyText();
+    [[nodiscard]] QString valuesToPyText() const;
 };
 
 #endif // ACCURACYCURVE_H

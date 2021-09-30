@@ -7,10 +7,10 @@ TopAccuraciesGraphics::TopAccuraciesGraphics(const QString &directory,
           m_data(data) {
 }
 
-QString TopAccuraciesGraphics::valuesToPyText() {
+QString TopAccuraciesGraphics::valuesToPyText() const {
     QStringList result;
 
-    for (auto &[key, valuesList]: m_data) {
+    for (const auto &[key, valuesList]: m_data) {
         //List for each row, which shall be joined in a single QString
         QStringList rowList;
 
@@ -23,7 +23,7 @@ QString TopAccuraciesGraphics::valuesToPyText() {
     return '[' % result.join(',') % ']';
 }
 
-QString TopAccuraciesGraphics::labelsToPyText() {
+QString TopAccuraciesGraphics::labelsToPyText() const {
     QStringList results;
     for (const auto &[key, _]: m_data) {
         results << "'" % key % "'";
@@ -37,13 +37,12 @@ void TopAccuraciesGraphics::addDataRow(const QString &identifier, const QList<do
 }
 
 void TopAccuraciesGraphics::removeDataRow(const QString &identifier) {
-    auto index = 0;
-    for (const auto &[key, _]: m_data) {
-        if (key == identifier) {
-            m_data.remove(index);
+    for (int i = 0; i < m_data.size(); ++i) {
+        //If key is equal to identifier, then remove that entry
+        if (m_data[i].first == identifier) {
+            m_data.remove(i);
             return;
         }
-        index++;
     }
 }
 
