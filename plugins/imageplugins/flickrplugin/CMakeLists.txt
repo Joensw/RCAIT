@@ -22,8 +22,8 @@ enable_testing()
 
 
 add_library(flickrplugin MODULE
-    flickrplugin.cpp flickrplugin.h flickrsettings.cpp flickrsettings.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressable.h icons.qrc
-)
+    flickrplugin.cpp flickrplugin.h flickrsettings.cpp flickrsettings.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressable.h icons.qrc ../imagepluginerrorutil.h
+    )
 
 set_target_properties(flickrplugin PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../plugins)
 

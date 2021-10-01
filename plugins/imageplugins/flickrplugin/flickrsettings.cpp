@@ -59,29 +59,24 @@ void FlickrSettings::setPythonPath(QString path)
 bool FlickrSettings::isConfigured()
 {
     QStringList missingConfigs;
-    int isConfigured = 3;
     if(m_settings.value(m_pythonPath).toString().isEmpty()){
         missingConfigs << m_pythonPath;
-        isConfigured--;
     }
 
     if(m_settings.value(m_apiSecret).toString().isEmpty()){
         missingConfigs << m_apiSecret;
-        isConfigured--;
     }
 
     if(m_settings.value(m_apiKey).toString().isEmpty()){
         missingConfigs << m_apiKey;
-        isConfigured--;
     }
 
-    if(!(isConfigured==3)){
-
+    if(!missingConfigs.isEmpty()){
         m_errorMessage = ERROR_STRING % missingConfigs.join(", ") % ERROR_END;
         return false;
     } else {
 
-       return true;
+        return true;
     }
 }
 
