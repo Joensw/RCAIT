@@ -112,6 +112,11 @@ see [this](https://stackoverflow.com/questions/35850362/importerror-no-module-na
 
 ### [MMClassification Plugin](https://github.com/open-mmlab/mmclassification)
 
+#### Installation
+
+* webp support \
+For webp images webp support must be installed with `pip install webp` and in the [imagenet dataset class](https://github.com/open-mmlab/mmclassification/blob/master/mmcls/datasets/imagenet.py) the file extension `".webp"` must be added to the allowed image extensions in `IMG_EXTENSIONS`.
+
 #### Required modifications to mmcls
 
 * Creation of the confusion matrix \
@@ -138,7 +143,7 @@ Annotation files are needed when classifying images with the test script. Otherw
 
     @DATASETS.register_module()
     class LexicographicallySorted(BaseDataset):
-        IMG_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif')
+        IMG_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif', '.webp')
 
         def load_annotations(self):
         if self.ann_file is None:
