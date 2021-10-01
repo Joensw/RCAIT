@@ -1,17 +1,17 @@
 #include "genericresultgraphics.h"
 
-GenericResultGraphics::GenericResultGraphics(const QString &directory, QString baseName, QString extension)
+#include <utility>
+
+GenericResultGraphics::GenericResultGraphics(QString directory, QString baseName, QString extension)
         : m_baseName(std::move(baseName)),
           m_extension(std::move(extension)),
-          m_fullName(m_baseName % '.' % m_extension),
-          m_directory(directory),
-          m_fullPath(directory % '/' % m_fullName) {
+          m_directory(std::move(directory)) {
 }
 
 void GenericResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
     auto generateGraphicsTask = QtConcurrent::run([this, receiver] {
-        this->generateGraphicsInternal('"' % m_fullPath % '"');
-        this->passResultGraphics(receiver, m_fullPath);
+        this->generateGraphicsInternal('"' % getFullPath() % '"');
+        this->passResultGraphics(receiver, getFullPath());
         emit sig_graphicsGenerated(receiver, QSharedPointer<GenericResultGraphics>(this));
     });
     Q_UNUSED(generateGraphicsTask)
@@ -25,16 +25,17 @@ void GenericResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
     return m_extension;
 }
 
-[[maybe_unused]] const QString &GenericResultGraphics::getFullName() const {
-    return m_fullName;
-}
 
 [[maybe_unused]] const QString &GenericResultGraphics::getDirectory() const {
     return m_directory;
 }
 
-[[maybe_unused]] const QString &GenericResultGraphics::getFullPath() const {
-    return m_fullPath;
+[[maybe_unused]] QString GenericResultGraphics::getFullName() const {
+    return m_baseName % '.' % m_extension;
+}
+
+[[maybe_unused]] QString GenericResultGraphics::getFullPath() const {
+    return m_directory % '/' % m_baseName % '.' % m_extension;
 }
 
 void GenericResultGraphics::launch_externalGraphicsGenerator(const QString &command, const QStringList &args) {
