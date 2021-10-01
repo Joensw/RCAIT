@@ -80,12 +80,12 @@ bool DataManager::verifyPaths(const QStringList& paths) {
     return ConfigurationManager::verifyPaths(paths);
 }
 
-void DataManager::createNewModel(QString modelName, QString pluginName, QString baseModel) {
-    mModelManager->createNewModel(getProjectName(), std::move(modelName), std::move(pluginName), std::move(baseModel));
+bool DataManager::createNewModel(QString modelName, QString pluginName, QString baseModel) {
+    return mModelManager->createNewModel(getProjectName(), std::move(modelName), std::move(pluginName), std::move(baseModel));
 }
 
-void DataManager::removeModel(QString modelName) {
-    mModelManager->removeModel(getProjectName(), std::move(modelName));
+bool DataManager::removeModel(QString modelName) {
+    return mModelManager->removeModel(getProjectName(), std::move(modelName));
 }
 
 void DataManager::loadModel(QString modelName, QString pluginName) {

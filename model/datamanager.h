@@ -158,14 +158,16 @@ public:
      * @param modelName name of the model
      * @param pluginName name of the plugin the model is from
      * @param baseModel name of the base model to be used
+     * @return true if the model could be created, false otherwise
      */
-    void createNewModel(QString modelName, QString pluginName, QString baseModel);
+    bool createNewModel(QString modelName, QString pluginName, QString baseModel);
 
     /**
      * @brief removeModel removes a model according to the specified parameters
      * @param modelName name the model
+     * @return true if the model was removed, false if an error occured
      */
-    void removeModel(QString modelName);
+    bool removeModel(QString modelName);
 
     /**
      * @brief loadModel loads a model into the application for further use

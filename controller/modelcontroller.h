@@ -95,6 +95,7 @@ private:
     ImportFilesWidget *mImportFilesWidget;
 
     static auto constexpr OPEN_MODEL_ERROR = QT_TR_NOOP("Cannot delete the currently loaded model!");
+    static auto constexpr MODEL_CREATION_ERROR = QT_TR_NOOP("Model could not be created");
 };
 
 #endif // MODELCONTROLLER_H
