@@ -71,7 +71,6 @@ void ImageController::slot_updateImageLoadStatusText(QString status) {
 
 void ImageController::slot_imagePluginDirectoryChanged(const QString &newDirectory) {
     m_importFilesWidget->setAvailablePlugins(m_dataManager->getImageLoaderPluginNames());
-
 }
 
 void ImageController::updateDatasetDisplay() {

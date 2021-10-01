@@ -52,6 +52,17 @@ public:
      */
     void clearProjectList();
 
+    /**
+     * @brief setLoadButtonEnabled disables or enables the state of the project action bar (create, remove, open)
+     * @param state true to enabled, false to disable
+     */
+    void setActionButtonsEnabled(bool state);
+
+    /**
+     * @brief resetListSelection resets the project list so that no item is currently selected
+     */
+    void resetListSelection();
+
 public slots:
 
     /**
@@ -69,6 +80,8 @@ public slots:
      * @brief slot_startLoading called when an image loading process is started to prevent the selection of a new project
      */
     void slot_startLoading();
+
+    void slot_setEnableActionButtons();
 
 private:
     Ui::StartWidget *ui;
