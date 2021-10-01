@@ -424,9 +424,9 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
     auto validationAnnotationFilePath = validationDatasetDirectory.absoluteFilePath(m_annotationFileName);
 
     auto mostMisclassifiedImages =
-            m_jsonReader.generateMostMissclassifiedImages(m_numberOfMissClassifiedImages,
-                                                          validationAnnotationFilePath,
-                                                          pathToWithoutMetricResultFile);
+            m_jsonReader.generateMostMisclassifiedImages(m_numberOfMissClassifiedImages,
+                                                         validationAnnotationFilePath,
+                                                         pathToWithoutMetricResultFile);
 
     return QSharedPointer<TrainingResult>(new TrainingResult(workingDirectoryPath, accuracyCurveData, labels, confusionMatrixData,
                               mostMisclassifiedImages, top1, top5));
