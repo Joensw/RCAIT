@@ -25,7 +25,7 @@ bool FolderPlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
                 if (abort) return false;
 
                 folder.cd(folderName);
-                static auto imageList = folder.entryList({"*.JPG", "*.jpg", "*.jpeg", "*.png"}, QDir::Files);
+                auto imageList = folder.entryList({"*.JPG", "*.jpg", "*.jpeg", "*.png"}, QDir::Files);
 
                 if (imageList.isEmpty() || addLabel(imageList, folder, output)) {
                     receiver->slot_makeProgress((int) ((i++ * 100 + 100) / imageFolders.count()));

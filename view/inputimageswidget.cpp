@@ -31,8 +31,7 @@ void InputImagesWidget::on_selectFolderButton_clicked()
      QDir imgDir(path);
      for (const QString &imgSubPath: imgDir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot)) {
          QDir imgSubDir(path + "/" + imgSubPath);
-         for (const QString &imageName: imgSubDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.jpeg" << "*.png",
-                                                            QDir::Files)) {
+         for (const QString &imageName: imgSubDir.entryList(QDir::Files)) {
              imagePaths.append(imgSubDir.absoluteFilePath(imageName));
          }
      }
