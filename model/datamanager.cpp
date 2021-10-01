@@ -104,11 +104,11 @@ void DataManager::saveLastWorkingDirectoryOfModel(const QString& projectName, co
     mModelManager->saveLastWorkingDirectoryOfModel(projectName, modelName, workingDirectory);
 }
 
-QString DataManager::recallLastWorkingDirectoryOfModel(QString projectName, QString modelName) {
+QString DataManager::recallLastWorkingDirectoryOfModel(const QString &projectName, const QString &modelName) {
     return mModelManager->recallLastWorkingDirectoryOfModel(std::move(projectName), std::move(modelName));
 }
 
-QString DataManager::recallPluginNameOfModel(QString projectName, QString modelName) {
+QString DataManager::recallPluginNameOfModel(const QString &projectName, const QString &modelName) {
     return mModelManager->recallPluginNameOfModell(std::move(projectName), std::move(modelName));
 }
 
@@ -137,7 +137,7 @@ QList<QSharedPointer<QIcon>> DataManager::getPluginIcons() {
     return mSettingsManager->getPluginIcons();
 }
 
-void DataManager::savePluginSettings(int index) {
+void DataManager::savePluginSettings(const int &index) {
     mSettingsManager->savePluginSettings(index);
 }
 
