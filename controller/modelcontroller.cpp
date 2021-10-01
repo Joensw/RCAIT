@@ -33,9 +33,11 @@ void ModelController::slot_newModel() {
 
 void
 ModelController::slot_newModelConfirm(const QString &modelName, const QString &pluginName, const QString &baseModel) {
-    mDataManager->createNewModel(modelName, pluginName, baseModel);
-    mImportFilesWidget->addNewModel(modelName);
-    mNewModelDialog->close();
+    if (mDataManager->createNewModel(modelName, pluginName, baseModel)){
+        mImportFilesWidget->addNewModel(modelName);
+        mNewModelDialog->close();
+    }
+    mNewModelDialog->setErrorMessage(MODEL_CREATION_ERROR);
 }
 
 void ModelController::slot_removeModel(const QString &modelName) {
@@ -50,10 +52,13 @@ void ModelController::slot_removeModel(const QString &modelName) {
 void ModelController::slot_removeModelConfirm() {
     QString modelName = mRemoveModelDialog->getModelName();
     if (!(mDataManager->getCurrentModel() == modelName)){
-        mDataManager->removeModel(modelName);
+        if (mDataManager->removeModel(modelName)) {
         mImportFilesWidget->clearModelList();
         mImportFilesWidget->addModels(mDataManager->getModelNamesOfCurrentProject());
         mRemoveModelDialog->close();
+        return;
+        }
+        mRemoveModelDialog->setErrorMessage(MODEL_DELETION_ERROR);
         return;
     }
     mRemoveModelDialog->setErrorMessage(OPEN_MODEL_ERROR);

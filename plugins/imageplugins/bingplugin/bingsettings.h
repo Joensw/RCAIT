@@ -59,12 +59,26 @@ public:
      */
     void setPythonPath(QString path);
 
+    /**
+     * @brief isConfigured checks if all settings have been set
+     * @return true if set
+     */
+    bool isConfigured();
+
+    /**
+     * @brief getConfigError returns a short error message for missing configuration
+     * @return the error message
+     */
+    QString getMissingConfigError();
 
 
 private:
     Ui::BingSettings *ui;
     QString m_pythonPath = "Python Path";
     QSettings m_settings = {"Bing Plugin",QSettings::IniFormat};
+    QString m_errorMessage;
+    inline static const QString NOT_CONFIGURED_STRING = "Error: Python executable path is not set.";
+    inline static const QString CONFIGURED_STRING = "Python executable path is set.";
 };
 
 #endif // BINGSETTINGS_H

@@ -71,7 +71,7 @@ QStringList ProjectManager::getProjects() {
     return {};
 }
 
-bool ProjectManager::createNewProject(const QString &projectName, QString * error) {
+bool ProjectManager::createNewProject(const QString &projectName, QString &error) {
     if (!verifyName(projectName, error)){
         return false;
     }
@@ -204,22 +204,22 @@ void ProjectManager::setProjectsDirectory(const QString &newDirectory)
     mProjectsDirectory = newDirectory;
 }
 
-bool ProjectManager::verifyName(QString projectName, QString *error)
+bool ProjectManager::verifyName(QString projectName, QString &error)
 {
     if (projectName.length() == 0){
-        error->append(ERROR_NOCHAR);
+        error = ERROR_NOCHAR;
         return false;
     }
 
     static QRegularExpression noSpacesEx(REGEX_ONLY_SPACE);
     QRegularExpressionMatch match = noSpacesEx.match(projectName);
     if (match.hasMatch()) {
-        error->append(ERROR_ONLY_SPACE);
+        error = ERROR_ONLY_SPACE;
         return false;
     }
     for (const QString &charSequence: UNWANTED_NAME_SEQUENCES) {
         if (projectName.contains(charSequence)) {
-            error->append(ERROR_ILLEGAL_CHAR);
+            error = ERROR_ILLEGAL_CHAR;
             return false;
         }
     }
@@ -228,7 +228,7 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     QStringList projects = projectsDir.entryList();
     if (projects.contains(projectName)) {
-        error->append(ERROR_DUPLICATE);
+        error = ERROR_DUPLICATE;
         return false;
 
     }
@@ -237,7 +237,7 @@ bool ProjectManager::verifyName(QString projectName, QString *error)
     QDir tempDir(mProjectsDirectory % "/" % projectName);
     tempDir.setFilter(QDir::NoDotAndDotDot);
     if (!tempDir.mkpath(mProjectsDirectory % "/" % projectName )){
-        error->append(ERROR_OS_SUPPORT);
+        error = ERROR_OS_SUPPORT;
         return false;
     }
     tempDir.removeRecursively();

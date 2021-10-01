@@ -16,6 +16,19 @@ NewModelDialog::~NewModelDialog()
     delete ui;
 }
 
+void NewModelDialog::setErrorMessage(const QString &error)
+{
+    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect();
+    ui->label_information->setGraphicsEffect(effect);
+    QPropertyAnimation *anim = new QPropertyAnimation(effect, OPACITY_PROPERTY);
+    anim->setDuration(FADE_IN_TIME);
+    anim->setStartValue(START_OPACITY);
+    anim->setEndValue(END_OPACITY);
+    anim->setEasingCurve(QEasingCurve::OutQuad);
+    anim->start(QAbstractAnimation::DeleteWhenStopped);
+    ui->label_information->setText(error);
+}
+
 void NewModelDialog::setAvailableBases(QStringList bases)
 {
     ui->pluginProfileComboBox->clear();

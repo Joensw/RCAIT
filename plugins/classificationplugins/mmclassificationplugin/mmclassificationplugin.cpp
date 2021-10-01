@@ -190,7 +190,7 @@ MMClassificationPlugin::getAugmentationPreview(const QString &modelName, const Q
     QString targetAbsolutePath = targetDir.absolutePath();
 
     // delete old Preview Pictures in the directory
-    targetDir.setNameFilters(QStringList() << "*.jpg" << "*.png");
+    targetDir.setNameFilters(QStringList() << "*.jpg" << "*.png" << "*.bmp" << ".webp");
     for (const QString &dirFile: targetDir.entryList(QDir::Files)) {
         targetDir.remove(dirFile);
     }
@@ -198,9 +198,13 @@ MMClassificationPlugin::getAugmentationPreview(const QString &modelName, const Q
     // find all subdirectories to distribute evenly between the different classes
     const QString &rootDir = inputPath;
     QStringList subdirectories = QDir(rootDir).entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+    // make absolute paths
+    for (auto &subdirectory: subdirectories) {
+        subdirectory.prepend(inputPath % "/");
+    }
     int totalPictures = 0;
     QMap<QString, int> numberPerSubdirectory;
-    QStringList validExtensions = {"jpg", "JPG", "png", "PNG"};
+    QStringList validExtensions = {"jpg", "JPG", "png", "PNG", "bmp", "webp"};
     int count;
     for (const auto &subdirectory: subdirectories) {
         QDir dir(subdirectory);
@@ -227,7 +231,8 @@ MMClassificationPlugin::getAugmentationPreview(const QString &modelName, const Q
             for (const auto &[key, remaining]: MapAdapt(remainingAmountPerSubdirectory)) {
                 amount = 0;
                 if (amount < remaining) {
-                    distribution[key] = ++amount;
+                    distribution[key]++;
+                    amount++;
                     remainingTotalAmount--;
                 } else remainingAmountPerSubdirectory.remove(key);
 

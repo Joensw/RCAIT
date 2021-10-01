@@ -53,7 +53,7 @@ public:
      * @param pluginName name of the plugin the model is from
      * @param baseModel name of the base model to be used
      */
-    bool createNewModel(QString projectName,QString modelName, QString pluginName, QString baseModel);
+    bool createNewModel(const QString &projectName, const QString &modelName, const QString &pluginName, const QString &baseModel);
 
     /**
      * @brief removeModel removes a model according to the specified parameters

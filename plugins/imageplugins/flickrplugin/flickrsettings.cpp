@@ -11,6 +11,7 @@ FlickrSettings::FlickrSettings(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::FlickrSettings)
 {
+    m_errorMessage = CONFIGURED_STRING;
     ui->setupUi(this);
     loadSettings();
 }
@@ -53,6 +54,35 @@ void FlickrSettings::setAPISecret(QString key)
 void FlickrSettings::setPythonPath(QString path)
 {
     m_settings.setValue(m_pythonPath, path);
+}
+
+bool FlickrSettings::isConfigured()
+{
+    QStringList missingConfigs;
+    if(m_settings.value(m_pythonPath).toString().isEmpty()){
+        missingConfigs << m_pythonPath;
+    }
+
+    if(m_settings.value(m_apiSecret).toString().isEmpty()){
+        missingConfigs << m_apiSecret;
+    }
+
+    if(m_settings.value(m_apiKey).toString().isEmpty()){
+        missingConfigs << m_apiKey;
+    }
+
+    if(!missingConfigs.isEmpty()){
+        m_errorMessage = ERROR_STRING % missingConfigs.join(", ") % ERROR_END;
+        return false;
+    } else {
+
+        return true;
+    }
+}
+
+QString FlickrSettings::getMissingConfigError()
+{
+    return m_errorMessage;
 }
 
 

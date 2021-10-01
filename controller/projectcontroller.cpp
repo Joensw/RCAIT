@@ -52,7 +52,7 @@ void ProjectController::slot_projectDirectoryChanged() {
 
 void ProjectController::slot_newProjectConfirm(QString projectName) {
     QString error;
-    if (!mDataManager->createNewProject(std::move(projectName), &error)) {
+    if (!mDataManager->createNewProject(std::move(projectName), error)) {
         mNewProjectDialog->setErrorMessage(error);
         mNewProjectDialog->showErrorMessage();
         return;
