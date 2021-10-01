@@ -22,11 +22,11 @@ QStringList DataManager::getProjects() {
     return mProjectManager->getProjects();
 }
 
-void DataManager::createNewProject(QString projectName) {
+void DataManager::createNewProject(const QString &projectName) {
     mProjectManager->createNewProject(std::move(projectName));
 }
 
-bool DataManager::createNewProject(const QString& projectName, QString *error) {
+bool DataManager::createNewProject(const QString& projectName, QString &error) {
     return mProjectManager->createNewProject(projectName, error);
 }
 
@@ -80,15 +80,15 @@ bool DataManager::verifyPaths(const QStringList& paths) {
     return ConfigurationManager::verifyPaths(paths);
 }
 
-void DataManager::createNewModel(QString modelName, QString pluginName, QString baseModel) {
-    mModelManager->createNewModel(getProjectName(), std::move(modelName), std::move(pluginName), std::move(baseModel));
+bool DataManager::createNewModel(const QString &modelName, const QString &pluginName, const QString &baseModel) {
+    return mModelManager->createNewModel(getProjectName(), std::move(modelName), std::move(pluginName), std::move(baseModel));
 }
 
-void DataManager::removeModel(QString modelName) {
-    mModelManager->removeModel(getProjectName(), std::move(modelName));
+bool DataManager::removeModel(const QString &modelName) {
+    return mModelManager->removeModel(getProjectName(), std::move(modelName));
 }
 
-void DataManager::loadModel(QString modelName, QString pluginName) {
+void DataManager::loadModel(const QString &modelName, const QString &pluginName) {
     mModelManager->loadModel(std::move(modelName), std::move(pluginName));
 }
 
@@ -104,11 +104,11 @@ void DataManager::saveLastWorkingDirectoryOfModel(const QString& projectName, co
     mModelManager->saveLastWorkingDirectoryOfModel(projectName, modelName, workingDirectory);
 }
 
-QString DataManager::recallLastWorkingDirectoryOfModel(QString projectName, QString modelName) {
+QString DataManager::recallLastWorkingDirectoryOfModel(const QString &projectName, const QString &modelName) {
     return mModelManager->recallLastWorkingDirectoryOfModel(std::move(projectName), std::move(modelName));
 }
 
-QString DataManager::recallPluginNameOfModel(QString projectName, QString modelName) {
+QString DataManager::recallPluginNameOfModel(const QString &projectName, const QString &modelName) {
     return mModelManager->recallPluginNameOfModell(std::move(projectName), std::move(modelName));
 }
 
@@ -129,7 +129,6 @@ QStringList DataManager::getPluginBases(const QString& plugin) {
     return mSettingsManager->getClassificationPluginBase(plugin);
 }
 
-
 QList<QSharedPointer<QWidget>> DataManager::getPluginSettings() {
     return mSettingsManager->getPluginSettings();
 }
@@ -138,7 +137,7 @@ QList<QSharedPointer<QIcon>> DataManager::getPluginIcons() {
     return mSettingsManager->getPluginIcons();
 }
 
-void DataManager::savePluginSettings(int index) {
+void DataManager::savePluginSettings(const int &index) {
     mSettingsManager->savePluginSettings(index);
 }
 

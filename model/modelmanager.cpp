@@ -12,7 +12,7 @@ ModelManager::ModelManager()
 
 }
 
-bool ModelManager::createNewModel(QString projectName, QString modelName, QString pluginName, QString baseModel) {
+bool ModelManager::createNewModel(const QString &projectName, const QString &modelName, const QString &pluginName, const QString &baseModel) {
     m_userModelNamesPerProject.beginGroup(projectName);
     QStringList modelsOfProject = m_userModelNamesPerProject.childKeys();
     m_userModelNamesPerProject.endGroup();

@@ -103,7 +103,7 @@ void ImportFilesWidget::updateStatusText(const QString &status) {
     QFont labelFont = ui->label_pluginStatus->font();
     QFontMetricsF labelFontMetrics(labelFont);
     ui->label_pluginStatus->setText(
-            labelFontMetrics.elidedText(status, Qt::TextElideMode::ElideRight, ui->label_pluginStatus->width()));
+            labelFontMetrics.elidedText(status, Qt::TextElideMode::ElideNone, ui->label_pluginStatus->width()));
 }
 
 

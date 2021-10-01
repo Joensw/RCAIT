@@ -73,7 +73,7 @@ TEST_F(ResultsImporterTest, testCallMethods){
     ProjectManager * pm = &ProjectManager::getInstance();
     pm->setProjectsDirectory(tempProjectsDir);
     QString error;
-    bool out = pm->createNewProject(testProjectName, &error);
+    bool out = pm->createNewProject(testProjectName, error);
 
 
     pm->loadProject(testProjectName);
