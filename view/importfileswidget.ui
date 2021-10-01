@@ -241,6 +241,9 @@
           <property name="text">
            <string/>
           </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
@@ -456,6 +459,7 @@
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="../Resources/UI_Icons.qrc"/>
   <include location="../Resources/UI_Icons.qrc"/>
  </resources>
  <connections/>

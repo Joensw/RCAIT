@@ -97,7 +97,7 @@ void FlickrPlugin::slot_readOutPut() {
         if (ok)
             m_receiver->slot_makeProgress(progress);
         else
-                emit m_receiver->sig_statusUpdate(parsedProgress);
+            emit m_receiver->sig_statusUpdate(parsedProgress);
 
     }
 }

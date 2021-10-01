@@ -10,6 +10,7 @@ bool GooglePlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
     m_progress = 0;
     m_imageCount = imageCount;
     m_labels = label;
+    m_errorOutPutBuffer = "";
 
     connect(receiver, &ProgressablePlugin::sig_pluginAborted, this, &GooglePlugin::slot_abort);
     m_receiver = receiver;
@@ -19,11 +20,24 @@ bool GooglePlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
     m_process->setReadChannel(QProcess::StandardOutput);
     connect(&*m_process, &QProcess::readyReadStandardOutput, this, &GooglePlugin::slot_readOutPut);
     connect(&*m_process, &QProcess::finished, this, &GooglePlugin::slot_pluginFinished);
+    connect(&*m_process, &QProcess::readyReadStandardError, this, &GooglePlugin::slot_readErrorOutPut);
+
 
     //check settings
     if(!pluginSettings->isConfigured()){
         emit m_receiver->sig_statusUpdate(pluginSettings->getMissingConfigError());
+        return false;
     }
+
+    //check inputs and get errors
+    QStringList inputErrors = imagepluginerrorutil::checkInputs(path, label, imageCount);
+
+    //print error messages and return if we have any
+    if(!inputErrors.isEmpty()){
+        emit m_receiver->sig_statusUpdate(imagepluginerrorutil::getErrorString(inputErrors));
+        return false;
+    }
+
 
     m_process->startCommand(fullCommand);
     m_process->waitForStarted();
@@ -78,7 +92,7 @@ void GooglePlugin::slot_readOutPut() {
     static QRegularExpression downloadRegex(QRegularExpression::escape("[%] Downloading Image"));
     static QRegularExpression successRegex(QRegularExpression::escape("[%] File Downloaded !"));
     static QRegularExpression errorRegex(QRegularExpression::escape("[!] Issue getting"));
-
+    m_process->setReadChannel(QProcess::StandardOutput);
     while (m_process->canReadLine()) {
         QString line = QString::fromLocal8Bit(m_process->readLine());
         QString strippedLine = line.remove(lineBreakRegex);
@@ -106,6 +120,20 @@ void GooglePlugin::slot_readOutPut() {
 void GooglePlugin::slot_pluginFinished() {
     m_process->close();
     m_process.reset();
+}
+
+void GooglePlugin::slot_readErrorOutPut()
+{
+    static QRegularExpression lineBreak("[\r\n]");
+    static QRegularExpression multiSpace("( )( )+");
+    m_process->setReadChannel(QProcess::StandardError);
+    while (m_process->canReadLine()) {
+        QString line = QString::fromLocal8Bit(m_process->readLine());
+        QString parsedProgress = line.remove(lineBreak);
+        parsedProgress = line.remove(multiSpace);
+        m_errorOutPutBuffer = m_errorOutPutBuffer % " " % parsedProgress;
+        emit m_receiver->sig_statusUpdate(m_errorOutPutBuffer);
+    }
 }
 
 void GooglePlugin::slot_abort() {
