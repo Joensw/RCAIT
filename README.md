@@ -112,6 +112,71 @@ see [this](https://stackoverflow.com/questions/35850362/importerror-no-module-na
 
 ### [MMClassification Plugin](https://github.com/open-mmlab/mmclassification)
 
+#### Required modifications to mmcls
+
+* Creation of the confusion matrix \
+A confusion matrix will be generated due to the specified support metric in the config file, but to save its data for further use the following code must be added to [eval_metrics.py](https://github.com/open-mmlab/mmclassification/blob/master/mmcls/core/evaluation/eval_metrics.py) after `confusion_matrix = calculate_confusion_matrix(pred, target)`.
+    ```
+    torch.set_printoptions(profile="full")    
+    matrix = confusion_matrix.data.tolist()
+    with open("PLACEHOLDER PATH TO MMClassification Directory/data_confusion_matrix.json", 'w') as outfile:
+        json.dump(matrix, outfile)
+    torch.set_printoptions(profile="default")
+    ```
+    The placeholder must be replaced with the path to mmclassification. The path must be same as the one specified in the MMClassification plugin settings under mmclassification path and the name must be data_confusion_matrix.json.
+
+* Creation of the annotation files \
+Annotation files are needed when classifying images with the test script. Otherwise the order of the classification results would be unclear and so the input images would not be matched with the correct, corresponding result. This dataset class ensures, that the input file will be read lexicographically and that a annotation file in the input directory will be generated. First the following file must be added to the [dataset directory of mmcls](https://github.com/open-mmlab/mmclassification/tree/master/mmcls/datasets) and its class name must be added in the [__init__.py file](https://github.com/open-mmlab/mmclassification/blob/master/mmcls/datasets/__init__.py).
+    ```
+    import mmcv
+    import numpy as np
+
+    from .builder import DATASETS
+    from .base_dataset import BaseDataset
+    from.imagenet import find_folders, get_samples
+    from tkinter import Tcl
+
+    @DATASETS.register_module()
+    class LexicographicallySorted(BaseDataset):
+        IMG_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif')
+
+        def load_annotations(self):
+        if self.ann_file is None:
+            folder_to_idx = find_folders(self.data_prefix)
+            samples = get_samples(
+                self.data_prefix,
+                folder_to_idx,
+                extensions=self.IMG_EXTENSIONS)
+            if len(samples) == 0:
+                raise (RuntimeError('Found 0 files in subfolders of: '
+                                    f'{self.data_prefix}. '
+                                    'Supported extensions are: '
+                                    f'{",".join(self.IMG_EXTENSIONS)}'))
+
+            self.folder_to_idx = folder_to_idx
+        elif isinstance(self.ann_file, str):
+            with open(self.ann_file) as f:
+                samples = [x.strip().rsplit(' ', 1) for x in f.readlines()]
+        else:
+            raise TypeError('ann_file must be a str or None')
+
+        #sort samples lexicographically
+        self.samples = Tcl().call('lsort', '-dict', samples)
+
+        data_infos = []
+        path = self.data_prefix + '/val.txt'
+        with open(path, 'w') as f:
+            for filename, gt_label in self.samples:
+                info = {'img_prefix': self.data_prefix}
+                info['img_info'] = {'filename': filename}
+                info['gt_label'] = np.array(gt_label, dtype=np.int64)
+                data_infos.append(info)
+                annotationFileLine = self.data_prefix + "/" + filename + " " + str(gt_label) + "\n"
+                f.write(annotationFileLine);
+        return data_infos
+    ```
+    The dataset can then be used in the dataset config by navigating to mmclassification/configs/datasets/default_dataset.py and changing the line in `test = dict(` from
+    `type = dataset_type` to `type = 'LexicographicallySorted'`.
 ## Rare Cases & Fixes
 
 ### QSettings Crash
