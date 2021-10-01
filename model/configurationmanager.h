@@ -10,7 +10,7 @@
 /**
  * @brief The ConfigurationManager class contains the logic for configuration of the working directories and paths to plugins.
  */
-class ConfigurationManager : public QObject {
+class ConfigurationManager final : public QObject {
 
 Q_OBJECT
 public:
@@ -22,7 +22,6 @@ public:
 
     /**
      * @brief operator = deleted assignment operator
-     * @return
      */
     ConfigurationManager &operator=(const ConfigurationManager &) = delete;
 

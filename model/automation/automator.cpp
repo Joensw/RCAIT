@@ -82,11 +82,11 @@ void Automator::queue(int taskNum) {
     emit sig_taskUpdate(mQueuedTasks.last()->getName(), StateMap[SCHEDULED]);
 }
 
-qsizetype Automator::getUnqueuedSize() {
+qsizetype Automator::getUnqueuedSize() const {
     return mUnqueuedTasks.size();
 }
 
-qsizetype Automator::getQueuedSize() {
+qsizetype Automator::getQueuedSize() const {
     return mQueuedTasks.size();
 }
 

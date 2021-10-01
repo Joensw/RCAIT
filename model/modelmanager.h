@@ -20,7 +20,7 @@
 /**
  * @brief The ModelManager class contains logic for manipulating models of external classification plugins
  */
-class ModelManager
+class ModelManager final
 {
 public:
 
@@ -53,14 +53,14 @@ public:
      * @param pluginName name of the plugin the model is from
      * @param baseModel name of the base model to be used
      */
-    void createNewModel(QString projectName,QString modelName, QString pluginName, QString baseModel);
+    bool createNewModel(const QString &projectName, const QString &modelName, const QString &pluginName, const QString &baseModel);
 
     /**
      * @brief removeModel removes a model according to the specified parameters
      * @param projectName the name of the project to which the model belongs
      * @param modelName name the model
      */
-    void removeModel(QString projectName, QString modelName);
+    bool removeModel(QString projectName, QString modelName);
 
     /**
      * @brief loadModel loads a model into the application for further use

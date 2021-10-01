@@ -19,7 +19,7 @@
  * @brief The AutomationController class mediates between ui elements and the batch processing of tasks.
  *
  */
-class AutomationController : public QObject {
+class AutomationController final : public QObject {
 Q_OBJECT
 public:
 
@@ -30,6 +30,11 @@ public:
      * @param automationWidget user interface for operating automation.
      */
     AutomationController(AutomationWidget *automationWidget);
+
+    /**
+     * @brief operator = deleted assignment operator
+     */
+    AutomationController &operator=(const AutomationController &) = delete;
 
 public slots:
 

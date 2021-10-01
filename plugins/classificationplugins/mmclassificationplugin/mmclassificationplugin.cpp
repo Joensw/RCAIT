@@ -120,7 +120,9 @@ bool MMClassificationPlugin::createNewModel(QString modelName, QString baseModel
     static constexpr auto mainConfigIdentifier = "_main";
     QString baseModelPath;
     QString checkpointFileName;
-    if (m_baseModelsMap.contains(baseModelName)) {
+    if (!pluginSettings->getMMClassificationPath().trimmed().isEmpty()
+            && m_baseModelsMap.contains(baseModelName)
+            && !m_models.contains(modelName % "/" % m_modelNameKey)) {
         auto baseModel = m_baseModelsMap[baseModelName];
         baseModelPath = m_baseModelsMap[baseModelName]->getRelConfigFilePath();
         checkpointFileName = baseModel->getCheckpointFileName();
@@ -153,8 +155,7 @@ bool MMClassificationPlugin::createNewModel(QString modelName, QString baseModel
 
 bool MMClassificationPlugin::removeModel(QString modelName) {
     Model existingModel = loadModel(modelName);
-    if (!existingModel.isValid()) return false;
-
+    if (pluginSettings->getMMClassificationPath().trimmed().isEmpty() || !existingModel.isValid()) return false;
     QString mainConfigPath = existingModel.getMainConfigPath();
     QString modelConfigPath = existingModel.getModelConfigPath();
     QString datasetConfigPath = existingModel.getDatasetConfigPath();

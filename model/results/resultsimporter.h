@@ -37,14 +37,15 @@ signals:
      * @param view result tab to load the result into
      * @param result imported result
      */
-    void sig_normal_loadTrainingResultData(TrainingResultView *view, QSharedPointer<TrainingResult> result);
+    void sig_normal_loadTrainingResultData(TrainingResultView *view, QSharedPointer<TrainingResult> result) const;
 
     /**
      * @brief Emitted after ClassificationResult Data was loaded
      * @param view result tab to load the result into
      * @param result imported result
      */
-    void sig_normal_loadClassificationResultData(ClassificationResultView *view, QSharedPointer<ClassificationResult> result);
+    void sig_normal_loadClassificationResultData(ClassificationResultView *view,
+                                                 QSharedPointer<ClassificationResult> result) const;
 
 public slots:
 
@@ -55,8 +56,9 @@ public slots:
      * @param graphics graphics to provide the data to
      * @param runNameToCompare identifier of the result to import
      */
-    void slot_comparison_loadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
-                                          const QString &runNameToCompare);
+    void
+    slot_comparison_loadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
+                                     const QString &runNameToCompare) const;
 
     /**
      * @brief Unload accuracy data when a comparison result is now unselected
@@ -64,8 +66,9 @@ public slots:
      * @param graphics graphics to unload the data from
      * @param runNameToCompare result identifier to unload
      */
-    static void slot_comparison_unloadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
-                                                   const QString &runNameToCompare);
+    static void
+    slot_comparison_unloadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
+                                       const QString &runNameToCompare);
 
     //Classification result slots
     /**
@@ -74,7 +77,7 @@ public slots:
      * @param runNameToCompare identifier of the result to import
      */
     void slot_comparison_loadClassificationResultData(ClassificationResultView *view,
-                                                      const QString &runNameToCompare);
+                                                      const QString &runNameToCompare) const;
 
     /**
      * @brief Imports graphics of a given classification result by identifier
@@ -82,7 +85,7 @@ public slots:
      * @param runNameToCompare identifier of the result to import
      */
     void slot_comparison_loadClassificationResultGraphics(GenericGraphicsView *receiver,
-                                                          const QString &runNameToCompare);
+                                                          const QString &runNameToCompare) const;
 
     //Training result slots
     /**
@@ -90,14 +93,15 @@ public slots:
      * @param view TrainingResultView to display the result
      * @param runNameToCompare identifier of the result to import
      */
-    void slot_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare);
+    void slot_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare) const;
 
     /**
      * @brief Imports graphics of a given training result by identifier
      * @param receiver result tab to display the result
      * @param runNameToCompare identifier of the result to import
      */
-    void slot_comparison_loadTrainingResultGraphics(GenericGraphicsView *receiver, const QString &runNameToCompare);
+    void
+    slot_comparison_loadTrainingResultGraphics(GenericGraphicsView *receiver, const QString &runNameToCompare) const;
 
 private:
     ProjectManager *m_projectManager;

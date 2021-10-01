@@ -48,9 +48,11 @@ private slots:
 
     [[maybe_unused]] void on_pushButton_startDiff_clicked();
 
-    void slot_diffFinished(qsizetype longestLine);
+    void slot_diffFinished(qsizetype longestLine) const;
 
 private:
+    static constexpr auto ELIDE_TEXT = "...";
+    static constexpr auto MAX_TITLE_LENGTH = 100;
     static constexpr auto FONT_NAME = "Inter Monospace";
     static constexpr auto FONT_SIZE = 8;
 
@@ -60,7 +62,7 @@ private:
     QString m_leftFilePath;
     QString m_rightFilePath;
 
-    bool openFile(QString& fileName);
+    bool openFile(QString &fileName);
 
     static bool openFileHelper(CodeEditor *codeView, QGroupBox *box,const QString &fileName);
 

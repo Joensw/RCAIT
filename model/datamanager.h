@@ -20,7 +20,7 @@
 /**
  * @brief The DataManager class a facade to tie all the managers together and delegate to these
  */
-class DataManager {
+class DataManager final {
 public:
 
     /**
@@ -55,7 +55,7 @@ public:
      * @brief createNewProject creates a new  project sub directory with the project name in the current projects directory.
      * @param projectName name of the new project
      */
-    void createNewProject(QString projectName);
+    void createNewProject(const QString &projectName);
 
     /**
      * @brief createNewProject creates a new  project sub directory with the project name in the current projects directory. Preforms additional checks and writes an error message, should errors occur
@@ -63,7 +63,7 @@ public:
      * @param error pointer to where error messages can be written
      * @return true if a new project was created, false if there was an error
      */
-    bool createNewProject(const QString& projectName, QString *error);
+    bool createNewProject(const QString& projectName, QString &error);
 
     /**
      * @brief removeProject deleted the project sub directory from the current projects directory.
@@ -158,21 +158,23 @@ public:
      * @param modelName name of the model
      * @param pluginName name of the plugin the model is from
      * @param baseModel name of the base model to be used
+     * @return true if the model could be created, false otherwise
      */
-    void createNewModel(QString modelName, QString pluginName, QString baseModel);
+    bool createNewModel(const QString &modelName,  const QString &pluginName, const QString &baseModel);
 
     /**
      * @brief removeModel removes a model according to the specified parameters
      * @param modelName name the model
+     * @return true if the model was removed, false if an error occured
      */
-    void removeModel(QString modelName);
+    bool removeModel(const QString &modelName);
 
     /**
      * @brief loadModel loads a model into the application for further use
      * @param modelName name of the model
      * @param pluginName name of the plugin the model is from
      */
-    void loadModel(QString modelName, QString pluginName);
+    void loadModel(const QString &modelName, const QString &pluginName);
 
     /**
      * @return a list of all modelNames of the current project
@@ -198,7 +200,7 @@ public:
      * @param modelName the name of model to which the working directory belongs
      * @return the saved working directory of the given model, if it exists, an empty QString otherwise
      */
-    QString recallLastWorkingDirectoryOfModel(QString projectName, QString modelName);
+    QString recallLastWorkingDirectoryOfModel(const QString &projectName, const QString &modelName);
 
     /**
      * @brief recallPluginNameOfModel find the plugin a certain model was derived from
@@ -207,7 +209,7 @@ public:
      * @return name of the originating plugin
      */
 
-    QString recallPluginNameOfModel(QString projectName, QString modelName);
+    QString recallPluginNameOfModel(const QString &projectName, const QString &modelName);
 
 
     /**
@@ -240,7 +242,7 @@ public:
      * @brief savePluginSettings saves the settings of the plugin specified in the UI at the current index
      * @param index position of plugin settings widget
      */
-    void savePluginSettings(int index);
+    void savePluginSettings(const int &index);
 
     /**
      * @brief saveProjectsDir sets the value of the projects directory

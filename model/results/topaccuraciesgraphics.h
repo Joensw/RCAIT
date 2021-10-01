@@ -73,9 +73,9 @@ private:
 
     void passResultGraphics(GenericGraphicsView *receiver, const QString &fullFilePath) override;
 
-    QString labelsToPyText();
+    QString labelsToPyText() const;
 
-    QString valuesToPyText();
+    QString valuesToPyText() const;
 };
 
 #endif // TOPACCURACIESGRAPHICS_H

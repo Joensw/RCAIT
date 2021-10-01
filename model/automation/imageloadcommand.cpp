@@ -19,9 +19,8 @@ ImageLoadCommand::ImageLoadCommand(QVariantMap map, ProgressablePlugin *receiver
     if (!mInputWidget) return;
 
     for (const auto &[key, value]: MapAdapt(map)) {
-        if (mInputWidget->property(key.toUtf8().data()).isValid()) {
+        if (mInputWidget->property(key.toUtf8().data()).isValid())
             mWidgetOptions[key] = value;
-        }
     }
 }
 

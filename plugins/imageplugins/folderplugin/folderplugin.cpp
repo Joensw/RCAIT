@@ -11,7 +11,7 @@ bool FolderPlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
     abort = false;
     connect(receiver, &ProgressablePlugin::sig_pluginAborted, this, &FolderPlugin::slot_abort);
     QDir output(path);
-    QDir folder = QDir(imageDir);
+    QDir folder(imageDir);
     if (!folder.exists() || !output.exists()) {
         receiver->slot_makeProgress(100);
         return false;
@@ -25,7 +25,7 @@ bool FolderPlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
                 if (abort) return false;
 
                 folder.cd(folderName);
-                auto imageList = folder.entryList({"*.JPG", "*.jpg", "*.jpeg", "*.png"}, QDir::Files);
+                static auto imageList = folder.entryList({"*.JPG", "*.jpg", "*.jpeg", "*.png"}, QDir::Files);
 
                 if (imageList.isEmpty() || addLabel(imageList, folder, output)) {
                     receiver->slot_makeProgress((int) ((i++ * 100 + 100) / imageFolders.count()));
@@ -60,7 +60,7 @@ bool FolderPlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
             return true;
         }
         case FOLDER: {
-            auto images = folder.entryList({"*.JPG", "*.jpg", "*.jpeg", "*.png"}, QDir::Files);
+            static auto images = folder.entryList({"*.JPG", "*.jpg", "*.jpeg", "*.png"}, QDir::Files);
             bool success = addLabel(images, folder, output);
             receiver->slot_makeProgress(100);
             return success;

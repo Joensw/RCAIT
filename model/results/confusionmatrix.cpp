@@ -35,16 +35,16 @@ double ConfusionMatrix::operator()(int row, int column) const {
     return m_values[row * m_size + column];
 }
 
-QString ConfusionMatrix::labelsToPyText() {
+QString ConfusionMatrix::labelsToPyText() const {
     QStringList labels;
-    for (auto &item: m_classLabels) {
+    for (const auto &item: m_classLabels) {
         labels << "'" % item % "'";
     }
     //Add "" around string so that dashes are not recognized as new arguments
     return '"' % ('[' % labels.join(',') % ']') % '"';
 }
 
-QString ConfusionMatrix::valuesToPyText() {
+QString ConfusionMatrix::valuesToPyText() const {
     QStringList result;
     for (qsizetype row = 0; row < m_size; row++) {
         QStringList rowList;

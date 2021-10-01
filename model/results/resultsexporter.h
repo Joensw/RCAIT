@@ -15,11 +15,6 @@
 #include <json_toolbox.h>
 
 /**
- * @brief Dummy variable to achieve optional parameters
- */
-static bool SAVED;
-
-/**
  * @brief The <code>ResultsExporter</code> is used to export all types of specialised results
  * in JSON files and save result graphics.
  */
@@ -44,23 +39,29 @@ public slots:
      * @param graphics graphics to be saved
      * @param success bool to report success state back to the view component
      */
-    void slot_save_TopAccuracies(const QSharedPointer<TopAccuraciesGraphics> &graphics, bool &success = SAVED);
+    void slot_save_TopAccuracies(const QSharedPointer<TopAccuraciesGraphics> &graphics, bool &success = SAVED) const;
 
     /**
      * @brief Saves a given training result.
      * @param result result to be saved
      * @param success bool to report success state back to the view component
      */
-    void slot_save_TrainingResult(const QSharedPointer<TrainingResult>& result, bool &success = SAVED);
+    void slot_save_TrainingResult(const QSharedPointer<TrainingResult> &result, bool &success = SAVED) const;
 
     /**
      * @brief Saves a given classification result.
      * @param result result to be saved
      * @param success bool to report success state back to the view component
      */
-    void slot_save_ClassificationResult(const QSharedPointer<ClassificationResult> &result, bool &success = SAVED);
+    void
+    slot_save_ClassificationResult(const QSharedPointer<ClassificationResult> &result, bool &success = SAVED) const;
 
 private:
+
+    /**
+     * @brief Dummy variable to achieve optional parameters
+     */
+    static inline bool SAVED = false;
 
     ProjectManager *m_projectManager;
     QString m_trainingResultsDir;

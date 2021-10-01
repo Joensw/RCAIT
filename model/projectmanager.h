@@ -19,7 +19,7 @@
 /**
  * @brief The ProjectManager class contains the logic for manipulating the projects of the application
  */
-class ProjectManager : public QObject {
+class ProjectManager final : public QObject {
 Q_OBJECT
 public:
 
@@ -57,7 +57,7 @@ public:
      * @param error pointer to where error messages can be written
      * @return true if a new project was created, false if there was an error
      */
-    bool createNewProject(const QString &projectName, QString *error);
+    bool createNewProject(const QString &projectName, QString &error);
 
     /**
      * @brief removeProject deleted the project sub directory from the current projects directory.
@@ -201,7 +201,7 @@ private:
 
     static const QVector<QString> UNWANTED_NAME_SEQUENCES;
 
-    bool verifyName(QString projectName, QString *error);
+    bool verifyName(QString projectName, QString &error);
 
     QString mProjectPath;
     QString mProjectImagesTempDir;

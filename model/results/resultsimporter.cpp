@@ -42,8 +42,9 @@ QString ResultsImporter::getResultDataPath(const QString &resultNameTemplate, co
 /**
  * Top Accuracies slots
  */
-void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
-                                                       const QString &runNameToCompare) {
+void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view,
+                                                       const QSharedPointer<TopAccuraciesGraphics> &graphics,
+                                                       const QString &runNameToCompare) const {
     Q_ASSERT(graphics);
     Q_ASSERT(view);
 
@@ -70,7 +71,7 @@ void ResultsImporter::slot_comparison_unloadAccuracyData(TopAccuraciesView *view
  * Classification result slots
  */
 void ResultsImporter::slot_comparison_loadClassificationResultData(ClassificationResultView *view,
-                                                                   const QString &runNameToCompare) {
+                                                                   const QString &runNameToCompare) const {
     Q_ASSERT(view);
     view->setSaved(true);
 
@@ -99,7 +100,7 @@ void ResultsImporter::slot_comparison_loadClassificationResultData(Classificatio
 }
 
 void ResultsImporter::slot_comparison_loadClassificationResultGraphics(GenericGraphicsView *receiver,
-                                                                       const QString &runNameToCompare) {
+                                                                       const QString &runNameToCompare) const {
     loadGraphicsInView(receiver, m_classificationResultsDir, runNameToCompare);
 }
 
@@ -107,7 +108,8 @@ void ResultsImporter::slot_comparison_loadClassificationResultGraphics(GenericGr
  * Training result slots
  */
 void
-ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view, const QString &runNameToCompare) {
+ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view,
+                                                        const QString &runNameToCompare) const {
     Q_ASSERT(view);
     view->setSaved(true);
 
@@ -143,7 +145,7 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
 }
 
 void ResultsImporter::slot_comparison_loadTrainingResultGraphics(GenericGraphicsView *receiver,
-                                                                 const QString &runNameToCompare) {
+                                                                 const QString &runNameToCompare) const {
     loadGraphicsInView(receiver, m_trainingResultsDir, runNameToCompare);
 }
 

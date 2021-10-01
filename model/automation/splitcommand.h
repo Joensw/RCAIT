@@ -32,6 +32,8 @@ public:
      */
     bool execute() override;
 
+    virtual ~SplitCommand() = default;
+
 signals:
 
     /**

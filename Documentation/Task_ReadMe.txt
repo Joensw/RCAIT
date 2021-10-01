@@ -126,4 +126,11 @@ Plugin spezifische Einstellungen:
     		"m_resize" = int,
     		"m_center_crop_size" = int		
 
-		 
+Plugin Namen (mitausgelieferte Plugins):
+	aiPLuginName:
+		MMClassification Plugin
+	imagePluginName:
+		Bing API Plugin
+		Flickr API Plugin
+		Folder Loader Plugin
+		Google API Plugin

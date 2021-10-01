@@ -23,7 +23,7 @@
  * The SettingsManager contains logic for global settings of the application as well as plugin specific settings
  * @brief The SettingsManager class contains the logic for for the settings UI
  */
-class SettingsManager : public QObject {
+class SettingsManager final : public QObject {
 Q_OBJECT
 public:
 

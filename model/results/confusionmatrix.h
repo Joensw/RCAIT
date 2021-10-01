@@ -20,7 +20,7 @@ class ConfusionMatrix : public GenericResultGraphics {
 public:
 
     /**
-     * @brief Generate a new, square Confusion Matrix
+     * @brief Construct a square Confusion Matrix
      * @param directory  Saving directory for result
      * @param identifier file name including extension
      * @param classLabels N labels for the matrix
@@ -69,8 +69,8 @@ public:
     [[maybe_unused]] [[nodiscard]] const QList<int> &getValues() const;
 
 private:
-    QStringList m_classLabels;
     qsizetype m_size;
+    QStringList m_classLabels;
     QList<int> m_values;
 
 
@@ -91,13 +91,13 @@ private:
      * @brief Convert matrix data to text in a python-friendly way
      * @return QString matrix representation e.g. [[1,2],[3,4]]
      */
-    QString valuesToPyText();
+    QString valuesToPyText() const;
 
     /**
      * @brief Convert matrix labels to text in a python-friendly way
      * @return QString label representation e.g. "['Car','Truck']"
      */
-    QString labelsToPyText();
+    QString labelsToPyText() const;
 };
 
 #endif // CONFUSIONMATRIX_H

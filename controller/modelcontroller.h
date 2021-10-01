@@ -17,7 +17,7 @@
 /**
  * @brief The ModelController class mediates between the model UI's and the model logic
  */
-class ModelController : public QObject
+class ModelController final : public QObject
 {
     Q_OBJECT
 public:
@@ -29,6 +29,12 @@ public:
      * @param importFilesWidget widget to be controlled and updated
      */
     explicit ModelController(QObject *parent = nullptr, DataManager *dataManager = nullptr, ImportFilesWidget *importFilesWidget = nullptr);
+
+    /**
+     * @brief operator = deleted assignment operator
+     * @return
+     */
+    ModelController &operator=(const ModelController &) = delete;
 
 public slots:
 
@@ -89,6 +95,8 @@ private:
     ImportFilesWidget *mImportFilesWidget;
 
     static auto constexpr OPEN_MODEL_ERROR = QT_TR_NOOP("Cannot delete the currently loaded model!");
+    static auto constexpr MODEL_CREATION_ERROR = QT_TR_NOOP("Model could not be created");
+    static auto constexpr MODEL_DELETION_ERROR = QT_TR_NOOP("Model could not be deleted");
 };
 
 #endif // MODELCONTROLLER_H

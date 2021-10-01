@@ -46,7 +46,6 @@ private:
     ClassificationPluginManager &mPluginManager = ClassificationPluginManager::getInstance();
     DataManager &mDataManager = DataManager::getInstance();
     QSharedPointer<ClassificationResult> mResult{};
-    ProgressablePlugin *mReceiver;
     bool parsingFailed = false;
 
     QString mProjectName;
@@ -55,7 +54,7 @@ private:
     QString mAiPluginName;
     QString mTrainDataSetPath;
     QString mWorkingDir;
-
+    ProgressablePlugin *mReceiver;
 
 };
 

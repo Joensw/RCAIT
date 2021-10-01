@@ -29,7 +29,7 @@ public:
      */
     ClassificationGraphics(const QString &directory, const QString &identifier,
                            const QMap<QString, QList<double>> &data,
-                           const QStringList &classLabels);
+                           QStringList classLabels);
 
     /**
      * @brief Add a classification entry to retain
@@ -76,9 +76,9 @@ private:
 
     QString dataToPyText();
 
-    QString imagePathsToPyText();
+    QString imagePathsToPyText() const;
 
-    QString classLabelsToPyText();
+    QString classLabelsToPyText() const;
 
 };
 

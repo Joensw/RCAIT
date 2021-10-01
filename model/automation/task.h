@@ -17,10 +17,11 @@ enum TaskState {
     SCHEDULED,
     PERFORMING,
     FAILED,
-    COMPLETED
+    COMPLETED,
+    $COUNT
 };
 
-static constexpr CE_String StateMap[] = {
+static constexpr std::array<CE_String, $COUNT> StateMap = {
         "Not_Scheduled",
         "Scheduled",
         "Performing",
@@ -50,7 +51,7 @@ public:
      *
      * @return Task name.
      */
-    QString getName();
+    QString getName() const;
 
 
     /**
@@ -58,7 +59,7 @@ public:
      *
      * @return Task state.
      */
-    TaskState getState();
+    TaskState getState() const;
 
     /**
      * @brief resetTask resets stopped task to standard state.
@@ -140,7 +141,9 @@ signals:
 
 
 private:
-    void insertCommand(int type, QVariantMap map);
+    void insertCommand(int type, const QVariantMap &map);
+
+    static constexpr auto ADD_PROJECT_ENTRY = "addProject";
 
     QString mName;
     TaskState mState = SCHEDULED;

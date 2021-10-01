@@ -8,7 +8,7 @@ QString testProjectName = "testProject";
 TEST(ProjectManagerTest, testFalseName){
     ProjectManager * pm = &ProjectManager::getInstance();
     QString error;
-    bool out = pm->createNewProject("ThisNameIsNotAllowedBecauseItContains/SpecialCharacters\\*", &error);
+    bool out = pm->createNewProject("ThisNameIsNotAllowedBecauseItContains/SpecialCharacters\\*", error);
     EXPECT_FALSE(out);
 }
 
@@ -17,7 +17,8 @@ TEST(ProjectManagerTest, createValidProject){
     ProjectManager * pm = &ProjectManager::getInstance();
     pm->setProjectsDirectory(tempProjectsDir);
     QString error;
-    bool out = pm->createNewProject(testProjectName, &error);
+    bool out = pm->createNewProject(testProjectName, error);
+    EXPECT_TRUE(pm->loadProject(testProjectName));
     EXPECT_TRUE(out);
     qDebug() << error;
 
@@ -57,7 +58,7 @@ TEST(ProjectManagerTest, deleteValidProject) {
     ProjectManager * pm = &ProjectManager::getInstance();
     pm->setProjectsDirectory(tempProjectsDir);
     QString error;
-    bool out = pm->createNewProject(testProjectName, &error);
+    bool out = pm->createNewProject(testProjectName, error);
     EXPECT_TRUE(out);
 
     pm->removeProject(testProjectName);
@@ -76,7 +77,7 @@ TEST(ProjectManagerTest, loadProject){
     ProjectManager * pm = &ProjectManager::getInstance();
     pm->setProjectsDirectory(absolutePath);
     QString error;
-    bool out = pm->createNewProject(testProjectName, &error);
+    bool out = pm->createNewProject(testProjectName, error);
     EXPECT_TRUE(out);
 
 
@@ -98,10 +99,10 @@ TEST(ProjectManagerTest, getProjects){
     ProjectManager * pm = &ProjectManager::getInstance();
     pm->setProjectsDirectory(absolutePath);
     QString error;
-    bool out = pm->createNewProject(testProjectName, &error);
+    bool out = pm->createNewProject(testProjectName, error);
     EXPECT_TRUE(out);
 
-    out = pm->createNewProject("anotherTestProject", &error);
+    out = pm->createNewProject("anotherTestProject", error);
     EXPECT_TRUE(out);
 
     QStringList l = pm->getProjects();
@@ -120,7 +121,7 @@ TEST (ProjectManagerTest, trainingReults) {
     ProjectManager * pm = &ProjectManager::getInstance();
     pm->setProjectsDirectory(absolutePath);
     QString error;
-    bool out = pm->createNewProject(testProjectName, &error);
+    bool out = pm->createNewProject(testProjectName, error);
     EXPECT_TRUE(out);
 
     pm->loadProject(testProjectName);
@@ -152,7 +153,7 @@ TEST (ProjectManagerTest, workDirSubFolder){
     ProjectManager * pm = &ProjectManager::getInstance();
     pm->setProjectsDirectory(absolutePath);
     QString error;
-    bool out = pm->createNewProject(testProjectName, &error);
+    bool out = pm->createNewProject(testProjectName, error);
     EXPECT_TRUE(out);
 
     pm->loadProject(testProjectName);

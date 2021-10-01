@@ -13,7 +13,7 @@
 /**
  * @brief The TabController class controls which widgets are selectable at certain times during the programs execution
  */
-class TabController : public QObject
+class TabController final : public QObject
 {
      Q_OBJECT
 public:
@@ -22,6 +22,12 @@ public:
      * @param tabWidget a CustomTabWidget argument
      */
     TabController(CustomTabWidget *tabWidget);
+
+    /**
+     * @brief operator = deleted assignment operator
+     * @return
+     */
+    TabController &operator=(const TabController &) = delete;
 public slots:
     /**
      * @brief slot_openProject called when a project is openened, unlocks the importFilesTab
