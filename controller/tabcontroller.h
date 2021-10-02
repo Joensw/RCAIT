@@ -9,6 +9,8 @@
 #define TABCONTROLLER_H
 
 #include "customtabwidget.h"
+#include "resultswidget.h"
+#include "QTabWidget"
 
 /**
  * @brief The TabController class controls which widgets are selectable at certain times during the programs execution
@@ -20,8 +22,9 @@ public:
     /**
      * @brief TabController creates a new tabController
      * @param tabWidget a CustomTabWidget argument
+     * @param resultsWidget ResultsWidget argument
      */
-    TabController(CustomTabWidget *tabWidget);
+    TabController(CustomTabWidget* tabWidget, QTabWidget* resultsTabWidget);
 
     /**
      * @brief operator = deleted assignment operator
@@ -39,9 +42,14 @@ public slots:
     void slot_modelLoaded();
 
     /**
-     * @brief slot_showResults called when the results tab is to be shown in the ui
+     * @brief slot_showResults called when the training tab is to be enabled in the ui
      */
-    void slot_showResults();
+    void slot_showTrainingResults();
+
+    /**
+     * @brief slot_showResults called when the classification tab is to be enabled in the ui
+     */
+    void slot_showClassificationResults();
 
     /**
      * @brief slot_settingsSaved called when the global settings are saved, as plugins might have changed.
@@ -50,7 +58,10 @@ public slots:
 private:
     void disableDependentTabs();
 
-    CustomTabWidget * m_tabWidget;
+    CustomTabWidget *m_tabWidget;
+
+    QTabWidget *m_resultsTabWidget;
+
 };
 
 #endif // TABCONTROLLER_H

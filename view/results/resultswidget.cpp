@@ -1,6 +1,6 @@
 #include "resultswidget.h"
 #include "ui_resultswidget.h"
-#include "projectmanager.h"
+
 
 ResultsWidget::ResultsWidget(QWidget *parent) :
         QWidget(parent),
@@ -52,4 +52,9 @@ void ResultsWidget::updateResultFolderPaths() {
 
     m_trainingResultsWidget->updateResultFolderPath(trainingPath);
     m_classificationResultsWidget->updateResultFolderPath(classificationPath);
+}
+
+QTabWidget *ResultsWidget::getTabWidget()
+{
+    return ui->tabWidget_mode;
 }

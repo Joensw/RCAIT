@@ -7,6 +7,7 @@
 #include <ui_resultswidget.h>
 #include "classificationresult.h"
 #include "trainingresultview.h"
+#include "projectmanager.h"
 
 /**
  * @brief This widget contains all specialised result comparison widgets.
@@ -48,6 +49,11 @@ public:
      * @brief Update the results folder of the specialised result widgets
      */
     void updateResultFolderPaths();
+
+    /**
+     * @return returns the tab widget from the UI
+     */
+    QTabWidget *getTabWidget();
 
     /*
      * Get specialized

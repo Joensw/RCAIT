@@ -59,12 +59,14 @@ public slots:
     void slot_results();
 
     /**
-     * @brief slot_trainingResultUpdated
+     * @brief sig_trainingResultUpdated can be called when a new training result is available
+     * @param trainingResult is the result of the last executed training
      */
     void slot_trainingResultUpdated(const QSharedPointer<TrainingResult>& trainingResult);
 
     /**
-     * @brief slot_classificationResultUpdated
+     * @brief sig_classificationResultUpdated can be called when a new classification result is available
+     * @param classificationResult is the result of the last executed classification
      */
     void slot_classificationResultUpdated(const QSharedPointer<ClassificationResult>& classificationResult);
 
