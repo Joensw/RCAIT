@@ -9,11 +9,15 @@ GenericResultGraphics::GenericResultGraphics(QString directory, QString baseName
 void GenericResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
     auto generateGraphicsTask = QtConcurrent::run([this, receiver] {
         this->generateGraphicsInternal('"' % getFullPath() % '"');
-        QFile::copy(getFullPath(), ProjectManager::getInstance().getResultsDir());
+        this->storeGraphicsFile(getFullPath());
         this->passResultGraphics(receiver, getFullPath());
         emit sig_graphicsGenerated(receiver, QSharedPointer<GenericResultGraphics>(this));
     });
     Q_UNUSED(generateGraphicsTask)
+}
+
+void GenericResultGraphics::storeGraphicsFile(const QString &tempFilePath) const {
+    QFile::copy(tempFilePath, ProjectManager::getInstance().getResultsDir() + "/" + getFullPath());
 }
 
 [[maybe_unused]] const QString &GenericResultGraphics::getBaseName() const {

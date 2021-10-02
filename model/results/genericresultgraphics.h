@@ -40,6 +40,8 @@ private:
      */
     virtual void passResultGraphics(GenericGraphicsView *receiver, const QString &fullFilePath) = 0;
 
+    void storeGraphicsFile(const QString &tempFilePath) const;
+
 public:
     /**
      * @brief Constructs GenericResultGraphics
@@ -104,7 +106,6 @@ protected:
      * @param args list of command arguments
      */
     static void launch_externalGraphicsGenerator(const QString &command, const QStringList &args);
-
 };
 
 #endif // ABSTRACTRESULTGRAPHICS_H
