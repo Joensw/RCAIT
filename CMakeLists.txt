@@ -2,10 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 project(RCAIT LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-#set(CMAKE_PREFIX_PATH "D:\\Qt\\5.15.2\\msvc2019_64\\lib\\cmake")
-#set(CMAKE_PREFIX_PATH "D:\\Qt\\6.2.0\\mingw81_64\\lib\\cmake")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
-
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
@@ -100,9 +97,6 @@ if (QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(${PROJECT_NAME})
 endif ()
 
-#enable_testing()
-#add_subdirectory(lib/googletest-master)
-#add_subdirectory(model/test)
 add_subdirectory(Google_tests)
 add_subdirectory(plugins/imageplugins/flickrplugin)
 add_subdirectory(plugins/imageplugins/bingplugin)

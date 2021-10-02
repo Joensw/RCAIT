@@ -7,18 +7,9 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-
-#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/out/library)
-
-
-
 find_package(Qt6 COMPONENTS Core)
 find_package(Qt6 COMPONENTS Gui)
 find_package(Qt6 COMPONENTS Widgets)
-
-#add_subdirectory(googletest-master)
-#add_subdirectory(test)
-
 
 add_library(googleplugin MODULE
     googleplugin.cpp googleplugin.h googlesettings.cpp googlesettings.h ../../../model/pluginusage/progressableplugin.h ../../../model/pluginusage/progressable.h icons.qrc ../imagepluginerrorutil.h
@@ -32,8 +23,6 @@ target_include_directories(googleplugin PUBLIC
     ../../../model/pluginusage
     ../../../model
 )
-
-
 
 
 target_link_libraries(googleplugin PUBLIC
