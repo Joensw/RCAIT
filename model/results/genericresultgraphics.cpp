@@ -1,7 +1,5 @@
 #include "genericresultgraphics.h"
 
-#include <utility>
-
 GenericResultGraphics::GenericResultGraphics(QString directory, QString baseName, QString extension)
         : m_baseName(std::move(baseName)),
           m_extension(std::move(extension)),
@@ -11,6 +9,7 @@ GenericResultGraphics::GenericResultGraphics(QString directory, QString baseName
 void GenericResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
     auto generateGraphicsTask = QtConcurrent::run([this, receiver] {
         this->generateGraphicsInternal('"' % getFullPath() % '"');
+        QFile::copy(getFullPath(), ProjectManager::getInstance().getResultsDir());
         this->passResultGraphics(receiver, getFullPath());
         emit sig_graphicsGenerated(receiver, QSharedPointer<GenericResultGraphics>(this));
     });

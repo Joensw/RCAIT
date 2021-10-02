@@ -10,6 +10,9 @@
 #include <QProcess>
 #include <QtConcurrent/QtConcurrentRun>
 #include <QStringBuilder>
+#include <QFile>
+#include <projectmanager.h>
+#include <utility>
 
 /**
  * @brief Superclass of all specialised result graphics.

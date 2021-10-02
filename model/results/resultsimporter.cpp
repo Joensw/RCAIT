@@ -1,18 +1,5 @@
 #include "resultsimporter.h"
 
-/**
- * @brief This enum contains all types of graphics supported for import.
- * New result types can be inserted here,
- * along with the specification of how to import these results.
- */
-enum GraphicsType {
-    CLASSIFICATION,
-    ACCURACYCURVE,
-    CONFUSIONMATRIX,
-    TOPACCURACIES,
-    $COUNT
-};
-
 ResultsImporter::ResultsImporter()
         : m_projectManager(&ProjectManager::getInstance()) {
 
@@ -153,19 +140,12 @@ void ResultsImporter::loadGraphicsInView(GenericGraphicsView *receiver, const QS
                                          const QString &resultsFolder) {
     Q_ASSERT(receiver);
 
-    static std::array<QRegularExpression, $COUNT> GRAPHICSTYPE2REGEX = {
-            QRegularExpression("classification_(.*)\\.(svg|png)$"),
-            QRegularExpression("accuracycurve_(.*)\\.(svg|png)$"),
-            QRegularExpression("confusionmatrix_(.*)\\.(svg|png)$"),
-            QRegularExpression("topaccuracies_(.*)\\.(svg|png)$")
-    };
-
     auto dir = QDir(baseDir);
     auto folderIdentifier = Result::savableRepresentation(resultsFolder);
     dir.cd(folderIdentifier);
 
     for (const auto &file: dir.entryInfoList(QDir::Files, QDir::Time)) {
-        for (int type = 0; type < $COUNT; type++) {
+        for (int type = 0; type < $GRAPHICSTYPES_COUNT; type++) {
             auto regex = GRAPHICSTYPE2REGEX[type];
 
             auto match = regex.match(file.fileName());

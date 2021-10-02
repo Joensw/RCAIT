@@ -64,6 +64,7 @@ private:
     static inline bool SAVED = false;
 
     ProjectManager *m_projectManager;
+    QString m_resultsDir;
     QString m_trainingResultsDir;
     QString m_classificationResultsDir;
 
@@ -76,12 +77,9 @@ private:
     static QDir createResultDir(const QString &baseDir, const QString &identifier);
 
     /**
-     * @brief Saves a given file to another place, removes the original on success.
-     * @param oldFilePath current file location
-     * @param newFilePath desired file location
-     * @return success state
+     * @brief Moves all graphics from the results directory in their specific subfolder.
      */
-    static bool saveFile(const QString &oldFilePath, const QString &newFilePath);
+    void saveGraphics() const;
 
     /**
      * @brief Convert a TrainingResult into a QJsonObject
@@ -98,6 +96,8 @@ private:
      */
     static QJsonObject
     classificationResult2JSON(const QSharedPointer<ClassificationResult> &result);
+
+    void graphicsTypeMultiplexer(int type, const QString &fileName, const QString &identifier) const;
 };
 
 #endif // RESULTSEXPORTER_H
