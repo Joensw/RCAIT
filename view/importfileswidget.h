@@ -76,6 +76,12 @@ public:
      */
     void clearModelList();
 
+    /**
+     * @brief setLoadButtonEnabled disables or enables the state of the model action bar (remove, open)
+     * @param state true to enabled, false to disable
+     */
+    void setActionButtonsEnabled(bool state);
+
 private:
     static constexpr auto DIALOG_CAPTION = QT_TR_NOOP("Select .txt file");
 
@@ -102,6 +108,8 @@ private slots:
     [[maybe_unused]] void on_pushButton_loadLabelsFromFile_clicked();
 
     [[maybe_unused]] void on_pushButton_abortLoading_clicked();
+
+    void slot_setEnableActionButtons();
 
 signals:
 

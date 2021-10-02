@@ -53,7 +53,7 @@ public:
     void clearProjectList();
 
     /**
-     * @brief setLoadButtonEnabled disables or enables the state of the project action bar (create, remove, open)
+     * @brief setLoadButtonEnabled disables or enables the state of the project action bar (remove, open)
      * @param state true to enabled, false to disable
      */
     void setActionButtonsEnabled(bool state);
@@ -81,7 +81,6 @@ public slots:
      */
     void slot_startLoading();
 
-    void slot_setEnableActionButtons();
 
 private:
     Ui::StartWidget *ui;
@@ -89,6 +88,7 @@ private:
     QTranslator m_translator; /*< contains the translations for this application*/
     QString m_currLang; /*< contains the currently loaded language*/
     const QString m_langPath = QDir(":/i18n/").exists()? ":/i18n/" : QDir::currentPath() + "/"; /*< Path of language files. This is always fixed.*/
+    static auto constexpr QLISTWIDGET_UNSELECT_INDEX = -1;
 
     //see https://wiki.qt.io/How_to_create_a_multi_language_application
     void populateLanguageMenu(QComboBox *box);
@@ -102,6 +102,8 @@ private slots:
     [[maybe_unused]] void on_pushButton_openProject_clicked();
     [[maybe_unused]] void on_comboBox_languageSelection_currentTextChanged(const QString &arg1);
     [[maybe_unused]] void on_pushButton_toggleFullscreen_toggled(bool checked);
+
+    void slot_setEnableActionButtons();
 
 signals:
     /**

@@ -15,6 +15,7 @@ ModelController::ModelController(QObject *parent, DataManager *dataManager, Impo
     connect(mImportFilesWidget, &ImportFilesWidget::sig_newModel, this, &ModelController::slot_newModel);
     connect(mImportFilesWidget, &ImportFilesWidget::sig_removeModel, this, &ModelController::slot_removeModel);
     connect(mImportFilesWidget, &ImportFilesWidget::sig_loadModel, this, &ModelController::slot_loadModel);
+    mImportFilesWidget->setActionButtonsEnabled(false);
 }
 
 void ModelController::slot_newModel() {
@@ -34,7 +35,8 @@ void ModelController::slot_newModel() {
 void
 ModelController::slot_newModelConfirm(const QString &modelName, const QString &pluginName, const QString &baseModel) {
     if (mDataManager->createNewModel(modelName, pluginName, baseModel)){
-        mImportFilesWidget->addNewModel(modelName);
+        refreshModelList();
+        mImportFilesWidget->setActionButtonsEnabled(false);
         mNewModelDialog->close();
     }
     mNewModelDialog->setErrorMessage(MODEL_CREATION_ERROR);
@@ -53,10 +55,10 @@ void ModelController::slot_removeModelConfirm() {
     QString modelName = mRemoveModelDialog->getModelName();
     if (!(mDataManager->getCurrentModel() == modelName)){
         if (mDataManager->removeModel(modelName)) {
-        mImportFilesWidget->clearModelList();
-        mImportFilesWidget->addModels(mDataManager->getModelNamesOfCurrentProject());
-        mRemoveModelDialog->close();
-        return;
+            refreshModelList();
+            mImportFilesWidget->setActionButtonsEnabled(false);
+            mRemoveModelDialog->close();
+            return;
         }
         mRemoveModelDialog->setErrorMessage(MODEL_DELETION_ERROR);
         return;
@@ -68,6 +70,7 @@ void ModelController::slot_loadModel(const QString &modelName) {
     auto projectName = mDataManager->getProjectName();
     auto pluginName = mDataManager->recallPluginNameOfModel(projectName, modelName);
     mDataManager->loadModel(modelName, pluginName);
+    mImportFilesWidget->setActionButtonsEnabled(false);
     emit sig_modelLoaded();
 }
 
@@ -78,6 +81,11 @@ void ModelController::slot_pluginSelected(const QString &pluginName) {
 }
 
 void ModelController::slot_projectPathUpdated() {
+    refreshModelList();
+}
+
+void ModelController::refreshModelList()
+{
     mImportFilesWidget->clearModelList();
     mImportFilesWidget->addModels(mDataManager->getModelNamesOfCurrentProject());
 }

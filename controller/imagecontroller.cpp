@@ -22,7 +22,6 @@ ImageController::ImageController(ImageInspectionWidget *imageInspectionWidget, I
             &ImageController::slot_mergeDatasets);
     connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_removeImages, this, &ImageController::slot_remove);
     connect(m_importFilesWidget, &ImportFilesWidget::sig_abortLoading, this, &ImageController::slot_abortLoading);
-
 }
 
 

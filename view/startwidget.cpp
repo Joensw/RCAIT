@@ -87,7 +87,7 @@ void StartWidget::setActionButtonsEnabled(bool state)
 
 void StartWidget::resetListSelection()
 {
-    ui->listWidget_projectsList->setCurrentRow(-1);
+    ui->listWidget_projectsList->setCurrentRow(QLISTWIDGET_UNSELECT_INDEX);
 }
 
 

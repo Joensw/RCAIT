@@ -80,6 +80,11 @@ public slots:
 
     void slot_projectPathUpdated();
 
+    /**
+     * @brief refresh clears the model list in the UI and reloads the current models
+     */
+    void refreshModelList();
+
 signals:
 
     /**
