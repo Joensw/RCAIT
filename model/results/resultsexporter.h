@@ -97,7 +97,7 @@ private:
     static QJsonObject
     classificationResult2JSON(const QSharedPointer<ClassificationResult> &result);
 
-    void graphicsTypeMultiplexer(int type, const QString &fileName, const QString &identifier) const;
+    void graphicsTypeMultiplexer(int type, const QString &filePath, const QString &identifier) const;
 };
 
 #endif // RESULTSEXPORTER_H

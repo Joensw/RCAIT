@@ -137,39 +137,36 @@ void ResultsExporter::saveGraphics() const {
     for (const auto &file: resultsDir.entryInfoList(QDir::Files)) {
         for (int type = 0; type < $GRAPHICSTYPES_COUNT; type++) {
             auto regex = GRAPHICSTYPE2REGEX[type];
-            auto fileName = file.fileName();
-            auto match = regex.match(fileName);
+            auto filePath = file.absoluteFilePath();
+            auto match = regex.match(file.fileName());
             if (!match.hasMatch()) continue;
 
             auto identifier = match.captured(1);
 
-            graphicsTypeMultiplexer(type, fileName, identifier);
+            graphicsTypeMultiplexer(type, filePath, identifier);
 
         }
     }
 }
 
-void ResultsExporter::graphicsTypeMultiplexer(int type, const QString &fileName, const QString &identifier) const {
+void ResultsExporter::graphicsTypeMultiplexer(int type, const QString &filePath, const QString &identifier) const {
     QDir trainingResultsDir(m_trainingResultsDir);
     QDir classificationResultsDir(m_classificationResultsDir);
-    QFile graphicsFile(fileName);
     switch (QString newPath; type) {
         case CLASSIFICATION:
             newPath = m_classificationResultsDir + "/" + identifier;
             qDebug() << "Target folder to save to: " << newPath;
             if (classificationResultsDir.exists(identifier)) {
-                graphicsFile.rename(newPath);
+                QFile::rename(filePath, newPath);
             }
-            qDebug() << "File moved? " << graphicsFile.exists();
             break;
         case ACCURACYCURVE:
         case CONFUSIONMATRIX:
             newPath = m_trainingResultsDir + "/" + identifier;
             qDebug() << "Target folder to save to: " << newPath;
             if (trainingResultsDir.exists(identifier)) {
-                graphicsFile.rename(newPath);
+                QFile::rename(filePath, newPath);
             }
-            qDebug() << "File moved? " << graphicsFile.exists();
             break;
         case TOPACCURACIES:
             // Top-Accuracies graphics have no folder so pass and do nothing
