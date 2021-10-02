@@ -18,6 +18,7 @@
 #include "progressableplugin.h"
 #include "QRegularExpression"
 #include <QIcon>
+#include "imagepluginerrorutil.h"
 
 /**
  * @brief The BingPlugin class is used for downloading images from the bing web search and saving to disk
@@ -35,6 +36,7 @@ private:
     // in case something goes wrong (could be read from command line)
     bool m_success = true;
     int m_imageCount;
+    QString m_errorOutPutBuffer;
     QStringList m_labels;
 
     int m_progress = 0;
@@ -85,6 +87,8 @@ private slots:
     void slot_abort();
     void slot_readOutPut();
     void slot_pluginFinished();
+    void slot_readErrorOutPut();
+
 
 };
 //! [0]

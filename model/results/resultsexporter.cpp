@@ -1,3 +1,4 @@
+#include <fstream>
 #include "resultsexporter.h"
 
 ResultsExporter::ResultsExporter()
@@ -18,7 +19,7 @@ ResultsExporter::slot_save_TopAccuracies(const QSharedPointer<TopAccuraciesGraph
 
     const auto targetName = QString("%1_%2.%3").arg(baseName, timestamp, extension);
 
-    const auto &oldFilePath = graphics->getFullPath();
+    const auto oldFilePath = graphics->getFullPath();
     const auto newFilePath = QDir(m_trainingResultsDir).absoluteFilePath(targetName);
 
     //Move graphics to result folder, set success state accordingly
@@ -36,10 +37,10 @@ void ResultsExporter::slot_save_TrainingResult(const QSharedPointer<TrainingResu
     success &= JSON_Toolbox::writeJSONToFile(JSON, savePath);
 
     //Save images
-    auto accCurveFilename = result->getAccuracyCurve()->getFullName();
-    auto matrixFileName = result->getConfusionMatrix()->getFullName();
-    auto old_accCurvePath = result->getAccuracyCurve()->getFullPath();
-    auto old_matrixPath = result->getConfusionMatrix()->getFullPath();
+    const auto accCurveFilename = result->getAccuracyCurve()->getFullName();
+    const auto matrixFileName = result->getConfusionMatrix()->getFullName();
+    const auto old_accCurvePath = result->getAccuracyCurve()->getFullPath();
+    const auto old_matrixPath = result->getConfusionMatrix()->getFullPath();
 
     //Move to result folder
     success &= saveFile(old_accCurvePath, resultFolder.absoluteFilePath(accCurveFilename));
@@ -59,8 +60,8 @@ void ResultsExporter::slot_save_ClassificationResult(const QSharedPointer<Classi
     success &= JSON_Toolbox::writeJSONToFile(JSON, savePath);
 
     //Save images
-    auto graphicsFilename = result->getClassificationGraphics()->getFullName();
-    auto old_graphicsPath = result->getClassificationGraphics()->getFullPath();
+    const auto graphicsFilename = result->getClassificationGraphics()->getFullName();
+    const auto old_graphicsPath = result->getClassificationGraphics()->getFullPath();
 
     //Move to result folder
     success &= saveFile(old_graphicsPath, resultFolder.absoluteFilePath(graphicsFilename));
@@ -144,10 +145,28 @@ QDir ResultsExporter::createResultDir(const QString &baseDir, const QString &ide
 }
 
 bool ResultsExporter::saveFile(const QString &oldFilePath, const QString &newFilePath) {
-    QFile::rename(oldFilePath, newFilePath);
-    auto saveWorked = QFile::exists(newFilePath);
-    if (!saveWorked) {
-        qWarning() << "Saving file " << oldFilePath << " -> " << newFilePath << " failed";
+    // Use std c++ filesystem operations instead of qt's method.
+    // This is because otherwise, qt changes input strings and prints random trash like this:
+    // This does not seem right.
+    /*
+     * Broken filename passed to function
+     * Saving file  "㐳∴砠楬歮栺敲㵦⌢湉整割来汵牡㘭≥㸯 ††⼼㹧 †㰠术ਾ†㰠术ਾ†⼼㹧 ⼼㹧 搼晥㹳 㰠汣灩慐桴椠㵤瀢㐷㤲昸敢
+     * 㔴㸢 †爼捥⁴敨杩瑨∽㠲⸲㘷•楷瑤㵨㈢㈸㜮∶砠∽〶㤮∲礠∽ㄱ㘮ㄱ㜸∵㸯 㰠振楬偰瑡㹨 ⼼敤獦ਾ
+     * ⼼癳㹧《‹䌊ㄠ㜸‸㔴㤰㈠㌴‴㔴㤰㈠㌴‴㔴㤰ਠ⁃㐲㐳㐠〵‹〴㜹"
+     * ->  "/home/ies/ott/pseVNC/PSE2/rapid-classification-ai-trainer/満蠀羿\u0000潰蠀羿
+     * \u0000 \u0000\u0000\u00004\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0
+     * 004\u0000\u0000\u0000\u0014\u0000und\u00006.0\u0000\u0000"  failed
+     */
+    try {
+        std::ifstream in(oldFilePath.toStdString(), std::ios::in | std::ios::binary);
+        std::ofstream out(newFilePath.toStdString(), std::ios::out | std::ios::binary);
+        out << in.rdbuf();
+        std::remove(oldFilePath.toUtf8().constData());
     }
-    return saveWorked;
+    catch (const std::ios_base::failure &e) {
+        qWarning() << "Saving file " << oldFilePath << " -> " << newFilePath << " failed";
+        qWarning() << e.what() << '\n';
+        return false;
+    }
+    return true;
 }

@@ -18,6 +18,7 @@
 #include "progressableplugin.h"
 #include "QRegularExpression"
 #include <QIcon>
+#include "imagepluginerrorutil.h"
 
 /**
  * @brief The GooglePlugin class is used for downloading images from the google web search and saving to disk
@@ -30,16 +31,15 @@ class GooglePlugin : public QObject, ImageLoaderPlugin
 
 
 private:
-   QSharedPointer<GoogleSettings> pluginSettings;
+    QSharedPointer<GoogleSettings> pluginSettings;
     QScopedPointer<QProcess> m_process;
-   ProgressablePlugin* m_receiver;
-   // in case something goes wrong (could be read from command line)
-   bool m_success = true;
-   static constexpr auto PLUGIN_ICON = ":/googleicon.svg";
-   int m_imageCount;
-   QStringList m_labels;
-   int m_progress = 0;
-
+    ProgressablePlugin* m_receiver;
+    bool m_success = true;
+    static constexpr auto PLUGIN_ICON = ":/googleicon.svg";
+    int m_imageCount;
+    QStringList m_labels;
+    int m_progress = 0;
+    QString m_errorOutPutBuffer;
     QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
 
 public:
@@ -80,10 +80,13 @@ public:
      */
     QSharedPointer<QIcon> getPluginIcon() override;
 
+
+
 private slots:
     void slot_abort();
     void slot_readOutPut();
     void slot_pluginFinished();
+    void slot_readErrorOutPut();
 
 };
 //! [0]

@@ -1,16 +1,14 @@
 # Installation
-# pip install bing-image-downloader
-# or
+# It's best to git clone https://github.com/sid7631/bing_image_downloader
+# pip install . in directory with setup.py
+# this fork severly reduces the amounts of duplicates
 
-# git clone https://github.com/gurugaurav/bing_image_downloader
-# cd bing_image_downloader
-# pip install .
+
+# for easy install use
+# pip install bing-image-downloader
 
 from argparse import ArgumentParser
-
 from bing_image_downloader import downloader
-
-# https://github.com/gurugaurav/bing_image_downloader
 
 parser = ArgumentParser()
 parser.add_argument("-p", "--path", dest="path",

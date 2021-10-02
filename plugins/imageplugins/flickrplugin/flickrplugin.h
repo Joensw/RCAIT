@@ -19,6 +19,7 @@
 #include "progressableplugin.h"
 #include "QRegularExpression"
 #include <QIcon>
+#include "imagepluginerrorutil.h"
 
 
 /**
@@ -77,6 +78,7 @@ private:
     bool m_success = true;
     static constexpr auto PLUGIN_ICON = ":/flickricon.svg";
     QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
+    QString m_errorOutPutBuffer;
 
 private slots:
 
@@ -85,6 +87,8 @@ private slots:
     void slot_readOutPut();
 
     void slot_pluginFinished();
+
+    void slot_readErrorOutPut();
 
 };
 //! [0]

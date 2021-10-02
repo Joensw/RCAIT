@@ -96,8 +96,7 @@ Can be obtained by running `pip install flickrapi`
 
 Download images from the Microsoft Bing search engine with
 the [bing-image-downloader](https://github.com/gurugaurav/bing_image_downloader) library.
-
-Can be obtained by running `pip install bing-image-downloader`
+Can be obtained by running `pip install bing-image-downloader`. It is preferable to download the [fork](https://github.com/sid7631/bing_image_downloader) which downloads less duplicates. Install with `pip install .` in directory with setup.py.
 
 ### Folder Plugin
 
@@ -111,6 +110,11 @@ register a custom search engine. Runs under Linux because it's dependent on curs
 see [this](https://stackoverflow.com/questions/35850362/importerror-no-module-named-curses-when-trying-to-import-blessings))
 
 ### [MMClassification Plugin](https://github.com/open-mmlab/mmclassification)
+
+#### Installation
+
+* webp support \
+For webp images webp support must be installed with `pip install webp` and in the [imagenet dataset class](https://github.com/open-mmlab/mmclassification/blob/master/mmcls/datasets/imagenet.py) the file extension `".webp"` must be added to the allowed image extensions in `IMG_EXTENSIONS`.
 
 #### Required modifications to mmcls
 
@@ -138,7 +142,7 @@ Annotation files are needed when classifying images with the test script. Otherw
 
     @DATASETS.register_module()
     class LexicographicallySorted(BaseDataset):
-        IMG_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif')
+        IMG_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif', '.webp')
 
         def load_annotations(self):
         if self.ann_file is None:

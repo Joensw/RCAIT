@@ -13,11 +13,28 @@ BingPlugin::loadImages(const QString &path, ProgressablePlugin *receiver, int im
     m_imageCount = imageCount;
     m_labels = label;
     m_process.reset(new QProcess);
+    m_errorOutPutBuffer = "";
 
     //Connect signals/slots
     connect(receiver, &ProgressablePlugin::sig_pluginAborted, this, &BingPlugin::slot_abort);
     connect(&*m_process, &QProcess::readyReadStandardOutput, this, &BingPlugin::slot_readOutPut);
     connect(&*m_process, &QProcess::finished, this, &BingPlugin::slot_pluginFinished);
+    connect(&*m_process, &QProcess::readyReadStandardError, this, &BingPlugin::slot_readErrorOutPut);
+
+    //check settings
+    if(!pluginSettings->isConfigured()){
+        emit m_receiver->sig_statusUpdate(pluginSettings->getMissingConfigError());
+        return false;
+    }
+
+    //check inputs and get errors
+    QStringList inputErrors = imagepluginerrorutil::checkInputs(path, label, imageCount);
+
+    //print error messages and return if we have any
+    if(!inputErrors.isEmpty()){
+        emit m_receiver->sig_statusUpdate(imagepluginerrorutil::getErrorString(inputErrors));
+        return false;
+    }
 
     QString fullCommand = createCommandlineString(path, imageCount, label);
     qDebug() << qPrintable(fullCommand);
@@ -75,7 +92,7 @@ void BingPlugin::slot_readOutPut() {
     static QRegularExpression downloadRegex(QRegularExpression::escape("[%] Downloading Image"));
     static QRegularExpression successRegex(QRegularExpression::escape("[%] File Downloaded !"));
     static QRegularExpression errorRegex(QRegularExpression::escape("[!] Issue getting"));
-
+    m_process->setReadChannel(QProcess::StandardOutput);
     while (m_process->canReadLine()) {
         QString line = QString::fromLocal8Bit(m_process->readLine());
         QString strippedLine = line.remove(lineBreakRegex);
@@ -103,6 +120,20 @@ void BingPlugin::slot_readOutPut() {
 void BingPlugin::slot_pluginFinished() {
     m_process->close();
     m_process.reset();
+}
+
+void BingPlugin::slot_readErrorOutPut()
+{
+    static QRegularExpression lineBreak("[\r\n]");
+    static QRegularExpression multiSpace("( )( )+");
+    m_process->setReadChannel(QProcess::StandardError);
+    while (m_process->canReadLine()) {
+        QString line = QString::fromLocal8Bit(m_process->readLine());
+        QString parsedProgress = line.remove(lineBreak);
+        parsedProgress = line.remove(multiSpace);
+        m_errorOutPutBuffer = m_errorOutPutBuffer % " " % parsedProgress;
+        emit m_receiver->sig_statusUpdate(m_errorOutPutBuffer);
+    }
 }
 
 void BingPlugin::slot_abort() {

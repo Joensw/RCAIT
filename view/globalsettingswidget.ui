@@ -682,8 +682,9 @@
        </property>
        <property name="icon">
         <iconset resource="../Resources/UI_Icons.qrc">
-         <normaloff>:/UISymbols/UI_Warning_icon.svg</normaloff>
-         <disabledoff>:/UISymbols/UI_Warning_icon.svg</disabledoff>:/UISymbols/UI_Warning_icon.svg</iconset>
+         <normaloff>:/UISymbols/UI_Warning_Icon.svg</normaloff>
+         <disabledoff>:/UISymbols/UI_Warning_Icon.svg</disabledoff>:/UISymbols/UI_Warning_Icon.svg
+        </iconset>
        </property>
        <property name="iconSize">
         <size>

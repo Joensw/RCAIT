@@ -106,7 +106,9 @@ QPair<double, double> MMClassificationJsonResultReader::readTopValuesFromJson(QS
     return topValues;
 }
 
-QStringList MMClassificationJsonResultReader::generateMostMissclassifiedImages(const int requiredNumber, const QString &pathToValTxt, const QString &pathToJsonResult) {
+QStringList
+MMClassificationJsonResultReader::generateMostMisclassifiedImages(int requiredNumber, const QString &pathToValTxt,
+                                                                  const QString &pathToJsonResult) {
     QVector<int> selectedMissclassifiedImageIndices = {};
     QStringList outputValidationFiles = {};
 
