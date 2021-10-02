@@ -40,7 +40,7 @@ private:
      */
     virtual void passResultGraphics(GenericGraphicsView *receiver, const QString &fullFilePath) = 0;
 
-    void storeGraphicsFile(const QString &tempFilePath) const;
+    void storeGraphicsFile(const QString &tempFilePath, const QString &fileName) const;
 
 public:
     /**

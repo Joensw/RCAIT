@@ -9,18 +9,19 @@ GenericResultGraphics::GenericResultGraphics(QString directory, QString baseName
 void GenericResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
     auto generateGraphicsTask = QtConcurrent::run([this, receiver] {
         this->generateGraphicsInternal('"' % getFullPath() % '"');
-        this->storeGraphicsFile(getFullPath());
+        this->storeGraphicsFile(getFullPath(), getFullName());
         this->passResultGraphics(receiver, getFullPath());
         emit sig_graphicsGenerated(receiver, QSharedPointer<GenericResultGraphics>(this));
     });
     Q_UNUSED(generateGraphicsTask)
 }
 
-void GenericResultGraphics::storeGraphicsFile(const QString &tempFilePath) const {
+void GenericResultGraphics::storeGraphicsFile(const QString &tempFilePath, const QString &fileName) const {
     qDebug() << "Current path is : " << tempFilePath;
     qDebug() << "Results Dir is : " << ProjectManager::getInstance().getResultsDir();
-    QFile::copy(tempFilePath, ProjectManager::getInstance().getResultsDir() + "/" + tempFilePath);
-    qDebug() << "File exists?" << QFileInfo::exists(ProjectManager::getInstance().getResultsDir() + "/" + tempFilePath);
+    auto targetFilePath = ProjectManager::getInstance().getResultsDir() % "/" % fileName;
+    QFile::copy(tempFilePath, targetFilePath);
+    qDebug() << "File exists?" << QFileInfo::exists(targetFilePath);
 }
 
 [[maybe_unused]] const QString &GenericResultGraphics::getBaseName() const {
