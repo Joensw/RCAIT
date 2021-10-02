@@ -155,17 +155,21 @@ void ResultsExporter::graphicsTypeMultiplexer(int type, const QString &fileName,
     QFile graphicsFile(fileName);
     switch (QString newPath; type) {
         case CLASSIFICATION:
-            newPath = m_classificationResultsDir + "/" + identifier + "/" + fileName;
+            newPath = m_classificationResultsDir + "/" + identifier;
+            qDebug() << "Target folder to save to: " << newPath;
             if (classificationResultsDir.exists(identifier)) {
                 graphicsFile.rename(newPath);
             }
+            qDebug() << "File moved? " << graphicsFile.exists();
             break;
         case ACCURACYCURVE:
         case CONFUSIONMATRIX:
-            newPath = m_trainingResultsDir + "/" + identifier + "/" + fileName;
+            newPath = m_trainingResultsDir + "/" + identifier;
+            qDebug() << "Target folder to save to: " << newPath;
             if (trainingResultsDir.exists(identifier)) {
                 graphicsFile.rename(newPath);
             }
+            qDebug() << "File moved? " << graphicsFile.exists();
             break;
         case TOPACCURACIES:
             // Top-Accuracies graphics have no folder so pass and do nothing
