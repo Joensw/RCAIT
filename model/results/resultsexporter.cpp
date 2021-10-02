@@ -150,23 +150,18 @@ void ResultsExporter::saveGraphics() const {
 }
 
 void ResultsExporter::graphicsTypeMultiplexer(int type, const QString &filePath, const QString &identifier) const {
-    QDir trainingResultsDir(m_trainingResultsDir);
-    QDir classificationResultsDir(m_classificationResultsDir);
+    QFileInfo file(filePath);
     switch (QString newPath; type) {
         case CLASSIFICATION:
-            newPath = m_classificationResultsDir + "/" + identifier;
+            newPath = m_classificationResultsDir % "/" % identifier % "/" % file.fileName();
             qDebug() << "Target folder to save to: " << newPath;
-            if (classificationResultsDir.exists(identifier)) {
-                QFile::rename(filePath, newPath);
-            }
+            QFile::rename(filePath, newPath);
             break;
         case ACCURACYCURVE:
         case CONFUSIONMATRIX:
-            newPath = m_trainingResultsDir + "/" + identifier;
-            qDebug() << "Target folder to save to: " << newPath;
-            if (trainingResultsDir.exists(identifier)) {
-                QFile::rename(filePath, newPath);
-            }
+            newPath = m_trainingResultsDir % "/" % identifier % "/" % file.fileName();
+            qDebug() << "Target path to save to: " << newPath;
+            QFile::rename(filePath, newPath);
             break;
         case TOPACCURACIES:
             // Top-Accuracies graphics have no folder so pass and do nothing
