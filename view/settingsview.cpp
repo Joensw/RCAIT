@@ -139,6 +139,16 @@ void SettingsView::slot_setGeneralPythonPath() {
 
 
 SettingsView::~SettingsView() {
+    //we have to set the parent of our settingswidgets to nullptr
+    //they have to be deleted with their qshared_pointer
+    //otherwise the QObject system deletes them when our UI is deleted.
+    for (int i = ui->pluginWidget->count() - 1; i >= 1; --i) {
+        QWidget *widget = ui->pluginWidget->widget(i);
+        ui->pluginWidget->removeWidget(widget);
+        widget->setParent(nullptr);
+    }
+    qDebug() << ui->pluginWidget->children();
+
     delete ui;
 }
 
