@@ -30,10 +30,10 @@ bool GooglePlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
     }
 
     //check inputs and get errors
-    QStringList inputErrors = imagepluginerrorutil::checkInputs(path, label, imageCount);
+
 
     //print error messages and return if we have any
-    if(!inputErrors.isEmpty()){
+    if(QStringList inputErrors = imagepluginerrorutil::checkInputs(path, label, imageCount); !inputErrors.isEmpty()){
         emit m_receiver->sig_statusUpdate(imagepluginerrorutil::getErrorString(inputErrors));
         return false;
     }
@@ -46,7 +46,7 @@ bool GooglePlugin::loadImages(const QString &path, ProgressablePlugin *receiver,
 }
 
 
-QString GooglePlugin::createCommandlineString(const QString &path, int imageCount, const QStringList &label) {
+QString GooglePlugin::createCommandlineString(const QString &path, int imageCount, const QStringList &label) const {
     //get and format command line parameters for python script call
     auto downloadPath = QString("-p ").append(path);
     auto imageCountStr = QString("-c ").append(QString::number(imageCount));

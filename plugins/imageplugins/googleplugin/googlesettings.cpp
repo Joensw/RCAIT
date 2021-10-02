@@ -36,7 +36,7 @@ void GoogleSettings::loadSettings()
 }
 
 
-QString GoogleSettings::getPythonPath(){
+QString GoogleSettings::getPythonPath() const {
     return m_settings.value(m_pythonPath).toString();
 }
 
@@ -45,12 +45,12 @@ void GoogleSettings::setPythonPath(QString path)
     m_settings.setValue(m_pythonPath,path);
 }
 
-QString GoogleSettings::getAPIKey()
+QString GoogleSettings::getAPIKey() const
 {
     return m_settings.value(m_APIKey).toString();
 }
 
-QString GoogleSettings::getProjectCX()
+QString GoogleSettings::getProjectCX() const
 {
     return m_settings.value(m_projectCX).toString();
 }
@@ -58,24 +58,19 @@ QString GoogleSettings::getProjectCX()
 bool GoogleSettings::isConfigured()
 {
     QStringList missingConfigs;
-    int isConfigured = 3;
     if(m_settings.value(m_pythonPath).toString().isEmpty()){
         missingConfigs << m_pythonPath;
-        isConfigured--;
     }
 
     if(m_settings.value(m_projectCX).toString().isEmpty()){
         missingConfigs << m_projectCX;
-        isConfigured--;
     }
 
     if(m_settings.value(m_APIKey).toString().isEmpty()){
         missingConfigs << m_APIKey;
-        isConfigured--;
     }
 
-    if(!(isConfigured==3)){
-
+    if(!missingConfigs.isEmpty()){
         m_errorMessage = ERROR_STRING % missingConfigs.join(", ") % ERROR_END;
         return false;
     } else {

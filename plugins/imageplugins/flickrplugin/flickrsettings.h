@@ -47,24 +47,24 @@ public:
     /**
      * @brief loadSettings loads the settings from the persistent storage
      */
-    void loadSettings();
+    void loadSettings() const;
 
     /**
      * @brief getAPIKey gets the API Key
      * @return the API Key
      */
-    QString getAPIKey();
+    QString getAPIKey() const;
 
     /**
      * @brief getAPISecret gets the API secret
      * @return the API secret
      */
-    QString getAPISecret();
+    QString getAPISecret() const;
     /**
      * @brief getPythonPath gets the path of the python executable
      * @return the python executable path
      */
-    QString getPythonPath();
+    QString getPythonPath() const;
 
     /**
      * @brief setAPIKey sets the API Key
@@ -94,7 +94,7 @@ public:
      * @brief getConfigError returns a short error message for missing configuration
      * @return the error message
      */
-    QString getMissingConfigError();
+    QString getMissingConfigError() const;
 
 private:
     Ui::FlickrSettings *ui;

@@ -46,18 +46,18 @@ public:
     /**
      * @brief loadSettings loads the settings
      */
-    void loadSettings();
+    void loadSettings() const;
     /**
      * @brief getPythonPath gets the Path of the python executable
      * @return the python path
      */
-    QString getPythonPath();
+    QString getPythonPath() const;
 
     /**
      * @brief setPythonPath sets the Python path
      * @param path the path
      */
-    void setPythonPath(QString path);
+    void setPythonPath(const QString& path);
 
     /**
      * @brief isConfigured checks if all settings have been set
@@ -69,7 +69,7 @@ public:
      * @brief getConfigError returns a short error message for missing configuration
      * @return the error message
      */
-    QString getMissingConfigError();
+    [[nodiscard]] QString getMissingConfigError() const;
 
 
 private:

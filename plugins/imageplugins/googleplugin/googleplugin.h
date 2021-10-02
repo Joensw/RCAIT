@@ -23,7 +23,7 @@
 /**
  * @brief The GooglePlugin class is used for downloading images from the google web search and saving to disk
  */
-class GooglePlugin : public QObject, ImageLoaderPlugin
+class GooglePlugin : public QObject, public ImageLoaderPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.GooglePlugin" FILE "GooglePlugin.json")
@@ -40,7 +40,7 @@ private:
     QStringList m_labels;
     int m_progress = 0;
     QString m_errorOutPutBuffer;
-    QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
+    QString createCommandlineString(const QString &path, int imageCount, const QStringList &label) const;
 
 public:
     /**

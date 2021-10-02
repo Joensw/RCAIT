@@ -51,7 +51,7 @@ public:
      * @brief getPythonPath gets the Path of the python executable
      * @return the python path
      */
-    QString getPythonPath();
+    QString getPythonPath() const;
 
     /**
      * @brief setPythonPath sets the Python path
@@ -63,13 +63,13 @@ public:
      * @brief getAPIKey gets the API Key
      * @return the API Key
      */
-    QString getAPIKey();
+    QString getAPIKey() const;
 
     /**
      * @brief getProjectCX gets the Project CX of the Google API, see https://cse.google.com/cse/all
      * @return the project CX
      */
-    QString getProjectCX();
+    QString getProjectCX() const;
 
     /**
      * @brief isConfigured checks if all settings have been set

@@ -25,7 +25,7 @@
 /**
  * @brief The FlickrPlugin for downloading images via the Flickr API
  */
-class FlickrPlugin : public QObject, ImageLoaderPlugin {
+class FlickrPlugin : public QObject, public ImageLoaderPlugin {
 Q_OBJECT
     Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.FlickrPlugin" FILE "FlickrPlugin.json")
     Q_INTERFACES(ImageLoaderPlugin)

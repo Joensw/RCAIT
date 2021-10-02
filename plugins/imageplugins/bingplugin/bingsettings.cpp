@@ -26,26 +26,24 @@ void BingSettings::saveSettings()
 
 }
 
-void BingSettings::loadSettings()
+void BingSettings::loadSettings() const
 {
     ui->lineEdit_PythonPath->setText(m_settings.value(m_pythonPath).toString());
 }
 
 
-QString BingSettings::getPythonPath(){
+QString BingSettings::getPythonPath() const{
     return m_settings.value(m_pythonPath).toString();
 }
 
-void BingSettings::setPythonPath(QString path)
+void BingSettings::setPythonPath(const QString& path)
 {
     m_settings.setValue(m_pythonPath,path);
 }
 
 bool BingSettings::isConfigured()
 {
-    QString pythonPath = m_settings.value(m_pythonPath).toString();
-
-    if(pythonPath.isEmpty()){
+    if(QString pythonPath = m_settings.value(m_pythonPath).toString(); pythonPath.isEmpty()){
         m_errorMessage = NOT_CONFIGURED_STRING;
         return false;
     }
@@ -53,7 +51,7 @@ bool BingSettings::isConfigured()
     return true;
 }
 
-QString BingSettings::getMissingConfigError()
+QString BingSettings::getMissingConfigError() const
 {
     return m_errorMessage;
 }

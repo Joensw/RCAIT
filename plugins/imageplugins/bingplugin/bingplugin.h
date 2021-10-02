@@ -23,7 +23,7 @@
 /**
  * @brief The BingPlugin class is used for downloading images from the bing web search and saving to disk
  */
-class BingPlugin : public QObject, ImageLoaderPlugin
+class BingPlugin : public QObject, public ImageLoaderPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "de.Fraunhofer.IOSB.RCAIT.BingPlugin" FILE "BingPlugin.json")
@@ -41,7 +41,7 @@ private:
 
     int m_progress = 0;
     static constexpr auto PLUGIN_ICON = ":/bingicon.svg";
-    QString createCommandlineString(const QString &path, int imageCount, const QStringList &label);
+    [[nodiscard]] QString createCommandlineString(const QString &path, int imageCount, const QStringList &label) const;
 
 public:
     /**

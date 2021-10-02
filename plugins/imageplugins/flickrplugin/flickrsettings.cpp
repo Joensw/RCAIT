@@ -29,7 +29,7 @@ void FlickrSettings::saveSettings()
 
 }
 
-void FlickrSettings::loadSettings()
+void FlickrSettings::loadSettings() const
 {
     ui->lineEdit_ApiKey->setText(m_settings.value(m_apiKey).toString());
     ui->lineEdit_ApiSecret->setText(m_settings.value(m_apiSecret).toString());
@@ -37,7 +37,7 @@ void FlickrSettings::loadSettings()
 }
 
 
-QString FlickrSettings::getPythonPath(){
+QString FlickrSettings::getPythonPath() const{
     return m_settings.value(m_pythonPath).toString();
 }
 
@@ -80,17 +80,17 @@ bool FlickrSettings::isConfigured()
     }
 }
 
-QString FlickrSettings::getMissingConfigError()
+QString FlickrSettings::getMissingConfigError() const
 {
     return m_errorMessage;
 }
 
 
-QString FlickrSettings::getAPIKey() {
+QString FlickrSettings::getAPIKey() const {
     return m_settings.value(m_apiKey).toString();
 }
 
-QString FlickrSettings::getAPISecret()
+QString FlickrSettings::getAPISecret() const
 {
     return m_settings.value(m_apiSecret).toString();
 }
