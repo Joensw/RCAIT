@@ -96,8 +96,7 @@ Can be obtained by running `pip install flickrapi`
 
 Download images from the Microsoft Bing search engine with
 the [bing-image-downloader](https://github.com/gurugaurav/bing_image_downloader) library.
-
-Can be obtained by running `pip install bing-image-downloader`
+Can be obtained by running `pip install bing-image-downloader`. It is preferable to download the [fork](https://github.com/sid7631/bing_image_downloader) which downloads less duplicates. Install with `pip install .` in directory with setup.py.
 
 ### Folder Plugin
 
