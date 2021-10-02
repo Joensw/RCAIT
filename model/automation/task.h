@@ -141,8 +141,6 @@ signals:
 
 
 private:
-    void insertCommand(int type, const QVariantMap &map);
-
     static constexpr auto ADD_PROJECT_ENTRY = "addProject";
 
     QString mName;
@@ -155,6 +153,23 @@ private:
     bool valid = true;
     bool mAbort = false;
     int commandsDone = 0;
+
+
+/**
+ * @brief This enum contains all types of supported commands.
+ *
+ * New command types can be inserted here.
+ */
+    enum class CommandType {
+        IMAGELOAD,
+        SPLIT,
+        TRAINING,
+        CLASSIFICATION,
+        $LENGTH
+    };
+
+    void insertCommand(CommandType type, const QVariantMap &map);
+
 };
 
 #endif // TASK_H

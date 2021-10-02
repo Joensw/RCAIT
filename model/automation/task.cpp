@@ -6,19 +6,6 @@
 
 #include <QApplication>
 
-/**
- * @brief This enum contains all types of supported commands.
- *
- * New command types can be inserted here.
- */
-enum CommandType {
-    IMAGELOAD,
-    SPLIT,
-    TRAINING,
-    CLASSIFICATION,
-    $LENGTH
-};
-
 Task::Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList)
         : mName(map["taskName"].toString()) {
 
@@ -38,36 +25,36 @@ Task::Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList)
         return;
     }
 
-    static constexpr std::array<CE_String, $LENGTH> COMMANDTYPE2STRING = {
+    static constexpr std::array<CE_String, static_cast<int>(CommandType::$LENGTH)> COMMANDTYPE2STRING = {
             "imageLoad",
             "split",
             "training",
             "classification"
     };
 
-    for (int i = 0; i < $LENGTH; i++) {
+    for (int i = 0; i < static_cast<int>(CommandType::$LENGTH); i++) {
         if (commands.contains(COMMANDTYPE2STRING[i])) {
-            insertCommand(i, map);
+            insertCommand(static_cast<CommandType>(i), map);
         }
     }
 
     if (mCommandList.isEmpty() && !commands.contains(ADD_PROJECT_ENTRY)) valid = false;
 }
 
-void Task::insertCommand(int type, const QVariantMap &map) {
+void Task::insertCommand(CommandType type, const QVariantMap &map) {
     Command *command;
     switch (type) {
-        case IMAGELOAD:
+        case CommandType::IMAGELOAD:
             command = new ImageLoadCommand(map, this);
             break;
-        case SPLIT:
+        case CommandType::SPLIT:
             command = new SplitCommand(map, this);
             break;
-        case TRAINING:
+        case CommandType::TRAINING:
             command = new TrainingCommand(map, this);
             connect(dynamic_cast<TrainingCommand*> (command), &TrainingCommand::sig_saveResult, this, &Task::slot_saveTrainingResult);
             break;
-        case CLASSIFICATION:
+        case CommandType::CLASSIFICATION:
             command = new ClassificationCommand(map, this);
             connect(dynamic_cast<ClassificationCommand*> (command), &ClassificationCommand::sig_saveResult, this, &Task::slot_saveClassificationResult);
             break;
