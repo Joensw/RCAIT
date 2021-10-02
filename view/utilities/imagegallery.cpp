@@ -52,8 +52,7 @@ void ImageGallery::addImages(const QList<QImage> &imageList) {
 void ImageGallery::concurrentAddImages(const QString &path) {
     QStringList images;
     QDir imgDir(path);
-    for (const QString &imageName:
-            imgDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.jpeg" << "*.png", QDir::Files)) {
+    for (const QString &imageName: imgDir.entryList(QStringList() << "*.JPG" << "*.jpg" << "*.jpeg" << "*.png" << "*.webp", QDir::Files)) {
         images.append(imgDir.absoluteFilePath(imageName));
     }
     concurrentAddImages(images);
@@ -82,6 +81,7 @@ void ImageGallery::slot_isReady() {
 
 
 void ImageGallery::addImage(const QImage &image) {
+    if (image.isNull()) return;
     int squareSize = image.height() < image.width() ? image.height() : image.width();
     int leftX = image.width() / 2 - squareSize / 2;
     int leftY = image.height() / 2 - squareSize / 2;
