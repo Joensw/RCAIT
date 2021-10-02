@@ -17,7 +17,10 @@ void GenericResultGraphics::generateGraphics(GenericGraphicsView *receiver) {
 }
 
 void GenericResultGraphics::storeGraphicsFile(const QString &tempFilePath) const {
-    QFile::copy(tempFilePath, ProjectManager::getInstance().getResultsDir() + "/" + getFullPath());
+    qDebug() << "Current path is : " << tempFilePath;
+    qDebug() << "Results Dir is : " << ProjectManager::getInstance().getResultsDir();
+    QFile::copy(tempFilePath, ProjectManager::getInstance().getResultsDir() + "/" + tempFilePath);
+    qDebug() << "File exists?" << QFileInfo::exists(ProjectManager::getInstance().getResultsDir() + "/" + tempFilePath);
 }
 
 [[maybe_unused]] const QString &GenericResultGraphics::getBaseName() const {
