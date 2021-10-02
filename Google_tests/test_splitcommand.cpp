@@ -52,7 +52,7 @@ class SplitCommandTest : public testing::Test {
 };
 
 
-//check if loading labeled dataset imagefilepaths work TODO mak
+//check if loading labeled dataset imagefilepaths work
 TEST_F(SplitCommandTest, testSplit){
     QString path = QDir::current().path();
     auto* mngr = &DataManager::getInstance();

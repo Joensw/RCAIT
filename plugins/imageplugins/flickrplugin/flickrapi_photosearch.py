@@ -13,8 +13,7 @@ except ImportError as error:
 #C:/Python3/python.exe c:/RC/plugins/imageplugins/flickrplugin/flickrapi_photosearch.py -p C:\RC\FlickrPlugin -c 10 -l "house" "car" -k 3391c68aa039902833f0c7bb1e0755ae -s 6acffd9f01ca35c8
 #Licenses: https://www.flickr.com/creativecommons/
 #License Keys: https://www.flickr.com/services/api/flickr.photos.licenses.getInfo.html
-#ToDo: Mit Parametern der Suchanfrage rumspielen, damit Resultate besser werden
-#ToDo: Count übersetzen in page + per_page optional arguments (max per_page = 100)
+
 url_start = 'https://live.staticflickr.com/'
 file_extension = '.jpg'
 progress = 0
