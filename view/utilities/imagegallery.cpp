@@ -26,7 +26,9 @@ ImageGallery::ImageGallery(QWidget *parent) :
 }
 
 
-ImageGallery::~ImageGallery() = default;
+ImageGallery::~ImageGallery() {
+    running->quit();
+}
 
 
 QList<int> ImageGallery::removeselected() {
