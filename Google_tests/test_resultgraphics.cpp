@@ -125,6 +125,7 @@ TEST_F(ResultGraphicsTests, testGraphics_AccuracyCurve) {
 
     //Signal should be emitted only once
     EXPECT_EQ(spy.count(), 1);
+    graphics.clear();
     QApplication::exit();
 }
 
@@ -157,6 +158,7 @@ TEST_F(ResultGraphicsTests, testGraphics_Classification) {
 
     //Signal should be emitted only once
     EXPECT_EQ(spy.count(), 1);
+    graphics.clear();
     QApplication::exit();
 }
 
@@ -194,6 +196,7 @@ TEST_F(ResultGraphicsTests, testGraphics_ConfusionMatrix) {
 
     //Signal should be emitted only once
     EXPECT_EQ(spy.count(), 1);
+    graphics.clear();
     QApplication::exit();
 }
 
@@ -224,5 +227,6 @@ TEST_F(ResultGraphicsTests, testGraphics_TopAccuracies) {
 
     //Signal should be emitted only once
     EXPECT_EQ(spy.count(), 1);
+    graphics.clear();
     QApplication::exit();
 }
