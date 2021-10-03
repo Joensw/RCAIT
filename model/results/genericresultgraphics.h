@@ -84,6 +84,11 @@ public:
      */
     [[maybe_unused]] [[nodiscard]] QString getFullPath() const;
 
+    /**
+     * Virtual destructor.
+     */
+    virtual ~GenericResultGraphics() = default;
+
 signals:
 
     /**

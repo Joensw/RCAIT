@@ -75,6 +75,11 @@ public:
      */
     virtual void setClassificationGraphics(const QSharedPointer<QGraphicsItem> &classificationGraphicsImage) {};
 
+    /**
+     * Virtual destructor.
+     */
+    virtual ~GenericGraphicsView() = default;
+
 private:
     SavableResultsWidget *m_tabWidget;
     bool m_isSaved = false;
