@@ -45,7 +45,7 @@ static std::array<QRegularExpression, $GRAPHICSTYPES_COUNT> GRAPHICSTYPE2REGEX =
         QRegularExpression("classification_(.*)\\.(svg|png)$"),
         QRegularExpression("accuracycurve_(.*)\\.(svg|png)$"),
         QRegularExpression("confusionmatrix_(.*)\\.(svg|png)$"),
-        QRegularExpression("topaccuracies_(.*)\\.(svg|png)$")
+        QRegularExpression("topaccuracies\\.(svg|png)$")
 };
 
 /**
