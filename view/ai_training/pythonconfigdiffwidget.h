@@ -5,9 +5,10 @@
 #include <QPlainTextEdit>
 #include <QFileDialog>
 #include <QFile>
+#include <QScrollBar>
 #include <filediff.h>
 #include <QGroupBox>
-#include "codeeditor.h"
+#include <codeeditor.h>
 
 namespace Ui {
     class PythonConfigDiffWidget;

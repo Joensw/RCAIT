@@ -10,9 +10,9 @@
 
 #include <QObject>
 #include <QMessageBox>
-#include "datamanager.h"
-#include "configurationdialog.h"
-#include "settingsmanager.h"
+#include <datamanager.h>
+#include <configurationdialog.h>
+#include <settingsmanager.h>
 
 /**
  * @brief The ConfigurationController class mediates between the configuration UI and the configuration logic

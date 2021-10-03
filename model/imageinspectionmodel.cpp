@@ -6,7 +6,6 @@
  * @author Sascha Rolinger
  */
 #include "imageinspectionmodel.h"
-#include "model/utilities/mapadapt.h"
 
 /**
  * @brief This enum maps the index of the dataset type used for input parameters of public functions to a name

@@ -1,4 +1,3 @@
-#include <QGraphicsView>
 #include "canvas.h"
 
 Canvas::Canvas(bool autoScale) : QGraphicsView() {

@@ -10,9 +10,10 @@
 #include <projectmanager.h>
 #include <model/utilities/mapadapt.h>
 #include <QJsonArray>
-#include "topaccuraciesgraphics.h"
-#include "resultsprocessor.h"
+#include <topaccuraciesgraphics.h>
+#include <resultsprocessor.h>
 #include <json_toolbox.h>
+#include <fstream>
 
 /**
  * @brief The <code>ResultsExporter</code> is used to export all types of specialised results

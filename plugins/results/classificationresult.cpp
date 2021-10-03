@@ -1,5 +1,4 @@
 #include "classificationresult.h"
-#include <utility>
 
 ClassificationResult::ClassificationResult(const QString &storageDir,
                                            const QMap<QString, QList<double>> &classificationData,

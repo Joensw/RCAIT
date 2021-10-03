@@ -7,8 +7,6 @@
  */
 #include "datamanager.h"
 
-#include <utility>
-
 DataManager::DataManager()
         : mSettingsManager(&SettingsManager::getInstance()),
           mProjectManager(&ProjectManager::getInstance()),

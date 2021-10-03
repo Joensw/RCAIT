@@ -1,8 +1,7 @@
 #ifndef IMAGEGALLERYTREE_H
 #define IMAGEGALLERYTREE_H
 
-#include "imagegallery.h"
-
+#include <imagegallery.h>
 #include <QTreeWidget>
 
 /**

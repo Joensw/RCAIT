@@ -7,12 +7,11 @@
 #ifndef IMAGELOADERPLUGINMANAGER_H
 #define IMAGELOADERPLUGINMANAGER_H
 
-
 #include <QString>
 #include <QWidget>
 #include <pluginusage/progressableplugin.h>
-#include "pluginmanager.h"
-#include "imageloaderplugin.h"
+#include <pluginmanager.h>
+#include <imageloaderplugin.h>
 #include <QMap>
 #include <QPluginLoader>
 #include <QDir>

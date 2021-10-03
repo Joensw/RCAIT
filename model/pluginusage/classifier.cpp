@@ -1,7 +1,5 @@
 #include "classifier.h"
 
-#include <qfuturewatcher.h>
-
 Classifier::Classifier() = default;
 
 void Classifier::classify(const QString &pluginName, const QString &inputImageDirPath, const QString &trainDatasetPath,

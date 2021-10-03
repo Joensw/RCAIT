@@ -5,7 +5,6 @@
  *
  * @author Paul Schaarschmidt
  */
-#include <resultsexporter.h>
 #include "resultscontroller.h"
 
 ResultsController::ResultsController(DataManager *manager, ResultsWidget *resultsWidget)

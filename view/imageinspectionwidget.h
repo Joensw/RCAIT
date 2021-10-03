@@ -6,8 +6,8 @@
 #ifndef IMAGEINSPECTIONWIDGET_H
 #define IMAGEINSPECTIONWIDGET_H
 
-#include "imagegallery.h"
-#include "imagegallerytree.h"
+#include <imagegallery.h>
+#include <imagegallerytree.h>
 #include <QKeyEvent>
 #include <QWidget>
 

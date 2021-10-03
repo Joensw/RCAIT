@@ -6,7 +6,6 @@
 #include <QListWidget>
 #include <QScroller>
 
-
 /**
  * It is used in the UI for example for the project list and model list.
  * The elements of the list widget have specialized depictions to represent when and element has been selected / unselected.

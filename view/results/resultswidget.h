@@ -5,9 +5,9 @@
 #include <QWidget>
 #include <results/trainingresult.h>
 #include <ui_resultswidget.h>
-#include "classificationresult.h"
-#include "trainingresultview.h"
-#include "projectmanager.h"
+#include <classificationresult.h>
+#include <trainingresultview.h>
+#include <projectmanager.h>
 
 /**
  * @brief This widget contains all specialised result comparison widgets.

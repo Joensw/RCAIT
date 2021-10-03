@@ -45,8 +45,6 @@ void ProjectController::slot_removeProject(QString projectName) {
 void ProjectController::slot_openProject(QString projectName) {
     if(mDataManager->loadProject(std::move(projectName))) {
         emit sig_projectPathUpdated();
-        mStartWidget->resetListSelection();
-        mStartWidget->setActionButtonsEnabled(false);
         return;
     }
     qWarning() << "could not load project";

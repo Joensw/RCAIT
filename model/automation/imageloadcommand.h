@@ -1,12 +1,11 @@
 #ifndef IMAGELOADCOMMAND_H
 #define IMAGELOADCOMMAND_H
 
-#include "command.h"
+#include <command.h>
 #include <mapadapt.h>
-
 #include <imageloaderpluginmanager.h>
 #include <datamanager.h>
-
+#include <imageloaderpluginmanager.h>
 
 /**
  * @brief The ImageLoadCommand class starts image loading with information derived from a map.

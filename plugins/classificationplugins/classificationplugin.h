@@ -6,7 +6,7 @@
 #include <results/trainingresult.h>
 #include <results/classificationresult.h>
 #include <pluginusage/progressableplugin.h>
-#include "plugin.h"
+#include <plugin.h>
 
 /**
  * @brief The ClassificationPlugin class is an interface for all classification plugins.

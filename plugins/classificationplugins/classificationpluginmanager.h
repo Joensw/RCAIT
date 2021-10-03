@@ -4,9 +4,11 @@
 #include <QString>
 #include <QWidget>
 #include <QMap>
-#include "progressableplugin.h"
-#include "classificationplugin.h"
-#include "pluginmanager.h"
+#include <progressableplugin.h>
+#include <classificationplugin.h>
+#include <pluginmanager.h>
+#include <QPluginLoader>
+#include <utility>
 
 
 /**

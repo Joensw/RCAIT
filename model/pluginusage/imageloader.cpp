@@ -1,5 +1,4 @@
-#include "model/pluginusage/imageloader.h"
-#include <QtConcurrent/QtConcurrent>
+#include "imageloader.h"
 
 ImageLoader::ImageLoader()= default;
 

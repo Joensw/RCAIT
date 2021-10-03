@@ -13,11 +13,10 @@
 #include <QWidget>
 #include <QSettings>
 #include <QIcon>
-
+#include <ostream>
 #include <classificationpluginmanager.h>
 #include <imageloaderpluginmanager.h>
 #include <configurationmanager.h>
-#include <ostream>
 
 /**
  * The SettingsManager contains logic for global settings of the application as well as plugin specific settings

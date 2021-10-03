@@ -13,8 +13,7 @@
 #include <settingsview.h>
 #include <datamanager.h>
 #include <utility>
-#include "configurationdialog.h"
-
+#include <configurationdialog.h>
 
 /**
  * @brief The SettingsController class mediates between the settings logic and settings UI.

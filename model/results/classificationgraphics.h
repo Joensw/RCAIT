@@ -10,6 +10,7 @@
 #include <genericgraphicsview.h>
 #include <configurationmanager.h>
 #include <genericresultgraphics.h>
+#include <utility>
 
 /**
  * @brief Classification Graphics are used to visualize

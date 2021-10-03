@@ -2,6 +2,7 @@
 #define COMMAND_H
 
 #include <QObject>
+
 /**
  * @brief The Command class defines an interface for all commands in the application.
  *

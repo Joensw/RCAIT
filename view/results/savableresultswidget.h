@@ -2,7 +2,7 @@
 #define SAVABLERESULTSWIDGET_H
 
 #include <QWidget>
-#include "genericgraphicsview.h"
+#include <genericgraphicsview.h>
 
 class GenericGraphicsView;
 

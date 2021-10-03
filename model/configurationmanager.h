@@ -1,12 +1,12 @@
 #ifndef CONFIGURATIONMANAGER_H
 #define CONFIGURATIONMANAGER_H
 
-
 #include <QString>
 #include <QWidget>
 #include <QSettings>
 #include <QIcon>
 #include <QDir>
+
 /**
  * @brief The ConfigurationManager class contains the logic for configuration of the working directories and paths to plugins.
  */

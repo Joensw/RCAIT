@@ -13,6 +13,7 @@
 #include <QDir>
 #include <QDirIterator>
 #include <QRegularExpression>
+#include <mapadapt.h>
 
 /**
  * @brief The ImageInspectionModel class

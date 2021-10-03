@@ -38,10 +38,7 @@ void Controller::slot_configurationComplete(){
     mTabController.reset(new TabController(mMainWindow->getTabWidget(), mMainWindow->getResultsWidget()->getTabWidget()));
 
     //Connect Signals/Slots
-    connect(mMainWindow->getStartWidget(), &StartWidget::sig_openProject, &*mTabController,
-            &TabController::slot_openProject);
-    connect(mMainWindow->getStartWidget(), &StartWidget::sig_openProject, &*mImageController,
-            &ImageController::slot_openProject);
+
     connect(&*mSettingsController, &SettingsController::sig_projectDirectoryChanged, &*mProjectController,
             &ProjectController::slot_projectDirectoryChanged);
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_maximizeWindow, &*mMainWindow,
@@ -65,6 +62,11 @@ void Controller::slot_configurationComplete(){
 
     connect(&*mProjectController, &ProjectController::sig_projectPathUpdated, &*mModelController,
             &ModelController::slot_projectPathUpdated);
+
+    connect(&*mProjectController, &ProjectController::sig_projectPathUpdated, &*mTabController,
+            &TabController::slot_openProject);
+    connect(&*mProjectController, &ProjectController::sig_projectPathUpdated, &*mImageController,
+            &ImageController::slot_openProject);
 
     connect(&*mMainWindow, &MainWindow::sig_openSettings, &*mSettingsController,
             &SettingsController::slot_openSettings);

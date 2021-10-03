@@ -12,10 +12,7 @@
 #include <QWidget>
 #include <QSettings>
 #include <utility>
-
-#include "classificationpluginmanager.h"
-
-
+#include <classificationpluginmanager.h>
 
 /**
  * @brief The ModelManager class contains logic for manipulating models of external classification plugins

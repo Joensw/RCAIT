@@ -70,7 +70,6 @@ void ModelController::slot_loadModel(const QString &modelName) {
     auto projectName = mDataManager->getProjectName();
     auto pluginName = mDataManager->recallPluginNameOfModel(projectName, modelName);
     mDataManager->loadModel(modelName, pluginName);
-    mImportFilesWidget->setActionButtonsEnabled(false);
     emit sig_modelLoaded();
 }
 

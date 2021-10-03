@@ -1,11 +1,11 @@
 #ifndef CUSTOMTABLEWIDGET_H
 #define CUSTOMTABLEWIDGET_H
 
-
 #include <QtGui>
 #include <QStylePainter>
 #include <QTableWidget>
 #include <QAbstractButton>
+#include <QScroller>
 
 /**
  * @brief This class allows adding pre-filled data rows as well as

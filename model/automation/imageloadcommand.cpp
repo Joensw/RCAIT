@@ -1,6 +1,4 @@
 #include "imageloadcommand.h"
-#include "imageloaderpluginmanager.h"
-
 
 ImageLoadCommand::ImageLoadCommand(const QVariantMap &map, ProgressablePlugin *receiver)
         : mPluginName(map["imagePluginName"].toString()),

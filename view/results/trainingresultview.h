@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QGraphicsItem>
 #include <QGraphicsScene>
-#include "genericgraphicsview.h"
+#include <genericgraphicsview.h>
 
 namespace Ui {
     class TrainingResultView;

@@ -1,7 +1,6 @@
 #ifndef ACCURACYCURVE_H
 #define ACCURACYCURVE_H
 
-
 #include <QGraphicsItem>
 #include <QFileInfo>
 #include <QGraphicsSvgItem>

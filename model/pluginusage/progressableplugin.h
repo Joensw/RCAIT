@@ -1,7 +1,7 @@
 #ifndef PROGRESSABLEPLUGIN_H
 #define PROGRESSABLEPLUGIN_H
 
-#include "progressable.h"
+#include <progressable.h>
 
 /**
  * @brief The ProgressablePlugin class defines an interface for all classes that use plugins

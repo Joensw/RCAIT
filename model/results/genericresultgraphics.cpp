@@ -1,7 +1,5 @@
 #include "genericresultgraphics.h"
 
-#include <utility>
-
 GenericResultGraphics::GenericResultGraphics(QString directory, QString baseName, QString extension)
         : m_baseName(std::move(baseName)),
           m_extension(std::move(extension)),

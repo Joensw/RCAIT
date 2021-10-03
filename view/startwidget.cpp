@@ -1,8 +1,6 @@
 #include "startwidget.h"
 #include "ui_startwidget.h"
 
-#include <QDir>
-
 StartWidget::StartWidget(QWidget *parent) :
         QWidget(parent), ui(new Ui::StartWidget){
 
@@ -85,11 +83,10 @@ void StartWidget::setActionButtonsEnabled(bool state)
     ui->pushButton_removeProject->setEnabled(state);
 }
 
-void StartWidget::resetListSelection()
+void StartWidget::disableOpenProjectButton()
 {
-    ui->listWidget_projectsList->setCurrentRow(QLISTWIDGET_UNSELECT_INDEX);
+    ui->pushButton_openProject->setEnabled(false);
 }
-
 
 void StartWidget::loadLanguage(const QString &rLanguage) {
     if (m_currLang != rLanguage) {
@@ -130,7 +127,7 @@ void StartWidget::slot_changedWindowState(Qt::WindowStates flags) {
 
 void StartWidget::slot_imagesUpdated()
 {
-    if (!(ui->listWidget_projectsList->selectedItems().size() == 0)){
+    if (ui->listWidget_projectsList->selectedItems().size() != 0){
         ui->pushButton_openProject->setEnabled(true);
     }
 }

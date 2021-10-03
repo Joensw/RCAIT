@@ -7,18 +7,17 @@
 #define FOLDERPLUGIN_H
 
 
-
-#include "folderconfigwidget.h"
-
-#include "imageloaderplugin.h"
-#include "plugin.h"
-#include "progressableplugin.h"
 #include <QDir>
 #include <QObject>
 #include <QtWidgets/QWidget>
 #include <QtPlugin>
 #include <QStringBuilder>
 #include <QIcon>
+
+#include "folderconfigwidget.h"
+#include "imageloaderplugin.h"
+#include "plugin.h"
+#include "progressableplugin.h"
 
 /**
  * @brief The FolderPlugin class is an ImageLoaderPlugin that uses existing folders as image sources.

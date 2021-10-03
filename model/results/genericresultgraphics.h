@@ -10,6 +10,7 @@
 #include <QProcess>
 #include <QtConcurrent/QtConcurrentRun>
 #include <QStringBuilder>
+#include <utility>
 
 /**
  * @brief Superclass of all specialised result graphics.

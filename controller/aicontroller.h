@@ -9,15 +9,13 @@
 #define AICONTROLLER_H
 
 #include <QString>
-#include <view/ai_training/aitrainingwidget.h>
+#include <aitrainingwidget.h>
 #include <datamanager.h>
 #include <inputimageswidget.h>
-#include "classifier.h"
-#include "trainer.h"
-#include "resultscontroller.h"
-
-
-
+#include <classifier.h>
+#include <trainer.h>
+#include <resultscontroller.h>
+#include "imagegallery.h"
 /**
  * @brief The AIController class mediates between ui elements and classification/training.
  */

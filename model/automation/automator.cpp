@@ -1,6 +1,5 @@
 #include "automator.h"
 
-
 Automator::Automator() = default;
 
 void Automator::performTasks() {

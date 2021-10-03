@@ -7,6 +7,7 @@
 #define FOLDERCONFIGWIDGET_H
 
 #include <QtWidgets/QWidget>
+#include <QtWidgets/QFileDialog>
 
 namespace Ui {
 class FolderConfigwidget;

@@ -1,14 +1,11 @@
 #ifndef TRAININGCOMMAND_H
 #define TRAININGCOMMAND_H
 
-#include "command.h"
-
-
+#include <command.h>
 #include <classificationpluginmanager.h>
 #include <datamanager.h>
 #include <progressableplugin.h>
 #include <utility>
-
 
 /**
  * @brief The TrainingCommand class starts a training with information derived from a map.

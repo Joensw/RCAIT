@@ -1,10 +1,4 @@
-#include "classificationcommand.h"
-#include "imageloadcommand.h"
-#include "splitcommand.h"
 #include "task.h"
-#include "trainingcommand.h"
-
-#include <QApplication>
 
 /**
  * @brief This enum contains all types of supported commands.

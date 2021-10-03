@@ -1,4 +1,3 @@
-#include <QFileInfo>
 #include "topaccuraciesgraphics.h"
 
 TopAccuraciesGraphics::TopAccuraciesGraphics(const QString &directory,
