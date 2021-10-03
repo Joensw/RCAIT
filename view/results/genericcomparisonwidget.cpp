@@ -73,9 +73,14 @@ void GenericComparisonWidget::deleteResultTab(const QString &tabName) {
 }
 
 void GenericComparisonWidget::slot_comparisonMenu_triggered(QAction *action) {
+    if (!action) return;
+
+    //Keep user from click-spamming
+    m_menu_addComparison->setEnabled(false);
+    QTimer::singleShot(500, this, [this] { m_menu_addComparison->setEnabled(true); });
     //Add or Remove a result based on checkbox state
     //This uses action's text as tab name
-    if (action && action->isChecked())
+    if (action->isChecked())
         addComparisonResult(action->text());
     else
         removeComparisonResult(action->text());

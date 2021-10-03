@@ -8,6 +8,7 @@
 #include <QTabWidget>
 #include <QEvent>
 #include <QStringBuilder>
+#include <QTimer>
 #include <type_traits>
 
 #include <result.h>
