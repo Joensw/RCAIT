@@ -19,7 +19,7 @@ enum CommandType {
     $LENGTH
 };
 
-Task::Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList)
+Task::Task(const QVariantMap &map, const QList<QSharedPointer<Command>> &commandList)
         : mName(map["taskName"].toString()) {
 
     if (!commandList.isEmpty()) {

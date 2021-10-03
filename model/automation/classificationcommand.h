@@ -23,7 +23,7 @@ public:
      * @param map contains necessary information for command.
      * @param receiver object to receive progress.
      */
-    ClassificationCommand(QVariantMap map, ProgressablePlugin *receiver);
+    ClassificationCommand(const QVariantMap &map, ProgressablePlugin *receiver);
 
     /**
      * @brief execute executes the command.

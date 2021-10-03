@@ -22,7 +22,7 @@ public:
      * @param map contains necessary information for command.
      * @param receiver object to receive progress.
      */
-    ImageLoadCommand(QVariantMap map, ProgressablePlugin *receiver);
+    ImageLoadCommand(const QVariantMap &map, ProgressablePlugin *receiver);
 
     /**
      * @brief execute executes the command.

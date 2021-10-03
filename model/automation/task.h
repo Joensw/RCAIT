@@ -44,7 +44,7 @@ public:
      * @param map stores information for commands.
      * @param commandList list of the supplied commands.
      */
-    explicit Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList = {});
+    explicit Task(const QVariantMap &map, const QList<QSharedPointer<Command>> &commandList = {});
 
     /**
      * @brief getName returns name of the Task.
@@ -116,7 +116,7 @@ signals:
      *
      * @param newState new task state.
      */
-    void sig_stateChanged(QString name, TaskState newState);
+    void sig_stateChanged(const QString &name, TaskState newState);
 
     /**
      * @brief sig_progress signals progress of task.

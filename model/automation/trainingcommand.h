@@ -24,7 +24,7 @@ public:
      * @param map contains necessary information for command.
      * @param receiver object to receive progress.
      */
-    TrainingCommand(QVariantMap map, ProgressablePlugin *receiver);
+    TrainingCommand(const QVariantMap &map, ProgressablePlugin *receiver);
 
     /**
      * @brief execute executes the command.

@@ -104,14 +104,14 @@ signals:
      * @param name task name.
      * @param state task state.
      */
-    void sig_taskUpdate(QString name, QString state);
+    void sig_taskUpdate(const QString &name, const QString &state);
 
     /**
      * @brief sig_taskAdded signals successful addition of task to non-scheduled queue.
      *
      * @param name task name.
      */
-    void sig_taskAdded(QString name);
+    void sig_taskAdded(const QString &name);
 
     /**
      * @brief sig_progress signals progress of batch processing.

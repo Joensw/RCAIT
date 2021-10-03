@@ -22,7 +22,7 @@ public:
      * @param map map with split info
      * @param receiver rececives progress
      */
-    SplitCommand(QVariantMap map, ProgressablePlugin *receiver);
+    SplitCommand(const QVariantMap &map, ProgressablePlugin *receiver);
 
 
     /**

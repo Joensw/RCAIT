@@ -1,6 +1,6 @@
 #include "splitcommand.h"
 
-SplitCommand::SplitCommand(QVariantMap map, ProgressablePlugin *receiver)
+SplitCommand::SplitCommand(const QVariantMap &map, ProgressablePlugin *receiver)
         : mTempPath(mDataManager.getProjectImageTempDir()),
           mTrainPath(mDataManager.getProjectDataSetTrainSubdir()),
           mValidationPath(mDataManager.getProjectDataSetValSubdir()),
