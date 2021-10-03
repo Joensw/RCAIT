@@ -9,7 +9,7 @@
 #include <QStringBuilder>
 #include <configurationmanager.h>
 #include <trainingresultview.h>
-#include "genericresultgraphics.h"
+#include <genericresultgraphics.h>
 
 /**
  * @brief Confusion matrices are used for visually comparing the precision of an AI.

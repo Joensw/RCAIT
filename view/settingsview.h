@@ -6,7 +6,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 
-#include "globalsettingswidget.h"
+#include <globalsettingswidget.h>
 
 namespace Ui {
     class SettingsView;

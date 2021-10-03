@@ -1,7 +1,6 @@
 #ifndef IMAGEGALLERY_H
 #define IMAGEGALLERY_H
 
-
 #include <QListWidget>
 #include <QDir>
 #include <QThread>

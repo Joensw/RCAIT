@@ -14,11 +14,12 @@
 #include <QProcess>
 #include <QProcessEnvironment>
 #include <QStringBuilder>
+#include <QRegularExpression>
+#include <QIcon>
+
 #include "imageloaderplugin.h"
 #include "flickrsettings.h"
 #include "progressableplugin.h"
-#include "QRegularExpression"
-#include <QIcon>
 #include "imagepluginerrorutil.h"
 
 

@@ -7,10 +7,9 @@
 #include <QProcess>
 #include <json_toolbox.h>
 #include <codeeditor.h>
-#include "ce_string.h"
+#include <ce_string.h>
 #include <configurationmanager.h>
 #include <QtConcurrent/QtConcurrent>
-
 
 /**
  * @brief This class can create a diff of two files. It makes use of pythons <code>difflib</code>.

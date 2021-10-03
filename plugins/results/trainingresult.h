@@ -1,10 +1,10 @@
 #ifndef TRAININGRESULT_H
 #define TRAININGRESULT_H
 
-
 #include <confusionmatrix.h>
 #include <accuracycurve.h>
-#include "result.h"
+#include <result.h>
+#include <utility>
 
 /**
  * @brief This class is a specific type of <code>Result</code>.

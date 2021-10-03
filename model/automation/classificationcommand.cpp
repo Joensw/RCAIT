@@ -1,7 +1,5 @@
 #include "classificationcommand.h"
 
-#include <classificationpluginmanager.h>
-
 ClassificationCommand::ClassificationCommand(const QVariantMap &map, ProgressablePlugin *receiver)
         : mProjectName(map["projectName"].toString()),
           mImagePath(map["classificationImagePath"].toString()),

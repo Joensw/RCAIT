@@ -1,7 +1,5 @@
 #include "classificationgraphics.h"
 
-#include <utility>
-
 ClassificationGraphics::ClassificationGraphics(const QString &directory, const QString &identifier,
                                                const QMap<QString, QList<double>> &data,
                                                QStringList classLabels)

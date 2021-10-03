@@ -9,7 +9,7 @@
 
 #include <QString>
 #include <pluginusage/progressableplugin.h>
-#include "plugin.h"
+#include <plugin.h>
 
 /**
  * @brief The ImageLoaderPlugin class is an interface for all image loader plugins.

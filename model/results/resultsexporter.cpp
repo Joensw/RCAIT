@@ -1,4 +1,3 @@
-#include <fstream>
 #include "resultsexporter.h"
 
 ResultsExporter::ResultsExporter()

@@ -1,12 +1,15 @@
 #ifndef TASK_H
 #define TASK_H
 
-#include "command.h"
-
+#include <command.h>
 #include <pluginusage/progressable.h>
-
+#include <trainingcommand.h>
+#include <QApplication>
 #include <datamanager.h>
-#include "resultsexporter.h"
+#include <resultsexporter.h>
+#include <classificationcommand.h>
+#include <imageloadcommand.h>
+#include <splitcommand.h>
 
 /**
  * @brief The TaskState enum is an enumeration of task states.

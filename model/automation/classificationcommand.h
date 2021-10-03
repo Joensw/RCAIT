@@ -1,12 +1,12 @@
 #ifndef CLASSIFICATIONCOMMAND_H
 #define CLASSIFICATIONCOMMAND_H
 
-#include "command.h"
-
+#include <command.h>
 #include <classificationpluginmanager.h>
 #include <datamanager.h>
 #include <progressableplugin.h>
 #include <utility>
+#include <classificationpluginmanager.h>
 
 /**
  * @brief The ClassificationCommand class starts a classification with information derived from a map.

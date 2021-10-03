@@ -1,7 +1,5 @@
 #include "trainer.h"
 
-#include <qfuturewatcher.h>
-
 Trainer::Trainer() = default;
 
 void Trainer::train(const QString &pluginName, const QString &modelName, const QString &trainDatasetPath, const QString &validationDatasetPath, const QString &workingDirectory)

@@ -1,5 +1,4 @@
 #include "customtabwidget.h"
-#include "customtabbar.h"
 
 CustomTabWidget::CustomTabWidget(QWidget *parent)
 {

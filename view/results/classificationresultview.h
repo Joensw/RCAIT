@@ -5,8 +5,11 @@
 #include <QMap>
 #include <QTableWidgetItem>
 #include <QPushButton>
-#include "genericgraphicsview.h"
-#include "customtablewidget.h"
+#include <genericgraphicsview.h>
+#include <customtablewidget.h>
+#include <mapadapt.h>
+#include <QScroller>
+#include <QScrollBar>
 
 namespace Ui {
     class ClassificationResultView;

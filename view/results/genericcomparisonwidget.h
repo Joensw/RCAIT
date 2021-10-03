@@ -1,7 +1,6 @@
 #ifndef GENERICCOMPARISONWIDGET_H
 #define GENERICCOMPARISONWIDGET_H
 
-
 #include <QWidget>
 #include <QPushButton>
 #include <QMenu>
@@ -11,10 +10,10 @@
 #include <QStringBuilder>
 #include <type_traits>
 
-#include "result.h"
-#include "genericgraphicsview.h"
-#include "popupmenu.h"
-#include "savableresultswidget.h"
+#include <result.h>
+#include <genericgraphicsview.h>
+#include <popupmenu.h>
+#include <savableresultswidget.h>
 
 namespace Ui {
     class GenericComparisonWidget;

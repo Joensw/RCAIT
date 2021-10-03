@@ -9,10 +9,10 @@
 #define MODELCONTROLLER_H
 
 #include <QObject>
-#include "datamanager.h"
-#include "importfileswidget.h"
-#include "newmodeldialog.h"
-#include "removemodeldialog.h"
+#include <datamanager.h>
+#include <importfileswidget.h>
+#include <newmodeldialog.h>
+#include <removemodeldialog.h>
 
 /**
  * @brief The ModelController class mediates between the model UI's and the model logic

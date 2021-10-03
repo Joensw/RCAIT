@@ -3,6 +3,7 @@
 
 #include <QDir>
 #include <QWidget>
+#include <QFileDialog>
 
 namespace Ui {
 class InputImagesWidget;

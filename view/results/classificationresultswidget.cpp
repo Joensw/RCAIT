@@ -1,4 +1,3 @@
-#include <projectmanager.h>
 #include "classificationresultswidget.h"
 
 ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :

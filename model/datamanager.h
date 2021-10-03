@@ -10,12 +10,12 @@
 
 #include <QStringList>
 #include <QWidget>
-
-#include "model/modelmanager.h"
-#include "model/projectmanager.h"
-#include "model/settingsmanager.h"
-#include "trainingresult.h"
-#include "classificationresult.h"
+#include <utility>
+#include <modelmanager.h>
+#include <projectmanager.h>
+#include <settingsmanager.h>
+#include <trainingresult.h>
+#include <classificationresult.h>
 
 /**
  * @brief The DataManager class a facade to tie all the managers together and delegate to these

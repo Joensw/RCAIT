@@ -8,7 +8,7 @@
 #ifndef RESULTSCONTROLLER_H
 #define RESULTSCONTROLLER_H
 
-
+#include <resultsexporter.h>
 #include <trainingresult.h>
 #include <classificationresult.h>
 #include <resultswidget.h>

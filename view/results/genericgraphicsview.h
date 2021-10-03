@@ -3,7 +3,7 @@
 
 #include <QGraphicsItem>
 #include <QWidget>
-#include "savableresultswidget.h"
+#include <savableresultswidget.h>
 
 /**
  * @brief This class is a superclass of all specialized result views.

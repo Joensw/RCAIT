@@ -1,6 +1,5 @@
 #include "confusionmatrix.h"
 
-
 ConfusionMatrix::ConfusionMatrix(const QString &directory,
                                  const QString &identifier,
                                  const QStringList &classLabels,

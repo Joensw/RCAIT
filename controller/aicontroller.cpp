@@ -6,7 +6,7 @@
  * @author Andreas Ott
  */
 #include "aicontroller.h"
-#include "imagegallery.h"
+
 
 AIController::AIController(DataManager *dataManager, InputImagesWidget *inputImagesWidget,
                            AITrainingWidget *AITrainingWidget)

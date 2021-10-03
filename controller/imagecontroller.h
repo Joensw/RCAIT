@@ -11,12 +11,12 @@
 #define IMAGECONTROLLER_H
 
 #include <Qt>
-#include "imageloader.h"
-#include "importfileswidget.h"
-#include "imageinspectionwidget.h"
-#include "datamanager.h"
-#include "imageinspectionwidget.h"
-#include "imageinspectionmodel.h"
+#include <imageloader.h>
+#include <importfileswidget.h>
+#include <imageinspectionwidget.h>
+#include <datamanager.h>
+#include <imageinspectionwidget.h>
+#include <imageinspectionmodel.h>
 #include <utility>
 
 

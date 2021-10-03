@@ -1,12 +1,12 @@
 #ifndef CLASSIFICATIONRESULT_H
 #define CLASSIFICATIONRESULT_H
 
-
 #include <QString>
 #include <QMap>
-#include "result.h"
+#include <result.h>
 #include <classificationgraphics.h>
 #include <projectmanager.h>
+#include <utility>
 
 /**
  * @brief This class is a specific type of <code>Result</code>.

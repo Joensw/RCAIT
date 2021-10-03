@@ -7,6 +7,7 @@
 #include <genericgraphicsview.h>
 #include <configurationmanager.h>
 #include <genericresultgraphics.h>
+#include <QFileInfo>
 
 /**
  * @brief Top Accuracies Graphics are used to display

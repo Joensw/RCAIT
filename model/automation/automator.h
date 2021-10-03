@@ -1,11 +1,10 @@
 #ifndef AUTOMATOR_H
 #define AUTOMATOR_H
 
-#include "task.h"
+#include <task.h>
 #include <datamanager.h>
 #include <pluginusage/progressable.h>
 #include <QJsonDocument>
-
 
 /**
  * @brief The Automator class for managing task scheduling and execution.

@@ -1,8 +1,6 @@
 #include "inputimageswidget.h"
 #include "ui_inputimageswidget.h"
 
-#include <QFileDialog>
-
 
 InputImagesWidget::InputImagesWidget(QWidget *parent) :
     QWidget(parent),

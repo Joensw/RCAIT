@@ -8,18 +8,17 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "settingscontroller.h"
-#include "projectcontroller.h"
-#include "datamanager.h"
-#include "aicontroller.h"
-#include "modelcontroller.h"
-#include "automationcontroller.h"
-#include "configurationcontroller.h"
-#include "resultscontroller.h"
+#include <settingscontroller.h>
+#include <projectcontroller.h>
+#include <datamanager.h>
+#include <aicontroller.h>
+#include <modelcontroller.h>
+#include <automationcontroller.h>
+#include <configurationcontroller.h>
+#include <resultscontroller.h>
 #include <mainwindow.h>
-#include "imagecontroller.h"
-#include "tabcontroller.h"
-
+#include <imagecontroller.h>
+#include <tabcontroller.h>
 #include <QObject>
 
 /**

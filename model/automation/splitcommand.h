@@ -1,8 +1,7 @@
 #ifndef SPLITCOMMAND_H
 #define SPLITCOMMAND_H
 
-#include "command.h"
-
+#include <command.h>
 #include <imageinspectionmodel.h>
 #include <progressableplugin.h>
 #include <utility>

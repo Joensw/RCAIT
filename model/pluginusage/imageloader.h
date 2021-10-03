@@ -1,9 +1,9 @@
 #ifndef IMAGELOADER_H
 #define IMAGELOADER_H
 
-
 #include <QStringList>
 #include <imageloaderpluginmanager.h>
+#include <QtConcurrent/QtConcurrent>
 
 /**
  * @brief The ImageLoader class used to start image loading and handle incoming results

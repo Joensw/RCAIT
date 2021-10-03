@@ -13,11 +13,12 @@
 #include <QProcess>
 #include <QStringBuilder>
 #include <QProcessEnvironment>
+#include <QRegularExpression>
+#include <QIcon>
+
 #include "imageloaderplugin.h"
 #include "bingsettings.h"
 #include "progressableplugin.h"
-#include "QRegularExpression"
-#include <QIcon>
 #include "imagepluginerrorutil.h"
 
 /**

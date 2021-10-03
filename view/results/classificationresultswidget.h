@@ -5,8 +5,9 @@
 #include <QPushButton>
 #include <QMenu>
 #include <classificationresult.h>
-#include "classificationresultview.h"
-#include "genericcomparisonwidget.h"
+#include <classificationresultview.h>
+#include <genericcomparisonwidget.h>
+#include <projectmanager.h>
 
 /**
  * @brief The ClassificationResultsWidget is used for displaying and comparing classification results.

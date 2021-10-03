@@ -1,8 +1,5 @@
 #include "classificationpluginmanager.h"
 
-#include <QPluginLoader>
-#include <utility>
-
 ClassificationPluginManager::ClassificationPluginManager() = default;
 
 void ClassificationPluginManager::loadPlugins(QString pluginDir) {

@@ -1,8 +1,6 @@
 #include "globalsettingswidget.h"
 #include "ui_globalsettingswidget.h"
 
-#include <QResizeEvent>
-
 GlobalSettingsWidget::GlobalSettingsWidget(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::GlobalSettingsWidget) {

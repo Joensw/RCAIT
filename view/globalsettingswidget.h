@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QString>
 #include <QLabel>
+#include <QResizeEvent>
 
 namespace Ui {
 class GlobalSettingsWidget;

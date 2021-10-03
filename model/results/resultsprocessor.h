@@ -1,16 +1,15 @@
 #ifndef RESULTSPROCESSOR_H
 #define RESULTSPROCESSOR_H
 
-
 #include <QString>
 #include <QMap>
 #include <trainingresultview.h>
 #include <topaccuraciesview.h>
 #include <classificationresultview.h>
-#include "topaccuraciesgraphics.h"
-#include "classificationgraphics.h"
-#include "trainingresult.h"
-#include "classificationresult.h"
+#include <topaccuraciesgraphics.h>
+#include <classificationgraphics.h>
+#include <trainingresult.h>
+#include <classificationresult.h>
 #include <projectmanager.h>
 #include <ce_string.h>
 

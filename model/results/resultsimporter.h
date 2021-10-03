@@ -8,8 +8,8 @@
 #include <topaccuraciesview.h>
 #include <trainingresultview.h>
 #include <classificationresultview.h>
-#include "topaccuraciesgraphics.h"
-#include "resultsprocessor.h"
+#include <topaccuraciesgraphics.h>
+#include <resultsprocessor.h>
 #include <json_toolbox.h>
 
 /**

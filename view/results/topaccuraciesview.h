@@ -5,7 +5,7 @@
 #include <QMap>
 #include <QTableWidgetItem>
 #include <QPushButton>
-#include "genericgraphicsview.h"
+#include <genericgraphicsview.h>
 
 namespace Ui {
     class TopAccuraciesView;
