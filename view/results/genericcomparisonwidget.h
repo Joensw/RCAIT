@@ -133,7 +133,7 @@ private slots:
 
     void slot_updateSaveButton(int index) override;
 
-    void on_pushButton_saveCurrentTab_clicked() override;
+    void on_pushButton_saveCurrentTab_clicked();
 
 };
 
