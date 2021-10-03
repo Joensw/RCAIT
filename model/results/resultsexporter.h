@@ -39,7 +39,8 @@ public slots:
      * @param graphics graphics to be saved
      * @param success bool to report success state back to the view component
      */
-    void slot_save_TopAccuracies(const QSharedPointer<TopAccuraciesGraphics> &graphics, bool &success = SAVED) const;
+    void slot_save_TopAccuracies([[maybe_unused]] const QSharedPointer<TopAccuraciesGraphics> &graphics,
+                                 bool &success = SAVED) const;
 
     /**
      * @brief Saves a given training result.

@@ -13,15 +13,10 @@ void ResultsExporter::updateResultFolderPaths() {
 }
 
 void
-ResultsExporter::slot_save_TopAccuracies(const QSharedPointer<TopAccuraciesGraphics> &graphics, bool &success) const {
-    const auto &baseName = graphics->getBaseName();
-    const auto &extension = graphics->getExtension();
-    const auto &timestamp = Result::generateExtendedTimestamp();
-
-    const auto targetName = QString("%1_%2.%3").arg(baseName, timestamp, extension);
-
+ResultsExporter::slot_save_TopAccuracies([[maybe_unused]] const QSharedPointer<TopAccuraciesGraphics> &graphics,
+                                         bool &success) const {
     //Move graphics to result folder, set success state accordingly
-    saveGraphics();
+    success = saveGraphics(GraphicsType::TOPACCURACIES);
 }
 
 void ResultsExporter::slot_save_TrainingResult(const QSharedPointer<TrainingResult> &result, bool &success) const {
