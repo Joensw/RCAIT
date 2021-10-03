@@ -111,6 +111,8 @@ private slots:
 
     void slot_setEnableActionButtons();
 
+    void on_horizontalSlider_sliderReleased();
+
 signals:
 
     /**
@@ -143,6 +145,11 @@ signals:
      * @brief sig_abortLoading emits request to abort image loading
      */
     void sig_abortLoading();
+
+    /**
+     * @brief sig_splitSliderChanged emits a signal if the slider value is changed
+     */
+    void sig_splitSliderChanged(int value);
 };
 
 #endif // IMPORTFILESWIDGET_H

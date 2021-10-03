@@ -41,6 +41,12 @@ public:
      */
     ImageController &operator=(const ImageController &) = delete;
 
+    /**
+     * @brief setSplit sets the split between validation an training images
+     * @param split the split
+     */
+    void setSplit(int split);
+
 public slots:
 
     /**
@@ -104,6 +110,11 @@ public slots:
      *
      */
     void slot_abortLoading();
+
+    /**
+     * @brief slot_splitChanged used if split is changed.
+     */
+    void slot_splitChanged(int value);
 
 signals:
 

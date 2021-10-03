@@ -10,7 +10,7 @@
 
 ImageController::ImageController(ImageInspectionWidget *imageInspectionWidget, ImportFilesWidget *importFilesWidget,
                                  DataManager *dataManager)
-        : m_split(40),
+        : m_split(40), //set to 40 corresponding to the value in the importfileswidget
           m_dataManager(dataManager),
           m_imageinspectionwidget(imageInspectionWidget),
           m_importFilesWidget(importFilesWidget) {
@@ -18,10 +18,16 @@ ImageController::ImageController(ImageInspectionWidget *imageInspectionWidget, I
     m_importFilesWidget->setAvailablePlugins(dataManager->getImageLoaderPluginNames());
 
     connect(m_importFilesWidget, &ImportFilesWidget::sig_loadInputImages, this, &ImageController::slot_loadInputImages);
+    connect(m_importFilesWidget, &ImportFilesWidget::sig_splitSliderChanged, this, &ImageController::slot_splitChanged);
     connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_mergeDatasets, this,
             &ImageController::slot_mergeDatasets);
     connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_removeImages, this, &ImageController::slot_remove);
     connect(m_importFilesWidget, &ImportFilesWidget::sig_abortLoading, this, &ImageController::slot_abortLoading);
+}
+
+void ImageController::setSplit(int split)
+{
+    m_split = split;
 }
 
 
@@ -39,6 +45,12 @@ void ImageController::slot_loadInputImages(QString pluginName, int count, QStrin
 
 void ImageController::slot_abortLoading() {
     emit m_imageLoader.sig_pluginAborted();
+}
+
+void ImageController::slot_splitChanged(int value)
+{
+    m_split = value;
+    updateNewDatasetDisplay();
 }
 
 void ImageController::slot_imagesReady() {
