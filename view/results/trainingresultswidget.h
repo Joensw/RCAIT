@@ -51,7 +51,7 @@ private:
     static constexpr auto TOP_ACCURACIES_TAB_NAME = QT_TR_NOOP("Top Accuracies");
 
     ProjectManager *m_projectManager;
-    QScopedPointer<TopAccuraciesView> m_topAccuraciesView;
+    QSharedPointer<TopAccuraciesView> m_topAccuraciesView;
     QSharedPointer<TopAccuraciesGraphics> m_topAccuraciesGraphics;
     QMap<GenericGraphicsView *, QSharedPointer<TrainingResult>> m_mapResultsByTab;
 

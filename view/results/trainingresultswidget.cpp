@@ -15,8 +15,8 @@ void TrainingResultsWidget::configure_topAccuraciesTab() {
     //Cleanup old stuff
     getTabWidget()->removeTab(TOP_ACCURACIES_TAB_INDEX);
     //Old pointer will go out of scope after leaving this method and gets auto-deleted
-    m_topAccuraciesView.reset(new TopAccuraciesView(this));
-    m_topAccuraciesGraphics.reset(new TopAccuraciesGraphics(tempDir));
+    m_topAccuraciesView.reset(new TopAccuraciesView(this), &QObject::deleteLater);
+    m_topAccuraciesGraphics.reset(new TopAccuraciesGraphics(tempDir), &QObject::deleteLater);
 
     //Connect signals and slots
     connect(&*m_topAccuraciesView, &TopAccuraciesView::sig_normal_requestTopAccuraciesGraphics, this,
