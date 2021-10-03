@@ -35,7 +35,7 @@ void Controller::slot_configurationComplete(){
     mImageController.reset(
             new ImageController(mMainWindow->getImageInspectionWidget(), mMainWindow->getImportFilesWidget(),
                                 mDataManager));
-    mTabController.reset(new TabController(mMainWindow->getTabWidget()));
+    mTabController.reset(new TabController(mMainWindow->getTabWidget(), mMainWindow->getResultsWidget()->getTabWidget()));
 
     //Connect Signals/Slots
     connect(mMainWindow->getStartWidget(), &StartWidget::sig_openProject, &*mTabController,
@@ -90,18 +90,18 @@ void Controller::slot_configurationComplete(){
     connect(&*mAutomationController, &AutomationController::sig_classificationResultUpdated, &*mResultsController,
             &ResultsController::slot_addClassificationResult);
     connect(&*mAutomationController, &AutomationController::sig_trainingResultUpdated, &*mTabController,
-            &TabController::slot_showResults);
+            &TabController::slot_showTrainingResults);
     connect(&*mAutomationController, &AutomationController::sig_classificationResultUpdated, &*mTabController,
-            &TabController::slot_showResults);
+            &TabController::slot_showClassificationResults);
     connect(&*mAutomationController, &AutomationController::sig_projectDirectoryChanged, &*mResultsController,
             &ResultsController::slot_projectPathUpdated);
     connect(&*mAutomationController, &AutomationController::sig_projectDirectoryChanged, &*mProjectController,
             &ProjectController::slot_projectDirectoryChanged);
 
     connect(&*mAiController, &AIController::sig_trainingResultUpdated, &*mTabController,
-            &TabController::slot_showResults);
+            &TabController::slot_showTrainingResults);
     connect(&*mAiController, &AIController::sig_classificationResultUpdated, &*mTabController,
-            &TabController::slot_showResults);
+            &TabController::slot_showClassificationResults);
 
     mMainWindow->show();
 }

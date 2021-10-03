@@ -15,10 +15,11 @@ ProjectController::ProjectController(QObject *parent, DataManager *dataManager, 
     connect(mStartWidget, &StartWidget::sig_newProject, this, &ProjectController::slot_newProject);
     connect(mStartWidget, &StartWidget::sig_removeProject, this, &ProjectController::slot_removeProject);
     connect(mStartWidget, &StartWidget::sig_openProject, this, &ProjectController::slot_openProject);
-    startWidget->addProjects(mDataManager->getProjects());
+    refreshProjectList();
+    mStartWidget->setActionButtonsEnabled(false);
 }
 
-void ProjectController::refresh() {
+void ProjectController::refreshProjectList() {
     mStartWidget->clearProjectList();
     mStartWidget->addProjects(mDataManager->getProjects());
 }
@@ -42,12 +43,17 @@ void ProjectController::slot_removeProject(QString projectName) {
 }
 
 void ProjectController::slot_openProject(QString projectName) {
-    mDataManager->loadProject(std::move(projectName));
-    emit sig_projectPathUpdated();
+    if(mDataManager->loadProject(std::move(projectName))) {
+        emit sig_projectPathUpdated();
+        mStartWidget->resetListSelection();
+        mStartWidget->setActionButtonsEnabled(false);
+        return;
+    }
+    qWarning() << "could not load project";
 }
 
 void ProjectController::slot_projectDirectoryChanged() {
-    refresh();
+    refreshProjectList();
 }
 
 void ProjectController::slot_newProjectConfirm(QString projectName) {
@@ -57,15 +63,16 @@ void ProjectController::slot_newProjectConfirm(QString projectName) {
         mNewProjectDialog->showErrorMessage();
         return;
     }
-    refresh();
+    refreshProjectList();
+    mStartWidget->setActionButtonsEnabled(false);
     mNewProjectDialog->close();
 }
 
 void ProjectController::slot_removeProjectConfirm() {
     if (!(mRemoveProjectDialog->getProjectName() == mDataManager->getProjectName())){
         mDataManager->removeProject(mRemoveProjectDialog->getProjectName());
-        mStartWidget->clearProjectList();
-        mStartWidget->addProjects(mDataManager->getProjects());
+        refreshProjectList();
+        mStartWidget->setActionButtonsEnabled(false);
         mRemoveProjectDialog->close();
         return;
     }

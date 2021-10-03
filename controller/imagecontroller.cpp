@@ -22,7 +22,6 @@ ImageController::ImageController(ImageInspectionWidget *imageInspectionWidget, I
             &ImageController::slot_mergeDatasets);
     connect(m_imageinspectionwidget, &ImageInspectionWidget::sig_removeImages, this, &ImageController::slot_remove);
     connect(m_importFilesWidget, &ImportFilesWidget::sig_abortLoading, this, &ImageController::slot_abortLoading);
-
 }
 
 
@@ -71,7 +70,6 @@ void ImageController::slot_updateImageLoadStatusText(QString status) {
 
 void ImageController::slot_imagePluginDirectoryChanged(const QString &newDirectory) {
     m_importFilesWidget->setAvailablePlugins(m_dataManager->getImageLoaderPluginNames());
-
 }
 
 void ImageController::updateDatasetDisplay() {

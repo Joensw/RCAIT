@@ -12,7 +12,7 @@ ImportFilesWidget::ImportFilesWidget(QWidget *parent) :
         ui(new Ui::ImportFilesWidget) {
     ui->setupUi(this);
     ui->label_splitPercent->setText(QString::number(ui->horizontalSlider->value()) % "%");
-
+    connect(ui->listWidget_modelNames, &QListWidget::itemSelectionChanged, this, &ImportFilesWidget::slot_setEnableActionButtons);
 }
 
 ImportFilesWidget::~ImportFilesWidget() {
@@ -47,6 +47,12 @@ void ImportFilesWidget::addNewModel(const QString &modelName) {
 
 void ImportFilesWidget::clearModelList() {
     ui->listWidget_modelNames->clear();
+}
+
+void ImportFilesWidget::setActionButtonsEnabled(bool state)
+{
+    ui->pushButton_loadModel->setEnabled(state);
+    ui->pushButton_removeModel->setEnabled(state);
 }
 
 [[maybe_unused]] void ImportFilesWidget::on_pushButton_clearTags_clicked() {
@@ -136,5 +142,10 @@ void ImportFilesWidget::on_horizontalSlider_valueChanged(int value) {
 [[maybe_unused]] void ImportFilesWidget::on_pushButton_abortLoading_clicked() {
     emit sig_abortLoading();
     ui->pushButton_abortLoading->setEnabled(false);
+}
+
+void ImportFilesWidget::slot_setEnableActionButtons()
+{
+    setActionButtonsEnabled(true);
 }
 

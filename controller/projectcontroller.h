@@ -41,7 +41,7 @@ public:
     /**
      * @brief refresh clears the project list in the UI and reloads the current projects
      */
-    void refresh();
+    void refreshProjectList();
 
 signals:
 
