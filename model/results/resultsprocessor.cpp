@@ -23,6 +23,9 @@ void ResultsProcessor::slot_graphicsGenerated(GenericGraphicsView *receiver, con
     Q_ASSERT(graphics);
     if (!QFile::exists(graphics->getFullPath())) return;
     m_mapGraphicsByReceiver.remove(receiver, graphics);
+    disconnect(&*graphics, &GenericResultGraphics::sig_graphicsGenerated,
+               this, &ResultsProcessor::slot_graphicsGenerated);
+
     if (!m_mapGraphicsByReceiver.contains(receiver)) {
         //All pending graphics were generated. Result can be saved now.
         receiver->setSaved(false);
