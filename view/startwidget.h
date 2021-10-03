@@ -59,9 +59,9 @@ public:
     void setActionButtonsEnabled(bool state);
 
     /**
-     * @brief resetListSelection resets the project list so that no item is currently selected
+     * @brief disableOpenProjectButton Turns the open project button in the UI off
      */
-    void resetListSelection();
+    void disableOpenProjectButton();
 
 public slots:
 
@@ -80,6 +80,7 @@ public slots:
      * @brief slot_startLoading called when an image loading process is started to prevent the selection of a new project
      */
     void slot_startLoading();
+
 
 
 private:
