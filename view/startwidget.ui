@@ -242,14 +242,6 @@ border: 2px rgb(0, 0, 0);
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_openProject">
-       <property name="font">
-        <font>
-         <family>MS Shell Dlg 2</family>
-         <pointsize>8</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
        <property name="layoutDirection">
         <enum>Qt::RightToLeft</enum>
        </property>
