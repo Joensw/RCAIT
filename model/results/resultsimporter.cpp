@@ -182,7 +182,7 @@ void ResultsImporter::passResultGraphicsMultiplexer(GenericGraphicsView *receive
             receiver->setConfusionMatrix(graphics_ptr);
             break;
         case TOPACCURACIES:
-            receiver->setTopAccuraciesGraphics(graphics_ptr);
+            //Top Accuracies Graphics are not imported for comparison. Skip them.
             break;
         default:
             qDebug() << "Attempted to set unknown result graphics type";
