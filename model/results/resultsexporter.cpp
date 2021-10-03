@@ -35,8 +35,8 @@ void ResultsExporter::slot_save_TrainingResult(const QSharedPointer<TrainingResu
     success &= JSON_Toolbox::writeJSONToFile(JSON, savePath);
 
     //Move to result folder
-    saveGraphics();
-
+    success &= saveGraphics(GraphicsType::ACCURACYCURVE);
+    success &= saveGraphics(GraphicsType::CONFUSIONMATRIX);
 }
 
 void ResultsExporter::slot_save_ClassificationResult(const QSharedPointer<ClassificationResult> &result,
@@ -51,7 +51,7 @@ void ResultsExporter::slot_save_ClassificationResult(const QSharedPointer<Classi
     success &= JSON_Toolbox::writeJSONToFile(JSON, savePath);
 
     //Move to result folder
-    saveGraphics();
+    success &= saveGraphics(GraphicsType::CLASSIFICATION);
 }
 
 QJsonObject ResultsExporter::trainingResult2JSON(const QSharedPointer<TrainingResult> &result) {
@@ -131,43 +131,43 @@ QDir ResultsExporter::createResultDir(const QString &baseDir, const QString &ide
     return resultFolder;
 }
 
-void ResultsExporter::saveGraphics() const {
+bool ResultsExporter::saveGraphics(int type) const {
     QDir resultsDir(m_resultsDir);
+    bool success = false;
 
-    for (const auto &file: resultsDir.entryInfoList(QDir::Files)) {
-        for (int type = 0; type < $GRAPHICSTYPES_COUNT; type++) {
-            auto regex = GRAPHICSTYPE2REGEX[type];
-            auto filePath = file.absoluteFilePath();
-            auto match = regex.match(file.fileName());
-            if (!match.hasMatch()) continue;
+    for (const auto &file: resultsDir.entryInfoList(QDir::Files, QDir::Time)) {
+        auto regex = GRAPHICSTYPE2REGEX[type];
+        auto filePath = file.absoluteFilePath();
+        auto match = regex.match(file.fileName());
 
+        if (match.hasMatch()) {
             auto identifier = match.captured(1);
-
-            graphicsTypeMultiplexer(type, filePath, identifier);
-
+            success |= graphicsTypeMultiplexer(type, filePath, identifier);
         }
     }
+    return success;
 }
 
-void ResultsExporter::graphicsTypeMultiplexer(int type, const QString &filePath, const QString &identifier) const {
+bool ResultsExporter::graphicsTypeMultiplexer(int type, const QString &filePath, const QString &identifier) const {
     QFileInfo file(filePath);
-    switch (QString newPath; type) {
+    QString newPath;
+    switch (type) {
         case CLASSIFICATION:
             newPath = m_classificationResultsDir % "/" % identifier % "/" % file.fileName();
-            qDebug() << "Target folder to save to: " << newPath;
-            QFile::rename(filePath, newPath);
             break;
         case ACCURACYCURVE:
         case CONFUSIONMATRIX:
             newPath = m_trainingResultsDir % "/" % identifier % "/" % file.fileName();
-            qDebug() << "Target path to save to: " << newPath;
-            QFile::rename(filePath, newPath);
             break;
         case TOPACCURACIES:
-            // Top-Accuracies graphics have no folder so pass and do nothing
+            // Path will be like <resultsdir>/topaccuracies_01_01_70--00-00.svg
+            newPath = m_trainingResultsDir % "/" %
+                      file.baseName() % "_" % Result::generateExtendedTimestamp() % "." % file.suffix();
             break;
         default:
             qDebug() << "Unknown graphics file encountered. Leaving it in default location";
-            break;
+            return false;
     }
+    qDebug() << "Target path to save to: " << newPath;
+    return QFile::rename(filePath, newPath);
 }

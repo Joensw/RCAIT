@@ -78,8 +78,9 @@ private:
 
     /**
      * @brief Moves all graphics from the results directory in their specific subfolder.
+     * @param type type of graphics to save
      */
-    void saveGraphics() const;
+    bool saveGraphics(int type) const;
 
     /**
      * @brief Convert a TrainingResult into a QJsonObject
@@ -97,7 +98,7 @@ private:
     static QJsonObject
     classificationResult2JSON(const QSharedPointer<ClassificationResult> &result);
 
-    void graphicsTypeMultiplexer(int type, const QString &filePath, const QString &identifier) const;
+    bool graphicsTypeMultiplexer(int type, const QString &filePath, const QString &identifier) const;
 };
 
 #endif // RESULTSEXPORTER_H
