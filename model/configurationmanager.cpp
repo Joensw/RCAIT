@@ -36,10 +36,8 @@ bool ConfigurationManager::verifyPaths(const QStringList &paths) {
     //QDir treats the "" directory as "." and will always return true on .exists();
     if (paths.contains("")) return false;
 
-
     //Check if all paths exist
-    return std::all_of(paths.begin(), paths.end(),
-                       [](const QString &path) { return QDir(path).exists() || QFile(path).exists(); });
+    return std::all_of(paths.begin(), paths.end(), [](const QString &path) { return QFileInfo::exists(path); });
 }
 
 void
