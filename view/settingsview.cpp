@@ -147,7 +147,6 @@ SettingsView::~SettingsView() {
         ui->pluginWidget->removeWidget(widget);
         widget->setParent(nullptr);
     }
-    qDebug() << ui->pluginWidget->children();
 
     delete ui;
 }
