@@ -73,7 +73,6 @@ class FlickrPluginTest : public testing::TestWithParam<QStringList> {
 
 //check if downloading images from flickrapi works, returns 1 either way, should not be executed too often
 TEST_F(FlickrPluginTest, testLoadImages){
-    GTEST_SKIP();
     //set up flickrplugin
     int argc = 1;
     char *argv[1] = {new char('a')};
@@ -90,23 +89,20 @@ TEST_F(FlickrPluginTest, testLoadImages){
     ASSERT_EQ(flickrSettings->getAPISecret(),testAPISecret);
     ASSERT_EQ(flickrSettings->getPythonPath(),testPythonPath);
     ImageLoader* imageLoader = new ImageLoader;
-
-    flickrPlugin.loadImages(testNewData, (ProgressablePlugin*)imageLoader, 1, label);
     QSignalSpy spy(imageLoader, &ImageLoader::sig_pluginFinished);
+    flickrPlugin.loadImages(testNewData, (ProgressablePlugin*)imageLoader, 1, label);
 
     flickrPlugin.saveConfiguration();
     flickrPlugin.getName();
     flickrSettings->saveSettings();
 
-    EXPECT_TRUE(true);
-    //EXPECT_TRUE(spy.wait(1000));
-
+    EXPECT_EQ(QDir(testNewData + "/car").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count(), 1);
+    EXPECT_EQ(QDir(testNewData + "/anothercar").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count(), 1);
     QApplication::exit();
 }
 
 TEST_P(FlickrPluginTest, testMissingSetting){
     //set up flickrplugin
-    GTEST_SKIP();
     int argc = 1;
     char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
@@ -127,7 +123,7 @@ TEST_P(FlickrPluginTest, testMissingSetting){
     QSignalSpy spy(imageLoader, &ImageLoader::sig_statusUpdate);
     flickrPlugin.loadImages(testNewData, (ProgressablePlugin*)imageLoader, 1, label);
 
-    spy.wait(2000);
+    //spy.wait(2000);
     EXPECT_EQ(spy.count(), 1); // make sure the signal was emitted exactly one time
     QList<QVariant> arguments = spy.takeFirst();
     auto msg = arguments.at(0).value<QString>();
@@ -242,7 +238,7 @@ TEST_P(FlickrPluginTestInputs, testMissingSetting){
     QSignalSpy spy(imageLoader, &ImageLoader::sig_statusUpdate);
     flickrPlugin.loadImages(std::get<0>(testParam), (ProgressablePlugin*)imageLoader, std::get<1>(testParam), std::get<2>(testParam));
 
-    spy.wait(2000);
+    //spy.wait(2000);
     EXPECT_EQ(spy.count(), 1); // make sure the signal was emitted exactly one time
     QList<QVariant> arguments = spy.takeFirst();
     auto msg = arguments.at(0).value<QString>();
