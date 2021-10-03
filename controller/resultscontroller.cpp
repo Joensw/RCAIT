@@ -58,11 +58,11 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
     //Connect signals/slots related to saving training results
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_save_TrainingResult,
             &m_resultsExporter,
-            &ResultsExporter::slot_save_TrainingResult);
+            &ResultsExporter::slot_save_TrainingResult, Qt::UniqueConnection);
     //Connect signals/slots related to saving top accuracies
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_save_TopAccuracies,
             &m_resultsExporter,
-            &ResultsExporter::slot_save_TopAccuracies);
+            &ResultsExporter::slot_save_TopAccuracies, Qt::UniqueConnection);
 
 /*
  * Classification Results

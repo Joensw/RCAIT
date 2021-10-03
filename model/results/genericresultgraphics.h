@@ -10,6 +10,8 @@
 #include <QProcess>
 #include <QtConcurrent/QtConcurrentRun>
 #include <QStringBuilder>
+#include <QFile>
+#include <projectmanager.h>
 #include <utility>
 
 /**
@@ -37,6 +39,8 @@ private:
      * @param fullFilePath path to generated graphics file
      */
     virtual void passResultGraphics(GenericGraphicsView *receiver, const QString &fullFilePath) = 0;
+
+    void storeGraphicsFile(const QString &tempFilePath, const QString &fileName) const;
 
 public:
     /**

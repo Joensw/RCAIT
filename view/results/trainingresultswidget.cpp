@@ -65,13 +65,15 @@ void TrainingResultsWidget::saveResult(GenericGraphicsView *view) {
     //Keeps user from clicking the save button multiple times
     view->setSaved(true);
 
-    bool success;
+    bool success = false;
     if (view == &*m_topAccuraciesView)
             emit sig_save_TopAccuracies(m_topAccuraciesGraphics, success);
     else
             emit sig_save_TrainingResult(m_mapResultsByTab[view], success);
 
     //Set result as saved iff successful
+    //TODO
+    qDebug() << "Set Saved? " << success;
     view->setSaved(success);
 }
 
