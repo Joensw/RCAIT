@@ -6,6 +6,8 @@ void ResultsProcessor::addGraphicsGenerationJob(GenericGraphicsView *receiver,
     auto count = 1;
     auto total = graphicsList.size();
     for (const auto &graphics: graphicsList) {
+        if (!graphics) continue;
+
         //Connect 'finished graphics generation' signal with slot
         connect(&*graphics, &GenericResultGraphics::sig_graphicsGenerated,
                 this, &ResultsProcessor::slot_graphicsGenerated);

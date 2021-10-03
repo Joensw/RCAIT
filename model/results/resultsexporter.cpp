@@ -164,5 +164,7 @@ bool ResultsExporter::graphicsTypeMultiplexer(int type, const QString &filePath,
             return false;
     }
     qDebug() << "Target path to save to: " << newPath;
-    return QFile::rename(filePath, newPath);
+    QFile::rename(filePath, newPath);
+    qDebug() << "Saved successfully? " << QFileInfo::exists(newPath);
+    return QFileInfo::exists(newPath);
 }

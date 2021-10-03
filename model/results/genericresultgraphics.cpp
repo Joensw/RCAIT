@@ -20,6 +20,7 @@ void GenericResultGraphics::storeGraphicsFile(const QString &tempFilePath, const
     qDebug() << "Current path is : " << tempFilePath;
     qDebug() << "Results Dir is : " << ProjectManager::getInstance().getResultsDir();
     auto targetFilePath = ProjectManager::getInstance().getResultsDir() % "/" % fileName;
+    QFile::remove(targetFilePath);
     QFile::copy(tempFilePath, targetFilePath);
     qDebug() << "File exists?" << QFileInfo::exists(targetFilePath);
 }
