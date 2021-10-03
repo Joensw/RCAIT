@@ -64,7 +64,7 @@ void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationRe
 
         //Calculate argmax(map), choose label with the highest confidence
         auto index_max = std::distance(accList.begin(), max);
-        auto max_confidence = QString::number(*max, 'f', 2);
+        auto max_confidence = QString::number(*max * 100, 'f', 2);
         const auto &label = labels[index_max];
 
         tableMap[rowNumber++] = {max_confidence, label};
