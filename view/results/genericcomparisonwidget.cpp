@@ -39,7 +39,7 @@ void GenericComparisonWidget::configure_comparisonButton() {
     m_tabWidget->setCornerWidget(&*m_pushButton_addComparison, Qt::TopRightCorner);
 }
 
-void GenericComparisonWidget::configure_comparisonMenu(const QString &targetDir) {
+void GenericComparisonWidget::configure_comparisonMenu() {
 
     QFont inter(FONT_NAME, FONT_SIZE);
     m_menu_addComparison->setFont(inter);
@@ -49,7 +49,7 @@ void GenericComparisonWidget::configure_comparisonMenu(const QString &targetDir)
         oldMenuEntries << item->text();
     }
     //Add new compare button menu entries
-    auto dir = QDir(targetDir);
+    auto dir = QDir(m_resultsDir);
     auto entryList = dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
 
     for (const auto &resultEntry: entryList) {
@@ -57,7 +57,7 @@ void GenericComparisonWidget::configure_comparisonMenu(const QString &targetDir)
         auto niceEntry = Result::niceRepresentation(resultEntry);
         if (oldMenuEntries.contains(niceEntry)) continue;
 
-        //New directory detected, add it to the menu
+        //New result detected, add it to the menu
         auto *action = new QAction(niceEntry, &*m_menu_addComparison);
         action->setCheckable(true);
         action->setChecked(m_mapTabsByName.contains(niceEntry));
@@ -113,8 +113,9 @@ void GenericComparisonWidget::on_pushButton_saveCurrentTab_clicked() {
 }
 
 void GenericComparisonWidget::updateResultFolderPath(const QString &newDirPath) {
+    m_resultsDir = newDirPath;
     cleanup_oldResults();
-    configure_comparisonMenu(newDirPath);
+    configure_comparisonMenu();
 }
 
 void GenericComparisonWidget::cleanup_oldResults() {

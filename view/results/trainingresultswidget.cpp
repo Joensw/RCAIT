@@ -42,6 +42,7 @@ void TrainingResultsWidget::addTrainingResult(const QPointer<TrainingResult> &re
     m_mapResultsByTab[tab] = result;
     emit sig_normal_generateTrainingResultGraphics(tab, result);
     emit sig_normal_loadTrainingResultData(tab, result);
+    emit sig_comparison_loadAccuracyData(&*m_topAccuraciesView, &*m_topAccuraciesGraphics, result->getIdentifier());
 }
 
 void TrainingResultsWidget::addComparisonResult(const QString &runNameToCompare) {
@@ -65,16 +66,15 @@ void TrainingResultsWidget::saveResult(GenericGraphicsView *view) {
     //Keeps user from clicking the save button multiple times
     view->setSaved(true);
 
-    bool success = false;
+    bool successful = false;
     if (view == &*m_topAccuraciesView)
-            emit sig_save_TopAccuracies(&*m_topAccuraciesGraphics, success);
+            emit sig_save_TopAccuracies(&*m_topAccuraciesGraphics, successful);
     else
-            emit sig_save_TrainingResult(m_mapResultsByTab[view], success);
+            emit sig_save_TrainingResult(m_mapResultsByTab[view], successful);
 
     //Set result as saved iff successful
-    //TODO
-    qDebug() << "Set Saved? " << success;
-    view->setSaved(success);
+    view->setSaved(successful);
+    if (successful) configure_comparisonMenu();
 }
 
 void TrainingResultsWidget::retranslateUi() {
