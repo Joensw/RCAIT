@@ -181,6 +181,11 @@ Annotation files are needed when classifying images with the test script. Otherw
     ```
     The dataset can then be used in the dataset config by navigating to mmclassification/configs/datasets/default_dataset.py and changing the line in `test = dict(` from
     `type = dataset_type` to `type = 'LexicographicallySorted'`.
+## Run it remotely
+
+The program can be started from the terminal with the command `./RCAIT -platform vnc:size=1920x1080` on a remote machine. The Qt qvnc plugin then starts a VNC server on port 5900 by default. The supplied resolution is optional, but ensures that the window will be shown completely.
+Thereafter, you can view and interact with the GUI of the application from your machine with a VNC viewer of your choosing. We recommend [TightVNC](https://www.tightvnc.com/) or [RealVNC](https://www.realvnc.com/de/).
+
 ## Rare Cases & Fixes
 
 ### QSettings Crash
