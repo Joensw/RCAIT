@@ -13,7 +13,7 @@ ProjectManager::ProjectManager() {
 
 }
 
-void ProjectManager::createNewProject(QString projectName)
+void ProjectManager::createNewProject(const QString &projectName)
 {
     QString newProjectPath = mProjectsDirectory % "/" % projectName % "/" % projectName % projectFileType;
 
@@ -204,7 +204,7 @@ void ProjectManager::setProjectsDirectory(const QString &newDirectory)
     mProjectsDirectory = newDirectory;
 }
 
-bool ProjectManager::verifyName(QString projectName, QString &error)
+bool ProjectManager::verifyName(const QString &projectName, QString &error)
 {
     if (projectName.length() == 0){
         error = ERROR_NOCHAR;

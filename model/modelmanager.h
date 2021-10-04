@@ -57,14 +57,14 @@ public:
      * @param projectName the name of the project to which the model belongs
      * @param modelName name the model
      */
-    bool removeModel(QString projectName, QString modelName);
+    bool removeModel(const QString &projectName, const  QString &modelName);
 
     /**
      * @brief loadModel loads a model into the application for further use
      * @param modelName name of the model
      * @param pluginName name of the plugin the model is from
      */
-    void loadModel(QString modelName, QString pluginName);
+    void loadModel(const QString &modelName, const QString &pluginName);
 
     /**
      * @return the classification plugin the current model is from
@@ -92,7 +92,7 @@ public:
      * @return the names of the models from the given project, if the projects exists,
      *         otherwise an empty list will be returned
      */
-    QStringList getModelNamesOfProject(QString projectName);
+    QStringList getModelNamesOfProject(const QString &projectName);
 
     /**
      * @brief removeAllModelsOfProject deletes every user created model from the given project

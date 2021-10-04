@@ -67,7 +67,7 @@ public:
      * @brief savePluginSettings saves the settings of the plugin specified in the UI at the current index
      * @param index position of plugin settings widget
      */
-    void savePluginSettings(int index);
+    void savePluginSettings(const int &index);
 
     /**
      * @brief applyGlobalSettings changes the program paths according to parameters, if they are resolvable.

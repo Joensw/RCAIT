@@ -121,9 +121,9 @@ signals:
 
 private:
     ImageLoader m_imageLoader;
+    DataManager *m_dataManager;
     ImageInspectionWidget *m_imageinspectionwidget;
     ImportFilesWidget *m_importFilesWidget;
-    DataManager *m_dataManager;
     ImageInspectionModel m_imageInspectionModel;
     int m_split;
 
