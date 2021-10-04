@@ -77,6 +77,9 @@ protected:
      */
     [[maybe_unused]] [[nodiscard]] const QMap<QString, QWidget *> &getMapTabsByName() const;
 
+    /**
+     * @brief Checks the current result tabs against the available ones and finds new results in the results directory
+     */
     void configure_comparisonMenu();
 
 public:

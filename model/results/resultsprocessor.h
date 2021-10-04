@@ -92,6 +92,16 @@ public slots:
     void slot_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver,
                                                           const QPointer<ClassificationResult> &result);
 
+    /**
+     * @brief Import accuracy data to display in a TopAccuraciesView
+     * @param view TopAccuraciesView to display the data in
+     * @param graphics graphics to provide the data to
+     * @param result result to import top1/top5 accuracy from
+     */
+    void slot_normal_loadAccuracyData(TopAccuraciesView *view,
+                                      const QPointer<TopAccuraciesGraphics> &graphics,
+                                      const QPointer<TrainingResult> &result) const;
+
     //Training result slots
     /**
      * @brief Loads the data of a TrainingResult into a TrainingResultView

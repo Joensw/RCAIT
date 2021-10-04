@@ -42,7 +42,7 @@ void TrainingResultsWidget::addTrainingResult(const QPointer<TrainingResult> &re
     m_mapResultsByTab[tab] = result;
     emit sig_normal_generateTrainingResultGraphics(tab, result);
     emit sig_normal_loadTrainingResultData(tab, result);
-    emit sig_comparison_loadAccuracyData(&*m_topAccuraciesView, &*m_topAccuraciesGraphics, result->getIdentifier());
+    emit sig_normal_loadAccuracyData(&*m_topAccuraciesView, &*m_topAccuraciesGraphics, result);
 }
 
 void TrainingResultsWidget::addComparisonResult(const QString &runNameToCompare) {
