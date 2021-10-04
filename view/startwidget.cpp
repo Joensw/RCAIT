@@ -65,11 +65,11 @@ void StartWidget::on_pushButton_openProject_clicked() {
 }
 
 
-void StartWidget::addProjects(QStringList projects) {
+void StartWidget::addProjects(const QStringList &projects) {
     ui->listWidget_projectsList->addItems(projects);
 }
 
-void StartWidget::addProject(QString project) {
+void StartWidget::addProject(const QString &project) {
     ui->listWidget_projectsList->addItem(project);
 }
 

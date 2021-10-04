@@ -39,7 +39,7 @@ public slots:
      *
      * @param progress number in percent.
      */
-    void slot_progress(int progress);
+    void slot_progress(const int &progress);
 
     /**
      * @brief slot_taskAdded is used to add a task to the idle list.

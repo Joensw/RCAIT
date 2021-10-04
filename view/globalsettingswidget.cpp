@@ -34,7 +34,7 @@ void GlobalSettingsWidget::clearNewPaths() {
     ui->label_pythonPath_new->clear();
 }
 
-void GlobalSettingsWidget::showUpdate(int amount) {
+void GlobalSettingsWidget::showUpdate(const int &amount) {
     ui->label_information->clear();
     if (amount == 0) {
         ui->label_information->setStyleSheet(STYLESHEET_BLUE);

@@ -56,7 +56,7 @@ public:
      * @brief Change the 'Update Graphics' button state
      * @param enabled new state to be set to
      */
-    [[maybe_unused]] void setUpdateGraphicsButtonState(bool enabled);
+    [[maybe_unused]] void setUpdateGraphicsButtonState(const bool &enabled);
 
     /**
      * @brief Get the state of the 'Update Graphics' button

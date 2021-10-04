@@ -54,31 +54,31 @@ public:
      * @param inputPath absolute path to images
      * @param trainingPath absolute path to images
      */
-    ImageInspectionWidget(QWidget *parent, QStringList inputPath, QStringList trainingPath);
+    ImageInspectionWidget(QWidget *parent, const QStringList &inputPath, const QStringList &trainingPath);
 
     /**
      * @brief setCurrentDataSetTrainImages updates display of current training dataset images
      * @param labelToPathsMap current training dataset
      */
-    void setCurrentDataSetTrainImages(QMap<QString, QStringList> labelToPathsMap);
+    void setCurrentDataSetTrainImages(const QMap<QString, QStringList> &labelToPathsMap);
 
     /**
      * @brief setCurrentDataSetValidationImages updates display of current validation dataset images
      * @param labelToPathsMap current validation dataset
      */
-    void setCurrentDataSetValidationImages(QMap<QString, QStringList> labelToPathsMap);
+    void setCurrentDataSetValidationImages(const QMap<QString, QStringList> &labelToPathsMap);
 
     /**
      * @brief setNewValidationImages updates display of new validation images
      * @param labelToPathsMap new validation dataset
      */
-    void setNewValidationImages(QMap<QString, QStringList> labelToPathsMap);
+    void setNewValidationImages(const QMap<QString, QStringList> &labelToPathsMap);
 
     /**
      * @brief setNewTrainImages updates display of new training images
      * @param labelToPathsMap new training dataset
      */
-    void setNewTrainImages(QMap<QString, QStringList> labelToPathsMap);
+    void setNewTrainImages(const QMap<QString, QStringList> &labelToPathsMap);
 
 public slots:
 

@@ -30,7 +30,7 @@ public:
      * @brief Set the saved state of the result view
      * @param isSaved new saved state
      */
-    void setSaved(bool isSaved);
+    void setSaved(const bool &isSaved);
 
     /**
      * @brief Get the name of this result view

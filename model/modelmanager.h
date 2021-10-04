@@ -114,7 +114,7 @@ public:
      * @param modelName the name of model to which the working directory belongs
      * @return the saved working directory of the given model, if it exists, an empty QString otherwise
      */
-    QString recallLastWorkingDirectoryOfModel(QString projectName, QString modelName);
+    QString recallLastWorkingDirectoryOfModel(const QString &projectName, const QString &modelName);
 
     /**
      * @brief recallPluginNameOfModel find the plugin a certain model was derived from
@@ -123,7 +123,7 @@ public:
      * @return name of the originating plugin
      */
 
-    QString recallPluginNameOfModell(QString projectName, QString modelName);
+    QString recallPluginNameOfModell(const QString &projectName, const QString &modelName);
 
 private:
     const int pluginNamePosition = 0;
