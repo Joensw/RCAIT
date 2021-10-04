@@ -22,7 +22,7 @@ class ImageGalleryTreeTest : public testing::Test {
 //check if adding labels works
 TEST_F(ImageGalleryTreeTest, testAddLabels){
     QApplication a(argc, argv);
-    ImageGalleryTree* tree = new ImageGalleryTree(nullptr);
+    auto tree = QScopedPointer<ImageGalleryTree>(new ImageGalleryTree(nullptr));
 
     QStringList labels = {"Auto", "Flugzeug"};
     QStringList images = {path + "Auto/images", path + "Auto/images_1", path + "Flugzeug/airliner1", path + "Flugzeug/airliner2"};
@@ -47,7 +47,7 @@ TEST_F(ImageGalleryTreeTest, testAddLabels){
 //check if resetting images from image list works
 TEST_F(ImageGalleryTreeTest, testResetTree){
     QApplication a(argc, argv);
-    ImageGalleryTree* tree = new ImageGalleryTree(nullptr);
+    auto tree = QScopedPointer<ImageGalleryTree>(new ImageGalleryTree(nullptr));
 
     QStringList labels = {"Auto", "Flugzeug"};
     QStringList images = {path + "Auto/images", path + "Auto/images_1", path + "Flugzeug/airliner1", path + "Flugzeug/airliner2"};
@@ -64,7 +64,7 @@ TEST_F(ImageGalleryTreeTest, testResetTree){
 //check if removing images works
 TEST_F(ImageGalleryTreeTest, testAddPathImages){
     QApplication a(argc, argv);
-    ImageGalleryTree* tree = new ImageGalleryTree(nullptr);
+    auto tree = QScopedPointer<ImageGalleryTree>(new ImageGalleryTree(nullptr));
 
     QStringList labels = {"Auto", "Flugzeug"};
     QStringList images = {path + "Auto/images", path + "Auto/images_1", path + "Flugzeug/airliner1", path + "Flugzeug/airliner2"};

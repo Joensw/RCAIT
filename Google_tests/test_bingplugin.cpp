@@ -88,7 +88,7 @@ TEST_F(BingPluginTest, testLoadImages){
     bingSettings = qobject_cast<BingSettings *>(bingPlugin.getConfigurationWidget().get());
     bingSettings->setPythonPath(testPythonPath);
     ASSERT_EQ(bingSettings->getPythonPath(),testPythonPath);
-    ImageLoader* imageLoader = new ImageLoader;
+    auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
 
     bingPlugin.loadImages(testNewData, (ProgressablePlugin*)imageLoader, 1, label);
     QSignalSpy spy(imageLoader, &ImageLoader::sig_pluginFinished);

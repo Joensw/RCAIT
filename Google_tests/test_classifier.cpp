@@ -27,8 +27,8 @@ class ClassifierTest : public testing::Test {
 TEST_F(ClassifierTest, testClassification){
     QApplication a(argc, argv);
     //construct classifier
-    Classifier* cls = new Classifier;
-    QSignalSpy spy(cls, &Classifier::sig_classificationResultUpdated);
+    auto cls = QScopedPointer<Classifier>(new Classifier);
+    QSignalSpy spy(&*cls, &Classifier::sig_classificationResultUpdated);
 
     //start classification
     cls->classify(ClassificationPluginMock::PLUGIN_NAME, "true", "true", "true", "true");
@@ -41,12 +41,12 @@ TEST_F(ClassifierTest, testClassification){
 }
 
 //check if classifier works with incorrect classification
-TEST_F(ClassifierTest, testClassificationFailed){
+TEST_F(ClassifierTest, testClassificationFailed) {
     QApplication a(argc, argv);
     //construct classifier
-    Classifier* cls = new Classifier;
-    QSignalSpy spy(cls, &Classifier::sig_classificationResultUpdated);
-    QSignalSpy spyProgress(cls, &Classifier::sig_progress);
+    auto cls = QScopedPointer<Classifier>(new Classifier);
+    QSignalSpy spy(&*cls, &Classifier::sig_classificationResultUpdated);
+    QSignalSpy spyProgress(&*cls, &Classifier::sig_progress);
 
     //start classification
     cls->classify(ClassificationPluginMock::PLUGIN_NAME, "", "", "", "");

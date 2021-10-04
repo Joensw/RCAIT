@@ -78,26 +78,27 @@ TEST_F(FlickrPluginTest, testLoadImages){
     char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     FlickrPlugin flickrPlugin;
-    FlickrSettings* flickrSettings;
+    FlickrSettings *flickrSettings;
     flickrPlugin.init();
     flickrSettings = qobject_cast<FlickrSettings *>(flickrPlugin.getConfigurationWidget().get());
     flickrSettings->setAPIKey(testAPIKey);
     flickrSettings->setAPISecret(testAPISecret);
     flickrSettings->setPythonPath(testPythonPath);
 
-    ASSERT_EQ(flickrSettings->getAPIKey(),testAPIKey);
-    ASSERT_EQ(flickrSettings->getAPISecret(),testAPISecret);
-    ASSERT_EQ(flickrSettings->getPythonPath(),testPythonPath);
-    ImageLoader* imageLoader = new ImageLoader;
-    QSignalSpy spy(imageLoader, &ImageLoader::sig_pluginFinished);
-    flickrPlugin.loadImages(testNewData, (ProgressablePlugin*)imageLoader, 1, label);
+    ASSERT_EQ(flickrSettings->getAPIKey(), testAPIKey);
+    ASSERT_EQ(flickrSettings->getAPISecret(), testAPISecret);
+    ASSERT_EQ(flickrSettings->getPythonPath(), testPythonPath);
+    auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
+
+    QSignalSpy spy(&*imageLoader, &ImageLoader::sig_pluginFinished);
+    flickrPlugin.loadImages(testNewData, (ProgressablePlugin *) imageLoader, 1, label);
 
     flickrPlugin.saveConfiguration();
     flickrPlugin.getName();
     flickrSettings->saveSettings();
 
-    EXPECT_EQ(QDir(testNewData + "/car").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count(), 1);
-    EXPECT_EQ(QDir(testNewData + "/anothercar").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count(), 1);
+    EXPECT_EQ(QDir(testNewData + "/car").entryInfoList(QDir::NoDotAndDotDot | QDir::AllEntries).count(), 1);
+    EXPECT_EQ(QDir(testNewData + "/anothercar").entryInfoList(QDir::NoDotAndDotDot | QDir::AllEntries).count(), 1);
     QApplication::exit();
 }
 
@@ -115,13 +116,13 @@ TEST_P(FlickrPluginTest, testMissingSetting){
     flickrSettings->setAPISecret(testParam.at(1));
     flickrSettings->setPythonPath(testParam.at(2));
 
-    ASSERT_EQ(flickrSettings->getAPIKey(),testParam.at(0));
-    ASSERT_EQ(flickrSettings->getAPISecret(),testParam.at(1));
-    ASSERT_EQ(flickrSettings->getPythonPath(),testParam.at(2));
+    ASSERT_EQ(flickrSettings->getAPIKey(), testParam.at(0));
+    ASSERT_EQ(flickrSettings->getAPISecret(), testParam.at(1));
+    ASSERT_EQ(flickrSettings->getPythonPath(), testParam.at(2));
 
-    ImageLoader* imageLoader = new ImageLoader;
-    QSignalSpy spy(imageLoader, &ImageLoader::sig_statusUpdate);
-    flickrPlugin.loadImages(testNewData, (ProgressablePlugin*)imageLoader, 1, label);
+    auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
+    QSignalSpy spy(&*imageLoader, &ImageLoader::sig_statusUpdate);
+    flickrPlugin.loadImages(testNewData, (ProgressablePlugin *) imageLoader, 1, label);
 
     //spy.wait(2000);
     EXPECT_EQ(spy.count(), 1); // make sure the signal was emitted exactly one time
@@ -227,16 +228,17 @@ TEST_P(FlickrPluginTestInputs, testMissingSetting){
     QApplication a(argc, argv);
     std::tuple testParam = GetParam();
     FlickrPlugin flickrPlugin;
-    FlickrSettings* flickrSettings;
+    FlickrSettings *flickrSettings;
     flickrPlugin.init();
     flickrSettings = qobject_cast<FlickrSettings *>(flickrPlugin.getConfigurationWidget().get());
     flickrSettings->setAPIKey(testAPIKey);
     flickrSettings->setAPISecret(testAPISecret);
     flickrSettings->setPythonPath(testPythonPath);
 
-    ImageLoader* imageLoader = new ImageLoader;
-    QSignalSpy spy(imageLoader, &ImageLoader::sig_statusUpdate);
-    flickrPlugin.loadImages(std::get<0>(testParam), (ProgressablePlugin*)imageLoader, std::get<1>(testParam), std::get<2>(testParam));
+    auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
+    QSignalSpy spy(&*imageLoader, &ImageLoader::sig_statusUpdate);
+    flickrPlugin.loadImages(std::get<0>(testParam), (ProgressablePlugin *) imageLoader, std::get<1>(testParam),
+                            std::get<2>(testParam));
 
     //spy.wait(2000);
     EXPECT_EQ(spy.count(), 1); // make sure the signal was emitted exactly one time
