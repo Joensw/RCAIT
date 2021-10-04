@@ -1,4 +1,5 @@
 # Check imports
+import sys
 try:
     import flickrapi
     from argparse import ArgumentParser

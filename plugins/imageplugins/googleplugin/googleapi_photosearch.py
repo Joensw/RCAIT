@@ -1,10 +1,16 @@
-from argparse import ArgumentParser
-#see https://pypi.org/project/Google-Images-Search/ 
-#for instructions
-from google_images_search import GoogleImagesSearch
-import shutil
-import requests
-from pathlib import Path
+import sys
+try:
+    from argparse import ArgumentParser
+    #see https://pypi.org/project/Google-Images-Search/ 
+    #for instructions
+    from google_images_search import GoogleImagesSearch
+    import shutil
+    import requests
+    from pathlib import Path
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
 
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"}
 progress = 0
