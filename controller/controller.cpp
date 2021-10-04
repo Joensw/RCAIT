@@ -89,21 +89,18 @@ void Controller::slot_configurationComplete(){
 
     connect(&*mAutomationController, &AutomationController::sig_trainingResultUpdated, &*mResultsController,
             &ResultsController::slot_addTrainingResult);
+
     connect(&*mAutomationController, &AutomationController::sig_classificationResultUpdated, &*mResultsController,
             &ResultsController::slot_addClassificationResult);
-    connect(&*mAutomationController, &AutomationController::sig_trainingResultUpdated, &*mTabController,
-            &TabController::slot_showTrainingResults);
-    connect(&*mAutomationController, &AutomationController::sig_classificationResultUpdated, &*mTabController,
-            &TabController::slot_showClassificationResults);
     connect(&*mAutomationController, &AutomationController::sig_projectDirectoryChanged, &*mResultsController,
             &ResultsController::slot_projectPathUpdated);
     connect(&*mAutomationController, &AutomationController::sig_projectDirectoryChanged, &*mProjectController,
             &ProjectController::slot_projectDirectoryChanged);
 
-    connect(&*mAiController, &AIController::sig_trainingResultUpdated, &*mTabController,
-            &TabController::slot_showTrainingResults);
-    connect(&*mAiController, &AIController::sig_classificationResultUpdated, &*mTabController,
-            &TabController::slot_showClassificationResults);
+    connect(mMainWindow->getResultsWidget()->getTrainingResultsWidget(), &TrainingResultsWidget::sig_normal_loadTrainingResultData,
+            &*mTabController, &TabController::slot_showTrainingResults);
+    connect(mMainWindow->getResultsWidget()->getClassificationResultsWidget(), &ClassificationResultsWidget::sig_normal_loadClassificationResultData,
+            &*mTabController, &TabController::slot_showTrainingResults);
 
     mMainWindow->show();
 }
