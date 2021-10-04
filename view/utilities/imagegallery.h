@@ -6,6 +6,12 @@
 #include <QThread>
 #include <QImageReader>
 #include <QPainter>
+#include <QApplication>
+#include <QGridLayout>
+#include <QtConcurrent/QtConcurrent>
+#include <utility>
+#include <QScroller>
+#include <QResizeEvent>
 
 /**
  * @brief The ImageGallery class shows a list of images.
@@ -178,6 +184,10 @@ private:
         ~addImagesTask() override {
             quit();
             QThread::quit();
+            while (!isFinished()){
+                QApplication::processEvents();
+                QThread::sleep(1);
+            }
         }
 
         /**

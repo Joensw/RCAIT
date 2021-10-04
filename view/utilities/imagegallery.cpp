@@ -1,11 +1,4 @@
 #include "imagegallery.h"
-#include <QApplication>
-#include <QGridLayout>
-#include <QtConcurrent/QtConcurrent>
-#include <utility>
-#include <QScroller>
-#include <QResizeEvent>
-
 
 ImageGallery::ImageGallery(QWidget *parent) :
         QListWidget(parent) {
@@ -27,7 +20,7 @@ ImageGallery::ImageGallery(QWidget *parent) :
 
 
 ImageGallery::~ImageGallery() {
-    running->quit();
+    if(running) running->quit();
 }
 
 
