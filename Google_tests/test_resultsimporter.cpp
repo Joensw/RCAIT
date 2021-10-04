@@ -100,17 +100,17 @@ TEST_F(ResultsImporterTest, testCallMethods){
     //qRegisterMetaType<TrainingResultView>();
     QSignalSpy spy(&resultsImporter, &ResultsImporter::sig_normal_loadTrainingResultData);
     QSignalSpy spy2(&resultsImporter, &ResultsImporter::sig_normal_loadClassificationResultData);
-    resultsImporter.slot_comparison_loadTrainingResultData(trainingResultView,"run");
-    resultsImporter.slot_comparison_loadClassificationResultData(classificationResultView,"fun");
+    resultsImporter.slot_comparison_loadTrainingResultData(trainingResultView, "run");
+    resultsImporter.slot_comparison_loadClassificationResultData(classificationResultView, "fun");
 
     spy2.wait(1000);
     spy.wait(1000);
     //QList<QVariant> arguments = spy.takeFirst();
     //TrainingResultView resultView = qvariant_cast<TrainingResultView>(spy.at(0).at(0));
-    auto result = spy.at(0).at(1).value<TrainingResult*>();
-    auto result2 = spy2.at(0).at(1).value<ClassificationResult*>();
-    std::pair<double,double> p1{75.0,0.0};
-    std::pair<double,double> p2{0.0,0.0};
+    auto result = spy.at(0).at(1).value<QPointer<TrainingResult>>();
+    auto result2 = spy2.at(0).at(1).value<QPointer<ClassificationResult>>();
+    std::pair<double, double> p1{75.0, 0.0};
+    std::pair<double, double> p2{0.0, 0.0};
     EXPECT_EQ(result->getAccuracyCurveData().value(100), p1);
     EXPECT_EQ(result->getAccuracyCurveData().value(200), p2);
 
