@@ -11,6 +11,7 @@
  * It is also a data retention class and holds all data after a training process.
  */
 class TrainingResult : public Result {
+    Q_OBJECT
 private:
     QStringList m_mostMisclassifiedImages;
     QMap<int, QPair<double, double>> m_accuracyCurveData;

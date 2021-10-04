@@ -94,7 +94,7 @@ bool ClassificationPluginManager::removeModel(QString modelName, const QString &
     return m_plugins[pluginName]->removeModel(std::move(modelName));
 }
 
-TrainingResult *
+QPointer<TrainingResult>
 ClassificationPluginManager::train(const QString &pluginName, const QString &modelName, QString trainDatasetPath,
                                    QString validationDatasetPath, QString workingDirectory,
                                    ProgressablePlugin *receiver) {
@@ -107,7 +107,7 @@ ClassificationPluginManager::train(const QString &pluginName, const QString &mod
                                         receiver);
 }
 
-ClassificationResult *
+QPointer<ClassificationResult>
 ClassificationPluginManager::classify(const QString &pluginName, const QString &inputImageDirPath,
                                       const QString &trainDatasetPath,
                                       const QString &workingDirectory, const QString &modelName,

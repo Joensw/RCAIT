@@ -10,7 +10,7 @@ void ResultsExporter::updateResultFolderPaths() {
     m_classificationResultsDir = m_projectManager->getClassificationResultsDir();
 }
 
-void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics, bool &success) const {
+void ResultsExporter::slot_save_TopAccuracies(const QPointer<TopAccuraciesGraphics> &graphics, bool &success) const {
     const auto &fileName = graphics->getFullName();
     const auto &baseName = graphics->getBaseName();
     const auto &extension = graphics->getExtension();
@@ -25,7 +25,7 @@ void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics, b
     success = saveFile(oldFilePath, newFilePath);
 }
 
-void ResultsExporter::slot_save_TrainingResult(TrainingResult *result, bool &success) const {
+void ResultsExporter::slot_save_TrainingResult(const QPointer<TrainingResult> &result, bool &success) const {
     success = true;
 
     const auto &identifier = result->getSavableIdentifier();
@@ -47,7 +47,8 @@ void ResultsExporter::slot_save_TrainingResult(TrainingResult *result, bool &suc
 
 }
 
-void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *result, bool &success) const {
+void
+ResultsExporter::slot_save_ClassificationResult(const QPointer<ClassificationResult> &result, bool &success) const {
     success = true;
 
     const auto &identifier = result->getSavableIdentifier();
@@ -65,7 +66,7 @@ void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *resul
     success &= saveFile(old_graphicsPath, resultFolder.absoluteFilePath(graphicsFilename));
 }
 
-QJsonObject ResultsExporter::trainingResult2JSON(const TrainingResult *result) {
+QJsonObject ResultsExporter::trainingResult2JSON(const QPointer<TrainingResult> &result) {
     QJsonObject JSON;
 
     //Extract relevant data from result
@@ -103,7 +104,7 @@ QJsonObject ResultsExporter::trainingResult2JSON(const TrainingResult *result) {
     return JSON;
 }
 
-QJsonObject ResultsExporter::classificationResult2JSON(const ClassificationResult *result) {
+QJsonObject ResultsExporter::classificationResult2JSON(const QPointer<ClassificationResult> &result) {
     QJsonObject JSON;
     //Extract relevant data from result
     const auto &classification_data = result->getClassificationData();

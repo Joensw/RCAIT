@@ -1,7 +1,7 @@
 /**
  * @file aicontroller.h
  *
- * @brief connects the ai classifcation and training logic with the user interface
+ * @brief connects the ai classification and training logic with the user interface
  *
  * @author Andreas Ott
  */
@@ -60,13 +60,13 @@ public slots:
      * @brief sig_trainingResultUpdated can be called when a new training result is available
      * @param trainingResult is the result of the last executed training
      */
-    void slot_trainingResultUpdated(TrainingResult *trainingResult);
+    void slot_trainingResultUpdated(const QPointer<TrainingResult> &trainingResult);
 
     /**
      * @brief sig_classificationResultUpdated can be called when a new classification result is available
      * @param classificationResult is the result of the last executed classification
      */
-    void slot_classificationResultUpdated(ClassificationResult *classificationResult);
+    void slot_classificationResultUpdated(const QPointer<ClassificationResult> &classificationResult);
 
     /**
      * @brief slot_startClassify starts classification when triggered.
@@ -102,13 +102,13 @@ signals:
      * @brief sig_trainingResultUpdated emitted when a new training result is available
      * @param trainingResult is the result of the last executed training
      */
-    void sig_trainingResultUpdated(TrainingResult *trainingResult);
+    void sig_trainingResultUpdated(const QPointer<TrainingResult> &trainingResult);
 
     /**
      * @brief sig_classificationResultUpdated emitted when a new classification result is available
      * @param classificationResult is the result of the last executed classification
      */
-    void sig_classificationResultUpdated(ClassificationResult *classificationResult);
+    void sig_classificationResultUpdated(const QPointer<ClassificationResult> &classificationResult);
 
 private:
     DataManager *mDataManager;

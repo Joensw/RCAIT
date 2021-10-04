@@ -154,7 +154,7 @@ public:
      * @param receiver a Progressable plugin to report the progress to the main application
      * @return a pointer to a TrainingResult object with the relevant data
      */
-    [[nodiscard]] TrainingResult *
+    [[nodiscard]] QPointer<TrainingResult>
     train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath,
           QString workingDirectoryPath, ProgressablePlugin *receiver) override;
 
@@ -167,7 +167,7 @@ public:
      * @param receiver a Progressable plugin to report the progress to the main application
      * @return a pointer to a ClassificationResult object with the relevant data
      */
-    [[nodiscard]] ClassificationResult *
+    [[nodiscard]] QPointer<ClassificationResult>
     classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath,
              const QString &modelName, ProgressablePlugin *receiver) override;
 

@@ -41,7 +41,7 @@ signals:
      *
      * @param classificationResult new classification result
      */
-    void sig_classificationResultUpdated(ClassificationResult *classificationResult);
+    void sig_classificationResultUpdated(const QPointer<ClassificationResult> &classificationResult);
 
     /**
      * @brief sig_startClassification signals start of classification
@@ -67,7 +67,7 @@ public slots:
 
 private:
     ClassificationPluginManager &mManager = ClassificationPluginManager::getInstance();
-    QFuture<ClassificationResult *> mClassificationResult;
+    QFuture<QPointer<ClassificationResult>> mClassificationResult;
 
 };
 

@@ -20,7 +20,8 @@ void ResultsProcessor::addGraphicsGenerationJob(GenericGraphicsView *receiver,
     }
 }
 
-void ResultsProcessor::slot_graphicsGenerated(GenericGraphicsView *receiver, GenericResultGraphics *graphics) {
+void ResultsProcessor::slot_graphicsGenerated(GenericGraphicsView *receiver,
+                                              const QPointer<GenericResultGraphics> &graphics) {
     Q_ASSERT(receiver);
     Q_ASSERT(graphics);
     if (!QFile::exists(graphics->getFullPath())) return;
@@ -50,7 +51,7 @@ void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(TopAccuraciesVi
  * Classification result slots
  */
 void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationResultView *view,
-                                                                ClassificationResult *result) {
+                                                                const QPointer<ClassificationResult> &result) {
     const auto &map = result->getClassificationData();
     const auto &labels = result->getLabels();
     Q_ASSERT(!map.isEmpty());
@@ -75,7 +76,7 @@ void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationRe
 }
 
 void ResultsProcessor::slot_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver,
-                                                                        ClassificationResult *result) {
+                                                                        const QPointer<ClassificationResult> &result) {
     const auto &classificationGraphics = result->getClassificationGraphics();
     addGraphicsGenerationJob(receiver, {classificationGraphics});
 }
@@ -83,13 +84,14 @@ void ResultsProcessor::slot_normal_generateClassificationResultGraphics(GenericG
 /**
  * Training result slots
  */
-void ResultsProcessor::slot_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result) {
+void
+ResultsProcessor::slot_normal_loadTrainingResultData(TrainingResultView *view, const QPointer<TrainingResult> &result) {
     auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
     view->setMostMisclassifiedImages(mostMisclassifiedImages);
 }
 
 void ResultsProcessor::slot_normal_generateTrainingResultGraphics(GenericGraphicsView *receiver,
-                                                                  TrainingResult *result) {
+                                                                  const QPointer<TrainingResult> &result) {
     const auto &accCurve = result->getAccuracyCurve();
     const auto &confusionMatrix = result->getConfusionMatrix();
     addGraphicsGenerationJob(receiver, {accCurve, confusionMatrix});

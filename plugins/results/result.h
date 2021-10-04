@@ -9,7 +9,8 @@
  * It provides common functionality for the result classes.
  * Result classes are very flexible and specific types can therefore be seen as 'plugins'
  */
-class Result {
+class Result : public QObject {
+Q_OBJECT
 private:
     QString m_storageDir;
     QStringList m_additionalResults;

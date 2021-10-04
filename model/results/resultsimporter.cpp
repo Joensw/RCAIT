@@ -29,7 +29,8 @@ QString ResultsImporter::getResultDataPath(const QString &resultNameTemplate, co
 /**
  * Top Accuracies slots
  */
-void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view,
+                                                       const QPointer<TopAccuraciesGraphics> &graphics,
                                                        const QString &runNameToCompare) const {
     Q_ASSERT(graphics);
     Q_ASSERT(view);
@@ -44,7 +45,8 @@ void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view, 
     view->addTopAccuraciesEntry(runNameToCompare, top1, top5);
 }
 
-void ResultsImporter::slot_comparison_unloadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+void ResultsImporter::slot_comparison_unloadAccuracyData(TopAccuraciesView *view,
+                                                         const QPointer<TopAccuraciesGraphics> &graphics,
                                                          const QString &runNameToCompare) {
     Q_ASSERT(graphics);
     Q_ASSERT(view);

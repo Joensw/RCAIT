@@ -5,11 +5,11 @@ Classifier::Classifier() = default;
 void Classifier::classify(const QString &pluginName, const QString &inputImageDirPath, const QString &trainDatasetPath,
                           const QString &workingDirectory, const QString &modelName) {
 
-    auto watcher = new QFutureWatcher<ClassificationResult *>;
-    connect(watcher, &QFutureWatcher<ClassificationResult *>::finished, this,
+    auto watcher = new QFutureWatcher<QPointer<ClassificationResult>>;
+    connect(watcher, &QFutureWatcher<QPointer<ClassificationResult>>::finished, this,
             &Classifier::slot_handleClassificationResult);
-    connect(watcher, &QFutureWatcher<ClassificationResult *>::finished, watcher,
-            &QFutureWatcher<ClassificationResult *>::deleteLater);
+    connect(watcher, &QFutureWatcher<QPointer<ClassificationResult>>::finished, watcher,
+            &QFutureWatcher<QPointer<ClassificationResult>>::deleteLater);
     mClassificationResult = QtConcurrent::run(&ClassificationPluginManager::classify, &mManager, pluginName,
                                               inputImageDirPath, trainDatasetPath, workingDirectory, modelName, this);
     watcher->setFuture(mClassificationResult);

@@ -54,7 +54,7 @@ bool ClassificationPluginMock::removeModel(QString modelName)
     return true;
 }
 
-TrainingResult *
+QPointer<TrainingResult>
 ClassificationPluginMock::train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath,
                                 QString workingDirectory, ProgressablePlugin *receiver) {
     if (modelName == "true") {
@@ -64,7 +64,7 @@ ClassificationPluginMock::train(const QString &modelName, QString trainDatasetPa
     return new TrainingResult({}, {}, {}, {}, {}, {}, {});
 }
 
-ClassificationResult *
+QPointer<ClassificationResult>
 ClassificationPluginMock::classify(const QString &inputImageDirPath, const QString &trainDatasetPath,
                                    const QString &workingDirPath, const QString &modelName,
                                    ProgressablePlugin *receiver) {

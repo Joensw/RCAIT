@@ -13,6 +13,7 @@
  * It is also a data retention class and holds all data after a classification process.
  */
 class ClassificationResult : public Result {
+    Q_OBJECT
 private:
     QMap<QString, QList<double>> m_classificationData;
     QSharedPointer<ClassificationGraphics> m_classificationGraphics;

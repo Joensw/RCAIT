@@ -40,11 +40,11 @@ public:
 
     bool removeModel(QString modelName) override;
 
-    [[nodiscard]] TrainingResult *
+    [[nodiscard]] QPointer<TrainingResult>
     train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory,
           ProgressablePlugin *receiver) override;
 
-    [[nodiscard]] ClassificationResult *
+    [[nodiscard]] QPointer<ClassificationResult>
     classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath,
              const QString &modelName, ProgressablePlugin *receiver) override;
 

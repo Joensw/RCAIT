@@ -31,13 +31,13 @@ public:
      * @brief Add a new classification result to display
      * @param result result to be added
      */
-    void addClassificationResult(ClassificationResult *result);
+    void addClassificationResult(const QPointer<ClassificationResult> &result);
 
 private:
     static constexpr auto PLACEHOLDER_TAB_INDEX = 0;
     static constexpr auto PLACEHOLDER_TAB_ICON = ":/TabIcons/Filled/Results_Accuracy_Tab_Icon.svg";
 
-    QMap<GenericGraphicsView *, ClassificationResult *> m_mapResultsByTab;
+    QMap<GenericGraphicsView *, QPointer<ClassificationResult>> m_mapResultsByTab;
 
     void addComparisonResult(const QString &runNameToCompare) override;
 
@@ -69,21 +69,23 @@ signals:
      * @param view tab to be filled with data
      * @param result contains the relevant data for parsing
      */
-    void sig_normal_loadClassificationResultData(ClassificationResultView *view, ClassificationResult *result);
+    void sig_normal_loadClassificationResultData(ClassificationResultView *view,
+                                                 const QPointer<ClassificationResult> &result);
 
     /**
      * @brief Signal is emitted when a result tab was created (after a classification) and graphics are requested.
      * @param receiver tab that will display the graphics
      * @param result result that contains the relevant data
      */
-    void sig_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver, ClassificationResult *result);
+    void sig_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver,
+                                                         const QPointer<ClassificationResult> &result);
 
     /**
      * @brief Signal is emitted when the save button was clicked.
      * @param result result to be saved
      * @param success bool to report success state back to the view component
      */
-    void sig_save_ClassificationResult(ClassificationResult *result, bool &success);
+    void sig_save_ClassificationResult(const QPointer<ClassificationResult> &result, bool &success);
 
 };
 

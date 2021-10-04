@@ -289,7 +289,7 @@ MMClassificationPlugin::getAugmentationPreview(const QString &modelName, const Q
     return true;
 }
 
-TrainingResult *
+QPointer<TrainingResult>
 MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath,
                               QString workingDirectoryPath, ProgressablePlugin *receiver) {
     m_receiver = receiver;
@@ -437,7 +437,7 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
                               mostMisclassifiedImages, top1, top5);
 }
 
-ClassificationResult *
+QPointer<ClassificationResult>
 MMClassificationPlugin::classify(const QString &inputImageDirPath, const QString &trainDatasetPath,
                                  const QString &workingDirPath,
                                  const QString &modelName, ProgressablePlugin *receiver) {

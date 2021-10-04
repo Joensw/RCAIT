@@ -101,7 +101,7 @@ signals:
      * @param receiver result view to display the generated graphics
      * @param graphics graphics object that was visualized
      */
-    void sig_graphicsGenerated(GenericGraphicsView *receiver, GenericResultGraphics *graphics);
+    void sig_graphicsGenerated(GenericGraphicsView *receiver, const QPointer<GenericResultGraphics> &graphics);
 
 protected:
     /**

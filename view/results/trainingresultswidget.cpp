@@ -37,7 +37,7 @@ void TrainingResultsWidget::updateResultFolderPath(const QString &newDirPath) {
     configure_topAccuraciesTab();
 }
 
-void TrainingResultsWidget::addTrainingResult(TrainingResult *result) {
+void TrainingResultsWidget::addTrainingResult(const QPointer<TrainingResult> &result) {
     auto tab = createResultTab<TrainingResultView>(result->getIdentifier());
     m_mapResultsByTab[tab] = result;
     emit sig_normal_generateTrainingResultGraphics(tab, result);

@@ -75,7 +75,7 @@ public:
      * @param receiver receives progress of training
      * @return result data of training
      */
-    virtual TrainingResult *
+    virtual QPointer<TrainingResult>
     train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory,
           ProgressablePlugin *receiver) = 0;
 
@@ -89,7 +89,7 @@ public:
      * @param receiver receives classification progress
      * @return result data of classification
      */
-    virtual ClassificationResult *
+    virtual QPointer<ClassificationResult>
     classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath,
              const QString &modelName, ProgressablePlugin *receiver) = 0;
 
