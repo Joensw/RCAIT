@@ -40,7 +40,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QLabel" name="label_invalidname">
+         <widget class="QLabel" name="label_information">
           <property name="layoutDirection">
            <enum>Qt::LeftToRight</enum>
           </property>
@@ -48,7 +48,7 @@
            <string notr="true">QLabel { color : red; }</string>
           </property>
           <property name="text">
-           <string>invalid name!</string>
+           <string>Error!</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>

@@ -8,7 +8,7 @@ NewProjectDialog::NewProjectDialog(QWidget *parent) :
     ui(new Ui::NewProjectDialog)
 {
     ui->setupUi(this);
-    ui->label_invalidname->hide();
+    ui->label_information->hide();
 }
 
 NewProjectDialog::~NewProjectDialog()
@@ -17,15 +17,15 @@ NewProjectDialog::~NewProjectDialog()
 }
 
 void NewProjectDialog::showErrorMessage(){
-    ui->label_invalidname->show();
+    ui->label_information->show();
 }
 
 void NewProjectDialog::hideErrorMessage(){
-    ui->label_invalidname->hide();
+    ui->label_information->hide();
 }
 
 void NewProjectDialog::setErrorMessage(const QString &error){
-    ui->label_invalidname->setText(error);
+    AnimationUtilities::setTextWithAnimation(ui->label_information, error);
 }
 
 void NewProjectDialog::on_buttonBox_rejected(){
