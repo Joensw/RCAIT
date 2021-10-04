@@ -37,13 +37,13 @@ signals:
      *
      * @param result training result.
      */
-    void sig_saveResult(QSharedPointer<TrainingResult> result);
+    void sig_saveResult(TrainingResult *result);
 
 private:
 
     ClassificationPluginManager &mPluginManager = ClassificationPluginManager::getInstance();
     DataManager &mDataManager = DataManager::getInstance();
-    QSharedPointer<TrainingResult> mResult;
+    TrainingResult *mResult;
     ProgressablePlugin *mReceiver;
     QSharedPointer<QWidget> mInputWidget;
     QSharedPointer<QWidget> mAugmentationWidget;

@@ -19,12 +19,14 @@
  * This class contains common code and methods required by all specialised result graphics.
  */
 class GenericResultGraphics : public QObject {
-Q_OBJECT
+    Q_OBJECT
 
 private:
     const QString m_baseName;
     const QString m_extension;
     const QString m_directory;
+    const QString m_fullName;
+    const QString m_fullPath;
 
     /**
      * @brief Internal generation method. Used to visualise specialised result graphics.
@@ -40,8 +42,6 @@ private:
      */
     virtual void passResultGraphics(GenericGraphicsView *receiver, const QString &fullFilePath) = 0;
 
-    void storeGraphicsFile(const QString &tempFilePath, const QString &fileName) const;
-
 public:
     /**
      * @brief Constructs GenericResultGraphics
@@ -49,7 +49,7 @@ public:
      * @param baseName Name of the output file without extension
      * @param extension extension of the file
      */
-    GenericResultGraphics(QString directory, QString baseName, QString extension);
+    GenericResultGraphics(const QString &directory, QString baseName, QString extension);
 
     /**
      * @brief Launch generation process of output file.
@@ -69,7 +69,7 @@ public:
      * @brief Get the full name of the output file
      * @return full file name
      */
-    [[maybe_unused]] [[nodiscard]] QString getFullName() const;
+    [[maybe_unused]] [[nodiscard]] const QString &getFullName() const;
 
     /**
      * @brief Get the extension of the output file
@@ -87,7 +87,7 @@ public:
      * @brief Get the full file path of the output file (consists of directory and full file name)
      * @return full file path
      */
-    [[maybe_unused]] [[nodiscard]] QString getFullPath() const;
+    [[maybe_unused]] [[nodiscard]] const QString &getFullPath() const;
 
     /**
      * Virtual destructor.
@@ -101,7 +101,7 @@ signals:
      * @param receiver result view to display the generated graphics
      * @param graphics graphics object that was visualized
      */
-    void sig_graphicsGenerated(GenericGraphicsView *receiver, QSharedPointer<GenericResultGraphics> graphics);
+    void sig_graphicsGenerated(GenericGraphicsView *receiver, GenericResultGraphics *graphics);
 
 protected:
     /**

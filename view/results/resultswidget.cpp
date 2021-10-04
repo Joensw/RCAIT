@@ -17,11 +17,11 @@ ResultsWidget::ResultsWidget(QWidget *parent) :
     ui->tabWidget_mode->setCurrentIndex(0);
 }
 
-void ResultsWidget::addTrainingResult(QSharedPointer<TrainingResult> result) {
+void ResultsWidget::addTrainingResult(TrainingResult *result) {
     m_trainingResultsWidget->addTrainingResult(result);
 }
 
-void ResultsWidget::addClassificationResult(QSharedPointer<ClassificationResult> result) {
+void ResultsWidget::addClassificationResult(ClassificationResult *result) {
     m_classificationResultsWidget->addClassificationResult(result);
 }
 

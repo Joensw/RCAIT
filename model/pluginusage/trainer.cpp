@@ -4,13 +4,15 @@ Trainer::Trainer() = default;
 
 void Trainer::train(const QString &pluginName, const QString &modelName, const QString &trainDatasetPath, const QString &validationDatasetPath, const QString &workingDirectory)
 {
-        mRecentWorkingDir = workingDirectory;
-        auto watcher = new QFutureWatcher<QSharedPointer<TrainingResult>>;
-        connect(watcher, &QFutureWatcher<QSharedPointer<TrainingResult>>::finished, this, &Trainer::slot_handleTrainingsResult);
-        connect(watcher, &QFutureWatcher<QSharedPointer<TrainingResult>>::finished, watcher, &QFutureWatcher<QSharedPointer<TrainingResult>>::deleteLater);
-        m_trainingResult = QtConcurrent::run(&ClassificationPluginManager::train, &mManager, pluginName, modelName, trainDatasetPath, validationDatasetPath, workingDirectory, this);
-        watcher->setFuture(m_trainingResult);
-        emit sig_progress(0);
+    mRecentWorkingDir = workingDirectory;
+    auto watcher = new QFutureWatcher<TrainingResult *>;
+    connect(watcher, &QFutureWatcher<TrainingResult *>::finished, this, &Trainer::slot_handleTrainingsResult);
+    connect(watcher, &QFutureWatcher<TrainingResult *>::finished, watcher,
+            &QFutureWatcher<TrainingResult *>::deleteLater);
+    m_trainingResult = QtConcurrent::run(&ClassificationPluginManager::train, &mManager, pluginName, modelName,
+                                         trainDatasetPath, validationDatasetPath, workingDirectory, this);
+    watcher->setFuture(m_trainingResult);
+    emit sig_progress(0);
 }
 
 void Trainer::getAugmentationPreview(const QString &pluginName, const QString &modelName, const QString &inputPath, const QString &targetPath, int amount)

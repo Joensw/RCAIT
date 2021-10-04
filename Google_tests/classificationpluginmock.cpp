@@ -54,24 +54,25 @@ bool ClassificationPluginMock::removeModel(QString modelName)
     return true;
 }
 
-QSharedPointer<TrainingResult>
-ClassificationPluginMock::train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin *receiver)
-{
-    if (modelName == "true"){
+TrainingResult *
+ClassificationPluginMock::train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath,
+                                QString workingDirectory, ProgressablePlugin *receiver) {
+    if (modelName == "true") {
         // valid result, to make handling valid results testable
-        return QSharedPointer<TrainingResult>(new TrainingResult("testDir",{{1,{1,1}}}, {"labels"}, {1}, {"image"}, 1,1));
+        return new TrainingResult("testDir", {{1, {1, 1}}}, {"labels"}, {1}, {"image"}, 1, 1);
     }
-    return QSharedPointer<TrainingResult>(new TrainingResult({},{},{},{},{},{},{}));
+    return new TrainingResult({}, {}, {}, {}, {}, {}, {});
 }
 
-QSharedPointer<ClassificationResult>
-ClassificationPluginMock::classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath, const QString &modelName, ProgressablePlugin *receiver)
-{
-    if (inputImageDirPath == "true"){
+ClassificationResult *
+ClassificationPluginMock::classify(const QString &inputImageDirPath, const QString &trainDatasetPath,
+                                   const QString &workingDirPath, const QString &modelName,
+                                   ProgressablePlugin *receiver) {
+    if (inputImageDirPath == "true") {
         // valid result, to make handling valid results testable
-        return QSharedPointer<ClassificationResult>(new ClassificationResult("testDir",{{"string",{1,1}}}, {"labels"}));
+        return new ClassificationResult("testDir", {{"string", {1, 1}}}, {"labels"});
     }
-    return QSharedPointer<ClassificationResult>(new ClassificationResult({},{},{}));
+    return new ClassificationResult({}, {}, {});
 }
 
 QSharedPointer<QIcon> ClassificationPluginMock::getPluginIcon()

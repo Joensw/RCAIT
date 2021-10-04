@@ -130,14 +130,14 @@ signals:
      *
      * @param result training result
      */
-    void sig_trainingResultUpdated(const QSharedPointer<TrainingResult> & result);
+    void sig_trainingResultUpdated(TrainingResult *result);
 
     /**
      * @brief sig_classificationResultUpdated signals new classification result from automation.
      *
      * @param result classification result
      */
-    void sig_classificationResultUpdated(const QSharedPointer<ClassificationResult> & result);
+    void sig_classificationResultUpdated(ClassificationResult *result);
 
     /**
      * @brief sig_projectCreated signals potential creation of new project.

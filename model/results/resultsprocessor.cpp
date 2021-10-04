@@ -15,19 +15,16 @@ void ResultsProcessor::addGraphicsGenerationJob(GenericGraphicsView *receiver,
         auto type = QString(graphics->metaObject()->className());
         qInfo() << qPrintable(QString("(%1/%2) Generating %3 \n").arg(count++).arg(total).arg(type));
 
-        m_mapGraphicsByReceiver.insert(receiver, graphics);
+        m_mapGraphicsByReceiver.insert(receiver, &*graphics);
         graphics->generateGraphics(receiver);
     }
 }
 
-void ResultsProcessor::slot_graphicsGenerated(GenericGraphicsView *receiver, const QSharedPointer<GenericResultGraphics> &graphics) {
+void ResultsProcessor::slot_graphicsGenerated(GenericGraphicsView *receiver, GenericResultGraphics *graphics) {
     Q_ASSERT(receiver);
     Q_ASSERT(graphics);
     if (!QFile::exists(graphics->getFullPath())) return;
     m_mapGraphicsByReceiver.remove(receiver, graphics);
-    disconnect(&*graphics, &GenericResultGraphics::sig_graphicsGenerated,
-               this, &ResultsProcessor::slot_graphicsGenerated);
-
     if (!m_mapGraphicsByReceiver.contains(receiver)) {
         //All pending graphics were generated. Result can be saved now.
         receiver->setSaved(false);
@@ -53,7 +50,7 @@ void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(TopAccuraciesVi
  * Classification result slots
  */
 void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationResultView *view,
-                                                                const QSharedPointer<ClassificationResult>& result) {
+                                                                ClassificationResult *result) {
     const auto &map = result->getClassificationData();
     const auto &labels = result->getLabels();
     Q_ASSERT(!map.isEmpty());
@@ -78,7 +75,7 @@ void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationRe
 }
 
 void ResultsProcessor::slot_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver,
-                                                                        const QSharedPointer<ClassificationResult>& result) {
+                                                                        ClassificationResult *result) {
     const auto &classificationGraphics = result->getClassificationGraphics();
     addGraphicsGenerationJob(receiver, {classificationGraphics});
 }
@@ -86,13 +83,13 @@ void ResultsProcessor::slot_normal_generateClassificationResultGraphics(GenericG
 /**
  * Training result slots
  */
-void ResultsProcessor::slot_normal_loadTrainingResultData(TrainingResultView *view, const QSharedPointer<TrainingResult>& result) {
+void ResultsProcessor::slot_normal_loadTrainingResultData(TrainingResultView *view, TrainingResult *result) {
     auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
     view->setMostMisclassifiedImages(mostMisclassifiedImages);
 }
 
 void ResultsProcessor::slot_normal_generateTrainingResultGraphics(GenericGraphicsView *receiver,
-                                                                  const QSharedPointer<TrainingResult>& result) {
+                                                                  TrainingResult *result) {
     const auto &accCurve = result->getAccuracyCurve();
     const auto &confusionMatrix = result->getConfusionMatrix();
     addGraphicsGenerationJob(receiver, {accCurve, confusionMatrix});

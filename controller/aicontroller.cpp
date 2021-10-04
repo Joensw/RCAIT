@@ -1,7 +1,7 @@
 /**
  * @file aicontroller.cpp
  *
- * @brief connects the ai classification and training logic with the user interface
+ * @brief connects the ai classifcation and training logic with the user interface
  *
  * @author Andreas Ott
  */
@@ -57,10 +57,10 @@ void AIController::slot_abortTraining() {
 }
 
 void AIController::slot_results() {
-//TODO unused
+
 }
 
-void AIController::slot_trainingResultUpdated(const QSharedPointer<TrainingResult>& trainingResult) {
+void AIController::slot_trainingResultUpdated(TrainingResult *trainingResult) {
     QString projectName = mDataManager->getProjectName();
     QString modelName = mDataManager->getCurrentModel();
     QString lastWorkingDirectory = mTrainer->getRecentWorkingDir();
@@ -68,7 +68,7 @@ void AIController::slot_trainingResultUpdated(const QSharedPointer<TrainingResul
     emit sig_trainingResultUpdated(trainingResult);
 }
 
-void AIController::slot_classificationResultUpdated(const QSharedPointer<ClassificationResult>& classificationResult) {
+void AIController::slot_classificationResultUpdated(ClassificationResult *classificationResult) {
     emit sig_classificationResultUpdated(classificationResult);
 }
 

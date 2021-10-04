@@ -61,7 +61,7 @@ signals:
      *
      * @param trainingResult new training result
      */
-    void sig_trainingResultUpdated(QSharedPointer<TrainingResult>);
+    void sig_trainingResultUpdated(TrainingResult *trainingResult);
 
     /**
      * @brief sig_startTraining signals start of training
@@ -102,7 +102,7 @@ private:
     ClassificationPluginManager& mManager = ClassificationPluginManager::getInstance();
     QString mRecentWorkingDir;
     QString mRecentTargetPath;
-    QFuture<QSharedPointer<TrainingResult>> m_trainingResult;
+    QFuture<TrainingResult *> m_trainingResult;
     QFuture<bool> mAugmentationSuccess;
 
 

@@ -13,7 +13,6 @@
 #include <topaccuraciesgraphics.h>
 #include <resultsprocessor.h>
 #include <json_toolbox.h>
-#include <fstream>
 
 /**
  * @brief The <code>ResultsExporter</code> is used to export all types of specialised results
@@ -40,23 +39,21 @@ public slots:
      * @param graphics graphics to be saved
      * @param success bool to report success state back to the view component
      */
-    void slot_save_TopAccuracies([[maybe_unused]] const QSharedPointer<TopAccuraciesGraphics> &graphics,
-                                 bool &success = SAVED) const;
+    void slot_save_TopAccuracies(TopAccuraciesGraphics *graphics, bool &success = SAVED) const;
 
     /**
      * @brief Saves a given training result.
      * @param result result to be saved
      * @param success bool to report success state back to the view component
      */
-    void slot_save_TrainingResult(const QSharedPointer<TrainingResult> &result, bool &success = SAVED) const;
+    void slot_save_TrainingResult(TrainingResult *result, bool &success = SAVED) const;
 
     /**
      * @brief Saves a given classification result.
      * @param result result to be saved
      * @param success bool to report success state back to the view component
      */
-    void
-    slot_save_ClassificationResult(const QSharedPointer<ClassificationResult> &result, bool &success = SAVED) const;
+    void slot_save_ClassificationResult(ClassificationResult *result, bool &success = SAVED) const;
 
 private:
 
@@ -66,7 +63,6 @@ private:
     static inline bool SAVED = false;
 
     ProjectManager *m_projectManager;
-    QString m_resultsDir;
     QString m_trainingResultsDir;
     QString m_classificationResultsDir;
 
@@ -79,10 +75,12 @@ private:
     static QDir createResultDir(const QString &baseDir, const QString &identifier);
 
     /**
-     * @brief Moves all graphics from the results directory in their specific subfolder.
-     * @param type type of graphics to save
+     * @brief Saves a given file to another place, removes the original on success.
+     * @param oldFilePath current file location
+     * @param newFilePath desired file location
+     * @return success state
      */
-    bool saveGraphics(int type) const;
+    static bool saveFile(const QString &oldFilePath, const QString &newFilePath);
 
     /**
      * @brief Convert a TrainingResult into a QJsonObject
@@ -90,7 +88,7 @@ private:
      * @return filled QJsonObject
      */
     static QJsonObject
-    trainingResult2JSON(const QSharedPointer<TrainingResult> &result);
+    trainingResult2JSON(const TrainingResult *result);
 
     /**
      * @brief Convert a ClassificationResult into a QJsonObject
@@ -98,9 +96,7 @@ private:
      * @return filled QJsonObject
      */
     static QJsonObject
-    classificationResult2JSON(const QSharedPointer<ClassificationResult> &result);
-
-    bool graphicsTypeMultiplexer(int type, const QString &filePath, const QString &identifier) const;
+    classificationResult2JSON(const ClassificationResult *result);
 };
 
 #endif // RESULTSEXPORTER_H

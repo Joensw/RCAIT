@@ -6,19 +6,26 @@ ResultsExporter::ResultsExporter()
 }
 
 void ResultsExporter::updateResultFolderPaths() {
-    m_resultsDir = m_projectManager->getResultsDir();
     m_trainingResultsDir = m_projectManager->getTrainingResultsDir();
     m_classificationResultsDir = m_projectManager->getClassificationResultsDir();
 }
 
-void
-ResultsExporter::slot_save_TopAccuracies([[maybe_unused]] const QSharedPointer<TopAccuraciesGraphics> &graphics,
-                                         bool &success) const {
+void ResultsExporter::slot_save_TopAccuracies(TopAccuraciesGraphics *graphics, bool &success) const {
+    const auto &fileName = graphics->getFullName();
+    const auto &baseName = graphics->getBaseName();
+    const auto &extension = graphics->getExtension();
+    const auto &timestamp = Result::generateExtendedTimestamp();
+
+    const auto targetName = QString("%1_%2.%3").arg(baseName, timestamp, extension);
+
+    const auto &oldFilePath = graphics->getFullPath();
+    const auto newFilePath = QDir(m_trainingResultsDir).absoluteFilePath(targetName);
+
     //Move graphics to result folder, set success state accordingly
-    success = saveGraphics(GraphicsType::TOPACCURACIES);
+    success = saveFile(oldFilePath, newFilePath);
 }
 
-void ResultsExporter::slot_save_TrainingResult(const QSharedPointer<TrainingResult> &result, bool &success) const {
+void ResultsExporter::slot_save_TrainingResult(TrainingResult *result, bool &success) const {
     success = true;
 
     const auto &identifier = result->getSavableIdentifier();
@@ -28,13 +35,19 @@ void ResultsExporter::slot_save_TrainingResult(const QSharedPointer<TrainingResu
 
     success &= JSON_Toolbox::writeJSONToFile(JSON, savePath);
 
+    //Save images
+    auto accCurveFilename = result->getAccuracyCurve()->getFullName();
+    auto matrixFileName = result->getConfusionMatrix()->getFullName();
+    auto old_accCurvePath = result->getAccuracyCurve()->getFullPath();
+    auto old_matrixPath = result->getConfusionMatrix()->getFullPath();
+
     //Move to result folder
-    success &= saveGraphics(GraphicsType::ACCURACYCURVE);
-    success &= saveGraphics(GraphicsType::CONFUSIONMATRIX);
+    success &= saveFile(old_accCurvePath, resultFolder.absoluteFilePath(accCurveFilename));
+    success &= saveFile(old_matrixPath, resultFolder.absoluteFilePath(matrixFileName));
+
 }
 
-void ResultsExporter::slot_save_ClassificationResult(const QSharedPointer<ClassificationResult> &result,
-                                                     bool &success) const {
+void ResultsExporter::slot_save_ClassificationResult(ClassificationResult *result, bool &success) const {
     success = true;
 
     const auto &identifier = result->getSavableIdentifier();
@@ -44,11 +57,15 @@ void ResultsExporter::slot_save_ClassificationResult(const QSharedPointer<Classi
     auto JSON = classificationResult2JSON(result);
     success &= JSON_Toolbox::writeJSONToFile(JSON, savePath);
 
+    //Save images
+    auto graphicsFilename = result->getClassificationGraphics()->getFullName();
+    auto old_graphicsPath = result->getClassificationGraphics()->getFullPath();
+
     //Move to result folder
-    success &= saveGraphics(GraphicsType::CLASSIFICATION);
+    success &= saveFile(old_graphicsPath, resultFolder.absoluteFilePath(graphicsFilename));
 }
 
-QJsonObject ResultsExporter::trainingResult2JSON(const QSharedPointer<TrainingResult> &result) {
+QJsonObject ResultsExporter::trainingResult2JSON(const TrainingResult *result) {
     QJsonObject JSON;
 
     //Extract relevant data from result
@@ -86,7 +103,7 @@ QJsonObject ResultsExporter::trainingResult2JSON(const QSharedPointer<TrainingRe
     return JSON;
 }
 
-QJsonObject ResultsExporter::classificationResult2JSON(const QSharedPointer<ClassificationResult> &result) {
+QJsonObject ResultsExporter::classificationResult2JSON(const ClassificationResult *result) {
     QJsonObject JSON;
     //Extract relevant data from result
     const auto &classification_data = result->getClassificationData();
@@ -125,45 +142,11 @@ QDir ResultsExporter::createResultDir(const QString &baseDir, const QString &ide
     return resultFolder;
 }
 
-bool ResultsExporter::saveGraphics(int type) const {
-    QDir resultsDir(m_resultsDir);
-    bool success = false;
-
-    for (const auto &file: resultsDir.entryInfoList(QDir::Files, QDir::Time)) {
-        auto regex = GRAPHICSTYPE2REGEX[type];
-        auto filePath = file.absoluteFilePath();
-        auto match = regex.match(file.fileName());
-
-        if (match.hasMatch()) {
-            auto identifier = match.captured(1);
-            success |= graphicsTypeMultiplexer(type, filePath, identifier);
-        }
+bool ResultsExporter::saveFile(const QString &oldFilePath, const QString &newFilePath) {
+    QFile::rename(oldFilePath, newFilePath);
+    auto saveWorked = QFile::exists(newFilePath);
+    if (!saveWorked) {
+        qWarning() << "Saving file " << oldFilePath << " -> " << newFilePath << " failed";
     }
-    return success;
-}
-
-bool ResultsExporter::graphicsTypeMultiplexer(int type, const QString &filePath, const QString &identifier) const {
-    QFileInfo file(filePath);
-    QString newPath;
-    switch (type) {
-        case CLASSIFICATION:
-            newPath = m_classificationResultsDir % "/" % identifier % "/" % file.fileName();
-            break;
-        case ACCURACYCURVE:
-        case CONFUSIONMATRIX:
-            newPath = m_trainingResultsDir % "/" % identifier % "/" % file.fileName();
-            break;
-        case TOPACCURACIES:
-            // Path will be like <resultsdir>/topaccuracies_01_01_70--00-00.svg
-            newPath = m_trainingResultsDir % "/" %
-                      file.baseName() % "_" % Result::generateExtendedTimestamp() % "." % file.suffix();
-            break;
-        default:
-            qDebug() << "Unknown graphics file encountered. Leaving it in default location";
-            return false;
-    }
-    qDebug() << "Target path to save to: " << newPath;
-    QFile::rename(filePath, newPath);
-    qDebug() << "Saved successfully? " << QFileInfo::exists(newPath);
-    return QFileInfo::exists(newPath);
+    return saveWorked;
 }

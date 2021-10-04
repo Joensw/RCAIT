@@ -39,13 +39,14 @@ signals:
      *
      * @param result classification result.
      */
-    void sig_saveResult(QSharedPointer<ClassificationResult> result);
+    void sig_saveResult(ClassificationResult *result);
 
 private:
 
     ClassificationPluginManager &mPluginManager = ClassificationPluginManager::getInstance();
     DataManager &mDataManager = DataManager::getInstance();
-    QSharedPointer<ClassificationResult> mResult{};
+    ClassificationResult *mResult{};
+    ProgressablePlugin *mReceiver;
     bool parsingFailed = false;
 
     QString mProjectName;
@@ -54,7 +55,7 @@ private:
     QString mAiPluginName;
     QString mTrainDataSetPath;
     QString mWorkingDir;
-    ProgressablePlugin *mReceiver;
+
 
 };
 

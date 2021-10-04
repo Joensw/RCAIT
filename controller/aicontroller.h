@@ -60,13 +60,13 @@ public slots:
      * @brief sig_trainingResultUpdated can be called when a new training result is available
      * @param trainingResult is the result of the last executed training
      */
-    void slot_trainingResultUpdated(const QSharedPointer<TrainingResult>& trainingResult);
+    void slot_trainingResultUpdated(TrainingResult *trainingResult);
 
     /**
      * @brief sig_classificationResultUpdated can be called when a new classification result is available
      * @param classificationResult is the result of the last executed classification
      */
-    void slot_classificationResultUpdated(const QSharedPointer<ClassificationResult>& classificationResult);
+    void slot_classificationResultUpdated(ClassificationResult *classificationResult);
 
     /**
      * @brief slot_startClassify starts classification when triggered.
@@ -97,17 +97,18 @@ public slots:
      */
     void slot_augmentationPreviewReady(bool success, const QString &targetPath);
 signals:
+
     /**
      * @brief sig_trainingResultUpdated emitted when a new training result is available
      * @param trainingResult is the result of the last executed training
      */
-    void sig_trainingResultUpdated(const QSharedPointer<TrainingResult>& trainingResult);
+    void sig_trainingResultUpdated(TrainingResult *trainingResult);
 
     /**
      * @brief sig_classificationResultUpdated emitted when a new classification result is available
      * @param classificationResult is the result of the last executed classification
      */
-    void sig_classificationResultUpdated(const QSharedPointer<ClassificationResult>& classificationResult);
+    void sig_classificationResultUpdated(ClassificationResult *classificationResult);
 
 private:
     DataManager *mDataManager;

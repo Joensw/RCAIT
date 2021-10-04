@@ -110,10 +110,10 @@ void ResultsController::slot_projectPathUpdated() {
     m_resultsExporter.updateResultFolderPaths();
 }
 
-void ResultsController::slot_addTrainingResult(const QSharedPointer<TrainingResult> &result) {
+void ResultsController::slot_addTrainingResult(TrainingResult *result) {
     m_resultsWidget->addTrainingResult(result);
 }
 
-void ResultsController::slot_addClassificationResult(const QSharedPointer<ClassificationResult> &result) {
+void ResultsController::slot_addClassificationResult(ClassificationResult *result) {
     m_resultsWidget->addClassificationResult(result);
 }

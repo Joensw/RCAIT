@@ -29,8 +29,7 @@ QString ResultsImporter::getResultDataPath(const QString &resultNameTemplate, co
 /**
  * Top Accuracies slots
  */
-void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view,
-                                                       const QSharedPointer<TopAccuraciesGraphics> &graphics,
+void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
                                                        const QString &runNameToCompare) const {
     Q_ASSERT(graphics);
     Q_ASSERT(view);
@@ -45,7 +44,7 @@ void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view,
     view->addTopAccuraciesEntry(runNameToCompare, top1, top5);
 }
 
-void ResultsImporter::slot_comparison_unloadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
+void ResultsImporter::slot_comparison_unloadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
                                                          const QString &runNameToCompare) {
     Q_ASSERT(graphics);
     Q_ASSERT(view);
@@ -82,7 +81,7 @@ void ResultsImporter::slot_comparison_loadClassificationResultData(Classificatio
     auto labels = QJsonArray_toList<QString>(json_labels);
     auto additionalResults = QJsonArray_toList<QString>(json_additionalResults);
 
-    auto result = QSharedPointer<ClassificationResult>(new ClassificationResult(m_workingDir, classification_data, labels, additionalResults));
+    auto result = new ClassificationResult(m_workingDir, classification_data, labels, additionalResults);
     emit sig_normal_loadClassificationResultData(view, result);
 }
 
@@ -126,8 +125,8 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
     auto most_misclassified_images = QJsonArray_toList<QString>(json_mostMisclassifiedImages);
     auto additionalResults = QJsonArray_toList<QString>(json_additionalResults);
 
-    auto result = QSharedPointer<TrainingResult>(new TrainingResult(m_workingDir, accuracy_data, class_labels, confusionmatrix,
-                                     most_misclassified_images, top1, top5, additionalResults));
+    auto result = new TrainingResult(m_workingDir, accuracy_data, class_labels, confusionmatrix,
+                                     most_misclassified_images, top1, top5, additionalResults);
     emit sig_normal_loadTrainingResultData(view, result);
 }
 

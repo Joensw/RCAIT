@@ -30,24 +30,25 @@ public:
      */
     void updateResultFolderPaths();
 
-signals:
+    signals:
 
-    /**
-     * @brief Emitted after TrainingResult Data was loaded
-     * @param view result tab to load the result into
-     * @param result imported result
-     */
-    void sig_normal_loadTrainingResultData(TrainingResultView *view, QSharedPointer<TrainingResult> result) const;
+            /**
+             * @brief Emitted after TrainingResult Data was loaded
+             * @param view result tab to load the result into
+             * @param result imported result
+             */
+            void sig_normal_loadTrainingResultData(TrainingResultView * view, TrainingResult * result)
+    const;
 
     /**
      * @brief Emitted after ClassificationResult Data was loaded
      * @param view result tab to load the result into
      * @param result imported result
      */
-    void sig_normal_loadClassificationResultData(ClassificationResultView *view,
-                                                 QSharedPointer<ClassificationResult> result) const;
+    void sig_normal_loadClassificationResultData(ClassificationResultView *view, ClassificationResult *result) const;
 
-public slots:
+public
+    slots:
 
     //Top Accuracies slots
     /**
@@ -56,9 +57,8 @@ public slots:
      * @param graphics graphics to provide the data to
      * @param runNameToCompare identifier of the result to import
      */
-    void
-    slot_comparison_loadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
-                                     const QString &runNameToCompare) const;
+    void slot_comparison_loadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+                                          const QString &runNameToCompare) const;
 
     /**
      * @brief Unload accuracy data when a comparison result is now unselected
@@ -66,9 +66,8 @@ public slots:
      * @param graphics graphics to unload the data from
      * @param runNameToCompare result identifier to unload
      */
-    static void
-    slot_comparison_unloadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
-                                       const QString &runNameToCompare);
+    static void slot_comparison_unloadAccuracyData(TopAccuraciesView *view, TopAccuraciesGraphics *graphics,
+                                                   const QString &runNameToCompare);
 
     //Classification result slots
     /**

@@ -16,7 +16,7 @@ void ClassificationResultsWidget::configure_placeholderTab() {
     placeholder->setSaved(true);
 }
 
-void ClassificationResultsWidget::addClassificationResult(const QSharedPointer<ClassificationResult> &result) {
+void ClassificationResultsWidget::addClassificationResult(ClassificationResult *result) {
     auto tab = createResultTab<ClassificationResultView>(result->getIdentifier());
     m_mapResultsByTab[tab] = result;
     emit sig_normal_loadClassificationResultData(tab, result);
