@@ -103,7 +103,7 @@ void ImageInspectionModel::loadNewData(const QString &path, int split) {
         //we use floor and use the split for train images so validation is not empty except if 100 is chosen
         auto splitPos = (long long int) floorl(splitPosDbl);
 
-        Q_ASSERT(splitPos >= 0 && splitPos < dataPoints);
+        Q_ASSERT(splitPos >= 0 && splitPos <= dataPoints);
         auto trainData = data.sliced(splitPos);
         auto validationData = data.sliced(0, splitPos);
         m_trainNewData[key] = trainData;
