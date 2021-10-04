@@ -11,12 +11,12 @@
 #define IMAGECONTROLLER_H
 
 #include <Qt>
-#include "imageloader.h"
-#include "importfileswidget.h"
-#include "imageinspectionwidget.h"
-#include "datamanager.h"
-#include "imageinspectionwidget.h"
-#include "imageinspectionmodel.h"
+#include <imageloader.h>
+#include <importfileswidget.h>
+#include <imageinspectionwidget.h>
+#include <datamanager.h>
+#include <imageinspectionwidget.h>
+#include <imageinspectionmodel.h>
 #include <utility>
 
 
@@ -132,9 +132,9 @@ signals:
 
 private:
     ImageLoader m_imageLoader;
+    DataManager *m_dataManager;
     ImageInspectionWidget *m_imageinspectionwidget;
     ImportFilesWidget *m_importFilesWidget;
-    DataManager *m_dataManager;
     ImageInspectionModel m_imageInspectionModel;
     int m_split;
 

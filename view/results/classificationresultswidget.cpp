@@ -1,4 +1,3 @@
-#include <projectmanager.h>
 #include "classificationresultswidget.h"
 
 ClassificationResultsWidget::ClassificationResultsWidget(QWidget *parent) :
@@ -17,7 +16,7 @@ void ClassificationResultsWidget::configure_placeholderTab() {
     placeholder->setSaved(true);
 }
 
-void ClassificationResultsWidget::addClassificationResult(const QSharedPointer<ClassificationResult> &result) {
+void ClassificationResultsWidget::addClassificationResult(const QPointer<ClassificationResult> &result) {
     auto tab = createResultTab<ClassificationResultView>(result->getIdentifier());
     m_mapResultsByTab[tab] = result;
     emit sig_normal_loadClassificationResultData(tab, result);

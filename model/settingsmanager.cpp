@@ -50,7 +50,7 @@ QList<QSharedPointer<QWidget>> SettingsManager::getPluginSettings() {
     return loaderPluginsWidgets + classifierPluginsWidgets;
 }
 
-void SettingsManager::savePluginSettings(int index) {
+void SettingsManager::savePluginSettings(const int &index) {
     QStringList loaderPlugins = mImageLoaderPluginManager->getNamesOfPlugins();
     qsizetype loaderSize = loaderPlugins.size();
     QStringList classifierPlugins = mClassificationPluginManager->getNamesOfPlugins();

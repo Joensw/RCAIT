@@ -1,7 +1,7 @@
 /**
  * @file aicontroller.h
  *
- * @brief connects the ai classifcation and training logic with the user interface
+ * @brief connects the ai classification and training logic with the user interface
  *
  * @author Andreas Ott
  */
@@ -9,15 +9,13 @@
 #define AICONTROLLER_H
 
 #include <QString>
-#include <view/ai_training/aitrainingwidget.h>
+#include <aitrainingwidget.h>
 #include <datamanager.h>
 #include <inputimageswidget.h>
-#include "classifier.h"
-#include "trainer.h"
-#include "resultscontroller.h"
-
-
-
+#include <classifier.h>
+#include <trainer.h>
+#include <resultscontroller.h>
+#include "imagegallery.h"
 /**
  * @brief The AIController class mediates between ui elements and classification/training.
  */
@@ -62,13 +60,13 @@ public slots:
      * @brief sig_trainingResultUpdated can be called when a new training result is available
      * @param trainingResult is the result of the last executed training
      */
-    void slot_trainingResultUpdated(const QSharedPointer<TrainingResult>& trainingResult);
+    void slot_trainingResultUpdated(const QPointer<TrainingResult> &trainingResult);
 
     /**
      * @brief sig_classificationResultUpdated can be called when a new classification result is available
      * @param classificationResult is the result of the last executed classification
      */
-    void slot_classificationResultUpdated(const QSharedPointer<ClassificationResult>& classificationResult);
+    void slot_classificationResultUpdated(const QPointer<ClassificationResult> &classificationResult);
 
     /**
      * @brief slot_startClassify starts classification when triggered.
@@ -99,17 +97,18 @@ public slots:
      */
     void slot_augmentationPreviewReady(bool success, const QString &targetPath);
 signals:
+
     /**
      * @brief sig_trainingResultUpdated emitted when a new training result is available
      * @param trainingResult is the result of the last executed training
      */
-    void sig_trainingResultUpdated(const QSharedPointer<TrainingResult>& trainingResult);
+    void sig_trainingResultUpdated(const QPointer<TrainingResult> &trainingResult);
 
     /**
      * @brief sig_classificationResultUpdated emitted when a new classification result is available
      * @param classificationResult is the result of the last executed classification
      */
-    void sig_classificationResultUpdated(const QSharedPointer<ClassificationResult>& classificationResult);
+    void sig_classificationResultUpdated(const QPointer<ClassificationResult> &classificationResult);
 
 private:
     DataManager *mDataManager;

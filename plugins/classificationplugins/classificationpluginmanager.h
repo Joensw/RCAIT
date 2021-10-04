@@ -4,9 +4,11 @@
 #include <QString>
 #include <QWidget>
 #include <QMap>
-#include "progressableplugin.h"
-#include "classificationplugin.h"
-#include "pluginmanager.h"
+#include <progressableplugin.h>
+#include <classificationplugin.h>
+#include <pluginmanager.h>
+#include <QPluginLoader>
+#include <utility>
 
 
 /**
@@ -138,7 +140,7 @@ public:
      * @param receiver receives progress of training
      * @return result data of training
      */
-    [[nodiscard]] QSharedPointer<TrainingResult>
+    [[nodiscard]] QPointer<TrainingResult>
     train(const QString &pluginName, const QString &modelName, QString trainDatasetPath, QString validationDatasetPath,
           QString workingDirectory, ProgressablePlugin *receiver);
 
@@ -153,7 +155,7 @@ public:
      * @param receiver receives classification progress
      * @return result data of classification
      */
-    [[nodiscard]] QSharedPointer<ClassificationResult>
+    [[nodiscard]] QPointer<ClassificationResult>
     classify(const QString &pluginName, const QString &inputImageDirPath, const QString &trainDatasetPath,
              const QString &workingDirectory,
              const QString &modelName, ProgressablePlugin *receiver);

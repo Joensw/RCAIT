@@ -6,8 +6,6 @@
 #include "folderconfigwidget.h"
 #include "ui_folderconfigwidget.h"
 
-#include <QtWidgets/QFileDialog>
-
 FolderConfigwidget::FolderConfigwidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::FolderConfigwidget)

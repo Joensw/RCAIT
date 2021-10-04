@@ -29,7 +29,7 @@ void NewModelDialog::setErrorMessage(const QString &error)
     ui->label_information->setText(error);
 }
 
-void NewModelDialog::setAvailableBases(QStringList bases)
+void NewModelDialog::setAvailableBases(const QStringList &bases)
 {
     ui->pluginProfileComboBox->clear();
     ui->pluginProfileComboBox->addItems(bases);

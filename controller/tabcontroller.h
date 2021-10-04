@@ -8,9 +8,9 @@
 #ifndef TABCONTROLLER_H
 #define TABCONTROLLER_H
 
-#include "customtabwidget.h"
-#include "resultswidget.h"
-#include "QTabWidget"
+#include <customtabwidget.h>
+#include <resultswidget.h>
+#include <QTabWidget>
 
 /**
  * @brief The TabController class controls which widgets are selectable at certain times during the programs execution

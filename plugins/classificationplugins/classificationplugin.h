@@ -6,7 +6,7 @@
 #include <results/trainingresult.h>
 #include <results/classificationresult.h>
 #include <pluginusage/progressableplugin.h>
-#include "plugin.h"
+#include <plugin.h>
 
 /**
  * @brief The ClassificationPlugin class is an interface for all classification plugins.
@@ -75,7 +75,7 @@ public:
      * @param receiver receives progress of training
      * @return result data of training
      */
-    virtual QSharedPointer<TrainingResult>
+    virtual QPointer<TrainingResult>
     train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory,
           ProgressablePlugin *receiver) = 0;
 
@@ -89,7 +89,7 @@ public:
      * @param receiver receives classification progress
      * @return result data of classification
      */
-    virtual QSharedPointer<ClassificationResult>
+    virtual QPointer<ClassificationResult>
     classify(const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirPath,
              const QString &modelName, ProgressablePlugin *receiver) = 0;
 

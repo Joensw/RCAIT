@@ -1,18 +1,5 @@
 #include "resultsimporter.h"
 
-/**
- * @brief This enum contains all types of graphics supported for import.
- * New result types can be inserted here,
- * along with the specification of how to import these results.
- */
-enum GraphicsType {
-    CLASSIFICATION,
-    ACCURACYCURVE,
-    CONFUSIONMATRIX,
-    TOPACCURACIES,
-    $COUNT
-};
-
 ResultsImporter::ResultsImporter()
         : m_projectManager(&ProjectManager::getInstance()) {
 
@@ -43,7 +30,7 @@ QString ResultsImporter::getResultDataPath(const QString &resultNameTemplate, co
  * Top Accuracies slots
  */
 void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view,
-                                                       const QSharedPointer<TopAccuraciesGraphics> &graphics,
+                                                       const QPointer<TopAccuraciesGraphics> &graphics,
                                                        const QString &runNameToCompare) const {
     Q_ASSERT(graphics);
     Q_ASSERT(view);
@@ -58,7 +45,8 @@ void ResultsImporter::slot_comparison_loadAccuracyData(TopAccuraciesView *view,
     view->addTopAccuraciesEntry(runNameToCompare, top1, top5);
 }
 
-void ResultsImporter::slot_comparison_unloadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
+void ResultsImporter::slot_comparison_unloadAccuracyData(TopAccuraciesView *view,
+                                                         const QPointer<TopAccuraciesGraphics> &graphics,
                                                          const QString &runNameToCompare) {
     Q_ASSERT(graphics);
     Q_ASSERT(view);
@@ -95,7 +83,7 @@ void ResultsImporter::slot_comparison_loadClassificationResultData(Classificatio
     auto labels = QJsonArray_toList<QString>(json_labels);
     auto additionalResults = QJsonArray_toList<QString>(json_additionalResults);
 
-    auto result = QSharedPointer<ClassificationResult>(new ClassificationResult(m_workingDir, classification_data, labels, additionalResults));
+    auto result = new ClassificationResult(m_workingDir, classification_data, labels, additionalResults);
     emit sig_normal_loadClassificationResultData(view, result);
 }
 
@@ -139,8 +127,8 @@ ResultsImporter::slot_comparison_loadTrainingResultData(TrainingResultView *view
     auto most_misclassified_images = QJsonArray_toList<QString>(json_mostMisclassifiedImages);
     auto additionalResults = QJsonArray_toList<QString>(json_additionalResults);
 
-    auto result = QSharedPointer<TrainingResult>(new TrainingResult(m_workingDir, accuracy_data, class_labels, confusionmatrix,
-                                     most_misclassified_images, top1, top5, additionalResults));
+    auto result = new TrainingResult(m_workingDir, accuracy_data, class_labels, confusionmatrix,
+                                     most_misclassified_images, top1, top5, additionalResults);
     emit sig_normal_loadTrainingResultData(view, result);
 }
 
@@ -153,19 +141,12 @@ void ResultsImporter::loadGraphicsInView(GenericGraphicsView *receiver, const QS
                                          const QString &resultsFolder) {
     Q_ASSERT(receiver);
 
-    static std::array<QRegularExpression, $COUNT> GRAPHICSTYPE2REGEX = {
-            QRegularExpression("classification_(.*)\\.(svg|png)$"),
-            QRegularExpression("accuracycurve_(.*)\\.(svg|png)$"),
-            QRegularExpression("confusionmatrix_(.*)\\.(svg|png)$"),
-            QRegularExpression("topaccuracies_(.*)\\.(svg|png)$")
-    };
-
     auto dir = QDir(baseDir);
     auto folderIdentifier = Result::savableRepresentation(resultsFolder);
     dir.cd(folderIdentifier);
 
     for (const auto &file: dir.entryInfoList(QDir::Files, QDir::Time)) {
-        for (int type = 0; type < $COUNT; type++) {
+        for (int type = 0; type < $GRAPHICSTYPES_COUNT; type++) {
             auto regex = GRAPHICSTYPE2REGEX[type];
 
             auto match = regex.match(file.fileName());
@@ -202,7 +183,7 @@ void ResultsImporter::passResultGraphicsMultiplexer(GenericGraphicsView *receive
             receiver->setConfusionMatrix(graphics_ptr);
             break;
         case TOPACCURACIES:
-            receiver->setTopAccuraciesGraphics(graphics_ptr);
+            //Top Accuracies Graphics are not imported for comparison. Skip them.
             break;
         default:
             qDebug() << "Attempted to set unknown result graphics type";

@@ -7,10 +7,10 @@
 #include <trainingresultview.h>
 #include <topaccuraciesview.h>
 #include <classificationresultview.h>
-#include "topaccuraciesgraphics.h"
-#include "classificationgraphics.h"
-#include "trainingresult.h"
-#include "classificationresult.h"
+#include <topaccuraciesgraphics.h>
+#include <classificationgraphics.h>
+#include <trainingresult.h>
+#include <classificationresult.h>
 #include <projectmanager.h>
 #include <ce_string.h>
 
@@ -24,6 +24,29 @@ static constexpr CE_String TRAINING_JSON = "training_%1.json";
  * This naming structure is  <b>guaranteed</b> to be the same for importing and exporting!
  */
 static constexpr CE_String CLASSIFICATION_JSON = "classification_%1.json";
+
+/**
+ * @brief This enum contains all types of supported graphics.
+ * New result types can be inserted here,
+ * along with the specification of how to import/process/export those results.
+ */
+enum GraphicsType {
+    CLASSIFICATION,
+    ACCURACYCURVE,
+    CONFUSIONMATRIX,
+    TOPACCURACIES,
+    $GRAPHICSTYPES_COUNT
+};
+
+/**
+ * @brief Regex for every result graphics file.
+ */
+static std::array<QRegularExpression, $GRAPHICSTYPES_COUNT> GRAPHICSTYPE2REGEX = {
+        QRegularExpression("classification_(.*)\\.(svg|png)$"),
+        QRegularExpression("accuracycurve_(.*)\\.(svg|png)$"),
+        QRegularExpression("confusionmatrix_(.*)\\.(svg|png)$"),
+        QRegularExpression("topaccuracies\\.(svg|png)$")
+};
 
 /**
  * @brief The <code>ResultsProcessor</code> prepares the data from the data management classes
@@ -56,16 +79,18 @@ public slots:
      * @param view ClassificationResultView to show the result
      * @param result ClassificationResult to be displayed
      */
-    static void slot_normal_loadClassificationResultData(ClassificationResultView *view, const QSharedPointer<ClassificationResult>& result);
+    static void slot_normal_loadClassificationResultData(ClassificationResultView *view,
+                                                         const QPointer<ClassificationResult> &result);
 
     /**
-     * @brief Generates and loads the graphics of a ClassificationResult into a ClassificationResultView
+     * @brief Loads the graphics of a ClassificationResult into a ClassificationResultView
      * @info Data and graphics are loaded separately so that you can specify
      * two different providers and the program remains extensible.
      * @param receiver result tab to show the graphics
      * @param result ClassificationResult to be displayed
      */
-    void slot_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver, const QSharedPointer<ClassificationResult>& result);
+    void slot_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver,
+                                                          const QPointer<ClassificationResult> &result);
 
     //Training result slots
     /**
@@ -75,19 +100,20 @@ public slots:
      * @param view TrainingResultView to show the result
      * @param result TrainingResult to be displayed
      */
-    static void slot_normal_loadTrainingResultData(TrainingResultView *view, const QSharedPointer<TrainingResult>& result);
+    static void slot_normal_loadTrainingResultData(TrainingResultView *view, const QPointer<TrainingResult> &result);
 
     /**
-     * @brief Generates and loads the graphics of a TrainingResult into a TrainingResultView
+     * @brief Loads the graphics of a TrainingResult into a TrainingResultView
      * @info Data and graphics are loaded separately so that you can specify
      * two different providers and the program remains extensible.
      * @param receiver result tab to show the graphics
      * @param result TrainingResult to be displayed
      */
-    void slot_normal_generateTrainingResultGraphics(GenericGraphicsView *receiver, const QSharedPointer<TrainingResult> &result);
+    void
+    slot_normal_generateTrainingResultGraphics(GenericGraphicsView *receiver, const QPointer<TrainingResult> &result);
 
 private:
-    QMultiMap<GenericGraphicsView *, QSharedPointer<GenericResultGraphics>> m_mapGraphicsByReceiver;
+    QMultiMap<GenericGraphicsView *, QPointer<GenericResultGraphics>> m_mapGraphicsByReceiver;
 
     /**
      * @brief Manages a list of all graphics to generate for a particular result
@@ -107,7 +133,7 @@ private slots:
      * @param receiver result tab to show the graphics
      * @param graphics graphics that was generated
      */
-    void slot_graphicsGenerated(GenericGraphicsView *receiver, const QSharedPointer<GenericResultGraphics> &graphics);
+    void slot_graphicsGenerated(GenericGraphicsView *receiver, const QPointer<GenericResultGraphics> &graphics);
 };
 
 #endif // RESULTSPROCESSOR_H

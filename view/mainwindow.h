@@ -12,13 +12,13 @@
 #include <QDir>
 #include <resultswidget.h>
 
-#include "aitrainingwidget.h"
-#include "automationwidget.h"
-#include "inputimageswidget.h"
-#include "startwidget.h"
-#include "importfileswidget.h"
-#include "imageinspectionwidget.h"
-#include "customtabwidget.h"
+#include <aitrainingwidget.h>
+#include <automationwidget.h>
+#include <inputimageswidget.h>
+#include <startwidget.h>
+#include <importfileswidget.h>
+#include <imageinspectionwidget.h>
+#include <customtabwidget.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

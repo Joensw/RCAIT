@@ -107,37 +107,37 @@ TEST_F(ResultsImporterTest, testCallMethods){
     spy.wait(1000);
     //QList<QVariant> arguments = spy.takeFirst();
     //TrainingResultView resultView = qvariant_cast<TrainingResultView>(spy.at(0).at(0));
-    auto result = spy.at(0).at(1).value<QSharedPointer<TrainingResult>>();
-    auto result2 = spy2.at(0).at(1).value<QSharedPointer<ClassificationResult>>();
+    auto result = spy.at(0).at(1).value<TrainingResult*>();
+    auto result2 = spy2.at(0).at(1).value<ClassificationResult*>();
     std::pair<double,double> p1{75.0,0.0};
     std::pair<double,double> p2{0.0,0.0};
-    EXPECT_EQ(result.data()->getAccuracyCurveData().value(100), p1);
-    EXPECT_EQ(result.data()->getAccuracyCurveData().value(200), p2);
+    EXPECT_EQ(result->getAccuracyCurveData().value(100), p1);
+    EXPECT_EQ(result->getAccuracyCurveData().value(200), p2);
 
-    EXPECT_EQ(result.data()->getClassLabels().at(0), "Flugzeug");
-    EXPECT_EQ(result.data()->getClassLabels().at(1), "Zug");
+    EXPECT_EQ(result->getClassLabels().at(0), "Flugzeug");
+    EXPECT_EQ(result->getClassLabels().at(1), "Zug");
 
-    EXPECT_EQ(result.data()->getConfusionMatrixValues().at(0), 9);
-    EXPECT_EQ(result.data()->getConfusionMatrixValues().at(1), 5);
-    EXPECT_EQ(result.data()->getConfusionMatrixValues().at(2), 0);
-    EXPECT_EQ(result.data()->getConfusionMatrixValues().at(3), 14);
+    EXPECT_EQ(result->getConfusionMatrixValues().at(0), 9);
+    EXPECT_EQ(result->getConfusionMatrixValues().at(1), 5);
+    EXPECT_EQ(result->getConfusionMatrixValues().at(2), 0);
+    EXPECT_EQ(result->getConfusionMatrixValues().at(3), 14);
 
-    EXPECT_EQ(result.data()->getMostMisclassifiedImages().at(0),"path/one/");
-    EXPECT_EQ(result.data()->getMostMisclassifiedImages().at(1),"path/two/");
-    EXPECT_EQ(result.data()->getMostMisclassifiedImages().at(2),"path/three/");
+    EXPECT_EQ(result->getMostMisclassifiedImages().at(0),"path/one/");
+    EXPECT_EQ(result->getMostMisclassifiedImages().at(1),"path/two/");
+    EXPECT_EQ(result->getMostMisclassifiedImages().at(2),"path/three/");
 
-    EXPECT_DOUBLE_EQ(result.data()->getTop1Accuracy(),82.142857142857139);
+    EXPECT_DOUBLE_EQ(result->getTop1Accuracy(),82.142857142857139);
 
-    EXPECT_DOUBLE_EQ(result.data()->getTop5Accuracy(), 100.0);
+    EXPECT_DOUBLE_EQ(result->getTop5Accuracy(), 100.0);
 
 
-    EXPECT_DOUBLE_EQ(result2.data()->getClassificationData().value("/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg").at(0),0.90369337797164917);
-    EXPECT_DOUBLE_EQ(result2.data()->getClassificationData().value("/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg").at(1),0.087613902986049652);
-    EXPECT_DOUBLE_EQ(result2.data()->getClassificationData().value("/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg").at(2),0.0086927767843008041);
+    EXPECT_DOUBLE_EQ(result2->getClassificationData().value("/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg").at(0),0.90369337797164917);
+    EXPECT_DOUBLE_EQ(result2->getClassificationData().value("/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg").at(1),0.087613902986049652);
+    EXPECT_DOUBLE_EQ(result2->getClassificationData().value("/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg").at(2),0.0086927767843008041);
 
-    EXPECT_EQ(result2.data()->getLabels().at(0),"bank");
-    EXPECT_EQ(result2.data()->getLabels().at(1),"boat");
-    EXPECT_EQ(result2.data()->getLabels().at(2),"bread");
+    EXPECT_EQ(result2->getLabels().at(0),"bank");
+    EXPECT_EQ(result2->getLabels().at(1),"boat");
+    EXPECT_EQ(result2->getLabels().at(2),"bread");
 
     //test resultsexporter
     bool success;

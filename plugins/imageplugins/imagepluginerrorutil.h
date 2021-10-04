@@ -6,9 +6,11 @@
 
 #ifndef IMAGEPLUGINERRORUTIL_H
 #define IMAGEPLUGINERRORUTIL_H
+
 #include <QString>
 #include <QStringList>
 #include <iostream>
+
 /**
  * @brief the namespace for the helper functions and strings
  */

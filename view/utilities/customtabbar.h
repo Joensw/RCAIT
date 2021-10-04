@@ -14,6 +14,8 @@
 #include <QtWidgets/QStylePainter>
 #include <QtWidgets/QTabBar>
 #include <QStyleOptionTab>
+#include <iostream>
+#include <string>
 
 #define OFFSET(x) ((int) x*0.12)
 #define SELECTED_OFFSET(x) ((int) x*0.08)

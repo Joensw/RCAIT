@@ -95,14 +95,14 @@ signals:
      *
      * @param result training result
      */
-    void sig_trainingResultUpdated(const QSharedPointer<TrainingResult> &result);
+    void sig_trainingResultUpdated(const QPointer<TrainingResult> &result);
 
     /**
      * @brief sig_classificationResultUpdated signals new classification result from automation.
      *
      * @param result classification result
      */
-    void sig_classificationResultUpdated(const QSharedPointer<ClassificationResult>& result);
+    void sig_classificationResultUpdated(const QPointer<ClassificationResult> &result);
 
     /**
      * @brief slot_projectCreated used to signal update of project directory.

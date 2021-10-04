@@ -8,8 +8,8 @@
 #include <topaccuraciesview.h>
 #include <trainingresultview.h>
 #include <classificationresultview.h>
-#include "topaccuraciesgraphics.h"
-#include "resultsprocessor.h"
+#include <topaccuraciesgraphics.h>
+#include <resultsprocessor.h>
 #include <json_toolbox.h>
 
 /**
@@ -37,7 +37,7 @@ signals:
      * @param view result tab to load the result into
      * @param result imported result
      */
-    void sig_normal_loadTrainingResultData(TrainingResultView *view, QSharedPointer<TrainingResult> result) const;
+    void sig_normal_loadTrainingResultData(TrainingResultView *view, const QPointer<TrainingResult> &result) const;
 
     /**
      * @brief Emitted after ClassificationResult Data was loaded
@@ -45,9 +45,10 @@ signals:
      * @param result imported result
      */
     void sig_normal_loadClassificationResultData(ClassificationResultView *view,
-                                                 QSharedPointer<ClassificationResult> result) const;
+                                                 const QPointer<ClassificationResult> &result) const;
 
-public slots:
+public
+    slots:
 
     //Top Accuracies slots
     /**
@@ -56,9 +57,8 @@ public slots:
      * @param graphics graphics to provide the data to
      * @param runNameToCompare identifier of the result to import
      */
-    void
-    slot_comparison_loadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
-                                     const QString &runNameToCompare) const;
+    void slot_comparison_loadAccuracyData(TopAccuraciesView *view, const QPointer<TopAccuraciesGraphics> &graphics,
+                                          const QString &runNameToCompare) const;
 
     /**
      * @brief Unload accuracy data when a comparison result is now unselected
@@ -67,7 +67,7 @@ public slots:
      * @param runNameToCompare result identifier to unload
      */
     static void
-    slot_comparison_unloadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
+    slot_comparison_unloadAccuracyData(TopAccuraciesView *view, const QPointer<TopAccuraciesGraphics> &graphics,
                                        const QString &runNameToCompare);
 
     //Classification result slots

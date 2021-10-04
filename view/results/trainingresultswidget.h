@@ -10,10 +10,10 @@
 #include <projectmanager.h>
 #include <topaccuraciesgraphics.h>
 #include <trainingresult.h>
-#include "topaccuraciesview.h"
-#include "trainingresultview.h"
-#include "genericcomparisonwidget.h"
-#include "trainingresult.h"
+#include <topaccuraciesview.h>
+#include <trainingresultview.h>
+#include <genericcomparisonwidget.h>
+#include <trainingresult.h>
 
 /**
  * @brief The TrainingResultWidget is used for displaying and comparing training results.
@@ -37,7 +37,7 @@ public:
      * @brief Adds a new training result
      * @param result result to be added
      */
-    void addTrainingResult(const QSharedPointer<TrainingResult>& result);
+    void addTrainingResult(const QPointer<TrainingResult> &result);
 
     /**
      * @brief Updates the folder path to check for results to compare.
@@ -51,9 +51,9 @@ private:
     static constexpr auto TOP_ACCURACIES_TAB_NAME = QT_TR_NOOP("Top Accuracies");
 
     ProjectManager *m_projectManager;
-    QScopedPointer<TopAccuraciesView> m_topAccuraciesView;
+    QSharedPointer<TopAccuraciesView> m_topAccuraciesView;
     QSharedPointer<TopAccuraciesGraphics> m_topAccuraciesGraphics;
-    QMap<GenericGraphicsView *, QSharedPointer<TrainingResult>> m_mapResultsByTab;
+    QMap<GenericGraphicsView *, QPointer<TrainingResult>> m_mapResultsByTab;
 
     void addComparisonResult(const QString &runNameToCompare) override;
 
@@ -86,7 +86,7 @@ signals:
      * @param view top accuracies tab to be filled with data
      * @param graphics contains the relevant data for parsing
      */
-    void sig_comparison_loadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
+    void sig_comparison_loadAccuracyData(TopAccuraciesView *view, const QPointer<TopAccuraciesGraphics> &graphics,
                                          const QString &runNameToCompare);
 
     /**
@@ -95,7 +95,7 @@ signals:
      * @param graphics graphics to remove data from
      * @param runNameToCompare identifier to identify data
      */
-    void sig_comparison_unloadAccuracyData(TopAccuraciesView *view, const QSharedPointer<TopAccuraciesGraphics> &graphics,
+    void sig_comparison_unloadAccuracyData(TopAccuraciesView *view, const QPointer<TopAccuraciesGraphics> &graphics,
                                            const QString &runNameToCompare);
 
     /**
@@ -103,14 +103,15 @@ signals:
      * @param view tab to be filled with data
      * @param result contains the relevant data for parsing
      */
-    void sig_normal_loadTrainingResultData(TrainingResultView *view, const QSharedPointer<TrainingResult>& result);
+    void sig_normal_loadTrainingResultData(TrainingResultView *view, const QPointer<TrainingResult> &result);
 
     /**
      * @brief Signal is emitted when a result tab was created (after a training) and graphics are requested.
      * @param receiver tab that will display the graphics
      * @param result result that contains the relevant data
      */
-    void sig_normal_generateTrainingResultGraphics(GenericGraphicsView *receiver, const QSharedPointer<TrainingResult>& result);
+    void
+    sig_normal_generateTrainingResultGraphics(GenericGraphicsView *receiver, const QPointer<TrainingResult> &result);
 
 
     /**
@@ -119,21 +120,21 @@ signals:
      * @param graphics object to trigger generation of the graphics on
      */
     void sig_normal_requestTopAccuraciesGraphics(TopAccuraciesView *receiver,
-                                                 const QSharedPointer<TopAccuraciesGraphics>& graphics);
+                                                 QSharedPointer<TopAccuraciesGraphics> graphics);
 
     /**
      * @brief Signal is emitted when a top accuracies tab is saved.
      * @param graphics graphics to be saved
      * @param success bool to report success state back to the view component
      */
-    void sig_save_TopAccuracies(const QSharedPointer<TopAccuraciesGraphics>& graphics, bool &success);
+    void sig_save_TopAccuracies(const QPointer<TopAccuraciesGraphics> &graphics, bool &success);
 
     /**
      * @brief Signal is emitted when a training result tab is saved.
      * @param result result to be saved
      * @param success bool to report success state back to the view component
      */
-    void sig_save_TrainingResult(const QSharedPointer<TrainingResult>& result, bool &success);
+    void sig_save_TrainingResult(const QPointer<TrainingResult> &result, bool &success);
 
 private slots:
 

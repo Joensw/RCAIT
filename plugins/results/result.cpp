@@ -1,5 +1,3 @@
-#include <QDateTime>
-#include <utility>
 #include "result.h"
 
 Result::Result(QString storageDir, QStringList additionalResults)

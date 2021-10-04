@@ -6,6 +6,8 @@ void ResultsProcessor::addGraphicsGenerationJob(GenericGraphicsView *receiver,
     auto count = 1;
     auto total = graphicsList.size();
     for (const auto &graphics: graphicsList) {
+        if (!graphics) continue;
+
         //Connect 'finished graphics generation' signal with slot
         connect(&*graphics, &GenericResultGraphics::sig_graphicsGenerated,
                 this, &ResultsProcessor::slot_graphicsGenerated);
@@ -13,12 +15,13 @@ void ResultsProcessor::addGraphicsGenerationJob(GenericGraphicsView *receiver,
         auto type = QString(graphics->metaObject()->className());
         qInfo() << qPrintable(QString("(%1/%2) Generating %3 \n").arg(count++).arg(total).arg(type));
 
-        m_mapGraphicsByReceiver.insert(receiver, graphics);
+        m_mapGraphicsByReceiver.insert(receiver, &*graphics);
         graphics->generateGraphics(receiver);
     }
 }
 
-void ResultsProcessor::slot_graphicsGenerated(GenericGraphicsView *receiver, const QSharedPointer<GenericResultGraphics> &graphics) {
+void ResultsProcessor::slot_graphicsGenerated(GenericGraphicsView *receiver,
+                                              const QPointer<GenericResultGraphics> &graphics) {
     Q_ASSERT(receiver);
     Q_ASSERT(graphics);
     if (!QFile::exists(graphics->getFullPath())) return;
@@ -48,7 +51,7 @@ void ResultsProcessor::slot_normal_generateTopAccuraciesGraphics(TopAccuraciesVi
  * Classification result slots
  */
 void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationResultView *view,
-                                                                const QSharedPointer<ClassificationResult>& result) {
+                                                                const QPointer<ClassificationResult> &result) {
     const auto &map = result->getClassificationData();
     const auto &labels = result->getLabels();
     Q_ASSERT(!map.isEmpty());
@@ -64,7 +67,7 @@ void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationRe
 
         //Calculate argmax(map), choose label with the highest confidence
         auto index_max = std::distance(accList.begin(), max);
-        auto max_confidence = QString::number(*max, 'f', 2);
+        auto max_confidence = QString::number(*max * 100, 'f', 2);
         const auto &label = labels[index_max];
 
         tableMap[rowNumber++] = {max_confidence, label};
@@ -73,7 +76,7 @@ void ResultsProcessor::slot_normal_loadClassificationResultData(ClassificationRe
 }
 
 void ResultsProcessor::slot_normal_generateClassificationResultGraphics(GenericGraphicsView *receiver,
-                                                                        const QSharedPointer<ClassificationResult>& result) {
+                                                                        const QPointer<ClassificationResult> &result) {
     const auto &classificationGraphics = result->getClassificationGraphics();
     addGraphicsGenerationJob(receiver, {classificationGraphics});
 }
@@ -81,13 +84,14 @@ void ResultsProcessor::slot_normal_generateClassificationResultGraphics(GenericG
 /**
  * Training result slots
  */
-void ResultsProcessor::slot_normal_loadTrainingResultData(TrainingResultView *view, const QSharedPointer<TrainingResult>& result) {
+void
+ResultsProcessor::slot_normal_loadTrainingResultData(TrainingResultView *view, const QPointer<TrainingResult> &result) {
     auto mostMisclassifiedImages = result->getMostMisclassifiedImages();
     view->setMostMisclassifiedImages(mostMisclassifiedImages);
 }
 
 void ResultsProcessor::slot_normal_generateTrainingResultGraphics(GenericGraphicsView *receiver,
-                                                                  const QSharedPointer<TrainingResult>& result) {
+                                                                  const QPointer<TrainingResult> &result) {
     const auto &accCurve = result->getAccuracyCurve();
     const auto &confusionMatrix = result->getConfusionMatrix();
     addGraphicsGenerationJob(receiver, {accCurve, confusionMatrix});

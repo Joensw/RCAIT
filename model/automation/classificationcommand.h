@@ -1,12 +1,12 @@
 #ifndef CLASSIFICATIONCOMMAND_H
 #define CLASSIFICATIONCOMMAND_H
 
-#include "command.h"
-
+#include <command.h>
 #include <classificationpluginmanager.h>
 #include <datamanager.h>
 #include <progressableplugin.h>
 #include <utility>
+#include <classificationpluginmanager.h>
 
 /**
  * @brief The ClassificationCommand class starts a classification with information derived from a map.
@@ -23,7 +23,7 @@ public:
      * @param map contains necessary information for command.
      * @param receiver object to receive progress.
      */
-    ClassificationCommand(QVariantMap map, ProgressablePlugin *receiver);
+    ClassificationCommand(const QVariantMap &map, ProgressablePlugin *receiver);
 
     /**
      * @brief execute executes the command.
@@ -39,13 +39,13 @@ signals:
      *
      * @param result classification result.
      */
-    void sig_saveResult(QSharedPointer<ClassificationResult> result);
+    void sig_saveResult(const QPointer<ClassificationResult> &result);
 
 private:
 
     ClassificationPluginManager &mPluginManager = ClassificationPluginManager::getInstance();
     DataManager &mDataManager = DataManager::getInstance();
-    QSharedPointer<ClassificationResult> mResult{};
+    QPointer<ClassificationResult> mResult{};
     bool parsingFailed = false;
 
     QString mProjectName;
@@ -55,6 +55,7 @@ private:
     QString mTrainDataSetPath;
     QString mWorkingDir;
     ProgressablePlugin *mReceiver;
+
 
 };
 

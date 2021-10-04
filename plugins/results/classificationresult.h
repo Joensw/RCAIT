@@ -1,18 +1,19 @@
 #ifndef CLASSIFICATIONRESULT_H
 #define CLASSIFICATIONRESULT_H
 
-
 #include <QString>
 #include <QMap>
-#include "result.h"
+#include <result.h>
 #include <classificationgraphics.h>
 #include <projectmanager.h>
+#include <utility>
 
 /**
  * @brief This class is a specific type of <code>Result</code>.
  * It is also a data retention class and holds all data after a classification process.
  */
 class ClassificationResult : public Result {
+    Q_OBJECT
 private:
     QMap<QString, QList<double>> m_classificationData;
     QSharedPointer<ClassificationGraphics> m_classificationGraphics;

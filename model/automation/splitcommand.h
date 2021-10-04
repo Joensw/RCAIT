@@ -1,8 +1,7 @@
 #ifndef SPLITCOMMAND_H
 #define SPLITCOMMAND_H
 
-#include "command.h"
-
+#include <command.h>
 #include <imageinspectionmodel.h>
 #include <progressableplugin.h>
 #include <utility>
@@ -22,7 +21,7 @@ public:
      * @param map map with split info
      * @param receiver rececives progress
      */
-    SplitCommand(QVariantMap map, ProgressablePlugin *receiver);
+    SplitCommand(const QVariantMap &map, ProgressablePlugin *receiver);
 
 
     /**

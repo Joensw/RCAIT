@@ -1,12 +1,11 @@
 #ifndef IMAGELOADCOMMAND_H
 #define IMAGELOADCOMMAND_H
 
-#include "command.h"
+#include <command.h>
 #include <mapadapt.h>
-
 #include <imageloaderpluginmanager.h>
 #include <datamanager.h>
-
+#include <imageloaderpluginmanager.h>
 
 /**
  * @brief The ImageLoadCommand class starts image loading with information derived from a map.
@@ -22,7 +21,7 @@ public:
      * @param map contains necessary information for command.
      * @param receiver object to receive progress.
      */
-    ImageLoadCommand(QVariantMap map, ProgressablePlugin *receiver);
+    ImageLoadCommand(const QVariantMap &map, ProgressablePlugin *receiver);
 
     /**
      * @brief execute executes the command.

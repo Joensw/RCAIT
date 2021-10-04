@@ -1,6 +1,5 @@
 #include "customtabbar.h"
-#include <iostream>
-#include <string>
+
 
 CustomTabBar::CustomTabBar(QTabWidget *tabWidget) {
     m_tabWidget = tabWidget;

@@ -49,7 +49,7 @@ void ImportFilesWidget::clearModelList() {
     ui->listWidget_modelNames->clear();
 }
 
-void ImportFilesWidget::setActionButtonsEnabled(bool state)
+void ImportFilesWidget::setActionButtonsEnabled(const bool &state)
 {
     ui->pushButton_loadModel->setEnabled(state);
     ui->pushButton_removeModel->setEnabled(state);
@@ -97,7 +97,7 @@ void ImportFilesWidget::setAvailablePlugins(const QStringList &pluginNames) {
     ui->comboBox_plugins->addItems(pluginNames);
 }
 
-void ImportFilesWidget::updateProgressBar(int progress) {
+void ImportFilesWidget::updateProgressBar(const int &progress) {
     ui->progressBar_images->setValue(progress);
     if (progress == ui->progressBar_images->maximum()) {
         ui->pushButton_loadImages->setEnabled(true);
@@ -113,7 +113,7 @@ void ImportFilesWidget::updateStatusText(const QString &status) {
 }
 
 
-void ImportFilesWidget::on_horizontalSlider_valueChanged(int value) {
+void ImportFilesWidget::on_horizontalSlider_valueChanged(const int &value) {
     ui->label_splitPercent->setText(QString::number(value) % "%");
 }
 

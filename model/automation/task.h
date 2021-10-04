@@ -1,12 +1,15 @@
 #ifndef TASK_H
 #define TASK_H
 
-#include "command.h"
-
+#include <command.h>
 #include <pluginusage/progressable.h>
-
+#include <trainingcommand.h>
+#include <QApplication>
 #include <datamanager.h>
-#include "resultsexporter.h"
+#include <resultsexporter.h>
+#include <classificationcommand.h>
+#include <imageloadcommand.h>
+#include <splitcommand.h>
 
 /**
  * @brief The TaskState enum is an enumeration of task states.
@@ -44,7 +47,7 @@ public:
      * @param map stores information for commands.
      * @param commandList list of the supplied commands.
      */
-    explicit Task(QVariantMap map, const QList<QSharedPointer<Command>> &commandList = {});
+    explicit Task(const QVariantMap &map, const QList<QSharedPointer<Command>> &commandList = {});
 
     /**
      * @brief getName returns name of the Task.
@@ -100,14 +103,14 @@ public slots:
      *
      * @param result training result.
      */
-    void slot_saveTrainingResult(const QSharedPointer<TrainingResult> &result);
+    void slot_saveTrainingResult(const QPointer<TrainingResult> &result);
 
     /**
      * @brief slot_saveClassificationResult saves classification result.
      *
      * @param result classification result.
      */
-    void slot_saveClassificationResult(const QSharedPointer<ClassificationResult> &result);
+    void slot_saveClassificationResult(const QPointer<ClassificationResult> &result);
 
 signals:
 
@@ -116,7 +119,7 @@ signals:
      *
      * @param newState new task state.
      */
-    void sig_stateChanged(QString name, TaskState newState);
+    void sig_stateChanged(const QString &name, TaskState newState);
 
     /**
      * @brief sig_progress signals progress of task.
@@ -130,19 +133,17 @@ signals:
      *
      * @param result training result
      */
-    void sig_trainingResultUpdated(const QSharedPointer<TrainingResult> &result);
+    void sig_trainingResultUpdated(const QPointer<TrainingResult> &result);
 
     /**
      * @brief sig_classificationResultUpdated signals new classification result from automation.
      *
      * @param result classification result
      */
-    void sig_classificationResultUpdated(const QSharedPointer<ClassificationResult> &result);
+    void sig_classificationResultUpdated(const QPointer<ClassificationResult> &result);
 
 
 private:
-    void insertCommand(int type, const QVariantMap &map);
-
     static constexpr auto ADD_PROJECT_ENTRY = "addProject";
 
     QString mName;
@@ -155,6 +156,23 @@ private:
     bool valid = true;
     bool mAbort = false;
     int commandsDone = 0;
+
+
+/**
+ * @brief This enum contains all types of supported commands.
+ *
+ * New command types can be inserted here.
+ */
+    enum class CommandType {
+        IMAGELOAD,
+        SPLIT,
+        TRAINING,
+        CLASSIFICATION,
+        $LENGTH
+    };
+
+    void insertCommand(CommandType type, const QVariantMap &map);
+
 };
 
 #endif // TASK_H

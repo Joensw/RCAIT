@@ -6,7 +6,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 
-#include "globalsettingswidget.h"
+#include <globalsettingswidget.h>
 
 namespace Ui {
     class SettingsView;
@@ -48,7 +48,7 @@ public:
      *
      * @param amount number of paths updated.
      */
-    void pathsUpdated(int amount);
+    void pathsUpdated(const int &amount);
 
     /**
      * @brief clearPaths clears set paths.
@@ -96,7 +96,7 @@ public:
      * @param pluginConfigurationWidgets config widgets of plugins.
      * @param pluginIcons the plugin icons
      */
-    void addPluginWidgets(QStringList pluginNames, const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets, const QList<QSharedPointer<QIcon>> &pluginIcons);
+    void addPluginWidgets(const QStringList &pluginNames, const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets, const QList<QSharedPointer<QIcon>> &pluginIcons);
 
     /**
      * @brief This method is used to update translated plugin list.

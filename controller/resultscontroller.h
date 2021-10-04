@@ -8,7 +8,7 @@
 #ifndef RESULTSCONTROLLER_H
 #define RESULTSCONTROLLER_H
 
-
+#include <resultsexporter.h>
 #include <trainingresult.h>
 #include <classificationresult.h>
 #include <resultswidget.h>
@@ -52,16 +52,15 @@ public slots:
      * @brief Adds a new TrainingResult to the corresponding specialised widget
      * @param result result to be added
      */
-    void slot_addTrainingResult(const QSharedPointer<TrainingResult> &result);
+    void slot_addTrainingResult(const QPointer<TrainingResult> &result);
 
     /**
      * @brief Adds a new ClassificationResult to the corresponding specialised widget
      * @param result result to be added
      */
-    void slot_addClassificationResult(const QSharedPointer<ClassificationResult> &result);
+    void slot_addClassificationResult(const QPointer<ClassificationResult> &result);
 
 private:
-    //TODO unused
     DataManager *m_dataManager;
     ResultsWidget *m_resultsWidget;
     ResultsProcessor m_resultsProcessor;

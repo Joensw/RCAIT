@@ -1,14 +1,11 @@
 #ifndef TRAININGCOMMAND_H
 #define TRAININGCOMMAND_H
 
-#include "command.h"
-
-
+#include <command.h>
 #include <classificationpluginmanager.h>
 #include <datamanager.h>
 #include <progressableplugin.h>
 #include <utility>
-
 
 /**
  * @brief The TrainingCommand class starts a training with information derived from a map.
@@ -24,7 +21,7 @@ public:
      * @param map contains necessary information for command.
      * @param receiver object to receive progress.
      */
-    TrainingCommand(QVariantMap map, ProgressablePlugin *receiver);
+    TrainingCommand(const QVariantMap &map, ProgressablePlugin *receiver);
 
     /**
      * @brief execute executes the command.
@@ -40,13 +37,13 @@ signals:
      *
      * @param result training result.
      */
-    void sig_saveResult(QSharedPointer<TrainingResult> result);
+    void sig_saveResult(const QPointer<TrainingResult> &result);
 
 private:
 
     ClassificationPluginManager &mPluginManager = ClassificationPluginManager::getInstance();
     DataManager &mDataManager = DataManager::getInstance();
-    QSharedPointer<TrainingResult> mResult;
+    QPointer<TrainingResult> mResult;
     ProgressablePlugin *mReceiver;
     QSharedPointer<QWidget> mInputWidget;
     QSharedPointer<QWidget> mAugmentationWidget;

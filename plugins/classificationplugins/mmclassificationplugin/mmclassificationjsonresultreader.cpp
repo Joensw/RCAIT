@@ -1,11 +1,4 @@
 #include "mmclassificationjsonresultreader.h"
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonParseError>
-#include <QJsonArray>
-#include <QJsonObject>
-#include <QJsonValue>
-#include <QFileInfo>
 
 QVector<int> MMClassificationJsonResultReader::readConfusionMatrixFromJsonFile(const QString &filePath) {
     QFileInfo jsonFile = QFileInfo(filePath);

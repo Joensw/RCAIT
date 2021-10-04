@@ -12,10 +12,7 @@
 #include <QWidget>
 #include <QSettings>
 #include <utility>
-
-#include "classificationpluginmanager.h"
-
-
+#include <classificationpluginmanager.h>
 
 /**
  * @brief The ModelManager class contains logic for manipulating models of external classification plugins
@@ -60,14 +57,14 @@ public:
      * @param projectName the name of the project to which the model belongs
      * @param modelName name the model
      */
-    bool removeModel(QString projectName, QString modelName);
+    bool removeModel(const QString &projectName, const  QString &modelName);
 
     /**
      * @brief loadModel loads a model into the application for further use
      * @param modelName name of the model
      * @param pluginName name of the plugin the model is from
      */
-    void loadModel(QString modelName, QString pluginName);
+    void loadModel(const QString &modelName, const QString &pluginName);
 
     /**
      * @return the classification plugin the current model is from
@@ -95,7 +92,7 @@ public:
      * @return the names of the models from the given project, if the projects exists,
      *         otherwise an empty list will be returned
      */
-    QStringList getModelNamesOfProject(QString projectName);
+    QStringList getModelNamesOfProject(const QString &projectName);
 
     /**
      * @brief removeAllModelsOfProject deletes every user created model from the given project
@@ -117,7 +114,7 @@ public:
      * @param modelName the name of model to which the working directory belongs
      * @return the saved working directory of the given model, if it exists, an empty QString otherwise
      */
-    QString recallLastWorkingDirectoryOfModel(QString projectName, QString modelName);
+    QString recallLastWorkingDirectoryOfModel(const QString &projectName, const QString &modelName);
 
     /**
      * @brief recallPluginNameOfModel find the plugin a certain model was derived from
@@ -126,7 +123,7 @@ public:
      * @return name of the originating plugin
      */
 
-    QString recallPluginNameOfModell(QString projectName, QString modelName);
+    QString recallPluginNameOfModell(const QString &projectName, const QString &modelName);
 
 private:
     const int pluginNamePosition = 0;

@@ -1,11 +1,10 @@
 #ifndef AUTOMATOR_H
 #define AUTOMATOR_H
 
-#include "task.h"
+#include <task.h>
 #include <datamanager.h>
 #include <pluginusage/progressable.h>
 #include <QJsonDocument>
-
 
 /**
  * @brief The Automator class for managing task scheduling and execution.
@@ -104,14 +103,14 @@ signals:
      * @param name task name.
      * @param state task state.
      */
-    void sig_taskUpdate(QString name, QString state);
+    void sig_taskUpdate(const QString &name, const QString &state);
 
     /**
      * @brief sig_taskAdded signals successful addition of task to non-scheduled queue.
      *
      * @param name task name.
      */
-    void sig_taskAdded(QString name);
+    void sig_taskAdded(const QString &name);
 
     /**
      * @brief sig_progress signals progress of batch processing.
@@ -131,14 +130,14 @@ signals:
      *
      * @param result training result
      */
-    void sig_trainingResultUpdated(const QSharedPointer<TrainingResult> & result);
+    void sig_trainingResultUpdated(const QPointer<TrainingResult> &result);
 
     /**
      * @brief sig_classificationResultUpdated signals new classification result from automation.
      *
      * @param result classification result
      */
-    void sig_classificationResultUpdated(const QSharedPointer<ClassificationResult> & result);
+    void sig_classificationResultUpdated(const QPointer<ClassificationResult> &result);
 
     /**
      * @brief sig_projectCreated signals potential creation of new project.

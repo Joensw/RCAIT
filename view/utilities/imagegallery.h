@@ -1,12 +1,17 @@
 #ifndef IMAGEGALLERY_H
 #define IMAGEGALLERY_H
 
-
 #include <QListWidget>
 #include <QDir>
 #include <QThread>
 #include <QImageReader>
 #include <QPainter>
+#include <QApplication>
+#include <QGridLayout>
+#include <QtConcurrent/QtConcurrent>
+#include <utility>
+#include <QScroller>
+#include <QResizeEvent>
 
 /**
  * @brief The ImageGallery class shows a list of images.
@@ -154,18 +159,18 @@ private:
          *
          */
         void run() override {
-                    foreach(QString imageName, mImageList) {
-                    if (abort) return;;
+            for (QString imageName: mImageList) {
+                if (abort) return;
 
-                    QImage img(imageName);
+                QImage img(imageName);
 
-                    if(img.isNull()){
-                        mGallery->addImage(errorImage(imageName));
+                if (img.isNull()) {
+                    mGallery->addImage(errorImage(imageName));
 
-                    } else {
-                        mGallery->addImage(QImage(img));
-                    }
+                } else {
+                    mGallery->addImage(QImage(img));
                 }
+            }
         }
 
         /**
@@ -176,26 +181,40 @@ private:
             abort = true;
         }
 
+        ~addImagesTask() override {
+            quit();
+            QThread::quit();
+            while (!isFinished()){
+                QApplication::processEvents();
+                QThread::sleep(1);
+            }
+        }
+
         /**
          * @brief errorImage creates an error image to display instead of the real image
          * @param imageName name of the broken image
          * @return an image with an error message
          */
-        QImage errorImage(QString &imageName){
+        QImage errorImage(QString &imageName) {
             //prints the error to the debug console. Will not impact performance because it's only called on error
             QImageReader reader(imageName);
-            QImage img = reader.read();
+            reader.read();
             qDebug() << "Error loading " << imageName << " " << reader.errorString();
 
             //setup the error image
             QImage naImg(":/Logos/imageerror.png");
             //change format so that we can draw on it
             QImage paintFormat = naImg.convertToFormat(QImage::Format_ARGB8565_Premultiplied);
-            QString text = "Error: " + reader.errorString() + ". Image " + imageName + " could not be loaded. Please check if it is valid.";
+            QString text = "Error: " + reader.errorString() + ". Image " + imageName +
+                           " could not be loaded. Please check if it is valid.";
             QPainter p(&paintFormat);
+            QFont font = mGallery->font();
+            font.setPointSize(12);
+
             p.setPen(QPen(Qt::red));
-            p.setFont(QFont("Times", 12));
+            p.setFont(font);
             p.drawText(paintFormat.rect(), Qt::TextWordWrap | Qt::AlignCenter, text);
+
             return paintFormat;
         }
 

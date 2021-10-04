@@ -2,7 +2,7 @@
 #define SAVABLERESULTSWIDGET_H
 
 #include <QWidget>
-#include "genericgraphicsview.h"
+#include <genericgraphicsview.h>
 
 class GenericGraphicsView;
 
@@ -37,8 +37,6 @@ private:
 private slots:
 
     virtual void slot_updateSaveButton(int index) = 0;
-
-    [[maybe_unused]] virtual void on_pushButton_saveCurrentTab_clicked() = 0;
 
 };
 

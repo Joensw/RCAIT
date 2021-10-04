@@ -3,6 +3,8 @@
 
 #include <QTabWidget>
 #include <QWidget>
+#include <customtabbar.h>
+
 /**
  * @brief The CustomTabWidget class is used to switch between different widets layered ontop of eachother
  */

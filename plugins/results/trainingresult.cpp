@@ -1,7 +1,5 @@
 #include "trainingresult.h"
 
-#include <utility>
-
 TrainingResult::TrainingResult(const QString &storageDir, const QMap<int, QPair<double, double>> &accuracyCurveData,
                                const QStringList &classLabels, const QList<int> &confusionMatrixValues,
                                QStringList mostMisclassifiedImages, double top1Accuracy, double top5Accuracy,

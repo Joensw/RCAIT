@@ -50,7 +50,7 @@ public slots:
      * @brief slot_progress update the progress bar shown in the UI representing the progress of the training
      * @param progress integer argument 1-100
      */
-    void slot_progress(int progress);
+    void slot_progress(const int &progress);
 
 signals:
 

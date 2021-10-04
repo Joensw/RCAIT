@@ -1,8 +1,6 @@
 #include "imageloadcommand.h"
-#include "imageloaderpluginmanager.h"
 
-
-ImageLoadCommand::ImageLoadCommand(QVariantMap map, ProgressablePlugin *receiver)
+ImageLoadCommand::ImageLoadCommand(const QVariantMap &map, ProgressablePlugin *receiver)
         : mPluginName(map["imagePluginName"].toString()),
           mLabels(map["labels"].toStringList()),
           mPath(mDataManager.getProjectImageTempDir()),

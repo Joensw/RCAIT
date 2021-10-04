@@ -39,13 +39,13 @@ public:
      * @brief addProjects add a list of projects to the shown projects in the UI
      * @param projects list of projects names to be added
      */
-    void addProjects(QStringList projects);
+    void addProjects(const QStringList &projects);
 
     /**
      * @brief addProject add a single project to the shown project in the UI
      * @param project name of the project
      */
-    void addProject(QString project);
+    void addProject(const QString &project);
 
     /**
      * @brief clearProjectList empty the list of shown projects
@@ -59,9 +59,9 @@ public:
     void setActionButtonsEnabled(bool state);
 
     /**
-     * @brief resetListSelection resets the project list so that no item is currently selected
+     * @brief disableOpenProjectButton Turns the open project button in the UI off
      */
-    void resetListSelection();
+    void disableOpenProjectButton();
 
 public slots:
 
@@ -80,6 +80,7 @@ public slots:
      * @brief slot_startLoading called when an image loading process is started to prevent the selection of a new project
      */
     void slot_startLoading();
+
 
 
 private:

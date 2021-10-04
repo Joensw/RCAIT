@@ -1,16 +1,17 @@
 #ifndef TRAININGRESULT_H
 #define TRAININGRESULT_H
 
-
 #include <confusionmatrix.h>
 #include <accuracycurve.h>
-#include "result.h"
+#include <result.h>
+#include <utility>
 
 /**
  * @brief This class is a specific type of <code>Result</code>.
  * It is also a data retention class and holds all data after a training process.
  */
 class TrainingResult : public Result {
+    Q_OBJECT
 private:
     QStringList m_mostMisclassifiedImages;
     QMap<int, QPair<double, double>> m_accuracyCurveData;

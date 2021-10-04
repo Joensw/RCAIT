@@ -5,7 +5,6 @@
  *
  * @author Paul Schaarschmidt
  */
-#include <resultsexporter.h>
 #include "resultscontroller.h"
 
 ResultsController::ResultsController(DataManager *manager, ResultsWidget *resultsWidget)
@@ -59,11 +58,11 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
     //Connect signals/slots related to saving training results
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_save_TrainingResult,
             &m_resultsExporter,
-            &ResultsExporter::slot_save_TrainingResult);
+            &ResultsExporter::slot_save_TrainingResult, Qt::UniqueConnection);
     //Connect signals/slots related to saving top accuracies
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_save_TopAccuracies,
             &m_resultsExporter,
-            &ResultsExporter::slot_save_TopAccuracies);
+            &ResultsExporter::slot_save_TopAccuracies, Qt::UniqueConnection);
 
 /*
  * Classification Results
@@ -111,10 +110,10 @@ void ResultsController::slot_projectPathUpdated() {
     m_resultsExporter.updateResultFolderPaths();
 }
 
-void ResultsController::slot_addTrainingResult(const QSharedPointer<TrainingResult> &result) {
+void ResultsController::slot_addTrainingResult(const QPointer<TrainingResult> &result) {
     m_resultsWidget->addTrainingResult(result);
 }
 
-void ResultsController::slot_addClassificationResult(const QSharedPointer<ClassificationResult> &result) {
+void ResultsController::slot_addClassificationResult(const QPointer<ClassificationResult> &result) {
     m_resultsWidget->addClassificationResult(result);
 }

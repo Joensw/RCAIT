@@ -1,7 +1,6 @@
 #ifndef GENERICCOMPARISONWIDGET_H
 #define GENERICCOMPARISONWIDGET_H
 
-
 #include <QWidget>
 #include <QPushButton>
 #include <QMenu>
@@ -9,12 +8,13 @@
 #include <QTabWidget>
 #include <QEvent>
 #include <QStringBuilder>
+#include <QTimer>
 #include <type_traits>
 
-#include "result.h"
-#include "genericgraphicsview.h"
-#include "popupmenu.h"
-#include "savableresultswidget.h"
+#include <result.h>
+#include <genericgraphicsview.h>
+#include <popupmenu.h>
+#include <savableresultswidget.h>
 
 namespace Ui {
     class GenericComparisonWidget;
@@ -133,7 +133,7 @@ private slots:
 
     void slot_updateSaveButton(int index) override;
 
-    void on_pushButton_saveCurrentTab_clicked() override;
+    void on_pushButton_saveCurrentTab_clicked();
 
 };
 

@@ -1,6 +1,3 @@
-#include <mapadapt.h>
-#include <QScroller>
-#include <QScrollBar>
 #include "classificationresultview.h"
 #include "ui_classificationresultview.h"
 

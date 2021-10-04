@@ -3,7 +3,7 @@
 
 #include <QGraphicsItem>
 #include <QWidget>
-#include "savableresultswidget.h"
+#include <savableresultswidget.h>
 
 /**
  * @brief This class is a superclass of all specialized result views.
@@ -30,7 +30,7 @@ public:
      * @brief Set the saved state of the result view
      * @param isSaved new saved state
      */
-    void setSaved(bool isSaved);
+    void setSaved(const bool &isSaved);
 
     /**
      * @brief Get the name of this result view
@@ -74,6 +74,11 @@ public:
      * @param classificationGraphicsImage QSharedPointer to the classification graphics image
      */
     virtual void setClassificationGraphics(const QSharedPointer<QGraphicsItem> &classificationGraphicsImage) {};
+
+    /**
+     * Virtual destructor.
+     */
+    virtual ~GenericGraphicsView() = default;
 
 private:
     SavableResultsWidget *m_tabWidget;

@@ -7,12 +7,10 @@
  */
 #include "datamanager.h"
 
-#include <utility>
-
 DataManager::DataManager()
-        : mSettingsManager(&SettingsManager::getInstance()),
-          mProjectManager(&ProjectManager::getInstance()),
+        : mProjectManager(&ProjectManager::getInstance()),
           mModelManager(&ModelManager::getInstance()),
+          mSettingsManager(&SettingsManager::getInstance()),
           mConfigurationManager(&ConfigurationManager::getInstance()) {
 
     mProjectManager->setProjectsDirectory(mConfigurationManager->getProjectsDir());

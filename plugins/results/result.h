@@ -1,12 +1,16 @@
 #ifndef RESULT_H
 #define RESULT_H
 
+#include <QDateTime>
+#include <utility>
+
 /**
  * @brief This class is a super class of all specific result classes.
  * It provides common functionality for the result classes.
  * Result classes are very flexible and specific types can therefore be seen as 'plugins'
  */
-class Result {
+class Result : public QObject {
+Q_OBJECT
 private:
     QString m_storageDir;
     QStringList m_additionalResults;

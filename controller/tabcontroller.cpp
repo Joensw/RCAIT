@@ -43,7 +43,6 @@ TabController::TabController(CustomTabWidget *tabWidget, QTabWidget* resultsTabW
         m_resultsTabWidget->setTabEnabled(j, false);
     }
     m_tabWidget->setCurrentIndex(START);
-    slot_showTrainingResults();
 }
 
 void TabController::slot_openProject() {

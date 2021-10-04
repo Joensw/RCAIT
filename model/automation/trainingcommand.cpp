@@ -1,7 +1,6 @@
 #include "trainingcommand.h"
 
-
-TrainingCommand::TrainingCommand(QVariantMap map, ProgressablePlugin *receiver)
+TrainingCommand::TrainingCommand(const QVariantMap &map, ProgressablePlugin *receiver)
         : mProjectName(map["projectName"].toString()),
           mAiPluginName(map["aiPluginName"].toString()),
           mModelName(map["modelName"].toString()),

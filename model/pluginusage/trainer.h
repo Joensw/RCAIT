@@ -2,10 +2,9 @@
 #define TRAINER_H
 
 #include <trainingresult.h>
-#include <qfuture.h>
+#include <qfuturewatcher.h>
 #include <classificationpluginmanager.h>
-#include "progressableplugin.h"
-#include "classificationresult.h"
+#include <progressableplugin.h>
 
 /**
  * @brief The Trainer class is used to start a training and handle incoming results
@@ -60,7 +59,7 @@ signals:
      *
      * @param trainingResult new training result
      */
-    void sig_trainingResultUpdated(QSharedPointer<TrainingResult>);
+    void sig_trainingResultUpdated(const QPointer<TrainingResult> &trainingResult);
 
     /**
      * @brief sig_startTraining signals start of training
@@ -101,7 +100,7 @@ private:
     ClassificationPluginManager& mManager = ClassificationPluginManager::getInstance();
     QString mRecentWorkingDir;
     QString mRecentTargetPath;
-    QFuture<QSharedPointer<TrainingResult>> m_trainingResult;
+    QFuture<QPointer<TrainingResult>> m_trainingResult;
     QFuture<bool> mAugmentationSuccess;
 
 

@@ -49,7 +49,7 @@ public:
      * @brief createNewProject creates a new  project sub directory with the project name in the current projects directory.
      * @param projectName name of the new project
      */
-    void createNewProject(QString projectName);
+    void createNewProject(const QString &projectName);
 
     /**
      * @brief createNewProject creates a new  project sub directory with the project name in the current projects directory. Preforms additional checks and writes an error message, should errors occur
@@ -201,7 +201,7 @@ private:
 
     static const QVector<QString> UNWANTED_NAME_SEQUENCES;
 
-    bool verifyName(QString projectName, QString &error);
+    bool verifyName(const QString &projectName, QString &error);
 
     QString mProjectPath;
     QString mProjectImagesTempDir;

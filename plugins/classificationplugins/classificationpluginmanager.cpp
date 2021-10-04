@@ -1,8 +1,5 @@
 #include "classificationpluginmanager.h"
 
-#include <QPluginLoader>
-#include <utility>
-
 ClassificationPluginManager::ClassificationPluginManager() = default;
 
 void ClassificationPluginManager::loadPlugins(QString pluginDir) {
@@ -97,27 +94,27 @@ bool ClassificationPluginManager::removeModel(QString modelName, const QString &
     return m_plugins[pluginName]->removeModel(std::move(modelName));
 }
 
-QSharedPointer<TrainingResult>
+QPointer<TrainingResult>
 ClassificationPluginManager::train(const QString &pluginName, const QString &modelName, QString trainDatasetPath,
                                    QString validationDatasetPath, QString workingDirectory,
                                    ProgressablePlugin *receiver) {
     if (!m_plugins.contains(pluginName)) {
         qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
-        return QSharedPointer<TrainingResult>(new TrainingResult(workingDirectory, {}, {}, {}, {}, 0, 0));
+        return new TrainingResult(workingDirectory, {}, {}, {}, {}, 0, 0);
     }
     return m_plugins[pluginName]->train(modelName, std::move(trainDatasetPath),
-                                              std::move(validationDatasetPath), std::move(workingDirectory),
-                                              receiver);
+                                        std::move(validationDatasetPath), std::move(workingDirectory),
+                                        receiver);
 }
 
-QSharedPointer<ClassificationResult>
+QPointer<ClassificationResult>
 ClassificationPluginManager::classify(const QString &pluginName, const QString &inputImageDirPath,
                                       const QString &trainDatasetPath,
                                       const QString &workingDirectory, const QString &modelName,
                                       ProgressablePlugin *receiver) {
     if (!m_plugins.contains(pluginName)) {
         qWarning() << "No Classification Plugin with the name " << pluginName << " found!";
-        return QSharedPointer<ClassificationResult>(new ClassificationResult({}, {}, {}));
+        return new ClassificationResult({}, {}, {});
     }
     return m_plugins[pluginName]->classify(inputImageDirPath, trainDatasetPath,
                                            workingDirectory, modelName,

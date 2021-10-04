@@ -36,7 +36,7 @@ SettingsView::SettingsView(QWidget *parent, const QStringList &pluginNames,
     ui->pluginList->setCurrentRow(0);
 }
 
-void SettingsView::addPluginWidgets(QStringList pluginNames,
+void SettingsView::addPluginWidgets(const QStringList &pluginNames,
                                     const QList<QSharedPointer<QWidget>> &pluginConfigurationWidgets,
                                     const QList<QSharedPointer<QIcon>> &pluginIcons) {
     for (int i = ui->pluginWidget->count() - 1; i >= 1; --i) {
@@ -69,7 +69,7 @@ void SettingsView::addPluginWidgets(QStringList pluginNames,
 
 }
 
-void SettingsView::pathsUpdated(int amount) {
+void SettingsView::pathsUpdated(const int &amount) {
     mGlobalSettingsWidget->showUpdate(amount);
 }
 
@@ -147,7 +147,6 @@ SettingsView::~SettingsView() {
         ui->pluginWidget->removeWidget(widget);
         widget->setParent(nullptr);
     }
-    qDebug() << ui->pluginWidget->children();
 
     delete ui;
 }

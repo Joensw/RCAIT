@@ -35,7 +35,7 @@ bool ModelManager::createNewModel(const QString &projectName, const QString &mod
     }
 }
 
-bool ModelManager::removeModel(QString projectName, QString modelName) {
+bool ModelManager::removeModel(const QString &projectName, const QString &modelName) {
     m_userModelNamesPerProject.beginGroup(projectName);
     if (!m_userModelNamesPerProject.childKeys().contains(modelName)) {
         m_userModelNamesPerProject.endGroup();
@@ -60,7 +60,7 @@ bool ModelManager::removeModel(QString projectName, QString modelName) {
     return false;
 }
 
-void ModelManager::loadModel(QString modelName, QString pluginName) {
+void ModelManager::loadModel(const QString &modelName, const QString &pluginName) {
     mCurrentModel = std::move(modelName);
     mCurrentPlugin = std::move(pluginName);
 }
@@ -73,7 +73,7 @@ QString ModelManager::getCurrentModel() {
     return mCurrentModel;
 }
 
-QStringList ModelManager::getModelNamesOfProject(QString projectName) {
+QStringList ModelManager::getModelNamesOfProject(const QString &projectName) {
     m_userModelNamesPerProject.beginGroup(projectName);
     QStringList modelNames = m_userModelNamesPerProject.childKeys();
     m_userModelNamesPerProject.endGroup();
@@ -99,7 +99,7 @@ void ModelManager::saveLastWorkingDirectoryOfModel(const QString &projectName, c
     m_userModelNamesPerProject.endGroup();
 }
 
-QString ModelManager::recallLastWorkingDirectoryOfModel(QString projectName, QString modelName) {
+QString ModelManager::recallLastWorkingDirectoryOfModel(const QString &projectName, const QString &modelName) {
     QStringList modelSpecificData;
     m_userModelNamesPerProject.beginGroup(projectName);
     modelSpecificData = m_userModelNamesPerProject.value(modelName).toStringList();
@@ -112,7 +112,7 @@ QString ModelManager::recallLastWorkingDirectoryOfModel(QString projectName, QSt
     }
 }
 
-QString ModelManager::recallPluginNameOfModell(QString projectName, QString modelName) {
+QString ModelManager::recallPluginNameOfModell(const QString &projectName, const QString &modelName) {
     QStringList modelSpecificData;
     m_userModelNamesPerProject.beginGroup(projectName);
     modelSpecificData = m_userModelNamesPerProject.value(modelName).toStringList();

@@ -6,7 +6,7 @@
  * @author Andreas Ott
  */
 #include "aicontroller.h"
-#include "imagegallery.h"
+
 
 AIController::AIController(DataManager *dataManager, InputImagesWidget *inputImagesWidget,
                            AITrainingWidget *AITrainingWidget)
@@ -53,14 +53,14 @@ void AIController::slot_startTraining() {
 }
 
 void AIController::slot_abortTraining() {
-
-}
-
-void AIController::slot_results() {
 //TODO unused
 }
 
-void AIController::slot_trainingResultUpdated(const QSharedPointer<TrainingResult>& trainingResult) {
+void AIController::slot_results() {
+//TODO remove this?
+}
+
+void AIController::slot_trainingResultUpdated(const QPointer<TrainingResult> &trainingResult) {
     QString projectName = mDataManager->getProjectName();
     QString modelName = mDataManager->getCurrentModel();
     QString lastWorkingDirectory = mTrainer->getRecentWorkingDir();
@@ -68,7 +68,7 @@ void AIController::slot_trainingResultUpdated(const QSharedPointer<TrainingResul
     emit sig_trainingResultUpdated(trainingResult);
 }
 
-void AIController::slot_classificationResultUpdated(const QSharedPointer<ClassificationResult>& classificationResult) {
+void AIController::slot_classificationResultUpdated(const QPointer<ClassificationResult> &classificationResult) {
     emit sig_classificationResultUpdated(classificationResult);
 }
 

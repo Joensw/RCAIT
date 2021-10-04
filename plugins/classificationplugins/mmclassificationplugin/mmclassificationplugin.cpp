@@ -289,7 +289,7 @@ MMClassificationPlugin::getAugmentationPreview(const QString &modelName, const Q
     return true;
 }
 
-QSharedPointer<TrainingResult>
+QPointer<TrainingResult>
 MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath,
                               QString workingDirectoryPath, ProgressablePlugin *receiver) {
     m_receiver = receiver;
@@ -302,7 +302,7 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
     if (!checkTrainMethodInput(labels,
                                {mainConfigPath, trainDatasetPath, validationDatasetPath, workingDirectoryPath})) {
         qWarning() << "Invalid input parameters, empty TrainingResult object will be returned";
-        return QSharedPointer<TrainingResult>(new TrainingResult({}, {}, {}, {}, {}, {}, {}));
+        return new TrainingResult({}, {}, {}, {}, {}, {}, {});
     }
 
     m_configFileBuilder.changeModelNumberOfClasses(modelConfigPath, labels.size());
@@ -433,11 +433,11 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
                                                          validationAnnotationFilePath,
                                                          pathToWithoutMetricResultFile);
 
-    return QSharedPointer<TrainingResult>(new TrainingResult(workingDirectoryPath, accuracyCurveData, labels, confusionMatrixData,
-                              mostMisclassifiedImages, top1, top5));
+    return new TrainingResult(workingDirectoryPath, accuracyCurveData, labels, confusionMatrixData,
+                              mostMisclassifiedImages, top1, top5);
 }
 
-QSharedPointer<ClassificationResult>
+QPointer<ClassificationResult>
 MMClassificationPlugin::classify(const QString &inputImageDirPath, const QString &trainDatasetPath,
                                  const QString &workingDirPath,
                                  const QString &modelName, ProgressablePlugin *receiver) {
@@ -460,7 +460,7 @@ MMClassificationPlugin::classify(const QString &inputImageDirPath, const QString
 
     if (mainConfigPath.isEmpty() || !checkpointInfo.exists()) {
         qWarning() << "mainConfigFile or checkpointFile does not exist";
-        return QSharedPointer<ClassificationResult>(new ClassificationResult({}, {}, {}));
+        return new ClassificationResult({}, {}, {});
     }
 
     auto command = pluginSettings->getPythonPath();
@@ -498,7 +498,7 @@ MMClassificationPlugin::classify(const QString &inputImageDirPath, const QString
         data = m_jsonReader.readConfidenceScores(pathToConfidenceScoreResultFile, inputImageFilePaths);
         qDebug() << "content: " << data;
     }
-    return QSharedPointer<ClassificationResult>(new ClassificationResult(workingDirPath, data, labels, additionalMetrics));
+    return new ClassificationResult(workingDirPath, data, labels, additionalMetrics);
 }
 
 QSharedPointer<QWidget> MMClassificationPlugin::getDataAugmentationInputWidget() {

@@ -18,7 +18,7 @@ AutomationWidget::~AutomationWidget()
     delete ui;
 }
 
-void AutomationWidget::slot_progress(int progress)
+void AutomationWidget::slot_progress(const int &progress)
 {
     ui->progressBar->setValue(progress);
 }

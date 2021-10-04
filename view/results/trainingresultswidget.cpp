@@ -15,8 +15,8 @@ void TrainingResultsWidget::configure_topAccuraciesTab() {
     //Cleanup old stuff
     getTabWidget()->removeTab(TOP_ACCURACIES_TAB_INDEX);
     //Old pointer will go out of scope after leaving this method and gets auto-deleted
-    m_topAccuraciesView.reset(new TopAccuraciesView(this));
-    m_topAccuraciesGraphics.reset(new TopAccuraciesGraphics(tempDir));
+    m_topAccuraciesView.reset(new TopAccuraciesView(this), &QObject::deleteLater);
+    m_topAccuraciesGraphics.reset(new TopAccuraciesGraphics(tempDir), &QObject::deleteLater);
 
     //Connect signals and slots
     connect(&*m_topAccuraciesView, &TopAccuraciesView::sig_normal_requestTopAccuraciesGraphics, this,
@@ -37,7 +37,7 @@ void TrainingResultsWidget::updateResultFolderPath(const QString &newDirPath) {
     configure_topAccuraciesTab();
 }
 
-void TrainingResultsWidget::addTrainingResult(const QSharedPointer<TrainingResult>& result) {
+void TrainingResultsWidget::addTrainingResult(const QPointer<TrainingResult> &result) {
     auto tab = createResultTab<TrainingResultView>(result->getIdentifier());
     m_mapResultsByTab[tab] = result;
     emit sig_normal_generateTrainingResultGraphics(tab, result);
@@ -48,12 +48,12 @@ void TrainingResultsWidget::addComparisonResult(const QString &runNameToCompare)
     auto tab = createResultTab<TrainingResultView>(runNameToCompare);
     emit sig_comparison_loadTrainingResultGraphics(tab, runNameToCompare);
     emit sig_comparison_loadTrainingResultData(tab, runNameToCompare);
-    emit sig_comparison_loadAccuracyData(&*m_topAccuraciesView, m_topAccuraciesGraphics, runNameToCompare);
+    emit sig_comparison_loadAccuracyData(&*m_topAccuraciesView, &*m_topAccuraciesGraphics, runNameToCompare);
 }
 
 void TrainingResultsWidget::removeComparisonResult(const QString &runNameToCompare) {
     deleteResultTab(runNameToCompare);
-    emit sig_comparison_unloadAccuracyData(&*m_topAccuraciesView, m_topAccuraciesGraphics, runNameToCompare);
+    emit sig_comparison_unloadAccuracyData(&*m_topAccuraciesView, &*m_topAccuraciesGraphics, runNameToCompare);
 }
 
 void TrainingResultsWidget::slot_normal_requestTopAccuraciesGraphics(TopAccuraciesView *receiver) {
@@ -65,13 +65,15 @@ void TrainingResultsWidget::saveResult(GenericGraphicsView *view) {
     //Keeps user from clicking the save button multiple times
     view->setSaved(true);
 
-    bool success;
+    bool success = false;
     if (view == &*m_topAccuraciesView)
-            emit sig_save_TopAccuracies(m_topAccuraciesGraphics, success);
+            emit sig_save_TopAccuracies(&*m_topAccuraciesGraphics, success);
     else
             emit sig_save_TrainingResult(m_mapResultsByTab[view], success);
 
     //Set result as saved iff successful
+    //TODO
+    qDebug() << "Set Saved? " << success;
     view->setSaved(success);
 }
 

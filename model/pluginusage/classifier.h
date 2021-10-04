@@ -1,9 +1,10 @@
 #ifndef CLASSIFIER_H
 #define CLASSIFIER_H
-#include <plugins/results/trainingresult.h>
+
 #include <classificationpluginmanager.h>
-#include "model/pluginusage/progressableplugin.h"
-#include "plugins/results/classificationresult.h"
+#include <progressableplugin.h>
+#include <classificationresult.h>
+#include <qfuturewatcher.h>
 
 /**
  * @brief The Classifier class is used to start a classification and handle incoming results
@@ -40,7 +41,7 @@ signals:
      *
      * @param classificationResult new classification result
      */
-    void sig_classificationResultUpdated(const QSharedPointer<ClassificationResult>& classificationResult);
+    void sig_classificationResultUpdated(const QPointer<ClassificationResult> &classificationResult);
 
     /**
      * @brief sig_startClassification signals start of classification
@@ -65,8 +66,8 @@ public slots:
     void slot_makeProgress(int progress) override;
 
 private:
-    ClassificationPluginManager& mManager = ClassificationPluginManager::getInstance();
-    QFuture<QSharedPointer<ClassificationResult>> mClassificationResult;
+    ClassificationPluginManager &mManager = ClassificationPluginManager::getInstance();
+    QFuture<QPointer<ClassificationResult>> mClassificationResult;
 
 };
 

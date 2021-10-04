@@ -1,4 +1,3 @@
-#include <QScroller>
 #include "customtablewidget.h"
 
 CustomTableWidget::CustomTableWidget(QWidget *parent) : QTableWidget(parent) {

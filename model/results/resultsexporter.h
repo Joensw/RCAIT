@@ -10,8 +10,8 @@
 #include <projectmanager.h>
 #include <model/utilities/mapadapt.h>
 #include <QJsonArray>
-#include "topaccuraciesgraphics.h"
-#include "resultsprocessor.h"
+#include <topaccuraciesgraphics.h>
+#include <resultsprocessor.h>
 #include <json_toolbox.h>
 
 /**
@@ -39,22 +39,21 @@ public slots:
      * @param graphics graphics to be saved
      * @param success bool to report success state back to the view component
      */
-    void slot_save_TopAccuracies(const QSharedPointer<TopAccuraciesGraphics> &graphics, bool &success = SAVED) const;
+    void slot_save_TopAccuracies(const QPointer<TopAccuraciesGraphics> &graphics, bool &success = SAVED) const;
 
     /**
      * @brief Saves a given training result.
      * @param result result to be saved
      * @param success bool to report success state back to the view component
      */
-    void slot_save_TrainingResult(const QSharedPointer<TrainingResult> &result, bool &success = SAVED) const;
+    void slot_save_TrainingResult(const QPointer<TrainingResult> &result, bool &success = SAVED) const;
 
     /**
      * @brief Saves a given classification result.
      * @param result result to be saved
      * @param success bool to report success state back to the view component
      */
-    void
-    slot_save_ClassificationResult(const QSharedPointer<ClassificationResult> &result, bool &success = SAVED) const;
+    void slot_save_ClassificationResult(const QPointer<ClassificationResult> &result, bool &success = SAVED) const;
 
 private:
 
@@ -89,7 +88,7 @@ private:
      * @return filled QJsonObject
      */
     static QJsonObject
-    trainingResult2JSON(const QSharedPointer<TrainingResult> &result);
+    trainingResult2JSON(const QPointer<TrainingResult> &result);
 
     /**
      * @brief Convert a ClassificationResult into a QJsonObject
@@ -97,7 +96,7 @@ private:
      * @return filled QJsonObject
      */
     static QJsonObject
-    classificationResult2JSON(const QSharedPointer<ClassificationResult> &result);
+    classificationResult2JSON(const QPointer<ClassificationResult> &result);
 };
 
 #endif // RESULTSEXPORTER_H

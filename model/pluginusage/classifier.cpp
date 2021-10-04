@@ -1,16 +1,17 @@
 #include "classifier.h"
 
-#include <qfuturewatcher.h>
-
 Classifier::Classifier() = default;
 
 void Classifier::classify(const QString &pluginName, const QString &inputImageDirPath, const QString &trainDatasetPath,
                           const QString &workingDirectory, const QString &modelName) {
 
-    auto watcher = new QFutureWatcher<QSharedPointer<ClassificationResult>>;
-    connect(watcher, &QFutureWatcher<QSharedPointer<ClassificationResult>>::finished, this, &Classifier::slot_handleClassificationResult);
-    connect(watcher, &QFutureWatcher<QSharedPointer<ClassificationResult>>::finished, watcher, &QFutureWatcher<QSharedPointer<ClassificationResult>>::deleteLater);
-    mClassificationResult = QtConcurrent::run(&ClassificationPluginManager::classify, &mManager, pluginName, inputImageDirPath, trainDatasetPath, workingDirectory, modelName, this);
+    auto watcher = new QFutureWatcher<QPointer<ClassificationResult>>;
+    connect(watcher, &QFutureWatcher<QPointer<ClassificationResult>>::finished, this,
+            &Classifier::slot_handleClassificationResult);
+    connect(watcher, &QFutureWatcher<QPointer<ClassificationResult>>::finished, watcher,
+            &QFutureWatcher<QPointer<ClassificationResult>>::deleteLater);
+    mClassificationResult = QtConcurrent::run(&ClassificationPluginManager::classify, &mManager, pluginName,
+                                              inputImageDirPath, trainDatasetPath, workingDirectory, modelName, this);
     watcher->setFuture(mClassificationResult);
     emit sig_progress(0);
 

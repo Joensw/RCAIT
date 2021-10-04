@@ -1,5 +1,4 @@
 #include "pythonconfigdiffwidget.h"
-#include <QScrollBar>
 #include "ui_pythonconfigdiffwidget.h"
 
 PythonConfigDiffWidget::PythonConfigDiffWidget(QWidget *parent) :

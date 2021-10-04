@@ -5,9 +5,9 @@
 #include <QWidget>
 #include <results/trainingresult.h>
 #include <ui_resultswidget.h>
-#include "classificationresult.h"
-#include "trainingresultview.h"
-#include "projectmanager.h"
+#include <classificationresult.h>
+#include <trainingresultview.h>
+#include <projectmanager.h>
 
 /**
  * @brief This widget contains all specialised result comparison widgets.
@@ -37,13 +37,13 @@ public:
      * @brief Add training result to the corresponding TrainingResultsWidget
      * @param result result to be added
      */
-    void addTrainingResult(QSharedPointer<TrainingResult> result);
+    void addTrainingResult(const QPointer<TrainingResult> &result);
 
     /**
      * @brief Add training result to the corresponding ClassificationResultsWidget
      * @param result result to be added
      */
-    void addClassificationResult(QSharedPointer<ClassificationResult> result);
+    void addClassificationResult(const QPointer<ClassificationResult> &result);
 
     /**
      * @brief Update the results folder of the specialised result widgets
