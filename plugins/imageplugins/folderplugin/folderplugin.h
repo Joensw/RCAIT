@@ -90,6 +90,8 @@ private:
     QString imageDir;
     bool abort = false;
     static constexpr auto PLUGIN_ICON = ":/foldericon.svg";
+    static constexpr auto PLUGIN_NAME = "Folder Loader Plugin";
+
 
 
     [[nodiscard]] bool addLabel(const QStringList &images, const QDir &in, QDir out) const;
