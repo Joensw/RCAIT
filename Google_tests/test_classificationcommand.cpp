@@ -40,18 +40,20 @@ TEST_F(ClassificationCommandTest, testClassification){
 
 
     //construct and execute command
-    ClassificationCommand cmd(map, new Classifier());
+    auto classifier = QScopedPointer<Classifier>(new Classifier);
+    ClassificationCommand cmd(map, &*classifier);
     EXPECT_TRUE(cmd.execute());
 
     //construct command that should return false
     map.remove("classificationImagePath");
     map.insert("classificationImagePath", "");
-    ClassificationCommand cmd2(map, new Classifier());
+    auto classifier2 = QScopedPointer<Classifier>(new Classifier);
+    ClassificationCommand cmd2(map, &*classifier);
     EXPECT_FALSE(cmd2.execute());
 }
 
 //check if invalid commands are handled properly
-TEST_F(ClassificationCommandTest, testCommandFail){
+TEST_F(ClassificationCommandTest, testCommandFail) {
     QVariantMap map = QVariantMap();
     map.insert("aiPluginName", ClassificationPluginMock::PLUGIN_NAME);
 //    map.insert("modelName", "true"); should fail without these
@@ -59,6 +61,7 @@ TEST_F(ClassificationCommandTest, testCommandFail){
     map.insert("projectName", "name");
 
     //construct and execute command
-    ClassificationCommand cmd(map, new Classifier());
+    auto classifier = QScopedPointer<Classifier>(new Classifier);
+    ClassificationCommand cmd(map, &*classifier);
     EXPECT_FALSE(cmd.execute());
 }

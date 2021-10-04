@@ -22,7 +22,7 @@ class ImageGalleryTest : public testing::Test {
 TEST_F(ImageGalleryTest, testAddImage){
     QApplication a(argc, argv);
     path += "/test_imagefolder/Auto/images";
-    ImageGallery* gallery = new ImageGallery();
+    auto gallery = QScopedPointer<ImageGallery>(new ImageGallery);
 
     //start imageload
     gallery->addImage(QImage(path));
@@ -39,7 +39,7 @@ TEST_F(ImageGalleryTest, testAddImages){
     QList<QImage> imgList;
     imgList.append(QImage(path + "images"));
     imgList.append(QImage(path + "images_1"));
-    ImageGallery* gallery = new ImageGallery();
+    auto gallery = QScopedPointer<ImageGallery>(new ImageGallery);
 
     //start imageload
     gallery->addImages(imgList);
@@ -57,7 +57,7 @@ TEST_F(ImageGalleryTest, testAddPathImages){
     QList<QString> imgList;
     imgList.append(path + "images");
     imgList.append(path + "images_1");
-    ImageGallery* gallery = new ImageGallery();
+    auto gallery = QScopedPointer<ImageGallery>(new ImageGallery);
 
     //start imageload
     gallery->addImages(imgList);
@@ -72,7 +72,7 @@ TEST_F(ImageGalleryTest, testAddPathImages){
 TEST_F(ImageGalleryTest, testConcurrentAddDir){
     QApplication a(argc, argv);
     path += "/test_imagefolder/Auto/";
-    ImageGallery* gallery = new ImageGallery();
+    auto gallery = QScopedPointer<ImageGallery>(new ImageGallery);
 
     //start imageload
     gallery->concurrentAddImages(path);
@@ -97,7 +97,7 @@ TEST_F(ImageGalleryTest, testStopConcurrentAddImages){
     imgList.append(path + "label2_2");
     imgList.append(path + "label3_1");
     imgList.append(path + "label3_2");
-    ImageGallery* gallery = new ImageGallery();
+    auto gallery = QScopedPointer<ImageGallery>(new ImageGallery);
 
     //start imageload
     gallery->concurrentAddImages(imgList);
@@ -119,7 +119,7 @@ TEST_F(ImageGalleryTest, testClearAndStop){
     QList<QImage> imgList;
     imgList.append(QImage(path + "images"));
     imgList.append(QImage(path + "images_1"));
-    ImageGallery* gallery = new ImageGallery();
+    auto gallery = QScopedPointer<ImageGallery>(new ImageGallery);
 
     //start imageload
     gallery->concurrentAddImages(imgList);

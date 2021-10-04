@@ -77,6 +77,8 @@ protected:
      */
     [[maybe_unused]] [[nodiscard]] const QMap<QString, QWidget *> &getMapTabsByName() const;
 
+    void configure_comparisonMenu();
+
 public:
     /**
      * @brief Constructs a GenericComparisonWidget
@@ -110,14 +112,13 @@ private:
 
     Ui::GenericComparisonWidget *ui;
     QTabWidget *m_tabWidget;
+    QString m_resultsDir;
     QMap<QString, QWidget *> m_mapTabsByName;
     QScopedPointer<QPushButton> m_pushButton_addComparison;
     QScopedPointer<QMenu> m_menu_addComparison;
     QPushButton *m_pushButton_saveCurrentTab;
 
     void configure_comparisonButton();
-
-    void configure_comparisonMenu(const QString &targetDir);
 
     void cleanup_oldResults();
 

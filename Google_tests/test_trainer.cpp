@@ -27,8 +27,8 @@ class TrainerTest : public testing::Test {
 TEST_F(TrainerTest, testTraining){
     QApplication a(argc, argv);
     //construct trainer
-    Trainer* trnr = new Trainer;
-    QSignalSpy spy(trnr, &Trainer::sig_trainingResultUpdated);
+    auto trnr = QScopedPointer<Trainer>(new Trainer);
+    QSignalSpy spy(&*trnr, &Trainer::sig_trainingResultUpdated);
 
     //start training
     trnr->train(ClassificationPluginMock::PLUGIN_NAME, "true", "true", "true", "true");
@@ -41,12 +41,12 @@ TEST_F(TrainerTest, testTraining){
 }
 
 //check if trainer works with incorrect training
-TEST_F(TrainerTest, testTrainingFailed){
+TEST_F(TrainerTest, testTrainingFailed) {
     QApplication a(argc, argv);
     //construct trainer
-    Trainer* trnr = new Trainer;
-    QSignalSpy spy(trnr, &Trainer::sig_trainingResultUpdated);
-    QSignalSpy spyProgress(trnr, &Trainer::sig_progress);
+    auto trnr = QScopedPointer<Trainer>(new Trainer);
+    QSignalSpy spy(&*trnr, &Trainer::sig_trainingResultUpdated);
+    QSignalSpy spyProgress(&*trnr, &Trainer::sig_progress);
 
     //start training
     trnr->train(ClassificationPluginMock::PLUGIN_NAME, "", "", "", "");
@@ -62,11 +62,11 @@ TEST_F(TrainerTest, testTrainingFailed){
 }
 
 //check if trainer works with data augmentation
-TEST_F(TrainerTest, testAugmentation){
+TEST_F(TrainerTest, testAugmentation) {
     QApplication a(argc, argv);
     //construct trainer
-    Trainer* trnr = new Trainer;
-    QSignalSpy spy(trnr, &Trainer::sig_augmentationPreviewReady);
+    auto trnr = QScopedPointer<Trainer>(new Trainer);
+    QSignalSpy spy(&*trnr, &Trainer::sig_augmentationPreviewReady);
 
     //start augmentation preview
     trnr->getAugmentationPreview(ClassificationPluginMock::PLUGIN_NAME, "", "", "", 10);

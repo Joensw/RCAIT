@@ -55,9 +55,10 @@ class SplitCommandTest : public testing::Test {
 //check if loading labeled dataset imagefilepaths work
 TEST_F(SplitCommandTest, testSplit){
     QString path = QDir::current().path();
-    auto* mngr = &DataManager::getInstance();
+    auto *mngr = &DataManager::getInstance();
     QVariantMap map = {{"split", 50}};
-    SplitCommand cmd(map, new ImageLoader());
+    auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
+    SplitCommand cmd(map, &*imageLoader);
     EXPECT_TRUE(cmd.execute());
 
     //check if image is in each folder

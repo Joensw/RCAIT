@@ -32,7 +32,7 @@ class AutomatorTest : public testing::Test {
 //check if loading labeled dataset imagefilepaths work
 TEST_F(AutomatorTest, testAddTask){
     QApplication a(argc, argv);
-    Automator* automator = new Automator();
+    auto automator = QScopedPointer<Automator>(new Automator);
     QDir dir(QDir::current().path());
     dir.cd("tasks");
 
@@ -54,10 +54,10 @@ TEST_F(AutomatorTest, testAddTask){
 }
 
 //tests if queueing/unqueuing work as expected
-TEST_F(AutomatorTest, testUnQueueTask){
+TEST_F(AutomatorTest, testUnQueueTask) {
     QApplication a(argc, argv);
-    Automator* automator = new Automator();
-    QSignalSpy spy(automator, &Automator::sig_taskUpdate);
+    auto automator = QScopedPointer<Automator>(new Automator);
+    QSignalSpy spy(&*automator, &Automator::sig_taskUpdate);
     automator->addTasks(dir.path() + "/task1.json");
     automator->addTasks(dir.path() + "/task2.json");
     automator->addTasks(dir.path() + "/task3.json");
@@ -94,7 +94,7 @@ TEST_F(AutomatorTest, testUnQueueTask){
 
 TEST_F(AutomatorTest, testRemove){
     QApplication a(argc, argv);
-    Automator* automator = new Automator();
+    auto automator = QScopedPointer<Automator>(new Automator);
 
     //invalid index should crash program
     EXPECT_DEATH(automator->remove(0), "");
@@ -114,15 +114,15 @@ TEST_F(AutomatorTest, testRemove){
 }
 
 
-TEST_F(AutomatorTest, testPerformTasks){
+TEST_F(AutomatorTest, testPerformTasks) {
     QApplication a(argc, argv);
-    Automator* automator = new Automator();
-    QSignalSpy spy(automator, &Automator::sig_progress);
-    for (int i = 0; i < 3; i++){
+    auto automator = QScopedPointer<Automator>(new Automator);
+    QSignalSpy spy(&*automator, &Automator::sig_progress);
+    for (int i = 0; i < 3; i++) {
         automator->addTasks(dir.path() + "/task" + QString::number(i + 1) + ".json");
         automator->queue(0);
     }
-    QSignalSpy taskStateSpy(automator, &Automator::sig_taskUpdate);
+    QSignalSpy taskStateSpy(&*automator, &Automator::sig_taskUpdate);
 
     //start performing
     automator->performTasks();

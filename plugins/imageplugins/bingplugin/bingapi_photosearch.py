@@ -6,10 +6,15 @@
 
 # for easy install use
 # pip install bing-image-downloader
-
-from argparse import ArgumentParser
-from bing_image_downloader import downloader
-
+import sys
+try:
+    from argparse import ArgumentParser
+    from bing_image_downloader import downloader
+except ImportError as error:
+    # Output expected ImportErrors.
+    print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
+    sys.exit(1)
+    
 parser = ArgumentParser()
 parser.add_argument("-p", "--path", dest="path",
                     help="write images to PATH", metavar="PATH")

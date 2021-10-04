@@ -3,6 +3,7 @@
 #include <qapplication.h>
 #include <QDir>
 #include <QGraphicsItem>
+#include <QRandomGenerator>
 #include <accuracycurve.h>
 #include <classificationgraphics.h>
 #include <confusionmatrix.h>
@@ -169,17 +170,18 @@ TEST_F(ResultGraphicsTests, testGraphics_ConfusionMatrix) {
     char *argv[1] = {new char('a')};
 
     //Generate matrix contents and labels
-    const QString alphabet = "ABCDEFGH";
+    const QString alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     QStringList matrixLabels;
     std::copy(alphabet.begin(), alphabet.end(), std::back_inserter(matrixLabels));
     QList<int> matrixData;
 
+    int random = QRandomGenerator::global()->bounded(-3, 3);
     for (int i = 0; i < alphabet.size(); ++i) {
         for (int j = 0; j < alphabet.size(); ++j) {
             if (i == j)
                 matrixData << (int) alphabet.size() + i - j;
             else
-                matrixData << std::min(i, j) + 1;
+                matrixData << 10 * (std::sin(i) * std::sin(j)) + random;
         }
     }
 

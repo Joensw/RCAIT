@@ -13,13 +13,13 @@ TEST(ImageLoaderTest, testImageLoad){
     char *argv[1] = {new char('a')};
     QApplication a(argc, argv);
     QString path = QDir::current().path();
-    auto* mngr = &DataManager::getInstance();
+    auto *mngr = &DataManager::getInstance();
     mngr->saveImageLoaderPluginDir(path);
 
 
     //construct imageLoader
-    ImageLoader* imgld = new ImageLoader;
-    QSignalSpy spy(imgld, &ImageLoader::sig_imagesReady);
+    auto imgld = QScopedPointer<ImageLoader>(new ImageLoader);
+    QSignalSpy spy(&*imgld, &ImageLoader::sig_imagesReady);
 
     //start image loading
     imgld->loadInputImages(1, {}, ImageLoaderPluginMock::PLUGIN_NAME, "");

@@ -35,23 +35,24 @@ TEST_F(FolderPluginTest, testFoldersAsLabels){
     plugin.init();
 
     //set image path and mode
-    QWidget* config = plugin.getInputWidget().get();
+    QWidget *config = plugin.getInputWidget().get();
     config->setProperty("imageFolder", path + "/test_imagefolder");
     config->setProperty("loadMode", 0);
     plugin.saveConfiguration();
 
     //test load method
-    EXPECT_TRUE(plugin.loadImages(dir.absolutePath(), new ImageLoader(), 0, QStringList()));
+    auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
+    EXPECT_TRUE(plugin.loadImages(dir.absolutePath(), &*imageLoader, 0, QStringList()));
 
     //check if files are copied
     EXPECT_TRUE(dir.cd("Auto"));
-    EXPECT_EQ(dir.count(), 2 + 2 );
+    EXPECT_EQ(dir.count(), 2 + 2);
     dir.cdUp();
     EXPECT_TRUE(dir.cd("Flugzeug"));
-    EXPECT_EQ(dir.count(), 2 + 2 );
+    EXPECT_EQ(dir.count(), 2 + 2);
     dir.cdUp();
     EXPECT_TRUE(dir.cd("label_names"));
-    EXPECT_EQ(dir.count(), 8 + 2 );
+    EXPECT_EQ(dir.count(), 8 + 2);
     dir.cdUp();
     EXPECT_TRUE(dir.cd("Truck"));
     EXPECT_EQ(dir.count(), 2 + 2 );
@@ -65,13 +66,14 @@ TEST_F(FolderPluginTest, testNamesAsLabels){
     plugin.init();
 
     //set image path and mode
-    QWidget* config = plugin.getInputWidget().get();
+    QWidget *config = plugin.getInputWidget().get();
     config->setProperty("imageFolder", path + "/test_imagefolder/label_names");
     config->setProperty("loadMode", 1);
     plugin.saveConfiguration();
 
     //test load method
-    EXPECT_TRUE(plugin.loadImages(dir.absolutePath(), new ImageLoader(), 0, QStringList()));
+    auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
+    EXPECT_TRUE(plugin.loadImages(dir.absolutePath(), &*imageLoader, 0, QStringList()));
 
     //check if files are copied
     EXPECT_EQ(dir.count(), 3 + 2);
@@ -93,13 +95,14 @@ TEST_F(FolderPluginTest, testFolderAsLabel){
     plugin.init();
 
     //set image path and mode
-    QWidget* config = plugin.getInputWidget().get();
+    QWidget *config = plugin.getInputWidget().get();
     config->setProperty("imageFolder", path + "/test_imagefolder/label_names");
     config->setProperty("loadMode", 2);
     plugin.saveConfiguration();
 
     //test load method
-    EXPECT_TRUE(plugin.loadImages(dir.absolutePath(), new ImageLoader(), 0, QStringList()));
+    auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
+    EXPECT_TRUE(plugin.loadImages(dir.absolutePath(), &*imageLoader, 0, QStringList()));
 
     //check if files are copied
     EXPECT_EQ(dir.count(), 1 + 2);
