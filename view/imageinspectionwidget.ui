@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="TrainImagesTab">
       <attribute name="title">
@@ -308,6 +308,7 @@
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="../Resources/UI_Icons.qrc"/>
   <include location="../Resources/UI_Icons.qrc"/>
  </resources>
  <connections/>

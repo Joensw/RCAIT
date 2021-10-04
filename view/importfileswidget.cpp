@@ -149,3 +149,9 @@ void ImportFilesWidget::slot_setEnableActionButtons()
     setActionButtonsEnabled(true);
 }
 
+
+void ImportFilesWidget::on_horizontalSlider_sliderReleased()
+{
+    emit sig_splitSliderChanged(ui->horizontalSlider->value());
+}
+
