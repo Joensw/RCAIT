@@ -6,7 +6,7 @@
  * Useful, because it supports methods of Qt's and otherwise,
  * one would have to use <code>std</code> C strings which are just char arrays
  */
-struct CE_String : public QLatin1String {
+struct CE_String final : public QLatin1String {
     /**
      * @brief Constructs a CE_String with implicit conversion from standard C string
      * @param s C string to construct from

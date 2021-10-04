@@ -1,7 +1,7 @@
 /**
  * @file datamanager.cpp
  *
- * @brief fuctions for managing a classification dataset on disk
+ * @brief functions for managing a classification dataset on disk
  *
  * @author various
  */
@@ -16,12 +16,12 @@ DataManager::DataManager()
     mProjectManager->setProjectsDirectory(mConfigurationManager->getProjectsDir());
 }
 
-QStringList DataManager::getProjects() {
+[[maybe_unused]] QStringList DataManager::getProjects() {
     return mProjectManager->getProjects();
 }
 
 void DataManager::createNewProject(const QString &projectName) {
-    mProjectManager->createNewProject(std::move(projectName));
+    mProjectManager->createNewProject(projectName);
 }
 
 bool DataManager::createNewProject(const QString& projectName, QString &error) {
@@ -37,24 +37,24 @@ bool DataManager::loadProject(const QString& projectName) {
     return mProjectManager->loadProject(projectName);
 }
 
-QString DataManager::getProjectPath() {
+[[maybe_unused]] QString DataManager::getProjectPath() {
     return mProjectManager->getProjectPath();
 }
 
-QString DataManager::getProjectDataSetDir() {
+[[maybe_unused]] QString DataManager::getProjectDataSetDir() {
 
     return mProjectManager->getProjectDataSetDir();
 }
 
-QString DataManager::getProjectName() {
+[[maybe_unused]] QString DataManager::getProjectName() {
     return mProjectManager->getProjectName();
 }
 
-QString DataManager::getProjectAugTempDir() {
+[[maybe_unused]] QString DataManager::getProjectAugTempDir() {
     return mProjectManager->getProjectAugTempDir();
 }
 
-QString DataManager::getProjectImageTempDir() {
+[[maybe_unused]] QString DataManager::getProjectImageTempDir() {
     return mProjectManager->getProjectImageTempDir();
 }
 
@@ -62,39 +62,39 @@ QString DataManager::createNewWorkSubDir(const QString &name) {
     return mProjectManager->createWorkDirSubfolder(name);
 }
 
-QString DataManager::getProjectDataSetValSubdir() {
+[[maybe_unused]]QString DataManager::getProjectDataSetValSubdir() {
     return mProjectManager->getProjectDataSetValSubdir();
 }
 
-QString DataManager::getProjectDataSetTrainSubdir() {
+[[maybe_unused]]QString DataManager::getProjectDataSetTrainSubdir() {
     return mProjectManager->getProjectDataSetTrainSubdir();
 }
 
-bool DataManager::verifyDirectories() {
+[[maybe_unused]] bool DataManager::verifyDirectories() {
     return mConfigurationManager->verifyDirectories();
 }
 
-bool DataManager::verifyPaths(const QStringList& paths) {
+[[maybe_unused]] bool DataManager::verifyPaths(const QStringList &paths) {
     return ConfigurationManager::verifyPaths(paths);
 }
 
 bool DataManager::createNewModel(const QString &modelName, const QString &pluginName, const QString &baseModel) {
-    return mModelManager->createNewModel(getProjectName(), std::move(modelName), std::move(pluginName), std::move(baseModel));
+    return mModelManager->createNewModel(getProjectName(), modelName, pluginName, baseModel);
 }
 
 bool DataManager::removeModel(const QString &modelName) {
-    return mModelManager->removeModel(getProjectName(), std::move(modelName));
+    return mModelManager->removeModel(getProjectName(), modelName);
 }
 
 void DataManager::loadModel(const QString &modelName, const QString &pluginName) {
-    mModelManager->loadModel(std::move(modelName), std::move(pluginName));
+    mModelManager->loadModel(modelName, pluginName);
 }
 
-QStringList DataManager::getModelNamesOfCurrentProject() {
+[[maybe_unused]] QStringList DataManager::getModelNamesOfCurrentProject() {
     return mModelManager->getModelNamesOfProject(getProjectName());
 }
 
-QString DataManager::getCurrentModel() {
+[[maybe_unused]] QString DataManager::getCurrentModel() {
     return mModelManager->getCurrentModel();
 }
 
@@ -103,35 +103,35 @@ void DataManager::saveLastWorkingDirectoryOfModel(const QString& projectName, co
 }
 
 QString DataManager::recallLastWorkingDirectoryOfModel(const QString &projectName, const QString &modelName) {
-    return mModelManager->recallLastWorkingDirectoryOfModel(std::move(projectName), std::move(modelName));
+    return mModelManager->recallLastWorkingDirectoryOfModel(projectName, modelName);
 }
 
 QString DataManager::recallPluginNameOfModel(const QString &projectName, const QString &modelName) {
-    return mModelManager->recallPluginNameOfModell(std::move(projectName), std::move(modelName));
+    return mModelManager->recallPluginNameOfModel(projectName, modelName);
 }
 
-QString DataManager::getCurrentClassificationPlugin() {
+[[maybe_unused]] QString DataManager::getCurrentClassificationPlugin() {
     return mModelManager->getCurrentPlugin();
 }
 
 
-QStringList DataManager::getPluginNames() {
+[[maybe_unused]] QStringList DataManager::getPluginNames() {
     return mSettingsManager->getPluginNames();
 }
 
-QStringList DataManager::getClassificationPluginNames() {
+[[maybe_unused]] QStringList DataManager::getClassificationPluginNames() {
     return mSettingsManager->getClassificationPluginNames();
 }
 
-QStringList DataManager::getPluginBases(const QString& plugin) {
+[[maybe_unused]] QStringList DataManager::getPluginBases(const QString &plugin) {
     return mSettingsManager->getClassificationPluginBase(plugin);
 }
 
-QList<QSharedPointer<QWidget>> DataManager::getPluginSettings() {
+[[maybe_unused]] QList <QSharedPointer<QWidget>> DataManager::getPluginSettings() {
     return mSettingsManager->getPluginSettings();
 }
 
-QList<QSharedPointer<QIcon>> DataManager::getPluginIcons() {
+[[maybe_unused]] QList <QSharedPointer<QIcon>> DataManager::getPluginIcons() const {
     return mSettingsManager->getPluginIcons();
 }
 
@@ -144,7 +144,7 @@ void DataManager::saveProjectsDir(const QString& dir) {
     mProjectManager->setProjectsDirectory(dir);
 }
 
-QString DataManager::getProjectsDir() {
+[[maybe_unused]] QString DataManager::getProjectsDir() const {
     return mConfigurationManager->getProjectsDir();
 }
 
@@ -152,7 +152,7 @@ void DataManager::saveClassificationPluginDir(const QString& dir) {
     mSettingsManager->saveClassificationPluginDir(dir);
 }
 
-QString DataManager::getClassificationPluginDir() {
+[[maybe_unused]] QString DataManager::getClassificationPluginDir() const {
     return mConfigurationManager->getClassificationPluginDir();
 }
 
@@ -160,27 +160,27 @@ void DataManager::saveImageLoaderPluginDir(const QString& dir) {
     mSettingsManager->saveImageLoaderPluginDir(dir);
 }
 
-QString DataManager::getImageLoaderPluginDir() {
+[[maybe_unused]] QString DataManager::getImageLoaderPluginDir() const {
     return mConfigurationManager->getImageLoaderPluginDir();
 }
 
-QString DataManager::getPythonExecutablePath() {
+[[maybe_unused]] QString DataManager::getPythonExecutablePath() const {
     return mConfigurationManager->getPythonExecutablePath();
 }
 
-QStringList DataManager::getNamesOfSavedTrainingResults() {
+[[maybe_unused]] QStringList DataManager::getNamesOfSavedTrainingResults() const {
     return mProjectManager->getNamesOfSavedTrainingResults();
 }
 
-QSharedPointer<QWidget> DataManager::getInputWidget() {
+[[maybe_unused]] QSharedPointer <QWidget> DataManager::getInputWidget() const {
     return mModelManager->getInputWidget();
 }
 
-QSharedPointer<QWidget> DataManager::getDataAugmentationInputWidget() {
+[[maybe_unused]] QSharedPointer <QWidget> DataManager::getDataAugmentationInputWidget() const {
     return mModelManager->getDataAugmentationInputWidget();
 }
 
-QStringList DataManager::getImageLoaderPluginNames() {
+[[maybe_unused]] QStringList DataManager::getImageLoaderPluginNames() const {
     return mSettingsManager->getImageLoaderPluginNames();
 }
 

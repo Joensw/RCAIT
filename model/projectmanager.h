@@ -30,7 +30,7 @@ public:
     ProjectManager(ProjectManager const &) = delete;
 
     /**
-     * @brief operator = deleted assingment operator
+     * @brief operator = deleted assignment operator
      */
 
     void operator=(ProjectManager const &) = delete;
@@ -40,16 +40,16 @@ public:
      * @return instance
      */
     static ProjectManager &getInstance() {
-        static ProjectManager instance; // Guaranteed to be destroyed.
+        static ProjectManager INSTANCE; // Guaranteed to be destroyed.
         // Instantiated on first use.
-        return instance;
+        return INSTANCE;
     }
 
     /**
      * @brief createNewProject creates a new  project sub directory with the project name in the current projects directory.
      * @param projectName name of the new project
      */
-    void createNewProject(const QString &projectName);
+    void createNewProject(const QString &projectName) const;
 
     /**
      * @brief createNewProject creates a new  project sub directory with the project name in the current projects directory. Preforms additional checks and writes an error message, should errors occur
@@ -63,7 +63,7 @@ public:
      * @brief removeProject deleted the project sub directory from the current projects directory.
      * @param projectName name of the project
      */
-    void removeProject(const QString &projectName);
+    void removeProject(const QString &projectName) const;
 
     /**
      * @brief loadProject loads the information of a project with a given name into the class so it can be accessed later.
@@ -75,36 +75,36 @@ public:
     /**
      * @return list of all directories in the projects directory
      */
-    [[nodiscard]] QStringList getProjects();
+    [[nodiscard]] QStringList getProjects() const;
 
     /**
      * @brief getProjectPath will return null string if no project is opened
      * @return absolute path to the currently opened project's subdirectory
      */
-    [[nodiscard]] QString getProjectPath();
+    [[nodiscard]] QString getProjectPath() const;
 
     /**
      * @brief getProjectName will return null string if no project is opened
      * @return name of the currently opened project
      */
-    [[nodiscard]] QString getProjectName();
+    [[nodiscard]] QString getProjectName() const;
 
     /**
      * @brief getProjectDataSetDir will return null string if no project is opened
-     * @return absoulute path to the data set directory of the currently opened project
+     * @return absolute path to the data set directory of the currently opened project
      */
-    [[nodiscard]] QString getProjectDataSetDir();
+    [[nodiscard]] QString getProjectDataSetDir() const;
 
     /**
      * @return the absolute path to the validation images subfolder of the data set
      */
-    [[nodiscard]] QString getProjectDataSetValSubdir();
+    [[nodiscard]] QString getProjectDataSetValSubdir() const;
 
     /**
      * @return the absolute path to the training images subfolder of the data set
      */
 
-    [[nodiscard]] QString getProjectDataSetTrainSubdir();
+    [[nodiscard]] QString getProjectDataSetTrainSubdir() const;
 
 
     /**
@@ -112,32 +112,32 @@ public:
      * @return the absolute path to the image temporary directory of the current project
      */
 
-    [[nodiscard]] QString getProjectImageTempDir();
+    [[nodiscard]] QString getProjectImageTempDir() const;
 
     /**
      * @brief getProjectAugTempDir will return null string if no project is opened
      * @return the absolute path to the data augmentation temporary directory of the current project
      */
 
-    [[nodiscard]] QString getProjectAugTempDir();
+    [[nodiscard]] QString getProjectAugTempDir() const;
 
     /**
      * @brief getResultsDir will return null string if no project is opened
-     * @return absolute path to the results directroy of the currently opened project
+     * @return absolute path to the results directory of the currently opened project
      */
-    [[nodiscard]] QString getResultsDir();
+    [[nodiscard]] QString getResultsDir() const;
 
     /**
      * @brief getTrainingResultsDir will return null string if no project is opened
      * @return  absolute path to the trainings results subdirectory of the currently opened project
      */
-    [[nodiscard]] QString getTrainingResultsDir();
+    [[nodiscard]] QString getTrainingResultsDir() const;
 
     /**
      * @brief getClassificationResultsDir will return null string if no project is opened
      * @return absolute path to the classification results subdirectory of the currently opened project
      */
-    [[nodiscard]] QString getClassificationResultsDir();
+    [[nodiscard]] QString getClassificationResultsDir() const;
 
     /** Only .txt files are returned and within the list they have no file ending, if no project is opened an empty list is returned
      * @return getNamesOfSavedTrainingResults returns the names of all the files in the trainings results folder
@@ -150,7 +150,7 @@ public:
      * @param name string argument, name of the folder
      * @return absolute path to the folder
      */
-    [[nodiscard]] QString createWorkDirSubfolder(const QString &name);
+    [[nodiscard]] QString createWorkDirSubfolder(const QString &name) const;
 
     /**
      * @brief setProjectsDirectory sets the  projects directory, ie. the directory projects are to be created, deleted and loaded from
@@ -168,7 +168,7 @@ private:
     static constexpr auto tempDataAugDirectoryName = "temp_Aug";
     static constexpr auto trainingsResultsDirectoryName = "training_results";
     static constexpr auto classificationResultsDirectoryName = "classification_results";
-    static constexpr auto validiationDatasetDirectoryName = "validation";
+    static constexpr auto validationDatasetDirectoryName = "validation";
     static constexpr auto trainingDatasetDirectoryName = "training";
     static constexpr auto workingDirectoryName = "working_directory";
 
@@ -180,7 +180,7 @@ private:
     static constexpr auto projectTempImagesDirectoryIdentifier = "tempImagesDirName";
     static constexpr auto projectTempDataAugDirectoryIdentifier = "tempDataAugDirName";
     static constexpr auto projectResultsDirectoryIdentifier = "resultsDirName";
-    static constexpr auto projectTrainingsResultsDirectoryIdentifer = "trainingResultsDirName";
+    static constexpr auto projectTrainingsResultsDirectoryIdentifier = "trainingResultsDirName";
     static constexpr auto projectClassificationResultsDirectoryIdentifier = "classificationResultsDirName";
     static constexpr auto projectWorkingDirIdentifier = "workingDirName";
 
@@ -199,9 +199,9 @@ private:
 
     static constexpr auto TEXT_FILE_FILTER = "*.txt";
 
-    static const QVector<QString> UNWANTED_NAME_SEQUENCES;
+    static constexpr auto UNWANTED_NAME_SEQUENCES = {"/", "\\"};
 
-    bool verifyName(const QString &projectName, QString &error);
+    bool verifyName(const QString &projectName, QString &error) const;
 
     QString mProjectPath;
     QString mProjectImagesTempDir;

@@ -61,15 +61,15 @@ bool ModelManager::removeModel(const QString &projectName, const QString &modelN
 }
 
 void ModelManager::loadModel(const QString &modelName, const QString &pluginName) {
-    mCurrentModel = std::move(modelName);
-    mCurrentPlugin = std::move(pluginName);
+    mCurrentModel = modelName;
+    mCurrentPlugin = pluginName;
 }
 
-QString ModelManager::getCurrentPlugin() {
+QString ModelManager::getCurrentPlugin() const {
     return mCurrentPlugin;
 }
 
-QString ModelManager::getCurrentModel() {
+QString ModelManager::getCurrentModel() const {
     return mCurrentModel;
 }
 
@@ -112,7 +112,7 @@ QString ModelManager::recallLastWorkingDirectoryOfModel(const QString &projectNa
     }
 }
 
-QString ModelManager::recallPluginNameOfModell(const QString &projectName, const QString &modelName) {
+QString ModelManager::recallPluginNameOfModel(const QString &projectName, const QString &modelName) {
     QStringList modelSpecificData;
     m_userModelNamesPerProject.beginGroup(projectName);
     modelSpecificData = m_userModelNamesPerProject.value(modelName).toStringList();

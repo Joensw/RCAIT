@@ -15,8 +15,8 @@
  * @brief This class can create a diff of two files. It makes use of pythons <code>difflib</code>.
  * The diff code is formatted and inserted as <code>HTML</code> into a supported CodeEditor widget.
  */
-class FileDiff : public QObject {
-Q_OBJECT
+class FileDiff final : public QObject {
+    Q_OBJECT
 
 public:
     /**
@@ -24,7 +24,7 @@ public:
      * @param left shared pointer to a CodeEditor to display diff data to the left
      * @param right shared pointer to a CodeEditor to display diff data to the right
      */
-    FileDiff(const QSharedPointer<CodeEditor> &left, const QSharedPointer<CodeEditor> &right);
+    FileDiff(const QSharedPointer <CodeEditor> &left, const QSharedPointer <CodeEditor> &right);
 
     /**
      * @brief Launches diff creation by making use of pythons <code>difflib</code>

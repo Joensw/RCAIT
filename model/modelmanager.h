@@ -28,7 +28,7 @@ public:
     ModelManager(const ModelManager &) = delete;
 
     /**
-     * @brief operator = deleted assingment operator
+     * @brief operator = deleted assignment operator
      */
 
     ModelManager &operator=(const ModelManager &) = delete;
@@ -38,9 +38,9 @@ public:
      * @return instance
      */
     static ModelManager &getInstance() {
-        static ModelManager instance; // Guaranteed to be destroyed.
+        static ModelManager INSTANCE; // Guaranteed to be destroyed.
         // Instantiated on first use.
-        return instance;
+        return INSTANCE;
     }
 
     /**
@@ -69,7 +69,7 @@ public:
     /**
      * @return the classification plugin the current model is from
      */
-    QString getCurrentPlugin();
+    [[nodiscard]] QString getCurrentPlugin() const;
 
     /**
      * @return the input UI of the current classification plugin that is to be shown
@@ -84,7 +84,7 @@ public:
     /**
      * @return the currently loaded model
      */
-    QString getCurrentModel();
+    [[nodiscard]] QString getCurrentModel() const;
 
     /**
      * @brief getModelNamesOfProject returns all modelNames of the given project
@@ -123,7 +123,7 @@ public:
      * @return name of the originating plugin
      */
 
-    QString recallPluginNameOfModell(const QString &projectName, const QString &modelName);
+    QString recallPluginNameOfModel(const QString &projectName, const QString &modelName);
 
 private:
     const int pluginNamePosition = 0;

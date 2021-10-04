@@ -23,6 +23,7 @@ SOFTWARE.
 """
 try:
     import difflib
+    import sys
 except ImportError as error:
     # Output expected ImportErrors.
     print(error.__class__.__name__ + ": " + error.msg, file=sys.stderr)
