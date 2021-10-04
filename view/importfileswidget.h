@@ -51,7 +51,7 @@ public:
      * @brief updateProgressBar updates the status of the progress bar in the UI
      * @param progress integer argument from 1-100 representing the progress in %
      */
-    void updateProgressBar(int progress);
+    void updateProgressBar(const int &progress);
 
     /**
      * @brief updateStatusText sets the Text of the label above the statusbar to the input text
@@ -80,7 +80,7 @@ public:
      * @brief setLoadButtonEnabled disables or enables the state of the model action bar (remove, open)
      * @param state true to enabled, false to disable
      */
-    void setActionButtonsEnabled(bool state);
+    void setActionButtonsEnabled(const bool &state);
 
 private:
     static constexpr auto DIALOG_CAPTION = QT_TR_NOOP("Select .txt file");
@@ -102,7 +102,7 @@ private slots:
 
     [[maybe_unused]] void on_pushButton_loadImages_clicked();
 
-    [[maybe_unused]] void on_horizontalSlider_valueChanged(int value);
+    [[maybe_unused]] void on_horizontalSlider_valueChanged(const int &value);
 
 
     [[maybe_unused]] void on_pushButton_loadLabelsFromFile_clicked();

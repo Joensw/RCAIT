@@ -15,7 +15,7 @@ AITrainingWidget::~AITrainingWidget()
     delete ui;
 }
 
-void AITrainingWidget::slot_progress(int progress)
+void AITrainingWidget::slot_progress(const int &progress)
 {
     ui->progressBar->setValue(progress);
 }

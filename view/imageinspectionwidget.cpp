@@ -22,22 +22,22 @@ ImageInspectionWidget::~ImageInspectionWidget()
     delete ui;
 }
 
-void ImageInspectionWidget::setCurrentDataSetTrainImages(QMap<QString, QStringList> labelToPathsMap) {
+void ImageInspectionWidget::setCurrentDataSetTrainImages(const QMap<QString, QStringList> &labelToPathsMap) {
     ui->datasetTrainImages->resetTree();
     ui->datasetTrainImages->addLabels(labelToPathsMap);
 }
 
-void ImageInspectionWidget::setCurrentDataSetValidationImages(QMap<QString, QStringList> labelToPathsMap) {
+void ImageInspectionWidget::setCurrentDataSetValidationImages(const QMap<QString, QStringList> &labelToPathsMap) {
     ui->datasetValidationImages->resetTree();
     ui->datasetValidationImages->addLabels(labelToPathsMap);
 }
 
-void ImageInspectionWidget::setNewValidationImages(QMap<QString, QStringList> labelToPathsMap) {
+void ImageInspectionWidget::setNewValidationImages(const QMap<QString, QStringList> &labelToPathsMap) {
     ui->newValidationImages->resetTree();
     ui->newValidationImages->addLabels(labelToPathsMap);
 }
 
-void ImageInspectionWidget::setNewTrainImages(QMap<QString, QStringList> labelToPathsMap) {
+void ImageInspectionWidget::setNewTrainImages(const QMap<QString, QStringList> &labelToPathsMap) {
     ui->newTrainImages->resetTree();
     ui->newTrainImages->addLabels(labelToPathsMap);
 }

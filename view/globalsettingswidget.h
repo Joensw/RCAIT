@@ -62,7 +62,7 @@ public:
      * @brief showUpdate displays an update message in the UI about the amount of paths changed
      * @param integer argument representing the paths successfully applied
      */
-    void showUpdate(int amount);
+    void showUpdate(const int &amount);
 
     /**
      * @brief setError sets an Error message to be shown in the UI

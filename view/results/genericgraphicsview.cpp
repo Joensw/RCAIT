@@ -6,7 +6,7 @@ GenericGraphicsView::GenericGraphicsView(SavableResultsWidget *tabWidget, QWidge
 
 };
 
-void GenericGraphicsView::setSaved(bool isSaved) {
+void GenericGraphicsView::setSaved(const bool &isSaved) {
     m_isSaved = isSaved;
     if (m_tabWidget)
         m_tabWidget->updateSaveState(this);
