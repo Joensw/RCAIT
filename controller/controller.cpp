@@ -100,7 +100,7 @@ void Controller::slot_configurationComplete(){
     connect(mMainWindow->getResultsWidget()->getTrainingResultsWidget(), &TrainingResultsWidget::sig_normal_loadTrainingResultData,
             &*mTabController, &TabController::slot_showTrainingResults);
     connect(mMainWindow->getResultsWidget()->getClassificationResultsWidget(), &ClassificationResultsWidget::sig_normal_loadClassificationResultData,
-            &*mTabController, &TabController::slot_showTrainingResults);
+            &*mTabController, &TabController::slot_showClassificationResults);
 
     mMainWindow->show();
 }
