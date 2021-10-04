@@ -1,7 +1,6 @@
 #ifndef CLASSIFIER_H
 #define CLASSIFIER_H
 
-#include <trainingresult.h>
 #include <classificationpluginmanager.h>
 #include <progressableplugin.h>
 #include <classificationresult.h>

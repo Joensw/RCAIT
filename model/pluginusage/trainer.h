@@ -2,11 +2,9 @@
 #define TRAINER_H
 
 #include <trainingresult.h>
-#include <qfuture.h>
 #include <qfuturewatcher.h>
 #include <classificationpluginmanager.h>
 #include <progressableplugin.h>
-#include <classificationresult.h>
 
 /**
  * @brief The Trainer class is used to start a training and handle incoming results

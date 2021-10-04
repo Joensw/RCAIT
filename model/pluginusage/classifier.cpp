@@ -8,8 +8,8 @@ void Classifier::classify(const QString &pluginName, const QString &inputImageDi
     auto watcher = new QFutureWatcher<ClassificationResult *>;
     connect(watcher, &QFutureWatcher<ClassificationResult *>::finished, this,
             &Classifier::slot_handleClassificationResult);
-    connect(watcher, &QFutureWatcher<TrainingResult *>::finished, watcher,
-            &QFutureWatcher<TrainingResult *>::deleteLater);
+    connect(watcher, &QFutureWatcher<ClassificationResult *>::finished, watcher,
+            &QFutureWatcher<ClassificationResult *>::deleteLater);
     mClassificationResult = QtConcurrent::run(&ClassificationPluginManager::classify, &mManager, pluginName,
                                               inputImageDirPath, trainDatasetPath, workingDirectory, modelName, this);
     watcher->setFuture(mClassificationResult);
