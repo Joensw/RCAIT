@@ -81,6 +81,21 @@ void ResultsProcessor::slot_normal_generateClassificationResultGraphics(GenericG
     addGraphicsGenerationJob(receiver, {classificationGraphics});
 }
 
+void ResultsProcessor::slot_normal_loadAccuracyData(TopAccuraciesView *view,
+                                                    const QPointer<TopAccuraciesGraphics> &graphics,
+                                                    const QPointer<TrainingResult> &result) const {
+    Q_ASSERT(graphics);
+    Q_ASSERT(view);
+    Q_ASSERT(result);
+
+    auto runNameToCompare = result->getIdentifier();
+    auto top1 = result->getTop1Accuracy();
+    auto top5 = result->getTop5Accuracy();
+
+    graphics->addDataRow(runNameToCompare, {top1, top5});
+    view->addTopAccuraciesEntry(runNameToCompare, top1, top5);
+}
+
 /**
  * Training result slots
  */

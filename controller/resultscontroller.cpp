@@ -43,6 +43,9 @@ ResultsController::ResultsController(DataManager *manager, ResultsWidget *result
     connect(trainingResultsWidget, &TrainingResultsWidget::sig_normal_loadTrainingResultData,
             &m_resultsProcessor,
             &ResultsProcessor::slot_normal_loadTrainingResultData);
+    connect(trainingResultsWidget, &TrainingResultsWidget::sig_normal_loadAccuracyData,
+            &m_resultsProcessor,
+            &ResultsProcessor::slot_normal_loadAccuracyData);
     connect(&m_resultsImporter, &ResultsImporter::sig_normal_loadTrainingResultData,
             &m_resultsProcessor,
             &ResultsProcessor::slot_normal_loadTrainingResultData);
