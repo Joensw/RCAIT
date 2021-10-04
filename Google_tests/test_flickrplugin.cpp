@@ -91,7 +91,7 @@ TEST_F(FlickrPluginTest, testLoadImages){
     auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
 
     QSignalSpy spy(&*imageLoader, &ImageLoader::sig_pluginFinished);
-    flickrPlugin.loadImages(testNewData, (ProgressablePlugin *) imageLoader, 1, label);
+    flickrPlugin.loadImages(testNewData, (ProgressablePlugin *) imageLoader.get(), 1, label);
 
     flickrPlugin.saveConfiguration();
     flickrPlugin.getName();
@@ -122,7 +122,7 @@ TEST_P(FlickrPluginTest, testMissingSetting){
 
     auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
     QSignalSpy spy(&*imageLoader, &ImageLoader::sig_statusUpdate);
-    flickrPlugin.loadImages(testNewData, (ProgressablePlugin *) imageLoader, 1, label);
+    flickrPlugin.loadImages(testNewData, (ProgressablePlugin *) imageLoader.get(), 1, label);
 
     //spy.wait(2000);
     EXPECT_EQ(spy.count(), 1); // make sure the signal was emitted exactly one time
@@ -237,7 +237,7 @@ TEST_P(FlickrPluginTestInputs, testMissingSetting){
 
     auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
     QSignalSpy spy(&*imageLoader, &ImageLoader::sig_statusUpdate);
-    flickrPlugin.loadImages(std::get<0>(testParam), (ProgressablePlugin *) imageLoader, std::get<1>(testParam),
+    flickrPlugin.loadImages(std::get<0>(testParam), (ProgressablePlugin *) imageLoader.get(), std::get<1>(testParam),
                             std::get<2>(testParam));
 
     //spy.wait(2000);
