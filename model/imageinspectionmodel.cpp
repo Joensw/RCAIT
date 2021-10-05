@@ -240,7 +240,7 @@ bool ImageInspectionModel::compareNames(const QString &s1, const QString &s2) {
         matched2Number = matched2.toInt();
     }
 
-    return matched1Number <= matched2Number;
+    return matched1Number < matched2Number;
 }
 
 
