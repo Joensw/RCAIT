@@ -532,7 +532,7 @@
     </message>
     <message>
         <source>MMClassification Plugin</source>
-        <translation type="unfinished">MMClassification Plugin</translation>
+        <translation type="unfinished">MMClassification-Plugin</translation>
     </message>
 </context>
 <context>
