@@ -62,7 +62,7 @@ public:
      * @brief Get the state of the 'Update Graphics' button
      * @return button state
      */
-    [[maybe_unused]] [[nodiscard]] bool getUpdateGraphicsButtonState();
+    [[maybe_unused]] [[nodiscard]] bool getUpdateGraphicsButtonState() const;
 
     /**
      * @brief Get the current top accuracies graphics image

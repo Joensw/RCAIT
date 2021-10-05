@@ -80,7 +80,7 @@ protected:
     /**
      * @brief Checks the current result tabs against the available ones and finds new results in the results directory
      */
-    void configure_comparisonMenu();
+    void configure_comparisonMenu() const;
 
 public:
     /**
@@ -137,7 +137,7 @@ private slots:
 
     void slot_updateSaveButton(int index) override;
 
-    void on_pushButton_saveCurrentTab_clicked();
+    [[maybe_unused]] void on_pushButton_saveCurrentTab_clicked();
 
 };
 
