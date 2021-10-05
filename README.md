@@ -113,12 +113,23 @@ see [this](https://stackoverflow.com/questions/35850362/importerror-no-module-na
 
 ### [MMClassification Plugin](https://github.com/open-mmlab/mmclassification)
 
+MMClassification is a toolbox for image classification based on pytorch and part of the open source project [OpenMMLab](https://openmmlab.com).
+
 #### Installation
+
+A detailed installation guide can be found in the [documentation of MMClassification](https://mmclassification.readthedocs.io/en/latest/install.html). The application was tested with version 0.15.0 and 0.16.0. A detailed list with all requirements can be found under Documentation/requirements.txt.
+
+* data augmentation with albumentations
+  For data augmentation [albumentations](https://github.com/albumentations-team/albumentations) is needed, which can be installed with `pip install -U albumentations`.
 
 * webp support \
   For webp images webp support must be installed with `pip install webp` and in
   the [imagenet dataset class](https://github.com/open-mmlab/mmclassification/blob/master/mmcls/datasets/imagenet.py)
   the file extension `".webp"` must be added to the allowed image extensions in `IMG_EXTENSIONS`.
+
+#### Directory structure for config and checkpoint files
+
+This plugin uses the existing structure of the mmclassification repository and is described in its [Tutorial](https://github.com/open-mmlab/mmclassification/blob/master/docs/tutorials/MMClassification_Tutorial.ipynb). The directory structure can be found at Documentation/MMClassificationDirectoryStructure. It contains the two folders configs and checkpoints and can be integrated into the repository or can stay seperated from it. New configs will be stored in the configs folder. In the checkpoints folder only the default checkpoint files will be stored. The user generated checkpoint files can be found in the working directory of the corresponding project directory. Due to the size of the checkpoints files, the following files have to be downloaded in the checkpoints folder. In connection with the corresponding config file we call them base models because these on ImageNet pretrained models are the starting point for the actual training process. The supported base models are: [ResNet-50](https://download.openmmlab.com/mmclassification/v0/resnet/resnet50_batch256_imagenet_20200708-cfb998bf.pth), [ResNet-101](https://download.openmmlab.com/mmclassification/v0/resnet/resnet101_batch256_imagenet_20200708-753f3608.pth), [ResNeXt-32x8d-101](https://github.com/open-mmlab/mmclassification/blob/master/configs/resnext/resnext101_32x8d_b32x8_imagenet.py), [SE-ResNet-50](https://download.openmmlab.com/mmclassification/v0/se-resnet/se-resnet50_batch256_imagenet_20200804-ae206104.pth) and [MobileNetV3 Large](https://download.openmmlab.com/mmclassification/v0/mobilenet_v3/convert/mobilenet_v3_large-3ea3c186.pth). The path to this structure must be specified in the settings of the plugin under MMClassification path.
 
 #### Required modifications to mmcls
 
@@ -196,6 +207,9 @@ see [this](https://stackoverflow.com/questions/35850362/importerror-no-module-na
   The dataset can then be used in the dataset config by navigating to
   mmclassification/configs/datasets/default_dataset.py and changing the line in `test = dict(` from
   `type = dataset_type` to `type = 'LexicographicallySorted'`.
+
+* Fix log error to allow the creation of the accuracy curve \
+In the file [mmcls/apis/train.py](https://github.com/open-mmlab/mmclassification/blob/master/mmcls/apis/train.py) the priority of IterTimerHook must be [changed from 'NORMAL' to 'LOW'](https://github.com/open-mmlab/mmdetection/pull/5882/files). Otherwise the validation step will be documented incorrectly in the log.json file and the accuracy curve won't be generated.
 
 ## Remote execution
 
