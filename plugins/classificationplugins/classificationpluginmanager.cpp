@@ -56,16 +56,6 @@ QSharedPointer<QWidget> ClassificationPluginManager::getDataAugmentationInputWid
     return {new QWidget, &QObject::deleteLater};
 }
 
-QStringList ClassificationPluginManager::getModelNames(const QString &pluginName) {
-    // return m_plugins[pluginName]->getAssociatedModels();
-    // the user created models to show depends on the chosen project and not on the chosen classification plugin
-    // but user created models known to the main application must be removed,
-    // if the plugin containing its corresponding base models isn't present
-    // this task will be implemented in the model manager
-    //TODO Fill
-    return {};
-}
-
 bool ClassificationPluginManager::createNewModel(QString modelName, const QString &pluginName, QString baseModel) {
     if (!m_plugins.contains(pluginName)) {
         qWarning() << "No Classification Plugin with the name " << pluginName << " found!";

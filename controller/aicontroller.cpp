@@ -52,17 +52,9 @@ void AIController::slot_startTraining() {
                     mDataManager->getProjectDataSetTrainSubdir(),
                     mDataManager->getProjectDataSetValSubdir(),
                     mDataManager->createNewWorkSubDir(
-                            modelName)); // TODO mDataManager->get();  hier muss ein temporäres workdir hin)
+                            modelName));
     emit mTrainer->sig_startTraining();
 
-}
-
-void AIController::slot_abortTraining() {
-//TODO unused
-}
-
-void AIController::slot_results() {
-//TODO remove this?
 }
 
 void AIController::slot_trainingResultUpdated(const QPointer<TrainingResult> &trainingResult) {

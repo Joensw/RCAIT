@@ -47,16 +47,6 @@ public slots:
     void slot_startTraining();
 
     /**
-     * @brief slot_abortTraining tries to stop training when triggered.
-     */
-    void slot_abortTraining();
-
-    /**
-     * @brief slot_results
-     */
-    void slot_results();
-
-    /**
      * @brief sig_trainingResultUpdated can be called when a new training result is available
      * @param trainingResult is the result of the last executed training
      */

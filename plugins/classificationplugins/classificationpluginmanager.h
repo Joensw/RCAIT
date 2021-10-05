@@ -89,14 +89,6 @@ public:
     QStringList getNamesOfPlugins() override;
 
     /**
-     * @brief getModelNames gets all model names of specified plugin.
-     *
-     * @param pluginName name of plugin
-     * @return list of model names
-     */
-    QStringList getModelNames(const QString &pluginName);
-
-    /**
      * @brief createNewModel creates a new model with a name from a base model and plugin.
      *
      * @param modelName name of new model

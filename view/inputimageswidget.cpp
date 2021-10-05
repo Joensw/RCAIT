@@ -82,5 +82,4 @@ void InputImagesWidget::changeEvent(QEvent *event) {
  * were not created in the UI builder
  */
 void InputImagesWidget::retranslateUi() {
-    //TODO translate file dialog
 }
