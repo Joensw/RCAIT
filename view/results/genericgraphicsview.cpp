@@ -4,7 +4,7 @@ GenericGraphicsView::GenericGraphicsView(SavableResultsWidget *tabWidget, QWidge
         : QWidget(parent),
           m_tabWidget(tabWidget) {
 
-};
+}
 
 void GenericGraphicsView::setSaved(const bool &isSaved) {
     m_isSaved = isSaved;

@@ -39,7 +39,7 @@ ModelController::slot_newModelConfirm(const QString &modelName, const QString &p
         mImportFilesWidget->setActionButtonsEnabled(false);
         mNewModelDialog->close();
     }
-    mNewModelDialog->setErrorMessage(MODEL_CREATION_ERROR);
+    mNewModelDialog->setErrorMessage(tr(MODEL_CREATION_ERROR));
 }
 
 void ModelController::slot_removeModel(const QString &modelName) {
@@ -60,10 +60,10 @@ void ModelController::slot_removeModelConfirm() {
             mRemoveModelDialog->close();
             return;
         }
-        mRemoveModelDialog->setErrorMessage(MODEL_DELETION_ERROR);
+        mRemoveModelDialog->setErrorMessage(tr(MODEL_DELETION_ERROR));
         return;
     }
-    mRemoveModelDialog->setErrorMessage(OPEN_MODEL_ERROR);
+    mRemoveModelDialog->setErrorMessage(tr(OPEN_MODEL_ERROR));
 }
 
 void ModelController::slot_loadModel(const QString &modelName) {

@@ -110,20 +110,14 @@
     <message>
         <location filename="../plugins/imageplugins/bingplugin/bingsettings.ui" line="14"/>
         <location filename="../plugins/imageplugins/bingplugin/bingsettings.ui" line="17"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/bingplugin/bingplugin_autogen/include/ui_bingsettings.h"
-                line="60"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/bingplugin/bingplugin_autogen/include/ui_bingsettings.h"
-                line="62"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/bingplugin/bingplugin_autogen/include/ui_bingsettings.h" line="60"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/bingplugin/bingplugin_autogen/include/ui_bingsettings.h" line="62"/>
         <source>Bing API Plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/imageplugins/bingplugin/bingsettings.ui" line="25"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/bingplugin/bingplugin_autogen/include/ui_bingsettings.h"
-                line="64"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/bingplugin/bingplugin_autogen/include/ui_bingsettings.h" line="64"/>
         <source>Python executable path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -132,9 +126,7 @@
     <name>ClassificationResultView</name>
     <message>
         <location filename="../view/results/classificationresultview.ui" line="14"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_classificationresultview.h"
-                line="61"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_classificationresultview.h" line="61"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_classificationresultview.h" line="61"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
@@ -242,36 +234,26 @@
     <message>
         <location filename="../plugins/imageplugins/flickrplugin/flickrsettings.ui" line="14"/>
         <location filename="../plugins/imageplugins/flickrplugin/flickrsettings.ui" line="17"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/flickrplugin/flickrplugin_autogen/include/ui_flickrsettings.h"
-                line="84"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/flickrplugin/flickrplugin_autogen/include/ui_flickrsettings.h"
-                line="86"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/flickrplugin/flickrplugin_autogen/include/ui_flickrsettings.h" line="84"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/flickrplugin/flickrplugin_autogen/include/ui_flickrsettings.h" line="86"/>
         <source>Flickr API Plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/imageplugins/flickrplugin/flickrsettings.ui" line="25"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/flickrplugin/flickrplugin_autogen/include/ui_flickrsettings.h"
-                line="88"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/flickrplugin/flickrplugin_autogen/include/ui_flickrsettings.h" line="88"/>
         <source>API key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/imageplugins/flickrplugin/flickrsettings.ui" line="35"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/flickrplugin/flickrplugin_autogen/include/ui_flickrsettings.h"
-                line="89"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/flickrplugin/flickrplugin_autogen/include/ui_flickrsettings.h" line="89"/>
         <source>API secret</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/imageplugins/flickrplugin/flickrsettings.ui" line="45"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/flickrplugin/flickrplugin_autogen/include/ui_flickrsettings.h"
-                line="90"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/flickrplugin/flickrplugin_autogen/include/ui_flickrsettings.h" line="90"/>
         <source>Python executable path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -280,58 +262,54 @@
     <name>FolderConfigwidget</name>
     <message>
         <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="20"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h"
-                line="139"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h" line="139"/>
         <source>FolderPlugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="23"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h"
-                line="141"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h" line="141"/>
         <source>Folder Loader Plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="55"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h"
-                line="144"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h" line="144"/>
         <source>Loading method:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="63"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h"
-                line="145"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h" line="145"/>
         <source>subfolders as labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="68"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h"
-                line="146"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h" line="146"/>
         <source>names as labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="73"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h"
-                line="147"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h" line="147"/>
         <source>folder as label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.ui" line="89"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h"
-                line="149"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/folderplugin/folderplugin_autogen/include/ui_folderconfigwidget.h" line="149"/>
         <source>Load folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.h" line="90"/>
+        <source>Saved changes.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.h" line="91"/>
+        <source>There may be unsaved changes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -419,9 +397,7 @@
     <message>
         <location filename="../view/globalsettingswidget.ui" line="709"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_globalsettingswidget.h" line="639"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saving will cause a reload of all plugins.&lt;br/&gt;Any
-            unsaved progress may be lost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-        </source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saving will cause a reload of all plugins.&lt;br/&gt;Any unsaved progress may be lost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -441,53 +417,43 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
-    <context>
-        <name>GoogleSettings</name>
-        <message>
-            <location filename="../plugins/imageplugins/googleplugin/googlesettings.ui" line="14"/>
-            <location filename="../plugins/imageplugins/googleplugin/googlesettings.ui" line="17"/>
-            <location
-                    filename="../cmake-build-debug-mingw/plugins/imageplugins/googleplugin/googleplugin_autogen/include/ui_googlesettings.h"
-                    line="84"/>
-            <location
-                    filename="../cmake-build-debug-mingw/plugins/imageplugins/googleplugin/googleplugin_autogen/include/ui_googlesettings.h"
-                    line="86"/>
-            <source>Google API Plugin</source>
-            <translation type="unfinished"></translation>
-        </message>
-        <message>
-            <location filename="../plugins/imageplugins/googleplugin/googlesettings.ui" line="25"/>
-            <location
-                    filename="../cmake-build-debug-mingw/plugins/imageplugins/googleplugin/googleplugin_autogen/include/ui_googlesettings.h"
-                    line="88"/>
-            <source>Python executable path</source>
-            <translation type="unfinished"></translation>
-        </message>
-        <message>
-            <location filename="../plugins/imageplugins/googleplugin/googlesettings.ui" line="35"/>
-            <location
-                    filename="../cmake-build-debug-mingw/plugins/imageplugins/googleplugin/googleplugin_autogen/include/ui_googlesettings.h"
-                    line="89"/>
-            <source>Google API Key</source>
-            <translation type="unfinished"></translation>
-        </message>
-        <message>
-            <location filename="../plugins/imageplugins/googleplugin/googlesettings.ui" line="42"/>
-            <location
-                    filename="../cmake-build-debug-mingw/plugins/imageplugins/googleplugin/googleplugin_autogen/include/ui_googlesettings.h"
-                    line="90"/>
-            <source>Google CX</source>
-            <translation type="unfinished"></translation>
-        </message>
-    </context>
-    <context>
-        <name>ImageGallery</name>
-        <message>
-            <location filename="../view/utilities/imagegallery.ui" line="14"/>
-            <source>Form</source>
-            <translation type="unfinished"></translation>
-        </message>
-    </context>
+<context>
+    <name>GoogleSettings</name>
+    <message>
+        <location filename="../plugins/imageplugins/googleplugin/googlesettings.ui" line="14"/>
+        <location filename="../plugins/imageplugins/googleplugin/googlesettings.ui" line="17"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/googleplugin/googleplugin_autogen/include/ui_googlesettings.h" line="84"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/googleplugin/googleplugin_autogen/include/ui_googlesettings.h" line="86"/>
+        <source>Google API Plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/imageplugins/googleplugin/googlesettings.ui" line="25"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/googleplugin/googleplugin_autogen/include/ui_googlesettings.h" line="88"/>
+        <source>Python executable path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/imageplugins/googleplugin/googlesettings.ui" line="35"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/googleplugin/googleplugin_autogen/include/ui_googlesettings.h" line="89"/>
+        <source>Google API Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/imageplugins/googleplugin/googlesettings.ui" line="42"/>
+        <location filename="../cmake-build-debug-mingw/plugins/imageplugins/googleplugin/googleplugin_autogen/include/ui_googlesettings.h" line="90"/>
+        <source>Google CX</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ImageGallery</name>
+    <message>
+        <location filename="../view/utilities/imagegallery.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 <context>
     <name>ImageInspectionWidget</name>
     <message>
@@ -666,180 +632,104 @@
 <context>
     <name>MMClassificationDataAugmentationInput</name>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="14"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="254"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="14"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="254"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="20"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="255"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="20"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="255"/>
         <source>Train Pipeline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="150"/>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="233"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="272"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="276"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="150"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="233"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="272"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="276"/>
         <source>224</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="169"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="273"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="169"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="273"/>
         <source>RandomErasing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="136"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="270"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="136"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="270"/>
         <source>Random Resized Crop Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="129"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="269"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="129"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="269"/>
         <source>Albu Transform Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="117"/>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="121"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="266"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="268"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="117"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="121"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="266"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="268"/>
         <source>ColorJitter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="88"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="264"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="88"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="264"/>
         <source>0,5000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="31"/>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="35"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="256"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="259"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="31"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="35"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="256"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="259"/>
         <source>horizontal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="40"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="257"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="40"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="257"/>
         <source>vertical</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="143"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="271"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="143"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="271"/>
         <source>Random Flip Direction</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="68"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="262"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="68"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="262"/>
         <source>Random Flip Probability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="201"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="274"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="201"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="274"/>
         <source>Test Pipeline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="261"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="278"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="261"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="278"/>
         <source>Resize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="268"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="279"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="268"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="279"/>
         <source>256</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location
-                filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui"
-                line="284"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h"
-                line="280"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationdataaugmentationinput.ui" line="284"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationdataaugmentationinput.h" line="280"/>
         <source>Center Crop Size</source>
         <translation type="unfinished"></translation>
     </message>
@@ -847,29 +737,20 @@
 <context>
     <name>MMClassificationInputOptions</name>
     <message>
-        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationinputoptions.ui"
-                  line="14"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationinputoptions.h"
-                line="78"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationinputoptions.ui" line="14"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationinputoptions.h" line="78"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationinputoptions.ui"
-                  line="29"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationinputoptions.h"
-                line="79"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationinputoptions.ui" line="29"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationinputoptions.h" line="79"/>
         <source>CUDA GPU Device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationinputoptions.ui"
-                  line="36"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationinputoptions.h"
-                line="80"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationinputoptions.ui" line="36"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationinputoptions.h" line="80"/>
         <source>Number of Iterations</source>
         <translation type="unfinished"></translation>
     </message>
@@ -877,38 +758,26 @@
 <context>
     <name>MMClassificationSettings</name>
     <message>
-        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationsettings.ui"
-                  line="14"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationsettings.h"
-                line="72"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationsettings.ui" line="14"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationsettings.h" line="72"/>
         <source>MMClassification</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationsettings.ui"
-                  line="17"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationsettings.h"
-                line="74"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationsettings.ui" line="17"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationsettings.h" line="74"/>
         <source>MMClassification Plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationsettings.ui"
-                  line="25"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationsettings.h"
-                line="76"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationsettings.ui" line="25"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationsettings.h" line="76"/>
         <source>MMClassification path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationsettings.ui"
-                  line="35"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationsettings.h"
-                line="77"/>
+        <location filename="../plugins/classificationplugins/mmclassificationplugin/mmclassificationsettings.ui" line="35"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_mmclassificationsettings.h" line="77"/>
         <source>Python Path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -965,50 +834,50 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
-    <context>
-        <name>ModelController</name>
-        <message>
-            <location filename="../controller/modelcontroller.h" line="102"/>
-            <source>Cannot delete the currently loaded model!</source>
-            <translation type="unfinished"></translation>
-        </message>
-        <message>
-            <location filename="../controller/modelcontroller.h" line="103"/>
-            <source>Model could not be created</source>
-            <translation type="unfinished"></translation>
-        </message>
-        <message>
-            <location filename="../controller/modelcontroller.h" line="104"/>
-            <source>Model could not be deleted</source>
-            <translation type="unfinished"></translation>
-        </message>
-    </context>
-    <context>
-        <name>NewModelDialog</name>
-        <message>
-            <location filename="../view/newmodeldialog.ui" line="14"/>
-            <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_newmodeldialog.h" line="128"/>
-            <source>New Model</source>
-            <translation type="unfinished"></translation>
-        </message>
-        <message>
-            <location filename="../view/newmodeldialog.ui" line="33"/>
-            <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_newmodeldialog.h" line="129"/>
-            <source>Plugin</source>
-            <translation type="unfinished"></translation>
-        </message>
-        <message>
-            <location filename="../view/newmodeldialog.ui" line="43"/>
-            <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_newmodeldialog.h" line="130"/>
-            <source>Pre-trained base</source>
-            <translation type="unfinished"></translation>
-        </message>
-        <message>
-            <location filename="../view/newmodeldialog.ui" line="53"/>
-            <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_newmodeldialog.h" line="131"/>
-            <source>Name</source>
-            <translation type="unfinished"></translation>
-        </message>
+<context>
+    <name>ModelController</name>
+    <message>
+        <location filename="../controller/modelcontroller.h" line="102"/>
+        <source>Cannot delete the currently loaded model!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../controller/modelcontroller.h" line="103"/>
+        <source>Model could not be created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../controller/modelcontroller.h" line="104"/>
+        <source>Model could not be deleted</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NewModelDialog</name>
+    <message>
+        <location filename="../view/newmodeldialog.ui" line="14"/>
+        <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_newmodeldialog.h" line="128"/>
+        <source>New Model</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/newmodeldialog.ui" line="33"/>
+        <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_newmodeldialog.h" line="129"/>
+        <source>Plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/newmodeldialog.ui" line="43"/>
+        <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_newmodeldialog.h" line="130"/>
+        <source>Pre-trained base</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/newmodeldialog.ui" line="53"/>
+        <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_newmodeldialog.h" line="131"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NewProjectDialog</name>
@@ -1031,38 +900,38 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
-    <context>
-        <name>ProjectController</name>
-        <message>
-            <location filename="../controller/projectcontroller.h" line="94"/>
-            <source>Cannot remove the currently opened project!</source>
-            <translation type="unfinished"></translation>
-        </message>
-    </context>
-    <context>
-        <name>ProjectManager</name>
-        <message>
-            <location filename="../model/projectmanager.h" line="191"/>
-            <source>Name must contain at least 1 character</source>
-            <translation type="unfinished"></translation>
-        </message>
-        <message>
-            <location filename="../model/projectmanager.h" line="192"/>
-            <source>Name should contain more than only space (&quot; &quot;) characters</source>
-            <translation type="unfinished"></translation>
-        </message>
-        <message>
-            <location filename="../model/projectmanager.h" line="193"/>
-            <source>Name may not contain the &quot;/&quot; or &quot;\&quot; characters</source>
-            <translation type="unfinished"></translation>
-        </message>
+<context>
+    <name>ProjectController</name>
     <message>
-        <location filename="../model/projectmanager.h" line="194"/>
+        <location filename="../controller/projectcontroller.h" line="94"/>
+        <source>Cannot remove the currently opened project!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProjectManager</name>
+    <message>
+        <location filename="../model/projectmanager.h" line="197"/>
+        <source>Name must contain at least 1 character</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../model/projectmanager.h" line="198"/>
+        <source>Name should contain more than only space (&quot; &quot;) characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../model/projectmanager.h" line="199"/>
+        <source>Name may not contain the  &quot;/&quot; or &quot;\&quot; characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../model/projectmanager.h" line="200"/>
         <source>A project with this name already exists in the project directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../model/projectmanager.h" line="195"/>
+        <location filename="../model/projectmanager.h" line="201"/>
         <source>The operating system cannot support this name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1117,10 +986,7 @@
     <message>
         <location filename="../view/removemodeldialog.ui" line="64"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_removemodeldialog.h" line="120"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are
-            you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
-            item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-        </source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1135,10 +1001,7 @@
     <message>
         <location filename="../view/removeprojectdialog.ui" line="71"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_removeprojectdialog.h" line="146"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are
-            you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This
-            item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-        </source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Are you sure you want to delete &amp;quot;&amp;lt;name&amp;gt;&amp;quot;?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This item will be deleted immediately. You can&apos;t undo this action.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1231,8 +1094,7 @@
         <location filename="../view/startwidget.ui" line="29"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_startwidget.h" line="223"/>
         <source>Welcome to RCAIT!
-            Select a project to get started
-        </source>
+Select a project to get started</source>
         <comment>welcome_label</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -1259,9 +1121,7 @@
     <name>TopAccuraciesView</name>
     <message>
         <location filename="../view/results/topaccuraciesview.ui" line="14"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_topaccuraciesview.h"
-                line="79"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_topaccuraciesview.h" line="79"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_topaccuraciesview.h" line="79"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
@@ -1286,36 +1146,28 @@
     <name>TrainingResultView</name>
     <message>
         <location filename="../view/results/trainingresultview.ui" line="14"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_trainingresultview.h"
-                line="136"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_trainingresultview.h" line="136"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_trainingresultview.h" line="136"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../view/results/trainingresultview.ui" line="34"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_trainingresultview.h"
-                line="137"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_trainingresultview.h" line="137"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_trainingresultview.h" line="137"/>
         <source>Accuracy Curve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../view/results/trainingresultview.ui" line="75"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_trainingresultview.h"
-                line="138"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_trainingresultview.h" line="138"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_trainingresultview.h" line="138"/>
         <source>Most Misclassified Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../view/results/trainingresultview.ui" line="104"/>
-        <location
-                filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_trainingresultview.h"
-                line="139"/>
+        <location filename="../cmake-build-debug-mingw/plugins/classificationplugins/mmclassificationplugin/mmclassificationplugin_autogen/include/ui_trainingresultview.h" line="139"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_trainingresultview.h" line="139"/>
         <source>Confusion Matrix</source>
         <translation type="unfinished"></translation>

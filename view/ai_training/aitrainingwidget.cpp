@@ -37,12 +37,10 @@ void AITrainingWidget::on_cancelButton_clicked()
 }
 
 void AITrainingWidget::setDataAugWidget(const QSharedPointer<QWidget> &replacement) {
-    //ui->gridLayout_dataAug->replaceWidget(ui->dataAugWidget, replacement);
     ui->scrollArea_augmentation->setWidget(&*replacement);
 }
 
 void AITrainingWidget::setAIConfigWidget(const QSharedPointer<QWidget> &replacement) {
-    //ui->gridLayout_AIconfig->replaceWidget(ui->AIConfigWidget, replacement);
     ui->scrollArea_configuration->setWidget(&*replacement);
 }
 

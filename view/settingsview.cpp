@@ -118,22 +118,22 @@ void SettingsView::setCurrentPythonExecutablePath(const QString &path) {
 
 //private slots for global settings widget
 void SettingsView::slot_setProjectDir() {
-    mProjectDir = QFileDialog::getExistingDirectory(this, PROJECT_SELECT_MSG);
+    mProjectDir = QFileDialog::getExistingDirectory(this, tr(PROJECT_SELECT_MSG));
     mGlobalSettingsWidget->setNewProjectPath(mProjectDir);
 }
 
 void SettingsView::slot_setClassificationPluginsDir() {
-    mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, CLASSIFICATION_SELECT_MSG);
+    mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, tr(CLASSIFICATION_SELECT_MSG));
     mGlobalSettingsWidget->setNewClassificationPluginPath(mClassificationPluginsDir);
 }
 
 void SettingsView::slot_setImageLoaderPluginsDir() {
-    mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, LOADER_SELECT_MSG);
+    mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, tr(LOADER_SELECT_MSG));
     mGlobalSettingsWidget->setNewImageLoaderPath(mImageLoaderPluginsDir);
 }
 
 void SettingsView::slot_setGeneralPythonPath() {
-    mPythonExecutablePath = QFileDialog::getOpenFileName(this, PYTHON_SELECT_MSG);
+    mPythonExecutablePath = QFileDialog::getOpenFileName(this, tr(PYTHON_SELECT_MSG));
     mGlobalSettingsWidget->setNewPythonPath(mPythonExecutablePath);
 }
 

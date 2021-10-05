@@ -137,63 +137,32 @@ void ImageInspectionModel::insertLabeledImagePaths(QMap<QString, QStringList> &i
 }
 
 void ImageInspectionModel::removeImageWithIndex(QMap<QString, QStringList> &removeTarget,
-                                                const QMap<QString, QList < int>>
+                                                const QMap<QString, QList <int>> &removedImages) {
 
-&removedImages) {
-
-for (const auto &[label, values]:
-MapAdapt(removedImages)
-) {
-if (values.
-
-isEmpty()
-
-) {
-continue;
-}
-//iterate from front to back, so we delete images with the largest index first.
-//otherwise, the removetarget indices are reduced by one after the deleted index
-//and our next deletion will not hit the correct filepath in the removetarget
-QListIterator iter(values);
-iter.
-
-toBack();
-
-while (iter.
-
-hasPrevious()
-
-) {
-int i = iter.previous();
-QFile file(removeTarget[label][i]);
-QDir currDir = QFileInfo(file).absoluteDir();
-auto newList = removeTarget[label];
-newList.
-removeAt(i);
-removeTarget[label] =
-newList;
-file.
-
-remove();
-
-if (currDir.
-
-exists() &&
-
-currDir.
-
-isEmpty()
-
-) {
-currDir.
-
-removeRecursively();
+    for (const auto &[label, values]: MapAdapt(removedImages)) {
+           if (values.isEmpty()) {
+               continue;
+           }
+           //iterate from front to back, so we delete images with the largest index first.
+           //otherwise, the removetarget indices are reduced by one after the deleted index
+           //and our next deletion will not hit the correct filepath in the removetarget
+           QListIterator<int> iter(values);
+           iter.toBack();
+           while (iter.hasPrevious()) {
+               int i = iter.previous();
+               QFile file(removeTarget[label][i]);
+               QDir currDir = QFileInfo(file).absoluteDir();
+               auto newList = removeTarget[label];
+               newList.removeAt(i);
+               removeTarget[label] = newList;
+               file.remove();
+               if (currDir.exists() && currDir.isEmpty()) {
+                   currDir.removeRecursively();
+               }
+           }
+       }
 
 }
-}
-}
-}
-
 const QMap<QString, QStringList> &ImageInspectionModel::getValidationDataset() const {
     return m_validationDataset;
 }
@@ -225,8 +194,12 @@ void ImageInspectionModel::moveFile(const QString &imagePath, const QString &lab
     auto newFilePath = dir.absoluteFilePath(newFile);
     QFile destFile(newFilePath);
 
-    destFile.remove();
-    if (!file.rename(newFilePath)) { qDebug() << "Error moving file: " << file.error(); }
+    if(destFile.exists() && !destFile.remove()){
+        qDebug() << "could not remove file " << newFilePath;
+    }
+    if (!file.rename(newFilePath)) {
+        qDebug() << "Error moving file: " << imagePath  << " to " << newFilePath << " error " << file.error();
+    }
     if (folder.isEmpty()) { folder.removeRecursively(); }
 
 }
@@ -271,7 +244,7 @@ bool ImageInspectionModel::compareNames(const QString &s1, const QString &s2) {
         matched2Number = matched2.toInt();
     }
 
-    return matched1Number <= matched2Number;
+    return matched1Number < matched2Number;
 }
 
 

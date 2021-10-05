@@ -46,7 +46,7 @@ void FolderConfigwidget::setImageFolder(const QString &folder)
 void FolderConfigwidget::on_loadFolderButton_clicked()
 {
     ui->save_label->clear();
-    imageFolder = QFileDialog::getExistingDirectory(this, IMAGE_DIR_SELECT_MSG);
+    imageFolder = QFileDialog::getExistingDirectory(this, tr(IMAGE_DIR_SELECT_MSG));
     ui->save_label->setStyleSheet(STYLESHEET_BLUE);
     ui->save_label->setText(tr(UNSAVED_CHANGES));
 }

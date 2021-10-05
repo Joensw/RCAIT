@@ -39,7 +39,7 @@ void GenericComparisonWidget::configure_comparisonButton() {
     m_tabWidget->setCornerWidget(&*m_pushButton_addComparison, Qt::TopRightCorner);
 }
 
-void GenericComparisonWidget::configure_comparisonMenu() {
+void GenericComparisonWidget::configure_comparisonMenu() const {
 
     QFont inter(FONT_NAME, FONT_SIZE);
     m_menu_addComparison->setFont(inter);
@@ -96,8 +96,8 @@ void GenericComparisonWidget::updateSaveState(GenericGraphicsView *tab) {
     if (!tab) return;
     bool canBeSaved = !tab->isSaved();
     auto index = m_tabWidget->indexOf(tab);
-    auto tabName = (canBeSaved) ? PREFIX_TAB_SAVED % tab->getName()
-                                : tab->getName();
+    auto tabName = canBeSaved ? PREFIX_TAB_SAVED % tab->getName()
+                              : tab->getName();
 
     m_tabWidget->setTabText(index, tabName);
 
@@ -106,7 +106,7 @@ void GenericComparisonWidget::updateSaveState(GenericGraphicsView *tab) {
         m_pushButton_saveCurrentTab->setEnabled(canBeSaved);
 }
 
-void GenericComparisonWidget::on_pushButton_saveCurrentTab_clicked() {
+[[maybe_unused]] void GenericComparisonWidget::on_pushButton_saveCurrentTab_clicked() {
     auto widget = m_tabWidget->currentWidget();
     auto tab = dynamic_cast<GenericGraphicsView *>(widget);
     if (tab) saveResult(tab);

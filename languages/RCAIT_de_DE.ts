@@ -142,20 +142,25 @@
         <translation type="unfinished">Bildladerpluginverzeichnis wählen</translation>
     </message>
     <message>
-        <source>Are you sure you want to quit?
-            The application will terminate
-        </source>
-        <translation>Sind Sie sicher, dass Sie die Anwendung beenden wollen?
-            Die Anwendung wird beendet
-        </translation>
-    </message>
-    <message>
         <source>Python Path</source>
         <translation type="unfinished">Python-Pfad</translation>
     </message>
     <message>
         <source>Select Python path</source>
         <translation>Python-Pfad auswählen</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit?
+            The application will terminate
+        </source>
+        <translation type="vanished">Sind Sie sicher, dass Sie beenden wollen?
+            Die Anwendung wird beendet
+        </translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit?
+ The application will terminate</source>
+        <translation>Sind Sie sicher, dass Sie das Programm beenden wollen?&lt;br/&gt; Die Anwendung wird beendet.</translation>
     </message>
 </context>
 <context>
@@ -202,10 +207,6 @@
     <message>
         <source>Saved changes.</source>
         <translation>Änderungen gespeichert.</translation>
-    </message>
-    <message>
-        <source>Select image directory</source>
-        <translation type="unfinished">Bildordner auswählen</translation>
     </message>
     <message>
         <source>There may be unsaved changes.</source>
@@ -278,45 +279,49 @@
         <translation>Allgemeiner Python-Pfad</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saving will cause a reload of all plugins.&lt;br/&gt;Any
-            unsaved progress may be lost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-        </source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Das Speichern führt zu einem Neuladen aller Plugins.&lt;br/&gt;Nicht
-            gespeicherte Fortschritte können verloren gehen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-        </translation>
-    </message>
-    <message>
         <source>Updated %1 path(s) successfully</source>
         <translation>%1 Pfad(e) erfolgreich aktualisiert</translation>
     </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saving will cause a reload of all plugins.&lt;br/&gt;Any
+            unsaved progress may be lost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+        </source>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Das Speichern führt zu einem Neuladen aller Plugins.&lt;br/&gt;Alle
+            nicht gespeicherten Fortschritte können verloren gehen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+        </translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saving will cause a reload of all plugins.&lt;br/&gt;Any unsaved progress may be lost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speichern führt zu einem Neuladen aller Plugins.&lt;br/&gt;Ungespeicherter Fortschritt kann verloren gehen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
 </context>
-    <context>
-        <name>GoogleSettings</name>
-        <message>
-            <source>Google API Plugin</source>
-            <translation>Google-API-Plugin</translation>
-        </message>
-        <message>
-            <source>Python executable path</source>
-            <translation>Pfad zu Python</translation>
-        </message>
-        <message>
-            <source>Google API Key</source>
-            <translation>Google API-Schlüssel</translation>
-        </message>
-        <message>
-            <source>Google CX</source>
-            <translation>Google CX</translation>
-        </message>
-    </context>
-    <context>
-        <name>ImageGallery</name>
-        <message>
-            <source>Form</source>
-            <translation type="unfinished">Form</translation>
-        </message>
-    </context>
-    <context>
+<context>
+    <name>GoogleSettings</name>
+    <message>
+        <source>Google API Plugin</source>
+        <translation>Google-API-Plugin</translation>
+    </message>
+    <message>
+        <source>Python executable path</source>
+        <translation>Pfad zu Python</translation>
+    </message>
+    <message>
+        <source>Google API Key</source>
+        <translation>Google API-Schlüssel</translation>
+    </message>
+    <message>
+        <source>Google CX</source>
+        <translation>Google CX</translation>
+    </message>
+</context>
+<context>
+    <name>ImageGallery</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+</context>
+<context>
     <name>ImageInspectionWidget</name>
     <message>
         <source>Form</source>
@@ -535,12 +540,9 @@
     </message>
     <message>
         <source>MMClassification Plugin</source>
-        <translation type="unfinished">MMClassification Plugin</translation>
+        <translation type="unfinished">MMClassification-Plugin</translation>
     </message>
 </context>
-    <context>
-        <name>MMClassificiationDataAugmentationInput</name>
-    </context>
 <context>
     <name>MainWindow</name>
     <message>
@@ -577,29 +579,29 @@
         <translation>Rapid Classification AI Trainer</translation>
     </message>
 </context>
-    <context>
-        <name>ModelController</name>
-        <message>
-            <source>Cannot delete the currently loaded model!</source>
-            <translation>Das aktuell geladene Modell kann nicht gelöscht werden!</translation>
-        </message>
-        <message>
-            <source>Model could not be created</source>
-            <translation>Das Modell konnte nicht erstellt werden</translation>
-        </message>
-        <message>
-            <source>Model could not be deleted</source>
-            <translation>Das Modell konnte nicht gelöscht werden</translation>
-        </message>
-    </context>
-    <context>
-        <name>NewModelDialog</name>
-        <message>
-            <source>New Model</source>
-            <translation>Neues Modell</translation>
-        </message>
-        <message>
-            <source>Plugin</source>
+<context>
+    <name>ModelController</name>
+    <message>
+        <source>Cannot delete the currently loaded model!</source>
+        <translation>Das aktuell geladene Modell kann nicht gelöscht werden!</translation>
+    </message>
+    <message>
+        <source>Model could not be created</source>
+        <translation>Das Modell konnte nicht erstellt werden</translation>
+    </message>
+    <message>
+        <source>Model could not be deleted</source>
+        <translation>Das Modell konnte nicht gelöscht werden</translation>
+    </message>
+</context>
+<context>
+    <name>NewModelDialog</name>
+    <message>
+        <source>New Model</source>
+        <translation>Neues Modell</translation>
+    </message>
+    <message>
+        <source>Plugin</source>
         <translation>Plugin</translation>
     </message>
     <message>
@@ -626,21 +628,21 @@
         <translation>Fehler!</translation>
     </message>
 </context>
-    <context>
-        <name>ProjectController</name>
-        <message>
-            <source>Cannot remove the currently opened project!</source>
-            <translation>Das aktuell geöffnete Projekt kann nicht entfernt werden!</translation>
-        </message>
-    </context>
-    <context>
-        <name>ProjectManager</name>
-        <message>
-            <source>Name must contain at least 1 character</source>
-            <translation>Der Name muss mindestens 1 Zeichen enthalten</translation>
-        </message>
-        <message>
-            <source>Name should contain more than only space (" ") characters</source>
+<context>
+    <name>ProjectController</name>
+    <message>
+        <source>Cannot remove the currently opened project!</source>
+        <translation>Das aktuell geöffnete Projekt kann nicht entfernt werden!</translation>
+    </message>
+</context>
+<context>
+    <name>ProjectManager</name>
+    <message>
+        <source>Name must contain at least 1 character</source>
+        <translation>Der Name muss mindestens 1 Zeichen enthalten</translation>
+    </message>
+    <message>
+        <source>Name should contain more than only space (" ") characters</source>
         <translation>Der Name sollte mehr als nur Leerzeichen (" ") enthalten</translation>
     </message>
     <message>
@@ -727,6 +729,12 @@
 <context>
     <name>SettingsManager</name>
     <message>
+        <source>Settings have not been updated, there is a conflict.
+            Paths may not be identical and must exist, this includes new and unchanged paths.</source>
+        <translation type="vanished">Die Einstellungen wurden nicht aktualisiert, es besteht ein Konflikt.
+            Pfade dürfen nicht identisch sein und müssen existieren, dies schließt neue und unveränderte Pfade ein.</translation>
+    </message>
+    <message>
         <source>Settings have not been updated, there is a conflict. 
  Paths may not be identical and must exist, this includes new and unchanged paths.</source>
         <translation>Die Einstellungen wurden nicht aktualisiert, es besteht ein Konflikt. 
@@ -790,9 +798,6 @@ Wähle ein Projekt aus, um loszulegen</translation>
         <translation type="unfinished">Öffnen</translation>
     </message>
 </context>
-    <context>
-        <name>StaticList</name>
-    </context>
 <context>
     <name>TopAccuraciesView</name>
     <message>

@@ -105,7 +105,7 @@ SettingsManager::applyGlobalSettings(const QString &projectsDir, const QString &
 
     }
 
-    error = ERROR_CONFLICT;
+    error = tr(ERROR_CONFLICT);
     pathsChanged = 0;
 
     return false;

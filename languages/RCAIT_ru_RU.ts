@@ -408,16 +408,18 @@
         <translation>Загрузить папку</translation>
     </message>
     <message>
+        <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.h" line="90"/>
         <source>Saved changes.</source>
-        <translation type="vanished">Сохраненные изменения.</translation>
+        <translation>Сохраненные изменения.</translation>
     </message>
     <message>
         <source>Select image directory</source>
         <translation type="vanished">Выберите папку изображений</translation>
     </message>
     <message>
+        <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.h" line="91"/>
         <source>There may be unsaved changes.</source>
-        <translation type="vanished">Возможны несохраненные изменения.</translation>
+        <translation>Возможны несохраненные изменения.</translation>
     </message>
     <message>
         <location filename="../plugins/imageplugins/folderplugin/folderconfigwidget.h" line="92"/>
@@ -508,10 +510,16 @@
     <message>
         <location filename="../view/globalsettingswidget.ui" line="709"/>
         <location filename="../cmake-build-debug-mingw/RCAIT_autogen/include/ui_globalsettingswidget.h" line="639"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saving will cause a reload of all plugins.&lt;br/&gt;Any unsaved progress may be lost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Сохранение приведет к перезагрузке всех плагинов.&lt;br/&gt;Любой
+            несохраненный прогресс может быть потерян.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+        </translation>
+    </message>
+    <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saving will cause a reload of all plugins.&lt;br/&gt;Any
             unsaved progress may be lost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
         </source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Сохранение приведет к перезагрузке всех плагинов.&lt;br/&gt;Любой
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Сохранение приведет к перезагрузке всех плагинов.&lt;br/&gt;Любой
             несохраненный прогресс может быть потерян.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
         </translation>
     </message>
@@ -1121,27 +1129,27 @@
 <context>
     <name>ProjectManager</name>
     <message>
-        <location filename="../model/projectmanager.h" line="191"/>
+        <location filename="../model/projectmanager.h" line="197"/>
         <source>Name must contain at least 1 character</source>
         <translation>Имя должно содержать не менее 1 символа</translation>
     </message>
     <message>
-        <location filename="../model/projectmanager.h" line="192"/>
+        <location filename="../model/projectmanager.h" line="198"/>
         <source>Name should contain more than only space (&quot; &quot;) characters</source>
         <translation>Имя должно содержать не только символы пробела (&quot; &quot;)</translation>
     </message>
     <message>
-        <location filename="../model/projectmanager.h" line="193"/>
+        <location filename="../model/projectmanager.h" line="199"/>
         <source>Name may not contain the  &quot;/&quot; or &quot;\&quot; characters</source>
         <translation>Имя не может содержать символы &quot;/&quot; или &quot;\&quot;</translation>
     </message>
     <message>
-        <location filename="../model/projectmanager.h" line="194"/>
+        <location filename="../model/projectmanager.h" line="200"/>
         <source>A project with this name already exists in the project directory</source>
         <translation>Проект с таким именем уже существует в папке проекта</translation>
     </message>
     <message>
-        <location filename="../model/projectmanager.h" line="195"/>
+        <location filename="../model/projectmanager.h" line="201"/>
         <source>The operating system cannot support this name</source>
         <translation>Операционная система не может поддерживать это имя</translation>
     </message>
