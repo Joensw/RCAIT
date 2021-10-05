@@ -90,7 +90,7 @@ they don't own copyright on any of them. The original creators of the images own
 Uses the [Flickr API](https://www.flickr.com/services/api/) through the [flickrapi](https://pypi.org/project/flickrapi/)
 python library. API key and secret can be obtained from Flickr by following the steps outlined in their API guide.
 
-Can be obtained by running `pip install flickrapi`
+The python package can be obtained by running `pip install flickrapi`.
 
 ### <span style="color:#34568B">Bing Plugin</span>
 
@@ -279,6 +279,10 @@ The `.ts` files are then updated in the `languages` folder. These can now be
 obsolete. This can make the language file very large.
 
 **Solution:** Drag the `.ts` file onto `cleanup_obsolete.py` and the problem is solved!
+
+## <span style="color:#34568B">Build</span>
+
+The program can be built with CMake and was developed and tested with [Qt 6.1.2](https://www.qt.io/blog/qt-6.1.2-released).
 
 ## <span style="color:#34568B">Rare Cases & Fixes</span>
 
