@@ -268,19 +268,8 @@ MMClassificationPlugin::getAugmentationPreview(const QString &modelName, const Q
                             targetAbsolutePath % " " % QString::number(partAmount));
     }
 
-    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-
-    QString pathValue = env.value("PATH");
-
-    if (!pluginSettings->getMMClsPath().isEmpty())
-        pathValue.prepend(pluginSettings->getMMClsPath() % ":");
-    if (!pluginSettings->getPythonPath().isEmpty())
-        pathValue.prepend(pluginSettings->getPythonPath() % ":");
-    env.insert("PATH", pathValue);
-
     for (const QString &fullCommand: fullCommands) {
         QProcess process;
-        process.setProcessEnvironment(env);
         process.startCommand(fullCommand);
         process.waitForFinished();
         qDebug() << qPrintable(process.readAllStandardOutput().simplified());
