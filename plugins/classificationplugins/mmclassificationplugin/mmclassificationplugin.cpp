@@ -392,7 +392,7 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
         QProcess process;
         process.startCommand(fullCommand);
         process.waitForStarted();
-        process.waitForFinished();
+        process.waitForFinished(-1);
         process.close();
         qDebug() << qPrintable(process.readAllStandardOutput().simplified());
         qDebug() << qPrintable(process.readAllStandardError().simplified());
