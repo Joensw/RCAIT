@@ -44,24 +44,8 @@ void InputImagesWidget::on_selectFolderButton_clicked()
 
 void InputImagesWidget::on_classifyButton_clicked()
 {
-    ui->classifyButton->setEnabled(false);
     ui->progressBar->setEnabled(true);
-    ui->selectFolderButton->setEnabled(false);
-    ui->cancelButton->setEnabled(true);
-
-
     emit sig_startClassify(path);
-}
-
-
-void InputImagesWidget::on_cancelButton_clicked()
-{
-    emit sig_abortClassify();
-
-    ui->classifyButton->setEnabled(true);
-    ui->progressBar->setEnabled(true);
-    ui->selectFolderButton->setEnabled(true);
-    ui->cancelButton->setEnabled(false);
 }
 
 void InputImagesWidget::changeEvent(QEvent *event) {

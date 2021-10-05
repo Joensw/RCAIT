@@ -27,13 +27,11 @@ AIController::AIController(DataManager *dataManager, InputImagesWidget *inputIma
 
     //connect classification parts
     connect(mInputImagesWidget, &InputImagesWidget::sig_startClassify, this, &AIController::slot_startClassify);
-    connect(mInputImagesWidget, &InputImagesWidget::sig_abortClassify, this, &AIController::slot_abortClassify);
     connect(&*mClassifier, &Classifier::sig_classificationResultUpdated, this,
             &AIController::slot_classificationResultUpdated);
 
     //connect training parts
     connect(mAiTrainingWidget, &AITrainingWidget::sig_startTraining, this, &AIController::slot_startTraining);
-    connect(mAiTrainingWidget, &AITrainingWidget::sig_abortTraining, this, &AIController::slot_abortTraining);
     connect(&*mTrainer, &Trainer::sig_trainingResultUpdated, this, &AIController::slot_trainingResultUpdated);
     connect(&*mTrainer, &Trainer::sig_augmentationPreviewReady, this, &AIController::slot_augmentationPreviewReady);
 
@@ -89,10 +87,6 @@ void AIController::slot_startClassify(const QString &path) {
                           lastWorkingDirectory,
                           currentModel);
     emit mClassifier->sig_startClassification();
-}
-
-void AIController::slot_abortClassify() {
-
 }
 
 void AIController::slot_showAugmentationPreview(int amount) {

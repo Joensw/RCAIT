@@ -85,8 +85,6 @@ private slots:
     //slots correspond with the identically named button in the UI
     [[maybe_unused]] void on_startButton_clicked();
 
-    [[maybe_unused]] void on_cancelButton_clicked();
-
     [[maybe_unused]]void on_previewButton_clicked();
 
 private:

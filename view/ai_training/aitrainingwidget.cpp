@@ -23,18 +23,9 @@ void AITrainingWidget::slot_progress(const int &progress)
 [[maybe_unused]] void AITrainingWidget::on_startButton_clicked()
 {
     emit sig_startTraining();
-    ui->cancelButton->setEnabled(true);
     ui->progressBar->setEnabled(true);
-    ui->startButton->setEnabled(false);
 }
 
-
-void AITrainingWidget::on_cancelButton_clicked()
-{
-    emit sig_abortTraining();
-    ui->startButton->setEnabled(true);
-    ui->cancelButton->setEnabled(false);
-}
 
 void AITrainingWidget::setDataAugWidget(const QSharedPointer<QWidget> &replacement) {
     ui->scrollArea_augmentation->setWidget(&*replacement);
