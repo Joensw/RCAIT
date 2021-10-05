@@ -367,8 +367,6 @@ void MMClassificationConfigFileBuilder::changeScheduleOptions(const QString &sch
     scheduleConfigContent = replaceText(scheduleConfigContent, m_maxItersRegExText, maxItersGroupIndex,
                                         maxItersExpression % QString::number(maxIterations));
 
-    qDebug() << "step: " << step;
-
     QStringList list = scheduleConfigContent.split(QRegularExpression(m_newLineRegExText));
     writeBack(scheduleConfigPath, list);
 }

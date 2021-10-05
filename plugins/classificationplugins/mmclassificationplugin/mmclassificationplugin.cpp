@@ -374,7 +374,7 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
     const QString pathToSupportResultFile = workingDir.absoluteFilePath(metricSupportOutputName);
     const QString pathToWithoutMetricResultFile = workingDir.absoluteFilePath(withoutMetricSpecifiedOutputName);
 
-    qDebug() << "Start Generating Metrics:";
+    qDebug() << "Start generating metrics:";
 
     QStringList fullCommands = {};
 
