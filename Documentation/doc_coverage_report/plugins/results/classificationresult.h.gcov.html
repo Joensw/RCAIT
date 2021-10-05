@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-19 11:22:25</td>
+            <td class="headerValue">2021-10-05 07:49:36</td>
             <td></td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -59,65 +59,66 @@
 <a name="1"><span class="lineNum">       1 </span>            : #ifndef CLASSIFICATIONRESULT_H</a>
 <a name="2"><span class="lineNum">       2 </span>            : #define CLASSIFICATIONRESULT_H</a>
 <a name="3"><span class="lineNum">       3 </span>            : </a>
-<a name="4"><span class="lineNum">       4 </span>            : </a>
-<a name="5"><span class="lineNum">       5 </span>            : #include &lt;QString&gt;</a>
-<a name="6"><span class="lineNum">       6 </span>            : #include &lt;QMap&gt;</a>
-<a name="7"><span class="lineNum">       7 </span>            : #include &quot;result.h&quot;</a>
-<a name="8"><span class="lineNum">       8 </span>            : #include &lt;classificationgraphics.h&gt;</a>
-<a name="9"><span class="lineNum">       9 </span>            : #include &lt;projectmanager.h&gt;</a>
+<a name="4"><span class="lineNum">       4 </span>            : #include &lt;QString&gt;</a>
+<a name="5"><span class="lineNum">       5 </span>            : #include &lt;QMap&gt;</a>
+<a name="6"><span class="lineNum">       6 </span>            : #include &lt;result.h&gt;</a>
+<a name="7"><span class="lineNum">       7 </span>            : #include &lt;classificationgraphics.h&gt;</a>
+<a name="8"><span class="lineNum">       8 </span>            : #include &lt;projectmanager.h&gt;</a>
+<a name="9"><span class="lineNum">       9 </span>            : #include &lt;utility&gt;</a>
 <a name="10"><span class="lineNum">      10 </span>            : </a>
 <a name="11"><span class="lineNum">      11 </span>            : /**</a>
 <a name="12"><span class="lineNum">      12 </span>            :  * @brief This class is a specific type of &lt;code&gt;Result&lt;/code&gt;.</a>
 <a name="13"><span class="lineNum">      13 </span>            :  * It is also a data retention class and holds all data after a classification process.</a>
 <a name="14"><span class="lineNum">      14 </span>            :  */</a>
 <a name="15"><span class="lineNum">      15 </span>            : class ClassificationResult : public Result {</a>
-<a name="16"><span class="lineNum">      16 </span>            : private:</a>
-<a name="17"><span class="lineNum">      17 </span>            :     QMap&lt;QString, QList&lt;double&gt;&gt; m_classificationData;</a>
-<a name="18"><span class="lineNum">      18 </span>            :     QSharedPointer&lt;ClassificationGraphics&gt; m_classificationGraphics;</a>
-<a name="19"><span class="lineNum">      19 </span>            :     QStringList m_labels;</a>
-<a name="20"><span class="lineNum">      20 </span>            : </a>
-<a name="21"><span class="lineNum">      21 </span>            :     ClassificationResult(const ClassificationResult &amp;) = delete;</a>
-<a name="22"><span class="lineNum">      22 </span>            : </a>
-<a name="23"><span class="lineNum">      23 </span>            :     ClassificationResult &amp;operator=(const ClassificationResult &amp;) = delete;</a>
-<a name="24"><span class="lineNum">      24 </span>            : </a>
-<a name="25"><span class="lineNum">      25 </span>            : public:</a>
-<a name="26"><span class="lineNum">      26 </span>            :     /**</a>
-<a name="27"><span class="lineNum">      27 </span>            :      * @brief Constructs a ClassificationResult.</a>
-<a name="28"><span class="lineNum">      28 </span>            :      * @param storageDir passed to parent, must be a directory path</a>
-<a name="29"><span class="lineNum">      29 </span>            :      * @param classificationData data from the classification, that maps images to their confidence scores.</a>
-<a name="30"><span class="lineNum">      30 </span>            :      * @param labels List of class labels</a>
-<a name="31"><span class="lineNum">      31 </span>            :      * @param additionalResults (Optional) List of paths to additional results.</a>
-<a name="32"><span class="lineNum">      32 </span>            :      */</a>
-<a name="33"><span class="lineNum">      33 </span><span class="lineCov">          1 :     ClassificationResult(const QString &amp;storageDir, const QMap&lt;QString, QList&lt;double&gt;&gt; &amp;classificationData,</span></a>
-<a name="34"><span class="lineNum">      34 </span>            :                          const QStringList &amp;labels, const QStringList &amp;additionalResults = {});</a>
-<a name="35"><span class="lineNum">      35 </span>            : </a>
-<a name="36"><span class="lineNum">      36 </span>            :     /**</a>
-<a name="37"><span class="lineNum">      37 </span>            :      * @brief Get the classification data.</a>
-<a name="38"><span class="lineNum">      38 </span>            :      * @return Map of image paths to their corresponding confidence scores.</a>
-<a name="39"><span class="lineNum">      39 </span>            :      */</a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineCov">          1 :     [[nodiscard]] const QMap&lt;QString, QList&lt;double&gt;&gt; &amp;getClassificationData() const;</span></a>
-<a name="41"><span class="lineNum">      41 </span>            : </a>
-<a name="42"><span class="lineNum">      42 </span>            :     /**</a>
-<a name="43"><span class="lineNum">      43 </span>            :      * @brief Get the class labels.</a>
-<a name="44"><span class="lineNum">      44 </span>            :      * @return List of class labels.</a>
-<a name="45"><span class="lineNum">      45 </span>            :      */</a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">          1 :     [[nodiscard]] const QStringList &amp;getLabels() const;</span></a>
-<a name="47"><span class="lineNum">      47 </span>            : </a>
-<a name="48"><span class="lineNum">      48 </span>            :     /**</a>
-<a name="49"><span class="lineNum">      49 </span>            :      * @brief Get the classification graphics</a>
-<a name="50"><span class="lineNum">      50 </span>            :      * @return shared pointer to the classification graphics of this result</a>
-<a name="51"><span class="lineNum">      51 </span>            :      */</a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineCov">          1 :     [[nodiscard]] const QSharedPointer&lt;ClassificationGraphics&gt; &amp;getClassificationGraphics() const;</span></a>
-<a name="53"><span class="lineNum">      53 </span>            : </a>
-<a name="54"><span class="lineNum">      54 </span>            :     /**</a>
-<a name="55"><span class="lineNum">      55 </span>            :      * @brief Checks if this result is valid.</a>
-<a name="56"><span class="lineNum">      56 </span>            :      * @return valid or not.</a>
-<a name="57"><span class="lineNum">      57 </span>            :      */</a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">          1 :     [[nodiscard]] bool isValid() const override;</span></a>
-<a name="59"><span class="lineNum">      59 </span>            : };</a>
-<a name="60"><span class="lineNum">      60 </span>            : </a>
+<a name="16"><span class="lineNum">      16 </span>            :     Q_OBJECT</a>
+<a name="17"><span class="lineNum">      17 </span>            : private:</a>
+<a name="18"><span class="lineNum">      18 </span>            :     QMap&lt;QString, QList&lt;double&gt;&gt; m_classificationData;</a>
+<a name="19"><span class="lineNum">      19 </span>            :     QSharedPointer&lt;ClassificationGraphics&gt; m_classificationGraphics;</a>
+<a name="20"><span class="lineNum">      20 </span>            :     QStringList m_labels;</a>
+<a name="21"><span class="lineNum">      21 </span>            : </a>
+<a name="22"><span class="lineNum">      22 </span>            :     ClassificationResult(const ClassificationResult &amp;) = delete;</a>
+<a name="23"><span class="lineNum">      23 </span>            : </a>
+<a name="24"><span class="lineNum">      24 </span>            :     ClassificationResult &amp;operator=(const ClassificationResult &amp;) = delete;</a>
+<a name="25"><span class="lineNum">      25 </span>            : </a>
+<a name="26"><span class="lineNum">      26 </span>            : public:</a>
+<a name="27"><span class="lineNum">      27 </span>            :     /**</a>
+<a name="28"><span class="lineNum">      28 </span>            :      * @brief Constructs a ClassificationResult.</a>
+<a name="29"><span class="lineNum">      29 </span>            :      * @param storageDir passed to parent, must be a directory path</a>
+<a name="30"><span class="lineNum">      30 </span>            :      * @param classificationData data from the classification, that maps images to their confidence scores.</a>
+<a name="31"><span class="lineNum">      31 </span>            :      * @param labels List of class labels</a>
+<a name="32"><span class="lineNum">      32 </span>            :      * @param additionalResults (Optional) List of paths to additional results.</a>
+<a name="33"><span class="lineNum">      33 </span>            :      */</a>
+<a name="34"><span class="lineNum">      34 </span><span class="lineCov">          1 :     ClassificationResult(const QString &amp;storageDir, const QMap&lt;QString, QList&lt;double&gt;&gt; &amp;classificationData,</span></a>
+<a name="35"><span class="lineNum">      35 </span>            :                          const QStringList &amp;labels, const QStringList &amp;additionalResults = {});</a>
+<a name="36"><span class="lineNum">      36 </span>            : </a>
+<a name="37"><span class="lineNum">      37 </span>            :     /**</a>
+<a name="38"><span class="lineNum">      38 </span>            :      * @brief Get the classification data.</a>
+<a name="39"><span class="lineNum">      39 </span>            :      * @return Map of image paths to their corresponding confidence scores.</a>
+<a name="40"><span class="lineNum">      40 </span>            :      */</a>
+<a name="41"><span class="lineNum">      41 </span><span class="lineCov">          1 :     [[nodiscard]] const QMap&lt;QString, QList&lt;double&gt;&gt; &amp;getClassificationData() const;</span></a>
+<a name="42"><span class="lineNum">      42 </span>            : </a>
+<a name="43"><span class="lineNum">      43 </span>            :     /**</a>
+<a name="44"><span class="lineNum">      44 </span>            :      * @brief Get the class labels.</a>
+<a name="45"><span class="lineNum">      45 </span>            :      * @return List of class labels.</a>
+<a name="46"><span class="lineNum">      46 </span>            :      */</a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">          1 :     [[nodiscard]] const QStringList &amp;getLabels() const;</span></a>
+<a name="48"><span class="lineNum">      48 </span>            : </a>
+<a name="49"><span class="lineNum">      49 </span>            :     /**</a>
+<a name="50"><span class="lineNum">      50 </span>            :      * @brief Get the classification graphics</a>
+<a name="51"><span class="lineNum">      51 </span>            :      * @return shared pointer to the classification graphics of this result</a>
+<a name="52"><span class="lineNum">      52 </span>            :      */</a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">          1 :     [[nodiscard]] const QSharedPointer&lt;ClassificationGraphics&gt; &amp;getClassificationGraphics() const;</span></a>
+<a name="54"><span class="lineNum">      54 </span>            : </a>
+<a name="55"><span class="lineNum">      55 </span>            :     /**</a>
+<a name="56"><span class="lineNum">      56 </span>            :      * @brief Checks if this result is valid.</a>
+<a name="57"><span class="lineNum">      57 </span>            :      * @return valid or not.</a>
+<a name="58"><span class="lineNum">      58 </span>            :      */</a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">          1 :     [[nodiscard]] bool isValid() const override;</span></a>
+<a name="60"><span class="lineNum">      60 </span>            : };</a>
 <a name="61"><span class="lineNum">      61 </span>            : </a>
-<a name="62"><span class="lineNum">      62 </span>            : #endif //CLASSIFICATIONRESULT_H</a>
+<a name="62"><span class="lineNum">      62 </span>            : </a>
+<a name="63"><span class="lineNum">      63 </span>            : #endif //CLASSIFICATIONRESULT_H</a>
 </pre>
       </td>
     </tr>

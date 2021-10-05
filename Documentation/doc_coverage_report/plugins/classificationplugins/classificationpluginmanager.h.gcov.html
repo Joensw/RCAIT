@@ -31,13 +31,13 @@
             <td class="headerValue">doc-coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">17</td>
-            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntry">18</td>
+            <td class="headerCovTableEntry">18</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-19 11:22:25</td>
+            <td class="headerValue">2021-10-05 07:49:36</td>
             <td></td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -62,21 +62,21 @@
 <a name="4"><span class="lineNum">       4 </span>            : #include &lt;QString&gt;</a>
 <a name="5"><span class="lineNum">       5 </span>            : #include &lt;QWidget&gt;</a>
 <a name="6"><span class="lineNum">       6 </span>            : #include &lt;QMap&gt;</a>
-<a name="7"><span class="lineNum">       7 </span>            : #include &quot;trainingresult.h&quot;</a>
-<a name="8"><span class="lineNum">       8 </span>            : #include &quot;progressableplugin.h&quot;</a>
-<a name="9"><span class="lineNum">       9 </span>            : #include &quot;classificationresult.h&quot;</a>
-<a name="10"><span class="lineNum">      10 </span>            : #include &quot;classificationplugin.h&quot;</a>
-<a name="11"><span class="lineNum">      11 </span>            : #include &quot;pluginmanager.h&quot;</a>
+<a name="7"><span class="lineNum">       7 </span>            : #include &lt;progressableplugin.h&gt;</a>
+<a name="8"><span class="lineNum">       8 </span>            : #include &lt;classificationplugin.h&gt;</a>
+<a name="9"><span class="lineNum">       9 </span>            : #include &lt;pluginmanager.h&gt;</a>
+<a name="10"><span class="lineNum">      10 </span>            : #include &lt;QPluginLoader&gt;</a>
+<a name="11"><span class="lineNum">      11 </span>            : #include &lt;utility&gt;</a>
 <a name="12"><span class="lineNum">      12 </span>            : </a>
 <a name="13"><span class="lineNum">      13 </span>            : </a>
 <a name="14"><span class="lineNum">      14 </span>            : /**</a>
 <a name="15"><span class="lineNum">      15 </span>            :  * @brief The ClassificationPluginManager class is responsible for loading and managing classification plugins.</a>
 <a name="16"><span class="lineNum">      16 </span>            :  */</a>
-<a name="17"><span class="lineNum">      17 </span>            : class ClassificationPluginManager : public PluginManager{</a>
-<a name="18"><span class="lineNum">      18 </span>            : private: ClassificationPluginManager();</a>
-<a name="19"><span class="lineNum">      19 </span>            : QMap&lt;QString, ClassificationPlugin*&gt; m_plugins;</a>
+<a name="17"><span class="lineNum">      17 </span>            : class ClassificationPluginManager : public PluginManager {</a>
+<a name="18"><span class="lineNum">      18 </span>            : private:</a>
+<a name="19"><span class="lineNum">      19 </span>            :     ClassificationPluginManager();</a>
 <a name="20"><span class="lineNum">      20 </span>            : </a>
-<a name="21"><span class="lineNum">      21 </span>            : </a>
+<a name="21"><span class="lineNum">      21 </span>            :     QMap&lt;QString, QSharedPointer&lt;ClassificationPlugin&gt;&gt; m_plugins;</a>
 <a name="22"><span class="lineNum">      22 </span>            : </a>
 <a name="23"><span class="lineNum">      23 </span>            : public:</a>
 <a name="24"><span class="lineNum">      24 </span>            : </a>
@@ -114,7 +114,7 @@
 <a name="56"><span class="lineNum">      56 </span>            :      * @param pluginName name of plugin</a>
 <a name="57"><span class="lineNum">      57 </span>            :      * @return config widget</a>
 <a name="58"><span class="lineNum">      58 </span>            :      */</a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">          1 :     QWidget * getConfigurationWidget(QString pluginName) override;</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">          1 :     QSharedPointer&lt;QWidget&gt; getConfigurationWidget(QString pluginName) override;</span></a>
 <a name="60"><span class="lineNum">      60 </span>            : </a>
 <a name="61"><span class="lineNum">      61 </span>            :     /**</a>
 <a name="62"><span class="lineNum">      62 </span>            :      * @brief saveConfiguration saves changes in config widget of specified plugin.</a>
@@ -129,7 +129,7 @@
 <a name="71"><span class="lineNum">      71 </span>            :      * @param pluginName name of plugin</a>
 <a name="72"><span class="lineNum">      72 </span>            :      * @return input widget of plugin</a>
 <a name="73"><span class="lineNum">      73 </span>            :      */</a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineCov">          1 :     QWidget * getInputWidget(QString pluginName) override;</span></a>
+<a name="74"><span class="lineNum">      74 </span><span class="lineCov">          1 :     QSharedPointer&lt;QWidget&gt; getInputWidget(QString pluginName) override;</span></a>
 <a name="75"><span class="lineNum">      75 </span>            : </a>
 <a name="76"><span class="lineNum">      76 </span>            :     /**</a>
 <a name="77"><span class="lineNum">      77 </span>            :      * @brief getDataAugmentationInputWidget gets widget for augmentation config of a specified plugin.</a>
@@ -137,7 +137,7 @@
 <a name="79"><span class="lineNum">      79 </span>            :      * @param pluginName name of plugin</a>
 <a name="80"><span class="lineNum">      80 </span>            :      * @return data augmentation input widget</a>
 <a name="81"><span class="lineNum">      81 </span>            :      */</a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">          1 :     QWidget * getDataAugmentationInputWidget(const QString&amp; pluginName);</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">          1 :     QSharedPointer&lt;QWidget&gt; getDataAugmentationInputWidget(const QString &amp;pluginName);</span></a>
 <a name="83"><span class="lineNum">      83 </span>            : </a>
 <a name="84"><span class="lineNum">      84 </span>            :     /**</a>
 <a name="85"><span class="lineNum">      85 </span>            :      * @brief getNamesOfPlugins gets names of all loaded plugins.</a>
@@ -152,7 +152,7 @@
 <a name="94"><span class="lineNum">      94 </span>            :      * @param pluginName name of plugin</a>
 <a name="95"><span class="lineNum">      95 </span>            :      * @return list of model names</a>
 <a name="96"><span class="lineNum">      96 </span>            :      */</a>
-<a name="97"><span class="lineNum">      97 </span><span class="lineCov">          1 :     QStringList getModelNames(const QString&amp; pluginName);</span></a>
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">          1 :     QStringList getModelNames(const QString &amp;pluginName);</span></a>
 <a name="98"><span class="lineNum">      98 </span>            : </a>
 <a name="99"><span class="lineNum">      99 </span>            :     /**</a>
 <a name="100"><span class="lineNum">     100 </span>            :      * @brief createNewModel creates a new model with a name from a base model and plugin.</a>
@@ -162,7 +162,7 @@
 <a name="104"><span class="lineNum">     104 </span>            :      * @param baseModel base model of new model</a>
 <a name="105"><span class="lineNum">     105 </span>            :      * @return true if creation was successful</a>
 <a name="106"><span class="lineNum">     106 </span>            :      */</a>
-<a name="107"><span class="lineNum">     107 </span><span class="lineCov">          1 :     bool createNewModel(QString modelName, const QString&amp; pluginName, QString baseModel);</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">          1 :     bool createNewModel(QString modelName, const QString &amp;pluginName, QString baseModel);</span></a>
 <a name="108"><span class="lineNum">     108 </span>            : </a>
 <a name="109"><span class="lineNum">     109 </span>            :     /**</a>
 <a name="110"><span class="lineNum">     110 </span>            :      * @brief getAugmentationPreview loads a preview of augmented images into a folder.</a>
@@ -174,65 +174,78 @@
 <a name="116"><span class="lineNum">     116 </span>            :      * @param amount number of augmented images</a>
 <a name="117"><span class="lineNum">     117 </span>            :      * @return true if successful</a>
 <a name="118"><span class="lineNum">     118 </span>            :      */</a>
-<a name="119"><span class="lineNum">     119 </span><span class="lineCov">          1 :     bool getAugmentationPreview(const QString&amp; pluginName, QString modelName, QString inputPath, QString targetPath, int amount);</span></a>
-<a name="120"><span class="lineNum">     120 </span>            : </a>
-<a name="121"><span class="lineNum">     121 </span>            :     /**</a>
-<a name="122"><span class="lineNum">     122 </span>            :      * @brief removeModel removes model with specified name and plugin.</a>
-<a name="123"><span class="lineNum">     123 </span>            :      *</a>
-<a name="124"><span class="lineNum">     124 </span>            :      * @param modelName name of model</a>
-<a name="125"><span class="lineNum">     125 </span>            :      * @param pluginName name of plugin</a>
-<a name="126"><span class="lineNum">     126 </span>            :      * @return true if removal was successful</a>
-<a name="127"><span class="lineNum">     127 </span>            :      */</a>
-<a name="128"><span class="lineNum">     128 </span><span class="lineCov">          1 :     bool removeModel(QString modelName, const QString&amp; pluginName);</span></a>
-<a name="129"><span class="lineNum">     129 </span>            : </a>
-<a name="130"><span class="lineNum">     130 </span>            :     /**</a>
-<a name="131"><span class="lineNum">     131 </span>            :      * @brief train starts a training with a selected plugin.</a>
-<a name="132"><span class="lineNum">     132 </span>            :      *</a>
-<a name="133"><span class="lineNum">     133 </span>            :      * @param pluginName name of plugin</a>
-<a name="134"><span class="lineNum">     134 </span>            :      * @param modelName name of model</a>
-<a name="135"><span class="lineNum">     135 </span>            :      * @param trainDatasetPath location of training images</a>
-<a name="136"><span class="lineNum">     136 </span>            :      * @param validationDatasetPath location of validation images</a>
-<a name="137"><span class="lineNum">     137 </span>            :      * @param workingDirectory working directory</a>
-<a name="138"><span class="lineNum">     138 </span>            :      * @param receiver receives progress of training</a>
-<a name="139"><span class="lineNum">     139 </span>            :      * @return result data of training</a>
-<a name="140"><span class="lineNum">     140 </span>            :      */</a>
-<a name="141"><span class="lineNum">     141 </span><span class="lineCov">          1 :     TrainingResult * train (const QString&amp; pluginName, QString modelName, QString trainDatasetPath, QString validationDatasetPath, QString workingDirectory, ProgressablePlugin * receiver);</span></a>
-<a name="142"><span class="lineNum">     142 </span>            : </a>
-<a name="143"><span class="lineNum">     143 </span>            :     /**</a>
-<a name="144"><span class="lineNum">     144 </span>            :      * @brief classify starts a classification with a selected plugin.</a>
-<a name="145"><span class="lineNum">     145 </span>            :      *</a>
-<a name="146"><span class="lineNum">     146 </span>            :      * @param pluginName name of plugin</a>
-<a name="147"><span class="lineNum">     147 </span>            :      * @param inputImageDirPath location of input images</a>
-<a name="148"><span class="lineNum">     148 </span>            :      * @param trainDatasetPath location of training images</a>
-<a name="149"><span class="lineNum">     149 </span>            :      * @param workingDirectory working directory</a>
-<a name="150"><span class="lineNum">     150 </span>            :      * @param modelName name of model</a>
-<a name="151"><span class="lineNum">     151 </span>            :      * @param receiver receives classification progress</a>
-<a name="152"><span class="lineNum">     152 </span>            :      * @return result data of classification</a>
-<a name="153"><span class="lineNum">     153 </span>            :      */</a>
-<a name="154"><span class="lineNum">     154 </span><span class="lineCov">          1 :     ClassificationResult * classify(const QString&amp; pluginName, QString inputImageDirPath, QString trainDatasetPath, QString workingDirectory, QString modelName, ProgressablePlugin * receiver);</span></a>
-<a name="155"><span class="lineNum">     155 </span>            : </a>
-<a name="156"><span class="lineNum">     156 </span>            :     /**</a>
-<a name="157"><span class="lineNum">     157 </span>            :      * @brief getConfigurationWidgets gets config widgets of all classification plugins.</a>
-<a name="158"><span class="lineNum">     158 </span>            :      *</a>
-<a name="159"><span class="lineNum">     159 </span>            :      * @return list of config widgets</a>
-<a name="160"><span class="lineNum">     160 </span>            :      */</a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">          1 :     QList&lt;QWidget*&gt; getConfigurationWidgets();</span></a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">          1 :     bool getAugmentationPreview(const QString &amp;pluginName, const QString &amp;modelName, const QString &amp;inputPath,</span></a>
+<a name="120"><span class="lineNum">     120 </span>            :                                 const QString &amp;targetPath,</a>
+<a name="121"><span class="lineNum">     121 </span>            :                                 int amount);</a>
+<a name="122"><span class="lineNum">     122 </span>            : </a>
+<a name="123"><span class="lineNum">     123 </span>            :     /**</a>
+<a name="124"><span class="lineNum">     124 </span>            :      * @brief removeModel removes model with specified name and plugin.</a>
+<a name="125"><span class="lineNum">     125 </span>            :      *</a>
+<a name="126"><span class="lineNum">     126 </span>            :      * @param modelName name of model</a>
+<a name="127"><span class="lineNum">     127 </span>            :      * @param pluginName name of plugin</a>
+<a name="128"><span class="lineNum">     128 </span>            :      * @return true if removal was successful</a>
+<a name="129"><span class="lineNum">     129 </span>            :      */</a>
+<a name="130"><span class="lineNum">     130 </span><span class="lineCov">          1 :     bool removeModel(QString modelName, const QString &amp;pluginName);</span></a>
+<a name="131"><span class="lineNum">     131 </span>            : </a>
+<a name="132"><span class="lineNum">     132 </span>            :     /**</a>
+<a name="133"><span class="lineNum">     133 </span>            :      * @brief train starts a training with a selected plugin.</a>
+<a name="134"><span class="lineNum">     134 </span>            :      *</a>
+<a name="135"><span class="lineNum">     135 </span>            :      * @param pluginName name of plugin</a>
+<a name="136"><span class="lineNum">     136 </span>            :      * @param modelName name of model</a>
+<a name="137"><span class="lineNum">     137 </span>            :      * @param trainDatasetPath location of training images</a>
+<a name="138"><span class="lineNum">     138 </span>            :      * @param validationDatasetPath location of validation images</a>
+<a name="139"><span class="lineNum">     139 </span>            :      * @param workingDirectory working directory</a>
+<a name="140"><span class="lineNum">     140 </span>            :      * @param receiver receives progress of training</a>
+<a name="141"><span class="lineNum">     141 </span>            :      * @return result data of training</a>
+<a name="142"><span class="lineNum">     142 </span>            :      */</a>
+<a name="143"><span class="lineNum">     143 </span>            :     [[nodiscard]] QPointer&lt;TrainingResult&gt;</a>
+<a name="144"><span class="lineNum">     144 </span><span class="lineCov">          1 :     train(const QString &amp;pluginName, const QString &amp;modelName, QString trainDatasetPath, QString validationDatasetPath,</span></a>
+<a name="145"><span class="lineNum">     145 </span>            :           QString workingDirectory, ProgressablePlugin *receiver);</a>
+<a name="146"><span class="lineNum">     146 </span>            : </a>
+<a name="147"><span class="lineNum">     147 </span>            :     /**</a>
+<a name="148"><span class="lineNum">     148 </span>            :      * @brief classify starts a classification with a selected plugin.</a>
+<a name="149"><span class="lineNum">     149 </span>            :      *</a>
+<a name="150"><span class="lineNum">     150 </span>            :      * @param pluginName name of plugin</a>
+<a name="151"><span class="lineNum">     151 </span>            :      * @param inputImageDirPath location of input images</a>
+<a name="152"><span class="lineNum">     152 </span>            :      * @param trainDatasetPath location of training images</a>
+<a name="153"><span class="lineNum">     153 </span>            :      * @param workingDirectory working directory</a>
+<a name="154"><span class="lineNum">     154 </span>            :      * @param modelName name of model</a>
+<a name="155"><span class="lineNum">     155 </span>            :      * @param receiver receives classification progress</a>
+<a name="156"><span class="lineNum">     156 </span>            :      * @return result data of classification</a>
+<a name="157"><span class="lineNum">     157 </span>            :      */</a>
+<a name="158"><span class="lineNum">     158 </span>            :     [[nodiscard]] QPointer&lt;ClassificationResult&gt;</a>
+<a name="159"><span class="lineNum">     159 </span><span class="lineCov">          1 :     classify(const QString &amp;pluginName, const QString &amp;inputImageDirPath, const QString &amp;trainDatasetPath,</span></a>
+<a name="160"><span class="lineNum">     160 </span>            :              const QString &amp;workingDirectory,</a>
+<a name="161"><span class="lineNum">     161 </span>            :              const QString &amp;modelName, ProgressablePlugin *receiver);</a>
 <a name="162"><span class="lineNum">     162 </span>            : </a>
 <a name="163"><span class="lineNum">     163 </span>            :     /**</a>
-<a name="164"><span class="lineNum">     164 </span>            :      * @brief getClassificationPluginBases gets base models of plugin.</a>
+<a name="164"><span class="lineNum">     164 </span>            :      * @brief getConfigurationWidgets gets config widgets of all classification plugins.</a>
 <a name="165"><span class="lineNum">     165 </span>            :      *</a>
-<a name="166"><span class="lineNum">     166 </span>            :      * @param pluginName name of plugin</a>
-<a name="167"><span class="lineNum">     167 </span>            :      * @return list of plugin bases</a>
-<a name="168"><span class="lineNum">     168 </span>            :      */</a>
-<a name="169"><span class="lineNum">     169 </span><span class="lineCov">          1 :     QStringList getClassificationPluginBases(const QString&amp; pluginName);</span></a>
-<a name="170"><span class="lineNum">     170 </span>            : </a>
-<a name="171"><span class="lineNum">     171 </span>            : private:</a>
-<a name="172"><span class="lineNum">     172 </span>            :     ClassificationPluginManager * instance;</a>
-<a name="173"><span class="lineNum">     173 </span>            :     QList&lt;QWidget*&gt; m_pluginConfigurationWidgets;</a>
-<a name="174"><span class="lineNum">     174 </span>            : </a>
-<a name="175"><span class="lineNum">     175 </span>            : };</a>
-<a name="176"><span class="lineNum">     176 </span>            : </a>
-<a name="177"><span class="lineNum">     177 </span>            : #endif // CLASSIFICATIONPLUGINMANAGER_H</a>
+<a name="166"><span class="lineNum">     166 </span>            :      * @return list of config widgets</a>
+<a name="167"><span class="lineNum">     167 </span>            :      */</a>
+<a name="168"><span class="lineNum">     168 </span><span class="lineCov">          1 :     QList&lt;QSharedPointer&lt;QWidget&gt;&gt; getConfigurationWidgets();</span></a>
+<a name="169"><span class="lineNum">     169 </span>            : </a>
+<a name="170"><span class="lineNum">     170 </span>            :     /**</a>
+<a name="171"><span class="lineNum">     171 </span>            :      * @brief getClassificationPluginBases gets base models of plugin.</a>
+<a name="172"><span class="lineNum">     172 </span>            :      *</a>
+<a name="173"><span class="lineNum">     173 </span>            :      * @param pluginName name of plugin</a>
+<a name="174"><span class="lineNum">     174 </span>            :      * @return list of plugin bases</a>
+<a name="175"><span class="lineNum">     175 </span>            :      */</a>
+<a name="176"><span class="lineNum">     176 </span><span class="lineCov">          1 :     QStringList getClassificationPluginBases(const QString &amp;pluginName);</span></a>
+<a name="177"><span class="lineNum">     177 </span>            : </a>
+<a name="178"><span class="lineNum">     178 </span>            :     /**</a>
+<a name="179"><span class="lineNum">     179 </span>            :      * @brief getPluginIcons gets the Icon of the plugin</a>
+<a name="180"><span class="lineNum">     180 </span>            :      * @return the icons</a>
+<a name="181"><span class="lineNum">     181 </span>            :      */</a>
+<a name="182"><span class="lineNum">     182 </span><span class="lineCov">          1 :     QList&lt;QSharedPointer&lt;QIcon&gt;&gt; getPluginIcons() override;</span></a>
+<a name="183"><span class="lineNum">     183 </span>            : </a>
+<a name="184"><span class="lineNum">     184 </span>            : private:</a>
+<a name="185"><span class="lineNum">     185 </span>            :     QList&lt;QSharedPointer&lt;QWidget&gt;&gt; m_pluginConfigurationWidgets;</a>
+<a name="186"><span class="lineNum">     186 </span>            :     QList&lt;QSharedPointer&lt;QIcon&gt;&gt; m_pluginIcons;</a>
+<a name="187"><span class="lineNum">     187 </span>            : </a>
+<a name="188"><span class="lineNum">     188 </span>            : };</a>
+<a name="189"><span class="lineNum">     189 </span>            : </a>
+<a name="190"><span class="lineNum">     190 </span>            : #endif // CLASSIFICATIONPLUGINMANAGER_H</a>
 </pre>
       </td>
     </tr>

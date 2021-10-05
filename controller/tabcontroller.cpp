@@ -23,6 +23,9 @@ enum mainTabs {
     $END_MAIN
 };
 
+/**
+ * @brief The tabs enum assigns variables representing the tabs of the resultswidget their respective number
+ */
 enum resultsUnderTabs {
     $BEGIN_RESULTS = -1,
     TRAINING,

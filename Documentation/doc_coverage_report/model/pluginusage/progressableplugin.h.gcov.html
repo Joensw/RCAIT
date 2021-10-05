@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-19 11:22:25</td>
+            <td class="headerValue">2021-10-05 07:49:36</td>
             <td></td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -59,7 +59,7 @@
 <a name="1"><span class="lineNum">       1 </span>            : #ifndef PROGRESSABLEPLUGIN_H</a>
 <a name="2"><span class="lineNum">       2 </span>            : #define PROGRESSABLEPLUGIN_H</a>
 <a name="3"><span class="lineNum">       3 </span>            : </a>
-<a name="4"><span class="lineNum">       4 </span>            : #include &quot;progressable.h&quot;</a>
+<a name="4"><span class="lineNum">       4 </span>            : #include &lt;progressable.h&gt;</a>
 <a name="5"><span class="lineNum">       5 </span>            : </a>
 <a name="6"><span class="lineNum">       6 </span>            : /**</a>
 <a name="7"><span class="lineNum">       7 </span>            :  * @brief The ProgressablePlugin class defines an interface for all classes that use plugins</a>
@@ -94,7 +94,7 @@
 <a name="36"><span class="lineNum">      36 </span>            :      *</a>
 <a name="37"><span class="lineNum">      37 </span>            :      * @param progress progress message</a>
 <a name="38"><span class="lineNum">      38 </span>            :      */</a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineCov">          1 :     void sig_progress(int progress);</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">          1 :     virtual void sig_progress(int progress);</span></a>
 <a name="40"><span class="lineNum">      40 </span>            : </a>
 <a name="41"><span class="lineNum">      41 </span>            :     /**</a>
 <a name="42"><span class="lineNum">      42 </span>            :      * @brief sig_statusUpdate signals status update</a>

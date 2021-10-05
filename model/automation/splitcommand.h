@@ -31,6 +31,10 @@ public:
      */
     bool execute() override;
 
+    /**
+     * @brief default destructor for SplitCommand class
+     *
+     */
     virtual ~SplitCommand() = default;
 
 signals:

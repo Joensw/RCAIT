@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-19 11:22:25</td>
+            <td class="headerValue">2021-10-05 07:49:36</td>
             <td></td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -59,27 +59,25 @@
 <a name="1"><span class="lineNum">       1 </span>            : #ifndef COMMAND_H</a>
 <a name="2"><span class="lineNum">       2 </span>            : #define COMMAND_H</a>
 <a name="3"><span class="lineNum">       3 </span>            : </a>
-<a name="4"><span class="lineNum">       4 </span>            : #include &lt;QVariantMap&gt;</a>
+<a name="4"><span class="lineNum">       4 </span>            : #include &lt;QObject&gt;</a>
 <a name="5"><span class="lineNum">       5 </span>            : </a>
-<a name="6"><span class="lineNum">       6 </span>            : </a>
-<a name="7"><span class="lineNum">       7 </span>            : /**</a>
-<a name="8"><span class="lineNum">       8 </span>            :  * @brief The Command class defines an interface for all commands in the application.</a>
-<a name="9"><span class="lineNum">       9 </span>            :  *</a>
-<a name="10"><span class="lineNum">      10 </span>            :  */</a>
-<a name="11"><span class="lineNum">      11 </span>            : class Command : public QObject</a>
-<a name="12"><span class="lineNum">      12 </span>            : {</a>
-<a name="13"><span class="lineNum">      13 </span>            :             Q_OBJECT</a>
-<a name="14"><span class="lineNum">      14 </span>            : public:</a>
-<a name="15"><span class="lineNum">      15 </span>            :     /**</a>
-<a name="16"><span class="lineNum">      16 </span>            :      * @brief execute executes the command.</a>
-<a name="17"><span class="lineNum">      17 </span>            :      *</a>
-<a name="18"><span class="lineNum">      18 </span>            :      * @return true if execution was successfull, false if it failed.</a>
-<a name="19"><span class="lineNum">      19 </span>            :      */</a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">          1 :     virtual bool execute() = 0;</span></a>
+<a name="6"><span class="lineNum">       6 </span>            : /**</a>
+<a name="7"><span class="lineNum">       7 </span>            :  * @brief The Command class defines an interface for all commands in the application.</a>
+<a name="8"><span class="lineNum">       8 </span>            :  *</a>
+<a name="9"><span class="lineNum">       9 </span>            :  */</a>
+<a name="10"><span class="lineNum">      10 </span>            : class Command : public QObject {</a>
+<a name="11"><span class="lineNum">      11 </span>            : Q_OBJECT</a>
+<a name="12"><span class="lineNum">      12 </span>            : </a>
+<a name="13"><span class="lineNum">      13 </span>            : public:</a>
+<a name="14"><span class="lineNum">      14 </span>            :     /**</a>
+<a name="15"><span class="lineNum">      15 </span>            :      * @brief execute executes the command.</a>
+<a name="16"><span class="lineNum">      16 </span>            :      * @return true if execution was successful, false if it failed.</a>
+<a name="17"><span class="lineNum">      17 </span>            :      */</a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">          1 :     virtual bool execute() = 0;</span></a>
+<a name="19"><span class="lineNum">      19 </span>            : </a>
+<a name="20"><span class="lineNum">      20 </span>            : };</a>
 <a name="21"><span class="lineNum">      21 </span>            : </a>
-<a name="22"><span class="lineNum">      22 </span>            : };</a>
-<a name="23"><span class="lineNum">      23 </span>            : </a>
-<a name="24"><span class="lineNum">      24 </span>            : #endif // COMMAND_H</a>
+<a name="22"><span class="lineNum">      22 </span>            : #endif // COMMAND_H</a>
 </pre>
       </td>
     </tr>

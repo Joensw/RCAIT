@@ -31,13 +31,13 @@
             <td class="headerValue">doc-coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">14</td>
-            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntry">16</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-19 11:22:25</td>
+            <td class="headerValue">2021-10-05 07:49:36</td>
             <td></td>
           </tr>
           <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
@@ -97,89 +97,105 @@
 <a name="39"><span class="lineNum">      39 </span>            :      * @brief addProjects add a list of projects to the shown projects in the UI</a>
 <a name="40"><span class="lineNum">      40 </span>            :      * @param projects list of projects names to be added</a>
 <a name="41"><span class="lineNum">      41 </span>            :      */</a>
-<a name="42"><span class="lineNum">      42 </span><span class="lineCov">          1 :     void addProjects(QStringList projects);</span></a>
+<a name="42"><span class="lineNum">      42 </span><span class="lineCov">          1 :     void addProjects(const QStringList &amp;projects);</span></a>
 <a name="43"><span class="lineNum">      43 </span>            : </a>
 <a name="44"><span class="lineNum">      44 </span>            :     /**</a>
 <a name="45"><span class="lineNum">      45 </span>            :      * @brief addProject add a single project to the shown project in the UI</a>
 <a name="46"><span class="lineNum">      46 </span>            :      * @param project name of the project</a>
 <a name="47"><span class="lineNum">      47 </span>            :      */</a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineCov">          1 :     void addProject(QString project);</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">          1 :     void addProject(const QString &amp;project);</span></a>
 <a name="49"><span class="lineNum">      49 </span>            : </a>
 <a name="50"><span class="lineNum">      50 </span>            :     /**</a>
 <a name="51"><span class="lineNum">      51 </span>            :      * @brief clearProjectList empty the list of shown projects</a>
 <a name="52"><span class="lineNum">      52 </span>            :      */</a>
 <a name="53"><span class="lineNum">      53 </span><span class="lineCov">          1 :     void clearProjectList();</span></a>
 <a name="54"><span class="lineNum">      54 </span>            : </a>
-<a name="55"><span class="lineNum">      55 </span>            : public slots:</a>
-<a name="56"><span class="lineNum">      56 </span>            : </a>
-<a name="57"><span class="lineNum">      57 </span>            :     /**</a>
-<a name="58"><span class="lineNum">      58 </span>            :      * @brief slot_changedWindowState called when the window state has change, sets the ui to reflect this</a>
-<a name="59"><span class="lineNum">      59 </span>            :      * @param flags the new state the window has</a>
-<a name="60"><span class="lineNum">      60 </span>            :      */</a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">          1 :     void slot_changedWindowState(Qt::WindowStates flags);</span></a>
-<a name="62"><span class="lineNum">      62 </span>            : </a>
-<a name="63"><span class="lineNum">      63 </span>            :     /**</a>
-<a name="64"><span class="lineNum">      64 </span>            :      * @brief slot_imagesUpdated called when an image loading process has finished</a>
-<a name="65"><span class="lineNum">      65 </span>            :      */</a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">          1 :     void slot_imagesUpdated();</span></a>
+<a name="55"><span class="lineNum">      55 </span>            :     /**</a>
+<a name="56"><span class="lineNum">      56 </span>            :      * @brief setLoadButtonEnabled disables or enables the state of the project action bar (remove, open)</a>
+<a name="57"><span class="lineNum">      57 </span>            :      * @param state true to enabled, false to disable</a>
+<a name="58"><span class="lineNum">      58 </span>            :      */</a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">          1 :     void setActionButtonsEnabled(bool state);</span></a>
+<a name="60"><span class="lineNum">      60 </span>            : </a>
+<a name="61"><span class="lineNum">      61 </span>            :     /**</a>
+<a name="62"><span class="lineNum">      62 </span>            :      * @brief disableOpenProjectButton Turns the open project button in the UI off</a>
+<a name="63"><span class="lineNum">      63 </span>            :      */</a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">          1 :     void disableOpenProjectButton();</span></a>
+<a name="65"><span class="lineNum">      65 </span>            : </a>
+<a name="66"><span class="lineNum">      66 </span>            : public slots:</a>
 <a name="67"><span class="lineNum">      67 </span>            : </a>
 <a name="68"><span class="lineNum">      68 </span>            :     /**</a>
-<a name="69"><span class="lineNum">      69 </span>            :      * @brief slot_startLoading called when an image loading process is started to prevent the selection of a new project</a>
-<a name="70"><span class="lineNum">      70 </span>            :      */</a>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">          1 :     void slot_startLoading();</span></a>
-<a name="72"><span class="lineNum">      72 </span>            : </a>
-<a name="73"><span class="lineNum">      73 </span>            : private:</a>
-<a name="74"><span class="lineNum">      74 </span>            :     Ui::StartWidget *ui;</a>
-<a name="75"><span class="lineNum">      75 </span>            : </a>
-<a name="76"><span class="lineNum">      76 </span>            :     QTranslator m_translator; /*&lt; contains the translations for this application*/</a>
-<a name="77"><span class="lineNum">      77 </span>            :     QString m_currLang; /*&lt; contains the currently loaded language*/</a>
-<a name="78"><span class="lineNum">      78 </span>            :     const QString m_langPath = QDir(&quot;:/i18n/&quot;).exists()? &quot;:/i18n/&quot; : QDir::currentPath() + &quot;/&quot;; /*&lt; Path of language files. This is always fixed.*/</a>
-<a name="79"><span class="lineNum">      79 </span>            : </a>
-<a name="80"><span class="lineNum">      80 </span>            :     //see https://wiki.qt.io/How_to_create_a_multi_language_application</a>
-<a name="81"><span class="lineNum">      81 </span>            :     void populateLanguageMenu(QComboBox *box);</a>
-<a name="82"><span class="lineNum">      82 </span>            :     void loadLanguage(const QString&amp; rLanguage);</a>
-<a name="83"><span class="lineNum">      83 </span>            :     void switchTranslator(QTranslator&amp; translator, const QString&amp; filename);</a>
+<a name="69"><span class="lineNum">      69 </span>            :      * @brief slot_changedWindowState called when the window state has change, sets the ui to reflect this</a>
+<a name="70"><span class="lineNum">      70 </span>            :      * @param flags the new state the window has</a>
+<a name="71"><span class="lineNum">      71 </span>            :      */</a>
+<a name="72"><span class="lineNum">      72 </span><span class="lineCov">          1 :     void slot_changedWindowState(Qt::WindowStates flags);</span></a>
+<a name="73"><span class="lineNum">      73 </span>            : </a>
+<a name="74"><span class="lineNum">      74 </span>            :     /**</a>
+<a name="75"><span class="lineNum">      75 </span>            :      * @brief slot_imagesUpdated called when an image loading process has finished</a>
+<a name="76"><span class="lineNum">      76 </span>            :      */</a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">          1 :     void slot_imagesUpdated();</span></a>
+<a name="78"><span class="lineNum">      78 </span>            : </a>
+<a name="79"><span class="lineNum">      79 </span>            :     /**</a>
+<a name="80"><span class="lineNum">      80 </span>            :      * @brief slot_startLoading called when an image loading process is started to prevent the selection of a new project</a>
+<a name="81"><span class="lineNum">      81 </span>            :      */</a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">          1 :     void slot_startLoading();</span></a>
+<a name="83"><span class="lineNum">      83 </span>            : </a>
 <a name="84"><span class="lineNum">      84 </span>            : </a>
-<a name="85"><span class="lineNum">      85 </span>            : private slots:</a>
-<a name="86"><span class="lineNum">      86 </span>            :     //slots correspond with the identically named button in the UI</a>
-<a name="87"><span class="lineNum">      87 </span>            :     [[maybe_unused]] void on_pushButton_newProject_clicked();</a>
-<a name="88"><span class="lineNum">      88 </span>            :     [[maybe_unused]] void on_pushButton_removeProject_clicked();</a>
-<a name="89"><span class="lineNum">      89 </span>            :     [[maybe_unused]] void on_pushButton_openProject_clicked();</a>
-<a name="90"><span class="lineNum">      90 </span>            :     [[maybe_unused]] void on_comboBox_languageSelection_currentTextChanged(const QString &amp;arg1);</a>
-<a name="91"><span class="lineNum">      91 </span>            :     [[maybe_unused]] void on_pushButton_toggleFullscreen_toggled(bool checked);</a>
-<a name="92"><span class="lineNum">      92 </span>            : </a>
-<a name="93"><span class="lineNum">      93 </span>            : signals:</a>
-<a name="94"><span class="lineNum">      94 </span>            :     /**</a>
-<a name="95"><span class="lineNum">      95 </span>            :      * @brief sig_newProject emitted when the button in the UI to create a new project is pressed</a>
-<a name="96"><span class="lineNum">      96 </span>            :      */</a>
-<a name="97"><span class="lineNum">      97 </span><span class="lineCov">          1 :     void sig_newProject();</span></a>
+<a name="85"><span class="lineNum">      85 </span>            : </a>
+<a name="86"><span class="lineNum">      86 </span>            : private:</a>
+<a name="87"><span class="lineNum">      87 </span>            :     Ui::StartWidget *ui;</a>
+<a name="88"><span class="lineNum">      88 </span>            : </a>
+<a name="89"><span class="lineNum">      89 </span>            :     QTranslator m_translator; /*&lt; contains the translations for this application*/</a>
+<a name="90"><span class="lineNum">      90 </span>            :     QString m_currLang; /*&lt; contains the currently loaded language*/</a>
+<a name="91"><span class="lineNum">      91 </span>            :     const QString m_langPath = QDir(&quot;:/i18n/&quot;).exists()? &quot;:/i18n/&quot; : QDir::currentPath() + &quot;/&quot;; /*&lt; Path of language files. This is always fixed.*/</a>
+<a name="92"><span class="lineNum">      92 </span>            :     static auto constexpr QLISTWIDGET_UNSELECT_INDEX = -1;</a>
+<a name="93"><span class="lineNum">      93 </span>            : </a>
+<a name="94"><span class="lineNum">      94 </span>            :     //see https://wiki.qt.io/How_to_create_a_multi_language_application</a>
+<a name="95"><span class="lineNum">      95 </span>            :     void populateLanguageMenu(QComboBox *box);</a>
+<a name="96"><span class="lineNum">      96 </span>            :     void loadLanguage(const QString&amp; rLanguage);</a>
+<a name="97"><span class="lineNum">      97 </span>            :     void switchTranslator(QTranslator&amp; translator, const QString&amp; filename);</a>
 <a name="98"><span class="lineNum">      98 </span>            : </a>
-<a name="99"><span class="lineNum">      99 </span>            :     /**</a>
-<a name="100"><span class="lineNum">     100 </span>            :      * @brief sig_removeProject emitted when the button in the UI to remove a project is pressed</a>
-<a name="101"><span class="lineNum">     101 </span>            :      * @param projectName name of the project to be deleted</a>
-<a name="102"><span class="lineNum">     102 </span>            :      */</a>
-<a name="103"><span class="lineNum">     103 </span><span class="lineCov">          1 :     void sig_removeProject(QString projectName);</span></a>
-<a name="104"><span class="lineNum">     104 </span>            : </a>
-<a name="105"><span class="lineNum">     105 </span>            :     /**</a>
-<a name="106"><span class="lineNum">     106 </span>            :      * @brief sig_openProject emitted when the button in the UI to open a project is pressed</a>
-<a name="107"><span class="lineNum">     107 </span>            :      * @param projectName name of the project to be opened</a>
-<a name="108"><span class="lineNum">     108 </span>            :      */</a>
-<a name="109"><span class="lineNum">     109 </span><span class="lineCov">          1 :     void sig_openProject(QString projectName);</span></a>
-<a name="110"><span class="lineNum">     110 </span>            : </a>
-<a name="111"><span class="lineNum">     111 </span>            :     /**</a>
-<a name="112"><span class="lineNum">     112 </span>            :      * @brief This signal is emitted when the main window has been maximized.</a>
-<a name="113"><span class="lineNum">     113 </span>            :      * It is used for a button to control the size of the main window.</a>
-<a name="114"><span class="lineNum">     114 </span>            :      */</a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineCov">          1 :     void sig_maximizeWindow();</span></a>
-<a name="116"><span class="lineNum">     116 </span>            : </a>
-<a name="117"><span class="lineNum">     117 </span>            :     /**</a>
-<a name="118"><span class="lineNum">     118 </span>            :      * @brief This signal is emitted when the main window has been normalized.</a>
-<a name="119"><span class="lineNum">     119 </span>            :      * It is used for a button to control the size of the main window.</a>
-<a name="120"><span class="lineNum">     120 </span>            :      */</a>
-<a name="121"><span class="lineNum">     121 </span><span class="lineCov">          1 :     void sig_normalizeWindow();</span></a>
-<a name="122"><span class="lineNum">     122 </span>            : };</a>
-<a name="123"><span class="lineNum">     123 </span>            : </a>
-<a name="124"><span class="lineNum">     124 </span>            : #endif // STARTWIDGET_H</a>
+<a name="99"><span class="lineNum">      99 </span>            : private slots:</a>
+<a name="100"><span class="lineNum">     100 </span>            :     //slots correspond with the identically named button in the UI</a>
+<a name="101"><span class="lineNum">     101 </span>            :     [[maybe_unused]] void on_pushButton_newProject_clicked();</a>
+<a name="102"><span class="lineNum">     102 </span>            :     [[maybe_unused]] void on_pushButton_removeProject_clicked();</a>
+<a name="103"><span class="lineNum">     103 </span>            :     [[maybe_unused]] void on_pushButton_openProject_clicked();</a>
+<a name="104"><span class="lineNum">     104 </span>            :     [[maybe_unused]] void on_comboBox_languageSelection_currentTextChanged(const QString &amp;arg1);</a>
+<a name="105"><span class="lineNum">     105 </span>            :     [[maybe_unused]] void on_pushButton_toggleFullscreen_toggled(bool checked);</a>
+<a name="106"><span class="lineNum">     106 </span>            : </a>
+<a name="107"><span class="lineNum">     107 </span>            :     void slot_setEnableActionButtons();</a>
+<a name="108"><span class="lineNum">     108 </span>            : </a>
+<a name="109"><span class="lineNum">     109 </span>            : signals:</a>
+<a name="110"><span class="lineNum">     110 </span>            :     /**</a>
+<a name="111"><span class="lineNum">     111 </span>            :      * @brief sig_newProject emitted when the button in the UI to create a new project is pressed</a>
+<a name="112"><span class="lineNum">     112 </span>            :      */</a>
+<a name="113"><span class="lineNum">     113 </span><span class="lineCov">          1 :     void sig_newProject();</span></a>
+<a name="114"><span class="lineNum">     114 </span>            : </a>
+<a name="115"><span class="lineNum">     115 </span>            :     /**</a>
+<a name="116"><span class="lineNum">     116 </span>            :      * @brief sig_removeProject emitted when the button in the UI to remove a project is pressed</a>
+<a name="117"><span class="lineNum">     117 </span>            :      * @param projectName name of the project to be deleted</a>
+<a name="118"><span class="lineNum">     118 </span>            :      */</a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">          1 :     void sig_removeProject(QString projectName);</span></a>
+<a name="120"><span class="lineNum">     120 </span>            : </a>
+<a name="121"><span class="lineNum">     121 </span>            :     /**</a>
+<a name="122"><span class="lineNum">     122 </span>            :      * @brief sig_openProject emitted when the button in the UI to open a project is pressed</a>
+<a name="123"><span class="lineNum">     123 </span>            :      * @param projectName name of the project to be opened</a>
+<a name="124"><span class="lineNum">     124 </span>            :      */</a>
+<a name="125"><span class="lineNum">     125 </span><span class="lineCov">          1 :     void sig_openProject(QString projectName);</span></a>
+<a name="126"><span class="lineNum">     126 </span>            : </a>
+<a name="127"><span class="lineNum">     127 </span>            :     /**</a>
+<a name="128"><span class="lineNum">     128 </span>            :      * @brief This signal is emitted when the main window has been maximized.</a>
+<a name="129"><span class="lineNum">     129 </span>            :      * It is used for a button to control the size of the main window.</a>
+<a name="130"><span class="lineNum">     130 </span>            :      */</a>
+<a name="131"><span class="lineNum">     131 </span><span class="lineCov">          1 :     void sig_maximizeWindow();</span></a>
+<a name="132"><span class="lineNum">     132 </span>            : </a>
+<a name="133"><span class="lineNum">     133 </span>            :     /**</a>
+<a name="134"><span class="lineNum">     134 </span>            :      * @brief This signal is emitted when the main window has been normalized.</a>
+<a name="135"><span class="lineNum">     135 </span>            :      * It is used for a button to control the size of the main window.</a>
+<a name="136"><span class="lineNum">     136 </span>            :      */</a>
+<a name="137"><span class="lineNum">     137 </span><span class="lineCov">          1 :     void sig_normalizeWindow();</span></a>
+<a name="138"><span class="lineNum">     138 </span>            : };</a>
+<a name="139"><span class="lineNum">     139 </span>            : </a>
+<a name="140"><span class="lineNum">     140 </span>            : #endif // STARTWIDGET_H</a>
 </pre>
       </td>
     </tr>

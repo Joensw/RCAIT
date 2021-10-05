@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-19 11:22:25</td>
+            <td class="headerValue">2021-10-05 07:49:36</td>
             <td></td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -59,15 +59,15 @@
 <a name="1"><span class="lineNum">       1 </span>            : #ifndef ACCURACYCURVE_H</a>
 <a name="2"><span class="lineNum">       2 </span>            : #define ACCURACYCURVE_H</a>
 <a name="3"><span class="lineNum">       3 </span>            : </a>
-<a name="4"><span class="lineNum">       4 </span>            : </a>
-<a name="5"><span class="lineNum">       5 </span>            : #include &lt;QGraphicsItem&gt;</a>
-<a name="6"><span class="lineNum">       6 </span>            : #include &lt;QFileInfo&gt;</a>
-<a name="7"><span class="lineNum">       7 </span>            : #include &lt;QGraphicsSvgItem&gt;</a>
-<a name="8"><span class="lineNum">       8 </span>            : #include &lt;QProcess&gt;</a>
-<a name="9"><span class="lineNum">       9 </span>            : #include &lt;QStringBuilder&gt;</a>
-<a name="10"><span class="lineNum">      10 </span>            : #include &lt;mapadapt.h&gt;</a>
-<a name="11"><span class="lineNum">      11 </span>            : #include &lt;trainingresultview.h&gt;</a>
-<a name="12"><span class="lineNum">      12 </span>            : #include &quot;genericresultgraphics.h&quot;</a>
+<a name="4"><span class="lineNum">       4 </span>            : #include &lt;QGraphicsItem&gt;</a>
+<a name="5"><span class="lineNum">       5 </span>            : #include &lt;QFileInfo&gt;</a>
+<a name="6"><span class="lineNum">       6 </span>            : #include &lt;QGraphicsSvgItem&gt;</a>
+<a name="7"><span class="lineNum">       7 </span>            : #include &lt;QProcess&gt;</a>
+<a name="8"><span class="lineNum">       8 </span>            : #include &lt;QStringBuilder&gt;</a>
+<a name="9"><span class="lineNum">       9 </span>            : #include &lt;mapadapt.h&gt;</a>
+<a name="10"><span class="lineNum">      10 </span>            : #include &lt;trainingresultview.h&gt;</a>
+<a name="11"><span class="lineNum">      11 </span>            : #include &lt;genericresultgraphics.h&gt;</a>
+<a name="12"><span class="lineNum">      12 </span>            : #include &lt;configurationmanager.h&gt;</a>
 <a name="13"><span class="lineNum">      13 </span>            : </a>
 <a name="14"><span class="lineNum">      14 </span>            : /**</a>
 <a name="15"><span class="lineNum">      15 </span>            :  * @brief Accuracy curves are used to visualize the accuracy values over a period in iterations</a>
@@ -111,7 +111,7 @@
 <a name="53"><span class="lineNum">      53 </span>            :      * @brief Get all the accuracy data points</a>
 <a name="54"><span class="lineNum">      54 </span>            :      * @return Map of all data points</a>
 <a name="55"><span class="lineNum">      55 </span>            :      */</a>
-<a name="56"><span class="lineNum">      56 </span><span class="lineCov">          1 :     [[maybe_unused]] QMap&lt;int, QPair&lt;double, double&gt;&gt; getData();</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">          1 :     [[maybe_unused]] [[nodiscard]] QMap&lt;int, QPair&lt;double, double&gt;&gt; getData() const;</span></a>
 <a name="57"><span class="lineNum">      57 </span>            : </a>
 <a name="58"><span class="lineNum">      58 </span>            : private:</a>
 <a name="59"><span class="lineNum">      59 </span>            :     QMap&lt;int, QPair&lt;double, double&gt;&gt; m_data;</a>
@@ -120,7 +120,7 @@
 <a name="62"><span class="lineNum">      62 </span>            : </a>
 <a name="63"><span class="lineNum">      63 </span>            :     void passResultGraphics(GenericGraphicsView *receiver, const QString &amp;fullFilePath) override;</a>
 <a name="64"><span class="lineNum">      64 </span>            : </a>
-<a name="65"><span class="lineNum">      65 </span>            :     QString valuesToPyText();</a>
+<a name="65"><span class="lineNum">      65 </span>            :     [[nodiscard]] QString valuesToPyText() const;</a>
 <a name="66"><span class="lineNum">      66 </span>            : };</a>
 <a name="67"><span class="lineNum">      67 </span>            : </a>
 <a name="68"><span class="lineNum">      68 </span>            : #endif // ACCURACYCURVE_H</a>

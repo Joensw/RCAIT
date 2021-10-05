@@ -47,7 +47,13 @@ public:
     QMap<QString, QList<int>> removeSelected();
 
 public slots:
+    /**
+     * @brief shows the images under a label
+     */
     void expandItem(QTreeWidgetItem *item);
+    /**
+     * @brief unshows the images under a label
+     */
     void collapseItem(QTreeWidgetItem *item);
 
 private:

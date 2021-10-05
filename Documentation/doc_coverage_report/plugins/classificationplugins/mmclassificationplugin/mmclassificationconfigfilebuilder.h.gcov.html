@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-19 11:22:25</td>
+            <td class="headerValue">2021-10-05 07:49:36</td>
             <td></td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -169,7 +169,7 @@
 <a name="111"><span class="lineNum">     111 </span>            :      * @param resize the size to resize the input pictures</a>
 <a name="112"><span class="lineNum">     112 </span>            :      * @param centerCropSize size of the from center cropped pictures</a>
 <a name="113"><span class="lineNum">     113 </span>            :      */</a>
-<a name="114"><span class="lineNum">     114 </span><span class="lineCov">          1 :     static void changeDataAugmentationOptions(const QString&amp; datasetConfigPath, const QString&amp; albuTransform, int randomResizedCropSize, double randomFlipProb, const QString&amp; randomFlipDirection, bool RandomErasing, int resize, int centerCropSize);</span></a>
+<a name="114"><span class="lineNum">     114 </span><span class="lineCov">          1 :     static void changeDataAugmentationOptions(const QString&amp; datasetConfigPath, const QString&amp; albuTransform, int randomResizedCropSize, double randomFlipProb, const QString&amp; randomFlipDirection, bool randomErasing, int resize, int centerCropSize);</span></a>
 <a name="115"><span class="lineNum">     115 </span>            : </a>
 <a name="116"><span class="lineNum">     116 </span>            :     /**</a>
 <a name="117"><span class="lineNum">     117 </span>            :      * @brief changeDatasetPaths changes the absolute paths of the train, validation and test dataset in the given dataset config</a>
@@ -178,7 +178,7 @@
 <a name="120"><span class="lineNum">     120 </span>            :      * @param validatinoSetPath the absolute path of the validation dataset</a>
 <a name="121"><span class="lineNum">     121 </span>            :      * @param testSetPath the absolute path of the test dataset</a>
 <a name="122"><span class="lineNum">     122 </span>            :      */</a>
-<a name="123"><span class="lineNum">     123 </span><span class="lineCov">          1 :     void changeDatasetPaths(const QString&amp; datasetConfigPath, const QString&amp; trainingSetPath, const QString&amp; validatinoSetPath, const QString&amp; testSetPath);</span></a>
+<a name="123"><span class="lineNum">     123 </span><span class="lineCov">          1 :     void changeDatasetPaths(const QString&amp; datasetConfigPath, const QString&amp; trainingSetPath, const QString&amp; validationSetPath, const QString&amp; testSetPath);</span></a>
 <a name="124"><span class="lineNum">     124 </span>            : </a>
 <a name="125"><span class="lineNum">     125 </span>            :     /**</a>
 <a name="126"><span class="lineNum">     126 </span>            :      * @brief changeTestPath changes the test dataset path in the given dataset config file</a>
@@ -205,9 +205,9 @@
 <a name="147"><span class="lineNum">     147 </span>            : </a>
 <a name="148"><span class="lineNum">     148 </span>            :     QString createConfigFile(const QString&amp; name, const QString&amp; defaultFilePath);</a>
 <a name="149"><span class="lineNum">     149 </span>            :     static QStringList readFileLines(const QString&amp; pathToFile);</a>
-<a name="150"><span class="lineNum">     150 </span>            :     static bool readAndReplaceLinesInOrder(const QString&amp; pathToFile, QVector&lt;QString&gt; regularExpressions, QVector&lt;QString&gt; replaceWith, int caputureGroupIndex);</a>
+<a name="150"><span class="lineNum">     150 </span>            :     static bool readAndReplaceLinesInOrder(const QString&amp; pathToFile, QVector&lt;QString&gt; regularExpression, QVector&lt;QString&gt; replaceWith, int caputureGroupIndex);</a>
 <a name="151"><span class="lineNum">     151 </span>            :     static void writeBack(const QString&amp; pathToFile, const QStringList&amp; data);</a>
-<a name="152"><span class="lineNum">     152 </span>            :     static QString replaceText(QString data, const QString&amp; regularExpressionText, int captureGroupIndex, const QString&amp; replacementText);</a>
+<a name="152"><span class="lineNum">     152 </span>            :     static QString replaceText(QString content, const QString&amp; regularExpressionText, int captureGroupIndex, const QString&amp; replacementText);</a>
 <a name="153"><span class="lineNum">     153 </span>            : </a>
 <a name="154"><span class="lineNum">     154 </span>            :     QString m_pathToMMClassification = &quot;&quot;;</a>
 <a name="155"><span class="lineNum">     155 </span>            : </a>

@@ -31,13 +31,13 @@
             <td class="headerValue">doc-coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">14</td>
-            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntry">16</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-19 11:22:25</td>
+            <td class="headerValue">2021-10-05 07:49:36</td>
             <td></td>
           </tr>
           <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
@@ -109,7 +109,7 @@
 <a name="51"><span class="lineNum">      51 </span>            :      * @brief updateProgressBar updates the status of the progress bar in the UI</a>
 <a name="52"><span class="lineNum">      52 </span>            :      * @param progress integer argument from 1-100 representing the progress in %</a>
 <a name="53"><span class="lineNum">      53 </span>            :      */</a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">          1 :     void updateProgressBar(int progress);</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">          1 :     void updateProgressBar(const int &amp;progress);</span></a>
 <a name="55"><span class="lineNum">      55 </span>            : </a>
 <a name="56"><span class="lineNum">      56 </span>            :     /**</a>
 <a name="57"><span class="lineNum">      57 </span>            :      * @brief updateStatusText sets the Text of the label above the statusbar to the input text</a>
@@ -134,68 +134,83 @@
 <a name="76"><span class="lineNum">      76 </span>            :      */</a>
 <a name="77"><span class="lineNum">      77 </span><span class="lineCov">          1 :     void clearModelList();</span></a>
 <a name="78"><span class="lineNum">      78 </span>            : </a>
-<a name="79"><span class="lineNum">      79 </span>            : private:</a>
-<a name="80"><span class="lineNum">      80 </span>            :     static constexpr auto DIALOG_CAPTION = QT_TR_NOOP(&quot;Select .txt file&quot;);</a>
-<a name="81"><span class="lineNum">      81 </span>            : </a>
-<a name="82"><span class="lineNum">      82 </span>            :     Ui::ImportFilesWidget *ui;</a>
-<a name="83"><span class="lineNum">      83 </span>            : </a>
-<a name="84"><span class="lineNum">      84 </span>            :     void retranslateUi();</a>
-<a name="85"><span class="lineNum">      85 </span>            : </a>
-<a name="86"><span class="lineNum">      86 </span>            : private slots:</a>
+<a name="79"><span class="lineNum">      79 </span>            :     /**</a>
+<a name="80"><span class="lineNum">      80 </span>            :      * @brief setLoadButtonEnabled disables or enables the state of the model action bar (remove, open)</a>
+<a name="81"><span class="lineNum">      81 </span>            :      * @param state true to enabled, false to disable</a>
+<a name="82"><span class="lineNum">      82 </span>            :      */</a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">          1 :     void setActionButtonsEnabled(const bool &amp;state);</span></a>
+<a name="84"><span class="lineNum">      84 </span>            : </a>
+<a name="85"><span class="lineNum">      85 </span>            : private:</a>
+<a name="86"><span class="lineNum">      86 </span>            :     static constexpr auto DIALOG_CAPTION = QT_TR_NOOP(&quot;Select .txt file&quot;);</a>
 <a name="87"><span class="lineNum">      87 </span>            : </a>
-<a name="88"><span class="lineNum">      88 </span>            :     //slots correspond with the identically named button in the UI</a>
-<a name="89"><span class="lineNum">      89 </span>            :     [[maybe_unused]] void on_pushButton_clearTags_clicked();</a>
-<a name="90"><span class="lineNum">      90 </span>            : </a>
-<a name="91"><span class="lineNum">      91 </span>            :     [[maybe_unused]] void on_pushButton_addModel_clicked();</a>
-<a name="92"><span class="lineNum">      92 </span>            : </a>
-<a name="93"><span class="lineNum">      93 </span>            :     [[maybe_unused]] void on_pushButton_removeModel_clicked();</a>
-<a name="94"><span class="lineNum">      94 </span>            : </a>
-<a name="95"><span class="lineNum">      95 </span>            :     [[maybe_unused]] void on_pushButton_loadModel_clicked();</a>
+<a name="88"><span class="lineNum">      88 </span>            :     Ui::ImportFilesWidget *ui;</a>
+<a name="89"><span class="lineNum">      89 </span>            : </a>
+<a name="90"><span class="lineNum">      90 </span>            :     void retranslateUi();</a>
+<a name="91"><span class="lineNum">      91 </span>            : </a>
+<a name="92"><span class="lineNum">      92 </span>            : private slots:</a>
+<a name="93"><span class="lineNum">      93 </span>            : </a>
+<a name="94"><span class="lineNum">      94 </span>            :     //slots correspond with the identically named button in the UI</a>
+<a name="95"><span class="lineNum">      95 </span>            :     [[maybe_unused]] void on_pushButton_clearTags_clicked();</a>
 <a name="96"><span class="lineNum">      96 </span>            : </a>
-<a name="97"><span class="lineNum">      97 </span>            :     [[maybe_unused]] void on_pushButton_loadImages_clicked();</a>
+<a name="97"><span class="lineNum">      97 </span>            :     [[maybe_unused]] void on_pushButton_addModel_clicked();</a>
 <a name="98"><span class="lineNum">      98 </span>            : </a>
-<a name="99"><span class="lineNum">      99 </span>            :     [[maybe_unused]] void on_horizontalSlider_valueChanged(int value);</a>
+<a name="99"><span class="lineNum">      99 </span>            :     [[maybe_unused]] void on_pushButton_removeModel_clicked();</a>
 <a name="100"><span class="lineNum">     100 </span>            : </a>
-<a name="101"><span class="lineNum">     101 </span>            : </a>
-<a name="102"><span class="lineNum">     102 </span>            :     [[maybe_unused]] void on_pushButton_loadLabelsFromFile_clicked();</a>
-<a name="103"><span class="lineNum">     103 </span>            : </a>
-<a name="104"><span class="lineNum">     104 </span>            :     [[maybe_unused]] void on_pushButton_abortLoading_clicked();</a>
-<a name="105"><span class="lineNum">     105 </span>            : </a>
-<a name="106"><span class="lineNum">     106 </span>            : signals:</a>
+<a name="101"><span class="lineNum">     101 </span>            :     [[maybe_unused]] void on_pushButton_loadModel_clicked();</a>
+<a name="102"><span class="lineNum">     102 </span>            : </a>
+<a name="103"><span class="lineNum">     103 </span>            :     [[maybe_unused]] void on_pushButton_loadImages_clicked();</a>
+<a name="104"><span class="lineNum">     104 </span>            : </a>
+<a name="105"><span class="lineNum">     105 </span>            :     [[maybe_unused]] void on_horizontalSlider_valueChanged(const int &amp;value);</a>
+<a name="106"><span class="lineNum">     106 </span>            : </a>
 <a name="107"><span class="lineNum">     107 </span>            : </a>
-<a name="108"><span class="lineNum">     108 </span>            :     /**</a>
-<a name="109"><span class="lineNum">     109 </span>            :      * @brief sig_newModel emitted when the UI to create a new model is to be opened</a>
-<a name="110"><span class="lineNum">     110 </span>            :      */</a>
-<a name="111"><span class="lineNum">     111 </span><span class="lineCov">          1 :     void sig_newModel();</span></a>
-<a name="112"><span class="lineNum">     112 </span>            : </a>
-<a name="113"><span class="lineNum">     113 </span>            :     /**</a>
-<a name="114"><span class="lineNum">     114 </span>            :      * @brief sig_removeModel emitted when the UI to remove a model is to be opened</a>
-<a name="115"><span class="lineNum">     115 </span>            :      * @param modelName name of the model to be removed</a>
-<a name="116"><span class="lineNum">     116 </span>            :      */</a>
-<a name="117"><span class="lineNum">     117 </span><span class="lineCov">          1 :     void sig_removeModel(QString modelName);</span></a>
-<a name="118"><span class="lineNum">     118 </span>            : </a>
-<a name="119"><span class="lineNum">     119 </span>            :     /**</a>
-<a name="120"><span class="lineNum">     120 </span>            :      * @brief sig_loadModel emitted when a selected is to be loaded as the current model</a>
-<a name="121"><span class="lineNum">     121 </span>            :      * @param modelName name of the model to be loaded</a>
-<a name="122"><span class="lineNum">     122 </span>            :      */</a>
-<a name="123"><span class="lineNum">     123 </span><span class="lineCov">          1 :     void sig_loadModel(QString modelName);</span></a>
-<a name="124"><span class="lineNum">     124 </span>            : </a>
-<a name="125"><span class="lineNum">     125 </span>            :     /**</a>
-<a name="126"><span class="lineNum">     126 </span>            :      * @brief sig_loadInputImages emitted when images are to be loaded by a plugin according to the parameters</a>
-<a name="127"><span class="lineNum">     127 </span>            :      * @param pluginName name of the plugin being used</a>
-<a name="128"><span class="lineNum">     128 </span>            :      * @param count amount of images</a>
-<a name="129"><span class="lineNum">     129 </span>            :      * @param label list of keywords representing the search queries</a>
-<a name="130"><span class="lineNum">     130 </span>            :      * @param split integer argument from 1-100</a>
-<a name="131"><span class="lineNum">     131 </span>            :      */</a>
-<a name="132"><span class="lineNum">     132 </span><span class="lineCov">          1 :     void sig_loadInputImages(QString pluginName, int count, QStringList label,int split);</span></a>
-<a name="133"><span class="lineNum">     133 </span>            : </a>
-<a name="134"><span class="lineNum">     134 </span>            :     /**</a>
-<a name="135"><span class="lineNum">     135 </span>            :      * @brief sig_abortLoading emits request to abort image loading</a>
-<a name="136"><span class="lineNum">     136 </span>            :      */</a>
-<a name="137"><span class="lineNum">     137 </span><span class="lineCov">          1 :     void sig_abortLoading();</span></a>
-<a name="138"><span class="lineNum">     138 </span>            : };</a>
-<a name="139"><span class="lineNum">     139 </span>            : </a>
-<a name="140"><span class="lineNum">     140 </span>            : #endif // IMPORTFILESWIDGET_H</a>
+<a name="108"><span class="lineNum">     108 </span>            :     [[maybe_unused]] void on_pushButton_loadLabelsFromFile_clicked();</a>
+<a name="109"><span class="lineNum">     109 </span>            : </a>
+<a name="110"><span class="lineNum">     110 </span>            :     [[maybe_unused]] void on_pushButton_abortLoading_clicked();</a>
+<a name="111"><span class="lineNum">     111 </span>            : </a>
+<a name="112"><span class="lineNum">     112 </span>            :     void slot_setEnableActionButtons();</a>
+<a name="113"><span class="lineNum">     113 </span>            : </a>
+<a name="114"><span class="lineNum">     114 </span>            :     void on_horizontalSlider_sliderReleased();</a>
+<a name="115"><span class="lineNum">     115 </span>            : </a>
+<a name="116"><span class="lineNum">     116 </span>            : signals:</a>
+<a name="117"><span class="lineNum">     117 </span>            : </a>
+<a name="118"><span class="lineNum">     118 </span>            :     /**</a>
+<a name="119"><span class="lineNum">     119 </span>            :      * @brief sig_newModel emitted when the UI to create a new model is to be opened</a>
+<a name="120"><span class="lineNum">     120 </span>            :      */</a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">          1 :     void sig_newModel();</span></a>
+<a name="122"><span class="lineNum">     122 </span>            : </a>
+<a name="123"><span class="lineNum">     123 </span>            :     /**</a>
+<a name="124"><span class="lineNum">     124 </span>            :      * @brief sig_removeModel emitted when the UI to remove a model is to be opened</a>
+<a name="125"><span class="lineNum">     125 </span>            :      * @param modelName name of the model to be removed</a>
+<a name="126"><span class="lineNum">     126 </span>            :      */</a>
+<a name="127"><span class="lineNum">     127 </span><span class="lineCov">          1 :     void sig_removeModel(QString modelName);</span></a>
+<a name="128"><span class="lineNum">     128 </span>            : </a>
+<a name="129"><span class="lineNum">     129 </span>            :     /**</a>
+<a name="130"><span class="lineNum">     130 </span>            :      * @brief sig_loadModel emitted when a selected is to be loaded as the current model</a>
+<a name="131"><span class="lineNum">     131 </span>            :      * @param modelName name of the model to be loaded</a>
+<a name="132"><span class="lineNum">     132 </span>            :      */</a>
+<a name="133"><span class="lineNum">     133 </span><span class="lineCov">          1 :     void sig_loadModel(QString modelName);</span></a>
+<a name="134"><span class="lineNum">     134 </span>            : </a>
+<a name="135"><span class="lineNum">     135 </span>            :     /**</a>
+<a name="136"><span class="lineNum">     136 </span>            :      * @brief sig_loadInputImages emitted when images are to be loaded by a plugin according to the parameters</a>
+<a name="137"><span class="lineNum">     137 </span>            :      * @param pluginName name of the plugin being used</a>
+<a name="138"><span class="lineNum">     138 </span>            :      * @param count amount of images</a>
+<a name="139"><span class="lineNum">     139 </span>            :      * @param label list of keywords representing the search queries</a>
+<a name="140"><span class="lineNum">     140 </span>            :      * @param split integer argument from 1-100</a>
+<a name="141"><span class="lineNum">     141 </span>            :      */</a>
+<a name="142"><span class="lineNum">     142 </span><span class="lineCov">          1 :     void sig_loadInputImages(QString pluginName, int count, QStringList label,int split);</span></a>
+<a name="143"><span class="lineNum">     143 </span>            : </a>
+<a name="144"><span class="lineNum">     144 </span>            :     /**</a>
+<a name="145"><span class="lineNum">     145 </span>            :      * @brief sig_abortLoading emits request to abort image loading</a>
+<a name="146"><span class="lineNum">     146 </span>            :      */</a>
+<a name="147"><span class="lineNum">     147 </span><span class="lineCov">          1 :     void sig_abortLoading();</span></a>
+<a name="148"><span class="lineNum">     148 </span>            : </a>
+<a name="149"><span class="lineNum">     149 </span>            :     /**</a>
+<a name="150"><span class="lineNum">     150 </span>            :      * @brief sig_splitSliderChanged emits a signal if the slider value is changed</a>
+<a name="151"><span class="lineNum">     151 </span>            :      */</a>
+<a name="152"><span class="lineNum">     152 </span><span class="lineCov">          1 :     void sig_splitSliderChanged(int value);</span></a>
+<a name="153"><span class="lineNum">     153 </span>            : };</a>
+<a name="154"><span class="lineNum">     154 </span>            : </a>
+<a name="155"><span class="lineNum">     155 </span>            : #endif // IMPORTFILESWIDGET_H</a>
 </pre>
       </td>
     </tr>

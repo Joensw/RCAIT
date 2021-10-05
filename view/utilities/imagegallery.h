@@ -181,6 +181,10 @@ private:
             abort = true;
         }
 
+        /**
+        * @brief destructor for the task
+        *
+        */
         ~addImagesTask() override {
             quit();
             QThread::quit();

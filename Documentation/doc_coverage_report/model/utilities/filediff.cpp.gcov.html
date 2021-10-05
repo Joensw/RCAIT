@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-09-19 11:22:25</td>
+            <td class="headerValue">2021-10-05 07:49:36</td>
             <td></td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -140,8 +140,8 @@
 <a name="82"><span class="lineNum">      82 </span>            : void FileDiff::diff(const QString &amp;file1, const QString &amp;file2) {</a>
 <a name="83"><span class="lineNum">      83 </span>            :     m_maxLineWidth = 0;</a>
 <a name="84"><span class="lineNum">      84 </span>            :     auto pythonScript = QFileInfo(&quot;filediff.py&quot;);</a>
-<a name="85"><span class="lineNum">      85 </span>            :     auto command = &quot;python&quot;;</a>
-<a name="86"><span class="lineNum">      86 </span>            :     auto args = {pythonScript.absoluteFilePath(), file1, file2};</a>
+<a name="85"><span class="lineNum">      85 </span>            :     auto command = ConfigurationManager::getInstance().getPythonExecutablePath();</a>
+<a name="86"><span class="lineNum">      86 </span>            :     QStringList args = {pythonScript.absoluteFilePath(), file1, file2};</a>
 <a name="87"><span class="lineNum">      87 </span>            : </a>
 <a name="88"><span class="lineNum">      88 </span>            :     m_process.reset(new QProcess);</a>
 <a name="89"><span class="lineNum">      89 </span>            : </a>
@@ -150,8 +150,9 @@
 <a name="92"><span class="lineNum">      92 </span>            : </a>
 <a name="93"><span class="lineNum">      93 </span>            :     m_process-&gt;setReadChannel(QProcess::StandardOutput);</a>
 <a name="94"><span class="lineNum">      94 </span>            : </a>
-<a name="95"><span class="lineNum">      95 </span>            :     m_process-&gt;start(command, args);</a>
-<a name="96"><span class="lineNum">      96 </span>            : }</a>
+<a name="95"><span class="lineNum">      95 </span>            :     qDebug() &lt;&lt; command % &quot; &quot; % args.join(&quot; &quot;) % &quot;\n&quot;;</a>
+<a name="96"><span class="lineNum">      96 </span>            :     m_process-&gt;start(command, args);</a>
+<a name="97"><span class="lineNum">      97 </span>            : }</a>
 </pre>
       </td>
     </tr>

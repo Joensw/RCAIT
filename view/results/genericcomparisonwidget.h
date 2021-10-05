@@ -77,6 +77,10 @@ protected:
      */
     [[maybe_unused]] [[nodiscard]] const QMap<QString, QWidget *> &getMapTabsByName() const;
 
+    /**
+     * @brief Sets up the basic GUI elements for the menu
+     *
+     */
     void configure_comparisonMenu();
 
 public:
