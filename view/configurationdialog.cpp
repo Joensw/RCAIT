@@ -26,18 +26,18 @@ void ConfigurationDialog::closeEvent(QCloseEvent *event)
         event->accept();
     }
     else{
-        int ret = QMessageBox::question(this, QUIT_DIALOG_TITLE,
-                                        QUIT_MSG,
+        int ret = QMessageBox::question(this, tr(QUIT_DIALOG_TITLE),
+                                        tr(QUIT_MSG),
                                         QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel);
         switch (ret) {
-        case QMessageBox::Ok:
-            event->accept();
-            break;
-        case QMessageBox::Cancel:
-            event->ignore();
-            break;
-        default:
-            break;
+            case QMessageBox::Ok:
+                event->accept();
+                break;
+            case QMessageBox::Cancel:
+                event->ignore();
+                break;
+            default:
+                break;
         }
     }
 }
@@ -49,7 +49,7 @@ void ConfigurationDialog::reject()
 
 void ConfigurationDialog::showError()
 {
-    ui->label_error->setText(MISSING_PATHS_MSG);
+    ui->label_error->setText(tr(MISSING_PATHS_MSG));
     ui->label_error->show();
 }
 
@@ -61,25 +61,25 @@ void ConfigurationDialog::confirm()
 
 void ConfigurationDialog::slot_setProjectDir()
 {
-    mProjectDir = QFileDialog::getExistingDirectory(this, PROJECT_SELECT_MSG);
+    mProjectDir = QFileDialog::getExistingDirectory(this, tr(PROJECT_SELECT_MSG));
     ui->label_projectsDir->setText(mProjectDir);
 }
 
 void ConfigurationDialog::slot_setClassificationPluginsDir()
 {
-    mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, CLASSIFICATION_SELECT_MSG);
+    mClassificationPluginsDir = QFileDialog::getExistingDirectory(this, tr(CLASSIFICATION_SELECT_MSG));
     ui->label_classificationDir->setText(mClassificationPluginsDir);
 }
 
 void ConfigurationDialog::slot_setImageLoaderPluginsDir()
 {
-    mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, LOADER_SELECT_MSG);
+    mImageLoaderPluginsDir = QFileDialog::getExistingDirectory(this, tr(LOADER_SELECT_MSG));
     ui->label_imageLoaderDir->setText(mImageLoaderPluginsDir);
 }
 
 void ConfigurationDialog::slot_setPythonPath()
 {
-    mPythonPath = QFileDialog::getOpenFileName(this, PYTHON_SELECT_MSG);
+    mPythonPath = QFileDialog::getOpenFileName(this, tr(PYTHON_SELECT_MSG));
     ui->label_pythonPath->setText(mPythonPath);
 }
 

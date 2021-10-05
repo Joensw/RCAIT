@@ -87,8 +87,8 @@ private:
 
     static constexpr auto STYLESHEET_GREEN = "QLabel { color : green; }";
     static constexpr auto STYLESHEET_BLUE = "QLabel { color : blue; }";
-    static constexpr auto SAVE_SUCESS = "Saved changes.";
-    static constexpr auto UNSAVED_CHANGES = "There may be unsaved changes.";
+    static constexpr auto SAVE_SUCESS = QT_TR_NOOP("Saved changes.");
+    static constexpr auto UNSAVED_CHANGES = QT_TR_NOOP("There may be unsaved changes.");
     static constexpr auto IMAGE_DIR_SELECT_MSG = QT_TR_NOOP("Select project directory");
 };
 
