@@ -169,8 +169,8 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
         qDebug() << "should not have been called yet, no project has been opened";
         return {};
     }
-    qDebug() << subDirToList(getTrainingResultsDir());
-    return subDirToList(getTrainingResultsDir());
+    QStringList l = subDirToList(getTrainingResultsDir());
+    return l;
 }
 
 QStringList ProjectManager::getNamesOfSavedClassificationResults()
@@ -179,7 +179,6 @@ QStringList ProjectManager::getNamesOfSavedClassificationResults()
         qDebug() << "should not have been called yet, no project has been opened";
         return {};
     }
-    qDebug() << subDirToList(getClassificationResultsDir());
     return subDirToList(getClassificationResultsDir());
 }
 
@@ -247,12 +246,7 @@ bool ProjectManager::verifyName(const QString &projectName, QString &error) cons
 QStringList ProjectManager::subDirToList(const QString &path)
 {
     QDir trainingResultsDir(path);
-    QFileInfoList filelist = trainingResultsDir.entryInfoList(QDir::Dirs| QDir::NoDotAndDotDot);
-    QStringList nameList;
-    for(const QFileInfo &f: filelist){
-        nameList.append(f.baseName());
-    }
-    return nameList;
+    return trainingResultsDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
 }
 
 

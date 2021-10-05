@@ -114,7 +114,8 @@ TEST(ProjectManagerTest, getProjects){
     projectsDir.removeRecursively();
 }
 
-TEST (ProjectManagerTest, trainingReults) {
+
+TEST (ProjectManagerTest, resultsProjectOpened) {
     QDir projectsDir(tempProjectsDir);
     QString absolutePath = projectsDir.absolutePath();
     //SetUP
@@ -127,22 +128,30 @@ TEST (ProjectManagerTest, trainingReults) {
     pm->loadProject(testProjectName);
     EXPECT_TRUE(pm->getProjectName() == testProjectName);
 
+
     QString trainingResultsDir = pm->getTrainingResultsDir();
-    qDebug() << trainingResultsDir;
     EXPECT_FALSE(trainingResultsDir.isEmpty());
 
-    QString path = pm->getTrainingResultsDir();
+    QString classificationResultsDir = pm->getClassificationResultsDir();
+    EXPECT_FALSE(trainingResultsDir.isEmpty());
 
     QDir dir;
-    dir.mkpath(path + "/" + "NewResult");
+    dir.mkpath(trainingResultsDir + "/" + "NewResult");
+    dir.mkpath(classificationResultsDir + "/" + "NewResult2");
 
-    QStringList results = pm->getNamesOfSavedTrainingResults();
-    EXPECT_TRUE(results.length() == 1);
-    EXPECT_TRUE(results.contains("NewResult"));
+    QStringList resultsTrain = pm->getNamesOfSavedTrainingResults();
+    EXPECT_TRUE(resultsTrain.length() == 1);
+    EXPECT_TRUE(resultsTrain.contains("NewResult"));
+
+    QStringList resultsClass = pm->getNamesOfSavedClassificationResults();
+    EXPECT_TRUE(resultsClass.length() == 1);
+    EXPECT_TRUE(resultsClass.contains("NewResult2"));
 
     //TearDown
     projectsDir.removeRecursively();
 }
+
+
 
 TEST (ProjectManagerTest, workDirSubFolder){
     QDir projectsDir(tempProjectsDir);
