@@ -205,19 +205,19 @@ void ProjectManager::setProjectsDirectory(const QString &newDirectory)
 
 bool ProjectManager::verifyName(const QString &projectName, QString &error) const {
     if (projectName.length() == 0) {
-        error = ERROR_NOCHAR;
+        error = tr(ERROR_NOCHAR);
         return false;
     }
 
     static QRegularExpression noSpacesEx(REGEX_ONLY_SPACE);
     QRegularExpressionMatch match = noSpacesEx.match(projectName);
     if (match.hasMatch()) {
-        error = ERROR_ONLY_SPACE;
+        error = tr(ERROR_ONLY_SPACE);
         return false;
     }
     for (const QString &charSequence: UNWANTED_NAME_SEQUENCES) {
         if (projectName.contains(charSequence)) {
-            error = ERROR_ILLEGAL_CHAR;
+            error = tr(ERROR_ILLEGAL_CHAR);
             return false;
         }
     }
@@ -225,7 +225,7 @@ bool ProjectManager::verifyName(const QString &projectName, QString &error) cons
     QDir projectsDir(mProjectsDirectory);
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     if (projectsDir.entryList().contains(projectName)) {
-        error = ERROR_DUPLICATE;
+        error = tr(ERROR_DUPLICATE);
         return false;
     }
 
@@ -233,7 +233,7 @@ bool ProjectManager::verifyName(const QString &projectName, QString &error) cons
     QDir tempDir(mProjectsDirectory % "/" % projectName);
     tempDir.setFilter(QDir::NoDotAndDotDot);
     if (!tempDir.mkpath(mProjectsDirectory % "/" % projectName )){
-        error = ERROR_OS_SUPPORT;
+        error = tr(ERROR_OS_SUPPORT);
         return false;
     }
     tempDir.removeRecursively();

@@ -41,7 +41,7 @@ void GlobalSettingsWidget::showUpdate(const int &amount) {
         AnimationUtilities::setTextWithAnimation(ui->label_information, tr(NO_CHANGES_MSG));
     } else {
         ui->label_information->setStyleSheet(STYLESHEET_GREEN);
-        QString message = SUCCESS_UPDATED_PATHS_MSG;
+        QString message = tr(SUCCESS_UPDATED_PATHS_MSG);
         AnimationUtilities::setTextWithAnimation(ui->label_information, message.arg(amount));
     }
 }

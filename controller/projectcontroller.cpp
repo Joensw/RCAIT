@@ -75,5 +75,5 @@ void ProjectController::slot_removeProjectConfirm() {
         mRemoveProjectDialog->close();
         return;
     }
-    mRemoveProjectDialog->setErrorMessage(OPEN_PROJECT_ERROR);
+    mRemoveProjectDialog->setErrorMessage(tr(OPEN_PROJECT_ERROR));
 }
