@@ -39,7 +39,7 @@ TabController::TabController(CustomTabWidget *tabWidget, QTabWidget* resultsTabW
     //disable all tabs, except start and automation
     for (int i = IMPORT_FILES; i < AUTOMATION; i++) {
 
-        //m_tabWidget->setTabEnabled(i, false);
+        m_tabWidget->setTabEnabled(i, false);
 
     }
     for (int j = TRAINING; j <= CLASSIFICATION; j++) {
