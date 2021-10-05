@@ -194,8 +194,12 @@ void ImageInspectionModel::moveFile(const QString &imagePath, const QString &lab
     auto newFilePath = dir.absoluteFilePath(newFile);
     QFile destFile(newFilePath);
 
-    destFile.remove();
-    if (!file.rename(newFilePath)) { qDebug() << "Error moving file: " << file.error(); }
+    if(destFile.exists() && !destFile.remove()){
+        qDebug() << "could not remove file " << newFilePath;
+    }
+    if (!file.rename(newFilePath)) {
+        qDebug() << "Error moving file: " << imagePath  << " to " << newFilePath << " error " << file.error();
+    }
     if (folder.isEmpty()) { folder.removeRecursively(); }
 
 }
