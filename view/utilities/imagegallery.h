@@ -39,7 +39,7 @@ public:
      * @brief removes all selected images from the gallery.
      *
      */
-    QList<int> removeselected();
+    QList<int> removeselected() const;
 
     /**
      * @brief addImages adds images from paths to gallery.
@@ -126,7 +126,7 @@ protected slots:
      *
      * @param e resize event
      */
-    void resizeEvent(QResizeEvent *e);
+    void resizeEvent(QResizeEvent *e) override;
 
 private slots:
 
@@ -148,10 +148,10 @@ private:
          * @param gallery ImageGallery to add images
          * @param imageList list of imagepaths
          */
-        addImagesTask(ImageGallery *gallery, QStringList imageList) {
-            abort = false;
-            this->mGallery = gallery;
-            this->mImageList = std::move(imageList);
+        addImagesTask(ImageGallery *gallery, QStringList imageList)
+                : abort(false),
+                  mGallery(gallery),
+                  mImageList(std::move(imageList)) {
         }
 
         /**
@@ -159,17 +159,15 @@ private:
          *
          */
         void run() override {
-            for (QString imageName: mImageList) {
+            for (const QString &imageName: mImageList) {
                 if (abort) return;
 
                 QImage img(imageName);
 
-                if (img.isNull()) {
+                if (img.isNull())
                     mGallery->addImage(errorImage(imageName));
-
-                } else {
+                else
                     mGallery->addImage(QImage(img));
-                }
             }
         }
 
@@ -188,7 +186,7 @@ private:
         ~addImagesTask() override {
             quit();
             QThread::quit();
-            while (!isFinished()){
+            while (!isFinished()) {
                 QApplication::processEvents();
                 QThread::sleep(1);
             }
@@ -199,7 +197,7 @@ private:
          * @param imageName name of the broken image
          * @return an image with an error message
          */
-        QImage errorImage(QString &imageName) {
+        [[nodiscard]] QImage errorImage(const QString &imageName) const {
             //prints the error to the debug console. Will not impact performance because it's only called on error
             QImageReader reader(imageName);
             reader.read();
@@ -223,9 +221,9 @@ private:
         }
 
     private:
+        std::atomic_bool abort;
         ImageGallery *mGallery;
         QStringList mImageList;
-        volatile bool abort;
     };
 
 

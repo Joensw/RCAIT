@@ -92,7 +92,7 @@ public:
      * @brief Gets the width of the line number area.
      * @return width of the line number area as an int.
      */
-    int lineNumberAreaWidth();
+    [[nodiscard]] int lineNumberAreaWidth() const;
 
     /**
      * @brief Appends a placeholder line and marks it as such.

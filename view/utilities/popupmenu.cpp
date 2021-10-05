@@ -1,5 +1,4 @@
 #include "popupmenu.h"
-#include <QPushButton>
 
 PopupMenu::PopupMenu(QPushButton *button, QWidget *parent)
         : QMenu(parent),

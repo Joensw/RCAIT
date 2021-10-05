@@ -30,7 +30,7 @@ public:
      * @brief CustomTabBar constructor
      * @param tabWidget Associated TabWidget
      */
-    CustomTabBar(QTabWidget *tabWidget);
+    explicit CustomTabBar(QTabWidget *tabWidget);
 
 protected:
     /**

@@ -37,6 +37,16 @@ Quelle des Originals: https://github.com/nicktrandafil/tags
 
 #include <memory>
 #include <vector>
+#include <cassert>
+#include <QApplication>
+#include <QCompleter>
+#include <QPainter>
+#include <QPainterPath>
+#include <QStyle>
+#include <QStyleHints>
+#include <QStyleOptionFrame>
+#include <QTextLayout>
+#include <view/utilities/qinputcontrol_p.h>
 
 class QStyleOptionFrame;
 

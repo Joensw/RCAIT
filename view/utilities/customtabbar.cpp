@@ -6,7 +6,7 @@ CustomTabBar::CustomTabBar(QTabWidget *tabWidget) {
 }
 
 void CustomTabBar::paintEvent(QPaintEvent *e) {
-    Q_UNUSED(e);
+    Q_UNUSED(e)
     int selected = m_tabWidget->currentIndex();
     QStylePainter painter(this);
 
@@ -35,6 +35,7 @@ void CustomTabBar::paintEvent(QPaintEvent *e) {
 
         //Finally, draw configured icon and text
         painter.drawItemPixmap(option.rect, Qt::AlignTop | Qt::AlignHCenter, pixmap);
-        painter.drawItemText(option.rect, Qt::AlignBottom | Qt::AlignHCenter, option.palette, true, option.text, colorRole);
+        painter.drawItemText(option.rect, Qt::AlignBottom | Qt::AlignHCenter, option.palette, true, option.text,
+                             colorRole);
     }
 }

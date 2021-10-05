@@ -6,16 +6,18 @@
 #include <customtabbar.h>
 
 /**
- * @brief The CustomTabWidget class is used to switch between different widets layered ontop of eachother
+ * @brief The CustomTabWidget class is used to switch between different widgets layered on top of each other
  */
-class CustomTabWidget : public QTabWidget
-{
+class CustomTabWidget : public QTabWidget {
 public:
     /**
      * @brief CustomTabWidget creates a customTabWidget
      * @param parent optional parent argument
      */
-    explicit CustomTabWidget(QWidget *parent = nullptr);
+    explicit CustomTabWidget(QWidget *parent = nullptr) {
+        Q_UNUSED(parent)
+        setTabBar(new CustomTabBar(this));
+    };
 };
 
 #endif // CUSTOMTABWIDGET_H

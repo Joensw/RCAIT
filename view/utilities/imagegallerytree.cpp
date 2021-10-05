@@ -1,12 +1,6 @@
 #include "imagegallery.h"
 #include "imagegallerytree.h"
 
-#include <QDir>
-#include <QScrollBar>
-#include <QtConcurrent/QtConcurrentRun>
-#include <QScroller>
-#include <mapadapt.h>
-
 ImageGalleryTree::ImageGalleryTree(QWidget *parent) {
     // Add full touch compliance
     QScroller::grabGesture(this, QScroller::TouchGesture);

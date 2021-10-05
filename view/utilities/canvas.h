@@ -39,9 +39,9 @@ protected:
     /**
      * @brief Overridden method.
      * This is used for repainting with freshly calculated scaling factors.
-     * @param pQEvent paint event that occurred.
+     * @param paintEvent paint event that occurred.
      */
-    void paintEvent(QPaintEvent *pQEvent) override;
+    void paintEvent(QPaintEvent *paintEvent) override;
 };
 
 #endif // CANVAS_H

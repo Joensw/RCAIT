@@ -28,22 +28,11 @@ Mehrere Veränderungen für dieses PSE, wie
 - Anpassung an C++ 17
 - Bugfix wegen geringer Auflösung
 - Änderung der Texturen
+- Neue Funktion: Mehrere Wörter mit Leerzeichen in einen Tag
 Quelle des Originals: https://github.com/nicktrandafil/tags
 */
 
 #include <view/utilities/tags.hpp>
-
-#include <QApplication>
-#include <QCompleter>
-#include <QPainter>
-#include <QPainterPath>
-#include <QStyle>
-#include <QStyleHints>
-#include <QStyleOptionFrame>
-#include <QTextLayout>
-#include <view/utilities/qinputcontrol_p.h>
-
-#include <cassert>
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
 #define FONT_METRICS_WIDTH(fmt, ...) fmt.width(__VA_ARGS__)

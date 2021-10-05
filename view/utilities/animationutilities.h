@@ -8,17 +8,17 @@
 #include <QSharedPointer>
 
 /**
- * @brief The AnimationUtilities class Is a utility class for settings text in labels with extra animations and modifications
+ * @brief The AnimationUtilities class is a utility class for settings text in labels with extra animations and modifications
  */
-class  AnimationUtilities {
+class AnimationUtilities {
 
 private:
-    AnimationUtilities();
+    AnimationUtilities() = default;
 
-    static auto constexpr OPACITY_PROPERTY = "opacity";
-    static constexpr int FADE_IN_TIME = 1000;
-    static constexpr int START_OPACITY = 0;
-    static constexpr int END_OPACITY = 1;
+    static constexpr auto OPACITY_PROPERTY = "opacity";
+    static constexpr auto FADE_IN_TIME = 1000;
+    static constexpr auto START_OPACITY = 0;
+    static constexpr auto END_OPACITY = 1;
 
 public:
 
@@ -27,12 +27,11 @@ public:
      * @param label label for which the text should be set
      * @param message message to be displayed
      */
-    static void setTextWithAnimation(QLabel *label, const QString &message)
-    {
-        QGraphicsOpacityEffect* effect = new QGraphicsOpacityEffect();
-        //if a QObject has a effect installed, and gets a new one installed the existing one will be deleted
+    static void setTextWithAnimation(QLabel *label, const QString &message) {
+        auto *effect = new QGraphicsOpacityEffect();
+        //if a QObject has an effect installed, and gets a new one installed the existing one will be deleted
         label->setGraphicsEffect(effect);
-        QPropertyAnimation *anim = new QPropertyAnimation(effect, OPACITY_PROPERTY);
+        auto *anim = new QPropertyAnimation(effect, OPACITY_PROPERTY);
         anim->setDuration(FADE_IN_TIME);
         anim->setStartValue(START_OPACITY);
         anim->setEndValue(END_OPACITY);

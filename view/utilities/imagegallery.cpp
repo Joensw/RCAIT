@@ -24,7 +24,7 @@ ImageGallery::~ImageGallery() {
 }
 
 
-QList<int> ImageGallery::removeselected() {
+QList<int> ImageGallery::removeselected() const {
     QList<int> selected;
     for (int i = 0; i < this->count(); i++) {
         if (this->item(i)->isSelected()) {
@@ -124,9 +124,9 @@ void ImageGallery::resizeEvent(QResizeEvent *e) {
         QListView::resizeEvent(e);
         return;
     }
-    int squaresize = e->size().width() < e->size().height() ? e->size().width() : e->size().height();
+    int squaresize = std::min(e->size().width(), e->size().height());
     squaresize /= mRows;
-    QSize newSize = QSize(squaresize - 1, squaresize - 1);
+    QSize newSize(squaresize - 1, squaresize - 1);
     setIconSize(newSize);
     for (int i = 0; i < this->count(); i++) {
         item(i)->setData(Qt::DecorationRole,

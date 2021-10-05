@@ -2,14 +2,13 @@
 
 CustomTableWidget::CustomTableWidget(QWidget *parent) : QTableWidget(parent) {
     auto *cornerButton = getCornerButton();
-    if (cornerButton)
-        cornerButton->installEventFilter(this);
+    if (cornerButton) cornerButton->installEventFilter(this);
 
     // Add full touch compliance
-    this->setAttribute(Qt::WA_AcceptTouchEvents,true);
+    this->setAttribute(Qt::WA_AcceptTouchEvents, true);
     this->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
-    QScroller::grabGesture(this,QScroller::TouchGesture);
+    QScroller::grabGesture(this, QScroller::TouchGesture);
 }
 
 QAbstractButton *CustomTableWidget::getCornerButton() {
@@ -41,7 +40,7 @@ bool CustomTableWidget::eventFilter(QObject *o, QEvent *e) {
     //Painting icon and text, only difference to Qt's implementation
     opt.icon = button->icon();
     opt.text = button->text();
-    if (opt.text.isEmpty()){
+    if (opt.text.isEmpty()) {
         //Center icon iff there is no text
         opt.iconAlignment = Qt::AlignHCenter | Qt::AlignVCenter;
     }
@@ -63,7 +62,7 @@ int CustomTableWidget::addTableRow(const QString &identifier, const QStringList 
     auto identifierItem = new QTableWidgetItem(identifier);
 
     int col = 0;
-    for (const auto &value : data) {
+    for (const auto &value: data) {
         auto item = new QTableWidgetItem(value);
         item->setTextAlignment(Qt::AlignCenter);
         setVerticalHeaderItem(row, identifierItem);
@@ -83,7 +82,7 @@ bool CustomTableWidget::removeTableRow(const QString &identifier) {
     return false;
 }
 
-QTableWidgetItem *CustomTableWidget::operator()(int row, int column) const{
+QTableWidgetItem *CustomTableWidget::operator()(int row, int column) const {
     return this->at(row, column);
 }
 

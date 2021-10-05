@@ -60,7 +60,7 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent) {
     updateLineNumberAreaWidth(0);
 }
 
-int CodeEditor::lineNumberAreaWidth() {
+int CodeEditor::lineNumberAreaWidth() const {
     int digits = 1;
     int max = qMax(1, blockCount());
     while (max >= 10) {

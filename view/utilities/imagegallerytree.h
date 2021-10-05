@@ -3,13 +3,17 @@
 
 #include <imagegallery.h>
 #include <QTreeWidget>
+#include <QDir>
+#include <QScrollBar>
+#include <QtConcurrent/QtConcurrentRun>
+#include <QScroller>
+#include <mapadapt.h>
 
 /**
  * @brief The ImageGalleryTree class is a UI class that display a tree structure of images from directories.
  *
  */
-class ImageGalleryTree : public QTreeWidget
-{
+class ImageGalleryTree : public QTreeWidget {
 
 public:
 
@@ -18,7 +22,7 @@ public:
      *
      * @param parent optional parent argument
      */
-    ImageGalleryTree(QWidget* parent);
+    explicit ImageGalleryTree(QWidget *parent);
 
     /**
      * @brief resetTree removes all galleries and their corresponding labels from the tree.
@@ -58,7 +62,6 @@ public slots:
 
 private:
     QList<ImageGallery*> galleries;
-   // bool mExpanded = false;
 
 };
 
