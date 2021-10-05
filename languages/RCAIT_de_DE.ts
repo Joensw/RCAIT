@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <TS version="2.1" language="de_DE">
 <context>
     <name>AITrainingWidget</name>
@@ -11,56 +10,8 @@
         <translation type="unfinished">Datenerweiterung</translation>
     </message>
     <message>
-        <source>Normalize</source>
-        <translation type="unfinished">Normalisieren</translation>
-    </message>
-    <message>
-        <source>Random Flip Direction</source>
-        <translation type="unfinished">Zufällige Spiegelungs-Richtung</translation>
-    </message>
-    <message>
-        <source>Random Resized Crop Size</source>
-        <translation type="unfinished">Zufällige Ausschnittsgröße</translation>
-    </message>
-    <message>
-        <source>std</source>
-        <translation type="unfinished">std</translation>
-    </message>
-    <message>
-        <source>red</source>
-        <translation type="unfinished">rot</translation>
-    </message>
-    <message>
-        <source>blue</source>
-        <translation type="unfinished">blau</translation>
-    </message>
-    <message>
-        <source>green</source>
-        <translation type="unfinished">grün</translation>
-    </message>
-    <message>
-        <source>mean</source>
-        <translation type="unfinished">Mittelwert</translation>
-    </message>
-    <message>
-        <source>Random Flip Probability</source>
-        <translation type="unfinished">Zufällige Spiegelungs-Wahrscheinlichkeit</translation>
-    </message>
-    <message>
-        <source>horizontal</source>
-        <translation type="unfinished">horizontal</translation>
-    </message>
-    <message>
         <source>Show Preview</source>
         <translation type="unfinished">Vorschau anzeigen</translation>
-    </message>
-    <message>
-        <source>Run Configuration</source>
-        <translation type="unfinished">Konfiguration ausführen</translation>
-    </message>
-    <message>
-        <source>Resize</source>
-        <translation type="unfinished">Größe ändern</translation>
     </message>
     <message>
         <source>Run Model Training</source>
@@ -75,24 +26,8 @@
         <translation type="unfinished">Abbrechen</translation>
     </message>
     <message>
-        <source>Results</source>
-        <translation type="unfinished">Ergebnisse</translation>
-    </message>
-    <message>
-        <source>0,00</source>
-        <translation type="unfinished">40% {0,00?}</translation>
-    </message>
-    <message>
-        <source>0,000</source>
-        <translation type="unfinished">40% {0,000?}</translation>
-    </message>
-    <message>
         <source>0</source>
         <translation type="unfinished">0</translation>
-    </message>
-    <message>
-        <source>0,0000</source>
-        <translation type="unfinished">40% {0,0000?}</translation>
     </message>
     <message>
         <source>Configuration</source>
@@ -137,24 +72,8 @@
 <context>
     <name>BingSettings</name>
     <message>
-        <source>Form</source>
-        <translation type="unfinished">Form</translation>
-    </message>
-    <message>
         <source>Python executable path</source>
-        <translation>Pfad der ausführbaren Python-Datei</translation>
-    </message>
-    <message>
-        <source>API Key</source>
-        <translation>API-Schlüssel</translation>
-    </message>
-    <message>
-        <source>API Secret</source>
-        <translation>API-Geheimnis</translation>
-    </message>
-    <message>
-        <source>Python Path</source>
-        <translation>Python-Pfad</translation>
+        <translation>Pfad zu Python</translation>
     </message>
     <message>
         <source>Bing API Plugin</source>
@@ -185,10 +104,6 @@
     <message>
         <source>&lt;error&gt;</source>
         <translation>&lt;Fehler&gt;</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
     </message>
     <message>
         <source>Quit confirmation</source>
@@ -228,17 +143,23 @@
     </message>
     <message>
         <source>Are you sure you want to quit?
- The application will terminate</source>
+            The application will terminate
+        </source>
         <translation>Sind Sie sicher, dass Sie die Anwendung beenden wollen?
- Die Anwendung wird beendet</translation>
+            Die Anwendung wird beendet
+        </translation>
+    </message>
+    <message>
+        <source>Python Path</source>
+        <translation type="unfinished">Python-Pfad</translation>
+    </message>
+    <message>
+        <source>Select Python path</source>
+        <translation>Python-Pfad auswählen</translation>
     </message>
 </context>
 <context>
     <name>FlickrSettings</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished">Form</translation>
-    </message>
     <message>
         <source>API key</source>
         <translation>API-Schlüssel</translation>
@@ -249,19 +170,7 @@
     </message>
     <message>
         <source>Python executable path</source>
-        <translation>Ausführbarer Python-Pfad</translation>
-    </message>
-    <message>
-        <source>API Key</source>
-        <translation>API-Schlüssel</translation>
-    </message>
-    <message>
-        <source>API Secret</source>
-        <translation>API-Geheimnis</translation>
-    </message>
-    <message>
-        <source>Python Path</source>
-        <translation>Python-Pfad</translation>
+        <translation>Pfad zu Python</translation>
     </message>
     <message>
         <source>Flickr API Plugin</source>
@@ -270,10 +179,6 @@
 </context>
 <context>
     <name>FolderConfigwidget</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished">Form</translation>
-    </message>
     <message>
         <source>Loading method:</source>
         <translation>Methode zum Laden:</translation>
@@ -314,6 +219,10 @@
         <source>Folder Loader Plugin</source>
         <translation>Ordner-Lade-Plugin</translation>
     </message>
+    <message>
+        <source>Select project directory</source>
+        <translation type="unfinished">Projektverzeichnis wählen</translation>
+    </message>
 </context>
 <context>
     <name>GenericComparisonWidget</name>
@@ -327,10 +236,6 @@
     </message>
     <message>
         <source>Save Result</source>
-        <translation>Ergebnis speichern</translation>
-    </message>
-    <message>
-        <source>Save Result </source>
         <translation>Ergebnis speichern</translation>
     </message>
 </context>
@@ -369,18 +274,49 @@
         <translation>Globale Einstellungen</translation>
     </message>
     <message>
-        <source>Success. Updated %1 path(s)</source>
-        <translation>Erfolgreich. Aktualisierte %1 Pfad(e)</translation>
+        <source>General Python path</source>
+        <translation>Allgemeiner Python-Pfad</translation>
     </message>
-</context>
-<context>
-    <name>ImageGallery</name>
     <message>
-        <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saving will cause a reload of all plugins.&lt;br/&gt;Any
+            unsaved progress may be lost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+        </source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Das Speichern führt zu einem Neuladen aller Plugins.&lt;br/&gt;Nicht
+            gespeicherte Fortschritte können verloren gehen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+        </translation>
+    </message>
+    <message>
+        <source>Updated %1 path(s) successfully</source>
+        <translation>%1 Pfad(e) erfolgreich aktualisiert</translation>
     </message>
 </context>
-<context>
+    <context>
+        <name>GoogleSettings</name>
+        <message>
+            <source>Google API Plugin</source>
+            <translation>Google-API-Plugin</translation>
+        </message>
+        <message>
+            <source>Python executable path</source>
+            <translation>Pfad zu Python</translation>
+        </message>
+        <message>
+            <source>Google API Key</source>
+            <translation>Google API-Schlüssel</translation>
+        </message>
+        <message>
+            <source>Google CX</source>
+            <translation>Google CX</translation>
+        </message>
+    </context>
+    <context>
+        <name>ImageGallery</name>
+        <message>
+            <source>Form</source>
+            <translation type="unfinished">Form</translation>
+        </message>
+    </context>
+    <context>
     <name>ImageInspectionWidget</name>
     <message>
         <source>Form</source>
@@ -586,16 +522,8 @@
 <context>
     <name>MMClassificationSettings</name>
     <message>
-        <source>Form</source>
-        <translation type="unfinished">Form</translation>
-    </message>
-    <message>
         <source>MMClassification path</source>
         <translation>MMClassification-Pfad</translation>
-    </message>
-    <message>
-        <source>mmcls path</source>
-        <translation>mmcls-Pfad</translation>
     </message>
     <message>
         <source>Python Path</source>
@@ -610,73 +538,9 @@
         <translation type="unfinished">MMClassification Plugin</translation>
     </message>
 </context>
-<context>
-    <name>MMClassificiationDataAugmentationInput</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished">Form</translation>
-    </message>
-    <message>
-        <source>Test Pipeline</source>
-        <translation type="unfinished">Test-Pipeline</translation>
-    </message>
-    <message>
-        <source>224</source>
-        <translation type="unfinished">224</translation>
-    </message>
-    <message>
-        <source>256</source>
-        <translation type="unfinished">256</translation>
-    </message>
-    <message>
-        <source>Resize</source>
-        <translation type="unfinished">Größe ändern</translation>
-    </message>
-    <message>
-        <source>Center Crop Size</source>
-        <translation type="unfinished">Ausschnittgröße</translation>
-    </message>
-    <message>
-        <source>Train Pipeline</source>
-        <translation type="unfinished">Trainings-Pipeline</translation>
-    </message>
-    <message>
-        <source>horizontal</source>
-        <translation type="unfinished">horizontal</translation>
-    </message>
-    <message>
-        <source>vertical</source>
-        <translation type="unfinished">vertikal</translation>
-    </message>
-    <message>
-        <source>Random Flip Probability</source>
-        <translation type="unfinished">Zufällige Spiegelungs-Wahrscheinlichkeit</translation>
-    </message>
-    <message>
-        <source>0,5000</source>
-        <translation type="unfinished">0,5000</translation>
-    </message>
-    <message>
-        <source>ColorJitter</source>
-        <translation type="unfinished">Farbschwankungen</translation>
-    </message>
-    <message>
-        <source>Albu Transform Type</source>
-        <translation type="unfinished">Albu Transformationstyp</translation>
-    </message>
-    <message>
-        <source>Random Resized Crop Size</source>
-        <translation type="unfinished">Zufällige Ausschnittsgröße</translation>
-    </message>
-    <message>
-        <source>Random Flip Direction</source>
-        <translation type="unfinished">Zufällige Spiegelungs-Richtung</translation>
-    </message>
-    <message>
-        <source>RandomErasing</source>
-        <translation type="unfinished">Zufällige Löschung</translation>
-    </message>
-</context>
+    <context>
+        <name>MMClassificiationDataAugmentationInput</name>
+    </context>
 <context>
     <name>MainWindow</name>
     <message>
@@ -712,32 +576,35 @@
         <source>Rapid Classification AI Trainer</source>
         <translation>Rapid Classification AI Trainer</translation>
     </message>
+</context>
+    <context>
+        <name>ModelController</name>
+        <message>
+            <source>Cannot delete the currently loaded model!</source>
+            <translation>Das aktuell geladene Modell kann nicht gelöscht werden!</translation>
+        </message>
+        <message>
+            <source>Model could not be created</source>
+            <translation>Das Modell konnte nicht erstellt werden</translation>
+        </message>
+        <message>
+            <source>Model could not be deleted</source>
+            <translation>Das Modell konnte nicht gelöscht werden</translation>
+        </message>
     </context>
-<context>
-    <name>NewModelDialog</name>
-    <message>
-        <source>New Model</source>
-        <translation>Neues Modell</translation>
-    </message>
-    <message>
-        <source>Plugin</source>
+    <context>
+        <name>NewModelDialog</name>
+        <message>
+            <source>New Model</source>
+            <translation>Neues Modell</translation>
+        </message>
+        <message>
+            <source>Plugin</source>
         <translation>Plugin</translation>
-    </message>
-    <message>
-        <source>MMClassification Plugin</source>
-        <translation>MMClassification Plugin</translation>
-    </message>
-    <message>
-        <source>Tensorflow Plugin</source>
-        <translation>Tensorflow Plugin</translation>
     </message>
     <message>
         <source>Pre-trained base</source>
         <translation>Vortrainierte Basis</translation>
-    </message>
-    <message>
-        <source>VGG-11</source>
-        <translation>VGG-11</translation>
     </message>
     <message>
         <source>Name</source>
@@ -755,18 +622,25 @@
         <translation>Projektname</translation>
     </message>
     <message>
-        <source>invalid name!</source>
-        <translation type="unfinished">Ungültiger Name!</translation>
+        <source>Error!</source>
+        <translation>Fehler!</translation>
     </message>
 </context>
-<context>
-    <name>ProjectManager</name>
-    <message>
-        <source>Name must contain at least 1 character</source>
-        <translation>Der Name muss mindestens 1 Zeichen enthalten</translation>
-    </message>
-    <message>
-        <source>Name should contain more than only space (" ") characters</source>
+    <context>
+        <name>ProjectController</name>
+        <message>
+            <source>Cannot remove the currently opened project!</source>
+            <translation>Das aktuell geöffnete Projekt kann nicht entfernt werden!</translation>
+        </message>
+    </context>
+    <context>
+        <name>ProjectManager</name>
+        <message>
+            <source>Name must contain at least 1 character</source>
+            <translation>Der Name muss mindestens 1 Zeichen enthalten</translation>
+        </message>
+        <message>
+            <source>Name should contain more than only space (" ") characters</source>
         <translation>Der Name sollte mehr als nur Leerzeichen (" ") enthalten</translation>
     </message>
     <message>
@@ -803,6 +677,10 @@
     <message>
         <source>Load a file to compare...</source>
         <translation>Lade eine Datei zum Vergleich...</translation>
+    </message>
+    <message>
+        <source>Python Files (*.py)</source>
+        <translation>Python-Dateien (*.py)</translation>
     </message>
 </context>
 <context>
@@ -882,8 +760,8 @@
         <translation>Speichern</translation>
     </message>
     <message>
-        <source>Save </source>
-        <translation>Speichern</translation>
+        <source>Select python executable path</source>
+        <translation>Pfad zu Python wählen</translation>
     </message>
 </context>
 <context>
@@ -912,13 +790,9 @@ Wähle ein Projekt aus, um loszulegen</translation>
         <translation type="unfinished">Öffnen</translation>
     </message>
 </context>
-<context>
-    <name>StaticList</name>
-    <message>
-        <source>Form</source>
-        <translation>Form</translation>
-    </message>
-</context>
+    <context>
+        <name>StaticList</name>
+    </context>
 <context>
     <name>TopAccuraciesView</name>
     <message>
