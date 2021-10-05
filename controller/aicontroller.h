@@ -118,7 +118,7 @@ private:
     QScopedPointer<Classifier> mClassifier;
     QString mTrainingPath;
     QString mClassificationPath;
-    bool mPreviewLoading = false;
+    bool mPluginInUse = false;
 };
 
 #endif // AICONTROLLER_H

@@ -41,6 +41,11 @@ AIController::AIController(DataManager *dataManager, InputImagesWidget *inputIma
 }
 
 void AIController::slot_startTraining() {
+    if (mPluginInUse) {
+        qWarning() << "Training can not be started due to ai plugin beeing already in use ";
+        return;
+    }
+    mPluginInUse = true;
     QString modelName = mDataManager->getCurrentModel();
     mTrainer->train(mDataManager->getCurrentClassificationPlugin(),
                     modelName,
@@ -65,14 +70,21 @@ void AIController::slot_trainingResultUpdated(const QPointer<TrainingResult> &tr
     QString modelName = mDataManager->getCurrentModel();
     QString lastWorkingDirectory = mTrainer->getRecentWorkingDir();
     mDataManager->saveLastWorkingDirectoryOfModel(projectName, modelName, lastWorkingDirectory);
+    mPluginInUse = false;
     emit sig_trainingResultUpdated(trainingResult);
 }
 
 void AIController::slot_classificationResultUpdated(const QPointer<ClassificationResult> &classificationResult) {
+    mPluginInUse = false;
     emit sig_classificationResultUpdated(classificationResult);
 }
 
 void AIController::slot_startClassify(const QString &path) {
+    if (mPluginInUse) {
+        qWarning() << "Classification can not be started due to ai plugin beeing already in use ";
+        return;
+    }
+    mPluginInUse = true;
     QString currentClassificationPlugin = mDataManager->getCurrentClassificationPlugin();
     QString projectDatasetTrainSubDir = mDataManager->getProjectDataSetTrainSubdir();
     QString currentModel = mDataManager->getCurrentModel();
@@ -92,8 +104,11 @@ void AIController::slot_abortClassify() {
 }
 
 void AIController::slot_showAugmentationPreview(int amount) {
-    if (mPreviewLoading) return;
-    mPreviewLoading = true;
+    if (mPluginInUse) {
+        qWarning() << "Data Augmentation Preview can not be started due to ai plugin beeing already in use ";
+        return;
+    }
+    mPluginInUse = true;
     QString pluginName = mDataManager->getCurrentClassificationPlugin();
     QString modelName = mDataManager->getCurrentModel();
     QString inputPath = mDataManager->getProjectDataSetTrainSubdir();
@@ -105,7 +120,7 @@ void AIController::slot_augmentationPreviewReady(bool success, const QString &ta
     if (success) {
         mAiTrainingWidget->showImages(targetPath);
     }
-    mPreviewLoading = false;
+    mPluginInUse = false;
 }
 
 void AIController::slot_modelLoaded() {
