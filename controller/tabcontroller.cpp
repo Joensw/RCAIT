@@ -33,8 +33,8 @@ enum resultsUnderTabs {
     $END_RESULTS
 };
 
-TabController::TabController(CustomTabWidget *tabWidget, QTabWidget* resultsTabWidget)
-        : m_tabWidget(tabWidget), m_resultsTabWidget(resultsTabWidget) {
+TabController::TabController(CustomTabWidget *tabWidget, QTabWidget* resultsTabWidget, DataManager *dataManager)
+        : m_tabWidget(tabWidget), m_resultsTabWidget(resultsTabWidget), m_dataManager(dataManager) {
 
     //disable all tabs, except start and automation
     for (int i = IMPORT_FILES; i < AUTOMATION; i++) {
@@ -53,6 +53,12 @@ void TabController::slot_openProject() {
     m_tabWidget->setTabEnabled(IMPORT_FILES, true);
     m_tabWidget->setCurrentIndex(IMPORT_FILES);
     m_tabWidget->setTabEnabled(IMAGE_INSPECTION, true);
+    if (!(m_dataManager->getNamesOfSavedClassificationResults()).isEmpty()) {
+        slot_showClassificationResults();
+    }
+    if (!(m_dataManager->getNamesOfSavedTrainingResults()).isEmpty()){
+        slot_showTrainingResults();
+    }
 }
 
 void TabController::slot_modelLoaded() {

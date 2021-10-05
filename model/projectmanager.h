@@ -139,10 +139,16 @@ public:
      */
     [[nodiscard]] QString getClassificationResultsDir() const;
 
-    /** Only .txt files are returned and within the list they have no file ending, if no project is opened an empty list is returned
-     * @return getNamesOfSavedTrainingResults returns the names of all the files in the trainings results folder
+    /**
+     * @return getNamesOfSavedTrainingResults returns the names of all the files in the trainings results folder ,if no project is opened an empty list is returned
+     *
      */
     [[nodiscard]] QStringList getNamesOfSavedTrainingResults();
+
+    /**
+     * @return getNamesOfSavedClassificationResults returns the names of all the files in the classification results folder, if no project is opened an empty list is returned
+     */
+    [[nodiscard]] QStringList getNamesOfSavedClassificationResults();
 
     /**
      * The names receive the suffix _1, if this name is already taken, the suffix is incremented till it is available
@@ -202,6 +208,7 @@ private:
     static constexpr auto UNWANTED_NAME_SEQUENCES = {"/", "\\"};
 
     bool verifyName(const QString &projectName, QString &error) const;
+    QStringList subDirToList(const QString &path);
 
     QString mProjectPath;
     QString mProjectImagesTempDir;
