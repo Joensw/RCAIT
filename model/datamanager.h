@@ -309,6 +309,11 @@ public:
     [[maybe_unused]] [[nodiscard]] QStringList getNamesOfSavedTrainingResults() const;
 
     /**
+     * @return return list of the classification results that have been saved
+     */
+    [[maybe_unused]] [[nodiscard]] QStringList getNamesOfSavedClassificationResults() const;
+
+    /**
      * @return the input UI of the current classification plugin that is to be shown
      */
     [[maybe_unused]] [[nodiscard]] QSharedPointer <QWidget> getInputWidget() const;

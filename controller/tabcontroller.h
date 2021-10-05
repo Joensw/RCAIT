@@ -10,6 +10,7 @@
 
 #include <customtabwidget.h>
 #include <resultswidget.h>
+#include <datamanager.h>
 #include <QTabWidget>
 
 /**
@@ -24,7 +25,7 @@ public:
      * @param tabWidget a CustomTabWidget argument
      * @param resultsWidget ResultsWidget argument
      */
-    TabController(CustomTabWidget* tabWidget, QTabWidget* resultsTabWidget);
+    TabController(CustomTabWidget *tabWidget, QTabWidget *resultsTabWidget, DataManager *dataManager);
 
     /**
      * @brief operator = deleted assignment operator
@@ -61,6 +62,8 @@ private:
     CustomTabWidget *m_tabWidget;
 
     QTabWidget *m_resultsTabWidget;
+
+    DataManager *m_dataManager;
 
 };
 
