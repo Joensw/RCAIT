@@ -111,7 +111,7 @@ QStringList MMClassificationPlugin::getAssociatedModels() {
 
 bool MMClassificationPlugin::createNewModel(QString modelName, QString baseModelName) {
     m_configFileBuilder.setPathToMMClassification(
-            pluginSettings->getMMClassificationPath()); //added must be done before every action???
+            pluginSettings->getMMClassificationPath());
 
     static constexpr auto modelConfigIdentifier = "_model";
     static constexpr auto datasetConfigIdentifier = "_dataset";
@@ -185,6 +185,8 @@ MMClassificationPlugin::getAugmentationPreview(const QString &modelName, const Q
         qWarning() << "Invalid Input";
         return false;
     }
+    m_configFileBuilder.setPathToMMClassification(
+            pluginSettings->getMMClassificationPath());
 
     QDir targetDir(targetPath);
     QString targetAbsolutePath = targetDir.absolutePath();
@@ -282,6 +284,8 @@ QPointer<TrainingResult>
 MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath, QString validationDatasetPath,
                               QString workingDirectoryPath, ProgressablePlugin *receiver) {
     m_receiver = receiver;
+    m_configFileBuilder.setPathToMMClassification(
+            pluginSettings->getMMClassificationPath());
 
     // get labels to calculate number of classes
     auto modelConfigPath = loadModel(modelName).getModelConfigPath();
@@ -341,6 +345,7 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
     m_process.reset(new QProcess);
     m_process->setProcessEnvironment(env);
     m_process->setReadChannel(QProcess::StandardOutput);
+    qDebug() << "Started training with " << fullTrainCommand.join(" ");
     m_process->startCommand(fullTrainCommand.join(" "));
     m_process->waitForStarted();
     m_process->waitForFinished(-1);
@@ -369,7 +374,7 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
     const QString pathToSupportResultFile = workingDir.absoluteFilePath(metricSupportOutputName);
     const QString pathToWithoutMetricResultFile = workingDir.absoluteFilePath(withoutMetricSpecifiedOutputName);
 
-    qDebug() << "Start Generating Results: ";
+    qDebug() << "Start Generating Metrics:";
 
     QStringList fullCommands = {};
 
@@ -390,12 +395,12 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
     // execute test process to generate result files
     for (const QString &fullCommand: fullCommands) {
         QProcess process;
+        qDebug() << "Execute: " << fullCommand;
         process.startCommand(fullCommand);
         process.waitForStarted();
         process.waitForFinished(-1);
-        process.close();
-        qDebug() << qPrintable(process.readAllStandardOutput().simplified());
         qDebug() << qPrintable(process.readAllStandardError().simplified());
+        process.close();
     }
 
     const auto &[top1, top5] = m_jsonReader.readTopValuesFromJson(pathToAccuracyResultFile);
@@ -430,6 +435,8 @@ MMClassificationPlugin::classify(const QString &inputImageDirPath, const QString
                                  const QString &modelName, ProgressablePlugin *receiver) {
     m_receiver = receiver;
     QDir workingDir(workingDirPath);
+    m_configFileBuilder.setPathToMMClassification(
+            pluginSettings->getMMClassificationPath());
 
     static constexpr auto checkpointName = "latest.pth";
     static constexpr auto outputConfidenceScoreConsoleArgumentName = "--confidenceScoresOut";
@@ -461,6 +468,7 @@ MMClassificationPlugin::classify(const QString &inputImageDirPath, const QString
     m_process.reset(new QProcess);
     m_process->setReadChannel(QProcess::StandardOutput);
     connect(&*m_process, &QProcess::readyReadStandardOutput, this, &MMClassificationPlugin::slot_readClassifyOutput);
+    qDebug() << "Started classification with " << fullCommand;
     m_process->startCommand(fullCommand);
     m_process->waitForStarted();
     m_process->waitForFinished();
@@ -483,7 +491,6 @@ MMClassificationPlugin::classify(const QString &inputImageDirPath, const QString
 
     if (!inputImageFilePaths.isEmpty()) {
         data = m_jsonReader.readConfidenceScores(pathToConfidenceScoreResultFile, inputImageFilePaths);
-        qDebug() << "content: " << data;
     }
     return new ClassificationResult(workingDirPath, data, labels, additionalMetrics);
 }
