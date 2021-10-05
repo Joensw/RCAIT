@@ -258,7 +258,7 @@ MMClassificationPlugin::getAugmentationPreview(const QString &modelName, const Q
                                                                      randomFlipDirection, randomErasing, resize,
                                                                      centerCropSize);
 
-    QFileInfo pythonfile = QFileInfo("mmclassification_preview_pipeline.py");
+    auto pythonfile = QFileInfo("mmclassification_preview_pipeline.py");
     QString scriptPath = pythonfile.absoluteFilePath();
 
     QStringList fullCommands = {};
@@ -373,7 +373,7 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
 
     QStringList fullCommands = {};
 
-    QFileInfo testScriptFile = QFileInfo("mmclassification_test.py");
+    auto testScriptFile = QFileInfo("mmclassification_test.py");
     QString testScriptPath = testScriptFile.absoluteFilePath();
     QString checkpointPath = workingDir.absoluteFilePath(checkpointName);
 
@@ -400,8 +400,6 @@ MMClassificationPlugin::train(const QString &modelName, QString trainDatasetPath
 
     const auto &[top1, top5] = m_jsonReader.readTopValuesFromJson(pathToAccuracyResultFile);
     const auto confusionMatrixFileName = "data_confusion_matrix.json";
-    // QString pathToConfusionMatrix = m_mmClassificationSettings.getMMClassificationPath()
-    // % "/" % confusionMatrixFileName;
     QDir mmPath(pluginSettings->getMMClassificationPath());
     auto pathToConfusionMatrix = mmPath.absoluteFilePath(confusionMatrixFileName);
     auto confusionMatrixData = m_jsonReader.readConfusionMatrixFromJsonFile(pathToConfusionMatrix);
