@@ -12,7 +12,7 @@ if __name__ == '__main__':
     filename = sys.argv[1][:-3]
     import xml.etree.ElementTree as ET
 
-    with open(filename+".ts", 'r') as xml_file:
+    with open(filename + ".ts", 'rt', encoding="utf-8") as xml_file:
         tree = ET.parse(xml_file)
 
     root = tree.getroot()
