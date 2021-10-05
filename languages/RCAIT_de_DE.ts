@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <TS version="2.1" language="de_DE">
 <context>
     <name>AITrainingWidget</name>
@@ -154,9 +153,14 @@
         <source>Are you sure you want to quit?
             The application will terminate
         </source>
-        <translation>Sind Sie sicher, dass Sie beenden wollen?
+        <translation type="vanished">Sind Sie sicher, dass Sie beenden wollen?
             Die Anwendung wird beendet
         </translation>
+    </message>
+    <message>
+        <source>Are you sure you want to quit?
+ The application will terminate</source>
+        <translation>Sind Sie sicher, dass Sie das Programm beenden wollen?&lt;br/&gt; Die Anwendung wird beendet.</translation>
     </message>
 </context>
 <context>
@@ -282,75 +286,79 @@
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saving will cause a reload of all plugins.&lt;br/&gt;Any
             unsaved progress may be lost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
         </source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Das Speichern führt zu einem Neuladen aller Plugins.&lt;br/&gt;Alle
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Das Speichern führt zu einem Neuladen aller Plugins.&lt;br/&gt;Alle
             nicht gespeicherten Fortschritte können verloren gehen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
         </translation>
     </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saving will cause a reload of all plugins.&lt;br/&gt;Any unsaved progress may be lost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speichern führt zu einem Neuladen aller Plugins.&lt;br/&gt;Ungespeicherter Fortschritt kann verloren gehen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
 </context>
-    <context>
-        <name>GoogleSettings</name>
-        <message>
-            <source>Google API Plugin</source>
-            <translation>Google-API-Plugin</translation>
-        </message>
-        <message>
-            <source>Python executable path</source>
-            <translation>Pfad zu Python</translation>
-        </message>
-        <message>
-            <source>Google API Key</source>
-            <translation>Google API-Schlüssel</translation>
-        </message>
-        <message>
-            <source>Google CX</source>
-            <translation>Google CX</translation>
-        </message>
-    </context>
-    <context>
-        <name>ImageGallery</name>
-        <message>
-            <source>Form</source>
-            <translation type="unfinished">Form</translation>
-        </message>
-    </context>
-    <context>
-        <name>ImageInspectionWidget</name>
-        <message>
-            <source>Form</source>
-            <translation type="unfinished">Form</translation>
-        </message>
-        <message>
-            <source>New validation images</source>
-            <translation type="unfinished">Neue Validierungsbilder</translation>
-        </message>
-        <message>
-            <source>New training images</source>
-            <translation type="unfinished">Neue Trainingsbilder</translation>
-        </message>
-        <message>
-            <source>Current dataset validation images</source>
-            <translation type="unfinished">Aktuelle Validierungsbilder aus dem Datensatz</translation>
-        </message>
-        <message>
-            <source>Current dataset training images</source>
-            <translation type="unfinished">Aktuelle Trainingsbilder aus dem Datensatz</translation>
-        </message>
-        <message>
-            <source>Merge into dataset</source>
-            <translation type="unfinished">In Datensatz zusammenführen</translation>
-        </message>
-        <message>
-            <source>Remove selected images</source>
-            <translation type="unfinished">Entferne ausgewählte Bilder</translation>
-        </message>
-        <message>
-            <source>Training Images</source>
-            <translation>Trainingsbilder</translation>
-        </message>
-        <message>
-            <source>Validation Images</source>
-            <translation>Validierungsbilder</translation>
-        </message>
+<context>
+    <name>GoogleSettings</name>
+    <message>
+        <source>Google API Plugin</source>
+        <translation>Google-API-Plugin</translation>
+    </message>
+    <message>
+        <source>Python executable path</source>
+        <translation>Pfad zu Python</translation>
+    </message>
+    <message>
+        <source>Google API Key</source>
+        <translation>Google API-Schlüssel</translation>
+    </message>
+    <message>
+        <source>Google CX</source>
+        <translation>Google CX</translation>
+    </message>
+</context>
+<context>
+    <name>ImageGallery</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+</context>
+<context>
+    <name>ImageInspectionWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>New validation images</source>
+        <translation type="unfinished">Neue Validierungsbilder</translation>
+    </message>
+    <message>
+        <source>New training images</source>
+        <translation type="unfinished">Neue Trainingsbilder</translation>
+    </message>
+    <message>
+        <source>Current dataset validation images</source>
+        <translation type="unfinished">Aktuelle Validierungsbilder aus dem Datensatz</translation>
+    </message>
+    <message>
+        <source>Current dataset training images</source>
+        <translation type="unfinished">Aktuelle Trainingsbilder aus dem Datensatz</translation>
+    </message>
+    <message>
+        <source>Merge into dataset</source>
+        <translation type="unfinished">In Datensatz zusammenführen</translation>
+    </message>
+    <message>
+        <source>Remove selected images</source>
+        <translation type="unfinished">Entferne ausgewählte Bilder</translation>
+    </message>
+    <message>
+        <source>Training Images</source>
+        <translation>Trainingsbilder</translation>
+    </message>
+    <message>
+        <source>Validation Images</source>
+        <translation>Validierungsbilder</translation>
+    </message>
 </context>
 <context>
     <name>ImportFilesWidget</name>
@@ -571,39 +579,39 @@
         <translation>Rapid Classification AI Trainer</translation>
     </message>
 </context>
-    <context>
-        <name>ModelController</name>
-        <message>
-            <source>Cannot delete the currently loaded model!</source>
-            <translation>Das aktuell geladene Modell kann nicht gelöscht werden!</translation>
-        </message>
-        <message>
-            <source>Model could not be created</source>
-            <translation>Das Modell konnte nicht erstellt werden</translation>
-        </message>
-        <message>
-            <source>Model could not be deleted</source>
-            <translation>Das Modell konnte nicht gelöscht werden</translation>
-        </message>
-    </context>
-    <context>
-        <name>NewModelDialog</name>
-        <message>
-            <source>New Model</source>
-            <translation>Neues Modell</translation>
-        </message>
-        <message>
-            <source>Plugin</source>
-            <translation>Plugin</translation>
-        </message>
-        <message>
-            <source>Pre-trained base</source>
-            <translation>Vortrainierte Basis</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Name</translation>
-        </message>
+<context>
+    <name>ModelController</name>
+    <message>
+        <source>Cannot delete the currently loaded model!</source>
+        <translation>Das aktuell geladene Modell kann nicht gelöscht werden!</translation>
+    </message>
+    <message>
+        <source>Model could not be created</source>
+        <translation>Das Modell konnte nicht erstellt werden</translation>
+    </message>
+    <message>
+        <source>Model could not be deleted</source>
+        <translation>Das Modell konnte nicht gelöscht werden</translation>
+    </message>
+</context>
+<context>
+    <name>NewModelDialog</name>
+    <message>
+        <source>New Model</source>
+        <translation>Neues Modell</translation>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation>Plugin</translation>
+    </message>
+    <message>
+        <source>Pre-trained base</source>
+        <translation>Vortrainierte Basis</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
 </context>
 <context>
     <name>NewProjectDialog</name>
@@ -620,35 +628,35 @@
         <translation>Fehler!</translation>
     </message>
 </context>
-    <context>
-        <name>ProjectController</name>
-        <message>
-            <source>Cannot remove the currently opened project!</source>
-            <translation>Das aktuell geöffnete Projekt kann nicht entfernt werden!</translation>
-        </message>
-    </context>
-    <context>
-        <name>ProjectManager</name>
-        <message>
-            <source>Name must contain at least 1 character</source>
-            <translation>Der Name muss mindestens 1 Zeichen enthalten</translation>
-        </message>
-        <message>
-            <source>Name should contain more than only space (" ") characters</source>
-            <translation>Der Name sollte mehr als nur Leerzeichen (" ") enthalten</translation>
-        </message>
-        <message>
-            <source>A project with this name already exists in the project directory</source>
-            <translation>Ein Projekt mit diesem Namen existiert bereits im Projektverzeichnis</translation>
-        </message>
-        <message>
-            <source>The operating system cannot support this name</source>
-            <translation>Das Betriebssystem kann diesen Namen nicht akzeptieren.</translation>
-        </message>
-        <message>
-            <source>Name may not contain the  "/" or "\" characters</source>
-            <translation>Der Name darf die Zeichen "/" oder "\" nicht enthalten</translation>
-        </message>
+<context>
+    <name>ProjectController</name>
+    <message>
+        <source>Cannot remove the currently opened project!</source>
+        <translation>Das aktuell geöffnete Projekt kann nicht entfernt werden!</translation>
+    </message>
+</context>
+<context>
+    <name>ProjectManager</name>
+    <message>
+        <source>Name must contain at least 1 character</source>
+        <translation>Der Name muss mindestens 1 Zeichen enthalten</translation>
+    </message>
+    <message>
+        <source>Name should contain more than only space (" ") characters</source>
+        <translation>Der Name sollte mehr als nur Leerzeichen (" ") enthalten</translation>
+    </message>
+    <message>
+        <source>A project with this name already exists in the project directory</source>
+        <translation>Ein Projekt mit diesem Namen existiert bereits im Projektverzeichnis</translation>
+    </message>
+    <message>
+        <source>The operating system cannot support this name</source>
+        <translation>Das Betriebssystem kann diesen Namen nicht akzeptieren.</translation>
+    </message>
+    <message>
+        <source>Name may not contain the  "/" or "\" characters</source>
+        <translation>Der Name darf die Zeichen "/" oder "\" nicht enthalten</translation>
+    </message>
 </context>
 <context>
     <name>PythonConfigDiffWidget</name>
@@ -723,8 +731,14 @@
     <message>
         <source>Settings have not been updated, there is a conflict.
             Paths may not be identical and must exist, this includes new and unchanged paths.</source>
-        <translation>Die Einstellungen wurden nicht aktualisiert, es besteht ein Konflikt.
+        <translation type="vanished">Die Einstellungen wurden nicht aktualisiert, es besteht ein Konflikt.
             Pfade dürfen nicht identisch sein und müssen existieren, dies schließt neue und unveränderte Pfade ein.</translation>
+    </message>
+    <message>
+        <source>Settings have not been updated, there is a conflict. 
+ Paths may not be identical and must exist, this includes new and unchanged paths.</source>
+        <translation>Die Einstellungen wurden nicht aktualisiert, es besteht ein Konflikt. 
+ Pfade dürfen nicht identisch sein und müssen existieren, dies schließt neue und unveränderte Pfade ein.</translation>
     </message>
 </context>
 <context>
