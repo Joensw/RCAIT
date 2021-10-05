@@ -35,7 +35,7 @@ void Controller::slot_configurationComplete(){
     mImageController.reset(
             new ImageController(mMainWindow->getImageInspectionWidget(), mMainWindow->getImportFilesWidget(),
                                 mDataManager));
-    mTabController.reset(new TabController(mMainWindow->getTabWidget(), mMainWindow->getResultsWidget()->getTabWidget()));
+    mTabController.reset(new TabController(mMainWindow->getTabWidget(), mMainWindow->getResultsWidget()->getTabWidget(), mDataManager));
 
     //Connect Signals/Slots
 
