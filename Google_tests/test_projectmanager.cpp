@@ -133,14 +133,12 @@ TEST (ProjectManagerTest, trainingReults) {
 
     QString path = pm->getTrainingResultsDir();
 
-    QFile file(path + "/" + "NewFile.txt");
-    file.open(QIODevice::WriteOnly);
+    QDir dir;
+    dir.mkpath(path + "/" + "NewResult");
 
     QStringList results = pm->getNamesOfSavedTrainingResults();
     EXPECT_TRUE(results.length() == 1);
-    EXPECT_TRUE(results.contains("NewFile"));
-
-    file.close();
+    EXPECT_TRUE(results.contains("NewResult"));
 
     //TearDown
     projectsDir.removeRecursively();

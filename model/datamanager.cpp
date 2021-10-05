@@ -172,6 +172,11 @@ void DataManager::saveImageLoaderPluginDir(const QString& dir) {
     return mProjectManager->getNamesOfSavedTrainingResults();
 }
 
+QStringList DataManager::getNamesOfSavedClassificationResults() const
+{
+    return mProjectManager->getNamesOfSavedClassificationResults();
+}
+
 [[maybe_unused]] QSharedPointer <QWidget> DataManager::getInputWidget() const {
     return mModelManager->getInputWidget();
 }

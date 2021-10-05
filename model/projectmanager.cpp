@@ -167,22 +167,20 @@ QString ProjectManager::getProjectAugTempDir() const {
 QStringList ProjectManager::getNamesOfSavedTrainingResults() {
     if (mProjectPath.isEmpty()) {
         qDebug() << "should not have been called yet, no project has been opened";
+        return {};
     }
-    if (!mProjectPath.isEmpty()){
-        QDir trainingResultsDir(getTrainingResultsDir());
+    qDebug() << subDirToList(getTrainingResultsDir());
+    return subDirToList(getTrainingResultsDir());
+}
 
-        trainingResultsDir.setNameFilters({TEXT_FILE_FILTER});
-
-        trainingResultsDir.setFilter(QDir::Files | QDir::NoDotAndDotDot);
-
-        QFileInfoList filelist = trainingResultsDir.entryInfoList();
-        QStringList fileNameList;
-        for(const QFileInfo &f: filelist){
-            fileNameList.append(f.baseName());
-        }
-        return fileNameList;
+QStringList ProjectManager::getNamesOfSavedClassificationResults()
+{
+    if (mProjectPath.isEmpty()) {
+        qDebug() << "should not have been called yet, no project has been opened";
+        return {};
     }
-    return {};
+    qDebug() << subDirToList(getClassificationResultsDir());
+    return subDirToList(getClassificationResultsDir());
 }
 
 QString ProjectManager::createWorkDirSubfolder(const QString &name) const {
@@ -244,6 +242,17 @@ bool ProjectManager::verifyName(const QString &projectName, QString &error) cons
 
 
     return true;
+}
+
+QStringList ProjectManager::subDirToList(const QString &path)
+{
+    QDir trainingResultsDir(path);
+    QFileInfoList filelist = trainingResultsDir.entryInfoList(QDir::Dirs| QDir::NoDotAndDotDot);
+    QStringList nameList;
+    for(const QFileInfo &f: filelist){
+        nameList.append(f.baseName());
+    }
+    return nameList;
 }
 
 
