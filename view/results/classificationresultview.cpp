@@ -18,6 +18,8 @@ ClassificationResultView::ClassificationResultView(SavableResultsWidget *tabWidg
     QHeaderView *v_header = table->verticalHeader();
     h_header->setStretchLastSection(true);
     v_header->setSectionResizeMode(QHeaderView::Fixed);
+    h_header->setSectionResizeMode(QHeaderView::ResizeToContents);
+    v_header->setDefaultAlignment(Qt::AlignRight | Qt::AlignVCenter);
 
     table->setCornerButtonEnabled(false);
 
@@ -27,7 +29,7 @@ ClassificationResultView::ClassificationResultView(SavableResultsWidget *tabWidg
 void ClassificationResultView::setClassificationData(const QMap<int, QStringList> &data) {
     auto table = ui->tableWidget_classificationresult;
     for (const auto &[key, valuesList]: MapAdapt(data)) {
-        table->addTableRow(QString::number(key), valuesList);
+        table->addTableRow(QString::number(key) % " ", valuesList);
     }
 }
 
