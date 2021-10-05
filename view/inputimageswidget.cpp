@@ -67,19 +67,8 @@ void InputImagesWidget::on_cancelButton_clicked()
 void InputImagesWidget::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         // this event is sent if a translator is loaded
-        retranslateUi();
         ui->retranslateUi(this);
     }
     //Call to parent class
     QWidget::changeEvent(event);
-}
-
-
-
-
-/**
- * Translate and set all the strings which
- * were not created in the UI builder
- */
-void InputImagesWidget::retranslateUi() {
 }

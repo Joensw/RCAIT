@@ -28,7 +28,7 @@ public:
     /**
      * @brief destructor
      */
-    ~AutomationWidget();
+    ~AutomationWidget() override;
 
 
 
@@ -54,7 +54,7 @@ public slots:
      * @param name name of the task.
      * @param state new state of task.
      */
-    void slot_taskUpdate(const QString &name, const QString &state);
+    void slot_taskUpdate(const QString &name, const QString &state) const;
 
     /**
      * @brief slot_finished resets most buttons/elements to pre-start state.
@@ -124,7 +124,7 @@ protected:
      *
      * @param event incoming event
      */
-    void changeEvent(QEvent *event);
+    void changeEvent(QEvent *event) override;
 
 private slots:
     [[maybe_unused]] void on_startButton_clicked();

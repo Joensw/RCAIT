@@ -65,11 +65,6 @@ public slots:
     void slot_startClassify(const QString &path);
 
     /**
-     * @brief slot_abortClassify tries to stop classification when triggered.
-     */
-    void slot_abortClassify();
-
-    /**
      * @brief slot_showAugmentationPreview loads augmentation preview when triggered.
      * @param amount number of new images
      */

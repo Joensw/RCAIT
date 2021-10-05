@@ -46,7 +46,7 @@ public:
     /**
      * @brief destructor
      */
-    ~ImageInspectionWidget();
+    ~ImageInspectionWidget() override;
 
     /**
      * @brief ImageInspectionWidget creates a new ImageInspectionWidget

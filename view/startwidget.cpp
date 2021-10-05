@@ -13,11 +13,11 @@ StartWidget::~StartWidget() {
     delete ui;
 }
 
-void StartWidget::populateLanguageMenu(QComboBox *box) {
+void StartWidget::populateLanguageMenu(QComboBox *box) const {
     QDir dir(m_langPath);
     QStringList fileNames = dir.entryList(QStringList() << "*.qm", QDir::Files);
 
-    for (auto &fileName : fileNames) {
+    for (const auto &fileName: fileNames) {
         // get locale extracted by filename
         QString locale = fileName; // "TranslationExample_de.qm"
         locale.truncate(locale.lastIndexOf('.')); // "TranslationExample_de"
@@ -30,7 +30,7 @@ void StartWidget::populateLanguageMenu(QComboBox *box) {
 }
 
 
-QString StartWidget::getLanguageEntry() {
+QString StartWidget::getLanguageEntry() const {
     QComboBox *box = ui->comboBox_languageSelection;
     QString locale = box->currentData().toString();
     return locale;
@@ -91,17 +91,17 @@ void StartWidget::disableOpenProjectButton()
 void StartWidget::loadLanguage(const QString &rLanguage) {
     if (m_currLang != rLanguage) {
         m_currLang = rLanguage;
-        QLocale locale = QLocale(m_currLang);
+        QLocale locale(m_currLang);
         QLocale::setDefault(locale);
         switchTranslator(m_translator, rLanguage);
     }
 }
 
-void StartWidget::switchTranslator(QTranslator &translator, const QString &filename) {
-    const QString baseName = qApp->applicationName() + "_" + filename;
+void StartWidget::switchTranslator(QTranslator &translator, const QString &filename) const {
+    const QString baseName = QCoreApplication::applicationName() + "_" + filename;
     if (translator.load(m_langPath + baseName)) {
-        qApp->removeTranslator(&translator);
-        qApp->installTranslator(&translator);
+        QCoreApplication::removeTranslator(&translator);
+        QCoreApplication::installTranslator(&translator);
     }
 }
 
@@ -122,12 +122,14 @@ void StartWidget::slot_changedWindowState(Qt::WindowStates flags) {
         case Qt::WindowNoState:
             fullscreenButton->setChecked(false);
             break;
+        default:
+            break;
     }
 }
 
 void StartWidget::slot_imagesUpdated()
 {
-    if (ui->listWidget_projectsList->selectedItems().size() != 0){
+    if (!ui->listWidget_projectsList->selectedItems().isEmpty()) {
         ui->pushButton_openProject->setEnabled(true);
     }
 }

@@ -27,13 +27,11 @@ AIController::AIController(DataManager *dataManager, InputImagesWidget *inputIma
 
     //connect classification parts
     connect(mInputImagesWidget, &InputImagesWidget::sig_startClassify, this, &AIController::slot_startClassify);
-    connect(mInputImagesWidget, &InputImagesWidget::sig_abortClassify, this, &AIController::slot_abortClassify);
     connect(&*mClassifier, &Classifier::sig_classificationResultUpdated, this,
             &AIController::slot_classificationResultUpdated);
 
     //connect training parts
     connect(mAiTrainingWidget, &AITrainingWidget::sig_startTraining, this, &AIController::slot_startTraining);
-    connect(mAiTrainingWidget, &AITrainingWidget::sig_abortTraining, this, &AIController::slot_abortTraining);
     connect(&*mTrainer, &Trainer::sig_trainingResultUpdated, this, &AIController::slot_trainingResultUpdated);
     connect(&*mTrainer, &Trainer::sig_augmentationPreviewReady, this, &AIController::slot_augmentationPreviewReady);
 
@@ -42,7 +40,7 @@ AIController::AIController(DataManager *dataManager, InputImagesWidget *inputIma
 
 void AIController::slot_startTraining() {
     if (mPluginInUse) {
-        qWarning() << "Training can not be started due to ai plugin beeing already in use ";
+        qWarning() << "Training can not be started due to ai plugin being already in use ";
         return;
     }
     mPluginInUse = true;
@@ -73,7 +71,7 @@ void AIController::slot_classificationResultUpdated(const QPointer<Classificatio
 
 void AIController::slot_startClassify(const QString &path) {
     if (mPluginInUse) {
-        qWarning() << "Classification can not be started due to ai plugin beeing already in use ";
+        qWarning() << "Classification can not be started due to ai plugin being already in use ";
         return;
     }
     mPluginInUse = true;
@@ -91,13 +89,9 @@ void AIController::slot_startClassify(const QString &path) {
     emit mClassifier->sig_startClassification();
 }
 
-void AIController::slot_abortClassify() {
-
-}
-
 void AIController::slot_showAugmentationPreview(int amount) {
     if (mPluginInUse) {
-        qWarning() << "Data Augmentation Preview can not be started due to ai plugin beeing already in use ";
+        qWarning() << "Data Augmentation Preview can not be started due to ai plugin being already in use ";
         return;
     }
     mPluginInUse = true;

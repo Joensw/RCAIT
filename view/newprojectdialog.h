@@ -25,7 +25,7 @@ public:
     /**
      * @brief destructor
      */
-    ~NewProjectDialog();
+    ~NewProjectDialog() override;
 
     /**
      * @brief setErrorMessage sets the displayed error message in the UI

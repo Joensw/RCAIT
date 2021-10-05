@@ -2,8 +2,9 @@
 #include "ui_configurationdialog.h"
 
 ConfigurationDialog::ConfigurationDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ConfigurationDialog)
+        QDialog(parent),
+        ui(new Ui::ConfigurationDialog),
+        mIsCloseable(false)
 {
     ui->setupUi(this);
     connect(ui->pushButton_projectDir, &QPushButton::clicked, this, &ConfigurationDialog::slot_setProjectDir);
@@ -12,7 +13,6 @@ ConfigurationDialog::ConfigurationDialog(QWidget *parent) :
     connect(ui->pushButton_pythonPath, &QPushButton::clicked, this, &ConfigurationDialog::slot_setPythonPath);
 
     ui->label_error->hide();
-    mIsCloseable = false;
 }
 
 ConfigurationDialog::~ConfigurationDialog()

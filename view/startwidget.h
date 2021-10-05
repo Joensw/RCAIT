@@ -33,7 +33,7 @@ public:
     /**
      * @return the language currently selected in the language combobox
      */
-    QString getLanguageEntry();
+    QString getLanguageEntry() const;
 
     /**
      * @brief addProjects add a list of projects to the shown projects in the UI
@@ -92,9 +92,11 @@ private:
     static auto constexpr QLISTWIDGET_UNSELECT_INDEX = -1;
 
     //see https://wiki.qt.io/How_to_create_a_multi_language_application
-    void populateLanguageMenu(QComboBox *box);
-    void loadLanguage(const QString& rLanguage);
-    void switchTranslator(QTranslator& translator, const QString& filename);
+    void populateLanguageMenu(QComboBox *box) const;
+
+    void loadLanguage(const QString &rLanguage);
+
+    void switchTranslator(QTranslator &translator, const QString &filename) const;
 
 private slots:
     //slots correspond with the identically named button in the UI

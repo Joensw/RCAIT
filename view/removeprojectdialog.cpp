@@ -1,9 +1,9 @@
 #include "removeprojectdialog.h"
 #include "ui_removeprojectdialog.h"
 
-RemoveProjectDialog::RemoveProjectDialog(QWidget *parent, QString toRemove) :
-    QDialog(parent),
-    ui(new Ui::RemoveProjectDialog)
+RemoveProjectDialog::RemoveProjectDialog(QWidget *parent, const QString &toRemove) :
+        QDialog(parent),
+        ui(new Ui::RemoveProjectDialog)
 {
     ui->setupUi(this);
     mToRemove = toRemove;
@@ -16,8 +16,7 @@ RemoveProjectDialog::~RemoveProjectDialog()
     delete ui;
 }
 
-QString RemoveProjectDialog::getProjectName()
-{
+QString RemoveProjectDialog::getProjectName() const {
     return mToRemove;
 }
 

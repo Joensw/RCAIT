@@ -21,18 +21,18 @@ public:
      * @param parent optional parent argument
      * @param toRemove name of the project that is to be removed
      */
-    explicit RemoveProjectDialog(QWidget *parent = nullptr, QString toRemove = "");
+    explicit RemoveProjectDialog(QWidget *parent = nullptr, const QString &toRemove = "");
 
     /**
      * @brief destructor
      */
 
-    ~RemoveProjectDialog();
+    ~RemoveProjectDialog() override;
 
     /**
      * @return the name of the project that is to be removed
      */
-    QString getProjectName();
+    [[nodiscard]] QString getProjectName() const;
 
     /**
      * @brief setErrorMessage sets the displayed error message in the UI

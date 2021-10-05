@@ -45,7 +45,6 @@ void SettingsView::addPluginWidgets(const QStringList &pluginNames,
         ui->pluginWidget->removeWidget(widget);
         //we don't delete the widget here. If it is deleted, the shared pointer pointing to it cannot call the destructor and
         //the program crashes. We let the shared pointer handle the destruction of the Widget, which is why we use it
-        //widget->deleteLater();
     }
 
     assert(pluginNames.size() == pluginConfigurationWidgets.size());
@@ -57,11 +56,10 @@ void SettingsView::addPluginWidgets(const QStringList &pluginNames,
                           : pluginConfigurationWidgets[i]->accessibleName();
 
         QListWidgetItem *pluginEntry;
-        if (pluginIcons[i]->isNull()) {
+        if (pluginIcons[i]->isNull())
             pluginEntry = new QListWidgetItem(QIcon(PLUGIN_ICON), pluginName);
-        } else {
+        else
             pluginEntry = new QListWidgetItem(*pluginIcons[i], pluginName);
-        }
 
         ui->pluginList->addItem(pluginEntry);
         ui->pluginWidget->addWidget(&*pluginConfigurationWidgets[i]);
@@ -69,7 +67,7 @@ void SettingsView::addPluginWidgets(const QStringList &pluginNames,
 
 }
 
-void SettingsView::pathsUpdated(const int &amount) {
+void SettingsView::pathsUpdated(const int &amount) const {
     mGlobalSettingsWidget->showUpdate(amount);
 }
 
@@ -80,23 +78,23 @@ void SettingsView::clearPaths() {
     mGlobalSettingsWidget->clearNewPaths();
 }
 
-void SettingsView::setGlobalSettingsError(const QString &error) {
+void SettingsView::setGlobalSettingsError(const QString &error) const {
     mGlobalSettingsWidget->setError(error);
 }
 
-void SettingsView::setCurrentProjectDirectory(const QString &path) {
+void SettingsView::setCurrentProjectDirectory(const QString &path) const {
     mGlobalSettingsWidget->setCurrentProjectsDir(path);
 }
 
-void SettingsView::setCurrentClassificationPluginDirectory(const QString &path) {
+void SettingsView::setCurrentClassificationPluginDirectory(const QString &path) const {
     mGlobalSettingsWidget->setCurrentClassificationDir(path);
 }
 
-void SettingsView::setCurrentImageLoaderPluginDirectory(const QString &path) {
+void SettingsView::setCurrentImageLoaderPluginDirectory(const QString &path) const {
     mGlobalSettingsWidget->setCurrentImageLoaderDir(path);
 }
 
-void SettingsView::setCurrentPythonExecutablePath(const QString &path) {
+void SettingsView::setCurrentPythonExecutablePath(const QString &path) const {
     mGlobalSettingsWidget->setCurrentPythonPath(path);
 }
 

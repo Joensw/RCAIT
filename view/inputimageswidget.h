@@ -27,7 +27,7 @@ public:
     /**
      * @brief destructor
      */
-    ~InputImagesWidget();
+    ~InputImagesWidget() override;
 
 signals:
 
@@ -75,7 +75,6 @@ private:
 
     Ui::InputImagesWidget *ui;
     QString path;
-    void retranslateUi();
 
 };
 

@@ -9,7 +9,7 @@ namespace Ui {
 class NewModelDialog;
 }
 /**
- * @brief The NewModelDialog class is a UI class that is for specifiyng the details of a new model
+ * @brief The NewModelDialog class is a UI class that is for specifying the details of a new model
  */
 class NewModelDialog : public QDialog
 {
@@ -21,12 +21,12 @@ public:
      * @param parent optional parent argument
      * @param classificationPlugins names of the classification plugins that are shown in the UI for selection
      */
-    explicit NewModelDialog(QWidget *parent = nullptr, QStringList classificationPlugins = QStringList());
+    explicit NewModelDialog(QWidget *parent = nullptr, const QStringList &classificationPlugins = QStringList());
 
     /**
      * @brief destructor
      */
-    ~NewModelDialog();
+    ~NewModelDialog() override;
 
     /**
      * @brief setErrorMessage sets the displayed error message in the UI
@@ -41,16 +41,17 @@ public:
     void setAvailableBases(const QStringList &bases);
 
     /**
-     * @return returns the currently selected  plugin in the plugin dropdow, or nullstring if it is empty
+     * @return returns the currently selected  plugin in the plugin dropdown, or nullstring if it is empty
      */
-    QString getCurrentSelectedPlugin();
+    [[nodiscard]] QString getCurrentSelectedPlugin() const;
 
 public slots:
+
     /**
-     * @brief slot_classifactionPlugin_currentTextChanged called when the selected classification plugin changes
-     * @param text the current classification plugin seleceted in the drop down
+     * @brief slot_classificationPlugin_currentTextChanged called when the selected classification plugin changes
+     * @param text the current classification plugin selected in the drop down
      */
-    void slot_classifactionPlugin_currentTextChanged(const QString &text);
+    void slot_classificationPlugin_currentTextChanged(const QString &text);
 
 signals:
     /**

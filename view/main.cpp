@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
     QApplication::setStyle(QStyleFactory::create("fusion"));
     //Base color
     QPalette palette = QApplication::palette();
-    palette.setColor(QPalette::Highlight, QColor("#016DFF"));
+    palette.setColor(QPalette::Highlight, QColor(1, 109, 255));
     QApplication::setPalette(palette);
 
     //Font

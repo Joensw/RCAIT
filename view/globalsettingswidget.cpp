@@ -85,8 +85,7 @@ void GlobalSettingsWidget::on_pushButton_python_clicked(){
     emit sig_setGeneralPythonPath();
 }
 
-void GlobalSettingsWidget::setText(const QString &path, QLabel *label)
-{
+void GlobalSettingsWidget::setText(const QString &path, QLabel *label) const {
     QFontMetrics metrics(label->font());
     QString text = metrics.elidedText(path, Qt::ElideRight, (parentWidget()->width() * 2) / 3);
     label->setText(text);

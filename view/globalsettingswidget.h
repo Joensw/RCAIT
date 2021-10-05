@@ -140,7 +140,7 @@ private slots:
 
 private:
 
-    void setText(const QString &path, QLabel* label);
+    void setText(const QString &path, QLabel *label) const;
 
     static constexpr auto STYLESHEET_RED = "QLabel { color : red; }";
     static constexpr auto STYLESHEET_GREEN = "QLabel { color : green; }";

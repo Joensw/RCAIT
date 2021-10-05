@@ -21,17 +21,17 @@ public:
      * @param parent optional parent argument
      * @param toRemove name of the model to be removed
      */
-    explicit RemoveModelDialog(QWidget *parent = nullptr, QString toRemove = "");
+    explicit RemoveModelDialog(QWidget *parent = nullptr, const QString &toRemove = "");
 
     /**
      * @brief destructor
      */
-    ~RemoveModelDialog();
+    ~RemoveModelDialog() override;
 
     /**
      * @return the name of the model that is to be removed
      */
-    QString getModelName();
+    [[nodiscard]] QString getModelName() const;
 
     /**
      * @brief setErrorMessage sets the displayed error message in the UI

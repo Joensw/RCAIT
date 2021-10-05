@@ -32,14 +32,14 @@ protected:
 public:
     /**
      * @brief ImportFilesWidget create a new ImportFilesWidget
-     * @param parent optional parent arguement
+     * @param parent optional parent argument
      */
     explicit ImportFilesWidget(QWidget *parent = nullptr);
 
     /**
      * @brief destructor
      */
-    ~ImportFilesWidget();
+    ~ImportFilesWidget() override;
 
     /**
      * @brief setAvailablePlugins sets the image loader plugins present in the UI
@@ -86,8 +86,6 @@ private:
     static constexpr auto DIALOG_CAPTION = QT_TR_NOOP("Select .txt file");
 
     Ui::ImportFilesWidget *ui;
-
-    void retranslateUi();
 
 private slots:
 

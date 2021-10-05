@@ -42,13 +42,12 @@ void AutomationWidget::slot_taskAdded(const QString &name)
     ui->idleTasks->addItem(name);
 }
 
-void AutomationWidget::slot_taskUpdate(const QString &name, const QString &state)
-{
-    if (state == "Not_Scheduled"){
-         ui->idleTasks->findItems(name, Qt::MatchExactly).at(0)->setIcon(QIcon(TASK_NONSCHEDULED_ICON));
-         return;
+void AutomationWidget::slot_taskUpdate(const QString &name, const QString &state) const {
+    if (state == "Not_Scheduled") {
+        ui->idleTasks->findItems(name, Qt::MatchExactly).at(0)->setIcon(QIcon(TASK_NONSCHEDULED_ICON));
+        return;
     }
-    QList<QListWidgetItem*> task = ui->queuedTasks->findItems(name, Qt::MatchExactly);
+    QList<QListWidgetItem *> task = ui->queuedTasks->findItems(name, Qt::MatchExactly);
     //icons have to be named after states    
     QString temp = GENERIC_TASK_ICON;
     task.at(0)->setIcon(QIcon(temp.arg(state)));
@@ -147,11 +146,11 @@ void AutomationWidget::on_unqueueAllButton_clicked()
 }
 
 
-void AutomationWidget::on_importTasksButton_clicked()
-{
+void AutomationWidget::on_importTasksButton_clicked() {
     QString path = QFileDialog::getOpenFileName(this, QString(), QString(), "*.json");
-    if (path == nullptr) return;
-    emit sig_import(path);
+    if (path != nullptr) {
+        emit sig_import(path);
+    }
 }
 
 void AutomationWidget::changeEvent(QEvent *event) {

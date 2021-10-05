@@ -1,6 +1,6 @@
 #include "newprojectdialog.h"
 #include "ui_newprojectdialog.h"
-//has to be delcared here out of necessity
+//has to be declared here out of necessity
 #include "projectcontroller.h"
 
 NewProjectDialog::NewProjectDialog(QWidget *parent) :

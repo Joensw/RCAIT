@@ -22,19 +22,10 @@ ImportFilesWidget::~ImportFilesWidget() {
 void ImportFilesWidget::changeEvent(QEvent *event) {
     if (event->type() == QEvent::LanguageChange) {
         // this event is sent if a translator is loaded
-        retranslateUi();
         ui->retranslateUi(this);
     }
     //Call to parent class
     QWidget::changeEvent(event);
-}
-
-/**
- * Translate and set all the strings which
- * were not created in the UI builder
- */
-void ImportFilesWidget::retranslateUi() {
-
 }
 
 void ImportFilesWidget::addModels(const QStringList &modelNames) {

@@ -1,9 +1,9 @@
 #include "removemodeldialog.h"
 #include "ui_removemodeldialog.h"
 
-RemoveModelDialog::RemoveModelDialog(QWidget *parent, QString toRemove) :
-    QDialog(parent),
-    ui(new Ui::RemoveModelDialog)
+RemoveModelDialog::RemoveModelDialog(QWidget *parent, const QString &toRemove) :
+        QDialog(parent),
+        ui(new Ui::RemoveModelDialog)
 {
     ui->setupUi(this);
     mToRemove = toRemove;
@@ -17,8 +17,7 @@ RemoveModelDialog::~RemoveModelDialog()
     delete ui;
 }
 
-QString RemoveModelDialog::getModelName()
-{
+QString RemoveModelDialog::getModelName() const {
     return mToRemove;
 }
 

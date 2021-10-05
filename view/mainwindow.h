@@ -47,7 +47,7 @@ public:
      * @brief destructor
      */
 
-    ~MainWindow();
+    ~MainWindow() override;
 
     /**
     * @return returns the start widget

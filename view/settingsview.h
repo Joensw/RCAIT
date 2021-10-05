@@ -30,7 +30,7 @@ public:
     /**
      * @brief destructor
      */
-    ~SettingsView();
+    ~SettingsView() override;
 
     /**
      * @brief SettingsView constructor creates a SettingsView with a list of settings.
@@ -48,7 +48,7 @@ public:
      *
      * @param amount number of paths updated.
      */
-    void pathsUpdated(const int &amount);
+    void pathsUpdated(const int &amount) const;
 
     /**
      * @brief clearPaths clears set paths.
@@ -60,35 +60,35 @@ public:
      *
      * @param error the error message.
      */
-    void setGlobalSettingsError(const QString &error);
+    void setGlobalSettingsError(const QString &error) const;
 
     /**
      * @brief setCurrentProjectDirectory sets project directory.
      *
      * @param path path of project directory.
      */
-    void setCurrentProjectDirectory(const QString &path);
+    void setCurrentProjectDirectory(const QString &path) const;
 
     /**
      * @brief setCurrentClassificationPluginDirectory sets classification plugin directory.
      *
      * @param path path of classification plugin directory.
      */
-    void setCurrentClassificationPluginDirectory(const QString &path);
+    void setCurrentClassificationPluginDirectory(const QString &path) const;
 
     /**
      * @brief setCurrentImageLoaderPluginDirectory sets imageloader plugin directory.
      *
      * @param path path of imageloader plugin directory.
      */
-    void setCurrentImageLoaderPluginDirectory(const QString &path);
+    void setCurrentImageLoaderPluginDirectory(const QString &path) const;
 
     /**
      * @brief setCurrentPythonExecutablePath sets the path to the python executable.
      *
      * @param path to the python executable.
      */
-    void setCurrentPythonExecutablePath(const QString &path);
+    void setCurrentPythonExecutablePath(const QString &path) const;
 
     /**
      * @brief addPluginWidgets adds plugin widgets to SettingsView.
@@ -154,8 +154,6 @@ private:
     static constexpr auto CLASSIFICATION_SELECT_MSG = QT_TR_NOOP("Select classification plugin directory");
     static constexpr auto LOADER_SELECT_MSG = QT_TR_NOOP("Select image loader plugin directory");
     static constexpr auto PYTHON_SELECT_MSG = QT_TR_NOOP("Select python executable path");
-
-    static constexpr auto EMPTY_PATH = "";
 
     Ui::SettingsView *ui;
     QScopedPointer<GlobalSettingsWidget> mGlobalSettingsWidget;
