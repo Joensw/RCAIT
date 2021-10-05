@@ -65,7 +65,7 @@ void ImageGalleryTree::resetTree() {
 void ImageGalleryTree::addLabel(const QString &label, const QStringList &images) {
     if (images.empty()) return;
     auto *name = new QTreeWidgetItem(this);
-    name->setText(0, label + ", " + QString::number(images.count()) + " images");
+    name->setText(0, label);
     name->setFlags(name->flags() ^ Qt::ItemIsDropEnabled);
     addTopLevelItem(name);
     auto *imageGalleryItem = new QTreeWidgetItem(name);
