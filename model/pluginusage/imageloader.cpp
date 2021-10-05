@@ -2,7 +2,7 @@
 
 ImageLoader::ImageLoader()= default;
 
-void ImageLoader::loadInputImages(int count, QStringList labels, QString pluginName, QString tempImageDir)
+void ImageLoader::loadInputImages(int count, const QStringList &labels, const QString &pluginName, const QString &tempImageDir)
 {
     auto watcher = new QFutureWatcher<bool>;
     connect(watcher, &QFutureWatcher<bool>::finished, this, &ImageLoader::slot_handleResults);

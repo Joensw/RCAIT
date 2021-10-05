@@ -27,7 +27,7 @@ public:
      * @param pluginName name of selected plugin
      * @param tempImageDir path to save images to
      */
-    void loadInputImages(int count, QStringList labels, QString pluginName, QString tempImageDir);
+    void loadInputImages(int count, const QStringList &labels, const QString &pluginName, const QString &tempImageDir);
 
 public slots:
 
