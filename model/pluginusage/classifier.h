@@ -31,7 +31,7 @@ public:
      * @param workingDirectory model working dir
      * @param modelName name of selected model
      */
-    void classify(const QString& pluginName, const QString& inputImageDirPath, const QString& trainDatasetPath, const QString& workingDirectory, const QString& modelName);
+    void classify(const QString& pluginName, const QString &inputImageDirPath, const QString &trainDatasetPath, const QString &workingDirectory, const QString &modelName);
 
 
 signals:

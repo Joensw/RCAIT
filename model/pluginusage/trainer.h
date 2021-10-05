@@ -42,7 +42,7 @@ public:
      * @param targetPath target for constructed images
      * @param amount number of constructed images
      */
-    void getAugmentationPreview(const QString& pluginName, const QString& modelName, const QString& inputPath, const QString& targetPath, int amount);
+    void getAugmentationPreview(const QString &pluginName, const QString &modelName, const QString &inputPath, const QString &targetPath, int amount);
 
     /**
      * @brief getRecentWorkingDir gets latest working directory
@@ -73,7 +73,7 @@ signals:
      * @param success true if augmentation was successful
      * @param targetpath path of augmentation images
      */
-    void sig_augmentationPreviewReady(bool success, QString targetpath);
+    void sig_augmentationPreviewReady(bool success, const QString &targetpath);
 
 public slots:
 
