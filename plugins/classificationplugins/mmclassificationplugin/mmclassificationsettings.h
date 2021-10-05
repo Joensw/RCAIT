@@ -56,12 +56,6 @@ public:
     QString getMMClassificationPath();
 
     /**
-     * @brief getMMClsPath returns the saved path to the mmcls module (MMClassification from Open MMLab)
-     * @return the previously saved path to the mmcls module, an empty QString otherwise
-     */
-    QString getMMClsPath();
-
-    /**
      * @brief getPythonPath returns the saved path to the directory, where python is located
      * @return the previously saved python path, an empty QString otherwise
      */
@@ -73,7 +67,6 @@ private:
     QSettings m_settings = {"MMClassification Plugin", QSettings::IniFormat};
 
     QString m_mmclassificationPath = "mmclassification path";
-    QString m_mmclsPath = "mmcls path";
     QString m_pythonPath = "Python Path";
 
 };

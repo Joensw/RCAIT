@@ -31,8 +31,8 @@ void FolderConfigwidget::setLoadMode(int mode)
 QString FolderConfigwidget::getImageFolder()
 {
     ui->save_label->clear();
-    ui->save_label->setStyleSheet("QLabel { color : green; }");
-    ui->save_label->setText(tr("Saved changes."));
+    ui->save_label->setStyleSheet(STYLESHEET_GREEN);
+    ui->save_label->setText(tr(SAVE_SUCESS));
     return imageFolder;
 }
 
@@ -46,9 +46,9 @@ void FolderConfigwidget::setImageFolder(const QString &folder)
 void FolderConfigwidget::on_loadFolderButton_clicked()
 {
     ui->save_label->clear();
-    imageFolder = QFileDialog::getExistingDirectory(this, tr("Select image directory"));
-    ui->save_label->setStyleSheet("QLabel { color : blue; }");
-    ui->save_label->setText(tr("There may be unsaved changes."));
+    imageFolder = QFileDialog::getExistingDirectory(this, IMAGE_DIR_SELECT_MSG);
+    ui->save_label->setStyleSheet(STYLESHEET_BLUE);
+    ui->save_label->setText(tr(UNSAVED_CHANGES));
 }
 
 
@@ -56,8 +56,8 @@ void FolderConfigwidget::on_comboBox_currentIndexChanged(int index)
 {
     ui->save_label->clear();
     loadMode = index;
-    ui->save_label->setStyleSheet("QLabel { color : blue; }");
-    ui->save_label->setText(tr("There may be unsaved changes."));
+    ui->save_label->setStyleSheet(STYLESHEET_BLUE);
+    ui->save_label->setText(tr(UNSAVED_CHANGES));
 }
 
 void FolderConfigwidget::changeEvent(QEvent *event) {

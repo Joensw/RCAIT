@@ -2,6 +2,7 @@
 #define REMOVEPROJECTDIALOG_H
 
 #include <QDialog>
+#include <animationutilities.h>
 
 namespace Ui {
 class RemoveProjectDialog;

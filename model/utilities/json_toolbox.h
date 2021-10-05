@@ -9,7 +9,7 @@
 /**
  * @brief This class contains utilities for converting, importing and exporting JSON objects
  */
-class JSON_Toolbox {
+class JSON_Toolbox final {
 private:
     /**
      * @brief Default constructor.

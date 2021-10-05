@@ -2,6 +2,7 @@
 #define NEWPROJECTDIALOG_H
 
 #include <QDialog>
+#include <animationutilities.h>
 
 
 namespace Ui {

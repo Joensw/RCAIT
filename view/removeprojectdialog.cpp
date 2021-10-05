@@ -23,7 +23,7 @@ QString RemoveProjectDialog::getProjectName()
 
 void RemoveProjectDialog::setErrorMessage(const QString &error)
 {
-    ui->label_error->setText(error);
+    AnimationUtilities::setTextWithAnimation(ui->label_error, error);
 }
 
 void RemoveProjectDialog::on_buttonBox_accepted()

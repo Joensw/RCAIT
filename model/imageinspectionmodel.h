@@ -1,7 +1,7 @@
 /**
  * @file imageinspectionmodel.h
  *
- * @brief fuctions for managing a classification dataset on disk
+ * @brief functions for managing a classification dataset on disk
  *
  * @author Sascha Rolinger
  */

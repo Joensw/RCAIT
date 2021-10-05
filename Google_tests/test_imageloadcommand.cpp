@@ -40,12 +40,13 @@ TEST_F(ImageLoadCommandTest, testImageLoad){
     map.insert("imageFolder", path + "/dataset/Train/Mann");
 
     //construct and execute command
-    ImageLoadCommand cmd(map, new ImageLoader());
+    auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
+    ImageLoadCommand cmd(map, &*imageLoader);
     EXPECT_TRUE(cmd.execute());
 }
 
 //check if invalid commands are handled properly
-TEST_F(ImageLoadCommandTest, testImageLoadFail){
+TEST_F(ImageLoadCommandTest, testImageLoadFail) {
     QVariantMap map = QVariantMap();
     map.insert("imagePluginName", ImageLoaderPluginMock::PLUGIN_NAME);
     map.insert("count", 100);
@@ -55,6 +56,7 @@ TEST_F(ImageLoadCommandTest, testImageLoadFail){
     map.insert("imageFolder", path + "/dataset/Train/Mann");
 
     //construct and execute command
-    ImageLoadCommand cmd(map, new ImageLoader());
+    auto imageLoader = QScopedPointer<ImageLoader>(new ImageLoader);
+    ImageLoadCommand cmd(map, &*imageLoader);
     EXPECT_FALSE(cmd.execute());
 }

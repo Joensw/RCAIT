@@ -38,19 +38,19 @@ void GlobalSettingsWidget::showUpdate(const int &amount) {
     ui->label_information->clear();
     if (amount == 0) {
         ui->label_information->setStyleSheet(STYLESHEET_BLUE);
-        ui->label_information->setText(tr(NO_CHANGES_MSG));
+        AnimationUtilities::setTextWithAnimation(ui->label_information, tr(NO_CHANGES_MSG));
     } else {
         ui->label_information->setStyleSheet(STYLESHEET_GREEN);
         QString message = SUCCESS_UPDATED_PATHS_MSG;
-        ui->label_information->setText(message.arg(amount));
-
+        AnimationUtilities::setTextWithAnimation(ui->label_information, message.arg(amount));
     }
 }
+
 
 void GlobalSettingsWidget::setError(const QString &error) {
     ui->label_information->clear();
     ui->label_information->setStyleSheet(STYLESHEET_RED);
-    ui->label_information->setText(error);
+    AnimationUtilities::setTextWithAnimation(ui->label_information, error);
 }
 
 void GlobalSettingsWidget::setCurrentProjectsDir(const QString &path) {

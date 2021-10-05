@@ -2,8 +2,8 @@
 #define NEWMODELDIALOG_H
 
 #include <QDialog>
-#include <QGraphicsOpacityEffect>
-#include <QPropertyAnimation>
+#include <animationutilities.h>
+
 
 namespace Ui {
 class NewModelDialog;
@@ -68,11 +68,6 @@ signals:
     void sig_pluginSelected(QString pluginName);
 private:
     Ui::NewModelDialog *ui;
-
-    static auto constexpr OPACITY_PROPERTY = "opacity";
-    static constexpr int FADE_IN_TIME = 1000;
-    static constexpr int START_OPACITY = 0;
-    static constexpr int END_OPACITY = 1;
 
 private slots:
     //slots correspond with the identically named button in the UI

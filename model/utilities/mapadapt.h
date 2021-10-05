@@ -9,7 +9,7 @@
  * @tparam Container container type like QMap
  */
 template<class Container>
-class MapAdapt {
+class MapAdapt final {
 public:
 
     /**

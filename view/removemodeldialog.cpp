@@ -24,9 +24,7 @@ QString RemoveModelDialog::getModelName()
 
 void RemoveModelDialog::setErrorMessage(const QString &error)
 {
-
-    ui->label_error->setText(error);
-
+    AnimationUtilities::setTextWithAnimation(ui->label_error, error);
 }
 
 void RemoveModelDialog::on_buttonBox_accepted()

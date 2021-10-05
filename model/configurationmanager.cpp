@@ -43,7 +43,7 @@ bool ConfigurationManager::verifyPaths(const QStringList &paths) {
 void
 ConfigurationManager::configureSettingsFile(const QString &projectsDirectory,
                                             const QString &classificationPluginDirectory,
-                                            const QString &imageLoaderDirectory, const QString &pythonPath) {
+                                            const QString &imageLoaderDirectory, const QString &pythonPath) const {
     mGlobalSettings->setValue(projectDirectoryIdentifier, projectsDirectory);
     mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, classificationPluginDirectory);
     mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, imageLoaderDirectory);
@@ -52,35 +52,35 @@ ConfigurationManager::configureSettingsFile(const QString &projectsDirectory,
     qDebug() << pythonPath;
 }
 
-void ConfigurationManager::saveProjectsDir(const QString &dir) {
+void ConfigurationManager::saveProjectsDir(const QString &dir) const {
     mGlobalSettings->setValue(projectDirectoryIdentifier, dir);
 }
 
-QString ConfigurationManager::getProjectsDir() {
+QString ConfigurationManager::getProjectsDir() const {
     return mGlobalSettings->value(projectDirectoryIdentifier).toString();
 }
 
-void ConfigurationManager::saveClassificationPluginDir(const QString &dir) {
+void ConfigurationManager::saveClassificationPluginDir(const QString &dir) const {
     mGlobalSettings->setValue(classificationPluginDirectoryIdentifier, dir);
 }
 
-QString ConfigurationManager::getClassificationPluginDir() {
+QString ConfigurationManager::getClassificationPluginDir() const {
     return mGlobalSettings->value(classificationPluginDirectoryIdentifier).toString();
 }
 
-void ConfigurationManager::saveImageLoaderPluginDir(const QString &dir) {
+void ConfigurationManager::saveImageLoaderPluginDir(const QString &dir) const {
     mGlobalSettings->setValue(imageLoaderPluginDirectoryIdentifier, dir);
 }
 
-void ConfigurationManager::savePythonPath(const QString &path) {
+void ConfigurationManager::savePythonPath(const QString &path) const {
     mGlobalSettings->setValue(pythonExecutablePathIdentifier, path);
 }
 
-QString ConfigurationManager::getImageLoaderPluginDir() {
+QString ConfigurationManager::getImageLoaderPluginDir() const {
     return mGlobalSettings->value(imageLoaderPluginDirectoryIdentifier).toString();
 }
 
-QString ConfigurationManager::getPythonExecutablePath() {
+QString ConfigurationManager::getPythonExecutablePath() const {
     auto value = mGlobalSettings->value(pythonExecutablePathIdentifier);
     return value.isNull() ? PYTHON_FALLBACK : value.toString();
 }

@@ -7,21 +7,17 @@
  */
 #include "projectmanager.h"
 
-const QVector<QString> ProjectManager::UNWANTED_NAME_SEQUENCES = {"/", "\\"};
 
-ProjectManager::ProjectManager() {
+ProjectManager::ProjectManager() = default;
 
-}
-
-void ProjectManager::createNewProject(const QString &projectName)
-{
+void ProjectManager::createNewProject(const QString &projectName) const {
     QString newProjectPath = mProjectsDirectory % "/" % projectName % "/" % projectName % projectFileType;
 
-    /*goes into the projects folder, then into the specific project folder
+    /*goes into the projects' folder, then into the specific project folder
     * there it creates a new ini file, which can be seen as the "project file"
     */
 
-    //non existing folders / directories will be automatically created
+    //non-existing folders / directories will be automatically created
     QSettings newProjectfile(newProjectPath, QSettings::IniFormat);
 
     //this is only to get an absolute path, without .. and .
@@ -35,11 +31,11 @@ void ProjectManager::createNewProject(const QString &projectName)
     newProjectfile.setValue(projectTempDataAugDirectoryIdentifier, tempDataAugDirectoryName);
 
     newProjectfile.setValue(projectDatasetDirectoryIdentifier, datasetDirectoryName);
-    newProjectfile.setValue(projectValidationDatasetIdentifier, validiationDatasetDirectoryName);
+    newProjectfile.setValue(projectValidationDatasetIdentifier, validationDatasetDirectoryName);
     newProjectfile.setValue(projectTrainingDatasetIdentifier, trainingDatasetDirectoryName);
 
     newProjectfile.setValue(projectResultsDirectoryIdentifier, resultsDirectoryName);
-    newProjectfile.setValue(projectTrainingsResultsDirectoryIdentifer, trainingsResultsDirectoryName);
+    newProjectfile.setValue(projectTrainingsResultsDirectoryIdentifier, trainingsResultsDirectoryName);
     newProjectfile.setValue(projectClassificationResultsDirectoryIdentifier, classificationResultsDirectoryName);
 
     newProjectfile.setValue(projectWorkingDirIdentifier, workingDirectoryName);
@@ -58,12 +54,12 @@ void ProjectManager::createNewProject(const QString &projectName)
 
     //make subdirectories for dataset
 
-    dir.mkpath(absolute % "/" % datasetDirectoryName % "/" % validiationDatasetDirectoryName);
+    dir.mkpath(absolute % "/" % datasetDirectoryName % "/" % validationDatasetDirectoryName);
     dir.mkpath(absolute % "/" % datasetDirectoryName % "/" % trainingDatasetDirectoryName);
 }
 
-QStringList ProjectManager::getProjects() {
-    if (!mProjectsDirectory.isEmpty()){
+QStringList ProjectManager::getProjects() const {
+    if (!mProjectsDirectory.isEmpty()) {
         QDir projectsDir(mProjectsDirectory);
         projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
         return projectsDir.entryList();
@@ -79,7 +75,7 @@ bool ProjectManager::createNewProject(const QString &projectName, QString &error
     return true;
 }
 
-void ProjectManager::removeProject(const QString &projectName) {
+void ProjectManager::removeProject(const QString &projectName) const {
     QDir targetDir(mProjectsDirectory % "/" % projectName);
     targetDir.removeRecursively();
 }
@@ -90,12 +86,16 @@ bool ProjectManager::loadProject(const QString &projectName) {
     QSettings projectfile(loadProjectPath, QSettings::IniFormat);
 
     //check if the file exists / and is configured properly
-    QStringList keys = {projectNameIdentifier, projectDatasetDirectoryIdentifier, projectValidationDatasetIdentifier, projectTrainingDatasetIdentifier,
-                        projectTempImagesDirectoryIdentifier, projectTempDataAugDirectoryIdentifier, projectResultsDirectoryIdentifier,
-                        projectTrainingsResultsDirectoryIdentifer, projectClassificationResultsDirectoryIdentifier, projectWorkingDirIdentifier};
+    QStringList keys = {projectNameIdentifier, projectDatasetDirectoryIdentifier, projectValidationDatasetIdentifier,
+                        projectTrainingDatasetIdentifier,
+                        projectTempImagesDirectoryIdentifier, projectTempDataAugDirectoryIdentifier,
+                        projectResultsDirectoryIdentifier,
+                        projectTrainingsResultsDirectoryIdentifier, projectClassificationResultsDirectoryIdentifier,
+                        projectWorkingDirIdentifier};
 
-    for (QString &key: keys){
-        if (!projectfile.allKeys().contains(key)) {
+    auto allKeys = projectfile.allKeys();
+    for (const QString &key: keys) {
+        if (!allKeys.contains(key)) {
             return false;
         }
     }
@@ -104,61 +104,63 @@ bool ProjectManager::loadProject(const QString &projectName) {
     mProjectName = projectfile.value(projectNameIdentifier).toString();
     mProjectPath = mProjectsDirectory % "/" % projectName;
     mProjectDataSetDir = mProjectPath % "/" % projectfile.value(projectDatasetDirectoryIdentifier).toString();
-    mProjectDataSetValSubdir =  mProjectDataSetDir % "/" % projectfile.value(projectValidationDatasetIdentifier).toString();
-    mProjectDataSetTrainSubdir = mProjectDataSetDir % "/" % projectfile.value(projectTrainingDatasetIdentifier).toString();
+    mProjectDataSetValSubdir =
+            mProjectDataSetDir % "/" % projectfile.value(projectValidationDatasetIdentifier).toString();
+    mProjectDataSetTrainSubdir =
+            mProjectDataSetDir % "/" % projectfile.value(projectTrainingDatasetIdentifier).toString();
 
     mProjectImagesTempDir = mProjectPath % "/" % projectfile.value(projectTempImagesDirectoryIdentifier).toString();
     mProjectAugTempDir = mProjectPath % "/" % projectfile.value(projectTempDataAugDirectoryIdentifier).toString();
 
     mProjectResultsDir = mProjectPath % "/" % projectfile.value(projectResultsDirectoryIdentifier).toString();
-    mProjectTrainingResultsDir =  mProjectResultsDir % "/" % projectfile.value(projectTrainingsResultsDirectoryIdentifer).toString();
-    mProjectClassificationResultsDir = mProjectResultsDir % "/" % projectfile.value(projectClassificationResultsDirectoryIdentifier).toString();
+    mProjectTrainingResultsDir =
+            mProjectResultsDir % "/" % projectfile.value(projectTrainingsResultsDirectoryIdentifier).toString();
+    mProjectClassificationResultsDir =
+            mProjectResultsDir % "/" % projectfile.value(projectClassificationResultsDirectoryIdentifier).toString();
 
     mProjectWorkingDir = mProjectPath % "/" % projectfile.value(projectWorkingDirIdentifier).toString();
     return true;
 
 
-
 }
-QString ProjectManager::getProjectPath() {
+
+QString ProjectManager::getProjectPath() const {
     return mProjectPath;
 }
 
-QString ProjectManager::getProjectName() {
+QString ProjectManager::getProjectName() const {
     return mProjectName;
 }
 
-QString ProjectManager::getProjectDataSetDir() {
+QString ProjectManager::getProjectDataSetDir() const {
     return mProjectDataSetDir;
 }
 
-QString ProjectManager::getResultsDir() {
+QString ProjectManager::getResultsDir() const {
     return mProjectResultsDir;
 }
 
-QString ProjectManager::getTrainingResultsDir()
-{
+QString ProjectManager::getTrainingResultsDir() const {
     return mProjectTrainingResultsDir;
 }
 
-QString ProjectManager::getClassificationResultsDir()
-{
+QString ProjectManager::getClassificationResultsDir() const {
     return mProjectClassificationResultsDir;
 }
 
-QString ProjectManager::getProjectDataSetValSubdir(){
+QString ProjectManager::getProjectDataSetValSubdir() const {
     return mProjectDataSetValSubdir;
 }
 
-QString ProjectManager::getProjectDataSetTrainSubdir(){
+QString ProjectManager::getProjectDataSetTrainSubdir() const {
     return mProjectDataSetTrainSubdir;
 }
 
-QString ProjectManager::getProjectImageTempDir() {
+QString ProjectManager::getProjectImageTempDir() const {
     return mProjectImagesTempDir;
 }
 
-QString ProjectManager::getProjectAugTempDir(){
+QString ProjectManager::getProjectAugTempDir() const {
     return mProjectAugTempDir;
 }
 
@@ -183,7 +185,7 @@ QStringList ProjectManager::getNamesOfSavedTrainingResults() {
     return {};
 }
 
-QString ProjectManager::createWorkDirSubfolder(const QString &name){
+QString ProjectManager::createWorkDirSubfolder(const QString &name) const {
     int runningNameCount = 1;
     QDir dir(mProjectWorkingDir);
     dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
@@ -204,9 +206,8 @@ void ProjectManager::setProjectsDirectory(const QString &newDirectory)
     mProjectsDirectory = newDirectory;
 }
 
-bool ProjectManager::verifyName(const QString &projectName, QString &error)
-{
-    if (projectName.length() == 0){
+bool ProjectManager::verifyName(const QString &projectName, QString &error) const {
+    if (projectName.length() == 0) {
         error = ERROR_NOCHAR;
         return false;
     }
@@ -226,11 +227,9 @@ bool ProjectManager::verifyName(const QString &projectName, QString &error)
     //check if name is already taken
     QDir projectsDir(mProjectsDirectory);
     projectsDir.setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
-    QStringList projects = projectsDir.entryList();
-    if (projects.contains(projectName)) {
+    if (projectsDir.entryList().contains(projectName)) {
         error = ERROR_DUPLICATE;
         return false;
-
     }
 
     //check if folders with this name can simply not be created

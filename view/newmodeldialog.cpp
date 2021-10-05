@@ -18,15 +18,7 @@ NewModelDialog::~NewModelDialog()
 
 void NewModelDialog::setErrorMessage(const QString &error)
 {
-    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect();
-    ui->label_information->setGraphicsEffect(effect);
-    QPropertyAnimation *anim = new QPropertyAnimation(effect, OPACITY_PROPERTY);
-    anim->setDuration(FADE_IN_TIME);
-    anim->setStartValue(START_OPACITY);
-    anim->setEndValue(END_OPACITY);
-    anim->setEasingCurve(QEasingCurve::OutQuad);
-    anim->start(QAbstractAnimation::DeleteWhenStopped);
-    ui->label_information->setText(error);
+    AnimationUtilities::setTextWithAnimation(ui->label_information, error);
 }
 
 void NewModelDialog::setAvailableBases(const QStringList &bases)

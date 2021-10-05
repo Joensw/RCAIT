@@ -5,6 +5,7 @@
 #include <QString>
 #include <QLabel>
 #include <QResizeEvent>
+#include <animationutilities.h>
 
 namespace Ui {
 class GlobalSettingsWidget;
@@ -93,6 +94,8 @@ public:
      * @param path path to be shown
      */
     void setCurrentPythonPath(const QString& path);
+
+
 
 signals:
     /**

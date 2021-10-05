@@ -2,6 +2,7 @@
 #define REMOVEMODELDIALOG_H
 
 #include <QDialog>
+#include <animationutilities.h>
 
 namespace Ui {
 class RemoveModelDialog;

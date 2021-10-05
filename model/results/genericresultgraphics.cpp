@@ -42,8 +42,8 @@ void GenericResultGraphics::launch_externalGraphicsGenerator(const QString &comm
 
     QProcess process;
     process.startCommand(commandWithArgs);
-    process.waitForStarted();
-    process.waitForFinished();
+    process.waitForStarted(-1);
+    process.waitForFinished(-1);
 
     qInfo() << qPrintable("::::::" % commandWithArgs % "::::::") << "\n"
             << qPrintable(process.readAllStandardError().simplified()) << "\n"  //Print in console

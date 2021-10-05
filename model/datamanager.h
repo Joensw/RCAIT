@@ -40,9 +40,9 @@ public:
      * @return instance
      */
     static DataManager &getInstance() {
-        static DataManager instance; // Guaranteed to be destroyed.
+        static DataManager INSTANCE; // Guaranteed to be destroyed.
         // Instantiated on first use.
-        return instance;
+        return INSTANCE;
     }
 
     /**
@@ -86,42 +86,42 @@ public:
      * @brief getProjectPath will return null string if no project is opened
      * @return absolute path to the currently opened project's subdirectory
      */
-    QString getProjectPath();
+    [[maybe_unused]] QString getProjectPath();
 
     /**
-     * @brief getProjectName get the name of the currently openend project, will return null string if no project is opened
+     * @brief getProjectName get the name of the currently opened project, will return null string if no project is opened
      * @return name of the currently opened project
      */
-    QString getProjectName();
+    [[maybe_unused]] QString getProjectName();
 
     /**
      * @brief getProjectDataSetDir will return null string if no project is opened
      * @return absolute path to the data set directory of the currently opened project
      */
-    QString getProjectDataSetDir();
+    [[maybe_unused]] QString getProjectDataSetDir();
 
     /**
      * @return the absolute path to the validation images subfolder of the data set
      */
-    QString getProjectDataSetValSubdir();
+    [[maybe_unused]] QString getProjectDataSetValSubdir();
 
     /**
      * @return the absolute path to the training images subfolder of the data set
      */
 
-    QString getProjectDataSetTrainSubdir();
+    [[maybe_unused]] QString getProjectDataSetTrainSubdir();
 
     /**
      * @return the absolute path to the data augmentation temporary directory of the current project
      */
 
-    QString getProjectAugTempDir();
+    [[maybe_unused]] QString getProjectAugTempDir();
 
     /**
      * @return the absolute path to the image temporary directory of the current project
      */
 
-    QString getProjectImageTempDir();
+    [[maybe_unused]] QString getProjectImageTempDir();
 
     /**
      * The names receive the suffix _1, if this name is already taken, the suffix is incremented till it is available
@@ -130,7 +130,7 @@ public:
      * @return absolute path to the folder
      */
 
-    QString createNewWorkSubDir(const QString &name);
+    [[maybe_unused]] QString createNewWorkSubDir(const QString &name);
 
 
     /**
@@ -141,7 +141,7 @@ public:
      * @return true if they are, false otherwise
      */
 
-    bool verifyDirectories();
+    [[maybe_unused]] bool verifyDirectories();
 
     /**
      * The paths are valid, when they are not empty ie. "" or the nullstring, when they are not identical, and actually exist.
@@ -151,7 +151,7 @@ public:
      * @param paths list of paths to be verified
      * @return true if valid, false otherwise
      */
-    static bool verifyPaths(const QStringList& paths);
+    [[maybe_unused]] [[maybe_unused]] static bool verifyPaths(const QStringList &paths);
 
     /**
      * @brief createNewModel created a new model with the specified parameters
@@ -165,7 +165,7 @@ public:
     /**
      * @brief removeModel removes a model according to the specified parameters
      * @param modelName name the model
-     * @return true if the model was removed, false if an error occured
+     * @return true if the model was removed, false if an error occurred
      */
     bool removeModel(const QString &modelName);
 
@@ -179,12 +179,12 @@ public:
     /**
      * @return a list of all modelNames of the current project
      */
-    QStringList getModelNamesOfCurrentProject();
+    [[maybe_unused]] QStringList getModelNamesOfCurrentProject();
 
     /**
      * @return the currently loaded model
      */
-    QString getCurrentModel();
+    [[maybe_unused]] QString getCurrentModel();
 
     /**
      * @brief setLastWorkingDirectoryOfModel saves the given working directory to the model data
@@ -215,28 +215,28 @@ public:
     /**
      * @return the classification plugin the current model is from
      */
-    QString getCurrentClassificationPlugin();
+    [[maybe_unused]] QString getCurrentClassificationPlugin();
 
     /**
      * @return a list of the names of all the plugins that were loaded
      */
-    QStringList getPluginNames();
+    [[maybe_unused]] QStringList getPluginNames();
 
     /**
      * @return the names of all loaded classification plugins
      */
-    QStringList getClassificationPluginNames();
+    [[maybe_unused]] QStringList getClassificationPluginNames();
 
     /**
      * @param plugin the classification plugin
      * @return list of the bases of a particular classification plugin
      */
-    QStringList getPluginBases(const QString& plugin);
+    [[maybe_unused]] QStringList getPluginBases(const QString &plugin);
 
     /**
      * @return the input UI's of all the plugins
      */
-    QList<QSharedPointer<QWidget>> getPluginSettings();
+    [[maybe_unused]] QList <QSharedPointer<QWidget>> getPluginSettings();
 
     /**
      * @brief savePluginSettings saves the settings of the plugin specified in the UI at the current index
@@ -253,7 +253,7 @@ public:
     /**
      * @return the absolute path to the current projects directory
      */
-    QString getProjectsDir();
+    [[maybe_unused]] [[nodiscard]] QString getProjectsDir() const;
 
     /**
      * @brief saveClassificationPluginDir set the value of the classification plugin directory
@@ -264,7 +264,7 @@ public:
     /**
      * @return the absolute path to the current classification plugin directory
      */
-    QString getClassificationPluginDir();
+    [[maybe_unused]] [[nodiscard]] QString getClassificationPluginDir() const;
 
     /**
      * @brief saveImageLoaderPluginDir set the value of the image loader plugin directory
@@ -275,19 +275,19 @@ public:
     /**
      * @return the absolute path to the current image loader plugin directory
      */
-    QString getImageLoaderPluginDir();
+    [[maybe_unused]] [[nodiscard]] QString getImageLoaderPluginDir() const;
 
 
     /**
-     * @return the absolute path to the current pythonge executable
+     * @return the absolute path to the current python executable
      */
 
-    QString getPythonExecutablePath();
+    [[maybe_unused]] [[nodiscard]] QString getPythonExecutablePath() const;
 
     /**
      * @return the names of all loaded image loader plugins
      */
-    QStringList getImageLoaderPluginNames();
+    [[maybe_unused]] [[nodiscard]] QStringList getImageLoaderPluginNames() const;
 
     /**
      * @brief applyGlobalSettings changes the program paths according to parameters, if they are resolvable.
@@ -306,25 +306,26 @@ public:
     /**
      * @return return list of the training results that have been saved
      */
-    QStringList getNamesOfSavedTrainingResults();
+    [[maybe_unused]] [[nodiscard]] QStringList getNamesOfSavedTrainingResults() const;
 
     /**
      * @return the input UI of the current classification plugin that is to be shown
      */
-    QSharedPointer<QWidget> getInputWidget();
+    [[maybe_unused]] [[nodiscard]] QSharedPointer <QWidget> getInputWidget() const;
 
     /**
      * @return the input UI of the current classification plugins data augmentation settings that are to be shown
      */
-    QSharedPointer<QWidget> getDataAugmentationInputWidget();
+    [[maybe_unused]] [[nodiscard]] QSharedPointer <QWidget> getDataAugmentationInputWidget() const;
 
     /**
      * @brief getPluginIcons gets the icons of the plugins
      * @return the icons
      */
-    QList<QSharedPointer<QIcon>> getPluginIcons();
+    [[maybe_unused]] [[nodiscard]] QList <QSharedPointer<QIcon>> getPluginIcons() const;
     
 private:
+    //Singleton pointers, these will be auto-deleted
     ProjectManager *mProjectManager;
     ModelManager *mModelManager;
     SettingsManager *mSettingsManager;

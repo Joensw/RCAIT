@@ -82,7 +82,7 @@ signals:
     void sig_comparison_loadTrainingResultGraphics(GenericGraphicsView *receiver, const QString &runNameToCompare);
 
     /**
-     * @brief Signal is emitted when a result tab is added and data is requested.
+     * @brief Signal is emitted when a result tab is added for comparison and data is requested.
      * @param view top accuracies tab to be filled with data
      * @param graphics contains the relevant data for parsing
      */
@@ -121,6 +121,14 @@ signals:
      */
     void sig_normal_requestTopAccuraciesGraphics(TopAccuraciesView *receiver,
                                                  QSharedPointer<TopAccuraciesGraphics> graphics);
+
+    /**
+     * @brief Signal is emitted when a result tab is added and data is requested.
+     * @param view top accuracies tab to be filled with data
+     * @param graphics contains the relevant data for parsing
+     */
+    void sig_normal_loadAccuracyData(TopAccuraciesView *view, const QPointer<TopAccuraciesGraphics> &graphics,
+                                     const QPointer<TrainingResult> &result);
 
     /**
      * @brief Signal is emitted when a top accuracies tab is saved.

@@ -64,7 +64,8 @@ ImageInspectionModel::mergeMap(const QMap<QString, QStringList> &mergeIn, const 
 }
 
 
-void ImageInspectionModel::removeImage(int selectionIndex, const QMap<QString, QList<int>> &removedImages) {
+void ImageInspectionModel::removeImage(int selectionIndex,
+                                       const QMap<QString, QList<int>> &removedImages) {
     switch (selectionIndex) {
         case VALIDATION_SET:
             removeImageWithIndex(m_validationDataset, removedImages);
@@ -81,8 +82,6 @@ void ImageInspectionModel::removeImage(int selectionIndex, const QMap<QString, Q
         default:
             qWarning() << "Unknown selectionIndex: " << selectionIndex;
     }
-
-
 }
 
 void ImageInspectionModel::loadNewData(const QString &path, int split) {
@@ -129,8 +128,7 @@ void ImageInspectionModel::insertLabeledImagePaths(QMap<QString, QStringList> &i
     QDirIterator it(labeledImages, QDirIterator::NoIteratorFlags);
 
     for (const auto &item: labeledImages.entryInfoList()) {
-        QDir currDir = QDir(item.absoluteFilePath());
-        if (currDir.exists() && currDir.isEmpty()) {
+        if (QDir currDir(item.absoluteFilePath()); currDir.exists() && currDir.isEmpty()) {
             currDir.removeRecursively();
             continue;
         }
@@ -139,30 +137,61 @@ void ImageInspectionModel::insertLabeledImagePaths(QMap<QString, QStringList> &i
 }
 
 void ImageInspectionModel::removeImageWithIndex(QMap<QString, QStringList> &removeTarget,
-                                                const QMap<QString, QList<int>> &removedImages) {
+                                                const QMap<QString, QList < int>>
 
-    for (const auto &[label, values]: MapAdapt(removedImages)) {
-        if (values.isEmpty()) {
-            continue;
-        }
-        //iterate from front to back, so we delete images with the largest index first.
-        //otherwise, the removetarget indices are reduced by one after the deleted index
-        //and our next deletion will not hit the correct filepath in the removetarget
-        QListIterator<int> iter(values);
-        iter.toBack();
-        while (iter.hasPrevious()) {
-            int i = iter.previous();
-            QFile file(removeTarget[label][i]);
-            QDir currDir = QFileInfo(file).absoluteDir();
-            auto newList = removeTarget[label];
-            newList.removeAt(i);
-            removeTarget[label] = newList;
-            file.remove();
-            if (currDir.exists() && currDir.isEmpty()) {
-                currDir.removeRecursively();
-            }
-        }
-    }
+&removedImages) {
+
+for (const auto &[label, values]:
+MapAdapt(removedImages)
+) {
+if (values.
+
+isEmpty()
+
+) {
+continue;
+}
+//iterate from front to back, so we delete images with the largest index first.
+//otherwise, the removetarget indices are reduced by one after the deleted index
+//and our next deletion will not hit the correct filepath in the removetarget
+QListIterator iter(values);
+iter.
+
+toBack();
+
+while (iter.
+
+hasPrevious()
+
+) {
+int i = iter.previous();
+QFile file(removeTarget[label][i]);
+QDir currDir = QFileInfo(file).absoluteDir();
+auto newList = removeTarget[label];
+newList.
+removeAt(i);
+removeTarget[label] =
+newList;
+file.
+
+remove();
+
+if (currDir.
+
+exists() &&
+
+currDir.
+
+isEmpty()
+
+) {
+currDir.
+
+removeRecursively();
+
+}
+}
+}
 }
 
 const QMap<QString, QStringList> &ImageInspectionModel::getValidationDataset() const {
@@ -189,14 +218,14 @@ void ImageInspectionModel::moveFile(const QString &imagePath, const QString &lab
     QDir folder(fileInfo.absoluteDir());
 
     auto dir = QDir(trainOrValidate);
-    //QString newPath = dir.absoluteFilePath(label);
+
     if (!dir.exists(label)) { dir.mkpath(label); }
     dir.cd(label);
     auto newFile = QString("%1_%2.%3").arg(label, QString::number(fileNumber), suffix);
     auto newFilePath = dir.absoluteFilePath(newFile);
     QFile destFile(newFilePath);
 
-    if (destFile.exists()) { destFile.remove(); }
+    destFile.remove();
     if (!file.rename(newFilePath)) { qDebug() << "Error moving file: " << file.error(); }
     if (folder.isEmpty()) { folder.removeRecursively(); }
 
@@ -215,8 +244,7 @@ int ImageInspectionModel::getFreeImageNumber(const QStringList &paths, const QSt
     if (fileList.empty()) { return res; }
 
     std::sort(fileList.begin(), fileList.end(), compareNames);
-    QRegularExpressionMatch match = re.match(fileList.last());
-    if (match.hasMatch()) {
+    if (auto match = re.match(fileList.last()); match.hasMatch()) {
         bool ok;
         QString matched = match.captured(0);
         int lastNumber = matched.toInt(&ok, 10);
@@ -247,9 +275,4 @@ bool ImageInspectionModel::compareNames(const QString &s1, const QString &s2) {
 }
 
 
-ImageInspectionModel::ImageInspectionModel() :
-        m_trainDataset(),
-        m_validationNewData(),
-        m_trainNewData(),
-        m_validationDataset() {
-}
+ImageInspectionModel::ImageInspectionModel() = default;

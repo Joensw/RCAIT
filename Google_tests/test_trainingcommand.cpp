@@ -39,18 +39,20 @@ TEST_F(TrainingCommandTest, testClassification){
     map.insert("projectName", "name");
 
     //construct and execute command
-    TrainingCommand cmd(map, new Trainer());
+    auto trnr = QScopedPointer<Trainer>(new Trainer);
+    TrainingCommand cmd(map, &*trnr);
     EXPECT_TRUE(cmd.execute());
 
     //construct command that should return false
     map.remove("modelName");
     map.insert("modelName", "");
-    TrainingCommand cmd2(map, new Trainer());
+    auto trnr2 = QScopedPointer<Trainer>(new Trainer);
+    TrainingCommand cmd2(map, &*trnr2);
     EXPECT_FALSE(cmd2.execute());
 }
 
 //check if invalid commands are handled properly
-TEST_F(TrainingCommandTest, testCommandFail){
+TEST_F(TrainingCommandTest, testCommandFail) {
     QVariantMap map = QVariantMap();
     map.insert("aiPluginName", ClassificationPluginMock::PLUGIN_NAME);
 //    map.insert("modelName", "true"); should fail without these
@@ -59,6 +61,7 @@ TEST_F(TrainingCommandTest, testCommandFail){
     map.insert("projectName", "name");
 
     //construct and execute command
-    TrainingCommand cmd(map, new Trainer());
+    auto trnr = QScopedPointer<Trainer>(new Trainer);
+    TrainingCommand cmd(map, &*trnr);
     EXPECT_FALSE(cmd.execute());
 }

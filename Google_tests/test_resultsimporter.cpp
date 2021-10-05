@@ -4,14 +4,12 @@
 #include "resultsimporter.h"
 #include "trainingresultview.h"
 #include "trainingresultswidget.h"
-#include <QWidget>
 #include <QtTest/QSignalSpy>
 #include "resultsexporter.h"
 
 
-
 class ResultsImporterTest : public testing::Test {
-    protected:
+protected:
 
 
     static void SetUpTestSuite() {
@@ -38,10 +36,9 @@ class ResultsImporterTest : public testing::Test {
     QString testProjectName = "testProject";
     QString f = "training_run.json";
 
-    void copyPath(QString src, QString dst)
-    {
+    void copyPath(QString src, QString dst) {
         QDir dir(src);
-        if (! dir.exists())
+        if (!dir.exists())
             return;
 
         for (const QString &d: dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
@@ -50,18 +47,16 @@ class ResultsImporterTest : public testing::Test {
             copyPath(src + QDir::separator() + d, dst_path);
         }
 
-        for (const QString &f: dir.entryList(QDir::Files)) {
-            QFile::copy(src + QDir::separator() + f, dst + QDir::separator() + f);
+        for (const QString &file: dir.entryList(QDir::Files)) {
+            QFile::copy(src + QDir::separator() + file, dst + QDir::separator() + file);
         }
     }
 
 
- };
+};
 
 
-
-
-TEST_F(ResultsImporterTest, testCallMethods){
+TEST_F(ResultsImporterTest, testCallMethods) {
 
     int argc = 1;
     char *argv[1] = {new char('a')};
@@ -69,7 +64,7 @@ TEST_F(ResultsImporterTest, testCallMethods){
 
     ResultsExporter resultsExporter;
     ResultsImporter resultsImporter;
-    ProjectManager * pm = &ProjectManager::getInstance();
+    ProjectManager *pm = &ProjectManager::getInstance();
     pm->setProjectsDirectory(tempProjectsDir);
     QString error;
     bool out = pm->createNewProject(testProjectName, error);
@@ -82,26 +77,27 @@ TEST_F(ResultsImporterTest, testCallMethods){
     QString classResultsDir = pm->getClassificationResultsDir();
     QDir clResDir(classResultsDir);
 
-    copyPath(resultsDir,trResDir.absolutePath());
-    copyPath(classiResultsDir,clResDir.absolutePath());
+    copyPath(resultsDir, trResDir.absolutePath());
+    copyPath(classiResultsDir, clResDir.absolutePath());
 
     //EXPECT_TRUE(QFile::copy(fDir,tarDir));
     resultsImporter.updateResultFolderPaths();
     resultsExporter.updateResultFolderPaths();
 
-    SavableResultsWidget* savaBleResultswidget = new TrainingResultsWidget();
-    TrainingResultView* trainingResultView = new TrainingResultView(savaBleResultswidget);
+    auto savableResultsWidget = QScopedPointer<TrainingResultsWidget>(new TrainingResultsWidget);
+    auto trainingResultView = QScopedPointer<TrainingResultView>(new TrainingResultView(&*savableResultsWidget));
 
-    SavableResultsWidget* savaBleResultswidget2 = new TrainingResultsWidget();
-    ClassificationResultView* classificationResultView = new ClassificationResultView(savaBleResultswidget2);
+    auto savableResultsWidget2 = QScopedPointer<TrainingResultsWidget>(new TrainingResultsWidget);
+    auto classificationResultView = QScopedPointer<ClassificationResultView>(
+            new ClassificationResultView(&*savableResultsWidget2));
 
-     qRegisterMetaType<TrainingResult>();
-     qRegisterMetaType<ClassificationResult>();
+    qRegisterMetaType<TrainingResult>();
+    qRegisterMetaType<ClassificationResult>();
     //qRegisterMetaType<TrainingResultView>();
     QSignalSpy spy(&resultsImporter, &ResultsImporter::sig_normal_loadTrainingResultData);
     QSignalSpy spy2(&resultsImporter, &ResultsImporter::sig_normal_loadClassificationResultData);
-    resultsImporter.slot_comparison_loadTrainingResultData(trainingResultView, "run");
-    resultsImporter.slot_comparison_loadClassificationResultData(classificationResultView, "fun");
+    resultsImporter.slot_comparison_loadTrainingResultData(&*trainingResultView, "run");
+    resultsImporter.slot_comparison_loadClassificationResultData(&*classificationResultView, "fun");
 
     spy2.wait(1000);
     spy.wait(1000);
@@ -122,22 +118,28 @@ TEST_F(ResultsImporterTest, testCallMethods){
     EXPECT_EQ(result->getConfusionMatrixValues().at(2), 0);
     EXPECT_EQ(result->getConfusionMatrixValues().at(3), 14);
 
-    EXPECT_EQ(result->getMostMisclassifiedImages().at(0),"path/one/");
-    EXPECT_EQ(result->getMostMisclassifiedImages().at(1),"path/two/");
-    EXPECT_EQ(result->getMostMisclassifiedImages().at(2),"path/three/");
+    EXPECT_EQ(result->getMostMisclassifiedImages().at(0), "path/one/");
+    EXPECT_EQ(result->getMostMisclassifiedImages().at(1), "path/two/");
+    EXPECT_EQ(result->getMostMisclassifiedImages().at(2), "path/three/");
 
-    EXPECT_DOUBLE_EQ(result->getTop1Accuracy(),82.142857142857139);
+    EXPECT_DOUBLE_EQ(result->getTop1Accuracy(), 82.142857142857139);
 
     EXPECT_DOUBLE_EQ(result->getTop5Accuracy(), 100.0);
 
 
-    EXPECT_DOUBLE_EQ(result2->getClassificationData().value("/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg").at(0),0.90369337797164917);
-    EXPECT_DOUBLE_EQ(result2->getClassificationData().value("/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg").at(1),0.087613902986049652);
-    EXPECT_DOUBLE_EQ(result2->getClassificationData().value("/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg").at(2),0.0086927767843008041);
+    EXPECT_DOUBLE_EQ(result2->getClassificationData().value(
+            "/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg").at(0),
+                     0.90369337797164917);
+    EXPECT_DOUBLE_EQ(result2->getClassificationData().value(
+            "/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg").at(1),
+                     0.087613902986049652);
+    EXPECT_DOUBLE_EQ(result2->getClassificationData().value(
+            "/home/ies/ott/pseVNC/ProjektDirectory/DataAugTest/data/validation/bank/bank_53.jpg").at(2),
+                     0.0086927767843008041);
 
-    EXPECT_EQ(result2->getLabels().at(0),"bank");
-    EXPECT_EQ(result2->getLabels().at(1),"boat");
-    EXPECT_EQ(result2->getLabels().at(2),"bread");
+    EXPECT_EQ(result2->getLabels().at(0), "bank");
+    EXPECT_EQ(result2->getLabels().at(1), "boat");
+    EXPECT_EQ(result2->getLabels().at(2), "bread");
 
     //test resultsexporter
     bool success;
