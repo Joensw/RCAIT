@@ -67,7 +67,7 @@ tensorboard @ file:///home/builder/adipietro/tf/tensorboard_1630508887863/work/t
 tensorboard-plugin-wit==1.6.0
 tifffile==2021.8.30
 tomli==1.2.1
-torch==1.9.1
+torch==1.13.1
 torchaudio==0.9.0a0+a85b239
 torchvision==0.10.1
 typing-extensions @ file:///tmp/build/80754af9/typing_extensions_1631814937681/work
