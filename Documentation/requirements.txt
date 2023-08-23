@@ -45,7 +45,7 @@ opencv-python==4.5.3.56
 opencv-python-headless==4.5.3.56
 packaging==21.0
 Pillow @ file:///tmp/build/80754af9/pillow_1625655408865/work
-protobuf==3.17.2
+protobuf==3.18.3
 pyasn1 @ file:///Users/ktietz/demo/mc3/conda-bld/pyasn1_1629708007385/work
 pyasn1-modules==0.2.8
 pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
